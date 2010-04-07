@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'suspension'
-  s.version           = '0.0'
-  s.date              = '2010-04-06'
+  s.version           = '0.0.1'
+  s.date              = '2010-04-07'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = "Generate a Rails app using thoughtbot's best practices."
@@ -23,7 +23,16 @@ Gem::Specification.new do |s|
   s.add_development_dependency('cucumber', [">= 0.6.2"])
 
   # = MANIFEST =
-  s.files = %w[]
+  s.files = %w[
+    LICENSE
+    README
+    Rakefile
+    bin/suspension
+    features/rake_clean.feature
+    features/step_definitions/shell.rb
+    features/support/env.rb
+    suspension.gemspec
+  ]
   # = MANIFEST =
 
   s.test_files = s.files.select {|path| path =~ /^features/ }
