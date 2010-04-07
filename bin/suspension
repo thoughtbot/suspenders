@@ -4,7 +4,8 @@ require 'active_support'
 require 'pathname'
 require 'digest/md5'
 
-project_name = ARGV[0]
+### currently the only thing you can do is create. So we ignore the first argument
+project_name = ARGV[1]
 fail("Usage:  #{File.basename(__FILE__)} new_project_name")     unless project_name
 fail("Project name must only contain [a-z0-9_]")                unless project_name =~ /^[a-z0-9_]+$/
 

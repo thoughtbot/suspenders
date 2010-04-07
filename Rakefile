@@ -4,7 +4,7 @@ require 'cucumber/rake/task'
 require 'date'
 
 TEST_PROJECT = 'test_project'
-VERSION = '0.0.1'
+SUSPENSION_VERSION = '0.0.1'
 
 #############################################################################
 #
@@ -22,7 +22,7 @@ end
 namespace :generate do
   desc 'Suspend a new project'
   task :suspenders do
-    sh './bin/suspension', TEST_PROJECT
+    sh './bin/suspension', 'create', TEST_PROJECT
   end
 
   desc 'Finishing touches'
@@ -60,7 +60,7 @@ def name
 end
 
 def version
-  VERSION
+  SUSPENSION_VERSION
 end
 
 def date
