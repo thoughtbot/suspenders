@@ -1,6 +1,8 @@
 Suspension is a base Rails project that you can upgrade. It is used by
 thoughtbot.
 
+![Suspension](http://www.blogcdn.com/www.autoblog.com/media/2008/08/misuse-of-hydraulics.jpg)
+
 To create a new project first install suspension:
 
   gem install suspension
