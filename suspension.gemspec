@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.date              = '2010-04-07'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
-  s.description = "Generate a Rails app using thoughtbot's best practices."
+  s.description = IO.read('README.md')
 
   s.authors  = ["Mike Burns"]
   s.email    = 'mburns@thoughtbot.com'
@@ -18,14 +18,14 @@ Gem::Specification.new do |s|
   s.default_executable = 'suspension'
 
   s.rdoc_options = ["--charset=UTF-8"]
-  s.extra_rdoc_files = %w[README LICENSE]
+  s.extra_rdoc_files = %w[README.md LICENSE]
 
   s.add_development_dependency('cucumber', [">= 0.6.2"])
 
   # = MANIFEST =
   s.files = %w[
     LICENSE
-    README
+    README.md
     Rakefile
     bin/suspension
     features/rake_clean.feature
