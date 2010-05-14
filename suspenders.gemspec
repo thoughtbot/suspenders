@@ -3,7 +3,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.rubygems_version = '1.3.5'
 
-  s.name              = 'suspension'
+  s.name              = 'suspenders'
   s.version           = '0.0.1'
   s.date              = '2010-04-07'
 
@@ -12,10 +12,10 @@ Gem::Specification.new do |s|
 
   s.authors  = ["Mike Burns"]
   s.email    = 'mburns@thoughtbot.com'
-  s.homepage = 'http://github.com/mike-burns/suspension'
+  s.homepage = 'http://github.com/thoughtbot/suspenders-gem'
 
-  s.executables = ["suspension"]
-  s.default_executable = 'suspension'
+  s.executables = ["suspenders"]
+  s.default_executable = 'suspenders'
 
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
@@ -27,11 +27,11 @@ Gem::Specification.new do |s|
     LICENSE
     README.md
     Rakefile
-    bin/suspension
+    bin/suspenders
     features/rake_clean.feature
     features/step_definitions/shell.rb
     features/support/env.rb
-    suspension.gemspec
+    suspenders.gemspec
   ]
   # = MANIFEST =
 

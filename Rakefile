@@ -4,7 +4,7 @@ require 'cucumber/rake/task'
 require 'date'
 
 TEST_PROJECT = 'test_project'
-SUSPENSION_VERSION = '0.0.1'
+SUSPENDERS_GEM_VERSION = '0.0.1'
 
 #############################################################################
 #
@@ -22,7 +22,7 @@ end
 namespace :generate do
   desc 'Suspend a new project'
   task :suspenders do
-    sh './bin/suspension', 'create', TEST_PROJECT
+    sh './bin/suspenders', 'create', TEST_PROJECT
   end
 
   desc 'Finishing touches'
@@ -60,7 +60,7 @@ def name
 end
 
 def version
-  SUSPENSION_VERSION
+  SUSPENDERS_GEM_VERSION
 end
 
 def date
@@ -93,7 +93,7 @@ task :release => :build do
   sh "git commit --allow-empty -a -m 'Release #{version}'"
   sh "git tag v#{version}"
   sh "git push origin master"
-  sh "git push v#{version}"
+  sh "git push --tags"
   sh "gem push pkg/#{name}-#{version}.gem"
 end
 

@@ -1,15 +1,15 @@
-Suspension is a base Rails project that you can upgrade. It is used by
+Suspenders is a base Rails project that you can upgrade. It is used by
 thoughtbot.
 
-![Suspension](http://www.blogcdn.com/www.autoblog.com/media/2008/08/misuse-of-hydraulics.jpg)
+![Suspenders](http://www.blogcdn.com/www.autoblog.com/media/2008/08/misuse-of-hydraulics.jpg)
 
-To create a new project first install suspension:
+To create a new project first install suspenders:
 
-  gem install suspension
+  gem install suspenders
 
 Then run:
 
-  suspension create projectname
+  suspenders create projectname
 
 This will create a project in `projectname'.  You should then follow the
 instructions on Github to upload that project there.  This script creates an

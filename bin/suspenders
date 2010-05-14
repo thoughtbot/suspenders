@@ -6,8 +6,8 @@ require 'digest/md5'
 
 ### currently the only thing you can do is create. So we ignore the first argument
 project_name = ARGV[1]
-fail("Usage:  #{File.basename(__FILE__)} new_project_name")     unless project_name
-fail("Project name must only contain [a-z0-9_]")                unless project_name =~ /^[a-z0-9_]+$/
+fail("Usage:  #{File.basename(__FILE__)} create new_project_name")     unless project_name
+fail("Project name must only contain [a-z0-9_]")                       unless project_name =~ /^[a-z0-9_]+$/
 
 base_directory = Dir.pwd
 project_directory = File.join(base_directory, project_name)
