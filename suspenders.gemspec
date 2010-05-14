@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
 
   s.name              = 'suspenders'
   s.version           = '0.0.1'
-  s.date              = '2010-04-07'
+  s.date              = '2010-05-14'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = IO.read('README.md')
