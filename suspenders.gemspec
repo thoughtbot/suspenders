@@ -8,7 +8,11 @@ Gem::Specification.new do |s|
   s.date              = '2010-05-14'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
-  s.description = IO.read('README.md')
+  s.description = <<-HERE
+Suspenders is a base Rails project that you can upgrade. It is used by
+thoughtbot to get a jump start on a working app. Use Suspenders if you're in a
+rush to build something amazing; don't use it if you like missing deadlines.
+  HERE
 
   s.authors  = ["Mike Burns"]
   s.email    = 'mburns@thoughtbot.com'
