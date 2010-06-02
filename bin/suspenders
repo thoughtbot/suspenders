@@ -69,6 +69,10 @@ unless installed?("RedCloth")
   run "sudo gem install RedCloth --version='4.2.2'"
 end
 
+run("rake gems:refresh_specs")
+run("rake db:create RAILS_ENV=development")
+run("rake db:create RAILS_ENV=test")
+
 run("script/generate clearance")
 run("script/generate clearance_features -f")
 run("script/generate clearance_views -f")
