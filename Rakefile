@@ -20,9 +20,9 @@ namespace :test do
 end
 
 namespace :generate do
-  desc 'Suspend a new project'
+  desc 'Suspend a new project. Pass REPO=... to change the Suspenders repo.'
   task :suspenders do
-    sh './bin/suspenders', 'create', TEST_PROJECT
+    sh './bin/suspenders', 'create', TEST_PROJECT, ENV['REPO']
   end
 
   desc 'Finishing touches'
