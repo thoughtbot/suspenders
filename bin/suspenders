@@ -13,7 +13,11 @@ base_directory = Dir.pwd
 project_directory = File.join(base_directory, project_name)
 fail("Project directory (#{project_directory}) already exists") if File.exists?(project_directory)
 
-template_url = ARGV[2] || "git://github.com/thoughtbot/suspenders.git"
+template_url = if ARGV[2] && !(ARGV[2] =~ /^ *$/)
+                 ARGV[2]
+               else
+                 "git://github.com/thoughtbot/suspenders.git"
+               end
 changeme = "CHANGEME"
 changesession = "CHANGESESSION"
 
