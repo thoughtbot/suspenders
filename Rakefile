@@ -16,9 +16,10 @@ Cucumber::Rake::Task.new
 
 namespace :test do
   desc "A full suspenders app's test suite"
-  task :full => ['generate:suspenders', 'generate:finish', 'cucumber', 'destroy:suspenders']
+  task :full => ['generate', 'cucumber', 'destroy:suspenders']
 end
 
+task :generate => ['generate:finish']
 namespace :generate do
   desc 'Suspend a new project. Pass REPO=... to change the Suspenders repo.'
   task :suspenders do
@@ -26,7 +27,7 @@ namespace :generate do
   end
 
   desc 'Finishing touches'
-  task :finish do
+  task :finish => ['suspenders'] do
     open(File.join(TEST_PROJECT, 'config', 'environments', 'cucumber.rb'), 'a') do |f|
       f.puts "config.action_mailer.default_url_options = { :host => 'localhost:3000' }"
     end
