@@ -4,23 +4,6 @@ require 'active_support'
 require 'pathname'
 require 'digest/md5'
 
-### currently the only thing you can do is create. So we ignore the first argument
-project_name = ARGV[1]
-fail("Usage:  #{File.basename(__FILE__)} create new_project_name")     unless project_name
-fail("Project name must only contain [a-z0-9_]")                       unless project_name =~ /^[a-z0-9_]+$/
-
-base_directory = Dir.pwd
-project_directory = File.join(base_directory, project_name)
-fail("Project directory (#{project_directory}) already exists") if File.exists?(project_directory)
-
-template_url = if ARGV[2] && !(ARGV[2] =~ /^ *$/)
-                 ARGV[2]
-               else
-                 "git://github.com/thoughtbot/suspenders.git"
-               end
-changeme = "CHANGEME"
-changesession = "CHANGESESSION"
-
 def run(cmd)
   puts "Running '#{cmd}'"
   out = `#{cmd}`
@@ -46,43 +29,88 @@ def installed?(gem_name)
   installed_gems.any?
 end
 
-run("mkdir #{project_directory}")
-Dir.chdir(project_directory) or fail("Couldn't change to #{project_directory}")
-run("git init")
-run("git remote add suspenders #{template_url}")
-run("git pull suspenders master")
-
-Dir.glob("#{project_directory}/**/*").each do |file|
-  search_and_replace(file, changeme, project_name)
+def error_with_message(msg)
+  STDERR.puts msg
+  exit 1
 end
 
-Dir.glob("#{project_directory}/**/session_store.rb").each do |file|
-  datestring = Time.now.strftime("%j %U %w %A %B %d %Y %I %M %S %p %Z")
-  search_and_replace(file, changesession, Digest::MD5.hexdigest("#{project_name} #{datestring}"))
+def valid_project_name!(project_name)
+  error_with_message("Project name must only contain [a-z0-9_]") unless project_name =~ /^[a-z0-9_]+$/
+  project_name
 end
 
-run("git commit -a -m 'Initial commit'")
+def valid_template_url!(template_url, project_name)
+  base_directory = Dir.pwd
+  project_directory = File.join(base_directory, project_name)
+  error_with_message("Project directory (#{project_directory}) already exists") if File.exists?(project_directory)
 
-# can't vendor nokogiri because it has native extensions
-unless installed?("nokogiri")
-  run "sudo gem install nokogiri --version='1.4.0'"
+  if template_url && !(template_url =~ /^ *$/)
+    [template_url, project_directory]
+  else
+    ["git://github.com/thoughtbot/suspenders.git", project_directory]
+  end
 end
 
-# need RedCloth installed for clearance generators to run.
-unless installed?("RedCloth")
-  run "sudo gem install RedCloth --version='4.2.2'"
+def changeme
+  "CHANGEME"
 end
 
-run("rake gems:refresh_specs")
-run("rake db:create RAILS_ENV=development")
-run("rake db:create RAILS_ENV=test")
+def changesession
+  "CHANGESESSION"
+end
 
-run("script/generate clearance")
-run("script/generate clearance_features -f")
-run("script/generate clearance_views -f")
+def create_project(project_directory, project_name, template_url)
+  run("mkdir #{project_directory}")
+  Dir.chdir(project_directory) or fail("Couldn't change to #{project_directory}")
+  run("git init")
+  run("git remote add suspenders #{template_url}")
+  run("git pull suspenders master")
 
-run("git add .")
-run("git commit -m 'installed clearance'")
+  Dir.glob("#{project_directory}/**/*").each do |file|
+    search_and_replace(file, changeme, project_name)
+  end
 
-puts
-puts "Now login to github and add a new project named '#{project_name.humanize.titleize}'"
+  Dir.glob("#{project_directory}/**/session_store.rb").each do |file|
+    datestring = Time.now.strftime("%j %U %w %A %B %d %Y %I %M %S %p %Z")
+    search_and_replace(file, changesession, Digest::MD5.hexdigest("#{project_name} #{datestring}"))
+  end
+
+  run("git commit -a -m 'Initial commit'")
+
+  # can't vendor nokogiri because it has native extensions
+  unless installed?("nokogiri")
+    run "sudo gem install nokogiri --version='1.4.0'"
+  end
+
+  # need RedCloth installed for clearance generators to run.
+  unless installed?("RedCloth")
+    run "sudo gem install RedCloth --version='4.2.2'"
+  end
+
+  run("rake gems:refresh_specs")
+  run("rake db:create RAILS_ENV=development")
+  run("rake db:create RAILS_ENV=test")
+
+  run("script/generate clearance")
+  run("script/generate clearance_features -f")
+  run("script/generate clearance_views -f")
+
+  run("git add .")
+  run("git commit -m 'installed clearance'")
+
+  puts
+  puts "Now login to github and add a new project named '#{project_name.humanize.titleize}'"
+end
+
+def main
+  case ARGV[0]
+  when 'create'
+    project_name = valid_project_name!(ARGV[1])
+    template_url, project_directory = valid_template_url!(ARGV[2], project_name)
+    create_project(project_directory, project_name, template_url)
+  else
+    error_with_message("Usage: #{File.basename(__FILE__)} create new_project_name")
+  end
+end
+
+main
