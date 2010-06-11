@@ -1,7 +1,5 @@
 #!/usr/bin/env ruby
 require 'rubygems'
-require 'active_support'
-require 'pathname'
 require 'digest/md5'
 
 def run(cmd)
@@ -99,7 +97,7 @@ def create_project(project_directory, project_name, template_url)
   run("git commit -m 'installed clearance'")
 
   puts
-  puts "Now login to github and add a new project named '#{project_name.humanize.titleize}'"
+  puts "Now login to github and add a new project named '#{project_name}'"
 end
 
 def main
