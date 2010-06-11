@@ -27,7 +27,7 @@ module Suspenders
       run("git remote add suspenders #{template_url}")
       run("git pull suspenders master")
 
-      Dir.glob("#{project_directory}/**/*").each do |file|
+      Dir.glob("#{project_directory}/**/*.*").each do |file|
         search_and_replace(file, changeme, project_name)
       end
 
@@ -84,6 +84,9 @@ module Suspenders
     def valid_template_url!(template_url, project_name)
       base_directory = Dir.pwd
       project_directory = File.join(base_directory, project_name)
+
+      # This is for the common case for the user's convenience; the race
+      # condition can still occur.
       if File.exists?(project_directory)
         raise InvalidInput.new("Project directory (#{project_directory}) already exists")
       end
@@ -101,13 +104,17 @@ module Suspenders
     end
 
     def search_and_replace(file, search, replace)
-      if File.file?(file)
+      begin
         contents = File.read(file)
         if contents[search]
           puts "Replacing #{search} with #{replace} in #{file}"
           contents.gsub!(search, replace)
           File.open(file, "w") { |f| f << contents }
         end
+      rescue Errno::EISDIR => e
+        # This is fine, because Dir.glob can't select only files.
+      rescue Errno::ENOENT => e
+        fail "Attempted to perform a find-and-replace on a missing file: #{file}"
       end
     end
   end
