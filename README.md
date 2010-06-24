@@ -22,7 +22,7 @@ make the change in suspenders instead of your project.  Note: If you don't
 have commit access to suspenders, create a github ticket and we'll review your
 suggestion.
 
-Once that's committed, you can pull into your project to get all the changes 
+Once that's committed, you can pull into your project to get all the changes
 that have been made in suspenders since your last pull:
 
   git pull suspenders master
@@ -63,6 +63,7 @@ Basic user auth:
 
 For testing:
 
+  rspec
   jferris-mocha (standard mocha plus test spies)
   factory_girl (fixture replacement for test data)
   shoulda (rails test helpers and context framework)
@@ -84,7 +85,7 @@ Initializers (in config/initializers)
 
   hoptoad.rb
   Get your API key at http://hoptoadapp.com
-  
+
   requires.rb
   Automatically requires everything in
     lib/
@@ -95,7 +96,7 @@ Initializers (in config/initializers)
   time_formats.rb
   Two time formats are available by default, :short_date and :long_date.
   Add other time formats here.
-  
+
 Rake Tasks
 ----------
 
@@ -104,25 +105,20 @@ Rake tasks are contained in the limerick_rake gem.
   bootstrap
   Provides rake tasks for loading data into the database.  These are used for
   an initial application dataset needed for production.
-  
+
   capistrano
   Standard capistrano deployment tasks
-  
+
 Testing
 -------
 
-Testing is done utilizing Test::Unit, Shoulda, factory_girl, and mocha.
+Testing is done utilizing RSpec, Shoulda, factory_girl, and mocha.
 
 factory_girl is a fixture replacement library, following the factory pattern.
 Place your factories in test/factories.rb.  The fixture directory has been
 removed, as fixtures are not used.
 
-Shoulda is a pragmatic testing framework for TDD and BDD built on top of
-Test::Unit.  A number of additional testing macros are provided in
-test/shoulda_macros:
-
-  shoulda_have_form
-  shoulda_paginate_collection
+Shoulda matchers are used on top of RSpec.
 
 Timecop is used to freeze the time for the entire test suite. It is frozen to
 the value of Time.now; that is, the time that the tests suite starts running.
@@ -152,7 +148,7 @@ Setup your deployment environment by running:
 Deploy to the desired environment by running:
 
   cap ENVIRONMENT deploy
-  
+
 The default environment for deploy is staging, to deploy to staging, just run:
 
   cap deploy
