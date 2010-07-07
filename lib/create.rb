@@ -38,16 +38,6 @@ module Suspenders
 
       run("git commit -a -m 'Initial commit'")
 
-      # can't vendor nokogiri because it has native extensions
-      unless installed?("nokogiri")
-        run "sudo gem install nokogiri --version='1.4.0'"
-      end
-
-      # need RedCloth installed for clearance generators to run.
-      unless installed?("RedCloth")
-        run "sudo gem install RedCloth --version='4.2.2'"
-      end
-
       run("rake gems:refresh_specs")
       run("rake db:create RAILS_ENV=development")
       run("rake db:create RAILS_ENV=test")
@@ -96,11 +86,6 @@ module Suspenders
       else
         ["git://github.com/thoughtbot/suspenders.git", project_directory]
       end
-    end
-
-    def installed?(gem_name)
-      installed_gems = Gem.source_index.find_name(gem_name)
-      installed_gems.any?
     end
 
     def search_and_replace(file, search, replace)

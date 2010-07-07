@@ -26,6 +26,9 @@ rush to build something amazing; don't use it if you like missing deadlines.
 
   s.add_development_dependency('cucumber', [">= 0.6.2"])
 
+  s.add_dependency('nokogiri', '1.4.0')
+  s.add_dependency('RedCloth', '4.2.2')
+
   # = MANIFEST =
   s.files = %w[
     LICENSE
