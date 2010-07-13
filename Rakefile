@@ -43,6 +43,10 @@ end
 namespace :destroy do
   desc 'Remove a suspended project'
   task :suspenders do
+    FileUtils.cd TEST_PROJECT
+    sh "rake db:drop RAILS_ENV=development"
+    sh "rake db:drop RAILS_ENV=test"
+    FileUtils.cd '..'
     FileUtils.rm_rf TEST_PROJECT
   end
 end
