@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'suspenders'
-  s.version           = '0.0.2'
-  s.date              = '2010-05-14'
+  s.version           = '0.0.3'
+  s.date              = '2010-07-13'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
@@ -38,6 +38,9 @@ rush to build something amazing; don't use it if you like missing deadlines.
     features/rake_clean.feature
     features/step_definitions/shell.rb
     features/support/env.rb
+    lib/command.rb
+    lib/create.rb
+    lib/errors.rb
     suspenders.gemspec
   ]
   # = MANIFEST =
