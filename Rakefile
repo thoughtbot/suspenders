@@ -4,7 +4,7 @@ require 'cucumber/rake/task'
 require 'date'
 
 TEST_PROJECT = 'test_project'
-SUSPENDERS_GEM_VERSION = '0.0.3'
+SUSPENDERS_GEM_VERSION = '0.0.4'
 
 #############################################################################
 #
