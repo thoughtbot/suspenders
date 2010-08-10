@@ -14,8 +14,8 @@ thoughtbot to get a jump start on a working app. Use Suspenders if you're in a
 rush to build something amazing; don't use it if you like missing deadlines.
   HERE
 
-  s.authors  = ["Mike Burns"]
-  s.email    = 'mburns@thoughtbot.com'
+  s.authors  = ["thoughtbot"]
+  s.email    = 'support@thoughtbot.com'
   s.homepage = 'http://github.com/thoughtbot/suspenders-gem'
 
   s.executables = ["suspenders"]
