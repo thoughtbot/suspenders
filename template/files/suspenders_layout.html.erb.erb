@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <title><%= defined_app_name %></title>
+  <%%= stylesheet_link_tag 'screen', :media => 'all', :cache => true %>
+  <%%= javascript_include_tag "jquery", "jquery-ui", "prefilled_input", "rails", "application", :cache => true %>
+  <%%= csrf_meta_tag %>
+</head>
+<body class="<%%= body_class %>">
+  <div id="header">
+    <%% if signed_in? -%>
+      <%%= link_to "Sign out", sign_out_path, :method => :delete %>
+    <%% else -%>
+      <%%= link_to "Sign in", sign_in_path %>
+    <%% end -%>
+  </div>
+  <%%= render :partial => 'shared/flashes' -%>
+  <%%= yield %>
+  <%%= render :partial => 'shared/javascript' %>
+</body>
+</html>

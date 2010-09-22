@@ -1,0 +1,12 @@
+development: &default
+  adapter: mysql
+  database: <%= defined_app_name %>_development
+  username: root
+  password:
+  host: localhost
+  encoding: utf8
+
+test: &TEST
+  <<: *default
+  database: <%= defined_app_name %>_test
+

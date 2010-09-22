@@ -1,7 +1,6 @@
 # Methods needed to create a project.
 
 require 'rubygems'
-require 'digest/md5'
 require File.expand_path(File.dirname(__FILE__) + "/errors")
 require File.expand_path(File.dirname(__FILE__) + "/command")
 
@@ -21,47 +20,11 @@ module Suspenders
     end
 
     def create_project!
-      run("mkdir #{project_directory}")
-      Dir.chdir(project_directory) or fail("Couldn't change to #{project_directory}")
-      run("git init")
-      run("git remote add suspenders #{template_url}")
-      run("git pull suspenders master")
-
-      Dir.glob("#{project_directory}/**/*.*").each do |file|
-        search_and_replace(file, changeme, project_name)
-      end
-
-      Dir.glob("#{project_directory}/**/session_store.rb").each do |file|
-        datestring = Time.now.strftime("%j %U %w %A %B %d %Y %I %M %S %p %Z")
-        search_and_replace(file, changesession, Digest::MD5.hexdigest("#{project_name} #{datestring}"))
-      end
-
-      run("git commit -a -m 'Initial commit'")
-
-      run("rake gems:refresh_specs")
-      run("rake db:create RAILS_ENV=development")
-      run("rake db:create RAILS_ENV=test")
-
-      run("script/generate clearance")
-      run("script/generate clearance_features -f")
-      run("script/generate clearance_views -f")
-
-      run("git add .")
-      run("git commit -m 'installed clearance'")
-
-      puts
-      puts "Now login to github and add a new project named '#{project_name}'"
+      Dir.chdir(File.dirname(project_directory))
+      run("rails new #{project_name} --template=#{template}")
     end
 
     private
-
-    def changeme
-      "CHANGEME"
-    end
-
-    def changesession
-      "CHANGESESSION"
-    end
 
     def valid_project_name!(project_name)
       unless project_name =~ /^[a-z0-9_]+$/
@@ -88,19 +51,8 @@ module Suspenders
       end
     end
 
-    def search_and_replace(file, search, replace)
-      begin
-        contents = File.read(file)
-        if contents[search]
-          puts "Replacing #{search} with #{replace} in #{file}"
-          contents.gsub!(search, replace)
-          File.open(file, "w") { |f| f << contents }
-        end
-      rescue Errno::EISDIR => e
-        # This is fine, because Dir.glob can't select only files.
-      rescue Errno::ENOENT => e
-        fail "Attempted to perform a find-and-replace on a missing file: #{file}"
-      end
+    def template
+      File.expand_path(File.dirname(__FILE__) + "/../template/suspenders.rb")
     end
   end
 end
