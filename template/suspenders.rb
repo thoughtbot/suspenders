@@ -7,6 +7,8 @@
 # TODO: should README_FOR_TEMPLATE just be the README from this repo?
 # TODO: run hoptoad generator?
 
+require 'net/http'
+
 template_root = File.expand_path(File.join(File.dirname(__FILE__)))
 source_paths << File.join(template_root, "files")
 
@@ -34,6 +36,13 @@ def action_mailer_host(rails_env, host)
   )
 end
 
+def download_file(uri_string, destination)
+  uri = URI.parse(uri_string)
+  contents = Net::HTTP.get(uri)
+  path = File.join(destination_root, destination)
+  File.open(path, "w") { |file| file.write(contents) }
+end
+
 say "Getting rid of files we don't use"
 
 remove_file "README"
@@ -58,6 +67,9 @@ say "Let's use jQuery"
 %w(jquery jquery-ui).each do |file|
   copy_file "#{file}.js", "public/javascripts/#{file}.js"
 end
+
+download_file "http://github.com/rails/jquery-ujs/raw/master/src/rails.js",
+          "public/javascripts/rails.js"
 
 say "Pulling in some common javascripts"
 
