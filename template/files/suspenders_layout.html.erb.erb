@@ -10,6 +10,7 @@
 <body class="<%%= body_class %>">
   <div id="header">
     <%% if signed_in? -%>
+      <%# TODO: can we remove the method here? %>
       <%%= link_to "Sign out", sign_out_path, :method => :delete %>
     <%% else -%>
       <%%= link_to "Sign in", sign_in_path %>

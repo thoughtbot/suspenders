@@ -31,6 +31,7 @@ module Suspenders
 
     private
 
+    # TODO: can we rely on rails to validate this?
     def valid_project_name!(project_name)
       unless project_name =~ /^[a-z0-9_]+$/
         raise InvalidInput.new("Project name must only contain [a-z0-9_]")
@@ -39,6 +40,7 @@ module Suspenders
       end
     end
 
+    # TODO: can we rely on rails to validate this?
     def valid_template_url!(template_url, project_name)
       base_directory = Dir.pwd
       project_directory = File.join(base_directory, project_name)
