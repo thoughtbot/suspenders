@@ -6,7 +6,7 @@ end
 
 When 'I generate "$generator_with_args"' do |generator_with_args|
   Dir.chdir('test_project') do
-    system("./script/generate #{generator_with_args}")
+    system("rails generate #{generator_with_args}")
   end
 end
 

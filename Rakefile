@@ -16,34 +16,18 @@ Cucumber::Rake::Task.new
 
 namespace :test do
   desc "A full suspenders app's test suite"
-  task :full => ['generate', 'cucumber', 'destroy:suspenders']
+  task :full => ['test_project:generate', 'cucumber', 'test_project:destroy']
 end
 
-task :generate => ['generate:finish']
-namespace :generate do
+namespace :test_project do
   desc 'Suspend a new project. Pass REPO=... to change the Suspenders repo.'
-  task :suspenders do
+  task :generate do
     FileUtils.rm_rf(TEST_PROJECT)
     sh './bin/suspenders', 'create', TEST_PROJECT, ENV['REPO'].to_s
   end
 
-  desc 'Finishing touches'
-  task :finish => ['suspenders'] do
-    open(File.join(TEST_PROJECT, 'config', 'environments', 'cucumber.rb'), 'a') do |f|
-      f.puts "config.action_mailer.default_url_options = { :host => 'localhost:3000' }"
-    end
-
-    routes_file = IO.read(File.join(TEST_PROJECT, 'config', 'routes.rb')).split("\n")
-    routes_file = [routes_file[0]] + [%{map.root :controller => 'clearance/sessions', :action => 'new'}] + routes_file[1..-1]
-    open(File.join(TEST_PROJECT, 'config', 'routes.rb'), 'w') do |f|
-      f.puts routes_file.join("\n")
-    end
-  end
-end
-
-namespace :destroy do
   desc 'Remove a suspended project'
-  task :suspenders do
+  task :destroy do
     FileUtils.cd TEST_PROJECT
     sh "rake db:drop RAILS_ENV=development"
     sh "rake db:drop RAILS_ENV=test"

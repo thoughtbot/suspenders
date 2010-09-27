@@ -130,4 +130,9 @@ say "Copying miscellaneous support files"
 
 copy_file "errors.rb", "config/initializers/errors.rb"
 copy_file "time_formats.rb", "config/initializers/time_formats.rb"
+copy_file "body_class_helper.rb", "app/helpers/body_class_helper.rb"
+
+say "Setting up a root route"
+
+route "root :to => 'Clearance::Sessions#new'"
 
