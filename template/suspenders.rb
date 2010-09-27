@@ -97,6 +97,11 @@ generate "cucumber:install", "--rspec --capybara"
 generate "clearance"
 generate "clearance_features"
 
+create_file "public/stylesheets/sass/screen.scss"
+create_file "public/stylesheets/screen.css"
+
+copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
+
 replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
 
 say "Ignore the right files"
@@ -108,4 +113,9 @@ empty_directory_with_gitkeep "db/migrate"
 empty_directory_with_gitkeep "log"
 empty_directory_with_gitkeep "public/images"
 empty_directory_with_gitkeep "spec/support"
+
+say "Copying miscellaneous support files"
+
+copy_file "errors.rb", "config/initializers/errors.rb"
+copy_file "time_formats.rb", "config/initializers/time_formats.rb"
 

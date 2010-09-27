@@ -11,6 +11,7 @@ gem "paperclip"
 gem "will_paginate"
 gem "formtastic"
 gem "mysql"
+gem "flutie"
 
 # http://blog.davidchelimsky.net/2010/07/11/rspec-rails-2-generators-and-rake-tasks/
 group :development, :test, :cucumber do
