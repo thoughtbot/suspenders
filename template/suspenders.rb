@@ -38,8 +38,7 @@ say "Getting rid of files we don't use"
 
 remove_file "README"
 remove_file "public/index.html"
-remove_dir  "test"
-remove_dir  "public/images/rails.png"
+remove_file "public/images/rails.png"
 
 say "Setting up the staging environment"
 
@@ -55,10 +54,6 @@ template "suspenders_layout.html.erb.erb",
          :force => true
 
 say "Let's use jQuery"
-
-%w(controls dragdrop effects prototype rails).each do |file|
-  remove_file "public/javascripts/#{file}.js"
-end
 
 %w(jquery jquery-ui).each do |file|
   copy_file "#{file}.js", "public/javascripts/#{file}.js"

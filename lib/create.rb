@@ -21,7 +21,12 @@ module Suspenders
 
     def create_project!
       Dir.chdir(File.dirname(project_directory))
-      run("rails new #{project_name} --template=#{template}")
+      run(<<-COMMAND)
+        rails new #{project_name} \
+          --template=#{template} \
+          --skip-test-unit \
+          --skip-prototype
+      COMMAND
     end
 
     private
