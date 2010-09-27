@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails"
+gem "rails", ">= 3.0"
 gem "rack"
 gem "clearance", "0.9.0.rc9"
 gem "haml"
