@@ -68,7 +68,7 @@ template "suspenders_layout.html.erb.erb",
 say "Let's use jQuery"
 
 %w(jquery jquery-ui).each do |file|
-  copy_file "#{file}.js", "public/javascripts/#{file}.js"
+  trout "public/javascripts/#{file}.js"
 end
 
 download_file "http://github.com/rails/jquery-ujs/raw/master/src/rails.js",
@@ -76,7 +76,7 @@ download_file "http://github.com/rails/jquery-ujs/raw/master/src/rails.js",
 
 say "Pulling in some common javascripts"
 
-copy_file "prefilled_input.js", "public/javascripts/prefilled_input.js"
+trout "public/javascripts/prefilled_input.js"
 
 say "Documentation"
 
