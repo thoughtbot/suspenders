@@ -103,7 +103,6 @@ action_mailer_host "test",        "example.com"
 action_mailer_host "staging",     "staging.#{defined_app_name}.com"
 action_mailer_host "production",  "#{defined_app_name}.com"
 
-plugin "dynamic_form", :git => "git://github.com/rails/dynamic_form.git"
 generate "rspec:install"
 generate "cucumber:install", "--rspec --capybara"
 generate "clearance"
