@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'suspenders'
-  s.version           = '0.0.4'
-  s.date              = '2010-08-10'
+  s.version           = '0.1.0.beta.1'
+  s.date              = '2010-09-28'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
@@ -36,10 +36,24 @@ rush to build something amazing; don't use it if you like missing deadlines.
     features/rake_clean.feature
     features/step_definitions/shell.rb
     features/support/env.rb
-    lib/command.rb
     lib/create.rb
     lib/errors.rb
     suspenders.gemspec
+    template/files/README_FOR_SUSPENDERS
+    template/files/_flashes.html.erb
+    template/files/_javascript.html.erb
+    template/files/body_class_helper.rb
+    template/files/errors.rb
+    template/files/factory_girl_steps.rb
+    template/files/mysql_database.yml.erb
+    template/files/suspenders_gitignore
+    template/files/suspenders_layout.html.erb.erb
+    template/files/time_formats.rb
+    template/suspenders.rb
+    template/trout/Gemfile
+    template/trout/public/javascripts/jquery-ui.js
+    template/trout/public/javascripts/jquery.js
+    template/trout/public/javascripts/prefilled_input.js
   ]
   # = MANIFEST =
 
