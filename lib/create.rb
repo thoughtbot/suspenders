@@ -2,12 +2,10 @@
 
 require 'rubygems'
 require File.expand_path(File.dirname(__FILE__) + "/errors")
-require File.expand_path(File.dirname(__FILE__) + "/command")
 
 module Suspenders
   class Create
     attr_accessor :project_name, :template_url, :project_directory
-    include Suspenders::Command
 
     def self.run!(input_project_name, input_template_url)
       creator = self.new(input_project_name, input_template_url)
@@ -21,7 +19,7 @@ module Suspenders
 
     def create_project!
       Dir.chdir(File.dirname(project_directory))
-      run(<<-COMMAND)
+      exec(<<-COMMAND)
         rails new #{project_name} \
           --template=#{template} \
           --skip-test-unit \
