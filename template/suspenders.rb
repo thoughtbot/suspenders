@@ -39,7 +39,7 @@ def download_file(uri_string, destination)
 end
 
 def origin
-  `git config --get remote.origin.url`.strip
+  "git@github.com:thoughtbot/suspenders-gem.git"
 end
 
 def trout(destination_path)
