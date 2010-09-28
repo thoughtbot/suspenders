@@ -5,22 +5,22 @@ require File.expand_path(File.dirname(__FILE__) + "/errors")
 
 module Suspenders
   class Create
-    attr_accessor :project_name, :template_url, :project_directory
+    attr_accessor :project_path
 
-    def self.run!(input_project_name, input_template_url)
-      creator = self.new(input_project_name, input_template_url)
+    def self.run!(project_path)
+      creator = self.new(project_path)
       creator.create_project!
     end
 
-    def initialize(input_project_name, input_template_url)
-      @project_name = valid_project_name!(input_project_name)
-      @template_url, @project_directory = valid_template_url!(input_template_url, project_name)
+    def initialize(project_path)
+      self.project_path = project_path
+      validate_project_path
+      validate_project_name
     end
 
     def create_project!
-      Dir.chdir(File.dirname(project_directory))
       exec(<<-COMMAND)
-        rails new #{project_name} \
+        rails new #{project_path} \
           --template=#{template} \
           --skip-test-unit \
           --skip-prototype
@@ -29,30 +29,21 @@ module Suspenders
 
     private
 
-    # TODO: can we rely on rails to validate this?
-    def valid_project_name!(project_name)
+    def validate_project_name
+      project_name = File.basename(project_path)
       unless project_name =~ /^[a-z0-9_]+$/
         raise InvalidInput.new("Project name must only contain [a-z0-9_]")
-      else
-        project_name
       end
     end
 
-    # TODO: can we rely on rails to validate this?
-    def valid_template_url!(template_url, project_name)
+    def validate_project_path
       base_directory = Dir.pwd
-      project_directory = File.join(base_directory, project_name)
+      full_path = File.join(base_directory, project_path)
 
       # This is for the common case for the user's convenience; the race
       # condition can still occur.
-      if File.exists?(project_directory)
-        raise InvalidInput.new("Project directory (#{project_directory}) already exists")
-      end
-
-      if template_url && !(template_url =~ /^ *$/)
-        [template_url, project_directory]
-      else
-        ["git://github.com/thoughtbot/suspenders.git", project_directory]
+      if File.exists?(full_path)
+        raise InvalidInput.new("Project directory (#{project_path}) already exists")
       end
     end
 

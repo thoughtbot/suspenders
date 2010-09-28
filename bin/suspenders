@@ -12,7 +12,7 @@ end
 case ARGV[0]
 when 'create', '--create'
   begin
-    Suspenders::Create.run!(ARGV[1], ARGV[2])
+    Suspenders::Create.run!(ARGV[1])
   rescue Suspenders::InvalidInput => e
     error_with_message(e.message)
   end
