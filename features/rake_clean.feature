@@ -9,7 +9,7 @@ Feature: Rake works in the suspended project
 
   Scenario: Making a spec then running rake
     When I drop and create the required databases
-    And I generate "rspec_model post title:string"
+    And I generate "model post title:string"
     And I run the rake task "db:migrate"
     And I run the rake task "spec"
     Then I see a successful response in the shell

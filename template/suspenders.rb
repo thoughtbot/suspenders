@@ -80,7 +80,7 @@ copy_file "prefilled_input.js", "public/javascripts/prefilled_input.js"
 
 say "Documentation"
 
-copy_file "README_FOR_TEMPLATE", "doc/README_FOR_TEMPLATE"
+copy_file "README_FOR_SUSPENDERS", "doc/README_FOR_SUSPENDERS"
 
 say "Get ready for bundler... (this will take a while)"
 
@@ -137,4 +137,7 @@ copy_file "body_class_helper.rb", "app/helpers/body_class_helper.rb"
 say "Setting up a root route"
 
 route "root :to => 'Clearance::Sessions#new'"
+
+say "Congratulations! You just pulled our suspenders."
+say "Remember to run 'rails generate hoptoad' with your API key."
 
