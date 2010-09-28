@@ -2,11 +2,6 @@
 # =============
 # by thoughtbot
 
-# TODO: should we add javascripts to trout?
-# TODO: add Gemfile to trout
-# TODO: should README_FOR_TEMPLATE just be the README from this repo?
-# TODO: run hoptoad generator?
-
 require 'net/http'
 
 template_root = File.expand_path(File.join(File.dirname(__FILE__)))
@@ -41,6 +36,14 @@ def download_file(uri_string, destination)
   contents = Net::HTTP.get(uri)
   path = File.join(destination_root, destination)
   File.open(path, "w") { |file| file.write(contents) }
+end
+
+def origin
+  `git config --get remote.origin.url`.strip
+end
+
+def trout(destination_path)
+  run "trout checkout --source-root=template/trout #{destination_path} #{origin}"
 end
 
 say "Getting rid of files we don't use"
@@ -81,7 +84,7 @@ copy_file "README_FOR_TEMPLATE", "doc/README_FOR_TEMPLATE"
 
 say "Get ready for bundler... (this will take a while)"
 
-copy_file "suspenders_gemfile", "Gemfile", :force => true
+trout 'Gemfile'
 run "bundle install"
 
 say "Let's use MySQL"

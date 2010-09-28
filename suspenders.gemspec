@@ -24,15 +24,8 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
 
-  s.add_dependency('cucumber', [">= 0.6.2"])
-  s.add_dependency('nokogiri', '1.4.0')
-  s.add_dependency('RedCloth', '4.2.2')
-  s.add_dependency('cucumber-rails', '>=0.3.0')
-  s.add_dependency('mysql', '2.8.1')
-  s.add_dependency('rspec','1.3.0')
-  s.add_dependency('rspec-rails','= 1.3.2')
-  s.add_dependency('webrat','>=0.7.0')
-  s.add_dependency('treetop','1.4.5')
+  s.add_dependency('rails', '>= 3.0.0')
+  s.add_dependency('trout', '>= 0.3.0')
 
   # = MANIFEST =
   s.files = %w[
