@@ -17,6 +17,7 @@ gem "dynamic_form"
 # http://blog.davidchelimsky.net/2010/07/11/rspec-rails-2-generators-and-rake-tasks/
 group :development, :test, :cucumber do
   gem "rspec-rails", "~> 2.0.0.beta"
+  gem "ruby-debug"
 end
 
 group :test, :cucumber do
@@ -29,4 +30,6 @@ group :test, :cucumber do
   gem "nokogiri"
   gem "timecop"
   gem "treetop"
+  gem "shoulda"
+  gem "launchy"
 end
