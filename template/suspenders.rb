@@ -122,6 +122,8 @@ inject_into_file "features/support/env.rb",
                  %{Capybara.save_and_open_page_path = 'tmp'\n},
                  :before => %{Capybara.default_selector = :css}
 
+rake "flutie:install"
+
 say "Ignore the right files"
 
 concat_file "suspenders_gitignore", ".gitignore"
