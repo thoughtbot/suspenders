@@ -71,7 +71,7 @@ say "Let's use jQuery"
   trout "public/javascripts/#{file}.js"
 end
 
-download_file "http://github.com/rails/jquery-ujs/raw/master/src/rails.js",
+download_file "https://github.com/rails/jquery-ujs/raw/master/src/rails.js",
           "public/javascripts/rails.js"
 
 say "Pulling in some common javascripts"
