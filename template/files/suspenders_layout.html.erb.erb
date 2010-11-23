@@ -1,11 +1,9 @@
-<!DOCTYPE html>
+<!doctype html>
+<%%= render :partial => 'shared/ie_compatibility' %>
 <html>
 <head>
-  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <title><%= defined_app_name %></title>
-  <%%= stylesheet_link_tag :flutie, 'screen', :media => 'all', :cache => true %>
-  <%%= javascript_include_tag "jquery", "jquery-ui", "prefilled_input", "rails", "application", :cache => true %>
-  <%%= csrf_meta_tag %>
+  <%%= render :partial => 'shared/head' %>
 </head>
 <body class="<%%= body_class %>">
   <div id="header">
@@ -15,7 +13,7 @@
       <%%= link_to "Sign in", sign_in_path %>
     <%% end -%>
   </div>
-  <%%= render :partial => 'shared/flashes' -%>
+  <%%= render :partial => 'shared/flashes' %>
   <%%= yield %>
   <%%= render :partial => 'shared/javascript' %>
 </body>

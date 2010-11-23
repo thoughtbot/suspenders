@@ -59,20 +59,23 @@ run "cp config/environments/production.rb config/environments/staging.rb"
 say "Creating suspenders views"
 
 empty_directory "app/views/shared"
-copy_file "_flashes.html.erb", "app/views/shared/_flashes.html.erb"
-copy_file "_javascript.html.erb", "app/views/shared/_javascript.html.erb"
+
+%w(flashes javascript ie_compatibility head).each do |file|
+  copy_file "_#{file}.html.erb", "app/views/shared/_#{file}.html.erb"
+end
+
 template "suspenders_layout.html.erb.erb",
          "app/views/layouts/application.html.erb",
          :force => true
 
-say "Let's use jQuery"
+say "Let's use jQuery and Modernizr"
 
-%w(jquery jquery-ui).each do |file|
+%w(jquery jquery-ui modernizr).each do |file|
   trout "public/javascripts/#{file}.js"
 end
 
 download_file "https://github.com/rails/jquery-ujs/raw/master/src/rails.js",
-          "public/javascripts/rails.js"
+              "public/javascripts/rails.js"
 
 say "Pulling in some common javascripts"
 

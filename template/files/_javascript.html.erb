@@ -1,2 +1,5 @@
-<%= javascript_include_tag 'jquery', 'jquery-ui', 'prefilled_input',  :cache => true %>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.js"></script>
+<script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/jquery.js"%3E%3C/script%3E'))</script>
+
+<%= javascript_include_tag 'jquery-ui', 'prefilled_input', "rails", "application", :cache => true %>
 <%= yield :javascript %>

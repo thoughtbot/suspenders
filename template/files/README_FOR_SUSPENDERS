@@ -35,8 +35,8 @@ options.
 Suspenders currently includes a version of Rails from the 2.3 stable branch.
 You can determine the changeset with the vendor/rails/REVISION_xxxxx file.
 
-Gems (unpacked in vendor/gems, unless they are compiled gems):
---------------------------------------------------------------
+Gems (bundled):
+---------------
 
 For record pagination:
 
@@ -44,7 +44,7 @@ For record pagination:
 
 For text formatting:
 
-  RedCloth (4.2.2, not unpacked, this is a compiled gem)
+  RedCloth
 
 Form builder:
 
@@ -60,9 +60,11 @@ Basic user auth:
 
 For testing:
 
-  jferris-mocha (standard mocha plus test spies)
+  rspec (test framework)
   factory_girl (fixture replacement for test data)
-  shoulda (rails test helpers and context framework)
+  shoulda (matchers)
+  mocha (stubbing)
+  bourne (spying)
   timecop (for time sensitive tests)
   fakeweb (for blocking HTTP calls to third-party services)
 
@@ -85,7 +87,7 @@ Initializers (in config/initializers)
 
   hoptoad.rb
   Get your API key at http://hoptoadapp.com
-  
+
   requires.rb
   Automatically requires everything in
     lib/
@@ -96,7 +98,7 @@ Initializers (in config/initializers)
   time_formats.rb
   Two time formats are available by default, :short_date and :long_date.
   Add other time formats here.
-  
+
 Rake Tasks
 ----------
 
@@ -105,10 +107,10 @@ Rake tasks are contained in the limerick_rake gem.
   bootstrap
   Provides rake tasks for loading data into the database.  These are used for
   an initial application dataset needed for production.
-  
+
   capistrano
   Standard capistrano deployment tasks
-  
+
 Testing
 -------
 
@@ -153,7 +155,7 @@ Setup your deployment environment by running:
 Deploy to the desired environment by running:
 
   cap ENVIRONMENT deploy
-  
+
 The default environment for deploy is staging, to deploy to staging, just run:
 
   cap deploy
