@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'suspenders'
-  s.version           = '0.1.0.beta.5'
-  s.date              = '2010-11-9'
+  s.version           = '0.1.0.beta.6'
+  s.date              = '2010-11-29'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
@@ -24,7 +24,8 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
 
-  s.add_dependency('rails', '>= 3.0.0')
+  s.add_dependency('rails', '>= 3.0.3')
+  s.add_dependency('bundler', '>= 1.0.7')
   s.add_dependency('trout', '>= 0.3.0')
 
   # = MANIFEST =
