@@ -101,10 +101,10 @@ generators_config = <<-RUBY
 RUBY
 inject_into_class "config/application.rb", "Application", generators_config
 
-action_mailer_host "development", "#{defined_app_name}.local"
+action_mailer_host "development", "#{app_name}.local"
 action_mailer_host "test",        "example.com"
-action_mailer_host "staging",     "staging.#{defined_app_name}.com"
-action_mailer_host "production",  "#{defined_app_name}.com"
+action_mailer_host "staging",     "staging.#{app_name}.com"
+action_mailer_host "production",  "#{app_name}.com"
 
 generate "rspec:install"
 generate "cucumber:install", "--rspec --capybara"
