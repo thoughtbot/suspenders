@@ -119,8 +119,12 @@ copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps
 replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
 
 inject_into_file "features/support/env.rb",
-                 %{Capybara.save_and_open_page_path = 'tmp'\n},
+                 %{Capybara.save_and_open_page_path = 'tmp'\n} +
+                 %{Capybara.javascript_driver = :akephalos\n},
                  :before => %{Capybara.default_selector = :css}
+replace_in_file "features/support/env.rb",
+                %r{require .*capybara_javascript_emulation.*},
+                ''
 
 rake "flutie:install"
 
