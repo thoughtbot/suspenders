@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name              = 'suspenders'
-  s.version           = '0.1.0.beta.7'
+  s.version           = '0.2.0'
   s.date              = '2010-11-29'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
