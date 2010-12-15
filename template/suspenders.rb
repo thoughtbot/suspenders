@@ -33,7 +33,10 @@ end
 
 def download_file(uri_string, destination)
   uri = URI.parse(uri_string)
-  contents = Net::HTTP.get(uri)
+  http = Net::HTTP.new(uri.host, uri.port)
+  http.use_ssl = true if uri_string =~ /^https/
+  request = Net::HTTP::Get.new(uri.path)
+  contents = http.request(request).body
   path = File.join(destination_root, destination)
   File.open(path, "w") { |file| file.write(contents) }
 end
