@@ -101,10 +101,10 @@ generators_config = <<-RUBY
 RUBY
 inject_into_class "config/application.rb", "Application", generators_config
 
-action_mailer_host "development", "#{defined_app_name}.local"
+action_mailer_host "development", "#{app_name}.local"
 action_mailer_host "test",        "example.com"
-action_mailer_host "staging",     "staging.#{defined_app_name}.com"
-action_mailer_host "production",  "#{defined_app_name}.com"
+action_mailer_host "staging",     "staging.#{app_name}.com"
+action_mailer_host "production",  "#{app_name}.com"
 
 generate "rspec:install"
 generate "cucumber:install", "--rspec --capybara"
@@ -119,8 +119,12 @@ copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps
 replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
 
 inject_into_file "features/support/env.rb",
-                 %{Capybara.save_and_open_page_path = 'tmp'\n},
+                 %{Capybara.save_and_open_page_path = 'tmp'\n} +
+                 %{Capybara.javascript_driver = :akephalos\n},
                  :before => %{Capybara.default_selector = :css}
+replace_in_file "features/support/env.rb",
+                %r{require .*capybara_javascript_emulation.*},
+                ''
 
 rake "flutie:install"
 

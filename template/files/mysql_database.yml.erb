@@ -1,6 +1,6 @@
 development: &default
   adapter: mysql
-  database: <%= defined_app_name %>_development
+  database: <%= app_name %>_development
   username: root
   password:
   host: localhost
@@ -8,5 +8,5 @@ development: &default
 
 test: &TEST
   <<: *default
-  database: <%= defined_app_name %>_test
+  database: <%= app_name %>_test
 
