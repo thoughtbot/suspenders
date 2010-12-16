@@ -3,6 +3,7 @@
 # by thoughtbot
 
 require 'net/http'
+require 'net/https'
 
 template_root = File.expand_path(File.join(File.dirname(__FILE__)))
 source_paths << File.join(template_root, "files")
