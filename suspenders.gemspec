@@ -3,9 +3,9 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.rubygems_version = '1.3.5'
 
-  s.name              = 'suspenders'
-  s.version           = '0.2.0'
-  s.date              = '2010-11-29'
+  s.name    = 'suspenders'
+  s.version = '0.2.1'
+  s.date    = '2010-12-15'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
