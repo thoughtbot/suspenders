@@ -115,6 +115,7 @@ create_file "public/stylesheets/sass/screen.scss"
 create_file "public/stylesheets/screen.css"
 
 copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
+copy_file "form_error_steps.rb", "features/step_definitions/form_error_steps.rb"
 
 replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
 
