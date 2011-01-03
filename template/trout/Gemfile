@@ -15,10 +15,11 @@ gem "mysql"
 gem "flutie"
 gem "dynamic_form"
 
-# http://blog.davidchelimsky.net/2010/07/11/rspec-rails-2-generators-and-rake-tasks/
+# RSpec needs to be in :development group to expose generators
+# and rake tasks without having to type RAILS_ENV=test.
 group :development, :test do
-  gem "rspec-rails", "~> 2.0.0"
-  gem "ruby-debug", :platforms => :mri_18
+  gem "rspec-rails", "~> 2.4.0"
+  gem "ruby-debug",   :platforms => :mri_18
   gem "ruby-debug19", :platforms => :mri_19
 end
 
