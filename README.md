@@ -70,7 +70,7 @@ Credits
 
 ![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
 
-Suspenders is maintained and funded by {thoughtbot, inc}[http://thoughtbot.com/community]
+Suspenders is maintained and funded by [thoughtbot, inc](http://thoughtbot.com/community)
 
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
