@@ -14,8 +14,8 @@
       <%%= link_to "Sign in", sign_in_path %>
     <%% end -%>
   </div>
-  <%%= render :partial => 'shared/flashes' -%>
+  <%%= render 'shared/flashes' -%>
   <%%= yield %>
-  <%%= render :partial => 'shared/javascript' %>
+  <%%= render 'shared/javascript' %>
 </body>
 </html>
