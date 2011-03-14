@@ -36,6 +36,6 @@ group :test do
   gem "treetop"
   gem "shoulda"
   gem "launchy"
-  gem "akephalos", :git => "git://github.com/thoughtbot/akephalos.git"
+  gem "akephalos"
   gem "thin"
 end
