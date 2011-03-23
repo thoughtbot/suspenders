@@ -112,8 +112,8 @@ action_mailer_host "production",  "#{app_name}.com"
 
 generate "rspec:install"
 generate "cucumber:install", "--rspec --capybara"
-generate "clearance"
-generate "clearance_features"
+generate "clearance:install"
+generate "clearance:features"
 
 create_file "public/stylesheets/sass/screen.scss"
 create_file "public/stylesheets/screen.css"
@@ -126,9 +126,6 @@ inject_into_file "features/support/env.rb",
                  %{Capybara.save_and_open_page_path = 'tmp'\n} +
                  %{Capybara.javascript_driver = :akephalos\n},
                  :before => %{Capybara.default_selector = :css}
-replace_in_file "features/support/env.rb",
-                %r{require .*capybara_javascript_emulation.*},
-                ''
 
 rake "flutie:install"
 
