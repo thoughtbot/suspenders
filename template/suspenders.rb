@@ -126,18 +126,30 @@ rake "flutie:install"
 say "Ignore the right files"
 
 concat_file "suspenders_gitignore", ".gitignore"
-empty_directory_with_gitkeep "app/models"
-empty_directory_with_gitkeep "app/views/pages"
-empty_directory_with_gitkeep "db/migrate"
-empty_directory_with_gitkeep "log"
-empty_directory_with_gitkeep "public/images"
-empty_directory_with_gitkeep "spec/support"
+
+["app/models",
+ "app/views/pages",
+ "db/migrate",
+ "log",
+ "public/images",
+ "spec/support",
+ "spec/lib",
+ "spec/models",
+ "spec/views",
+ "spec/controllers",
+ "spec/helpers",
+ "spec/support/matchers",
+ "spec/support/helpers",
+ "spec/support/shared_examples"].each do |dir|
+  empty_directory_with_gitkeep dir
+end
 
 say "Copying miscellaneous support files"
 
 copy_file "errors.rb", "config/initializers/errors.rb"
 copy_file "time_formats.rb", "config/initializers/time_formats.rb"
 copy_file "body_class_helper.rb", "app/helpers/body_class_helper.rb"
+
 
 say "Setting up a root route"
 
