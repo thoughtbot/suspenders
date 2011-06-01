@@ -5,21 +5,24 @@ require File.expand_path(File.dirname(__FILE__) + "/errors")
 
 module Suspenders
   class Create
-    attr_accessor :project_path
+    attr_accessor :project_path, :testing
 
-    def self.run!(project_path)
-      creator = self.new(project_path)
+    def self.run!(project_path, testing)
+      puts testing
+      creator = self.new(project_path, testing)
       creator.create_project!
     end
 
-    def initialize(project_path)
+    def initialize(project_path, testing)
       self.project_path = project_path
       validate_project_path
       validate_project_name
+      self.testing = (testing == 'test')
     end
 
     def create_project!
       exec(<<-COMMAND)
+        TEST=#{testing} \
         rails new #{project_path} \
           --template=#{template} \
           --skip-test-unit \
