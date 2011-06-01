@@ -139,7 +139,7 @@ concat_file "suspenders_gitignore", ".gitignore"
  "spec/controllers",
  "spec/helpers",
  "spec/support/matchers",
- "spec/support/helpers",
+ "spec/support/mixins",
  "spec/support/shared_examples"].each do |dir|
   empty_directory_with_gitkeep dir
 end
