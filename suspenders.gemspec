@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name    = 'suspenders'
-  s.version = '0.2.3'
-  s.date    = '2010-12-15'
+  s.version = '0.2.4'
+  s.date    = '2011-06-01'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
@@ -52,8 +52,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
     template/files/time_formats.rb
     template/suspenders.rb
     template/trout/Gemfile
-    template/trout/public/javascripts/jquery-ui.js
-    template/trout/public/javascripts/jquery.js
     template/trout/public/javascripts/prefilled_input.js
   ]
   # = MANIFEST =
