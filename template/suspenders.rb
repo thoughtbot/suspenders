@@ -69,14 +69,11 @@ template "suspenders_layout.html.erb.erb",
          "app/views/layouts/application.html.erb",
          :force => true
 
+trout 'Gemfile'
+run "bundle install"
+
 say "Let's use jQuery"
-
-%w(jquery jquery-ui).each do |file|
-  trout "public/javascripts/#{file}.js"
-end
-
-download_file "https://github.com/rails/jquery-ujs/raw/master/src/rails.js",
-          "public/javascripts/rails.js"
+generate "jquery:install", "--ui"
 
 say "Pulling in some common javascripts"
 
@@ -87,9 +84,6 @@ say "Documentation"
 copy_file "README_FOR_SUSPENDERS", "doc/README_FOR_SUSPENDERS"
 
 say "Get ready for bundler... (this will take a while)"
-
-trout 'Gemfile'
-run "bundle install"
 
 say "Let's use MySQL"
 
