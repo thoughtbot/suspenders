@@ -41,10 +41,10 @@ It includes application gems like:
 
 And testing gems like:
 
-* [Cucumber, Capybara, and Akephalos](http://robots.thoughtbot.com/post/1658763359/thoughtbot-and-the-holy-grail) for integration testing, including Javascript behavior
+* [Cucumber, Capybara, and Capybara Webkit](http://robots.thoughtbot.com/post/4583605733/capybara-webkit) for integration testing, including Javascript behavior
 * [RSpec](https://github.com/rspec/rspec) for awesome, readable isolation testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for easier creation of test data
-* [Shoulda](http://github.com/thoughtbot/shoulda) for frequently needed Rails and RSpec matchers
+* [Shoulda Matchers](http://github.com/thoughtbot/shoulda-matchers) for frequently needed Rails and RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop) for dealing with time
 * [Bourne](https://github.com/thoughtbot/bourne) and Mocha for stubbing and spying
 
