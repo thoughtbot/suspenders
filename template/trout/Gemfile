@@ -1,41 +1,40 @@
 source :rubygems
 
-gem "rails", ">= 3.0.3"
+gem "rails", "~> 3.0.7"
 gem "rack"
-gem "clearance", "~> 0.10.1"
-gem "haml"
+gem "clearance", "~> 0.11.1"
+gem "sass"
 gem "high_voltage"
-gem "hoptoad_notifier"
+gem "hoptoad_notifier", "~> 2.4.11"
 gem "RedCloth", :require => "redcloth"
 gem "paperclip"
-gem "will_paginate"
 gem "validation_reflection"
 gem "formtastic"
 gem "mysql"
-gem "flutie"
+gem "flutie", "~> 1.1.8"
 gem "dynamic_form"
+gem "jquery-rails"
+gem "rake", "0.8.7"
 
 # RSpec needs to be in :development group to expose generators
 # and rake tasks without having to type RAILS_ENV=test.
 group :development, :test do
-  gem "rspec-rails", "~> 2.4.0"
+  gem "rspec-rails", "~> 2.6.1"
   gem "ruby-debug",   :platforms => :mri_18
   gem "ruby-debug19", :platforms => :mri_19
 end
 
 group :test do
-  gem "cucumber-rails"
+  gem "cucumber-rails", "0.4.1"
   gem "factory_girl_rails"
   gem "bourne"
-  gem "capybara"
   gem "database_cleaner"
   gem "fakeweb"
   gem "sham_rack"
-  gem "nokogiri"
   gem "timecop"
   gem "treetop"
-  gem "shoulda"
+  gem "shoulda-matchers"
   gem "launchy"
-  gem "akephalos"
+  gem "capybara-webkit"
   gem "thin"
 end
