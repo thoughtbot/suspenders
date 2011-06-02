@@ -23,7 +23,7 @@ namespace :test_project do
   desc 'Suspend a new project. Pass REPO=... to change the Suspenders repo.'
   task :generate do
     FileUtils.rm_rf(TEST_PROJECT)
-    sh './bin/suspenders', 'create', TEST_PROJECT, 'test'
+    sh './bin/suspenders', 'create', TEST_PROJECT, ENV['REPO'].to_s
   end
 
   desc 'Remove a suspended project'

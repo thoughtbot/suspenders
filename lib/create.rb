@@ -5,29 +5,29 @@ require File.expand_path(File.dirname(__FILE__) + "/errors")
 
 module Suspenders
   class Create
-    attr_accessor :project_path, :testing
+    attr_accessor :project_path, :repo
 
-    def self.run!(project_path, testing)
-      puts testing
-      creator = self.new(project_path, testing)
+    def self.run!(project_path, repo)
+      creator = self.new(project_path, repo)
       creator.create_project!
     end
 
-    def initialize(project_path, testing)
+    def initialize(project_path, repo)
       self.project_path = project_path
       validate_project_path
       validate_project_name
-      self.testing = (testing == 'test')
+      self.repo = repo if repo
     end
 
     def create_project!
-      exec(<<-COMMAND)
-        TEST=#{testing} \
+      command = <<-COMMAND
         rails new #{project_path} \
           --template=#{template} \
           --skip-test-unit \
           --skip-prototype
       COMMAND
+      command = "REPO=#{repo} #{command}" if repo
+      exec(command)
     end
 
     private

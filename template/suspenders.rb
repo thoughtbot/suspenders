@@ -43,15 +43,11 @@ def download_file(uri_string, destination)
 end
 
 def origin
-  if testing?
-    File.expand_path('../.git', File.dirname(__FILE__))
+  if !ENV['REPO'].blank?
+    ENV['REPO']
   else
     "git://github.com/thoughtbot/suspenders.git"
   end
-end
-
-def testing?
-  ENV['TEST'] == 'true'
 end
 
 def trout(destination_path)
