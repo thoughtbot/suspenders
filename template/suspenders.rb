@@ -134,6 +134,7 @@ rake "flutie:install"
 say "Ignore the right files"
 
 concat_file "suspenders_gitignore", ".gitignore"
+concat_file "cucumber_assertions_hack", "features/support/env.rb"
 
 ["app/models",
  "app/views/pages",
