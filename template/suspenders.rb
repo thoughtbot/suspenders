@@ -122,7 +122,7 @@ replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
 
 inject_into_file "features/support/env.rb",
                  %{Capybara.save_and_open_page_path = 'tmp'\n} +
-                 %{Capybara.javascript_driver = :akephalos\n},
+                 %{Capybara.javascript_driver = :webkit\n},
                  :before => %{Capybara.default_selector = :css}
 
 rake "flutie:install"
