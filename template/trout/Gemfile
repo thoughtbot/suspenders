@@ -14,7 +14,7 @@ gem "mysql"
 gem "flutie", "~> 1.1.8"
 gem "dynamic_form"
 gem "jquery-rails"
-gem "rake", "0.9.1"
+gem "rake", "0.9.2"
 
 # RSpec needs to be in :development group to expose generators
 # and rake tasks without having to type RAILS_ENV=test.
