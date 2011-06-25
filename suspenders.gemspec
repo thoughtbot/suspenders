@@ -16,7 +16,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
 
   s.authors  = ["thoughtbot"]
   s.email    = 'support@thoughtbot.com'
-  s.homepage = 'http://github.com/thoughtbot/suspenders-gem'
+  s.homepage = 'http://github.com/thoughtbot/suspenders'
 
   s.executables = ["suspenders"]
   s.default_executable = 'suspenders'
