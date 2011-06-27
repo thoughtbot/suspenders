@@ -21,7 +21,6 @@ gem "rake", "0.9.2"
 group :development, :test do
   gem "rspec-rails", "~> 2.6.1"
   gem "ruby-debug",   :platforms => :mri_18
-  gem "ruby-debug19", :platforms => :mri_19
 end
 
 group :test do
