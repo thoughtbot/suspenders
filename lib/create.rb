@@ -21,7 +21,7 @@ module Suspenders
 
     def create_project!
       command = <<-COMMAND
-        rails new #{project_path} \
+        rails #{rails_version} new #{project_path} \
           --template=#{template} \
           --skip-test-unit \
           --skip-prototype
@@ -52,6 +52,20 @@ module Suspenders
 
     def template
       File.expand_path(File.dirname(__FILE__) + "/../template/suspenders.rb")
+    end
+
+    def gemfile
+      File.expand_path(File.dirname(__FILE__) + "/../template/trout/Gemfile")
+    end
+
+    def rails_version
+      gemfile_contents = File.read(gemfile)
+      gemfile_contents =~ /gem "rails", "(.*)"/
+      if $1.nil? || $1 == ''
+        ''
+      else
+        "_#{$1}_"
+      end
     end
   end
 end
