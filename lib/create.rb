@@ -16,7 +16,7 @@ module Suspenders
       self.project_path = project_path
       validate_project_path
       validate_project_name
-      self.repo = repo if repo
+      self.repo = repo if present?(repo)
     end
 
     def create_project!
@@ -26,8 +26,12 @@ module Suspenders
           --skip-test-unit \
           --skip-prototype
       COMMAND
-      command = "REPO=#{repo} #{command}" if repo
-      exec(command)
+      command_with_repo = if repo
+                            "REPO='#{repo}' #{command}"
+                          else
+                            command
+                          end
+      exec(command_with_repo)
     end
 
     private
@@ -66,6 +70,10 @@ module Suspenders
       else
         "_#{$1}_"
       end
+    end
+
+    def present?(string)
+      string && string != ''
     end
   end
 end
