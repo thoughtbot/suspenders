@@ -43,7 +43,7 @@ def download_file(uri_string, destination)
 end
 
 def origin
-  if !ENV['REPO'].blank?
+  if ENV['REPO'].present?
     ENV['REPO']
   else
     "git://github.com/thoughtbot/suspenders.git"
