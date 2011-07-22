@@ -65,6 +65,11 @@ Issues
 
 If you have problems, please create a [Github issue](https://github.com/thoughtbot/suspenders/issues).
 
+Contributing
+------------
+
+Please see CONTRIBUTING.md for details.
+
 Credits
 -------
 
