@@ -31,7 +31,7 @@ Syntax:
 * Two spaces, no tabs.
 * No trailing whitespace. Blank lines should not have any space.
 * Prefer &&/|| over and/or.
-* MyClass.my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
+* my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
 * a = b and not a=b.
 * Follow the conventions you see used in the source already.
 
