@@ -27,6 +27,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.add_dependency('rails', '3.0.9')
   s.add_dependency('bundler', '>= 1.0.7')
   s.add_dependency('trout', '>= 0.3.0')
+  s.add_development_dependancy('cucumber', '>= 1.0.2')
 
   # = MANIFEST =
   s.files = %w[

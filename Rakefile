@@ -4,7 +4,7 @@ require 'cucumber/rake/task'
 require 'date'
 
 TEST_PROJECT = 'test_project'
-SUSPENDERS_GEM_VERSION = '0.2.5'
+SUSPENDERS_GEM_VERSION = '0.2.6'
 
 #############################################################################
 #
@@ -15,8 +15,11 @@ SUSPENDERS_GEM_VERSION = '0.2.5'
 Cucumber::Rake::Task.new
 
 namespace :test do
+  p "here"
   desc "A full suspenders app's test suite"
+  p "here"
   task :full => ['test_project:generate', 'cucumber', 'test_project:destroy']
+  p "here"
 end
 
 namespace :test_project do
