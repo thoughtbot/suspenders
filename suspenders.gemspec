@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name    = 'suspenders'
-  s.version = '0.2.5'
-  s.date    = '2011-06-01'
+  s.version = '0.2.6'
+  s.date    = '2011-07-26'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
@@ -27,17 +27,17 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.add_dependency('rails', '3.0.9')
   s.add_dependency('bundler', '>= 1.0.7')
   s.add_dependency('trout', '>= 0.3.0')
-  s.add_development_dependancy('cucumber', '~> 1.0.2')
+  s.add_development_dependency('cucumber', '~> 1.0.2')
 
   # = MANIFEST =
   s.files = %w[
+    CONTRIBUTING.md
     LICENSE
     README.md
     Rakefile
     bin/suspenders
     features/rake_clean.feature
     features/step_definitions/shell.rb
-    features/support/env.rb
     lib/create.rb
     lib/errors.rb
     suspenders.gemspec
@@ -45,6 +45,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
     template/files/_flashes.html.erb
     template/files/_javascript.html.erb
     template/files/body_class_helper.rb
+    template/files/cucumber_assertions_hack
     template/files/errors.rb
     template/files/factory_girl_steps.rb
     template/files/postgresql_database.yml.erb
