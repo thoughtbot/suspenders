@@ -24,7 +24,7 @@ group :development, :test do
 end
 
 group :test do
-  gem "cucumber-rails", "0.4.1"
+  gem "cucumber-rails", "1.0.2"
   gem "factory_girl_rails"
   gem "bourne"
   gem "database_cleaner"
