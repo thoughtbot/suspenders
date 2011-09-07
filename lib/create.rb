@@ -24,7 +24,8 @@ module Suspenders
         rails #{rails_version} new #{project_path} \
           --template=#{template} \
           --skip-test-unit \
-          --skip-prototype
+          --skip-prototype \
+          --database=postgresql
       COMMAND
       command_with_repo = if repo
                             "REPO='#{repo}' #{command}"
