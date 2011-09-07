@@ -76,12 +76,9 @@ template "suspenders_layout.html.erb.erb",
 trout 'Gemfile'
 run "bundle install"
 
-say "Let's use jQuery"
-generate "jquery:install", "--ui"
-
 say "Pulling in some common javascripts"
 
-trout "public/javascripts/prefilled_input.js"
+trout "app/assets/javascripts/prefilled_input.js"
 
 say "Documentation"
 
