@@ -1,6 +1,6 @@
 source :rubygems
 
-gem "rails", "3.0.9"
+gem "rails", "3.1.0"
 gem "rack"
 gem "clearance", "~> 0.11.1"
 gem "sass"
