@@ -44,7 +44,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
     template/files/README_FOR_SUSPENDERS
     template/files/_flashes.html.erb
     template/files/_javascript.html.erb
-    template/files/body_class_helper.rb
     template/files/cucumber_assertions_hack
     template/files/errors.rb
     template/files/factory_girl_steps.rb
