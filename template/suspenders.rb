@@ -119,7 +119,7 @@ inject_into_file "features/support/env.rb",
                  %{Capybara.javascript_driver = :webkit\n},
                  :before => %{Capybara.default_selector = :css}
 
-say "Set up stylesheets including flutie"
+say "Set up stylesheets"
 
 copy_file "app/assets/stylesheets/application.css", "app/assets/stylesheets/application.css.scss"
 remove_file "app/assets/stylesheets/application.css"
