@@ -110,9 +110,6 @@ generate "cucumber:install", "--rspec --capybara"
 generate "clearance:install"
 generate "clearance:features"
 
-create_file "public/stylesheets/sass/screen.scss"
-create_file "public/stylesheets/screen.css"
-
 copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
 
 replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
@@ -122,7 +119,12 @@ inject_into_file "features/support/env.rb",
                  %{Capybara.javascript_driver = :webkit\n},
                  :before => %{Capybara.default_selector = :css}
 
-rake "flutie:install"
+say "Set up stylesheets including flutie"
+
+copy_file "app/assets/stylesheets/application.css", "app/assets/stylesheets/application.css.scss"
+remove_file "app/assets/stylesheets/application.css"
+concat_file "import_scss_styles", "app/assets/stylesheets/application.css.scss"
+create_file "app/assets/stylesheets/_screen.scss"
 
 say "Ignore the right files"
 
