@@ -158,5 +158,4 @@ say "Setting up a root route"
 route "root :to => 'Clearance::Sessions#new'"
 
 say "Congratulations! You just pulled our suspenders."
-say "Remember to run 'rails generate hoptoad' with your API key."
-
+say "Remember to run 'rails generate airbrake' with your API key."
