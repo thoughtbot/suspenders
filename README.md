@@ -13,7 +13,7 @@ Then run:
 
     suspenders create projectname
 
-This will create a Rails 3 app in `projectname'. This script creates a new
+This will create a Rails 3.1 app in `projectname'. This script creates a new
 new git repository. It is not meant to be used against an existing repo.
 
 Suspenders uses [Trout](https://github.com/thoughtbot/trout) to make it
@@ -37,6 +37,7 @@ It includes application gems like:
 * [Formtastic](https://github.com/justinfrench/formtastic) for better forms
 * [Hoptoad Notifier](https://github.com/thoughtbot/hoptoad_notifier) for exception notification
 * [Flutie](https://github.com/thoughtbot/flutie) for default CSS styles
+* [Bourbon](https://github.com/thoughtbot/bourbon) for classy sass mixins
 * [Clearance](https://github.com/thoughtbot/clearance) for authentication
 
 And testing gems like:
