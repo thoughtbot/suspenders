@@ -82,6 +82,10 @@ say "Pulling in some common javascripts"
 
 trout "app/assets/javascripts/prefilled_input.js"
 
+say "Add jQuery ui to the standard application.js"
+
+inject_into_file "app/assets/javascripts/application.js", "//= require jquery-ui\n", :before => "//= require_tree ."
+
 say "Documentation"
 
 copy_file "README_FOR_SUSPENDERS", "doc/README_FOR_SUSPENDERS"
