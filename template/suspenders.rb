@@ -73,6 +73,8 @@ template "suspenders_layout.html.erb.erb",
          "app/views/layouts/application.html.erb",
          :force => true
 
+say "Get ready for bundler... (this will take a while)"
+
 trout 'Gemfile'
 run "bundle install"
 
@@ -83,8 +85,6 @@ trout "app/assets/javascripts/prefilled_input.js"
 say "Documentation"
 
 copy_file "README_FOR_SUSPENDERS", "doc/README_FOR_SUSPENDERS"
-
-say "Get ready for bundler... (this will take a while)"
 
 say "Let's use PostgreSQL"
 
