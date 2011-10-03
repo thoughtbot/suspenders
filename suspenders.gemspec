@@ -54,7 +54,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
     template/files/time_formats.rb
     template/suspenders.rb
     template/trout/Gemfile
-    template/trout/public/javascripts/prefilled_input.js
   ]
   # = MANIFEST =
 
