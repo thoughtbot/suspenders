@@ -13,7 +13,7 @@ module Suspenders
     end
 
     def initialize(project_path, repo)
-      self.project_path = project_path
+      self.project_path = File.expand_path(project_path)
       validate_project_path
       validate_project_name
       self.repo = repo if present?(repo)
@@ -56,11 +56,11 @@ module Suspenders
     end
 
     def template
-      File.expand_path(File.dirname(__FILE__) + "/../template/suspenders.rb")
+      File.expand_path(File.join("..", "template", "suspenders.rb"), File.dirname(__FILE__))
     end
 
     def gemfile
-      File.expand_path(File.dirname(__FILE__) + "/../template/trout/Gemfile")
+      File.expand_path(File.join("..", "template", "trout", "Gemfile"), File.dirname(__FILE__))
     end
 
     def rails_version
