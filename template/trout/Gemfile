@@ -33,14 +33,13 @@ group :development, :test do
 end
 
 group :test do
-  gem "cucumber-rails", "1.0.2"
+  gem "cucumber-rails"
   gem "factory_girl_rails"
   gem "bourne"
   gem "database_cleaner"
   gem "fakeweb"
   gem "sham_rack"
   gem "timecop"
-  gem "treetop"
   gem "shoulda-matchers"
   gem "launchy"
   gem "capybara-webkit"
