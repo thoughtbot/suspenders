@@ -60,9 +60,10 @@ remove_file "README"
 remove_file "public/index.html"
 remove_file "public/images/rails.png"
 
-say "Setting up the staging environment"
+say "Setting up the staging and production environments"
 
 run "cp config/environments/production.rb config/environments/staging.rb"
+trout 'Procfile'
 
 say "Creating suspenders views"
 
