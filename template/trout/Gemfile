@@ -11,6 +11,7 @@ group :assets do
 end
 
 gem "pg"
+gem "thin"
 gem "jquery-rails"
 gem "sass"
 gem "RedCloth", :require => "redcloth"
@@ -43,5 +44,4 @@ group :test do
   gem "shoulda-matchers"
   gem "launchy"
   gem "capybara-webkit"
-  gem "thin"
 end
