@@ -17,8 +17,8 @@ This will create a Rails 3.1 app in `projectname'. This script creates a new
 new git repository. It is not meant to be used against an existing repo.
 
 Suspenders uses [Trout](https://github.com/thoughtbot/trout) to make it
-easier to maintain a base version of special files (like Gemfile) in
-Suspenders.
+easier to maintain a base version of special files like Gemfile and Procfile
+in Suspenders.
 
 Whenever you want to get the latest and greatest Suspenders' Gemfile, run:
 
@@ -60,6 +60,19 @@ Suspenders also comes with:
 
 See [template/files](https://github.com/thoughtbot/suspenders/blob/master/template/files) to
 see what is generated one-time.
+
+Dependencies
+------------
+
+Some gems included in Suspenders have native extensions. You should have GCC installed on your
+machine before running Suspenders.
+
+If you're running OS X, we recommend the [GCC OSX installer](https://github.com/kennethreitz/osx-gcc-installer).
+
+We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for full-stack Javascript integration testing.
+It requires you have QT installed on your machine before running Suspenders.
+
+Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-QT).
 
 Issues
 ------
