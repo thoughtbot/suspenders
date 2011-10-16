@@ -54,113 +54,126 @@ def trout(destination_path)
   run "trout checkout --source-root=template/trout #{destination_path} #{origin}"
 end
 
-say "Getting rid of files we don't use"
+say "Get rid of files we don't use"
 
-remove_file "README"
-remove_file "public/index.html"
-remove_file "public/images/rails.png"
+  remove_file "README"
+  remove_file "public/index.html"
+  remove_file "public/images/rails.png"
 
-say "Setting up the staging and production environments"
+say "Set up the staging and production environments"
 
-run "cp config/environments/production.rb config/environments/staging.rb"
-trout 'Procfile'
+  run "cp config/environments/production.rb config/environments/staging.rb"
+  trout 'Procfile'
 
-say "Creating suspenders views"
+say "Create Suspenders views"
 
-empty_directory "app/views/shared"
-copy_file "_flashes.html.erb", "app/views/shared/_flashes.html.erb"
-copy_file "_javascript.html.erb", "app/views/shared/_javascript.html.erb"
-template "suspenders_layout.html.erb.erb",
-         "app/views/layouts/application.html.erb",
-         :force => true
+  empty_directory "app/views/shared"
+  copy_file "_flashes.html.erb", "app/views/shared/_flashes.html.erb"
+  copy_file "_javascript.html.erb", "app/views/shared/_javascript.html.erb"
+  template "suspenders_layout.html.erb.erb",
+           "app/views/layouts/application.html.erb",
+           :force => true
 
 say "Get ready for bundler... (this will take a while)"
 
-trout 'Gemfile'
-run "bundle install"
+  trout 'Gemfile'
+  run "bundle install"
 
-say "Pulling in some common javascripts"
+say "Pull in some common javascripts"
 
-trout "app/assets/javascripts/prefilled_input.js"
+  trout "app/assets/javascripts/prefilled_input.js"
 
-say "Add jQuery ui to the standard application.js"
+say "Add jQuery UI to the standard application.js"
 
-inject_into_file "app/assets/javascripts/application.js", "//= require jquery-ui\n", :before => "//= require_tree ."
+  inject_into_file "app/assets/javascripts/application.js", "//= require jquery-ui\n", :before => "//= require_tree ."
 
 say "Documentation"
 
-copy_file "README_FOR_SUSPENDERS", "doc/README_FOR_SUSPENDERS"
+  copy_file "README_FOR_SUSPENDERS", "doc/README_FOR_SUSPENDERS"
 
-say "Let's use PostgreSQL"
+say "Use PostgreSQL"
 
-template "postgresql_database.yml.erb", "config/database.yml", :force => true
-rake "db:create"
+  template "postgresql_database.yml.erb", "config/database.yml", :force => true
+  rake "db:create"
 
-say "Setting up plugins"
+say "Configure mailer hosts for each environment"
 
-generators_config = <<-RUBY
-    config.generators do |generate|
-      generate.test_framework :rspec
-    end
-RUBY
-inject_into_class "config/application.rb", "Application", generators_config
+  action_mailer_host "development", "#{app_name}.local"
+  action_mailer_host "test",        "example.com"
+  action_mailer_host "staging",     "staging.#{app_name}.com"
+  action_mailer_host "production",  "#{app_name}.com"
 
-action_mailer_host "development", "#{app_name}.local"
-action_mailer_host "test",        "example.com"
-action_mailer_host "staging",     "staging.#{app_name}.com"
-action_mailer_host "production",  "#{app_name}.com"
+say "Configure and run generators"
 
-generate "rspec:install"
-generate "cucumber:install", "--rspec --capybara"
-generate "clearance:install"
-generate "clearance:features"
+  generators_config = <<-RUBY
+      config.generators do |generate|
+        generate.test_framework :rspec
+      end
+  RUBY
+  inject_into_class "config/application.rb", "Application", generators_config
 
-copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
+  generate "rspec:install"
+  generate "cucumber:install", "--rspec --capybara"
+  generate "clearance:install"
+  generate "clearance:features"
 
-replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
+say "Use Factory Girl from Cucumber features"
 
-inject_into_file "features/support/env.rb",
-                 %{Capybara.save_and_open_page_path = 'tmp'\n} +
-                 %{Capybara.javascript_driver = :webkit\n},
-                 :before => %{Capybara.default_selector = :css}
+  copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
+
+say "Use Mocha and Bourne test spies instead of RSpec's mocking framework"
+
+  replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
+
+say "Configure Capybara"
+
+  inject_into_file "features/support/env.rb",
+                   %{Capybara.save_and_open_page_path = 'tmp'\n} +
+                   %{Capybara.javascript_driver = :webkit\n},
+                   :before => %{Capybara.default_selector = :css}
 
 say "Set up stylesheets"
 
-copy_file "app/assets/stylesheets/application.css", "app/assets/stylesheets/application.css.scss"
-remove_file "app/assets/stylesheets/application.css"
-concat_file "import_scss_styles", "app/assets/stylesheets/application.css.scss"
-create_file "app/assets/stylesheets/_screen.scss"
+  copy_file "app/assets/stylesheets/application.css", "app/assets/stylesheets/application.css.scss"
+  remove_file "app/assets/stylesheets/application.css"
+  concat_file "import_scss_styles", "app/assets/stylesheets/application.css.scss"
+  create_file "app/assets/stylesheets/_screen.scss"
 
 say "Ignore the right files"
 
-concat_file "suspenders_gitignore", ".gitignore"
-concat_file "cucumber_assertions_hack", "features/support/env.rb"
+  concat_file "suspenders_gitignore", ".gitignore"
+  concat_file "cucumber_assertions_hack", "features/support/env.rb"
 
-["app/models",
- "app/views/pages",
- "db/migrate",
- "log",
- "public/images",
- "spec/support",
- "spec/lib",
- "spec/models",
- "spec/views",
- "spec/controllers",
- "spec/helpers",
- "spec/support/matchers",
- "spec/support/mixins",
- "spec/support/shared_examples"].each do |dir|
-  empty_directory_with_gitkeep dir
-end
+say "Create empty directories for use with common conventions"
 
-say "Copying miscellaneous support files"
+  ["app/models",
+   "app/views/pages",
+   "db/migrate",
+   "log",
+   "public/images",
+   "spec/support",
+   "spec/lib",
+   "spec/models",
+   "spec/views",
+   "spec/controllers",
+   "spec/helpers",
+   "spec/support/matchers",
+   "spec/support/mixins",
+   "spec/support/shared_examples"].each do |dir|
+    empty_directory_with_gitkeep dir
+  end
 
-copy_file "errors.rb", "config/initializers/errors.rb"
-copy_file "time_formats.rb", "config/initializers/time_formats.rb"
+say "Provide a common array of errors from which to rescue"
 
-say "Setting up a root route"
+  copy_file "errors.rb", "config/initializers/errors.rb"
 
-route "root :to => 'Clearance::Sessions#new'"
+say "Provide a common array of date and time formats"
+
+  copy_file "time_formats.rb", "config/initializers/time_formats.rb"
+
+say "Set up a root route"
+
+  route "root :to => 'Clearance::Sessions#new'"
 
 say "Congratulations! You just pulled our suspenders."
 say "Remember to run 'rails generate airbrake' with your API key."
