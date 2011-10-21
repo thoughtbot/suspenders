@@ -26,7 +26,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
 
   s.add_dependency('rails', '3.1.0')
   s.add_dependency('bundler', '>= 1.0.7')
-  s.add_dependency('trout', '>= 0.3.0')
   s.add_development_dependency('cucumber', '~> 1.0.2')
 
   # = MANIFEST =
@@ -53,7 +52,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
     template/files/suspenders_layout.html.erb.erb
     template/files/time_formats.rb
     template/suspenders.rb
-    template/trout/Gemfile
   ]
   # = MANIFEST =
 
