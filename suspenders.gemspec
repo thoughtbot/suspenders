@@ -24,9 +24,8 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
 
-  s.add_dependency('rails', '3.1.0')
+  s.add_dependency('rails', '3.1.1')
   s.add_dependency('bundler', '>= 1.0.7')
-  s.add_dependency('trout', '>= 0.3.0')
   s.add_development_dependency('cucumber', '~> 1.0.2')
 
   # = MANIFEST =
@@ -38,22 +37,23 @@ rush to build something amazing; don't use it if you like missing deadlines.
     bin/suspenders
     features/rake_clean.feature
     features/step_definitions/shell.rb
-    lib/create.rb
-    lib/errors.rb
+    lib/suspenders/actions.rb
+    lib/suspenders/app_builder.rb
+    lib/suspenders/generators/app_generator.rb
     suspenders.gemspec
-    template/files/README_FOR_SUSPENDERS
-    template/files/_flashes.html.erb
-    template/files/_javascript.html.erb
-    template/files/cucumber_assertions_hack
-    template/files/errors.rb
-    template/files/factory_girl_steps.rb
-    template/files/import_scss_styles
-    template/files/postgresql_database.yml.erb
-    template/files/suspenders_gitignore
-    template/files/suspenders_layout.html.erb.erb
-    template/files/time_formats.rb
-    template/suspenders.rb
-    template/trout/Gemfile
+    templates/Gemfile_additions
+    templates/Procfile
+    templates/README_FOR_SUSPENDERS
+    templates/_flashes.html.erb
+    templates/_javascript.html.erb
+    templates/errors.rb
+    templates/factory_girl_steps.rb
+    templates/import_scss_styles
+    templates/javascripts/prefilled_input.js
+    templates/postgresql_database.yml.erb
+    templates/suspenders_gitignore
+    templates/suspenders_layout.html.erb.erb
+    templates/time_formats.rb
   ]
   # = MANIFEST =
 
