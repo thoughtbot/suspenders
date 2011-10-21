@@ -9,7 +9,7 @@ if ['create', '--create'].include? ARGV[0]
   puts "[WARNING] the suspenders create argument is deprecated. Just use `suspenders #{ARGV.join}` instead"
 end
 
-templates_root = File.expand_path(File.join("..", "templates", "files"), File.dirname(__FILE__))
+templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
 Suspenders::Generator.source_root templates_root
 Suspenders::Generator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
 
