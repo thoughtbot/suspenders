@@ -26,7 +26,7 @@ module Suspenders
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :setup_gitignore
-      invoke :copy_miscelaneous_files
+      invoke :copy_miscellaneous_files
       invoke :setup_root_route
       invoke :migrate_database
       invoke :outro
@@ -92,9 +92,9 @@ module Suspenders
       build(:gitignore_files)
     end
 
-    def copy_miscelaneous_files
+    def copy_miscellaneous_files
       say "Copying miscellaneous support files"
-      build(:copy_miscelaneous_files)
+      build(:copy_miscellaneous_files)
     end
 
     def setup_root_route
