@@ -141,7 +141,6 @@ end
 
     def gitignore_files
       concat_file "suspenders_gitignore", ".gitignore"
-      concat_file "cucumber_assertions_hack", "features/support/env.rb"
       ["app/models",
         "app/views/pages",
         "db/migrate",
