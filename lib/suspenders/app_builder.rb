@@ -53,45 +53,9 @@ module Suspenders
     end
 
     def include_custom_gems
-      insert_into_file("Gemfile", <<-GEMS, :after => /gem 'jquery-rails'/)
-\ngem 'thin'
-gem 'sass'
-gem 'clearance', '~> 0.13.0'
-gem 'high_voltage'
-gem 'paperclip'
-gem 'formtastic'
-gem 'flutie'
-gem 'bourbon'
-gem 'copycopter_client'
-gem 'airbrake'
-
-group :development do
-  gem "heroku"
-end
-
-group :development, :test do
-  gem "rspec-rails", "~> 2.6.1"
-  gem "ruby-debug19"
-  gem "sham_rack"
-end
-
-group :test do
-  gem "cucumber-rails", "1.1.0"
-  gem "capybara-webkit", "~> 0.7.1"
-  gem "factory_girl_rails"
-  gem "bourne"
-  gem "database_cleaner"
-  gem "timecop"
-  gem "shoulda-matchers"
-  gem "launchy"
-  gem "email_spec"
-end
-
-group :staging, :production do
-  gem 'newrelic_rpm'
-  gem 'sprockets-redirect'
-end
-      GEMS
+      additions_path = File.expand_path(File.join('..', '..', 'template', 'files', 'Gemfile_additions'), File.dirname(__FILE__))
+      new_gems = File.open(additions_path).read
+      insert_into_file("Gemfile", "\n#{new_gems}", :after => /gem 'jquery-rails'/)
     end
 
     def configure_rspec
