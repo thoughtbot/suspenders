@@ -1,23 +1,16 @@
 #!/usr/bin/env ruby
 
-require File.expand_path(File.dirname(__FILE__) + "/../lib/create")
-require File.expand_path(File.dirname(__FILE__) + "/../lib/errors")
+require File.expand_path(File.join('..', 'lib', 'suspenders', 'generators', 'app_generator'), File.dirname(__FILE__))
+require File.expand_path(File.join('..', 'lib', 'suspenders', 'actions'), File.dirname(__FILE__))
+require File.expand_path(File.join('..', 'lib', 'suspenders', 'app_builder'), File.dirname(__FILE__))
 
-include Suspenders::Errors
-
-def usage
-  "Usage: #{File.basename(__FILE__)} create new_project_name"
+if ['create', '--create'].include? ARGV[0]
+  ARGV.shift
+  puts "[WARNING] the suspenders create argument is deprecated. Just use `suspenders #{ARGV.join}` instead"
 end
 
-case ARGV[0]
-when 'create', '--create'
-  begin
-    Suspenders::Create.run!(ARGV[1], ARGV[2])
-  rescue Suspenders::InvalidInput => e
-    error_with_message(e.message)
-  end
-when 'help', '--help'
-  puts usage
-else
-  error_with_message "Unknown subcommand: #{ARGV[0]}\n#{usage}"
-end
+templates_root = File.expand_path(File.join("..", "template", "files"), File.dirname(__FILE__))
+Suspenders::Generator.source_root templates_root
+Suspenders::Generator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
+
+Suspenders::Generator.start
