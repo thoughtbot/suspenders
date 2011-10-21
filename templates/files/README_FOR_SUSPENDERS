@@ -16,14 +16,6 @@ Then run:
 This will create a Rails 3 app in `projectname'. This script creates a new
 new git repository. It is not meant to be used against an existing repo.
 
-Suspenders uses [Trout](https://github.com/thoughtbot/trout) to make it
-easier to maintain a base version of special files (like Gemfile) in
-Suspenders.
-
-Whenever you want to get the latest and greatest Suspenders' Gemfile, run:
-
-    trout update Gemfile
-
 Gemfile
 -------
 
