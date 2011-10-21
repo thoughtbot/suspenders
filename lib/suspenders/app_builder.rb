@@ -53,7 +53,7 @@ module Suspenders
     end
 
     def include_custom_gems
-      additions_path = File.expand_path(File.join('..', '..', 'template', 'files', 'Gemfile_additions'), File.dirname(__FILE__))
+      additions_path = find_in_source_paths 'Gemfile_additions'
       new_gems = File.open(additions_path).read
       insert_into_file("Gemfile", "\n#{new_gems}", :after => /gem 'jquery-rails'/)
     end
