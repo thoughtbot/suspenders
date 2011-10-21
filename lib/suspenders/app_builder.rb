@@ -123,9 +123,10 @@ module Suspenders
       end
     end
 
-    def copy_miscelaneous_files
+    def copy_miscellaneous_files
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "time_formats.rb", "config/initializers/time_formats.rb"
+      copy_file "Procfile"
     end
 
     def setup_root_route
