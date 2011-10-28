@@ -14,30 +14,8 @@ SUSPENDERS_GEM_VERSION = '0.2.6'
 
 Cucumber::Rake::Task.new
 
-namespace :test do
-  desc "A full suspenders app's test suite"
-  task :full => ['test_project:generate', 'cucumber', 'test_project:destroy']
-end
-
-namespace :test_project do
-  desc 'Suspend a new project.'
-  task :generate do
-    FileUtils.rm_rf(TEST_PROJECT)
-    sh "./bin/suspenders", TEST_PROJECT
-  end
-
-  desc 'Remove a suspended project'
-  task :destroy do
-    FileUtils.cd TEST_PROJECT
-    sh "rake db:drop RAILS_ENV=development"
-    sh "rake db:drop RAILS_ENV=test"
-    FileUtils.cd '..'
-    FileUtils.rm_rf TEST_PROJECT
-  end
-end
-
 desc 'Run the test suite'
-task :default => ['test:full']
+task :default => ['cucumber']
 
 #############################################################################
 #
