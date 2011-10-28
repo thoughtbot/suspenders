@@ -28,6 +28,7 @@ module Suspenders
       invoke :setup_gitignore
       invoke :copy_miscellaneous_files
       invoke :setup_root_route
+      invoke :set_active_record_whitelist_attributes
       invoke :outro
     end
 
@@ -99,6 +100,13 @@ module Suspenders
     def setup_root_route
       say "Setting up a root route"
       build(:setup_root_route)
+    end
+
+    def set_active_record_whitelist_attributes
+      if 'active_record' == options[:orm]
+        say "Setting up active_record.whitelist_attributes"
+        build(:set_active_record_whitelist_attributes)
+      end
     end
 
     def outro

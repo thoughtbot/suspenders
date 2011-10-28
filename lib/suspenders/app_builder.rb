@@ -133,6 +133,10 @@ module Suspenders
       route "root :to => 'Clearance::Sessions#new'"
     end
 
+    def set_active_record_whitelist_attributes
+      inject_into_class "config/application.rb", "Application", "    config.active_record.whitelist_attributes = true\n"
+    end
+
     def migrate_database
       rake "db:migrate"
     end
