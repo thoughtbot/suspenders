@@ -4,8 +4,8 @@ Gem::Specification.new do |s|
   s.rubygems_version = '1.3.5'
 
   s.name    = 'suspenders'
-  s.version = '0.3'
-  s.date    = '2011-10-21'
+  s.version = '0.3.1'
+  s.date    = '2011-10-28'
 
   s.summary     = "Generate a Rails app using thoughtbot's best practices."
   s.description = <<-HERE
@@ -32,6 +32,8 @@ rush to build something amazing; don't use it if you like missing deadlines.
   # = MANIFEST =
   s.files = %w[
     CONTRIBUTING.md
+    Gemfile
+    Gemfile.lock
     LICENSE
     README.md
     Rakefile
