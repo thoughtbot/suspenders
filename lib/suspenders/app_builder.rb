@@ -142,5 +142,9 @@ module Suspenders
         "  attr_accessible :email, :password\n",
         :after => /include Clearance::User\n/
     end
+
+    def include_clearance_matchers
+      create_file "spec/support/clearance.rb", "require 'clearance/testing'"
+    end
   end
 end

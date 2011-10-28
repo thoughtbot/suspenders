@@ -81,6 +81,7 @@ module Suspenders
       build(:generate_cucumber)
       build(:generate_clearance)
       build(:install_factory_girl_steps)
+      build(:include_clearance_matchers)
     end
 
     def setup_stylesheets
