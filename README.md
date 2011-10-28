@@ -1,4 +1,4 @@
-Suspenders is a base Rails application that you can upgrade.
+Suspenders is the base Rails application used at [thoughtbot](http://thoughtbot.com/community).
 
   ![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
@@ -11,25 +11,17 @@ First install the suspenders gem:
 
 Then run:
 
-    suspenders create projectname
+    suspenders projectname
 
 This will create a Rails 3.1 app in `projectname'. This script creates a new
 new git repository. It is not meant to be used against an existing repo.
-
-Suspenders uses [Trout](https://github.com/thoughtbot/trout) to make it
-easier to maintain a base version of special files like Gemfile and Procfile
-in Suspenders.
-
-Whenever you want to get the latest and greatest Suspenders' Gemfile, run:
-
-    trout update Gemfile
 
 Gemfile
 -------
 
 To see the latest and greatest gems, look at Suspenders'
-[template/trout/Gemfile](https://github.com/thoughtbot/suspenders/blob/master/template/trout/Gemfile),
-which will be copied into your projectname/Gemfile.
+[template/Gemfile_additions](https://github.com/thoughtbot/suspenders/blob/master/templates/Gemfile_additions),
+which will be appended to the default generated projectname/Gemfile.
 
 It includes application gems like:
 
@@ -48,6 +40,7 @@ And testing gems like:
 * [Shoulda Matchers](http://github.com/thoughtbot/shoulda-matchers) for frequently needed Rails and RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop) for dealing with time
 * [Bourne](https://github.com/thoughtbot/bourne) and Mocha for stubbing and spying
+* [email_spec](https://github.com/bmabey/email-spec) for testing emails.
 
 Other goodies
 -------------
@@ -58,14 +51,11 @@ Suspenders also comes with:
 * Rails' flashes set up and in application layout.
 * A few nice time formats.
 
-See [template/files](https://github.com/thoughtbot/suspenders/blob/master/template/files) to
-see what is generated one-time.
-
 Dependencies
 ------------
 
 Some gems included in Suspenders have native extensions. You should have GCC installed on your
-machine before running Suspenders.
+machine before generating an app with Suspenders.
 
 If you're running OS X, we recommend the [GCC OSX installer](https://github.com/kennethreitz/osx-gcc-installer).
 
