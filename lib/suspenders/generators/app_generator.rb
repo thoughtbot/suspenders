@@ -82,6 +82,7 @@ module Suspenders
       build(:generate_clearance)
       build(:install_factory_girl_steps)
       build(:include_clearance_matchers)
+      build(:setup_default_rake_task)
     end
 
     def setup_stylesheets

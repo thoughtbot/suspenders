@@ -146,5 +146,12 @@ module Suspenders
     def include_clearance_matchers
       create_file "spec/support/clearance.rb", "require 'clearance/testing'"
     end
+
+    def setup_default_rake_task
+      append_file "Rakefile" do
+        "task(:default).clear\ntask :default => [:spec, :cucumber]"
+      end
+
+    end
   end
 end
