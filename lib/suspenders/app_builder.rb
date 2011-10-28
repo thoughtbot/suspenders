@@ -142,9 +142,5 @@ module Suspenders
         "  attr_accessible :email, :password\n",
         :after => /include Clearance::User\n/
     end
-
-    def migrate_database
-      rake "db:migrate"
-    end
   end
 end
