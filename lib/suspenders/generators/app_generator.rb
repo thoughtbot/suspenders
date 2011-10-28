@@ -28,7 +28,6 @@ module Suspenders
       invoke :setup_gitignore
       invoke :copy_miscellaneous_files
       invoke :setup_root_route
-      invoke :migrate_database
       invoke :outro
     end
 
@@ -100,11 +99,6 @@ module Suspenders
     def setup_root_route
       say "Setting up a root route"
       build(:setup_root_route)
-    end
-
-    def migrate_database
-      say "Migrating database"
-      build(:migrate_database)
     end
 
     def outro
