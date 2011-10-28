@@ -29,6 +29,7 @@ module Suspenders
       invoke :copy_miscellaneous_files
       invoke :setup_root_route
       invoke :set_active_record_whitelist_attributes
+      invoke :set_attr_accessibles_on_user
       invoke :outro
     end
 
@@ -103,9 +104,16 @@ module Suspenders
     end
 
     def set_active_record_whitelist_attributes
-      if 'active_record' == options[:orm]
+      if using_active_record?
         say "Setting up active_record.whitelist_attributes"
         build(:set_active_record_whitelist_attributes)
+      end
+    end
+
+    def set_attr_accessibles_on_user
+      if using_active_record?
+        say "Setting up writable attributes on user"
+        build(:set_attr_accessibles_on_user)
       end
     end
 
@@ -117,6 +125,10 @@ module Suspenders
     protected
     def get_builder_class
       Suspenders::AppBuilder
+    end
+
+    def using_active_record?
+      !options[:skip_active_record]
     end
 
   end

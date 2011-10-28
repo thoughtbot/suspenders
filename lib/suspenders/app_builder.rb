@@ -137,6 +137,12 @@ module Suspenders
       inject_into_class "config/application.rb", "Application", "    config.active_record.whitelist_attributes = true\n"
     end
 
+    def set_attr_accessibles_on_user
+      inject_into_file "app/models/user.rb",
+        "  attr_accessible :email, :password\n",
+        :after => /include Clearance::User\n/
+    end
+
     def migrate_database
       rake "db:migrate"
     end
