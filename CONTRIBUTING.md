@@ -3,10 +3,7 @@ We love pull requests. Here's a quick guide:
 1. Fork the repo.
 
 2. Run the tests. We only take pull requests with passing tests, and it's great
-to know that you have a clean slate: `REPO=path/to/.git bundle && rake`.
-
-Note that you must include the `REPO` environment variable pointing at your local
-`.git` repository in order to generate the test application required by tests.
+to know that you have a clean slate: `bundle && rake`
 
 3. Add a test for your change. Only refactoring and documentation changes
 require no new tests. If you are adding functionality or fixing a bug, we need
