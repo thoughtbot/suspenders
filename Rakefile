@@ -20,11 +20,10 @@ namespace :test do
 end
 
 namespace :test_project do
-  desc 'Suspend a new project. Pass REPO=... to change the Suspenders repo (defaults to dir with Rakefile).'
+  desc 'Suspend a new project.'
   task :generate do
     FileUtils.rm_rf(TEST_PROJECT)
-    repo = (ENV['REPO'].to_s || "file://#{Dir.pwd}").to_s
-    sh "./bin/suspenders", 'create', TEST_PROJECT, repo
+    sh "./bin/suspenders", TEST_PROJECT
   end
 
   desc 'Remove a suspended project'
