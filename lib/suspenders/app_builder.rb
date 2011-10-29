@@ -14,7 +14,7 @@ module Suspenders
       remove_file 'public/images/rails.png'
     end
 
-    def setup_development_environment
+    def raise_delivery_errors
       replace_in_file "config/environments/development.rb", "raise_delivery_errors = false", "raise_delivery_errors = true"
     end
 
@@ -145,6 +145,10 @@ module Suspenders
       inject_into_file "app/models/user.rb",
         "  attr_accessible :email, :password\n",
         :after => /include Clearance::User\n/
+    end
+
+    def add_email_validator
+      copy_file "email_validator.rb", "app/validators/email_validator.rb"
     end
 
     def include_clearance_matchers

@@ -41,7 +41,7 @@ module Suspenders
 
     def setup_development_environment
       say "Setting up the development environment"
-      build(:setup_development_environment)
+      build(:raise_delivery_errors)
     end
 
     def setup_staging_environment
@@ -87,6 +87,7 @@ module Suspenders
       build(:generate_cucumber)
       build(:generate_clearance)
       build(:install_factory_girl_steps)
+      build(:add_email_validator)
       build(:include_clearance_matchers)
       build(:setup_default_rake_task)
     end
