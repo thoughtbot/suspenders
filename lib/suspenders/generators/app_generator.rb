@@ -17,7 +17,8 @@ module Suspenders
 
     def suspenders_customization
       invoke :remove_files_we_dont_need
-      invoke :setup_staging
+      invoke :setup_development_environment
+      invoke :setup_staging_environment
       invoke :create_suspenders_views
       invoke :create_common_javascripts
       invoke :add_jquery_ui
@@ -38,9 +39,14 @@ module Suspenders
       build(:remove_public_images_rails)
     end
 
-    def setup_staging
+    def setup_development_environment
+      say "Setting up the development environment"
+      build(:setup_development_environment)
+    end
+
+    def setup_staging_environment
       say "Setting up the staging environment"
-      build(:setup_staging)
+      build(:setup_staging_environment)
     end
 
     def create_suspenders_views
@@ -125,6 +131,7 @@ module Suspenders
     end
 
     protected
+
     def get_builder_class
       Suspenders::AppBuilder
     end
@@ -135,5 +142,3 @@ module Suspenders
 
   end
 end
-
-

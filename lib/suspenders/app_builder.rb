@@ -14,7 +14,11 @@ module Suspenders
       remove_file 'public/images/rails.png'
     end
 
-    def setup_staging
+    def setup_development_environment
+      replace_in_file "config/environments/development.rb", "raise_delivery_errors = false", "raise_delivery_errors = true"
+    end
+
+    def setup_staging_environment
       run "cp config/environments/production.rb config/environments/staging.rb"
     end
 
