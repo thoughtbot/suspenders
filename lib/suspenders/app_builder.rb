@@ -127,6 +127,12 @@ module Suspenders
       end
     end
 
+    def init_git
+      run "git init"
+      run "git add -A ."
+      run "git commit -m 'Initial commit - suspended project'"
+    end
+
     def copy_miscellaneous_files
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "time_formats.rb", "config/initializers/time_formats.rb"

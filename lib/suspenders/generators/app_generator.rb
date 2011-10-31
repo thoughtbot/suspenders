@@ -26,11 +26,11 @@ module Suspenders
       invoke :customize_gemfile
       invoke :configure_app
       invoke :setup_stylesheets
-      invoke :setup_gitignore
       invoke :copy_miscellaneous_files
       invoke :setup_root_route
       invoke :set_active_record_whitelist_attributes
       invoke :set_attr_accessibles_on_user
+      invoke :setup_git
       invoke :outro
     end
 
@@ -97,9 +97,18 @@ module Suspenders
       build(:setup_stylesheets)
     end
 
+    def setup_git
+      say "Initializing git and initial commit"
+      invoke :setup_gitignore
+      invoke :init_git
+    end
+
     def setup_gitignore
-      say "Ignore the right files"
       build(:gitignore_files)
+    end
+
+    def init_git
+      build(:init_git)
     end
 
     def copy_miscellaneous_files
