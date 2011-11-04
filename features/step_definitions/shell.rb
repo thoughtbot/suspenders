@@ -1,7 +1,7 @@
 require 'aruba/cucumber'
 
 Before do
-  @aruba_timeout_seconds = 60
+  @aruba_timeout_seconds = 120
 end
 
 After do
@@ -36,6 +36,15 @@ end
 When 'I suspend a project called "$project_name"' do |project_name|
   suspenders_bin = File.expand_path(File.join('..', '..', 'bin', 'suspenders'), File.dirname(__FILE__))
   run "#{suspenders_bin} #{project_name}"
+  assert_exit_status(0)
+end
+
+When /^I suspend a project called "([^"]*)" with:$/ do |project_name, arguments_table|
+  suspenders_bin = File.expand_path(File.join('..', '..', 'bin', 'suspenders'), File.dirname(__FILE__))
+  arguments = arguments_table.hashes.inject([]) do |accum, argument|
+    accum << "#{argument['argument']}=#{argument['value']}"
+  end.join
+  run "#{suspenders_bin} #{project_name} #{arguments}"
   assert_exit_status(0)
 end
 
