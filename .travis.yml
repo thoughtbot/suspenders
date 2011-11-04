@@ -1,0 +1,5 @@
+rvm:
+  - 1.9.2
+script: "rake"
+notifications:
+  email: false
