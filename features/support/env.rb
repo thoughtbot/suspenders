@@ -3,7 +3,7 @@ Before do
 end
 
 Before do
-  @aruba_timeout_seconds = 240
+  @aruba_timeout_seconds = 280
 end
 
 After do
