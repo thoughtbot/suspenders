@@ -13,6 +13,9 @@ module Suspenders
     class_option :heroku, :type => :boolean, :aliases => "-H", :default => false,
                           :desc => "Create staging and production heroku apps"
 
+    class_option :clearance, :type => :boolean, :aliases => "-C", :default => true,
+                             :desc => "Add the clearance Rails authentication library"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -32,7 +35,6 @@ module Suspenders
       invoke :copy_miscellaneous_files
       invoke :setup_root_route
       invoke :set_active_record_whitelist_attributes
-      invoke :set_attr_accessibles_on_user
       invoke :setup_git
       invoke :create_heroku_apps
       invoke :outro
@@ -89,11 +91,21 @@ module Suspenders
       build(:configure_action_mailer)
       build(:generate_rspec)
       build(:generate_cucumber)
-      build(:generate_clearance)
       build(:install_factory_girl_steps)
       build(:add_email_validator)
-      build(:include_clearance_matchers)
       build(:setup_default_rake_task)
+      build(:setup_clearance)
+    end
+
+    def setup_clearance
+      if options[:clearance]
+        build(:add_clearance_gem)
+        build(:generate_clearance)
+        build(:include_clearance_matchers)
+        if using_active_record?
+          build(:set_attr_accessibles_on_user)
+        end
+      end
     end
 
     def setup_stylesheets
@@ -136,13 +148,6 @@ module Suspenders
       if using_active_record?
         say "Setting up active_record.whitelist_attributes"
         build(:set_active_record_whitelist_attributes)
-      end
-    end
-
-    def set_attr_accessibles_on_user
-      if using_active_record?
-        say "Setting up writable attributes on user"
-        build(:set_attr_accessibles_on_user)
       end
     end
 

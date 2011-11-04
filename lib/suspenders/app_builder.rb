@@ -177,5 +177,9 @@ module Suspenders
       end
 
     end
+
+    def add_clearance_gem
+      insert_into_file("Gemfile", "\ngem 'clearance'", :after => /gem 'jquery-rails'/)
+    end
   end
 end

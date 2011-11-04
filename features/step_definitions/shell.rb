@@ -51,3 +51,13 @@ end
 When 'I cd to the "$test_project" root' do |dirname|
   cd dirname
 end
+
+Then 'I can cleanly rake the project' do
+  steps %{
+    And I run the rake task "db:create"
+    And I run the rake task "db:migrate"
+    And I run the rake task "db:test:prepare"
+    And I run the rake task "cucumber"
+    Then I see a successful response in the shell
+  }
+end

@@ -1,6 +1,5 @@
 gem 'thin'
 gem 'sass'
-gem 'clearance', '~> 0.13.0'
 gem 'high_voltage'
 gem 'paperclip'
 gem 'formtastic'
