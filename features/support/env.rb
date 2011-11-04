@@ -9,3 +9,7 @@ end
 After do
   FakeHeroku.clear!
 end
+
+After do
+  FileUtils.rm_rf('test_project')
+end

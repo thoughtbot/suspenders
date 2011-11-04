@@ -1,9 +1,5 @@
 require 'aruba/cucumber'
 
-After do
-  FileUtils.rm_rf('test_project')
-end
-
 When 'I run the rake task "$task_name"' do |task_name|
   in_current_dir do
     run "bundle exec rake #{task_name}"
