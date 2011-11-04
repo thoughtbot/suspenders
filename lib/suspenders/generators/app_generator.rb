@@ -83,6 +83,10 @@ module Suspenders
 
     def customize_gemfile
       build(:include_custom_gems)
+      if options[:clearance]
+        build(:add_clearance_gem)
+      end
+      bundle_command('install')
     end
 
     def configure_app
@@ -99,7 +103,6 @@ module Suspenders
 
     def setup_clearance
       if options[:clearance]
-        build(:add_clearance_gem)
         build(:generate_clearance)
         build(:include_clearance_matchers)
         if using_active_record?
@@ -156,6 +159,10 @@ module Suspenders
       say "Remember to run 'rails generate airbrake' with your API key."
     end
 
+    def run_bundle
+      # Let's not: We'll bundle manually at the right spot
+    end
+
     protected
 
     def get_builder_class
@@ -165,6 +172,5 @@ module Suspenders
     def using_active_record?
       !options[:skip_active_record]
     end
-
   end
 end
