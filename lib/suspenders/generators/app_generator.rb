@@ -10,6 +10,9 @@ module Suspenders
     class_option :skip_test_unit, :type => :boolean, :aliases => "-T", :default => true,
                                   :desc => "Skip Test::Unit files"
 
+    class_option :heroku, :type => :boolean, :aliases => "-H", :default => false,
+                          :desc => "Create staging and production heroku apps"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -31,6 +34,7 @@ module Suspenders
       invoke :set_active_record_whitelist_attributes
       invoke :set_attr_accessibles_on_user
       invoke :setup_git
+      invoke :create_heroku_apps
       invoke :outro
     end
 
@@ -101,6 +105,13 @@ module Suspenders
       say "Initializing git and initial commit"
       invoke :setup_gitignore
       invoke :init_git
+    end
+
+    def create_heroku_apps
+      if options['heroku']
+        say "Creating heroku apps"
+        build(:create_heroku_apps)
+      end
     end
 
     def setup_gitignore

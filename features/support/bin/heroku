@@ -1,0 +1,7 @@
+#!/usr/bin/env ruby
+
+out = File.expand_path(File.join('..', '..', '..', 'tmp', 'heroku_commands'), File.dirname(__FILE__))
+
+File.open(out, 'a') do |file|
+  file.write ARGV.join(' ')
+end
