@@ -1,9 +1,5 @@
 require 'aruba/cucumber'
 
-Before do
-  @aruba_timeout_seconds = 120
-end
-
 After do
   FileUtils.rm_rf('test_project')
 end
