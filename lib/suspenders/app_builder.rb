@@ -53,7 +53,7 @@ module Suspenders
     end
 
     def create_database
-      rake "db:create"
+      bundle_command('exec rake db:create')
     end
 
     def include_custom_gems
