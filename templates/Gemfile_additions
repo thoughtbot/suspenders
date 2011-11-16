@@ -31,6 +31,7 @@ group :test do
   gem "email_spec"
   gem "guard"
   gem "guard-rspec"
+  gem "guard-cucumber"
   gem "guard-spork"
 end
 
