@@ -51,6 +51,25 @@ Suspenders also comes with:
 * Rails' flashes set up and in application layout.
 * A few nice time formats.
 
+Heroku
+------
+
+You can optionally create Heroku staging and production apps:
+
+    suspenders app --heroku true
+
+This has the same effect as running:
+
+    heroku create app-staging --remote staging --stack cedar
+    heroku create app-production --remote production --stack cedar
+
+Clearance
+---------
+
+You can optionally not include Clearance:
+
+    suspenders app --clearance false
+
 Dependencies
 ------------
 
