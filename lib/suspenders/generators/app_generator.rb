@@ -16,6 +16,9 @@ module Suspenders
     class_option :clearance, :type => :boolean, :aliases => "-C", :default => true,
                              :desc => "Add the clearance Rails authentication library"
 
+    class_option :nyan, :type => :boolean, :aliases => "-N", :default => false,
+                        :desc => "Makes Nyan Cat format your RSpec tests."
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -37,6 +40,7 @@ module Suspenders
       invoke :set_active_record_whitelist_attributes
       invoke :setup_git
       invoke :create_heroku_apps
+      invoke :setup_nyan_cat_formatting
       invoke :outro
     end
 
@@ -85,6 +89,9 @@ module Suspenders
       build(:include_custom_gems)
       if options[:clearance]
         build(:add_clearance_gem)
+      end
+      if options[:nyan]
+        build(:add_nyan_cat_formatter_gem)
       end
       bundle_command('install')
     end
@@ -151,6 +158,14 @@ module Suspenders
       if using_active_record?
         say "Setting up active_record.whitelist_attributes"
         build(:set_active_record_whitelist_attributes)
+      end
+    end
+
+    def setup_nyan_cat_formatting
+      if options[:nyan]
+        say "You made a wise decision in choosing the nyan cat."
+        say "You can go back to normal formatting by removing '--format NyanCatFormatter' in your .rspec file."
+        build(:inject_nyan_cat_formatting)
       end
     end
 

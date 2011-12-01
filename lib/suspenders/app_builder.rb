@@ -181,5 +181,13 @@ module Suspenders
     def add_clearance_gem
       insert_into_file("Gemfile", "\ngem 'clearance'", :after => /gem 'jquery-rails'/)
     end
+
+    def add_nyan_cat_formatter_gem
+      insert_into_file("Gemfile", "\ngem 'nyan-cat-formatter'", :after => /gem "sham_rack"/)
+    end
+
+    def inject_nyan_cat_formatting
+      insert_into_file(".rspec", "\n--format NyanCatFormatter", :after => /--colour/)
+    end
   end
 end
