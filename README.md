@@ -27,7 +27,7 @@ It includes application gems like:
 
 * [Paperclip](https://github.com/thoughtbot/paperclip) for file uploads
 * [Formtastic](https://github.com/justinfrench/formtastic) for better forms
-* [Hoptoad Notifier](https://github.com/thoughtbot/hoptoad_notifier) for exception notification
+* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Flutie](https://github.com/thoughtbot/flutie) for default CSS styles
 * [Bourbon](https://github.com/thoughtbot/bourbon) for classy sass mixins
 * [Clearance](https://github.com/thoughtbot/clearance) for authentication
