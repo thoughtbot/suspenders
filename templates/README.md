@@ -75,3 +75,7 @@ Open up the Github repo, change into your feature-branch branch. Press the "Pull
 
 For more details and screenshots of the feature branch code review process, read [this blog post](http://robots.thoughtbot.com/post/2831837714/feature-branch-code-reviews).
 
+Most importantly
+----------------
+
+Have fun!

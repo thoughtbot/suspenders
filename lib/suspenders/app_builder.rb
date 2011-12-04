@@ -59,7 +59,7 @@ module Suspenders
     def include_custom_gems
       additions_path = find_in_source_paths 'Gemfile_additions'
       new_gems = File.open(additions_path).read
-      insert_into_file("Gemfile", "\n#{new_gems}", :after => /gem 'jquery-rails'/)
+      inject_into_file("Gemfile", "\n#{new_gems}", :after => /gem 'jquery-rails'/)
     end
 
     def configure_rspec
@@ -143,6 +143,12 @@ module Suspenders
       run "#{path_addition} heroku create #{app_name}-staging    --remote=staging    --stack=cedar"
     end
 
+    def document_heroku
+      heroku_readme_path = find_in_source_paths 'HEROKU_README.md'
+      documentation = File.open(heroku_readme_path).read
+      inject_into_file("README.md", "#{documentation}\n", :before => "Most importantly")
+    end
+
     def copy_miscellaneous_files
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "time_formats.rb", "config/initializers/time_formats.rb"
@@ -178,7 +184,7 @@ module Suspenders
     end
 
     def add_clearance_gem
-      insert_into_file("Gemfile", "\ngem 'clearance'", :after => /gem 'jquery-rails'/)
+      inject_into_file("Gemfile", "\ngem 'clearance'", :after => /gem 'jquery-rails'/)
     end
   end
 end

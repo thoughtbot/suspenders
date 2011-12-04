@@ -126,6 +126,7 @@ module Suspenders
       if options['heroku']
         say "Creating heroku apps"
         build(:create_heroku_apps)
+        build(:document_heroku)
       end
     end
 
