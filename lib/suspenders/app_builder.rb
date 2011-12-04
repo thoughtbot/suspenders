@@ -3,7 +3,7 @@ module Suspenders
     include Suspenders::Actions
 
     def readme
-      copy_file "README_FOR_SUSPENDERS"
+      copy_file "README.md"
     end
 
     def remove_public_index
@@ -175,7 +175,6 @@ module Suspenders
       append_file "Rakefile" do
         "task(:default).clear\ntask :default => [:spec, :cucumber]"
       end
-
     end
 
     def add_clearance_gem
