@@ -83,6 +83,8 @@ It requires you have QT installed on your machine before running Suspenders.
 
 Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-QT).
 
+PostgreSQL needs to be installed and running for the db:create rake task.
+
 Issues
 ------
 
