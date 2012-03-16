@@ -13,7 +13,7 @@ Then run:
 
     suspenders projectname
 
-This will create a Rails 3.1 app in `projectname'. This script creates a new
+This will create a Rails 3.1 app in `projectname`. This script creates a new
 new git repository. It is not meant to be used against an existing repo.
 
 Gemfile
@@ -83,7 +83,7 @@ It requires you have QT installed on your machine before running Suspenders.
 
 Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-QT).
 
-PostgreSQL needs to be installed and running for the db:create rake task.
+PostgreSQL needs to be installed and running for the `db:create` rake task.
 
 Issues
 ------
