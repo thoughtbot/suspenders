@@ -7,6 +7,7 @@ gem 'flutie'
 gem 'bourbon'
 gem 'copycopter_client'
 gem 'airbrake'
+gem 'draper'
 
 group :development do
   gem "heroku"
@@ -28,6 +29,10 @@ group :test do
   gem "shoulda-matchers"
   gem "launchy"
   gem "email_spec"
+  gem "guard"
+  gem "guard-rspec"
+  gem "guard-cucumber"
+  gem "guard-spork"
 end
 
 group :staging, :production do
