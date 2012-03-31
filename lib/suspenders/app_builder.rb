@@ -80,7 +80,7 @@ module Suspenders
 
     def generate_rspec
       generate "rspec:install"
-      replace_in_file "spec/spec_helper.rb", "mock_with :rspec", "mock_with :mocha"
+      replace_in_file "spec/spec_helper.rb", "# config.mock_with :mocha", "config.mock_with :mocha"
     end
 
     def generate_cucumber
