@@ -28,8 +28,8 @@ module Suspenders
       invoke :create_suspenders_views
       invoke :create_common_javascripts
       invoke :add_jquery_ui
-      invoke :setup_database
       invoke :customize_gemfile
+      invoke :setup_database
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
@@ -73,20 +73,20 @@ module Suspenders
       build(:add_jquery_ui)
     end
 
-    def setup_database
-      say "Setting up database"
-      if 'postgresql' == options[:database]
-        build(:use_postgres_config_template)
-      end
-      build(:create_database)
-    end
-
     def customize_gemfile
       build(:include_custom_gems)
       if options[:clearance]
         build(:add_clearance_gem)
       end
       bundle_command('install')
+    end
+
+    def setup_database
+      say "Setting up database"
+      if 'postgresql' == options[:database]
+        build(:use_postgres_config_template)
+      end
+      build(:create_database)
     end
 
     def configure_app
