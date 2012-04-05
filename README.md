@@ -83,7 +83,7 @@ If you're running OS X, we recommend the [GCC OSX installer](https://github.com/
 We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for full-stack Javascript integration testing.
 It requires you have QT installed on your machine before running Suspenders.
 
-Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-QT).
+Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
