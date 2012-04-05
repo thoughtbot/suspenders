@@ -1,7 +1,7 @@
 Rails app
 =========
 
-This is a Rails 3.1 app running on Ruby 1.9.2 and deployed to Heroku's Cedar stack. It has an RSpec and Cucumber test suite which should be run before committing to the master branch.
+This is a Rails 3.2 app running on Ruby 1.9.2 and deployed to Heroku's Cedar stack. It has an RSpec and Cucumber test suite which should be run before committing to the master branch.
 
 Laptop setup
 ------------
