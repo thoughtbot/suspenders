@@ -9,25 +9,25 @@ gem 'copycopter_client'
 gem 'airbrake'
 
 group :development do
-  gem "heroku"
+  gem 'heroku'
 end
 
 group :development, :test do
-  gem "rspec-rails", "~> 2.9.0"
-  gem "ruby-debug19"
-  gem "sham_rack"
+  gem 'rspec-rails', '~> 2.9.0'
+  gem 'ruby-debug19'
+  gem 'sham_rack'
 end
 
 group :test do
-  gem "cucumber-rails", "1.3.0"
-  gem "capybara-webkit", "~> 0.11.0"
-  gem "factory_girl_rails"
-  gem "bourne"
-  gem "database_cleaner"
-  gem "timecop"
-  gem "shoulda-matchers"
-  gem "launchy"
-  gem "email_spec"
+  gem 'cucumber-rails', '1.3.0'
+  gem 'capybara-webkit', '~> 0.11.0'
+  gem 'factory_girl_rails'
+  gem 'bourne'
+  gem 'database_cleaner'
+  gem 'timecop'
+  gem 'shoulda-matchers'
+  gem 'launchy'
+  gem 'email_spec'
 end
 
 group :staging, :production do
