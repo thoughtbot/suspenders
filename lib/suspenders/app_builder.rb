@@ -18,6 +18,11 @@ module Suspenders
       replace_in_file "config/environments/development.rb", "raise_delivery_errors = false", "raise_delivery_errors = true"
     end
 
+    def enable_factory_girl_syntax
+      copy_file "factory_girl_syntax_rspec.rb", "spec/support/factory_girl.rb"
+      copy_file "factory_girl_syntax_cucumber.rb", "features/support/factory_girl.rb"
+    end
+
     def setup_staging_environment
       run "cp config/environments/production.rb config/environments/staging.rb"
     end

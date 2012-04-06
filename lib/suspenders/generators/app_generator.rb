@@ -48,6 +48,7 @@ module Suspenders
     def setup_development_environment
       say "Setting up the development environment"
       build(:raise_delivery_errors)
+      build(:enable_factory_girl_syntax)
     end
 
     def setup_staging_environment
