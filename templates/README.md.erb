@@ -1,0 +1,316 @@
+Rails app
+=========
+
+Rails 3.1 app running on Ruby 1.9.2 and deployed to Heroku's Cedar
+stack. It has an RSpec and Cucumber test suite which should be run
+before commiting to the master branch.
+
+OS X preparation
+----------------
+
+Postgres:
+
+    brew install postgres --no-python
+
+Install Qt:
+
+    brew install qt
+
+Debian preparation
+------------------
+
+Install Qt:
+
+    sudo apt-get install libqt4-dev libqtwebkit-dev
+
+Laptop setup
+------------
+
+Getting the code:
+
+    git clone git@github.com:<account>/<repo>.git
+
+Setting up Ruby:
+
+    rvm install 1.9.2
+    rvm use 1.9.2 --default
+    gem install bundler git_remote_branch heroku taps
+
+App:
+
+    cd app
+    bundle --binstubs
+    rake db:create
+    rake db:schema:load
+
+Configuration
+-------------
+
+Install the Heroku config plugin:
+
+    heroku plugins:install git://github.com/ddollar/heroku-config.git
+
+Pull the Heroku config from staging:
+
+    heroku config:pull --remote staging
+
+You'll see credentials as config vars. Delete lines that don't apply.
+
+Running tests
+-------------
+
+Run the whole test suite with:
+
+    rake
+
+Run individual features:
+
+    cucumber features/visitor_signs_in.feature
+
+Run individual specs:
+
+    rspec spec/models/user_spec.rb
+
+Tab complete to make it even faster!
+
+When a spec or feature file has many specs in them, you sometimes want to run just what you're working on. In that case, specify a line number:
+
+    rspec spec/models/user_spec.rb:8
+    cucumber features/visitor_signs_in.feature:105
+
+Development process
+-------------------
+
+Choose a Github Issue.
+
+Create a local feature branch off of master for development.
+
+    git checkout master
+    git pull
+    git checkout -b 123-feature-xyz
+
+Do work in your feature branch and commit the changes.
+
+    git add -A
+    git status
+    git commit
+
+Write a [good commit message](http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html).
+
+    [#123] Summary of changes
+
+    * More information about commit
+    * More information about commit
+
+A good commit message:
+
+* Prefixes the subject line with a Github Issue number.
+* Uses the present tense.
+
+Share your feature branch
+
+    git push origin [branch]
+
+Rebase frequently to incorporate upstream changes.
+
+    git checkout master
+    git pull
+    git checkout [branch]
+    git rebase master
+    <resolve conflicts>
+
+Interactive rebase (squash) your commits (if necessary).
+
+    git rebase -i master
+
+At this point the automated test suite must pass, and it must work and look good in your browser.
+
+Merge your branch back to master and push your changes.
+
+    git checkout master
+    git diff --stat master [branch]
+    git merge [branch] --ff-only
+    git push origin master
+
+Delete your remote feature branch.
+
+    git push origin :[branch]
+
+Delete your local feature branch.
+
+    git branch -d [branch]
+
+Close Github Issue.
+
+Deploying
+---------
+
+Periodically use [pgbackups](http://devcenter.heroku.com/articles/pgbackups) to pull latest production data.
+
+Merge master into staging
+
+    git checkout master
+    git reset --hard origin/master
+    git pull
+    git checkout staging
+    git reset --hard origin/staging
+    git log staging..master
+    git diff --stat staging master
+    git merge master
+    git push origin staging
+
+Enable maintenance mode if required by database changes
+
+    heroku maintenance:on --app <%= app_name %>
+
+Deploy staging to Heroku
+
+    git push <%= app_name %> staging:master
+
+Run new migrations if necessary
+
+    heroku rake db:migrate --app <%= app_name %>
+
+Restart the dynos if migrations were run
+
+    heroku restart --app <%= app_name %>
+
+Disable maintenance mode if it's on
+
+    heroku maintenance:off --app <%= app_name %>
+
+[Introspect](http://blog.heroku.com/archives/2011/6/24/the_new_heroku_3_visibility_introspection/) to make sure everything's OK
+
+    watch heroku ps --app <%= app_name %>
+
+[Rollback](http://devcenter.heroku.com/articles/releases) code if there was a problem
+
+Production is the same:
+
+* Use pgbackups to capture a DB backup
+* Merge staging into production
+* Enable maintenance mode if required by database changes
+* Deploy production to Heroku
+* Run new migrations if necessary
+* Restart dynos if migrations were run
+* Rollback code and use pgbackups to restore if there was a problem (turn on maintenance mode first if not already enabled)
+* Disable maintenance mode if it's on
+* Introspect to make sure everything's OK.
+
+Heroku
+------
+
+To access data on Heroku:
+
+    heroku console --app <%= app_name %>
+
+That will give you a Rails console. Run ActiveRecord queries from there.
+
+To run a rake task on Heroku:
+
+    heroku rake db:migrate --app <%= app_name %>
+
+Any rake task can be run with `heroku rake ...`
+
+To dump staging or production data into your development environment:
+
+    heroku db:pull --app <%= app_name %>
+
+You will see progress bars for each DB index and table.
+
+We can create a database backup at any time:
+
+    heroku pgbackups:capture --app <%= app_name %> --expire
+
+View backups:
+
+    heroku pgbackups --app <%= app_name %>
+
+To destroy a backup:
+
+    heroku pgbackups:destroy b003 --app <%= app_name %>
+
+Transfer production data to staging:
+
+    heroku pgbackups:capture --app <%= app_name %> --expire
+    heroku pgbackups:restore DATABASE `heroku pgbackups:url --app <%= app_name %>` --app <%= app_name %>-staging
+
+More information in the [Dev Center](http://devcenter.heroku.com/articles/pgbackups).
+
+To check the status of running app servers, background jobs, cron jobs, etc:
+
+    heroku ps --app <%= app_name %>
+
+Programming
+-----------
+
+We use [the thoughtbot style guide](http://build.thoughtbot.com/style-guide/) on this project. As of April 9, 2012:
+
+Formatting
+----------
+
+* Use 2 spaces for indentation. Don't use tabs.
+* In ERb files, indent both Ruby and HTML.
+* Include parenthesis in method definitions that take arguments.
+* Do not include parenthesis in method definitions that don't take arguments.
+* Do not use an empty line at the beginning or end of methods, blocks or conditionals.
+* Use an empty line between methods, blocks and conditionals.
+* Don't line up assignments, arguments, or hash properties.
+* In Javascript, keep curly braces on the same line as an opening function, if, or other block.
+* Break up longer statements into multiple lines or methods. Most developers have editors at or below 120 columns.
+* If a single statement is split over several lines, indent all but the first line of the statement.
+
+Conditions
+----------
+
+* Ternaries are harder to read than an if/else. Use an if/else.
+* Prefer `if` with positive conditions over `unless`.
+* Prefer `unless` over `if not`.
+
+Ruby Conventions
+----------------
+
+* Define class methods using `def self.method` rather than `class << self` blocks.
+* Use curly braces for one-line blocks and `do`..`end` for multi-line blocks.
+* Prefer `&&` and `||` over `and` and `or`.
+* Use `each` instead of `for`.
+* Constants are all uppercase: CONSTANTS
+* Class and module names are camelcase: ClassNames
+* Method and variable names are underscored: `method_and_local_variables`
+* Methods that ask a question end in a question mark: asks_a_yes_no_question?
+* Mutating versions of methods end in an exclaimation point: gsub! for gsub
+* Exception-raising versions of methods end in an exclaimation point: save! for save
+* Always include a blank line before access specifiers like protected, public, and private.
+* Indent access specifiers equal to method definitions.
+* Indent protected and private methods equal to public methods.
+
+Javascript and Coffeescript Conventions
+---------------------------------------
+
+* Constants are all uppercase: CONSTANTS
+* Prototype names are camel case: ClassNames
+* Function and variable names are camel case after the first letter: `functionAndVariableNames`
+* Internal functions and variable names start with an underscore: `_internalVariables`
+* Define functions that operate on the window or DOM in the scope of the window.
+* Initialize empty objects and hashes using `{}`.
+* Initialize arrays using `[]`.
+* Extending the base classes by adding functions onto their prototypes is acceptable.
+
+Naming
+------
+
+* Reveal intent.
+* Be consistent.
+* Use verbs and nouns appropriately.
+* Name the enumeration parameter the singular of the collection.
+* Avoid one-letter variable names.
+* Avoid hungarian notiation or type information in names (for example, `szName` or `user_array`).
+
+General Best Practices
+----------------------
+
+* Prefer short methods. One line is best.
+* Avoid [Feature Envy](http://c2.com/cgi/wiki?FeatureEnvySmell). Tell, don't ask.
+* Exceptions should be exceptional.
+* Don't swallow exceptions or "fail silently".
+* Prefer readable code over comments.
