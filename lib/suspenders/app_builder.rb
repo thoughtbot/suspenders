@@ -3,7 +3,7 @@ module Suspenders
     include Suspenders::Actions
 
     def readme
-      copy_file "README.md"
+      template "README.md.erb", "README.md"
     end
 
     def remove_public_index
