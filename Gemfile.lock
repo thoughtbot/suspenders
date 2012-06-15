@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    suspenders (0.3.4)
+    suspenders (0.3.6)
       bundler (>= 1.1)
       rails (= 3.2.6)
 
