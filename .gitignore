@@ -1,7 +1,9 @@
+*.gem
 *.swp
+.bundle
+.rake_tasks
+bin
+!bin/suspenders
 pkg
 test_project
-.rake_tasks
 tmp/aruba
-*.gem
-.bundle
