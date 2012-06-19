@@ -20,7 +20,6 @@ module Suspenders
 
     def enable_factory_girl_syntax
       copy_file "factory_girl_syntax_rspec.rb", "spec/support/factory_girl.rb"
-      copy_file "factory_girl_syntax_cucumber.rb", "features/support/factory_girl.rb"
     end
 
     def setup_staging_environment
@@ -88,20 +87,8 @@ module Suspenders
       replace_in_file "spec/spec_helper.rb", "# config.mock_with :mocha", "config.mock_with :mocha"
     end
 
-    def generate_cucumber
-      generate "cucumber:install", "--rspec", "--capybara"
-      inject_into_file "features/support/env.rb",
-                       %{Capybara.save_and_open_page_path = 'tmp'\n} +
-                       %{Capybara.javascript_driver = :webkit\n},
-                       :before => %{Capybara.default_selector = :css}
-    end
-
     def generate_clearance
       generate "clearance:install"
-    end
-
-    def install_factory_girl_steps
-      copy_file "factory_girl_steps.rb", "features/step_definitions/factory_girl_steps.rb"
     end
 
     def setup_stylesheets
@@ -179,7 +166,7 @@ module Suspenders
 
     def setup_default_rake_task
       append_file "Rakefile" do
-        "task(:default).clear\ntask :default => [:spec, :cucumber]"
+        "task(:default).clear\ntask :default => [:spec]"
       end
     end
 
