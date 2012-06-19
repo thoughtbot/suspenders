@@ -1,5 +1,4 @@
 gem 'thin'
-gem 'sass'
 gem 'high_voltage'
 gem 'paperclip'
 gem 'formtastic'
