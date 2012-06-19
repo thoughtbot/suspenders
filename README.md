@@ -15,7 +15,7 @@ Then run:
 
     suspenders projectname
 
-This will create a Rails 3.1 app in `projectname`. This script creates a new
+This will create a Rails app in `projectname`. This script creates a new
 new git repository. It is not meant to be used against an existing repo.
 
 Gemfile
@@ -42,7 +42,6 @@ And testing gems like:
 * [Shoulda Matchers](http://github.com/thoughtbot/shoulda-matchers) for frequently needed Rails and RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop) for dealing with time
 * [Bourne](https://github.com/thoughtbot/bourne) and Mocha for stubbing and spying
-* [email_spec](https://github.com/bmabey/email-spec) for testing emails.
 
 Other goodies
 -------------
@@ -78,8 +77,6 @@ Dependencies
 Some gems included in Suspenders have native extensions. You should have GCC installed on your
 machine before generating an app with Suspenders.
 
-If you're running OS X, we recommend the [GCC OSX installer](https://github.com/kennethreitz/osx-gcc-installer).
-
 We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for full-stack Javascript integration testing.
 It requires you have QT installed on your machine before running Suspenders.
 
@@ -109,4 +106,4 @@ The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 License
 -------
 
-Suspenders is Copyright © 2008-2011 thoughtbot. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Suspenders is Copyright © 2008-2012 thoughtbot. It is free software, and may be redistributed under the terms specified in the LICENSE file.
