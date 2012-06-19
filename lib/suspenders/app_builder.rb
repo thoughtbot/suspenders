@@ -134,8 +134,6 @@ module Suspenders
 
     def init_git
       run "git init"
-      run "git add -A ."
-      run "git commit -m 'Initial commit - suspended project'"
     end
 
     def create_heroku_apps
