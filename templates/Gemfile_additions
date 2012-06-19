@@ -6,6 +6,10 @@ gem 'flutie'
 gem 'bourbon'
 gem 'airbrake'
 
+group :development do
+  gem 'foreman'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 2.9.0'
   gem 'sham_rack'
