@@ -9,7 +9,6 @@ gem 'airbrake'
 
 group :development, :test do
   gem 'rspec-rails', '~> 2.9.0'
-  gem 'ruby-debug19'
   gem 'sham_rack'
 end
 
