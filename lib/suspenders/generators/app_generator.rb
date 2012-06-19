@@ -145,8 +145,10 @@ module Suspenders
     end
 
     def setup_root_route
-      say "Setting up a root route"
-      build(:setup_root_route)
+      if options[:clearance]
+        say "Setting up a root route"
+        build(:setup_root_route)
+      end
     end
 
     def set_active_record_whitelist_attributes
