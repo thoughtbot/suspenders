@@ -36,8 +36,8 @@ It includes application gems like:
 
 And testing gems like:
 
-* [Capybara and Capybara Webkit](http://robots.thoughtbot.com/post/4583605733/capybara-webkit) for integration testing, including Javascript behavior
-* [RSpec](https://github.com/rspec/rspec) for awesome, readable isolation testing
+* [Capybara](https://github.com/jnicklas/capybara) for integration testing
+* [RSpec](https://github.com/rspec/rspec) for isolation testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for easier creation of test data
 * [Shoulda Matchers](http://github.com/thoughtbot/shoulda-matchers) for frequently needed Rails and RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop) for dealing with time
@@ -76,11 +76,6 @@ Dependencies
 
 Some gems included in Suspenders have native extensions. You should have GCC installed on your
 machine before generating an app with Suspenders.
-
-We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for full-stack Javascript integration testing.
-It requires you have QT installed on your machine before running Suspenders.
-
-Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
