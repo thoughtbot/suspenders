@@ -164,10 +164,6 @@ module Suspenders
       route "root :to => 'Clearance::Sessions#new'"
     end
 
-    def set_active_record_whitelist_attributes
-      inject_into_class "config/application.rb", "Application", "    config.active_record.whitelist_attributes = true\n"
-    end
-
     def set_attr_accessibles_on_user
       inject_into_file "app/models/user.rb",
         "  attr_accessible :email, :password\n",

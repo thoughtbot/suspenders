@@ -34,7 +34,6 @@ module Suspenders
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
       invoke :setup_root_route
-      invoke :set_active_record_whitelist_attributes
       invoke :setup_git
       invoke :create_heroku_apps
       invoke :outro
@@ -148,13 +147,6 @@ module Suspenders
       if options[:clearance]
         say "Setting up a root route"
         build(:setup_root_route)
-      end
-    end
-
-    def set_active_record_whitelist_attributes
-      if using_active_record?
-        say "Setting up active_record.whitelist_attributes"
-        build(:set_active_record_whitelist_attributes)
       end
     end
 
