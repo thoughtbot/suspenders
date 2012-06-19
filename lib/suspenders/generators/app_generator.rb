@@ -117,7 +117,7 @@ module Suspenders
     end
 
     def setup_git
-      say "Initializing git and initial commit"
+      say "Initializing git"
       invoke :setup_gitignore
       invoke :init_git
     end
