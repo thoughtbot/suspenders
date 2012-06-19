@@ -4,7 +4,6 @@ gem 'paperclip'
 gem 'formtastic'
 gem 'flutie'
 gem 'bourbon'
-gem 'airbrake'
 
 group :development do
   gem 'foreman'
