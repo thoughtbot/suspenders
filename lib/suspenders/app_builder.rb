@@ -98,7 +98,6 @@ module Suspenders
 
     def generate_clearance
       generate "clearance:install"
-      generate "clearance:features"
     end
 
     def install_factory_girl_steps
