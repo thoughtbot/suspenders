@@ -1,1 +1,0 @@
-World(FactoryGirl::Syntax::Methods)
