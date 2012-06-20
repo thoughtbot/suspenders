@@ -33,6 +33,7 @@ module Suspenders
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
+      invoke :customize_error_pages
       invoke :setup_root_route
       invoke :setup_git
       invoke :create_heroku_apps
@@ -141,6 +142,11 @@ module Suspenders
     def copy_miscellaneous_files
       say "Copying miscellaneous support files"
       build(:copy_miscellaneous_files)
+    end
+
+    def customize_error_pages
+      say "Customizing the 500/404/422 pages"
+      build(:customize_error_pages)
     end
 
     def setup_root_route
