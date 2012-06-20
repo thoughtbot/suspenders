@@ -94,6 +94,7 @@ module Suspenders
                        %{Capybara.save_and_open_page_path = 'tmp'\n} +
                        %{Capybara.javascript_driver = :webkit\n},
                        :before => %{Capybara.default_selector = :css}
+      inject_into_file 'config/cucumber.yml', ' -r features', :after => %{default: <%= std_opts %> features}
     end
 
     def generate_clearance
