@@ -42,7 +42,7 @@ module Suspenders
 
     def remove_files_we_dont_need
       build(:remove_public_index)
-      build(:remove_public_images_rails)
+      build(:remove_rails_logo_image)
     end
 
     def setup_development_environment

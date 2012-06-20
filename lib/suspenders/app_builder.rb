@@ -10,8 +10,8 @@ module Suspenders
       remove_file 'public/index.html'
     end
 
-    def remove_public_images_rails
-      remove_file 'public/images/rails.png'
+    def remove_rails_logo_image
+      remove_file 'app/assets/images/rails.png'
     end
 
     def raise_delivery_errors
@@ -115,10 +115,10 @@ module Suspenders
     def gitignore_files
       concat_file "suspenders_gitignore", ".gitignore"
       ["app/models",
+        "app/assets/images",
         "app/views/pages",
         "db/migrate",
         "log",
-        "public/images",
         "spec/support",
         "spec/lib",
         "spec/models",
