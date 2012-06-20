@@ -62,8 +62,8 @@ You can optionally create Heroku staging and production apps:
 
 This has the same effect as running:
 
-    heroku create app-staging --remote staging --stack cedar
-    heroku create app-production --remote production --stack cedar
+    heroku create app-staging --remote staging
+    heroku create app-production --remote production
 
 Clearance
 ---------
