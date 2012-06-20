@@ -143,8 +143,8 @@ module Suspenders
         support_bin = File.expand_path(File.join('..', '..', '..', 'features', 'support', 'bin'))
         path_addition = "PATH=#{support_bin}:$PATH"
       end
-      run "#{path_addition} heroku create #{app_name}-production --remote=production --stack=cedar"
-      run "#{path_addition} heroku create #{app_name}-staging    --remote=staging    --stack=cedar"
+      run "#{path_addition} heroku create #{app_name}-production --remote=production"
+      run "#{path_addition} heroku create #{app_name}-staging    --remote=staging"
     end
 
     def document_heroku
