@@ -27,16 +27,16 @@ module Suspenders
       run "cp config/environments/production.rb config/environments/staging.rb"
     end
 
-    def create_views_shared
-      empty_directory "app/views/shared"
+    def create_partials_directory
+      empty_directory "app/views/application"
     end
 
     def create_shared_flashes
-      copy_file "_flashes.html.erb", "app/views/shared/_flashes.html.erb"
+      copy_file "_flashes.html.erb", "app/views/application/_flashes.html.erb"
     end
 
     def create_shared_javascripts
-      copy_file "_javascript.html.erb", "app/views/shared/_javascript.html.erb"
+      copy_file "_javascript.html.erb", "app/views/application/_javascript.html.erb"
     end
 
     def create_application_layout
