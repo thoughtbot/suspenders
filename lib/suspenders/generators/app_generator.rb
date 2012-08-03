@@ -2,7 +2,7 @@ require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
-  class Generator < Rails::Generators::AppGenerator
+  class AppGenerator < Rails::Generators::AppGenerator
     # let's use postgres by default
     class_option :database,       :type => :string, :aliases => "-d", :default => "postgresql",
                                   :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"

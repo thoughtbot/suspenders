@@ -10,7 +10,7 @@ if ['create', '--create'].include? ARGV[0]
 end
 
 templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
-Suspenders::Generator.source_root templates_root
-Suspenders::Generator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
+Suspenders::AppGenerator.source_root templates_root
+Suspenders::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
 
-Suspenders::Generator.start
+Suspenders::AppGenerator.start
