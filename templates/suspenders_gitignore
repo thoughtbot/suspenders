@@ -1,4 +1,3 @@
-db/schema.rb
 public/system
 *.DS_Store
 coverage/*
