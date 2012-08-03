@@ -75,17 +75,21 @@ module Suspenders
 
     def customize_gemfile
       build :include_custom_gems
+
       if options[:clearance]
         build :add_clearance_gem
       end
+
       bundle_command 'install'
     end
 
     def setup_database
       say 'Setting up database'
+
       if 'postgresql' == options[:database]
         build :use_postgres_config_template
       end
+
       build :create_database
     end
 
@@ -95,6 +99,7 @@ module Suspenders
       build :configure_action_mailer
       build :generate_rspec
       build :generate_cucumber
+      build :setup_guard_spork
       build :add_email_validator
       build :setup_default_rake_task
       build :setup_clearance
@@ -104,6 +109,7 @@ module Suspenders
       if options[:clearance]
         build :generate_clearance
         build :include_clearance_matchers
+
         if using_active_record?
           build :set_attr_accessibles_on_user
         end

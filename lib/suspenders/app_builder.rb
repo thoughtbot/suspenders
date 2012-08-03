@@ -86,18 +86,20 @@ module Suspenders
 
     def generate_rspec
       generate 'rspec:install'
+      inject_into_file '.rspec', " --drb", :after => '--color'
       replace_in_file 'spec/spec_helper.rb',
         '# config.mock_with :mocha', 'config.mock_with :mocha'
     end
 
     def generate_cucumber
       generate 'cucumber:install', '--rspec', '--capybara'
-      inject_into_file 'features/support/env.rb',
-        %{Capybara.save_and_open_page_path = 'tmp'\n} +
-        %{Capybara.javascript_driver = :webkit\n},
-        :before => %{Capybara.default_selector = :css}
+      copy_file 'features_support_env.rb', 'features/support/env.rb', :force => true
       inject_into_file 'config/cucumber.yml',
-        ' -r features', :after => %{default: <%= std_opts %> features}
+        ' -drb -r features', :after => %{default: <%= std_opts %> features}
+    end
+
+    def setup_guard_spork
+      copy_file 'Guardfile', 'Guardfile'
     end
 
     def generate_clearance
