@@ -5,7 +5,6 @@ gem 'formtastic'
 gem 'flutie'
 gem 'bourbon'
 gem 'airbrake'
-gem 'therubyracer'
 
 group :development do
   gem 'foreman'
