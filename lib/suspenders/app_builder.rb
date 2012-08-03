@@ -51,7 +51,7 @@ module Suspenders
 
     def add_jquery_ui
       inject_into_file 'app/assets/javascripts/application.js',
-        '//= require jquery-ui\n', :before => '//= require_tree .'
+        "//= require jquery-ui\n", :before => '//= require_tree .'
     end
 
     def use_postgres_config_template
@@ -193,7 +193,7 @@ module Suspenders
 <link href='/assets/application.css' media='all' rel='stylesheet' type='text/css' />
       EOS
       %w(500 404 422).each do |page|
-        inject_into_file "public/#{page}.html", meta_tags, :after => '<head>\n'
+        inject_into_file "public/#{page}.html", meta_tags, :after => "<head>\n"
         replace_in_file "public/#{page}.html", /<style.+>.+<\/style>/mi, style_tags.strip
         replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
       end
@@ -209,7 +209,7 @@ module Suspenders
 
     def set_attr_accessibles_on_user
       inject_into_file 'app/models/user.rb',
-        '  attr_accessible :email, :password\n',
+        "  attr_accessible :email, :password\n",
         :after => /include Clearance::User\n/
     end
 
@@ -223,7 +223,7 @@ module Suspenders
 
     def setup_default_rake_task
       append_file 'Rakefile' do
-        'task(:default).clear\ntask :default => [:spec, :cucumber]'
+        "task(:default).clear\ntask :default => [:spec, :cucumber]"
       end
     end
 
