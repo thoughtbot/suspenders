@@ -70,9 +70,13 @@ module Suspenders
 
     def configure_rspec
       generators_config = <<-RUBY
-          config.generators do |generate|
-            generate.test_framework :rspec
-          end
+    config.generators do |generate|
+      generate.test_framework :rspec
+      generate.helper false
+      generate.stylesheets false
+      generate.javascript_engine false
+      generate.view_specs false
+    end
       RUBY
       inject_into_class 'config/application.rb', 'Application', generators_config
     end
