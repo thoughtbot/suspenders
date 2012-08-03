@@ -1,3 +1,10 @@
+1.1.0 (August 3, 2012)
+
+* Add --github option.
+* Add --webkit option.
+* Remove cruft when generating controllers.
+* Add Spork and Guard.
+
 1.0.1 (August 2, 2012)
 
 * Fix broken install on Ruby 1.8.
