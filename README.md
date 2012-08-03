@@ -27,29 +27,27 @@ which will be appended to the default generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Paperclip](https://github.com/thoughtbot/paperclip) for file uploads
-* [Formtastic](https://github.com/justinfrench/formtastic) for better forms
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
-* [Flutie](https://github.com/thoughtbot/flutie) for default CSS styles
 * [Bourbon](https://github.com/thoughtbot/bourbon) for classy sass mixins
 * [Clearance](https://github.com/thoughtbot/clearance) for authentication
+* [Flutie](https://github.com/thoughtbot/flutie) for default CSS styles
+* [Formtastic](https://github.com/justinfrench/formtastic) for better forms
+* [Paperclip](https://github.com/thoughtbot/paperclip) for file uploads
 
 And testing gems like:
 
+* [Bourne](https://github.com/thoughtbot/bourne) and Mocha for stubbing and spying
 * [Cucumber, Capybara, and Capybara Webkit](http://robots.thoughtbot.com/post/4583605733/capybara-webkit) for integration testing, including Javascript behavior
-* [RSpec](https://github.com/rspec/rspec) for awesome, readable isolation testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for easier creation of test data
+* [RSpec](https://github.com/rspec/rspec) for awesome, readable isolation testing
 * [Shoulda Matchers](http://github.com/thoughtbot/shoulda-matchers) for frequently needed Rails and RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop) for dealing with time
-* [Bourne](https://github.com/thoughtbot/bourne) and Mocha for stubbing and spying
-* [email_spec](https://github.com/bmabey/email-spec) for testing emails.
 
 Other goodies
 -------------
 
 Suspenders also comes with:
 
-* [jQuery](https://github.com/jquery/jquery) for Javascript pleasantry
 * Rails' flashes set up and in application layout.
 * A few nice time formats.
 
@@ -71,6 +69,14 @@ Clearance
 You can optionally not include Clearance:
 
     suspenders app --clearance false
+
+Capybara Webkit
+---------------
+
+You can optionally not include Capybara Webkit (which depends on QT being
+installed on your machine):
+
+    suspenders app --webkit false
 
 Dependencies
 ------------

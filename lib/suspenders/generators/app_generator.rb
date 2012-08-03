@@ -3,17 +3,20 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
+    class_option :clearance, :type => :boolean, :aliases => '-C', :default => true,
+      :desc => 'Add the Clearance Rails authentication library'
+
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
       :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
-
-    class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
-      :desc => 'Skip Test::Unit files'
 
     class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
       :desc => 'Create staging and production heroku apps'
 
-    class_option :clearance, :type => :boolean, :aliases => '-C', :default => true,
-      :desc => 'Add the clearance Rails authentication library'
+    class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
+      :desc => 'Skip Test::Unit files'
+
+    class_option :webkit, :type => :boolean, :aliases => '-W', :default => true,
+      :desc => 'Add the Capybara Webkit Javascript integration testing library'
 
     def finish_template
       invoke :suspenders_customization
@@ -75,10 +78,14 @@ module Suspenders
     end
 
     def customize_gemfile
-      build :include_custom_gems
+      build :add_custom_gems
 
       if options[:clearance]
         build :add_clearance_gem
+      end
+
+      if options[:webkit]
+        build :add_capybara_webkit_gem
       end
 
       bundle_command 'install'
@@ -99,7 +106,7 @@ module Suspenders
       build :configure_rspec
       build :configure_action_mailer
       build :generate_rspec
-      build :generate_cucumber
+      build :generate_cucumber, :webkit => options[:webkit]
       build :setup_guard_spork
       build :add_email_validator
       build :setup_default_rake_task

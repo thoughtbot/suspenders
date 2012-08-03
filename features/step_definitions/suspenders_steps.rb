@@ -53,3 +53,17 @@ Then 'I can cleanly rake the project' do
     Then I see a successful response in the shell
   }
 end
+
+Then /^"(.*)" should not be installed$/ do |gem_name|
+  in_current_dir do
+    system("bundle show #{gem_name} 2>&1 > /dev/null").should be_false
+  end
+end
+
+Then /^"(.*)" should not be included in "(.*)"$/ do |content, file_path|
+  check_file_content file_path, content, false
+end
+
+Then /^the "([^"]*)" heroku app should exist$/ do |app_name|
+  FakeHeroku.should have_created_app(app_name)
+end

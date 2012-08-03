@@ -55,17 +55,29 @@ module Suspenders
     end
 
     def use_postgres_config_template
-      template 'postgresql_database.yml.erb', 'config/database.yml', :force => true
+      template 'postgresql_database.yml.erb', 'config/database.yml',
+        :force => true
     end
 
     def create_database
       bundle_command 'exec rake db:create'
     end
 
-    def include_custom_gems
+    def add_custom_gems
       additions_path = find_in_source_paths 'Gemfile_additions'
       new_gems = File.open(additions_path).read
-      inject_into_file 'Gemfile', "\n#{new_gems}", :after => /gem 'jquery-rails'/
+      inject_into_file 'Gemfile', "\n#{new_gems}",
+        :after => /gem 'jquery-rails'/
+    end
+
+    def add_clearance_gem
+      inject_into_file 'Gemfile', "\ngem 'clearance'",
+        :after => /gem 'jquery-rails'/
+    end
+
+    def add_capybara_webkit_gem
+      inject_into_file 'Gemfile', "\n  gem 'capybara-webkit', '~> 0.11.0'",
+        :after => /gem 'cucumber-rails', '1.3.0'/
     end
 
     def configure_rspec
@@ -95,11 +107,18 @@ module Suspenders
         '# config.mock_with :mocha', 'config.mock_with :mocha'
     end
 
-    def generate_cucumber
+    def generate_cucumber(options = {})
       generate 'cucumber:install', '--rspec', '--capybara'
-      copy_file 'features_support_env.rb', 'features/support/env.rb', :force => true
       inject_into_file 'config/cucumber.yml',
         ' -drb -r features', :after => %{default: <%= std_opts %> features}
+      copy_file 'features_support_env.rb', 'features/support/env.rb',
+        :force => true
+
+      if options[:webkit]
+        inject_into_file 'features/support/env.rb',
+          "\n  Capybara.javascript_driver = :webkit",
+          :after => /Capybara.default_selector = :css/
+      end
     end
 
     def setup_guard_spork
@@ -205,10 +224,6 @@ module Suspenders
       append_file 'Rakefile' do
         'task(:default).clear\ntask :default => [:spec, :cucumber]'
       end
-    end
-
-    def add_clearance_gem
-      inject_into_file 'Gemfile', "\ngem 'clearance'", :after => /gem 'jquery-rails'/
     end
   end
 end

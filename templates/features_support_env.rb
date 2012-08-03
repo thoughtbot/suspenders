@@ -6,7 +6,6 @@ Spork.prefork do
   require 'cucumber/rails'
 
   Capybara.default_selector = :css
-  Capybara.javascript_driver = :webkit
   DatabaseCleaner.strategy = :truncation
 end
 
