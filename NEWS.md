@@ -1,3 +1,7 @@
+1.1.1 (August 3, 2012)
+
+* Fix broken newline interpolation
+
 1.1.0 (August 3, 2012)
 
 * Add --github option.
