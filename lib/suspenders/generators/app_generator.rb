@@ -95,7 +95,6 @@ module Suspenders
       build :configure_action_mailer
       build :generate_rspec
       build :generate_cucumber
-      build :install_factory_girl_steps
       build :add_email_validator
       build :setup_default_rake_task
       build :setup_clearance

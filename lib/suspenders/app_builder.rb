@@ -21,7 +21,6 @@ module Suspenders
 
     def enable_factory_girl_syntax
       copy_file 'factory_girl_syntax_rspec.rb', 'spec/support/factory_girl.rb'
-      copy_file 'factory_girl_syntax_cucumber.rb', 'features/support/factory_girl.rb'
     end
 
     def setup_staging_environment
@@ -104,10 +103,6 @@ module Suspenders
     def generate_clearance
       generate 'clearance:install'
       generate 'clearance:features'
-    end
-
-    def install_factory_girl_steps
-      copy_file 'factory_girl_steps.rb', 'features/step_definitions/factory_girl_steps.rb'
     end
 
     def setup_stylesheets
