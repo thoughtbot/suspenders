@@ -179,6 +179,10 @@ module Suspenders
       route "root :to => 'Clearance::Sessions#new'"
     end
 
+    def remove_routes_comment_lines
+      replace_in_file 'config/routes.rb', /Application\.routes\.draw do.*end/m, "Application.routes.draw do\nend"
+    end
+
     def set_attr_accessibles_on_user
       inject_into_file 'app/models/user.rb',
         '  attr_accessible :email, :password\n',

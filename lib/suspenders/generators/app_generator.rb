@@ -33,6 +33,7 @@ module Suspenders
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
+      invoke :remove_routes_comment_lines
       invoke :setup_root_route
       invoke :setup_git
       invoke :create_heroku_apps
@@ -151,6 +152,10 @@ module Suspenders
     def customize_error_pages
       say 'Customizing the 500/404/422 pages'
       build :customize_error_pages
+    end
+
+    def remove_routes_comment_lines
+      build :remove_routes_comment_lines
     end
 
     def setup_root_route
