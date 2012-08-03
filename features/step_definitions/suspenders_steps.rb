@@ -64,6 +64,10 @@ Then /^"(.*)" should not be included in "(.*)"$/ do |content, file_path|
   check_file_content file_path, content, false
 end
 
-Then /^the "([^"]*)" heroku app should exist$/ do |app_name|
+Then /^the "([^"]*)" Heroku app should exist$/ do |app_name|
   FakeHeroku.should have_created_app(app_name)
+end
+
+Then /^the "([^"]*)" Github repo should exist$/ do |repo_name|
+  FakeGithub.should have_created_repo(repo_name)
 end

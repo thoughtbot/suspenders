@@ -12,7 +12,7 @@ class FakeHeroku
   end
 
   def self.clear!
-    FileUtils.rm_rf(RECORDER)
+    FileUtils.rm_rf RECORDER
   end
 
   def self.has_created_app?(app_name)

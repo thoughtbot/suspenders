@@ -5,5 +5,5 @@ Feature: Creating a Heroku app
     When I suspend a project called "test_project" with:
       | argument | value |
       | --heroku | true  |
-    Then the "test_project-staging" heroku app should exist
-    And the "test_project-production" heroku app should exist
+    Then the "test_project-staging" Heroku app should exist
+    And the "test_project-production" Heroku app should exist

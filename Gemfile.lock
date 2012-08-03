@@ -3,6 +3,7 @@ PATH
   specs:
     suspenders (1.0.1)
       bundler (>= 1.1)
+      hub (~> 1.10.2)
       rails (= 3.2.6)
 
 GEM
@@ -56,6 +57,7 @@ GEM
     gherkin (2.9.3)
       json (>= 1.4.6)
     hike (1.2.1)
+    hub (1.10.2)
     i18n (0.6.0)
     journey (1.0.4)
     json (1.6.6)

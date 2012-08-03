@@ -63,6 +63,17 @@ This has the same effect as running:
     heroku create app-staging --remote staging
     heroku create app-production --remote production
 
+Github
+------
+
+You can optionally create a Github repository:
+
+    suspenders app --github organization/project
+
+This has the same effect as running:
+
+    hub create organization/project
+
 Clearance
 ---------
 
