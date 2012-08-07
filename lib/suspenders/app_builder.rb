@@ -167,12 +167,6 @@ module Suspenders
       run "#{path_addition} heroku create #{app_name}-staging    --remote=staging"
     end
 
-    def document_heroku
-      heroku_readme_path = find_in_source_paths 'HEROKU_README.md'
-      documentation = File.open(heroku_readme_path).read
-      inject_into_file('README.md', "#{documentation}\n", :before => 'Most importantly')
-    end
-
     def create_github_repo(repo_name)
       path_addition = override_path_for_tests
       run "#{path_addition} hub create #{repo_name}"
