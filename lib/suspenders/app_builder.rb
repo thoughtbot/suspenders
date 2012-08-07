@@ -83,7 +83,7 @@ module Suspenders
 
     def add_capybara_webkit_gem
       inject_into_file 'Gemfile', "\n  gem 'capybara-webkit', '~> 0.11.0'",
-        :after => /gem 'cucumber-rails', '1.3.0'/
+        :after => /gem 'cucumber-rails', '1.3.0', :require => false/
     end
 
     def configure_rspec
