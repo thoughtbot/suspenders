@@ -1,3 +1,8 @@
+1.1.2 (August 6, 2012)
+
+* Fix broken rake.
+* Use Heroku-compliant asset pipeline settings.
+
 1.1.1 (August 3, 2012)
 
 * Fix broken newline interpolation
