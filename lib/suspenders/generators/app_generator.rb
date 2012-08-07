@@ -61,6 +61,7 @@ module Suspenders
     def setup_staging_environment
       say 'Setting up the staging environment'
       build :setup_staging_environment
+      build :initialize_on_precompile
     end
 
     def create_suspenders_views
