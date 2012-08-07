@@ -1,3 +1,7 @@
+1.1.3 (August 7, 2012)
+
+* Fix broken Gemfile additions where capybara stole cucumber's `require: false`
+
 1.1.2 (August 6, 2012)
 
 * Fix broken rake.
