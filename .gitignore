@@ -2,7 +2,7 @@
 *.swp
 .bundle
 .rake_tasks
-bin
+/bin/*
 !bin/suspenders
 pkg
 test_project
