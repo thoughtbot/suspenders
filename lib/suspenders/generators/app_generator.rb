@@ -111,6 +111,7 @@ module Suspenders
       build :configure_rspec
       build :configure_action_mailer
       build :generate_rspec
+      build :configure_time_zone
       build :generate_cucumber, :webkit => options[:webkit]
       build :setup_guard_spork
       build :add_email_validator

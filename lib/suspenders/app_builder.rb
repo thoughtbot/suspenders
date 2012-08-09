@@ -99,6 +99,13 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', generators_config
     end
 
+    def configure_time_zone
+      time_zone_config = <<-RUBY
+          config.active_record.default_timezone = :utc
+      RUBY
+      inject_into_class "config/application.rb", "Application", time_zone_config
+    end
+
     def configure_action_mailer
       action_mailer_host 'development', "#{app_name}.local"
       action_mailer_host 'test', 'example.com'
