@@ -1,6 +1,7 @@
 !.keep
 *.DS_Store
 *.swp
+.env
 coverage/*
 public/system
 rerun.txt
