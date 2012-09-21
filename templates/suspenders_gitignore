@@ -1,8 +1,8 @@
-public/system
+!.keep
 *.DS_Store
-coverage/*
 *.swp
+coverage/*
+public/system
 rerun.txt
 tags
-!.keep
 vendor/bundler_gems
