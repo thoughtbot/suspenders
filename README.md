@@ -50,6 +50,7 @@ Other goodies
 
 Suspenders also comes with:
 
+* Override recipient emails in staging environment.
 * Rails' flashes set up and in application layout.
 * A few nice time formats.
 * [Heroku-recommended asset pipeline
