@@ -25,6 +25,9 @@ module Suspenders
 
     def setup_staging_environment
       run 'cp config/environments/production.rb config/environments/staging.rb'
+      inject_into_file 'config/environments/staging.rb',
+        "\n  config.action_mailer.delivery_method = :override_recipient_smtp, to: 'staging@example.com'",
+        :after => 'config.action_mailer.raise_delivery_errors = false'
     end
 
     def initialize_on_precompile
