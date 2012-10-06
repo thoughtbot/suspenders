@@ -22,26 +22,28 @@ Gemfile
 -------
 
 To see the latest and greatest gems, look at Suspenders'
-[template/Gemfile_additions](https://github.com/thoughtbot/suspenders/blob/master/templates/Gemfile_additions),
+[template/Gemfile_additions](/thoughtbot/suspenders/blob/master/templates/Gemfile_additions),
 which will be appended to the default generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
-* [Bourbon](https://github.com/thoughtbot/bourbon) for classy sass mixins
-* [Clearance](https://github.com/thoughtbot/clearance) for authentication
-* [Flutie](https://github.com/thoughtbot/flutie) for default CSS styles
-* [Formtastic](https://github.com/justinfrench/formtastic) for better forms
-* [Paperclip](https://github.com/thoughtbot/paperclip) for file uploads
+* [Airbrake](/airbrake/airbrake) for exception notification
+* [Bourbon](/thoughtbot/bourbon) for Sass mixins
+* [Clearance](/thoughtbot/clearance) for authentication
+* [Flutie](/thoughtbot/flutie) for default CSS styles
+* [Formtastic](/justinfrench/formtastic) for form markup and style
+* [Paperclip](/thoughtbot/paperclip) for file uploads
 
 And testing gems like:
 
-* [Bourne](https://github.com/thoughtbot/bourne) and Mocha for stubbing and spying
-* [Cucumber, Capybara, and Capybara Webkit](http://robots.thoughtbot.com/post/4583605733/capybara-webkit) for integration testing, including Javascript behavior
-* [Factory Girl](https://github.com/thoughtbot/factory_girl) for easier creation of test data
-* [RSpec](https://github.com/rspec/rspec) for awesome, readable isolation testing
-* [Shoulda Matchers](http://github.com/thoughtbot/shoulda-matchers) for frequently needed Rails and RSpec matchers
-* [Timecop](https://github.com/jtrupiano/timecop) for dealing with time
+* [Bourne](/thoughtbot/bourne) and [Mocha](/freerange/mocha) for stubbing and
+  spying
+* [Capybara](/jnicklas/capybara) and
+  [Capybara Webkit](/thoughtbot/capybara-webkit) for integration testing
+* [Factory Girl](/thoughtbot/factory_girl) for test data
+* [RSpec](https://github.com/rspec/rspec) for unit testing
+* [Shoulda Matchers](/thoughtbot/shoulda-matchers) for common RSpec matchers
+* [Timecop](/jtrupiano/timecop) for testing time
 
 Other goodies
 -------------
@@ -50,7 +52,8 @@ Suspenders also comes with:
 
 * Rails' flashes set up and in application layout.
 * A few nice time formats.
-* [Heroku-compliant asset pipeline settings](https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar/).
+* [Heroku-recommended asset pipeline
+  settings](https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar/).
 
 Heroku
 ------
@@ -96,19 +99,22 @@ Dependencies
 Some gems included in Suspenders have native extensions. You should have GCC installed on your
 machine before generating an app with Suspenders.
 
-If you're running OS X, we recommend the [GCC OSX installer](https://github.com/kennethreitz/osx-gcc-installer).
+Use [OS X GCC Installer](/kennethreitz/osx-gcc-installer/) for Snow Leopard
+(OS X 10.6).
 
-We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for full-stack Javascript integration testing.
-It requires you have QT installed on your machine before running Suspenders.
+Use [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
+for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
 
-Instructions for installing QT on most systems are [available here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
+We use [Capybara Webkit](/thoughtbot/capybara-webkit) for full-stack Javascript
+integration testing. It requires QT. Instructions for installing QT are
+[here](/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
 Issues
 ------
 
-If you have problems, please create a [Github issue](https://github.com/thoughtbot/suspenders/issues).
+If you have problems, please create a [Github Issue](/thoughtbot/suspenders/issues).
 
 Contributing
 ------------
@@ -127,4 +133,5 @@ The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 License
 -------
 
-Suspenders is Copyright © 2008-2012 thoughtbot. It is free software, and may be redistributed under the terms specified in the LICENSE file.
+Suspenders is Copyright © 2008-2012 thoughtbot. It is free software, and may be
+redistributed under the terms specified in the LICENSE file.

@@ -8,7 +8,7 @@ Feature: Rake works in the suspended project
     And I run the rake task "db:create"
     And I run the rake task "db:migrate"
     And I run the rake task "db:test:prepare"
-    And I run the rake task "cucumber"
+    And I run rake
     Then I see a successful response in the shell
 
   Scenario: Making a spec then running rake

@@ -82,8 +82,8 @@ module Suspenders
     end
 
     def add_capybara_webkit_gem
-      inject_into_file 'Gemfile', "\n  gem 'capybara-webkit', '~> 0.11.0'",
-        :after => /gem 'cucumber-rails', '1.3.0', :require => false/
+      inject_into_file 'Gemfile', "\n  gem 'capybara-webkit'",
+        :after => /gem 'capybara'/
     end
 
     def configure_rspec
@@ -108,7 +108,7 @@ module Suspenders
 
     def configure_action_mailer
       action_mailer_host 'development', "#{app_name}.local"
-      action_mailer_host 'test', 'example.com'
+      action_mailer_host 'test', 'www.example.com'
       action_mailer_host 'staging', "staging.#{app_name}.com"
       action_mailer_host 'production', "#{app_name}.com"
     end
@@ -120,17 +120,9 @@ module Suspenders
         '# config.mock_with :mocha', 'config.mock_with :mocha'
     end
 
-    def generate_cucumber(options = {})
-      generate 'cucumber:install', '--rspec', '--capybara'
-      inject_into_file 'config/cucumber.yml',
-        ' -drb -r features', :after => %{default: <%= std_opts %> features}
-      copy_file 'features_support_env.rb', 'features/support/env.rb',
-        :force => true
-
-      if options[:webkit]
-        inject_into_file 'features/support/env.rb',
-          "\n  Capybara.javascript_driver = :webkit",
-          :after => /Capybara.default_selector = :css/
+    def configure_capybara_webkit
+      append_file 'spec/spec_helper.rb' do
+        '\n  Capybara.javascript_driver = :webkit'
       end
     end
 
@@ -140,11 +132,11 @@ module Suspenders
 
     def generate_clearance
       generate 'clearance:install'
-      generate 'clearance:features'
     end
 
     def setup_stylesheets
-      copy_file 'app/assets/stylesheets/application.css', 'app/assets/stylesheets/application.css.scss'
+      copy_file 'app/assets/stylesheets/application.css',
+        'app/assets/stylesheets/application.css.scss'
       remove_file 'app/assets/stylesheets/application.css'
       concat_file 'import_scss_styles', 'app/assets/stylesheets/application.css.scss'
       create_file 'app/assets/stylesheets/_screen.scss'
@@ -152,7 +144,8 @@ module Suspenders
 
     def gitignore_files
       concat_file 'suspenders_gitignore', '.gitignore'
-      ['app/models',
+      [
+        'app/models',
         'app/assets/images',
         'app/views/pages',
         'db/migrate',
@@ -165,7 +158,8 @@ module Suspenders
         'spec/helpers',
         'spec/support/matchers',
         'spec/support/mixins',
-        'spec/support/shared_examples'].each do |dir|
+        'spec/support/shared_examples'
+      ].each do |dir|
         empty_directory_with_gitkeep dir
       end
     end
@@ -177,7 +171,7 @@ module Suspenders
     def create_heroku_apps
       path_addition = override_path_for_tests
       run "#{path_addition} heroku create #{app_name}-production --remote=production"
-      run "#{path_addition} heroku create #{app_name}-staging    --remote=staging"
+      run "#{path_addition} heroku create #{app_name}-staging --remote=staging"
     end
 
     def create_github_repo(repo_name)
@@ -211,7 +205,9 @@ module Suspenders
     end
 
     def remove_routes_comment_lines
-      replace_in_file 'config/routes.rb', /Application\.routes\.draw do.*end/m, "Application.routes.draw do\nend"
+      replace_in_file 'config/routes.rb',
+        /Application\.routes\.draw do.*end/m,
+        "Application.routes.draw do\nend"
     end
 
     def set_attr_accessibles_on_user
@@ -230,7 +226,7 @@ module Suspenders
 
     def setup_default_rake_task
       append_file 'Rakefile' do
-        "task(:default).clear\ntask :default => [:spec, :cucumber]"
+        "task(:default).clear\ntask :default => [:spec]"
       end
     end
 
