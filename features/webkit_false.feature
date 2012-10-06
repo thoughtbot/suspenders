@@ -7,5 +7,5 @@ Feature: Skipping Capybara Webkit
       | --webkit | false |
     And I cd to the "test_project" root
     Then "capybara-webkit" should not be installed
-    And "webkit" should not be included in "features/support/env.rb"
+    And "webkit" should not be included in "spec/spec_helper.rb"
     And I can cleanly rake the project
