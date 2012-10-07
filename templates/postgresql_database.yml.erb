@@ -1,8 +1,11 @@
 development: &default
   adapter: postgresql
+  encoding: utf8
   database: <%= app_name %>_development
   pool: 5
   timeout: 5000
+  host: localhost
+
 
 test: &TEST
   <<: *default
