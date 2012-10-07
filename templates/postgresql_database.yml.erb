@@ -1,10 +1,11 @@
 development: &default
   adapter: postgresql
   database: <%= app_name %>_development
+  encoding: utf8
+  min_messages: warning
   pool: 5
   timeout: 5000
 
-test: &TEST
+test:
   <<: *default
   database: <%= app_name %>_test
-  min_messages: warning
