@@ -1,3 +1,5 @@
+ruby '1.9.3'
+
 gem 'thin'
 gem 'high_voltage'
 gem 'paperclip'
