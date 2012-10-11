@@ -72,6 +72,12 @@ module Suspenders
       bundle_command 'exec rake db:create'
     end
 
+    def set_ruby_to_latest_stable_version
+      latest_stable_version = '1.9.3'
+      inject_into_file 'Gemfile', "\n\nruby '#{latest_stable_version}'",
+        :after => /source 'https:\/\/rubygems.org'/
+    end
+
     def add_custom_gems
       additions_path = find_in_source_paths 'Gemfile_additions'
       new_gems = File.open(additions_path).read
