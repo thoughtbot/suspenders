@@ -38,6 +38,7 @@ module Suspenders
       invoke :setup_database
       invoke :configure_app
       invoke :setup_stylesheets
+      invoke :copy_libraries
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
@@ -176,6 +177,11 @@ module Suspenders
 
     def init_git
       build :init_git
+    end
+
+    def copy_libraries
+      say 'Copying libraries'
+      build :copy_libraries
     end
 
     def copy_miscellaneous_files
