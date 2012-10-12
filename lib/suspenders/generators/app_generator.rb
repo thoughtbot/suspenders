@@ -83,7 +83,7 @@ module Suspenders
     end
 
     def customize_gemfile
-      build :set_ruby_to_latest_stable_version
+      build :set_ruby_to_version_being_used
       build :add_custom_gems
 
       if options[:clearance]
