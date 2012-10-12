@@ -93,7 +93,7 @@ module Suspenders
         build :add_capybara_webkit_gem
       end
 
-      bundle_command 'install'
+      bundle_command 'install --binstubs=bin/stubs'
     end
 
     def setup_database
