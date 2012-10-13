@@ -112,6 +112,7 @@ module Suspenders
       build :configure_action_mailer
       build :generate_rspec
       build :configure_time_zone
+      build :configure_time_formats
 
       if options[:webkit]
         build :configure_capybara_webkit
