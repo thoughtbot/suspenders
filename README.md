@@ -52,7 +52,7 @@ Suspenders also comes with:
 
 * Override recipient emails in staging environment.
 * Rails' flashes set up and in application layout.
-* A few nice time formats.
+* A few nice time formats set up for localization.
 * [Heroku-recommended asset pipeline
   settings](https://devcenter.heroku.com/articles/rails3x-asset-pipeline-cedar/).
 

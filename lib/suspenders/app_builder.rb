@@ -109,6 +109,11 @@ module Suspenders
       inject_into_class "config/application.rb", "Application", time_zone_config
     end
 
+    def configure_time_formats
+      remove_file 'config/locales/en.yml'
+      copy_file 'config_locales_en.yml', 'config/locales/en.yml'
+    end
+
     def configure_action_mailer
       action_mailer_host 'development', "#{app_name}.local"
       action_mailer_host 'test', 'www.example.com'
@@ -184,7 +189,6 @@ module Suspenders
 
     def copy_miscellaneous_files
       copy_file 'errors.rb', 'config/initializers/errors.rb'
-      copy_file 'time_formats.rb', 'config/initializers/time_formats.rb'
       copy_file 'Procfile'
     end
 
