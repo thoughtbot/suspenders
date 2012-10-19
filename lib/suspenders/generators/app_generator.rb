@@ -29,6 +29,7 @@ module Suspenders
     def suspenders_customization
       invoke :remove_files_we_dont_need
       invoke :setup_development_environment
+      invoke :setup_test_environment
       invoke :setup_staging_environment
       invoke :create_suspenders_views
       invoke :create_common_javascripts
@@ -55,7 +56,12 @@ module Suspenders
     def setup_development_environment
       say 'Setting up the development environment'
       build :raise_delivery_errors
+    end
+
+    def setup_test_environment
+      say 'Setting up the test environment'
       build :enable_factory_girl_syntax
+      build :test_factories_first
     end
 
     def setup_staging_environment

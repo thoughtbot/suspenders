@@ -23,6 +23,13 @@ module Suspenders
       copy_file 'factory_girl_syntax_rspec.rb', 'spec/support/factory_girl.rb'
     end
 
+    def test_factories_first
+      copy_file 'factories_spec.rb', 'spec/models/factories_spec.rb'
+      append_file 'Rakefile' do
+        "\ndesc 'Run factory specs.'\nRSpec::Core::RakeTask.new(:factory_specs) do |t|\nt.pattern = './spec/models/factories_spec.rb'\nend\n\ntask spec: :factory_specs\n"
+      end
+    end
+
     def setup_staging_environment
       run 'cp config/environments/production.rb config/environments/staging.rb'
       inject_into_file 'config/environments/staging.rb',
