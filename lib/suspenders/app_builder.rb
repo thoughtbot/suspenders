@@ -135,7 +135,7 @@ module Suspenders
 
     def configure_capybara_webkit
       append_file 'spec/spec_helper.rb' do
-        '\n  Capybara.javascript_driver = :webkit'
+        "\n  Capybara.javascript_driver = :webkit"
       end
     end
 
