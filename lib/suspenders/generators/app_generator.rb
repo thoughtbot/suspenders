@@ -28,13 +28,13 @@ module Suspenders
 
     def suspenders_customization
       invoke :remove_files_we_dont_need
+      invoke :customize_gemfile
       invoke :setup_development_environment
       invoke :setup_test_environment
       invoke :setup_staging_environment
       invoke :create_suspenders_views
       invoke :create_common_javascripts
       invoke :add_jquery_ui
-      invoke :customize_gemfile
       invoke :setup_database
       invoke :configure_app
       invoke :setup_stylesheets
@@ -62,6 +62,14 @@ module Suspenders
       say 'Setting up the test environment'
       build :enable_factory_girl_syntax
       build :test_factories_first
+      build :generate_rspec
+      build :configure_rspec
+
+      if options[:webkit]
+        build :configure_capybara_webkit
+      end
+
+      build :setup_guard_spork
     end
 
     def setup_staging_environment
@@ -115,17 +123,10 @@ module Suspenders
 
     def configure_app
       say 'Configuring app'
-      build :configure_rspec
       build :configure_action_mailer
-      build :generate_rspec
       build :configure_time_zone
       build :configure_time_formats
 
-      if options[:webkit]
-        build :configure_capybara_webkit
-      end
-
-      build :setup_guard_spork
       build :add_email_validator
       build :setup_default_rake_task
       build :setup_clearance
