@@ -100,6 +100,13 @@ module Suspenders
     end
 
     def configure_rspec
+      remove_file '.rspec'
+      copy_file 'rspec', '.rspec'
+      prepend_file 'spec/spec_helper.rb', simplecov_init
+      replace_in_file 'spec/spec_helper.rb',
+        '# config.mock_with :mocha',
+        'config.mock_with :mocha'
+
       generators_config = <<-RUBY
     config.generators do |generate|
       generate.test_framework :rspec
@@ -109,6 +116,7 @@ module Suspenders
       generate.view_specs false
     end
       RUBY
+
       inject_into_class 'config/application.rb', 'Application', generators_config
     end
 
@@ -133,10 +141,6 @@ module Suspenders
 
     def generate_rspec
       generate 'rspec:install'
-      inject_into_file '.rspec', " --drb", :after => '--color'
-      prepend_file 'spec/spec_helper.rb', simplecov_init
-      replace_in_file 'spec/spec_helper.rb',
-        '# config.mock_with :mocha', 'config.mock_with :mocha'
     end
 
     def configure_capybara_webkit
