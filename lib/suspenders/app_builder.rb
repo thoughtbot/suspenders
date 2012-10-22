@@ -2,8 +2,6 @@ module Suspenders
   class AppBuilder < Rails::AppBuilder
     include Suspenders::Actions
 
-    SIMPLECOV_INIT = %{require 'simplecov'\nSimpleCov.start 'rails'\n\n}
-
     def readme
       template 'README.md.erb', 'README.md'
     end
@@ -138,7 +136,7 @@ module Suspenders
     def generate_rspec
       generate 'rspec:install'
       inject_into_file '.rspec', " --drb", :after => '--color'
-      prepend_file 'spec/spec_helper.rb', SIMPLECOV_INIT
+      prepend_file 'spec/spec_helper.rb', simplecov_init
       replace_in_file 'spec/spec_helper.rb',
         '# config.mock_with :mocha', 'config.mock_with :mocha'
     end
@@ -152,11 +150,13 @@ module Suspenders
     def generate_cucumber(options = {})
       generate 'cucumber:install', '--rspec', '--capybara'
       inject_into_file 'config/cucumber.yml',
-        ' -drb -r features', :after => %{default: <%= std_opts %> features}
-      copy_file 'features_support_env.rb', 'features/support/env.rb',
+        ' -drb -r features',
+        :after => %{default: <%= std_opts %> features}
+      copy_file 'features_support_env.rb',
+        'features/support/env.rb',
         :force => true
+      prepend_file 'features/support/env.rb', simplecov_init
 
-      prepend_file 'features/support/env.rb', SIMPLECOV_INIT
       if options[:webkit]
         inject_into_file 'features/support/env.rb',
           "\n  Capybara.javascript_driver = :webkit",
@@ -274,6 +274,10 @@ module Suspenders
         support_bin = File.expand_path(File.join('..', '..', '..', 'features', 'support', 'bin'))
         "PATH=#{support_bin}:$PATH"
       end
+    end
+
+    def simplecov_init
+      IO.read(find_in_source_paths('simplecov_init.rb'))
     end
   end
 end
