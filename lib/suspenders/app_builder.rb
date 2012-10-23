@@ -25,9 +25,7 @@ module Suspenders
 
     def test_factories_first
       copy_file 'factories_spec.rb', 'spec/models/factories_spec.rb'
-      append_file 'Rakefile' do
-        "\ndesc 'Run factory specs.'\nRSpec::Core::RakeTask.new(:factory_specs) do |t|\nt.pattern = './spec/models/factories_spec.rb'\nend\n\ntask spec: :factory_specs\n"
-      end
+      append_file 'Rakefile', factories_spec_rake_task
     end
 
     def setup_staging_environment
@@ -85,7 +83,7 @@ module Suspenders
     end
 
     def add_custom_gems
-      additions_path = find_in_source_paths 'Gemfile_additions'
+      additions_path = find_in_source_paths('Gemfile_additions')
       new_gems = File.open(additions_path).read
       inject_into_file 'Gemfile', "\n#{new_gems}",
         :after => /gem 'jquery-rails'/
@@ -276,8 +274,12 @@ module Suspenders
       end
     end
 
+    def factories_spec_rake_task
+      IO.read find_in_source_paths('factories_spec_rake_task.rb')
+    end
+
     def simplecov_init
-      IO.read(find_in_source_paths('simplecov_init.rb'))
+      IO.read find_in_source_paths('simplecov_init.rb')
     end
   end
 end
