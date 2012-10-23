@@ -1,3 +1,22 @@
+1.1.5 (October 22, 2012)
+
+* Ignore `.env`.
+* Link to thoughtbot/guides in generated README.
+* Remove Cucumber in favor of RSpec + Capybara.
+* Deliver emails in staging environment to an overriden email or set of emails.
+* Encode database as UTF8.
+* Bundle with binstubs using 37signals' directory convention.
+* Configure time formats using localization.
+* Add Ruby version to Gemfile.
+* Add fast-failing spec that tests validity of factories.
+* Use SimpleCov for C0 coverage.
+* Configure RSpec with `--profile` flag to find slow-running specs.
+
+1.1.4 (September 4, 2012)
+
+* Always store UTC in the DB.
+* Use Rails 3.2.8.
+
 1.1.3 (August 7, 2012)
 
 * Fix broken Gemfile additions where capybara stole cucumber's `require: false`
