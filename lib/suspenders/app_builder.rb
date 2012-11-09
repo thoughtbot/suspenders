@@ -174,6 +174,11 @@ module Suspenders
       generate 'clearance:install'
     end
 
+    def setup_foreman
+      copy_file 'sample.env', 'sample.env'
+      copy_file 'Procfile', 'Procfile'
+    end
+
     def setup_stylesheets
       copy_file 'app/assets/stylesheets/application.css',
         'app/assets/stylesheets/application.css.scss'
