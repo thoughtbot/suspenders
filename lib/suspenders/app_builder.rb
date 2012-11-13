@@ -137,6 +137,14 @@ module Suspenders
       action_mailer_host 'test', 'www.example.com'
       action_mailer_host 'staging', "staging.#{app_name}.com"
       action_mailer_host 'production', "#{app_name}.com"
+      inject_into_file('config/application.rb',
+        "\n  config.action_mailer.async = true",
+        before: "\nend"
+      )
+      inject_into_file('config/environments/test.rb',
+        "\n config.action_mailer.async = false",
+        before: "\nend"
+      )
     end
 
     def generate_rspec
