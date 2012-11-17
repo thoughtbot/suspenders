@@ -19,6 +19,11 @@ module Suspenders
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
+    def provide_setup_script
+      copy_file 'script_setup', 'script/setup'
+      run 'chmod a+x script/setup'
+    end
+
     def enable_factory_girl_syntax
       copy_file 'factory_girl_syntax_rspec.rb', 'spec/support/factory_girl.rb'
     end
