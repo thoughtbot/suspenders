@@ -226,7 +226,6 @@ module Suspenders
 
     def copy_miscellaneous_files
       copy_file 'errors.rb', 'config/initializers/errors.rb'
-      copy_file 'Procfile'
     end
 
     def customize_error_pages
