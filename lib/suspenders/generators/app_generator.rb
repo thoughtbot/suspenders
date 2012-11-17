@@ -130,7 +130,6 @@ module Suspenders
       build :add_email_validator
       build :setup_default_rake_task
       build :setup_clearance
-      say 'Adding sample Procfile. Copy sample.env to .env'
       build :setup_foreman
     end
 
