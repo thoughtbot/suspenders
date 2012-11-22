@@ -4,5 +4,5 @@
 # https://github.com/thoughtbot/guides/tree/master/protocol
 
 bundle install --binstubs=bin/stubs
-rake db:setup
+bundle exec rake db:setup
 cp sample.env .env

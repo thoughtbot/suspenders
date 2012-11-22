@@ -21,6 +21,7 @@ module Suspenders
 
     def provide_setup_script
       copy_file 'script_setup', 'script/setup'
+      run 'chmod a+x script/setup'
     end
 
     def enable_factory_girl_syntax
