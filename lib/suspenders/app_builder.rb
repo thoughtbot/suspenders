@@ -150,24 +150,7 @@ module Suspenders
 
     def configure_capybara_webkit
       append_file 'spec/spec_helper.rb' do
-        "\n  Capybara.javascript_driver = :webkit"
-      end
-    end
-
-    def generate_cucumber(options = {})
-      generate 'cucumber:install', '--rspec', '--capybara'
-      inject_into_file 'config/cucumber.yml',
-        ' -drb -r features',
-        :after => %{default: <%= std_opts %> features}
-      copy_file 'features_support_env.rb',
-        'features/support/env.rb',
-        :force => true
-      prepend_file 'features/support/env.rb', simplecov_init
-
-      if options[:webkit]
-        inject_into_file 'features/support/env.rb',
-          "\n  Capybara.javascript_driver = :webkit",
-          :after => /Capybara.default_selector = :css/
+        "\nCapybara.javascript_driver = :webkit"
       end
     end
 
