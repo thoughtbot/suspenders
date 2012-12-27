@@ -55,7 +55,7 @@ Then 'I can cleanly rake the project' do
     And I run the rake task "db:create"
     And I run the rake task "db:migrate"
     And I run the rake task "db:test:prepare"
-    And I run the rake task "cucumber"
+    And I run rake
     Then I see a successful response in the shell
   }
 end
