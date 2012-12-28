@@ -66,6 +66,7 @@ module Suspenders
       build :test_factories_first
       build :generate_rspec
       build :configure_rspec
+      build :enable_database_cleaner
 
       if options[:webkit]
         build :configure_capybara_webkit
