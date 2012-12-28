@@ -9,6 +9,7 @@ end
 When 'I run the rake task "$task_name"' do |task_name|
   in_current_dir do
     run "bundle exec rake #{task_name}"
+    assert_exit_status(0)
   end
 end
 
@@ -22,13 +23,9 @@ Then 'I see a successful response in the shell' do
   assert_exit_status(0)
 end
 
-When 'I drop and create the required databases' do
-  in_current_dir do
-    run 'bundle exec rake db:drop RAILS_ENV=test'
-    run 'bundle exec rake db:drop'
-    run 'bundle exec rake db:create RAILS_ENV=test'
-    run 'bundle exec rake db:create'
-  end
+When 'I ensure no databases exist for "$project_name"' do |project_name|
+  run "dropdb #{project_name}_development"
+  run "dropdb #{project_name}_test"
 end
 
 When 'I suspend a project called "$project_name"' do |project_name|
