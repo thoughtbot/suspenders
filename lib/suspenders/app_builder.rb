@@ -112,6 +112,13 @@ module Suspenders
         '# config.mock_with :mocha',
         'config.mock_with :mocha'
 
+      rspec_expect_syntax = <<-RUBY
+
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
+      RUBY
+
       generators_config = <<-RUBY
     config.generators do |generate|
       generate.test_framework :rspec
@@ -122,6 +129,8 @@ module Suspenders
     end
       RUBY
 
+      inject_into_file 'spec/spec_helper.rb', rspec_expect_syntax,
+        :after => 'RSpec.configure do |config|'
       inject_into_class 'config/application.rb', 'Application', generators_config
     end
 
