@@ -104,10 +104,19 @@ module Suspenders
         :after => /gem 'capybara'/
     end
 
+    def enable_database_cleaner
+      replace_in_file 'spec/spec_helper.rb',
+        'config.use_transactional_fixtures = true',
+        'config.use_transactional_fixtures = false'
+
+      copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
+    end
+
     def configure_rspec
       remove_file '.rspec'
       copy_file 'rspec', '.rspec'
       prepend_file 'spec/spec_helper.rb', simplecov_init
+
       replace_in_file 'spec/spec_helper.rb',
         '# config.mock_with :mocha',
         'config.mock_with :mocha'
@@ -136,7 +145,7 @@ module Suspenders
 
     def configure_time_zone
       time_zone_config = <<-RUBY
-          config.active_record.default_timezone = :utc
+    config.active_record.default_timezone = :utc
       RUBY
       inject_into_class "config/application.rb", "Application", time_zone_config
     end

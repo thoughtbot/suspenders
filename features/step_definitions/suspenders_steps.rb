@@ -2,39 +2,30 @@ require 'aruba/cucumber'
 
 When 'I run rake' do
   in_current_dir do
-    run 'bundle exec rake'
+    run_simple 'bundle exec rake'
   end
 end
 
 When 'I run the rake task "$task_name"' do |task_name|
   in_current_dir do
-    run "bundle exec rake #{task_name}"
+    run_simple "bundle exec rake #{task_name}"
   end
 end
 
 When 'I generate "$generator_with_args"' do |generator_with_args|
   in_current_dir do
-    run "bundle exec rails generate #{generator_with_args}"
+    run_simple "bundle exec rails generate #{generator_with_args}"
   end
 end
 
-Then 'I see a successful response in the shell' do
-  assert_exit_status(0)
-end
-
-When 'I drop and create the required databases' do
-  in_current_dir do
-    run 'bundle exec rake db:drop RAILS_ENV=test'
-    run 'bundle exec rake db:drop'
-    run 'bundle exec rake db:create RAILS_ENV=test'
-    run 'bundle exec rake db:create'
-  end
+When 'I ensure no databases exist for "$project_name"' do |project_name|
+  run "dropdb #{project_name}_development"
+  run "dropdb #{project_name}_test"
 end
 
 When 'I suspend a project called "$project_name"' do |project_name|
   suspenders_bin = File.expand_path(File.join('..', '..', 'bin', 'suspenders'), File.dirname(__FILE__))
-  run "#{suspenders_bin} #{project_name}"
-  assert_exit_status(0)
+  run_simple "#{suspenders_bin} #{project_name}"
 end
 
 When /^I suspend a project called "([^"]*)" with:$/ do |project_name, arguments_table|
@@ -42,8 +33,7 @@ When /^I suspend a project called "([^"]*)" with:$/ do |project_name, arguments_
   arguments = arguments_table.hashes.inject([]) do |accum, argument|
     accum << "#{argument['argument']}=#{argument['value']}"
   end.join
-  run "#{suspenders_bin} #{project_name} #{arguments}"
-  assert_exit_status(0)
+  run_simple "#{suspenders_bin} #{project_name} #{arguments}"
 end
 
 When 'I cd to the "$test_project" root' do |dirname|
@@ -56,7 +46,6 @@ Then 'I can cleanly rake the project' do
     And I run the rake task "db:migrate"
     And I run the rake task "db:test:prepare"
     And I run rake
-    Then I see a successful response in the shell
   }
 end
 
