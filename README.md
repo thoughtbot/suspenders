@@ -134,5 +134,5 @@ The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 License
 -------
 
-Suspenders is Copyright © 2008-2012 thoughtbot. It is free software, and may be
+Suspenders is Copyright © 2008-2013 thoughtbot. It is free software, and may be
 redistributed under the terms specified in the LICENSE file.
