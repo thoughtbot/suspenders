@@ -20,8 +20,8 @@ module Suspenders
     end
 
     def provide_setup_script
-      copy_file 'script_setup', 'script/setup'
-      run 'chmod a+x script/setup'
+      copy_file 'bin_setup', 'bin/setup'
+      run 'chmod a+x bin/setup'
     end
 
     def enable_factory_girl_syntax
@@ -181,7 +181,7 @@ module Suspenders
     end
 
     def setup_foreman
-      copy_file 'sample.env', 'sample.env'
+      copy_file 'sample.env', '.sample.env'
       copy_file 'Procfile', 'Procfile'
     end
 
