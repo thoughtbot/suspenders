@@ -172,10 +172,6 @@ module Suspenders
       end
     end
 
-    def setup_guard_spork
-      copy_file 'Guardfile', 'Guardfile'
-    end
-
     def generate_clearance
       generate 'clearance:install'
     end

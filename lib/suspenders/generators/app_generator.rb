@@ -129,7 +129,6 @@ module Suspenders
       build :configure_action_mailer
       build :configure_time_zone
       build :configure_time_formats
-
       build :add_email_validator
       build :setup_default_rake_task
       build :setup_clearance
