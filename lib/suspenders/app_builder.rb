@@ -277,6 +277,10 @@ module Suspenders
       create_file 'spec/support/clearance.rb', "require 'clearance/testing'"
     end
 
+    def disable_xml_params
+      copy_file 'disable_xml_params.rb', 'config/initializers/disable_xml_params.rb'
+    end
+
     def setup_default_rake_task
       append_file 'Rakefile' do
         "task(:default).clear\ntask :default => [:spec]"
