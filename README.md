@@ -29,10 +29,7 @@ It includes application gems like:
 
 * [Airbrake](/airbrake/airbrake) for exception notification
 * [Bourbon](/thoughtbot/bourbon) for Sass mixins
-* [Clearance](/thoughtbot/clearance) for authentication
-* [Flutie](/thoughtbot/flutie) for default CSS styles
-* [Formtastic](/justinfrench/formtastic) for form markup and style
-* [Paperclip](/thoughtbot/paperclip) for file uploads
+* [Simple Form](/plataformatec/simple_form) for form markup and style
 
 And testing gems like:
 
@@ -78,21 +75,6 @@ You can optionally create a Github repository:
 This has the same effect as running:
 
     hub create organization/project
-
-Clearance
----------
-
-You can optionally not include Clearance:
-
-    suspenders app --clearance false
-
-Capybara Webkit
----------------
-
-You can optionally not include Capybara Webkit (which depends on QT being
-installed on your machine):
-
-    suspenders app --webkit false
 
 Dependencies
 ------------
