@@ -82,26 +82,14 @@ module Suspenders
       bundle_command 'exec rake db:create'
     end
 
+    def replace_gemfile
+      remove_file 'Gemfile'
+      copy_file 'Gemfile_clean', 'Gemfile'
+    end
+
     def set_ruby_to_version_being_used
       inject_into_file 'Gemfile', "\n\nruby '#{RUBY_VERSION}'",
-        :after => /source 'https:\/\/rubygems.org'/
-    end
-
-    def add_custom_gems
-      additions_path = find_in_source_paths('Gemfile_additions')
-      new_gems = File.open(additions_path).read
-      inject_into_file 'Gemfile', "\n#{new_gems}",
-        :after => /gem 'jquery-rails'/
-    end
-
-    def add_clearance_gem
-      inject_into_file 'Gemfile', "\ngem 'clearance'",
-        :after => /gem 'jquery-rails'/
-    end
-
-    def add_capybara_webkit_gem
-      inject_into_file 'Gemfile', "\n  gem 'capybara-webkit'",
-        :after => /gem 'capybara'/
+        after: /source 'https:\/\/rubygems.org'/
     end
 
     def enable_database_cleaner
@@ -174,10 +162,6 @@ module Suspenders
 
     def setup_guard_spork
       copy_file 'Guardfile', 'Guardfile'
-    end
-
-    def generate_clearance
-      generate 'clearance:install'
     end
 
     def setup_foreman
@@ -253,28 +237,14 @@ module Suspenders
       end
     end
 
-    def setup_root_route
-      route "root :to => 'Clearance::Sessions#new'"
-    end
-
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
         /Application\.routes\.draw do.*end/m,
         "Application.routes.draw do\nend"
     end
 
-    def set_attr_accessibles_on_user
-      inject_into_file 'app/models/user.rb',
-        "  attr_accessible :email, :password\n",
-        :after => /include Clearance::User\n/
-    end
-
     def add_email_validator
       copy_file 'email_validator.rb', 'app/validators/email_validator.rb'
-    end
-
-    def include_clearance_matchers
-      create_file 'spec/support/clearance.rb', "require 'clearance/testing'"
     end
 
     def disable_xml_params

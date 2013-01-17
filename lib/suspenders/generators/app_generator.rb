@@ -3,9 +3,6 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
-    class_option :clearance, :type => :boolean, :aliases => '-C', :default => true,
-      :desc => 'Add the Clearance Rails authentication library'
-
     class_option :database, :type => :string, :aliases => '-d', :default => 'postgresql',
       :desc => "Preconfigure for selected database (options: #{DATABASES.join('/')})"
 
@@ -17,9 +14,6 @@ module Suspenders
 
     class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
       :desc => 'Skip Test::Unit files'
-
-    class_option :webkit, :type => :boolean, :aliases => '-W', :default => true,
-      :desc => 'Add the Capybara Webkit Javascript integration testing library'
 
     def finish_template
       invoke :suspenders_customization
@@ -42,7 +36,6 @@ module Suspenders
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
-      invoke :setup_root_route
       invoke :setup_git
       invoke :create_heroku_apps
       invoke :create_github_repo
@@ -67,11 +60,7 @@ module Suspenders
       build :generate_rspec
       build :configure_rspec
       build :enable_database_cleaner
-
-      if options[:webkit]
-        build :configure_capybara_webkit
-      end
-
+      build :configure_capybara_webkit
       build :setup_guard_spork
     end
 
@@ -100,17 +89,8 @@ module Suspenders
     end
 
     def customize_gemfile
+      build :replace_gemfile
       build :set_ruby_to_version_being_used
-      build :add_custom_gems
-
-      if options[:clearance]
-        build :add_clearance_gem
-      end
-
-      if options[:webkit]
-        build :add_capybara_webkit_gem
-      end
-
       bundle_command 'install --binstubs=bin/stubs'
     end
 
@@ -129,24 +109,10 @@ module Suspenders
       build :configure_action_mailer
       build :configure_time_zone
       build :configure_time_formats
-
       build :disable_xml_params
-
       build :add_email_validator
       build :setup_default_rake_task
-      build :setup_clearance
       build :setup_foreman
-    end
-
-    def setup_clearance
-      if options[:clearance]
-        build :generate_clearance
-        build :include_clearance_matchers
-
-        if using_active_record?
-          build :set_attr_accessibles_on_user
-        end
-      end
     end
 
     def setup_stylesheets
@@ -199,13 +165,6 @@ module Suspenders
 
     def remove_routes_comment_lines
       build :remove_routes_comment_lines
-    end
-
-    def setup_root_route
-      if options[:clearance]
-        say 'Setting up a root route'
-        build :setup_root_route
-      end
     end
 
     def outro
