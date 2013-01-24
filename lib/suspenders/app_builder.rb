@@ -33,11 +33,26 @@ module Suspenders
       append_file 'Rakefile', factories_spec_rake_task
     end
 
+    def configure_smtp
+      copy_file 'smtp.rb', 'config/initializers/smtp.rb'
+
+      prepend_file 'config/environments/production.rb',
+        "require Rails.root.join('config/initializers/smtp')"
+
+      config = <<-RUBY
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = SMTP_SETTINGS
+      RUBY
+
+      inject_into_file 'config/environments/production.rb', config,
+        :after => 'config.action_mailer.raise_delivery_errors = false'
+    end
+
     def setup_staging_environment
       run 'cp config/environments/production.rb config/environments/staging.rb'
-      inject_into_file 'config/environments/staging.rb',
-        "\n  config.action_mailer.delivery_method = :override_recipient_smtp, to: 'staging@example.com'",
-        :after => 'config.action_mailer.raise_delivery_errors = false'
+
+      prepend_file 'config/environments/staging.rb',
+        "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])"
     end
 
     def initialize_on_precompile
@@ -229,10 +244,6 @@ module Suspenders
     def create_github_repo(repo_name)
       path_addition = override_path_for_tests
       run "#{path_addition} hub create #{repo_name}"
-    end
-
-    def copy_libraries
-      copy_file 'override_recipient_smtp.rb', 'lib/override_recipient_smtp.rb'
     end
 
     def copy_miscellaneous_files

@@ -25,6 +25,7 @@ module Suspenders
       invoke :customize_gemfile
       invoke :setup_development_environment
       invoke :setup_test_environment
+      invoke :setup_production_environment
       invoke :setup_staging_environment
       invoke :create_suspenders_views
       invoke :create_common_javascripts
@@ -32,7 +33,6 @@ module Suspenders
       invoke :setup_database
       invoke :configure_app
       invoke :setup_stylesheets
-      invoke :copy_libraries
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
@@ -62,6 +62,11 @@ module Suspenders
       build :enable_database_cleaner
       build :configure_capybara_webkit
       build :setup_guard_spork
+    end
+
+    def setup_production_environment
+      say 'Setting up the production environment'
+      build :configure_smtp
     end
 
     def setup_staging_environment
