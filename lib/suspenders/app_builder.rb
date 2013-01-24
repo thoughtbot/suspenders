@@ -157,6 +157,10 @@ module Suspenders
       copy_file 'config_locales_en.yml', 'config/locales/en.yml'
     end
 
+    def configure_rack_timeout
+      copy_file 'rack_timeout.rb', 'config/initializers/rack_timeout.rb'
+    end
+
     def configure_action_mailer
       action_mailer_host 'development', "#{app_name}.local"
       action_mailer_host 'test', 'www.example.com'
@@ -244,6 +248,7 @@ module Suspenders
       style_tags =<<-EOS
 <link href='/assets/application.css' media='all' rel='stylesheet' type='text/css' />
       EOS
+
       %w(500 404 422).each do |page|
         inject_into_file "public/#{page}.html", meta_tags, :after => "<head>\n"
         replace_in_file "public/#{page}.html", /<style.+>.+<\/style>/mi, style_tags.strip
