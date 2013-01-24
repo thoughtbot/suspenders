@@ -116,7 +116,7 @@ module Suspenders
   end
       RUBY
 
-      generators_config = <<-RUBY
+      config = <<-RUBY
     config.generators do |generate|
       generate.test_framework :rspec
       generate.helper false
@@ -124,18 +124,32 @@ module Suspenders
       generate.javascript_engine false
       generate.view_specs false
     end
+
       RUBY
 
       inject_into_file 'spec/spec_helper.rb', rspec_expect_syntax,
         :after => 'RSpec.configure do |config|'
-      inject_into_class 'config/application.rb', 'Application', generators_config
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
+    def blacklist_active_record_attributes
+      config = <<-RUBY
+    config.active_record.whitelist_attributes = false
+
+      RUBY
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
+    def configure_strong_parameters
+      copy_file 'strong_parameters', 'config/initializers/strong_parameters.rb'
     end
 
     def configure_time_zone
-      time_zone_config = <<-RUBY
+      config = <<-RUBY
     config.active_record.default_timezone = :utc
+
       RUBY
-      inject_into_class "config/application.rb", "Application", time_zone_config
+      inject_into_class 'config/application.rb', 'Application', config
     end
 
     def configure_time_formats
