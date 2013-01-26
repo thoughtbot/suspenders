@@ -22,7 +22,7 @@ Gemfile
 -------
 
 To see the latest and greatest gems, look at Suspenders'
-[template/Gemfile_additions](/thoughtbot/suspenders/blob/master/templates/Gemfile_additions),
+[template/Gemfile_clean](/thoughtbot/suspenders/blob/master/templates/Gemfile_clean),
 which will be appended to the default generated projectname/Gemfile.
 
 It includes application gems like:
