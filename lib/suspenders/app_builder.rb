@@ -141,7 +141,7 @@ module Suspenders
     end
 
     def configure_strong_parameters
-      copy_file 'strong_parameters', 'config/initializers/strong_parameters.rb'
+      copy_file 'strong_parameters.rb', 'config/initializers/strong_parameters.rb'
     end
 
     def configure_time_zone
