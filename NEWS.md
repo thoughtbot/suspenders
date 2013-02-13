@@ -1,3 +1,16 @@
+1.2.0 (February 13, 2013)
+
+* Upgrade Rails from 3.2.8 to 3.2.12 to keep pace with security patches.
+* Improve staging environment on Heroku with staging `ENV` variables and
+  overriding the recipient in staging email delivery.
+* Remove Flutie, use Bourbon.
+* Wrap all HTTP requests in a 5 second timeout.
+* Don't use `attr_accessible` whitelists. Instead, configure Strong Parameters.
+* Provide a `bin/setup` script.
+* Force RSpec's `expect` syntax.
+* Remove remaining references to Cucumber, complete RSpec + Capybara conversion.
+* Improve Foreman/`.env`/`Procfile` interactions.
+
 1.1.5 (October 22, 2012)
 
 * Ignore `.env`.
