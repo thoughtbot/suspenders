@@ -22,25 +22,25 @@ Gemfile
 -------
 
 To see the latest and greatest gems, look at Suspenders'
-[template/Gemfile_clean](/thoughtbot/suspenders/blob/master/templates/Gemfile_clean),
+[templates/Gemfile_clean](templates/Gemfile_clean),
 which will be appended to the default generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Airbrake](/airbrake/airbrake) for exception notification
-* [Bourbon](/thoughtbot/bourbon) for Sass mixins
-* [Simple Form](/plataformatec/simple_form) for form markup and style
+* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
+* [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
+* [Simple Form](https://github.com/plataformatec/simple_form) for form markup and style
 
 And testing gems like:
 
-* [Bourne](/thoughtbot/bourne) and [Mocha](/freerange/mocha) for stubbing and
+* [Bourne](https://github.com/thoughtbot/bourne) and [Mocha](https://github.com/freerange/mocha) for stubbing and
   spying
-* [Capybara](/jnicklas/capybara) and
-  [Capybara Webkit](/thoughtbot/capybara-webkit) for integration testing
-* [Factory Girl](/thoughtbot/factory_girl) for test data
+* [Capybara](https://github.com/jnicklas/capybara) and
+  [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for integration testing
+* [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
 * [RSpec](https://github.com/rspec/rspec) for unit testing
-* [Shoulda Matchers](/thoughtbot/shoulda-matchers) for common RSpec matchers
-* [Timecop](/jtrupiano/timecop) for testing time
+* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common RSpec matchers
+* [Timecop](https://github.com/jtrupiano/timecop-console) for testing time
 
 Other goodies
 -------------
@@ -82,22 +82,22 @@ Dependencies
 Some gems included in Suspenders have native extensions. You should have GCC installed on your
 machine before generating an app with Suspenders.
 
-Use [OS X GCC Installer](/kennethreitz/osx-gcc-installer/) for Snow Leopard
+Use [OS X GCC Installer](https://github.com/kennethreitz/osx-gcc-installer/) for Snow Leopard
 (OS X 10.6).
 
 Use [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
 for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
 
-We use [Capybara Webkit](/thoughtbot/capybara-webkit) for full-stack Javascript
+We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for full-stack Javascript
 integration testing. It requires QT. Instructions for installing QT are
-[here](/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
+[here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
 Issues
 ------
 
-If you have problems, please create a [Github Issue](/thoughtbot/suspenders/issues).
+If you have problems, please create a [Github Issue](https://github.com/thoughtbot/suspenders/issues).
 
 Contributing
 ------------
