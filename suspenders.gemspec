@@ -27,7 +27,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.rdoc_options = ["--charset=UTF-8"]
   s.extra_rdoc_files = %w[README.md LICENSE]
 
-  s.add_dependency 'rails', '3.2.11'
+  s.add_dependency 'rails', '3.2.12'
   s.add_dependency 'bundler', '>= 1.1'
   s.add_dependency 'hub', '~> 1.10.2'
 
