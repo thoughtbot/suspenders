@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'airbrake'
 gem 'bourbon'
+gem 'flutie'
 gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
@@ -13,8 +14,8 @@ gem 'strong_parameters'
 gem 'thin'
 
 group :assets do
-  gem 'sass-rails'
   gem 'coffee-rails'
+  gem 'sass-rails'
   gem 'uglifier'
 end
 
