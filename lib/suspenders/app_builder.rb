@@ -133,11 +133,9 @@ module Suspenders
     end
 
     def blacklist_active_record_attributes
-      config = <<-RUBY
-    config.active_record.whitelist_attributes = false
-
-      RUBY
-      inject_into_class 'config/application.rb', 'Application', config
+      replace_in_file 'config/application.rb',
+        'config.active_record.whitelist_attributes = true',
+        'config.active_record.whitelist_attributes = false'
     end
 
     def configure_strong_parameters
