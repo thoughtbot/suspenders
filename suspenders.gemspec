@@ -1,12 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "suspenders/version"
+require 'suspenders/version'
+require 'date'
 
 Gem::Specification.new do |s|
   s.name     = 'suspenders'
   s.version  = Suspenders::VERSION
   s.date     = Date.today.strftime('%Y-%m-%d')
-  s.authors  = ["thoughtbot"]
+  s.authors  = ['thoughtbot']
   s.email    = 'support@thoughtbot.com'
   s.homepage = 'http://github.com/thoughtbot/suspenders'
 
