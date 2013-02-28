@@ -1,3 +1,12 @@
+1.2.1 (February 28, 2013)
+
+* Use Ruby 1.9.3 and 2.0
+* Update staging and production email delivery
+* Remove Spork and Guard
+* Add better_errors and binding_of_caller gems
+* Fix ActiveRecord attributes' blacklist
+* Add Flutie to Gemfile
+
 1.2.0 (February 13, 2013)
 
 * Upgrade Rails from 3.2.8 to 3.2.12 to keep pace with security patches.
