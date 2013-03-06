@@ -1,4 +1,4 @@
-# Suspenders [![Build Status](https://secure.travis-ci.org/thoughtbot/suspenders.png?branch=master)](http://travis-ci.org/thoughtbot/suspenders)
+# Suspenders [![Build Status](https://secure.travis-ci.org/thoughtbot/suspenders.png?branch=master)](http://travis-ci.org/thoughtbot/suspenders) [![Dependency Status](https://gemnasium.com/thoughtbot/suspenders.png)](https://gemnasium.com/thoughtbot/suspenders)
 
 Suspenders is the base Rails application used at [thoughtbot](http://thoughtbot.com/community).
 
