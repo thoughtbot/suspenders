@@ -37,7 +37,7 @@ module Suspenders
       copy_file 'smtp.rb', 'config/initializers/smtp.rb'
 
       prepend_file 'config/environments/production.rb',
-        "require Rails.root.join('config/initializers/smtp')"
+        "require Rails.root.join('config/initializers/smtp')\n"
 
       config = <<-RUBY
   config.action_mailer.delivery_method = :smtp
@@ -52,7 +52,7 @@ module Suspenders
       run 'cp config/environments/production.rb config/environments/staging.rb'
 
       prepend_file 'config/environments/staging.rb',
-        "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])"
+        "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
     end
 
     def initialize_on_precompile
