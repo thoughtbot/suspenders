@@ -7,7 +7,7 @@ describe 'validate FactoryGirl factories' do
 
       it "is valid" do
         is_valid = subject.valid?
-        is_valid.should be_true, subject.errors.full_messages.join(',')
+        expect(is_valid).to be_true, subject.errors.full_messages.join(',')
       end
     end
   end
