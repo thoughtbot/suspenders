@@ -59,6 +59,7 @@ module Suspenders
       build :test_factories_first
       build :generate_rspec
       build :configure_rspec
+      build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_capybara_webkit
       build :setup_guard_spork

@@ -2,6 +2,7 @@ source 'https://rubygems.org'
 
 gem 'airbrake'
 gem 'bourbon'
+gem 'delayed_job_active_record'
 gem 'flutie'
 gem 'high_voltage'
 gem 'jquery-rails'
