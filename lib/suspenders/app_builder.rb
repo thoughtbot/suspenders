@@ -147,6 +147,11 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
+    def configure_background_jobs_for_rspec
+      copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
+      run 'rails g delayed_job:active_record'
+    end
+
     def blacklist_active_record_attributes
       replace_in_file 'config/application.rb',
         'config.active_record.whitelist_attributes = true',
