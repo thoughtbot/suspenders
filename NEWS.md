@@ -1,3 +1,9 @@
+1.2.2 (March 14, 2013)
+
+* Fix Syntax error in staging/production environment config files.
+* Make Factory Girl available to development environment for generators and
+  `rails console`.
+
 1.2.1 (February 28, 2013)
 
 * Use Ruby 1.9.3 and 2.0
