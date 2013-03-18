@@ -137,6 +137,8 @@ module Suspenders
       generate.helper false
       generate.stylesheets false
       generate.javascript_engine false
+      generate.request_specs false
+      generate.routing_specs false
       generate.view_specs false
     end
 
