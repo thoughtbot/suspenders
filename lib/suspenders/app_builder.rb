@@ -149,6 +149,7 @@ module Suspenders
 
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
+      run 'rails g delayed_job:active_record'
     end
 
     def blacklist_active_record_attributes
@@ -159,7 +160,6 @@ module Suspenders
 
     def configure_strong_parameters
       copy_file 'strong_parameters.rb', 'config/initializers/strong_parameters.rb'
-      run 'rails g delayed_job:active_record'
     end
 
     def configure_time_zone
