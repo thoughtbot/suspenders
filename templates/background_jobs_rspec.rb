@@ -3,6 +3,7 @@ module BackgroundJobs
     delay_jobs = Delayed::Worker.delay_jobs
     Delayed::Worker.delay_jobs = false
     yield
+  ensure
     Delayed::Worker.delay_jobs = delay_jobs
   end
 end
