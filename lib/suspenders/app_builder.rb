@@ -148,20 +148,6 @@ module Suspenders
     end
 
     def configure_background_jobs_for_rspec
-      config = <<-RUBY
-  config.around(:each, type: :feature) do |example|
-    run_background_jobs_immediately do
-      example.run
-    end
-  end
-
-  config.include BackgroundJobs
-      RUBY
-
-      inject_into_file 'spec/spec_helper.rb',
-        config,
-        after: 'RSpec.configure do |config|'
-
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
     end
 
