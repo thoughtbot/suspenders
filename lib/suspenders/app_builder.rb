@@ -159,6 +159,7 @@ module Suspenders
 
     def configure_strong_parameters
       copy_file 'strong_parameters.rb', 'config/initializers/strong_parameters.rb'
+      run 'rails g delayed_job:active_record'
     end
 
     def configure_time_zone
