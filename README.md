@@ -81,6 +81,8 @@ This has the same effect as running:
 Dependencies
 ------------
 
+Suspenders requires Ruby 1.9 or greater.
+
 Some gems included in Suspenders have native extensions. You should have GCC
 installed on your machine before generating an app with Suspenders.
 
