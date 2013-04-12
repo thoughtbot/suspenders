@@ -23,6 +23,7 @@ module Suspenders
     def suspenders_customization
       invoke :remove_files_we_dont_need
       invoke :customize_gemfile
+      invoke :setup_database
       invoke :setup_development_environment
       invoke :setup_test_environment
       invoke :setup_production_environment
@@ -30,7 +31,6 @@ module Suspenders
       invoke :create_suspenders_views
       invoke :create_common_javascripts
       invoke :add_jquery_ui
-      invoke :setup_database
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
@@ -45,6 +45,22 @@ module Suspenders
     def remove_files_we_dont_need
       build :remove_public_index
       build :remove_rails_logo_image
+    end
+
+    def customize_gemfile
+      build :replace_gemfile
+      build :set_ruby_to_version_being_used
+      bundle_command 'install --binstubs=bin/stubs'
+    end
+
+    def setup_database
+      say 'Setting up database'
+
+      if 'postgresql' == options[:database]
+        build :use_postgres_config_template
+      end
+
+      build :create_database
     end
 
     def setup_development_environment
@@ -91,22 +107,6 @@ module Suspenders
     def add_jquery_ui
       say 'Add jQuery ui to the standard application.js'
       build :add_jquery_ui
-    end
-
-    def customize_gemfile
-      build :replace_gemfile
-      build :set_ruby_to_version_being_used
-      bundle_command 'install --binstubs=bin/stubs'
-    end
-
-    def setup_database
-      say 'Setting up database'
-
-      if 'postgresql' == options[:database]
-        build :use_postgres_config_template
-      end
-
-      build :create_database
     end
 
     def configure_app
