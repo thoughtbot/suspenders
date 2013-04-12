@@ -40,6 +40,7 @@ module Suspenders
         "require Rails.root.join('config/initializers/smtp')\n"
 
       config = <<-RUBY
+
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = SMTP_SETTINGS
       RUBY
