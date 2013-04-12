@@ -15,10 +15,15 @@ module Suspenders
     end
 
     def action_mailer_host(rails_env, host)
+      host_config = "config.action_mailer.default_url_option = { host: '#{host}' }"
+      configure_environment(rails_env, host_config)
+    end
+
+    def configure_environment(rails_env, config)
       inject_into_file(
         "config/environments/#{rails_env}.rb",
-        "\n\n  config.action_mailer.default_url_options = { :host => '#{host}' }",
-        :before => "\nend"
+        "\n\n  #{config}",
+        before: "\nend"
       )
     end
 

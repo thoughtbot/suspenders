@@ -14,9 +14,14 @@ module Suspenders
       remove_file 'app/assets/images/rails.png'
     end
 
-    def raise_delivery_errors
+    def raise_on_delivery_errors
       replace_in_file 'config/environments/development.rb',
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
+    end
+
+    def raise_on_unpermitted_parameters
+      configure_environment 'development',
+        'config.action_controller.action_on_unpermitted_parameters = :raise'
     end
 
     def provide_setup_script
