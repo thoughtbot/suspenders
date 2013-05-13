@@ -1,3 +1,12 @@
+1.3.0 (May 13, 2013)
+
+* Switch web server from Thin to Unicorn
+* Set up database before setting up RSpec so that the rspec:install task works
+* Add Delayed::Job
+* Clean up cruft from ActionMailer delivery configuration
+* strong_parameters now raises an error in development
+* Enforce Ruby 1.9.2+ in the gemspec
+
 1.2.2 (March 14, 2013)
 
 * Fix Syntax error in staging/production environment config files.
