@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bundler', '~> 1.3'
   s.add_dependency 'hub', '~> 1.10'
   s.add_dependency 'rails', '3.2.13'
-  s.add_development_dependency 'aruba', '~> 0.5'
+  s.add_development_dependency 'aruba', '~> 0.5.2'
   s.add_development_dependency 'cucumber', '~> 1.2'
   s.authors = ['thoughtbot']
   s.date = Date.today.strftime('%Y-%m-%d')
