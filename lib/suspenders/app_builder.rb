@@ -287,10 +287,6 @@ module Suspenders
         "Application.routes.draw do\nend"
     end
 
-    def add_email_validator
-      copy_file 'email_validator.rb', 'app/validators/email_validator.rb'
-    end
-
     def disable_xml_params
       copy_file 'disable_xml_params.rb', 'config/initializers/disable_xml_params.rb'
     end
