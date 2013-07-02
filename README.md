@@ -30,6 +30,7 @@ It includes application gems like:
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup and style
+* [Email Validator](https://github.com/balexand/email_validator) for email validation
 
 And testing gems like:
 
