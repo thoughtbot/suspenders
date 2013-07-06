@@ -132,9 +132,15 @@ module Suspenders
 
       rspec_expect_syntax = <<-RUBY
 
+      RUBY
+
+      fail_fast = <<-RUBY
+      config.fail_fast = true
+
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
       RUBY
 
       config = <<-RUBY
@@ -148,6 +154,8 @@ module Suspenders
 
       RUBY
 
+      inject_into_file 'spec/spec_helper.rb', fail_fast,
+        :after => 'RSpec.configure do |config|'
       inject_into_file 'spec/spec_helper.rb', rspec_expect_syntax,
         :after => 'RSpec.configure do |config|'
       inject_into_class 'config/application.rb', 'Application', config
