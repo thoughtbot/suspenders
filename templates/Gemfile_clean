@@ -9,10 +9,9 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg'
 gem 'rack-timeout'
-gem 'rails', '>= 3.2.11'
+gem 'rails', '>= 4.0.0'
 gem 'recipient_interceptor'
 gem 'simple_form'
-gem 'strong_parameters'
 gem 'unicorn'
 
 group :assets do

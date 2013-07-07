@@ -164,16 +164,6 @@ module Suspenders
       run 'rails g delayed_job:active_record'
     end
 
-    def blacklist_active_record_attributes
-      replace_in_file 'config/application.rb',
-        'config.active_record.whitelist_attributes = true',
-        'config.active_record.whitelist_attributes = false'
-    end
-
-    def configure_strong_parameters
-      copy_file 'strong_parameters.rb', 'config/initializers/strong_parameters.rb'
-    end
-
     def configure_time_zone
       config = <<-RUBY
     config.active_record.default_timezone = :utc
@@ -247,7 +237,8 @@ module Suspenders
         'spec/support/mixins',
         'spec/support/shared_examples'
       ].each do |dir|
-        empty_directory_with_gitkeep dir
+        run "mkdir #{dir}"
+        run "touch #{dir}/.gitkeep"
       end
     end
 

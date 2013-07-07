@@ -28,7 +28,7 @@ When 'I suspend a project called "$project_name"' do |project_name|
   run_simple "#{suspenders_bin} #{project_name}"
 end
 
-When /^I suspend a project called "([^"]*)" with:$/ do |project_name, arguments_table|
+When %r{I suspend a project called "([^"]*)" with:} do |project_name, arguments_table|
   suspenders_bin = File.expand_path(File.join('..', '..', 'bin', 'suspenders'), File.dirname(__FILE__))
   arguments = arguments_table.hashes.inject([]) do |accum, argument|
     accum << "#{argument['argument']}=#{argument['value']}"
@@ -49,20 +49,20 @@ Then 'I can cleanly rake the project' do
   }
 end
 
-Then /^"(.*)" should not be installed$/ do |gem_name|
+Then %r{"(.*)" should not be installed} do |gem_name|
   in_current_dir do
     system("bundle show #{gem_name} 2>&1 > /dev/null").should be_false
   end
 end
 
-Then /^"(.*)" should not be included in "(.*)"$/ do |content, file_path|
+Then %r{"(.*)" should not be included in "(.*)"} do |content, file_path|
   check_file_content file_path, content, false
 end
 
-Then /^the "([^"]*)" Heroku app should exist$/ do |app_name|
+Then %r{the "([^"]*)" Heroku app should exist} do |app_name|
   FakeHeroku.should have_created_app(app_name)
 end
 
-Then /^the "([^"]*)" Github repo should exist$/ do |repo_name|
+Then %r{the "([^"]*)" Github repo should exist} do |repo_name|
   FakeGithub.should have_created_repo(repo_name)
 end
