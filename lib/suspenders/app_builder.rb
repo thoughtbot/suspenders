@@ -29,6 +29,21 @@ module Suspenders
       run 'chmod a+x bin/setup'
     end
 
+    def configure_generators
+      config = <<-RUBY
+  config.generators do |generate|
+    generate.helper false
+    generate.javascript_engine false
+    generate.stylesheets false
+    generate.test_framework :rspec
+    generate.view_specs false
+  end
+
+      RUBY
+
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
     def enable_factory_girl_syntax
       copy_file 'factory_girl_syntax_rspec.rb', 'spec/support/factory_girl.rb'
     end
@@ -130,27 +145,18 @@ module Suspenders
         '# config.mock_with :mocha',
         'config.mock_with :mocha'
 
-      rspec_expect_syntax = <<-RUBY
-
-  config.expect_with :rspec do |c|
-    c.syntax = :expect
-  end
-      RUBY
-
       config = <<-RUBY
-    config.generators do |generate|
-      generate.test_framework :rspec
-      generate.helper false
-      generate.stylesheets false
-      generate.javascript_engine false
-      generate.view_specs false
-    end
+  config.expect_with :rspec do |expect|
+    expect.syntax = :expect
+  end
+
+  config.fail_fast = true
 
       RUBY
 
-      inject_into_file 'spec/spec_helper.rb', rspec_expect_syntax,
+      inject_into_file 'spec/spec_helper.rb',
+        config,
         :after => 'RSpec.configure do |config|'
-      inject_into_class 'config/application.rb', 'Application', config
     end
 
     def configure_background_jobs_for_rspec

@@ -68,6 +68,7 @@ module Suspenders
       build :raise_on_delivery_errors
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
+      build :configure_generators
     end
 
     def setup_test_environment
