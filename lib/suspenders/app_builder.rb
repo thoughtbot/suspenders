@@ -237,7 +237,8 @@ module Suspenders
         'spec/support/mixins',
         'spec/support/shared_examples'
       ].each do |dir|
-        empty_directory_with_gitkeep dir
+        run "mkdir #{dir}"
+        run "touch #{dir}/.gitkeep"
       end
     end
 
