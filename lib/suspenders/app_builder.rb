@@ -106,7 +106,7 @@ module Suspenders
 
     def add_jquery_ui
       inject_into_file 'app/assets/javascripts/application.js',
-        "//= require jquery-ui\n", :before => '//= require_tree .'
+        "//= require jquery.ui.all\n", :before => '//= require_tree .'
     end
 
     def use_postgres_config_template
