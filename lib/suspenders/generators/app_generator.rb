@@ -30,7 +30,6 @@ module Suspenders
       invoke :setup_staging_environment
       invoke :create_suspenders_views
       invoke :create_common_javascripts
-      invoke :add_jquery_ui
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
@@ -105,11 +104,6 @@ module Suspenders
     def create_common_javascripts
       say 'Pulling in some common javascripts'
       build :create_common_javascripts
-    end
-
-    def add_jquery_ui
-      say 'Add jQuery ui to the standard application.js'
-      build :add_jquery_ui
     end
 
     def configure_app
