@@ -196,7 +196,7 @@ module Suspenders
 
     def configure_capybara_webkit
       append_file 'spec/spec_helper.rb' do
-        "\nCapybara.javascript_driver = :webkit"
+        "\nCapybara.javascript_driver = :webkit\n"
       end
     end
 
@@ -292,7 +292,7 @@ module Suspenders
 
     def setup_default_rake_task
       append_file 'Rakefile' do
-        "task(:default).clear\ntask :default => [:spec]"
+        "task(:default).clear\ntask :default => [:spec]\n"
       end
     end
 
