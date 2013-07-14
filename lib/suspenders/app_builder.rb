@@ -106,11 +106,6 @@ module Suspenders
       directory 'javascripts', 'app/assets/javascripts'
     end
 
-    def add_jquery_ui
-      inject_into_file 'app/assets/javascripts/application.js',
-        "//= require jquery-ui\n", :before => '//= require_tree .'
-    end
-
     def use_postgres_config_template
       template 'postgresql_database.yml.erb', 'config/database.yml',
         :force => true
