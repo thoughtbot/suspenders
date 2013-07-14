@@ -1,13 +1,12 @@
 require 'spec_helper'
 
-describe 'validate FactoryGirl factories' do
-  FactoryGirl.factories.each do |factory|
-    context "with factory for :#{factory.name}" do
-      subject { FactoryGirl.build(factory.name) }
+FactoryGirl.factories.map(&:name).each do |factory_name|
+  describe "factory #{factory_name}" do
+    it 'is valid' do
+      factory = build(factory_name)
 
-      it 'is valid' do
-        is_valid = subject.valid?
-        expect(is_valid).to be_true, subject.errors.full_messages.join(',')
+      if factory.respond_to?(:valid?)
+        expect(factory).to be_valid, factory.errors.full_messages.join(',')
       end
     end
   end
