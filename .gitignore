@@ -2,6 +2,7 @@
 *.swp
 .bundle
 .rake_tasks
+.DS_Store
 /bin/*
 !bin/suspenders
 pkg
