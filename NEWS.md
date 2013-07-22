@@ -1,3 +1,13 @@
+1.4.0 (July 21, 2013)
+
+* Support Rails 4.
+* Support Ruby 2.
+* Remove jQuery UI.
+* Factories spec works for non-ActiveRecord objects.
+* Use New Relic RPM gem >= 3.5.7 for Heroku request queue accuracy.
+* Abort RSpec runs on first failure.
+* Replace custom email validator with gem.
+
 1.3.0 (May 13, 2013)
 
 * Switch web server from Thin to Unicorn
