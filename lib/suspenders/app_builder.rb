@@ -209,11 +209,9 @@ module Suspenders
     end
 
     def setup_stylesheets
-      copy_file 'app/assets/stylesheets/application.css',
-        'app/assets/stylesheets/application.css.scss'
       remove_file 'app/assets/stylesheets/application.css'
-      concat_file 'import_scss_styles', 'app/assets/stylesheets/application.css.scss'
-      create_file 'app/assets/stylesheets/_screen.scss'
+      copy_file 'application.css.scss',
+        'app/assets/stylesheets/application.css.scss'
     end
 
     def gitignore_files

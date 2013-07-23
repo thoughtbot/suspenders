@@ -29,8 +29,29 @@ It includes application gems like:
 
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
-* [Simple Form](https://github.com/plataformatec/simple_form) for form markup and style
-* [Email Validator](https://github.com/balexand/email_validator) for email validation
+* [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
+  processing
+* [Email Validator](https://github.com/balexand/email_validator) for email
+  validation
+* [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and
+  `body_class` view helpers
+* [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
+* [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
+* [Neat](https://github.com/thoughtbot/neat) for semantic grids
+* [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
+* [Rack Timeout](https://github.com/kch/rack-timeout) to abort requests that are
+  taking too long
+* [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
+  avoid accidentally sending emails to real people from staging
+* [Simple Form](https://github.com/plataformatec/simple_form) for form markup
+  and style
+* [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
+
+And gems only for staging and production like:
+
+* [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
+* [Rails 12 Factor](https://github.com/heroku/rails_12factor) to making running
+  Rails 4 apps easier on Heroku
 
 And testing gems like:
 
