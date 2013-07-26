@@ -55,13 +55,12 @@ And gems only for staging and production like:
 
 And testing gems like:
 
-* [Bourne](https://github.com/thoughtbot/bourne) and
-  [Mocha](https://github.com/freerange/mocha) for stubbing and spying
 * [Capybara](https://github.com/jnicklas/capybara) and
   [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
   integration testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
 * [RSpec](https://github.com/rspec/rspec) for unit testing
+* [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
 * [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
   RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop-console) for testing time
