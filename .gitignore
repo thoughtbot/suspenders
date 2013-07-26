@@ -2,8 +2,8 @@
 *.swp
 .bundle
 .rake_tasks
+.DS_Store
 /bin/*
 !bin/suspenders
+/tmp/*
 pkg
-test_project
-tmp/aruba
