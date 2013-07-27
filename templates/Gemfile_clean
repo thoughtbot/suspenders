@@ -14,12 +14,9 @@ gem 'rails', '>= 4.0.0'
 gem 'recipient_interceptor'
 gem 'simple_form'
 gem 'unicorn'
-
-group :assets do
-  gem 'coffee-rails'
-  gem 'sass-rails'
-  gem 'uglifier'
-end
+gem 'coffee-rails'
+gem 'sass-rails'
+gem 'uglifier'
 
 group :development do
   gem 'foreman'
