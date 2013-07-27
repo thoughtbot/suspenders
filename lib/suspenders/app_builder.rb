@@ -126,30 +126,14 @@ module Suspenders
     end
 
     def enable_database_cleaner
-      replace_in_file 'spec/spec_helper.rb',
-        'config.use_transactional_fixtures = true',
-        'config.use_transactional_fixtures = false'
-
       copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
     end
 
     def configure_rspec
       remove_file '.rspec'
       copy_file 'rspec', '.rspec'
-      prepend_file 'spec/spec_helper.rb', simplecov_init
-
-      config = <<-RUBY
-  config.expect_with :rspec do |expect|
-    expect.syntax = :expect
-  end
-
-  config.fail_fast = true
-
-      RUBY
-
-      inject_into_file 'spec/spec_helper.rb',
-        config,
-        :after => 'RSpec.configure do |config|'
+      remove_file 'spec/spec_helper.rb'
+      copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
     end
 
     def configure_background_jobs_for_rspec
@@ -183,12 +167,6 @@ module Suspenders
 
     def generate_rspec
       generate 'rspec:install'
-    end
-
-    def configure_capybara_webkit
-      append_file 'spec/spec_helper.rb' do
-        "\nCapybara.javascript_driver = :webkit\n"
-      end
     end
 
     def generate_clearance
@@ -296,10 +274,6 @@ module Suspenders
 
     def factories_spec_rake_task
       IO.read find_in_source_paths('factories_spec_rake_task.rb')
-    end
-
-    def simplecov_init
-      IO.read find_in_source_paths('simplecov_init.rb')
     end
   end
 end

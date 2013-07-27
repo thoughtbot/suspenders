@@ -27,7 +27,6 @@ end
 group :development, :test do
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>= 2.14'
-  gem 'sham_rack'
 end
 
 group :test do
@@ -37,6 +36,7 @@ group :test do
   gem 'shoulda-matchers'
   gem 'simplecov', require: false
   gem 'timecop'
+  gem 'webmock'
 end
 
 group :staging, :production do
