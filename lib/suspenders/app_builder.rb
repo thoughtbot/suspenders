@@ -138,10 +138,6 @@ module Suspenders
       copy_file 'rspec', '.rspec'
       prepend_file 'spec/spec_helper.rb', simplecov_init
 
-      replace_in_file 'spec/spec_helper.rb',
-        '# config.mock_with :mocha',
-        'config.mock_with :mocha'
-
       config = <<-RUBY
   config.expect_with :rspec do |expect|
     expect.syntax = :expect
