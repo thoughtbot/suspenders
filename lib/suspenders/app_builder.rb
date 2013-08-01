@@ -78,12 +78,6 @@ module Suspenders
         "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
     end
 
-    def initialize_on_precompile
-      inject_into_file 'config/application.rb',
-        "\n    config.assets.initialize_on_precompile = false",
-        :after => 'config.assets.enabled = true'
-    end
-
     def create_partials_directory
       empty_directory 'app/views/application'
     end
