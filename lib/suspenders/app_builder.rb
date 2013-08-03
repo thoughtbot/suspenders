@@ -183,17 +183,11 @@ module Suspenders
     end
 
     def gitignore_files
-      concat_file 'suspenders_gitignore', '.gitignore'
+      remove_file '.gitignore'
+      copy_file 'suspenders_gitignore', '.gitignore'
       [
-        'app/models',
-        'app/assets/images',
         'app/views/pages',
-        'db/migrate',
-        'log',
-        'spec/support',
         'spec/lib',
-        'spec/models',
-        'spec/views',
         'spec/controllers',
         'spec/helpers',
         'spec/support/matchers',
@@ -201,7 +195,7 @@ module Suspenders
         'spec/support/shared_examples'
       ].each do |dir|
         run "mkdir #{dir}"
-        run "touch #{dir}/.gitkeep"
+        run "touch #{dir}/.keep"
       end
     end
 
