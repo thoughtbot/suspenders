@@ -1,3 +1,11 @@
+1.5.0 (August 3, 2013)
+
+* Add Neat.
+* Replace Bourne with RSpec Mocks.
+* Replace Sham Rack with WebMock.
+* Remove dependency on `hub` gem.
+* Clean up leftover Rails 3 conventions.
+
 1.4.0 (July 21, 2013)
 
 * Support Rails 4.
