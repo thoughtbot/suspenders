@@ -175,6 +175,8 @@ end
     end
 
     def configure_rspec
+      remove_file '.rspec'
+      copy_file 'rspec', '.rspec'
       remove_file 'spec/spec_helper.rb'
       copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
     end
