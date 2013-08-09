@@ -79,7 +79,6 @@ module Suspenders
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_capybara_webkit
-      build :setup_guard_spork
     end
 
     def setup_production_environment
