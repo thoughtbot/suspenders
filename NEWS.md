@@ -1,3 +1,7 @@
+master (unreleased)
+
+* Remove `--drb` now that we aren't using Spork.
+
 1.5.0 (August 3, 2013)
 
 * Add Neat.
