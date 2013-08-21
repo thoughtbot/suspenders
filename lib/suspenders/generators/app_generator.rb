@@ -175,10 +175,6 @@ module Suspenders
       say "Remember to run 'rails generate airbrake' with your API key."
     end
 
-    def run_bundle
-      # Let's not: We'll bundle manually at the right spot
-    end
-
     protected
 
     def get_builder_class
