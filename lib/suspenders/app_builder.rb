@@ -210,6 +210,15 @@ module Suspenders
       run "#{path_addition} heroku config:add RACK_ENV=staging RAILS_ENV=staging --remote=staging"
     end
 
+    def set_heroku_remotes
+      concat_file(
+        'templates/bin_setup',
+        "# Set up staging and production git remotes\r
+        git remote add staging git@heroku.com: #{app_name}-staging.git\r
+        git remote add production git@heroku.com: #{app_name}-production.git"
+      )
+    end
+
     def create_github_repo(repo_name)
       path_addition = override_path_for_tests
       run "#{path_addition} hub create #{repo_name}"

@@ -3,9 +3,24 @@
 # Set up Rails app. Run this script immediately after cloning the codebase.
 # https://github.com/thoughtbot/guides/tree/master/protocol
 
-bundle install --binstubs=bin/stubs
+# Set up Ruby dependencies via Bundler
+bundle install
+
+# Set up the database
 bundle exec rake db:setup
 
+# Set up configurable environment variables
 if [ ! -f .env ]; then
   cp .sample.env .env
+fi
+
+# Pick a port for Foreman
+echo "port: 7000" > .foreman
+
+# Set up DNS via Pow
+if [ -d ~/.pow ]
+then
+  echo 7000 > ~/.pow/`basename $PWD`
+else
+  echo "Pow not set up but the team uses it for this project. Setup: http://goo.gl/RaDPO"
 fi
