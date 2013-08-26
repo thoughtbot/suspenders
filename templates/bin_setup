@@ -3,9 +3,33 @@
 # Set up Rails app. Run this script immediately after cloning the codebase.
 # https://github.com/thoughtbot/guides/tree/master/protocol
 
+# Bundle the gems
 bundle install --binstubs=bin/stubs
+
+# Set up the database
 bundle exec rake db:setup
 
+# Set up staging and production git remotes
+# git remote add staging git@heroku.com:appname.git
+# git remote add production git@heroku.com:appname.git
+
+# Copy any sample .env files to .env
 if [ ! -f .env ]; then
   cp .sample.env .env
 fi
+
+# Set up configurable environment variables
+if [ ! -f .env ]; then
+  cp .sample.env .env
+fi
+
+# Install pow to run application locally
+if [ ! -d ~/.pow ]; then
+  curl get.pow.cx | sh
+fi
+
+# Set up pow - visit "http://appname.dev" to view development environment
+ln -s $(pwd) ~/.pow/$(basename $(pwd))
+
+# Port number on which to run pow (these should be unique)
+echo "port: 7000" > .foreman
