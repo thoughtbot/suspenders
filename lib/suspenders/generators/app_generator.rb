@@ -133,6 +133,7 @@ module Suspenders
       if options[:heroku]
         say 'Creating Heroku apps'
         build :create_heroku_apps
+        build :set_heroku_remotes
       end
     end
 
