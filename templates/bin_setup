@@ -13,11 +13,6 @@ bundle exec rake db:setup
 # git remote add staging git@heroku.com:appname.git
 # git remote add production git@heroku.com:appname.git
 
-# Copy any sample .env files to .env
-if [ ! -f .env ]; then
-  cp .sample.env .env
-fi
-
 # Set up configurable environment variables
 if [ ! -f .env ]; then
   cp .sample.env .env
