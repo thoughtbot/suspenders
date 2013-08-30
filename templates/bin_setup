@@ -10,8 +10,8 @@ bundle install --binstubs=bin/stubs
 bundle exec rake db:setup
 
 # Set up staging and production git remotes
-# git remote add staging git@heroku.com:appname.git
-# git remote add production git@heroku.com:appname.git
+# git remote add staging git@heroku.com: "#{app_name}"-staging.git
+# git remote add production git@heroku.com: "#{app_name}"-production.git
 
 # Set up configurable environment variables
 if [ ! -f .env ]; then
