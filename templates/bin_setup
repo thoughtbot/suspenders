@@ -21,6 +21,3 @@ fi
 
 # Set up pow - visit "http://appname.dev" to view development environment
 ln -s $(pwd) ~/.pow/$(basename $(pwd))
-
-# Port number on which to run pow (these should be unique)
-echo "port: 7000" > .foreman
