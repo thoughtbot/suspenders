@@ -4,7 +4,6 @@
 *.swp
 .bundle
 .sass-cache/
-bin/stubs
 coverage/*
 db/*.sqlite3
 db/schema.rb
