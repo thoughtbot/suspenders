@@ -96,6 +96,12 @@ module Suspenders
         :force => true
     end
 
+    def remove_turbolinks
+      replace_in_file 'app/assets/javascripts/application.js',
+        /\/\/= require turbolinks\n/,
+        ''
+    end
+
     def create_common_javascripts
       directory 'javascripts', 'app/assets/javascripts'
     end

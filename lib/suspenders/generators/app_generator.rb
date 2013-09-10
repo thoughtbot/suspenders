@@ -29,7 +29,7 @@ module Suspenders
       invoke :setup_production_environment
       invoke :setup_staging_environment
       invoke :create_suspenders_views
-      invoke :create_common_javascripts
+      invoke :setup_coffeescript
       invoke :configure_app
       invoke :setup_stylesheets
       invoke :copy_miscellaneous_files
@@ -99,8 +99,9 @@ module Suspenders
       build :create_application_layout
     end
 
-    def create_common_javascripts
-      say 'Pulling in some common javascripts'
+    def setup_coffeescript
+      say 'Setting up CoffeeScript defaults'
+      build :remove_turbolinks
       build :create_common_javascripts
     end
 
