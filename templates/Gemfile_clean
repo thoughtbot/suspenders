@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'airbrake'
 gem 'bourbon'
 gem 'coffee-rails'
-gem 'delayed_job_active_record', '>= 4.0.0.beta2'
+gem 'delayed_job_active_record', '>= 4.0.0'
 gem 'email_validator'
 gem 'flutie'
 gem 'high_voltage'
@@ -30,7 +30,7 @@ group :development, :test do
 end
 
 group :test do
-  gem 'capybara-webkit', '>= 0.14.1'
+  gem 'capybara-webkit', '>= 1.0.0'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'shoulda-matchers'
@@ -40,6 +40,6 @@ group :test do
 end
 
 group :staging, :production do
-  gem 'newrelic_rpm', '>= 3.5.7'
+  gem 'newrelic_rpm', '>= 3.6.7'
   gem 'rails_12factor'
 end
