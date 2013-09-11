@@ -1,6 +1,10 @@
-master (unreleased)
+1.5.1 (September 10, 2013)
 
+* Remove Turbolinks.
+* Don't use Bundler's binstubs in `bin/setup`.
 * Remove `--drb` now that we aren't using Spork.
+* Set up DNS via Pow for development.
+* Update gem versions.
 
 1.5.0 (August 3, 2013)
 
