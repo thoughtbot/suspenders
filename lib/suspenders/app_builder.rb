@@ -134,6 +134,11 @@ module Suspenders
       copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
     end
 
+    def use_rspec_binstub
+      run 'bundle binstub rspec-core'
+      run 'rm bin/autospec'
+    end
+
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
       run 'rails g delayed_job:active_record'

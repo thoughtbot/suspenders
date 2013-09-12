@@ -49,7 +49,7 @@ module Suspenders
     def customize_gemfile
       build :replace_gemfile
       build :set_ruby_to_version_being_used
-      bundle_command 'install --binstubs=bin/stubs'
+      bundle_command 'install'
     end
 
     def setup_database
@@ -76,6 +76,7 @@ module Suspenders
       build :test_factories_first
       build :generate_rspec
       build :configure_rspec
+      build :use_rspec_binstub
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_capybara_webkit
