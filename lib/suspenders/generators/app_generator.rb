@@ -90,6 +90,7 @@ module Suspenders
       build :configure_newrelic
       build :configure_smtp
       build :enable_rack_deflater
+      build :setup_asset_host
     end
 
     def setup_staging_environment

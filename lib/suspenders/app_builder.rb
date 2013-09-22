@@ -86,6 +86,20 @@ module Suspenders
         :after => "config.serve_static_assets = false\n"
     end
 
+    def setup_asset_host
+      replace_in_file 'config/environments/production.rb',
+        '# config.action_controller.asset_host = "http://assets.example.com"',
+        "config.action_controller.asset_host = ENV.fetch('ASSET_HOST')"
+
+      replace_in_file 'config/environments/production.rb',
+        "config.assets.version = '1.0'",
+        "config.assets.version = ENV.fetch('ASSETS_VERSION')"
+
+      replace_in_file 'config/environments/production.rb',
+        'config.serve_static_assets = false',
+        'config.static_cache_control = "public, max-age=#{1.year.to_i}"'
+    end
+
     def setup_staging_environment
       staging_file = 'config/environments/staging.rb'
       copy_file 'staging.rb', staging_file
