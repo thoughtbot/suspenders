@@ -21,11 +21,17 @@ module Suspenders
 
     def raise_on_unpermitted_parameters
       action_on_unpermitted_parameters = <<-RUBY
-    # Raise an ActionController::UnpermittedParameters exception when
-    # a parameter is not explcitly permitted but is passed anyway.
-    config.action_controller.action_on_unpermitted_parameters = :raise
+
+
+  # Raise an ActionController::UnpermittedParameters exception when
+  # a parameter is not explcitly permitted but is passed anyway.
+  config.action_controller.action_on_unpermitted_parameters = :raise
       RUBY
-      configure_environment 'development', action_on_unpermitted_parameters
+      inject_into_file(
+        "config/environments/development.rb",
+        action_on_unpermitted_parameters,
+        before: "\nend"
+      )
     end
 
     def provide_setup_script
