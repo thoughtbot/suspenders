@@ -15,8 +15,10 @@ Then run:
 
     suspenders projectname
 
-This will create a Rails 4.0 app in `projectname`. This script creates a
-new git repository. It is not meant to be used against an existing repo.
+This will create a Rails 4.0 app in `projectname`.
+
+By default this script creates a new git repository. See below if you
+want to use it against an existing repo.
 
 Gemfile
 -------
@@ -87,6 +89,14 @@ This has the same effect as running:
 
     heroku create app-staging --remote staging
     heroku create app-production --remote production
+
+Git
+---
+
+This will initialize a new git repository for your Rails app. You can
+bypass this with the `--skip-git` option:
+
+    suspenders app --skip-git true
 
 Github
 ------

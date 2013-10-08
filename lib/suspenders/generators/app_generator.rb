@@ -126,9 +126,11 @@ module Suspenders
     end
 
     def setup_git
-      say 'Initializing git'
-      invoke :setup_gitignore
-      invoke :init_git
+      if !options[:skip_git]
+        say 'Initializing git'
+        invoke :setup_gitignore
+        invoke :init_git
+      end
     end
 
     def create_heroku_apps
@@ -140,7 +142,7 @@ module Suspenders
     end
 
     def create_github_repo
-      if options[:github]
+      if !options[:skip_git] && options[:github]
         say 'Creating Github repo'
         build :create_github_repo, options[:github]
       end
