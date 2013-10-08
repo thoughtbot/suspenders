@@ -20,8 +20,17 @@ module Suspenders
     end
 
     def raise_on_unpermitted_parameters
-      configure_environment 'development',
-        'config.action_controller.action_on_unpermitted_parameters = :raise'
+      action_on_unpermitted_parameters = <<-RUBY
+
+  # Raise an ActionController::UnpermittedParameters exception when
+  # a parameter is not explcitly permitted but is passed anyway.
+  config.action_controller.action_on_unpermitted_parameters = :raise
+      RUBY
+      inject_into_file(
+        "config/environments/development.rb",
+        action_on_unpermitted_parameters,
+        before: "\nend"
+      )
     end
 
     def provide_setup_script
@@ -31,15 +40,15 @@ module Suspenders
 
     def configure_generators
       config = <<-RUBY
-  config.generators do |generate|
-    generate.helper false
-    generate.javascript_engine false
-    generate.request_specs false
-    generate.routing_specs false
-    generate.stylesheets false
-    generate.test_framework :rspec
-    generate.view_specs false
-  end
+    config.generators do |generate|
+      generate.helper false
+      generate.javascript_engine false
+      generate.request_specs false
+      generate.routing_specs false
+      generate.stylesheets false
+      generate.test_framework :rspec
+      generate.view_specs false
+    end
 
       RUBY
 
