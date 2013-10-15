@@ -95,10 +95,6 @@ module Suspenders
       copy_file '_flashes.html.erb', 'app/views/application/_flashes.html.erb'
     end
 
-    def create_shared_javascripts
-      copy_file '_javascript.html.erb', 'app/views/application/_javascript.html.erb'
-    end
-
     def create_application_layout
       template 'suspenders_layout.html.erb.erb',
         'app/views/layouts/application.html.erb',

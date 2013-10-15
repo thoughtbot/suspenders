@@ -1,9 +1,0 @@
-<%= javascript_include_tag :application %>
-
-<%= yield :javascript %>
-
-<% if Rails.env.test? %>
-  <%= javascript_tag do %>
-    $.ajaxSetup({ async: false });
-  <% end %>
-<% end %>
