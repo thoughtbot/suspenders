@@ -72,11 +72,15 @@ Other goodies
 
 Suspenders also comes with:
 
-* Override recipient emails in staging environment.
-* Rails' flashes set up and in application layout.
-* A few nice time formats set up for localization.
-* [Heroku-recommended
-  settings](https://devcenter.heroku.com/articles/rails4-getting-started).
+* The [`./bin/setup`][bin] convention for new developer setup
+* Rails' flashes set up and in application layout
+* A few nice time formats set up for localization
+* `Rack::Timeout` to [compress responses with Gzip][compress]
+* [Fast-failing factories][fast]
+
+[bin]: http://robots.thoughtbot.com/bin-setup
+[compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
+[fast]: http://robots.thoughtbot.com/testing-your-factories-first
 
 Heroku
 ------
@@ -85,10 +89,12 @@ You can optionally create Heroku staging and production apps:
 
     suspenders app --heroku true
 
-This has the same effect as running:
+This:
 
-    heroku create app-staging --remote staging
-    heroku create app-production --remote production
+* Creates a staging and production Heroku app
+* Sets them as `staging` and `production` Git remotes
+* Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
+  to `staging`
 
 Git
 ---
@@ -98,10 +104,10 @@ bypass this with the `--skip-git` option:
 
     suspenders app --skip-git true
 
-Github
+GitHub
 ------
 
-You can optionally create a Github repository for the suspended Rails app. It
+You can optionally create a GitHub repository for the suspended Rails app. It
 requires that you have [Hub](https://github.com/github/hub) on your system:
 
     curl http://hub.github.com/standalone -sLo ~/bin/hub && chmod +x ~/bin/hub
