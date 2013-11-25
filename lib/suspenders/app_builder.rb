@@ -229,12 +229,14 @@ module Suspenders
     end
 
     def set_heroku_remotes
-      concat_file(
-        'templates/bin_setup',
-        "# Set up staging and production git remotes\r
-        git remote add staging git@heroku.com: #{app_name}-staging.git\r
-        git remote add production git@heroku.com: #{app_name}-production.git"
-      )
+      remotes = <<-RUBY
+
+# Set up staging and production git remotes
+git remote add staging git@heroku.com:#{app_name}-staging.git
+git remote add production git@heroku.com:#{app_name}-production.git
+      RUBY
+
+      append_file 'bin/setup', remotes
     end
 
     def create_github_repo(repo_name)
