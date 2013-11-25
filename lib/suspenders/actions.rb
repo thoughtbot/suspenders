@@ -1,10 +1,5 @@
 module Suspenders
   module Actions
-    def concat_file(source, destination)
-      contents = IO.read(find_in_source_paths(source))
-      append_file destination, contents
-    end
-
     def replace_in_file(relative_path, find, replace)
       path = File.join(destination_root, relative_path)
       contents = IO.read(path)
