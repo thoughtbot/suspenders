@@ -1,3 +1,13 @@
+1.6.0 (November 28, 2013)
+
+* Do not create `.rspec` file as the settings are not project-specific.
+* Generate RSpec binstub at `bin/rspec`.
+* Fix stylesheet error on 500, 404, and 422 static pages.
+* Add `--skip-git` option.
+* Disable jQuery animations in Rails integration tests that execute JavaScript.
+* Fix git remote bug.
+* Add `Rack::Timeout` to compress responses with Gzip.
+
 1.5.1 (September 10, 2013)
 
 * Remove Turbolinks.
