@@ -80,6 +80,17 @@ module Suspenders
         :after => 'config.action_mailer.raise_delivery_errors = false'
     end
 
+    def enable_rack_deflater
+      config = <<-RUBY
+
+  # Enable deflate / gzip compression of controller-generated responses
+  config.middleware.use Rack::Deflater
+      RUBY
+
+      inject_into_file 'config/environments/production.rb', config,
+        :after => "config.serve_static_assets = false\n"
+    end
+
     def setup_staging_environment
       run 'cp config/environments/production.rb config/environments/staging.rb'
 
