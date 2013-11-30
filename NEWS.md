@@ -6,7 +6,7 @@
 * Add `--skip-git` option.
 * Disable jQuery animations in Rails integration tests that execute JavaScript.
 * Fix git remote bug.
-* Add `Rack::Timeout` to compress responses with Gzip.
+* Add `Rack::Deflater` to compress responses with Gzip.
 
 1.5.1 (September 10, 2013)
 
