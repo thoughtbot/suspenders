@@ -156,6 +156,11 @@ module Suspenders
       copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
     end
 
+    def configure_spec_support_features
+      empty_directory_with_keep_file 'spec/features'
+      empty_directory_with_keep_file 'spec/support/features'
+    end
+
     def configure_rspec
       remove_file 'spec/spec_helper.rb'
       copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
