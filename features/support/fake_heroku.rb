@@ -21,10 +21,10 @@ class FakeHeroku
 
   def self.configured_vars_for(remote_name)
     File.open(RECORDER, 'r').
-      read.
-      split("\n").
-      grep(/^config:add .* --remote=#{remote_name}/).
-      map { |line| line.scan(/([A-Z_]+)=[^ ]*/) }.
+      each_line.
+      grep(/^config:add .* --remote=#{remote_name}/) { |line|
+        line.scan(/([A-Z_]+)=[^ ]*/)
+      }.
       flatten
   end
 end
