@@ -6,6 +6,18 @@ When 'I run rake' do
   end
 end
 
+When 'I run migrations' do
+  in_current_dir do
+    run_simple 'bundle exec rake db:migrate'
+  end
+end
+
+When 'I obtain a fresh checkout' do
+  in_current_dir do
+    run_simple 'git clean --force -x'
+  end
+end
+
 When 'I run the rake task "$task_name"' do |task_name|
   in_current_dir do
     run_simple "bundle exec rake #{task_name}"
@@ -40,12 +52,13 @@ When 'I cd to the "$test_project" root' do |dirname|
   cd dirname
 end
 
+When 'I setup the project' do
+  run_simple 'bin/setup'
+end
+
 Then 'I can cleanly rake the project' do
   steps %{
-    And I run the rake task "db:create"
-    And I run the rake task "db:migrate"
-    And I run the rake task "db:test:prepare"
-    And I run rake
+    When I run rake
   }
 end
 
