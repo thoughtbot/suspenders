@@ -149,6 +149,7 @@ module Suspenders
     def set_ruby_to_version_being_used
       inject_into_file 'Gemfile', "\n\nruby '#{RUBY_VERSION}'",
         after: /source 'https:\/\/rubygems.org'/
+      create_file '.ruby-version', "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}\n"
     end
 
     def enable_database_cleaner
