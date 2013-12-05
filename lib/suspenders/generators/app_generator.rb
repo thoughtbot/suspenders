@@ -80,7 +80,7 @@ module Suspenders
       build :use_rspec_binstub
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
-      build :configure_capybara_webkit
+      build :configure_spec_support_features
     end
 
     def setup_production_environment
