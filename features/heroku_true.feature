@@ -7,3 +7,5 @@ Feature: Creating a Heroku app
       | --heroku | true  |
     Then the "test_project-staging" Heroku app should exist
     And the "test_project-production" Heroku app should exist
+    And the "staging" Heroku remote should have "SECRET_KEY_BASE" configured
+    And the "production" Heroku remote should have "SECRET_KEY_BASE" configured
