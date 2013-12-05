@@ -1,3 +1,12 @@
+1.7.0 (December 6, 2013)
+
+* Keep `db/schema.rb` under version control.
+* Fast-fail if any part of `bin/setup` fails.
+* Move secret key out of version control.
+* Create `.ruby-version` in generated applications.
+* Add placeholder modules and directories for feature specs.
+* Improve README to include setup instructions.
+
 1.6.0 (November 28, 2013)
 
 * Do not create `.rspec` file as the settings are not project-specific.

@@ -82,6 +82,16 @@ Suspenders also comes with:
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
 [fast]: http://robots.thoughtbot.com/testing-your-factories-first
 
+Suspenders fixes several of Rails' [insecure defaults]:
+
+* Suspenders uses Unicorn instead of WEBrick, allowing less verbose Server
+  headers.
+* Suspenders is configured to pull your application secret key base from an
+  environment variable, which means you won't need to risk placing it in version
+  control.
+
+[insecure defaults]: http://blog.codeclimate.com/blog/2013/03/27/rails-insecure-defaults/
+
 Heroku
 ------
 
