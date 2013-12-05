@@ -14,7 +14,7 @@ end
 
 When 'I obtain a fresh checkout' do
   in_current_dir do
-    run_simple 'git clean --force -x'
+    run_simple 'git clean --force -x -d'
   end
 end
 
