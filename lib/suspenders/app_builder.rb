@@ -132,7 +132,7 @@ module Suspenders
     end
 
     def create_database
-      bundle_command 'exec rake db:create'
+      bundle_command 'exec rake db:create db:migrate'
     end
 
     def replace_gemfile

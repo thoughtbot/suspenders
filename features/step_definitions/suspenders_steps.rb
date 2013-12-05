@@ -6,6 +6,18 @@ When 'I run rake' do
   end
 end
 
+When 'I run migrations' do
+  in_current_dir do
+    run_simple 'bundle exec rake db:migrate'
+  end
+end
+
+When 'I obtain a fresh checkout' do
+  in_current_dir do
+    run_simple 'git clean --force -x -d'
+  end
+end
+
 When 'I run the rake task "$task_name"' do |task_name|
   in_current_dir do
     run_simple "bundle exec rake #{task_name}"
@@ -26,6 +38,10 @@ end
 When 'I suspend a project called "$project_name"' do |project_name|
   suspenders_bin = File.expand_path(File.join('..', '..', 'bin', 'suspenders'), File.dirname(__FILE__))
   run_simple "#{suspenders_bin} #{project_name}"
+  cd project_name
+  run_simple 'git add -A'
+  run_simple 'git commit -m "Initial commit"'
+  cd '..'
 end
 
 When %r{I suspend a project called "([^"]*)" with:} do |project_name, arguments_table|
@@ -40,12 +56,13 @@ When 'I cd to the "$test_project" root' do |dirname|
   cd dirname
 end
 
+When 'I setup the project' do
+  run_simple 'bin/setup'
+end
+
 Then 'I can cleanly rake the project' do
   steps %{
-    And I run the rake task "db:create"
-    And I run the rake task "db:migrate"
-    And I run the rake task "db:test:prepare"
-    And I run rake
+    When I run rake
   }
 end
 

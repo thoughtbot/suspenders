@@ -23,7 +23,6 @@ module Suspenders
     def suspenders_customization
       invoke :remove_files_we_dont_need
       invoke :customize_gemfile
-      invoke :setup_database
       invoke :setup_development_environment
       invoke :setup_test_environment
       invoke :setup_production_environment
@@ -36,6 +35,7 @@ module Suspenders
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
       invoke :setup_git
+      invoke :setup_database
       invoke :create_heroku_apps
       invoke :create_github_repo
       invoke :outro

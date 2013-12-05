@@ -6,7 +6,6 @@
 .sass-cache/
 coverage/*
 db/*.sqlite3
-db/schema.rb
 log/*
 public/system
 rerun.txt
