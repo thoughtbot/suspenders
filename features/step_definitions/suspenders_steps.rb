@@ -38,6 +38,10 @@ end
 When 'I suspend a project called "$project_name"' do |project_name|
   suspenders_bin = File.expand_path(File.join('..', '..', 'bin', 'suspenders'), File.dirname(__FILE__))
   run_simple "#{suspenders_bin} #{project_name}"
+  cd project_name
+  run_simple 'git add -A'
+  run_simple 'git commit -m "Initial commit"'
+  cd '..'
 end
 
 When %r{I suspend a project called "([^"]*)" with:} do |project_name, arguments_table|
