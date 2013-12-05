@@ -7,7 +7,7 @@ class FakeHeroku
 
   def run!
     File.open(RECORDER, 'a') do |file|
-      file.write @args.join(' ')
+      file.puts @args.join(' ')
     end
   end
 
@@ -17,5 +17,14 @@ class FakeHeroku
 
   def self.has_created_app?(app_name)
     File.open(RECORDER, 'r').read.include?("create #{app_name}")
+  end
+
+  def self.configured_vars_for(remote_name)
+    File.open(RECORDER, 'r').
+      each_line.
+      grep(/^config:add .* --remote=#{remote_name}/) { |line|
+        line.scan(/([A-Z_]+)=[^ ]*/)
+      }.
+      flatten
   end
 end

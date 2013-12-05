@@ -80,6 +80,10 @@ Then %r{the "([^"]*)" Heroku app should exist} do |app_name|
   FakeHeroku.should have_created_app(app_name)
 end
 
+Then %r{the "([^"]+)" Heroku remote should have "([^"]+)" configured} do |remote_name, config_name|
+  FakeHeroku.configured_vars_for(remote_name).should include(config_name)
+end
+
 Then %r{the "([^"]*)" Github repo should exist} do |repo_name|
   FakeGithub.should have_created_repo(repo_name)
 end

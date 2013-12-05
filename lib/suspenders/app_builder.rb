@@ -98,6 +98,12 @@ module Suspenders
         "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
     end
 
+    def setup_secret_token
+      template 'secret_token.rb',
+        'config/initializers/secret_token.rb',
+        :force => true
+    end
+
     def create_partials_directory
       empty_directory 'app/views/application'
     end
@@ -250,6 +256,12 @@ git remote add production git@heroku.com:#{app_name}-production.git
       append_file 'bin/setup', remotes
     end
 
+    def set_heroku_rails_secrets
+      path_addition = override_path_for_tests
+      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=staging"
+      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=production"
+    end
+
     def create_github_repo(repo_name)
       path_addition = override_path_for_tests
       run "#{path_addition} hub create #{repo_name}"
@@ -298,6 +310,10 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
     def factories_spec_rake_task
       IO.read find_in_source_paths('factories_spec_rake_task.rb')
+    end
+
+    def generate_secret
+      SecureRandom.hex(64)
     end
   end
 end

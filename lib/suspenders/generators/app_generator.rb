@@ -27,6 +27,7 @@ module Suspenders
       invoke :setup_test_environment
       invoke :setup_production_environment
       invoke :setup_staging_environment
+      invoke :setup_secret_token
       invoke :create_suspenders_views
       invoke :setup_coffeescript
       invoke :configure_app
@@ -93,6 +94,11 @@ module Suspenders
       build :setup_staging_environment
     end
 
+    def setup_secret_token
+      say 'Moving secret token out of version control'
+      build :setup_secret_token
+    end
+
     def create_suspenders_views
       say 'Creating suspenders views'
       build :create_partials_directory
@@ -139,6 +145,7 @@ module Suspenders
         say 'Creating Heroku apps'
         build :create_heroku_apps
         build :set_heroku_remotes
+        build :set_heroku_rails_secrets
       end
     end
 
