@@ -12,11 +12,6 @@ bundle install
 # Set up the database
 bundle exec rake db:setup
 
-# Set up configurable environment variables
-if [ ! -f .env ]; then
-  cp .sample.env .env
-fi
-
 # Pick a port for Foreman
 echo "port: 7000" > .foreman
 
