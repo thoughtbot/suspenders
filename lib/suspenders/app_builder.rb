@@ -92,9 +92,9 @@ module Suspenders
     end
 
     def setup_staging_environment
-      run 'cp config/environments/production.rb config/environments/staging.rb'
+      copy_file 'staging.rb', 'config/environments/staging.rb'
 
-      prepend_file 'config/environments/staging.rb',
+      append_file 'config/environments/staging.rb',
         "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
     end
 
@@ -138,7 +138,9 @@ module Suspenders
     end
 
     def create_database
-      bundle_command 'exec rake db:create db:migrate'
+      unless ENV['TESTING']
+        bundle_command 'exec rake db:create db:migrate'
+      end
     end
 
     def replace_gemfile
