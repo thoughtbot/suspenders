@@ -4,7 +4,6 @@ gem 'airbrake'
 gem 'bourbon'
 gem 'coffee-rails'
 gem 'delayed_job_active_record', '>= 4.0.0'
-gem 'dotenv-rails'
 gem 'email_validator'
 gem 'flutie'
 gem 'high_voltage'
@@ -26,6 +25,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'dotenv-rails'
   gem 'factory_girl_rails'
   gem 'rspec-rails', '>= 2.14'
 end
