@@ -166,9 +166,8 @@ module Suspenders
       copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
     end
 
-    def use_rspec_binstub
-      run 'bundle binstub rspec-core'
-      run 'rm bin/autospec'
+    def use_spring_binstubs
+      run 'bundle exec spring binstub --all'
     end
 
     def configure_background_jobs_for_rspec
