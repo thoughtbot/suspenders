@@ -3,6 +3,8 @@
 *.swo
 *.swp
 .bundle
+.env
+.foreman
 coverage/*
 db/*.sqlite3
 log/*
