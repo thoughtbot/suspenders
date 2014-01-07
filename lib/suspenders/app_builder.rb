@@ -203,10 +203,6 @@ module Suspenders
       generate 'rspec:install'
     end
 
-    def generate_clearance
-      generate 'clearance:install'
-    end
-
     def configure_unicorn
       copy_file 'unicorn.rb', 'config/unicorn.rb'
     end
