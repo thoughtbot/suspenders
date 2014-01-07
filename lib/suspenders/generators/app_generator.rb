@@ -162,11 +162,6 @@ module Suspenders
       build :init_git
     end
 
-    def copy_libraries
-      say 'Copying libraries'
-      build :copy_libraries
-    end
-
     def copy_miscellaneous_files
       say 'Copying miscellaneous support files'
       build :copy_miscellaneous_files
