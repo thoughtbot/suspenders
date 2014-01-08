@@ -21,7 +21,6 @@ module Suspenders
     end
 
     def suspenders_customization
-      invoke :remove_files_we_dont_need
       invoke :customize_gemfile
       invoke :setup_development_environment
       invoke :setup_test_environment
@@ -40,11 +39,6 @@ module Suspenders
       invoke :create_heroku_apps
       invoke :create_github_repo
       invoke :outro
-    end
-
-    def remove_files_we_dont_need
-      build :remove_public_index
-      build :remove_rails_logo_image
     end
 
     def customize_gemfile
