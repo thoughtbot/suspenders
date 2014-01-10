@@ -75,7 +75,7 @@ Suspenders also comes with:
 * The [`./bin/setup`][bin] convention for new developer setup
 * Rails' flashes set up and in application layout
 * A few nice time formats set up for localization
-* `Rack::Timeout` to [compress responses with Gzip][compress]
+* `Rack::Deflater` to [compress responses with Gzip][compress]
 * [Fast-failing factories][fast]
 
 [bin]: http://robots.thoughtbot.com/bin-setup
