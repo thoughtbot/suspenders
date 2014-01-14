@@ -51,11 +51,6 @@ module Suspenders
       copy_file 'factory_girl_syntax_rspec.rb', 'spec/support/factory_girl.rb'
     end
 
-    def test_factories_first
-      copy_file 'factories_spec.rb', 'spec/models/factories_spec.rb'
-      append_file 'Rakefile', factories_spec_rake_task
-    end
-
     def configure_smtp
       copy_file 'smtp.rb', 'config/initializers/smtp.rb'
 
