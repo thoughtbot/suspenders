@@ -8,6 +8,5 @@ coverage/*
 db/*.sqlite3
 log/*
 public/system
-rerun.txt
 tags
 tmp/*
