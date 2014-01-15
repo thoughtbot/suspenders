@@ -3,7 +3,6 @@
 *.swo
 *.swp
 .bundle
-.sass-cache/
 coverage/*
 db/*.sqlite3
 log/*
