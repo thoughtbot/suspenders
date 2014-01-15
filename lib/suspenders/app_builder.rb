@@ -120,10 +120,6 @@ module Suspenders
         ''
     end
 
-    def create_common_javascripts
-      directory 'javascripts', 'app/assets/javascripts'
-    end
-
     def use_postgres_config_template
       template 'postgresql_database.yml.erb', 'config/database.yml',
         :force => true

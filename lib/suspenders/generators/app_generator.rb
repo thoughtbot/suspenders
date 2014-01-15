@@ -104,7 +104,6 @@ module Suspenders
     def setup_coffeescript
       say 'Setting up CoffeeScript defaults'
       build :remove_turbolinks
-      build :create_common_javascripts
     end
 
     def configure_app
