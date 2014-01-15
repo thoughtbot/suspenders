@@ -11,4 +11,3 @@ public/system
 rerun.txt
 tags
 tmp/*
-tmp/**/*
