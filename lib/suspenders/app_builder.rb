@@ -93,9 +93,6 @@ module Suspenders
 
     def setup_staging_environment
       copy_file 'staging.rb', 'config/environments/staging.rb'
-
-      append_file 'config/environments/staging.rb',
-        "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
     end
 
     def setup_secret_token

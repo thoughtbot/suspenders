@@ -31,6 +31,10 @@ def suspended_directory
   @suspended_directory ||= "#{root_path}/tmp/dummy"
 end
 
+def template(file)
+  IO.read("#{root_path}/templates/#{file}")
+end
+
 def root_path
   Pathname.new(File.dirname(__FILE__)).parent.parent
 end
