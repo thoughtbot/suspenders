@@ -24,7 +24,7 @@ def set_command_line_arguments
 end
 
 def run_suspenders
-  Suspenders::AppGenerator.start()
+  Suspenders::AppGenerator.start
 end
 
 def suspended_directory
