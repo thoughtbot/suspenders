@@ -135,9 +135,7 @@ module Suspenders
     end
 
     def create_database
-      unless ENV['TESTING']
-        bundle_command 'exec rake db:create db:migrate'
-      end
+      bundle_command 'exec rake db:create db:migrate'
     end
 
     def replace_gemfile

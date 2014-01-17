@@ -7,7 +7,16 @@ RSpec.configure do |config|
   end
 
   config.after(:suite) do
+    drop_dummy_database
     clean_suspended_directory
+  end
+end
+
+def drop_dummy_database
+  Dir.chdir(suspended_directory) do
+    Bundler.with_clean_env do
+      %x[bundle exec rake db:drop]
+    end
   end
 end
 
