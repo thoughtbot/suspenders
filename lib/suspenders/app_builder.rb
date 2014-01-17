@@ -1,3 +1,5 @@
+require 'pry'
+
 module Suspenders
   class AppBuilder < Rails::AppBuilder
     include Suspenders::Actions
@@ -306,7 +308,7 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
     def override_path_for_tests
       if ENV['TESTING']
-        support_bin = File.expand_path(File.join('..', '..', '..', 'features', 'support', 'bin'))
+        support_bin = File.expand_path(File.join('..', '..', '..', 'spec', 'fakes', 'bin'))
         "PATH=#{support_bin}:$PATH"
       end
     end
