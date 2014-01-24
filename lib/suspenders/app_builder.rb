@@ -1,3 +1,5 @@
+require 'pry'
+
 module Suspenders
   class AppBuilder < Rails::AppBuilder
     include Suspenders::Actions
@@ -84,10 +86,7 @@ module Suspenders
     end
 
     def setup_staging_environment
-      run 'cp config/environments/production.rb config/environments/staging.rb'
-
-      prepend_file 'config/environments/staging.rb',
-        "Mail.register_interceptor RecipientInterceptor.new(ENV['EMAIL_RECIPIENTS'])\n"
+      copy_file 'staging.rb', 'config/environments/staging.rb'
     end
 
     def setup_secret_token
@@ -292,7 +291,7 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
     def override_path_for_tests
       if ENV['TESTING']
-        support_bin = File.expand_path(File.join('..', '..', '..', 'features', 'support', 'bin'))
+        support_bin = File.expand_path(File.join('..', '..', '..', 'spec', 'fakes', 'bin'))
         "PATH=#{support_bin}:$PATH"
       end
     end
