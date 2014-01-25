@@ -1,5 +1,6 @@
 Before do
   ENV['TESTING'] = 'true'
+  ENV['DISABLE_SPRING'] = 'true'
   @aruba_timeout_seconds = 560
 end
 
