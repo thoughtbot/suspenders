@@ -2,6 +2,9 @@ language: ruby
 rvm:
   - 1.9.3
   - 2.0.0
+before_install:
+  - git config --global user.name 'Travis CI'
+  - git config --global user.email 'travis-ci@example.com'
 install:
   - bundle install
 notifications:
