@@ -30,4 +30,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.summary = "Generate a Rails app using thoughtbot's best practices."
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Suspenders::VERSION
+  s.add_development_dependency 'rspec'
+  s.add_development_dependency 'capybara'
 end
