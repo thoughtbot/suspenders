@@ -1,22 +1,24 @@
 require 'capybara/rspec'
 require 'bundler/setup'
-ENV['TEST'] = '1'
-
-require File.expand_path(File.join('..', 'lib', 'suspenders'), File.dirname(__FILE__))
-
-templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
-Suspenders::AppGenerator.source_root templates_root
-Suspenders::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
 
 Bundler.require(:default, :test)
+
+require (Pathname.new(__FILE__).dirname + '../lib/suspenders').expand_path
 
 Dir['./spec/support/**/*.rb'].each { |file| require file }
 
 RSpec.configure do |config|
   config.include SuspendersTestHelpers
 
-  config.after(:all) do
+  config.before(:all) do
+    create_tmp_directory
+  end
+
+  config.before(:each) do
     drop_dummy_database
-    clean_suspended_directory
+    remove_project_directory
+
+    FakeHeroku.clear!
+    FakeGithub.clear!
   end
 end

@@ -16,6 +16,6 @@ class FakeGithub
   end
 
   def self.has_created_repo?(repo_name)
-    File.open(RECORDER, 'r').read.include?("create #{repo_name}")
+    File.read(RECORDER) == "create #{repo_name}"
   end
 end

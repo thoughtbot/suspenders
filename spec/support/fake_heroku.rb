@@ -15,16 +15,16 @@ class FakeHeroku
     FileUtils.rm_rf RECORDER
   end
 
-  def self.has_created_app?(app_name)
-    File.open(RECORDER, 'r').read.include?("create #{app_name}")
+  def self.has_created_app_for?(remote_name)
+    app_name = "#{SuspendersTestHelpers::APP_NAME}-#{remote_name}"
+    expected_line = "create #{app_name} --remote=#{remote_name}\n"
+
+    File.foreach(RECORDER).any? { |line| line == expected_line }
   end
 
-  def self.configured_vars_for(remote_name)
-    File.open(RECORDER, 'r').
-      each_line.
-      grep(/^config:add .* --remote=#{remote_name}/) { |line|
-        line.scan(/([A-Z_]+)=[^ ]*/)
-      }.
-      flatten
+  def self.has_configured_vars?(remote_name, var)
+    File.foreach(RECORDER).any? do |line|
+      line =~ /^config:add #{var}=.+ --remote=#{remote_name}\n$/
+    end
   end
 end
