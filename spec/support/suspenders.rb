@@ -1,41 +1,50 @@
 module SuspendersTestHelpers
   APP_NAME = 'dummy'
 
-  def drop_dummy_database
-    Dir.chdir(suspended_directory) do
+  def remove_project_directory
+    FileUtils.rm_rf(project_path)
+  end
+
+  def create_tmp_directory
+    FileUtils.mkdir_p(tmp_path)
+  end
+
+  def run_suspenders(arguments = nil)
+    Dir.chdir(tmp_path) do
       Bundler.with_clean_env do
-        `bundle exec rake db:drop`
+        ENV['TESTING'] = '1'
+        ENV['DISABLE_SPRING'] = '1'
+
+        %x(#{suspenders_bin} #{APP_NAME} #{arguments})
       end
     end
   end
 
-  def clean_suspended_directory
-    Dir.chdir(root_path)
-    FileUtils.rm_rf(suspended_directory)
+  def drop_dummy_database
+    if File.exists?(project_path)
+      Dir.chdir(project_path) do
+        Bundler.with_clean_env do
+          `rake db:drop`
+        end
+      end
+    end
   end
 
-  def create_tmp_dir
-    FileUtils.mkdir_p("#{root_path}/tmp")
+  def project_path
+    @project_path ||= Pathname.new("#{tmp_path}/#{APP_NAME}")
   end
 
-  def set_command_line_arguments(arguments = nil)
-    arguments = "#{suspended_directory} #{arguments}"
-    ARGV.replace(arguments.split(' '))
+  private
+
+  def tmp_path
+    @tmp_path ||= Pathname.new("#{root_path}/tmp")
   end
 
-  def run_suspenders
-    Suspenders::AppGenerator.start
-  end
-
-  def suspended_directory
-    @suspended_directory ||= "#{root_path}/tmp/#{APP_NAME}"
-  end
-
-  def template(file)
-    IO.read("#{root_path}/templates/#{file}")
+  def suspenders_bin
+    File.join(root_path, 'bin', 'suspenders')
   end
 
   def root_path
-    File.expand_path('../../', __FILE__)
+    File.expand_path('../../../', __FILE__)
   end
 end
