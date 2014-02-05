@@ -52,8 +52,8 @@ It includes application gems like:
 And gems only for staging and production like:
 
 * [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
-* [Rails 12 Factor](https://github.com/heroku/rails_12factor) to making running
-  Rails 4 apps easier on Heroku
+* [Rails 12 Factor](https://github.com/heroku/rails_12factor) for easier running
+  of Rails 4 apps on Heroku
 
 And testing gems like:
 
