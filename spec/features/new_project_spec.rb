@@ -14,8 +14,10 @@ feature 'Suspend a new project with default configuration' do
   scenario 'staging config is inherited from production' do
     run_suspenders
 
-    staging_file = "#{project_path}/config/environments/staging.rb"
+    staging_file = IO.read("#{project_path}/config/environments/staging.rb")
+    config_stub = "Dummy::Application.configure do"
 
-    expect(IO.read(staging_file)).to eq template('staging.rb')
+    expect(staging_file).to match(/^require_relative 'production'/)
+    expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 end
