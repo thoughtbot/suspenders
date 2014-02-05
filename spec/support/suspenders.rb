@@ -30,6 +30,10 @@ module SuspendersTestHelpers
     end
   end
 
+  def template(file)
+    IO.read("#{root_path}/templates/#{file}")
+  end
+
   def project_path
     @project_path ||= Pathname.new("#{tmp_path}/#{APP_NAME}")
   end
