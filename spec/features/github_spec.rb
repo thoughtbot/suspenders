@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-feature 'Github' do
-  scenario 'Suspend a project with github option' do
+feature 'GitHub' do
+  scenario 'Suspend a project with --github option' do
     repo_name = 'test'
     run_suspenders("--github=#{repo_name}")
 
