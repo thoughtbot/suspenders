@@ -1,8 +1,8 @@
 require 'spec_helper'
 
-FactoryGirl.factories.map(&:name).each do |factory_name|
-  describe "factory #{factory_name}" do
-    it 'is valid' do
+describe 'factories' do
+  FactoryGirl.factories.map(&:name).each do |factory_name|
+    specify "#{factory_name} factory is valid", :factory do
       factory = build(factory_name)
 
       if factory.respond_to?(:valid?)
