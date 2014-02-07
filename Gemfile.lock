@@ -69,7 +69,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.5.2)
     minitest (4.7.5)
-    multi_json (1.7.7)
+    multi_json (1.7.9)
     multi_test (0.0.1)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
