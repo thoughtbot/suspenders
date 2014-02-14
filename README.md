@@ -35,8 +35,8 @@ It includes application gems like:
   processing
 * [Email Validator](https://github.com/balexand/email_validator) for email
   validation
-* [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and
-  `body_class` view helpers
+* [Flutie](https://github.com/thoughtbot/flutie) for and `body_class` view
+  helper
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
 * [Neat](https://github.com/thoughtbot/neat) for semantic grids
@@ -48,6 +48,8 @@ It includes application gems like:
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup
   and style
 * [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
+* [Title](https://github.com/calebthompson/title) for storing titles in
+  translations
 
 And gems only for staging and production like:
 
