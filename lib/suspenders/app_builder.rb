@@ -144,7 +144,7 @@ end
     def set_ruby_to_version_being_used
       inject_into_file 'Gemfile', "\n\nruby '#{RUBY_VERSION}'",
         after: /source 'https:\/\/rubygems.org'/
-      create_file '.ruby-version', "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}\n"
+      create_file '.ruby-version', "#{RUBY_VERSION}#{patchlevel}\n"
     end
 
     def enable_database_cleaner
@@ -310,6 +310,14 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
     def generate_secret
       SecureRandom.hex(64)
+    end
+
+    def patchlevel
+      if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
+        ''
+      else
+        "-p#{RUBY_PATCHLEVEL}"
+      end
     end
   end
 end
