@@ -147,6 +147,11 @@ end
       create_file '.ruby-version', "#{RUBY_VERSION}#{patchlevel}\n"
     end
 
+    def setup_heroku_specific_gems
+      inject_into_file 'Gemfile', "\n\s\sgem 'rails_12factor'",
+        after: /group :staging, :production do/
+    end
+
     def enable_database_cleaner
       copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
     end

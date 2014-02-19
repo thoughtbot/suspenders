@@ -15,6 +15,12 @@ class FakeHeroku
     FileUtils.rm_rf RECORDER
   end
 
+  def self.has_gem_included?(project_path, gem_name)
+    gemfile = File.open(File.join(project_path, 'Gemfile'), 'a')
+
+    File.foreach(gemfile).any?{ |line| line.match(/rails_12factor/) }
+  end
+
   def self.has_created_app_for?(remote_name)
     app_name = "#{SuspendersTestHelpers::APP_NAME}-#{remote_name}"
     expected_line = "create #{app_name} --remote=#{remote_name}\n"
