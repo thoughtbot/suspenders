@@ -19,7 +19,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
   HERE
 
   s.email = 'support@thoughtbot.com'
-  s.executables = `git ls-files -- bin/*`.split("\n").map { |file| File.basename(file) }
+  s.executables = ['suspenders']
   s.extra_rdoc_files = %w[README.md LICENSE]
   s.files = `git ls-files`.split("\n")
   s.homepage = 'http://github.com/thoughtbot/suspenders'
