@@ -1,3 +1,7 @@
+1.8.1 (February 19, 2014)
+
+* Don't distribute rspec binstub with gem.
+
 1.8.0 (February 18, 2014)
 
 * Make the .git/safe directory in bin/setup.
