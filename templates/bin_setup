@@ -12,6 +12,9 @@ bundle install
 # Set up the database
 bundle exec rake db:setup
 
+# Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
+mkdir -p .git/safe
+
 # Set up configurable environment variables
 if [ ! -f .env ]; then
   cp .sample.env .env
