@@ -57,6 +57,13 @@ And gems only for staging and production like:
 * [Rails 12 Factor](https://github.com/heroku/rails_12factor) to make running
   Rails 4 apps easier on Heroku
 
+And development gems like:
+
+* [Dotenv](https://github.com/bkeepers/dotenv) for loading environment variables
+* [Pry Rails](https://github.com/rweng/pry-rails) for debugging
+* [Spring](https://github.com/rails/spring) for fast Rails actions via
+  pre-loading
+
 And testing gems like:
 
 * [Capybara](https://github.com/jnicklas/capybara) and
@@ -79,10 +86,14 @@ Suspenders also comes with:
 * A few nice time formats set up for localization
 * `Rack::Deflater` to [compress responses with Gzip][compress]
 * [Fast-failing factories][fast]
+* A [low database connection pool limit][pool]
+* [Safe binstubs][binstub]
 
 [bin]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
 [fast]: http://robots.thoughtbot.com/testing-your-factories-first
+[pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
+[binstub]: https://github.com/thoughtbot/suspenders/pull/282
 
 Suspenders fixes several of Rails' [insecure defaults]:
 

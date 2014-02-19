@@ -1,3 +1,22 @@
+1.8.0 (February 18, 2014)
+
+* Make the .git/safe directory in bin/setup.
+* Require `rails_12factor` gem only on Heroku.
+* Require mailer config on staging and production.
+* Add rspec binstub.
+* Fix .ruby-version on Ruby 2.1.0.
+* Replace Flutie's `page_title` with `title` gem.
+* Don't run factory specs twice.
+* Inherit staging config from production.
+* Internal: convert tests from Cucumber to RSpec.
+* Don't include `prefilled_input.js`.
+* Fix Rack class name - Deflater instead of Timeout.
+* Add Pry Rails.
+* Add Spring.
+* Add Dotenv to development and test environments to load environment variables
+  from the `.env` file.
+* Reduce ActiveRecord connection pool from 5 to 2.
+
 1.7.0 (December 6, 2013)
 
 * Keep `db/schema.rb` under version control.
