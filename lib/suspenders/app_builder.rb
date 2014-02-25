@@ -199,6 +199,14 @@ end
       action_mailer_host 'production', "#{app_name}.com"
     end
 
+    def fix_i18n_deprecation_warning
+      config = <<-RUBY
+    config.i18n.enforce_available_locales = true
+
+      RUBY
+      inject_into_class 'config/application.rb', 'Application', config
+    end
+
     def generate_rspec
       generate 'rspec:install'
     end
