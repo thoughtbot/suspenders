@@ -139,7 +139,7 @@ end
     end
 
     def set_ruby_to_version_being_used
-      template 'ruby-version.erb', '.ruby-version'
+      create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end
 
     def setup_heroku_specific_gems
