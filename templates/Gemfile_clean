@@ -44,5 +44,5 @@ group :test do
 end
 
 group :staging, :production do
-  gem 'newrelic_rpm', '>= 3.6.7'
+  gem 'newrelic_rpm', '>= 3.7.3'
 end
