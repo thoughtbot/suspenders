@@ -1,0 +1,13 @@
+before_script:
+- cp .sample.env .env
+branches:
+  only:
+  - master
+cache: bundler
+language: ruby
+notifications:
+  campfire:
+    on_success: change
+    on_failure: always
+    template: '%{repository_name} build #%{build_number} on %{branch} by %{author} finished: %{message}: %{build_url}'
+rvm: ruby-<%= ruby_version_with_patch_level %>
