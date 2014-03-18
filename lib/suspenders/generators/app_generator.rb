@@ -9,6 +9,9 @@ module Suspenders
     class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
       :desc => 'Create staging and production Heroku apps'
 
+    class_option :gemset, :type => :boolean, :aliases => '-gs', :default => false,
+      :desc => 'Create gemset with the rbenv-gemset plugin'
+    
     class_option :github, :type => :string, :aliases => '-G', :default => nil,
       :desc => 'Create Github repository and add remote origin pointed to repo'
 
@@ -44,7 +47,10 @@ module Suspenders
     def customize_gemfile
       build :replace_gemfile
       build :set_ruby_to_version_being_used
-      build :setup_gemset
+      
+      if options[:gemset]
+        build :setup_gemset
+      end
 
       if options[:heroku]
         build :setup_heroku_specific_gems
