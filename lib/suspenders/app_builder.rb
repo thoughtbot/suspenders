@@ -115,6 +115,10 @@ end
       copy_file '_flashes.html.erb', 'app/views/application/_flashes.html.erb'
     end
 
+    def setup_gemset
+      exec "echo -e \"#{app_name}\" > .rbenv-gemsets"
+    end
+
     def create_shared_javascripts
       copy_file '_javascript.html.erb', 'app/views/application/_javascript.html.erb'
     end
