@@ -142,13 +142,11 @@ end
 
     def replace_gemfile
       remove_file 'Gemfile'
-      copy_file 'Gemfile_clean', 'Gemfile'
+      template 'Gemfile.erb', 'Gemfile'
     end
 
     def set_ruby_to_version_being_used
-      inject_into_file 'Gemfile', "\n\nruby '#{RUBY_VERSION}'",
-        after: /source 'https:\/\/rubygems.org'/
-      create_file '.ruby-version', "#{RUBY_VERSION}#{patchlevel}\n"
+      template 'ruby-version.erb', '.ruby-version'
     end
 
     def setup_heroku_specific_gems
@@ -168,6 +166,10 @@ end
     def configure_rspec
       remove_file 'spec/spec_helper.rb'
       copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
+    end
+
+    def configure_travis
+      template 'travis.yml.erb', '.travis.yml'
     end
 
     def use_spring_binstubs
@@ -327,14 +329,6 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
     def generate_secret
       SecureRandom.hex(64)
-    end
-
-    def patchlevel
-      if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
-        ''
-      else
-        "-p#{RUBY_PATCHLEVEL}"
-      end
     end
   end
 end

@@ -24,7 +24,7 @@ Gemfile
 -------
 
 To see the latest and greatest gems, look at Suspenders'
-[templates/Gemfile_clean](templates/Gemfile_clean),
+[Gemfile](templates/Gemfile.erb),
 which will be appended to the default generated projectname/Gemfile.
 
 It includes application gems like:
