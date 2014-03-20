@@ -82,6 +82,7 @@ module Suspenders
       build :enable_database_cleaner
       build :configure_spec_support_features
       build :configure_travis
+      build :configure_i18n_in_specs
     end
 
     def setup_production_environment

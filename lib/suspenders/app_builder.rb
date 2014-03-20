@@ -172,6 +172,10 @@ end
       template 'travis.yml.erb', '.travis.yml'
     end
 
+    def configure_i18n_in_specs
+      copy_file 'i18n.rb', 'spec/support/i18n.rb'
+    end
+
     def use_spring_binstubs
       run 'bundle exec spring binstub --all'
     end
