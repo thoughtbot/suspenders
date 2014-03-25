@@ -1,13 +1,12 @@
 require 'spec_helper'
 
 feature 'Suspend a new project with default configuration' do
-  scenario 'specs pass' do
+  scenario 'everything is good' do
     run_suspenders
 
     Dir.chdir(project_path) do
-      Bundler.with_clean_env do
-        expect(`rake`).to include('0 failures')
-      end
+      Bundler.with_clean_env { expect(`rake`).to include('0 failures') }
+      expect(File).to exist('spec/support/features.rb')
     end
   end
 

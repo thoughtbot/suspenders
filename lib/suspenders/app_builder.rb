@@ -160,7 +160,7 @@ end
 
     def configure_spec_support_features
       empty_directory_with_keep_file 'spec/features'
-      empty_directory_with_keep_file 'spec/support/features'
+      copy_file 'spec/support/features.rb', 'spec/support/features.rb'
     end
 
     def configure_rspec
