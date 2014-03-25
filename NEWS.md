@@ -1,3 +1,14 @@
+1.9.0 (March 24, 2014)
+
+* Add `awesome_print` gem.
+* Add `dev:prime` task placeholder for bootstrapping local dev data.
+* Add fix for I18n deprecation warning from `enforce_available_locales`.
+* Add generated `.travis.yml`.
+* Remove `better_errors` because of issues with Unicorn.
+* Remove fast-failing for RSpec; respect user's `~/.rspec` instead.
+* Update New Relic agent.
+* Update Rails to 4.0.3.
+
 1.8.1 (February 19, 2014)
 
 * Don't distribute rspec binstub with gem.
