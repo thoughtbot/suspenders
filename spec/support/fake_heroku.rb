@@ -18,7 +18,7 @@ class FakeHeroku
   def self.has_gem_included?(project_path, gem_name)
     gemfile = File.open(File.join(project_path, 'Gemfile'), 'a')
 
-    File.foreach(gemfile).any?{ |line| line.match(/rails_12factor/) }
+    File.foreach(gemfile).any?{ |line| line.match(/#{Regexp.quote(gem_name)}/) }
   end
 
   def self.has_created_app_for?(remote_name)
