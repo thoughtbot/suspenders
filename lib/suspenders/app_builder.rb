@@ -101,12 +101,6 @@ end
       append_file staging_file, config
     end
 
-    def setup_secret_token
-      template 'secret_token.rb',
-        'config/initializers/secret_token.rb',
-        :force => true
-    end
-
     def create_partials_directory
       empty_directory 'app/views/application'
     end
