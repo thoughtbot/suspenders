@@ -318,6 +318,11 @@ git remote add production git@heroku.com:#{app_name}-production.git
       end
     end
 
+    def show_exceptions_in_tests
+      replace_in_file 'config/environments/test.rb',
+        'show_exceptions = false', 'show_exceptions = true'
+    end
+
     private
 
     def override_path_for_tests
