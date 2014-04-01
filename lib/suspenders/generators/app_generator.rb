@@ -73,6 +73,7 @@ module Suspenders
 
     def setup_test_environment
       say 'Setting up the test environment'
+      build :show_exceptions_in_tests
       build :enable_factory_girl_syntax
       build :test_factories_first
       build :generate_rspec
