@@ -93,18 +93,12 @@ module Suspenders
 
       config = <<-RUBY
 
-#{app_name.classify}::Application.configure do
+Rails.application.configure do
   # ...
 end
       RUBY
 
       append_file staging_file, config
-    end
-
-    def setup_secret_token
-      template 'secret_token.rb',
-        'config/initializers/secret_token.rb',
-        :force => true
     end
 
     def create_partials_directory
@@ -304,8 +298,8 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
-        /Application\.routes\.draw do.*end/m,
-        "Application.routes.draw do\nend"
+        /Rails.application\.routes\.draw do.*end/m,
+        "Rails.application.routes.draw do\nend"
     end
 
     def disable_xml_params
