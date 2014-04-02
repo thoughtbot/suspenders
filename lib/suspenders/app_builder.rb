@@ -292,7 +292,7 @@ git remote add production git@heroku.com:#{app_name}-production.git
 
       %w(500 404 422).each do |page|
         inject_into_file "public/#{page}.html", meta_tags, :after => "<head>\n"
-        replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
+        replace_in_file "public/#{page}.html", /.*<!--.+-->\n/, ''
       end
     end
 
