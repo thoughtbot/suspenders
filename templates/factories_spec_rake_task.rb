@@ -11,5 +11,5 @@ if defined?(RSpec)
     t.pattern = './spec/models/factories_spec.rb'
   end
 
-  task spec: :factory_specs
+  task(spec: :factory_specs) unless ENV['SPEC'].present?
 end
