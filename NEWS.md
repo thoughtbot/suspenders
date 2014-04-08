@@ -1,3 +1,7 @@
+1.9.1 (April 7, 2014)
+
+* Fix sass-rails environment NilClass error.
+
 1.9.0 (March 24, 2014)
 
 * Add `awesome_print` gem.
