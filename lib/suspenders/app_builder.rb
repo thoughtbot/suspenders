@@ -269,7 +269,10 @@ end
 
 # Set up staging and production git remotes
 git remote add staging git@heroku.com:#{app_name}-staging.git
+heroku join --app #{app_name}-staging
+
 git remote add production git@heroku.com:#{app_name}-production.git
+heroku join --app #{app_name}-production
       RUBY
 
       append_file 'bin/setup', remotes
