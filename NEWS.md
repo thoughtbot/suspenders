@@ -1,3 +1,9 @@
+1.9.2 (April 10, 2014)
+
+* Join Heroku apps in bin/setup.
+* Enable SMTP/TLS in SMTP settings.
+* Silence an RSpec warning.
+
 1.9.1 (April 7, 2014)
 
 * Fix sass-rails environment NilClass error.
