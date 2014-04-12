@@ -15,7 +15,7 @@ Then run:
 
     suspenders projectname
 
-This will create a Rails 4.0 app in `projectname`.
+This will create a Rails 4.1 app in `projectname`.
 
 By default this script creates a new git repository. See below if you
 want to use it against an existing repo.
@@ -89,6 +89,8 @@ Suspenders also comes with:
 * A [low database connection pool limit][pool]
 * [Safe binstubs][binstub]
 * [t() and l() in specs without prefixing with I18n][i18n]
+* An automatically-created `SECRET_KEY_BASE` environment variable in all
+  environments.
 
 [bin]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
@@ -96,16 +98,6 @@ Suspenders also comes with:
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
-
-Suspenders fixes several of Rails' [insecure defaults]:
-
-* Suspenders uses Unicorn instead of WEBrick, allowing less verbose Server
-  headers.
-* Suspenders is configured to pull your application secret key base from an
-  environment variable, which means you won't need to risk placing it in version
-  control.
-
-[insecure defaults]: http://blog.codeclimate.com/blog/2013/03/27/rails-insecure-defaults/
 
 Heroku
 ------

@@ -88,7 +88,7 @@ module Suspenders
 
       config = <<-RUBY
 
-#{app_name.classify}::Application.configure do
+Rails.application.configure do
   # ...
 end
       RUBY
@@ -97,9 +97,7 @@ end
     end
 
     def setup_secret_token
-      template 'secret_token.rb',
-        'config/initializers/secret_token.rb',
-        :force => true
+      template 'secrets.yml', 'config/secrets.yml', force: true
     end
 
     def create_partials_directory
@@ -169,10 +167,6 @@ end
 
     def configure_i18n_in_specs
       copy_file 'i18n.rb', 'spec/support/i18n.rb'
-    end
-
-    def use_spring_binstubs
-      run 'bundle exec spring binstub --all'
     end
 
     def configure_background_jobs_for_rspec
@@ -302,8 +296,8 @@ heroku join --app #{app_name}-production
 
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
-        /Application\.routes\.draw do.*end/m,
-        "Application.routes.draw do\nend"
+        /Rails\.application\.routes\.draw do.*end/m,
+        "Rails.application.routes.draw do\nend"
     end
 
     def disable_xml_params
