@@ -1,3 +1,8 @@
+1.9.3 (April 13, 2014)
+
+* Use FactoryGirl.lint instead of custom-generated factory-testing code.
+* Fix Delayed::Job <-> Rails 4.1 dependency conflict.
+
 1.9.2 (April 10, 2014)
 
 * Join Heroku apps in bin/setup.
