@@ -88,18 +88,12 @@ module Suspenders
 
       config = <<-RUBY
 
-#{app_name.classify}::Application.configure do
+Rails.application.configure do
   # ...
 end
       RUBY
 
       append_file staging_file, config
-    end
-
-    def setup_secret_token
-      template 'secret_token.rb',
-        'config/initializers/secret_token.rb',
-        :force => true
     end
 
     def create_partials_directory
@@ -296,14 +290,14 @@ heroku join --app #{app_name}-production
 
       %w(500 404 422).each do |page|
         inject_into_file "public/#{page}.html", meta_tags, :after => "<head>\n"
-        replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
+        replace_in_file "public/#{page}.html", /.*<!--.+-->\n/, ''
       end
     end
 
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
-        /Application\.routes\.draw do.*end/m,
-        "Application.routes.draw do\nend"
+        /Rails.application\.routes\.draw do.*end/m,
+        "Rails.application.routes.draw do\nend"
     end
 
     def disable_xml_params

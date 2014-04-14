@@ -26,7 +26,6 @@ module Suspenders
       invoke :setup_test_environment
       invoke :setup_production_environment
       invoke :setup_staging_environment
-      invoke :setup_secret_token
       invoke :create_suspenders_views
       invoke :setup_coffeescript
       invoke :configure_app
@@ -93,11 +92,6 @@ module Suspenders
     def setup_staging_environment
       say 'Setting up the staging environment'
       build :setup_staging_environment
-    end
-
-    def setup_secret_token
-      say 'Moving secret token out of version control'
-      build :setup_secret_token
     end
 
     def create_suspenders_views
