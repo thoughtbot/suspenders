@@ -88,7 +88,7 @@ module Suspenders
 
       config = <<-RUBY
 
-#{app_name.classify}::Application.configure do
+#{app_name.gsub('-', '_').classify}::Application.configure do
   # ...
 end
       RUBY
