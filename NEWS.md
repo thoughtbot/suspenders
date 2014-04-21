@@ -1,3 +1,9 @@
+1.10.0 (April 21, 2014)
+
+* Generate a Rails 4.1 app.
+* Generate a working .ruby-version for Ruby >= 2.1.0.
+* Update Unicorn template to version now preferred by Heroku.
+
 1.9.3 (April 13, 2014)
 
 * Use FactoryGirl.lint instead of custom-generated factory-testing code.
