@@ -15,12 +15,12 @@ feature 'Suspend a new project with default configuration' do
     run_suspenders
 
     staging_file = IO.read("#{project_path}/config/environments/staging.rb")
-    config_stub = "Dummy::Application.configure do"
+    config_stub = "Rails.application.configure do"
     expect(staging_file).to match(/^require_relative 'production'/)
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 
-  if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
+  if RUBY_VERSION >= '2.1.0'
     scenario '.ruby-version does not include patchlevel for Ruby 2.1.0+' do
       run_suspenders
 

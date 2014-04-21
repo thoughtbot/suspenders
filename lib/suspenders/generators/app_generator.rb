@@ -76,7 +76,6 @@ module Suspenders
       build :set_up_factory_girl_for_rspec
       build :generate_rspec
       build :configure_rspec
-      build :use_spring_binstubs
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_spec_support_features
@@ -201,7 +200,7 @@ module Suspenders
     end
 
     def patch_level
-      if RUBY_PATCHLEVEL == 0 && RUBY_VERSION >= '2.1.0'
+      if RUBY_VERSION >= '2.1.0'
         ''
       else
         "-p#{RUBY_PATCHLEVEL}"
