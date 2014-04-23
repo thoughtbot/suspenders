@@ -1,4 +1,5 @@
 require 'spec_helper'
+require 'open3'
 
 feature 'Suspend a new project with default configuration' do
   scenario 'specs pass' do
@@ -7,6 +8,18 @@ feature 'Suspend a new project with default configuration' do
     Dir.chdir(project_path) do
       Bundler.with_clean_env do
         expect(`rake`).to include('0 failures')
+      end
+    end
+  end
+
+  scenario 'setup passes' do
+    run_suspenders
+
+    Dir.chdir(project_path) do
+      Bundler.with_clean_env do
+        stdout, stderr, status = Open3.capture3('./bin/setup')
+
+        expect(status).to be_success
       end
     end
   end

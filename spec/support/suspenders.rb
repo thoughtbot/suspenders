@@ -15,6 +15,7 @@ module SuspendersTestHelpers
         ENV['TESTING'] = '1'
 
         %x(#{suspenders_bin} #{APP_NAME} #{arguments})
+        copy_sample_factory
       end
     end
   end
@@ -45,5 +46,18 @@ module SuspendersTestHelpers
 
   def root_path
     File.expand_path('../../../', __FILE__)
+  end
+
+  def copy_sample_factory
+    FileUtils.mkdir_p(project_factories_path)
+    FileUtils.cp(sample_factory_path, project_factories_path)
+  end
+
+  def project_factories_path
+    File.join(project_path, 'spec', 'factories')
+  end
+
+  def sample_factory_path
+    File.join(root_path, 'spec', 'fixtures', 'sample_factory.rb')
   end
 end
