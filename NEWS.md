@@ -1,3 +1,7 @@
+1.10.1 (April 25, 2014)
+
+* Fix bundling sass-rails.
+
 1.10.0 (April 21, 2014)
 
 * Generate a Rails 4.1 app.
