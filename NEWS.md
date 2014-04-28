@@ -1,3 +1,7 @@
+1.10.2 (April 28, 2014)
+
+* Fix bundling Bourbon and Neat.
+
 1.10.1 (April 25, 2014)
 
 * Fix bundling sass-rails.
