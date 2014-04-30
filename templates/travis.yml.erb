@@ -1,13 +1,29 @@
+before_install:
+  - "echo '--colour' > ~/.rspec"
+  - "echo 'gem: --no-document' > ~/.gemrc"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
 before_script:
-- cp .sample.env .env
+  - cp .sample.env .env
+  <% if options[:database] == 'postgresql' %>
+  - psql -c 'create database "<%= app_name %>_test";' -U postgres
+  <% end %>
 branches:
   only:
-  - master
-cache: bundler
-language: ruby
+    - master
+cache:
+  - bundler
+language:
+  - ruby
 notifications:
   campfire:
-    on_success: change
-    on_failure: always
-    template: '%{repository_name} build #%{build_number} on %{branch} by %{author} finished: %{message}: %{build_url}'
-rvm: ruby-<%= ruby_version_with_patch_level %>
+    on_failure:
+      - always
+    on_success:
+      - change
+    template:
+      - '(%{branch} - %{author}): %{message} - %{build_url}'
+  email:
+    - false
+rvm:
+  - <%= ruby_version_with_patch_level %>
