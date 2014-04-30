@@ -37,6 +37,7 @@ feature 'Suspend a new project with default configuration' do
     expect(secrets_file).to match(/secret_key_base: <%= ENV\['SECRET_KEY_BASE'\] %>/)
   end
 
+
   scenario 'action mailer support file is added' do
     run_suspenders
 
@@ -51,5 +52,18 @@ feature 'Suspend a new project with default configuration' do
     expect(newrelic_file).to match(
       /license_key: '<%= ENV\['NEW_RELIC_LICENSE_KEY'\] %>'/
     )
+  end
+
+  scenario 'records pageviews through Segment.io if ENV variable set' do
+    run_suspenders
+
+    expect(analytics_partial).
+      to include("<% if ENV['SEGMENT_IO_KEY'] %>")
+    expect(analytics_partial).
+      to include("window.analytics.load('<%= ENV['SEGMENT_IO_KEY'] %>');")
+  end
+
+  def analytics_partial
+    IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
 end
