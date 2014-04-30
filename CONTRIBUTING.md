@@ -1,38 +1,36 @@
-We love pull requests. Here's a quick guide:
+# Contributing
 
-1. Fork the repo.
+We love pull requests. Here's a quick guide.
 
-2. Run the tests. We only take pull requests with passing tests, and it's great
-to know that you have a clean slate: `bundle && rake`
+Fork the repo:
 
-3. Add a test for your change. Only refactoring and documentation changes
-require no new tests. If you are adding functionality or fixing a bug, we need
-a test!
+    git clone git@github.com:thoughtbot/suspenders.git
 
-4. Make the test pass.
+Set up your machine:
 
-5. Push to your fork and submit a pull request.
+    ./bin/setup
 
+Make sure the tests pass:
 
-At this point you're waiting on us. We like to at least comment on, if not
-accept, pull requests within three business days (and, typically, one business
-day). We may suggest some changes or improvements or alternatives.
+    rake
 
-Some things that will increase the chance that your pull request is accepted,
-taken straight from the Ruby on Rails guide:
+Make your change. Add tests for your change. Make the tests pass:
 
-* Use Rails idioms and helpers
-* Include tests that fail without your code, and pass with it
-* Update the documentation, the surrounding one, examples elsewhere, guides,
-  whatever is affected by your contribution
+    rake
 
-Syntax:
+Push to your fork and [submit a pull request][pr].
 
-* Two spaces, no tabs.
-* No trailing whitespace. Blank lines should not have any space.
-* Prefer &&/|| over and/or.
-* my_method(my_arg) not my_method( my_arg ) or my_method my_arg.
-* a = b and not a=b.
-* Follow the conventions you see used in the source already.
+[pr]: https://github.com/thoughtbot/suspenders/compare/
 
-And in case we didn't emphasize it enough: we love tests!
+At this point you're waiting on us. We like to at least comment on pull requests
+within three business days (and, typically, one business day). We may suggest
+some changes or improvements or alternatives.
+
+Some things that will increase the chance that your pull request is accepted:
+
+* Write tests.
+* Follow our [style guide][style].
+* Write a [good commit message][commit].
+
+[style]: https://github.com/thoughtbot/guides/tree/master/style
+[commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
