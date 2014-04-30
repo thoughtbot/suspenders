@@ -1,0 +1,13 @@
+#!/usr/bin/env sh
+
+# Run this script immediately after cloning the codebase.
+
+# Exit if any subcommand fails
+set -e
+
+# Set up Ruby dependencies via Bundler
+bundle install
+
+# Add binstubs to PATH in ~/.zshenv like this:
+#   export PATH=".git/safe/../../bin:$PATH"
+mkdir -p .git/safe
