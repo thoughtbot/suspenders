@@ -12,17 +12,11 @@ module Suspenders
     end
 
     def raise_on_unpermitted_parameters
-      action_on_unpermitted_parameters = <<-RUBY
-
-  # Raise an ActionController::UnpermittedParameters exception when
-  # a parameter is not explicitly permitted but is passed anyway.
-  config.action_controller.action_on_unpermitted_parameters = :raise
+      config = <<-RUBY
+    config.action_controller.action_on_unpermitted_parameters = :raise
       RUBY
-      inject_into_file(
-        "config/environments/development.rb",
-        action_on_unpermitted_parameters,
-        before: "\nend"
-      )
+
+      inject_into_class "config/application.rb", "Application", config
     end
 
     def provide_setup_script
@@ -36,6 +30,7 @@ module Suspenders
 
     def configure_generators
       config = <<-RUBY
+
     config.generators do |generate|
       generate.helper false
       generate.javascript_engine false
@@ -208,8 +203,8 @@ end
     def configure_time_zone
       config = <<-RUBY
     config.active_record.default_timezone = :utc
-
       RUBY
+
       inject_into_class 'config/application.rb', 'Application', config
     end
 
@@ -232,8 +227,8 @@ end
     def fix_i18n_deprecation_warning
       config = <<-RUBY
     config.i18n.enforce_available_locales = true
-
       RUBY
+
       inject_into_class 'config/application.rb', 'Application', config
     end
 
