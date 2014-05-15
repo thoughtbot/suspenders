@@ -276,17 +276,29 @@ end
     end
 
     def set_heroku_remotes
-      remotes = <<-RUBY
+      remotes = <<-SHELL
 
-# Set up staging and production git remotes
-git remote add staging git@heroku.com:#{app_name}-staging.git
-heroku join --app #{app_name}-staging
+# Set up staging and production git remotes.
+git remote add staging git@heroku.com:#{app_name}-staging.git || true
+git remote add production git@heroku.com:#{app_name}-production.git || true
 
-git remote add production git@heroku.com:#{app_name}-production.git
-heroku join --app #{app_name}-production
-      RUBY
+# Join the staging and production apps.
+#{join_heroku_app('staging')}
+#{join_heroku_app('production')}
+      SHELL
 
       append_file 'bin/setup', remotes
+    end
+
+    def join_heroku_app(environment)
+      heroku_app_name = "#{app_name}-#{environment}"
+      <<-SHELL
+if heroku join --app #{heroku_app_name} &> /dev/null; then
+  echo 'You are a collaborator on the "#{heroku_app_name}" Heroku app'
+else
+  echo 'Ask for access to the "#{heroku_app_name}" Heroku app'
+fi
+      SHELL
     end
 
     def set_heroku_rails_secrets

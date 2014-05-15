@@ -37,7 +37,6 @@ feature 'Suspend a new project with default configuration' do
     expect(secrets_file).to match(/secret_key_base: <%= ENV\['SECRET_KEY_BASE'\] %>/)
   end
 
-
   scenario 'action mailer support file is added' do
     run_suspenders
 
