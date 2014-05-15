@@ -37,6 +37,7 @@ module Suspenders
     def configure_generators
       config = <<-RUBY
     config.generators do |generate|
+      generate.factory_girl false
       generate.helper false
       generate.javascript_engine false
       generate.request_specs false
@@ -44,7 +45,6 @@ module Suspenders
       generate.stylesheets false
       generate.test_framework :rspec
       generate.view_specs false
-      generate.factory_girl false
     end
 
       RUBY
