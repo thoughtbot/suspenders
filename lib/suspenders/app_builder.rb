@@ -44,6 +44,7 @@ module Suspenders
       generate.stylesheets false
       generate.test_framework :rspec
       generate.view_specs false
+      generate.factory_girl false
     end
 
       RUBY
