@@ -16,6 +16,7 @@ feature 'Suspend a new project with default configuration' do
 
     staging_file = IO.read("#{project_path}/config/environments/staging.rb")
     config_stub = "Rails.application.configure do"
+
     expect(staging_file).to match(/^require_relative 'production'/)
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
@@ -24,6 +25,7 @@ feature 'Suspend a new project with default configuration' do
     run_suspenders
 
     ruby_version_file = IO.read("#{project_path}/.ruby-version")
+
     expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
   end
 
@@ -31,6 +33,7 @@ feature 'Suspend a new project with default configuration' do
     run_suspenders
 
     secrets_file = IO.read("#{project_path}/config/secrets.yml")
+
     expect(secrets_file).to match(/secret_key_base: <%= ENV\['SECRET_KEY_BASE'\] %>/)
   end
 
@@ -38,5 +41,15 @@ feature 'Suspend a new project with default configuration' do
     run_suspenders
 
     expect(File).to exist("#{project_path}/spec/support/action_mailer.rb")
+  end
+
+  scenario 'newrelic.yml reads NewRelic license from env' do
+    run_suspenders
+
+    newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
+
+    expect(newrelic_file).to match(
+      /license_key: '<%= ENV\['NEW_RELIC_LICENSE_KEY'\] %>'/
+    )
   end
 end

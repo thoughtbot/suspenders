@@ -55,6 +55,10 @@ module Suspenders
       copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
     end
 
+    def configure_newrelic
+      template 'newrelic.yml.erb', 'config/newrelic.yml'
+    end
+
     def configure_smtp
       copy_file 'smtp.rb', 'config/smtp.rb'
 
