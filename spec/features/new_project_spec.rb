@@ -20,6 +20,13 @@ feature 'Suspend a new project with default configuration' do
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 
+  scenario 'secrets.yml reads secret from env' do
+    run_suspenders
+
+    secrets_file = IO.read("#{project_path}/config/secrets.yml")
+    expect(secrets_file).to match(/secret_key_base: <%= ENV\['SECRET_KEY_BASE'\] %>/)
+  end
+
   if RUBY_VERSION >= '2.1.0'
     scenario '.ruby-version does not include patchlevel for Ruby 2.1.0+' do
       run_suspenders
