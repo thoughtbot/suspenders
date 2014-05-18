@@ -1,3 +1,15 @@
+1.11.0 (May 17, 2014)
+
+* Generate a Rails 4.1.1 app and implement fixes for compatibility.
+* Escape ERb in secrets.yml
+* Maintain ActiveRecord test schema.
+* Make Shoulda Matchers work with Spring.
+* Unify Ruby version for gem and suspended apps.
+* Move SMTP variable settings out of initializer.
+* Connect to Postgres on localhost.
+* Add `bin/setup` for contributors.
+* Improve and document TravisCI configuration.
+
 1.10.2 (April 28, 2014)
 
 * Fix bundling Bourbon and Neat.
