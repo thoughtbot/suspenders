@@ -20,19 +20,10 @@ feature 'Suspend a new project with default configuration' do
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 
-  if RUBY_VERSION >= '2.1.0'
-    scenario '.ruby-version does not include patchlevel for Ruby 2.1.0+' do
-      run_suspenders
+  scenario '.ruby-version does not include patchlevel' do
+    run_suspenders
 
-      ruby_version_file = IO.read("#{project_path}/.ruby-version")
-      expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
-    end
-  else
-    scenario '.ruby-version includes patchlevel for all pre-Ruby 2.1.0 versions' do
-      run_suspenders
-
-      ruby_version_file = IO.read("#{project_path}/.ruby-version")
-      expect(ruby_version_file).to eq "#{RUBY_VERSION}-p#{RUBY_PATCHLEVEL}\n"
-    end
+    ruby_version_file = IO.read("#{project_path}/.ruby-version")
+    expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
   end
 end

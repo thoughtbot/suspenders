@@ -4,7 +4,7 @@ require 'suspenders/version'
 require 'date'
 
 Gem::Specification.new do |s|
-  s.required_ruby_version = '>= 1.9.3'
+  s.required_ruby_version = "~> #{Suspenders::RUBY_VERSION}"
   s.add_dependency 'bundler', '~> 1.3'
   s.add_dependency 'rails', '~> 4.1.0'
   s.add_development_dependency 'aruba', '~> 0.5.2'

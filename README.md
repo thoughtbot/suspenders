@@ -15,7 +15,7 @@ Then run:
 
     suspenders projectname
 
-This will create a Rails 4.1 app in `projectname`.
+This will create a Rails app in `projectname` using the latest version of Rails.
 
 By default this script creates a new git repository. See below if you
 want to use it against an existing repo.
@@ -24,8 +24,8 @@ Gemfile
 -------
 
 To see the latest and greatest gems, look at Suspenders'
-[Gemfile](templates/Gemfile.erb),
-which will be appended to the default generated projectname/Gemfile.
+[Gemfile](templates/Gemfile.erb), which will be appended to the default
+generated projectname/Gemfile.
 
 It includes application gems like:
 
@@ -139,7 +139,7 @@ This has the same effect as running:
 Dependencies
 ------------
 
-Suspenders requires Ruby 1.9.2 or greater.
+Suspenders requires the latest version of Ruby.
 
 Some gems included in Suspenders have native extensions. You should have GCC
 installed on your machine before generating an app with Suspenders.
@@ -151,7 +151,7 @@ Use [Command Line Tools for XCode](https://developer.apple.com/downloads/index.a
 for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
 
 We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
-full-stack Javascript integration testing. It requires QT. Instructions for
+full-stack JavaScript integration testing. It requires QT. Instructions for
 installing QT are
 [here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
 
@@ -161,12 +161,14 @@ Issues
 ------
 
 If you have problems, please create a
-[Github Issue](https://github.com/thoughtbot/suspenders/issues).
+[GitHub Issue](https://github.com/thoughtbot/suspenders/issues).
 
 Contributing
 ------------
 
-Please see CONTRIBUTING.md for details.
+To update Suspenders' Ruby version, change `.ruby-version` and `.travis.yml`.
+
+Please see CONTRIBUTING.md for further details.
 
 Credits
 -------

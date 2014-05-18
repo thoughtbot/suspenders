@@ -185,10 +185,6 @@ module Suspenders
       # Let's not: We'll bundle manually at the right spot
     end
 
-    def ruby_version_with_patch_level
-      "#{RUBY_VERSION}#{patch_level}"
-    end
-
     protected
 
     def get_builder_class
@@ -197,14 +193,6 @@ module Suspenders
 
     def using_active_record?
       !options[:skip_active_record]
-    end
-
-    def patch_level
-      if RUBY_VERSION >= '2.1.0'
-        ''
-      else
-        "-p#{RUBY_PATCHLEVEL}"
-      end
     end
   end
 end
