@@ -174,6 +174,10 @@ end
       run 'rails g delayed_job:active_record'
     end
 
+    def configure_action_mailer_in_specs
+      copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
+    end
+
     def configure_time_zone
       config = <<-RUBY
     config.active_record.default_timezone = :utc
