@@ -70,6 +70,8 @@ And testing gems like:
   [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
   integration testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
+* [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
+  HTML forms
 * [RSpec](https://github.com/rspec/rspec) for unit testing
 * [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
 * [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
