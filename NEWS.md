@@ -1,3 +1,16 @@
+1.12.0 (May 26, 2014)
+
+* Fix `rake dev:prime` now that Suspenders-generated apps require some `ENV`
+  variables to be set.
+* Ensure `EMAIL_RECIPIENTS` is set on staging.
+* Clear `ActionMailer` deliveries before every test.
+* Include New Relic configuration file.
+* Add Formulaic gem for integration testing HTML forms.
+* Set up the Segment.io adapter for analytics and event tracking through
+  services such as Google Analytics and Intercom.
+* Prepare staging and production environments to serve static assets through a
+  CDN.
+
 1.11.0 (May 17, 2014)
 
 * Generate a Rails 4.1.1 app and implement fixes for compatibility.
