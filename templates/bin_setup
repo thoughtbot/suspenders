@@ -14,6 +14,8 @@ if [ ! -f .env ]; then
   cp .sample.env .env
 fi
 
+bundle exec rake -T
+
 # Set up database and add any development seed data
 bundle exec rake dev:prime
 
