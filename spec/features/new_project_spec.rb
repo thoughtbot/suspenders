@@ -19,7 +19,7 @@ feature 'Suspend a new project with default configuration' do
       Bundler.with_clean_env do
         stdout, stderr, status = Open3.capture3('./bin/setup')
 
-        expect(status).to be_success
+        expect(status).to be_success, "STDERR\n======\n#{stderr}\nSTDOUT\n======\n#{stdout}"
       end
     end
   end
