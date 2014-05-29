@@ -144,7 +144,8 @@ This has the same effect as running:
 Dependencies
 ------------
 
-Suspenders requires the latest version of Ruby.
+Suspenders requires a recent version of Ruby - see
+[`.ruby-version`](.ruby-version) for the current version in use.
 
 Some gems included in Suspenders have native extensions. You should have GCC
 installed on your machine before generating an app with Suspenders.
