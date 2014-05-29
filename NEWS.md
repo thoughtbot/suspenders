@@ -1,3 +1,9 @@
+1.13.0 (May 29, 2014)
+
+* Remove `FactoryGirl.lint` in `before(:suite)` in order to avoid paying and
+  estimated extra ~300ms load time on a typical thoughtbot app.
+* Automatically join Heroku app in `bin/setup` if using Heroku organizations.
+
 1.12.0 (May 26, 2014)
 
 * Fix `rake dev:prime` now that Suspenders-generated apps require some `ENV`
