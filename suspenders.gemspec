@@ -29,7 +29,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
 
   s.add_dependency 'bitters'
   s.add_dependency 'bundler', '~> 1.3'
-  s.add_dependency 'rails', '~> 4.1.0'
+  s.add_dependency 'rails', Suspenders::RAILS_VERSION
 
   s.add_development_dependency 'aruba', '~> 0.5.2'
   s.add_development_dependency 'cucumber', '~> 1.2'
