@@ -247,6 +247,10 @@ end
         'app/assets/stylesheets/application.css.scss'
     end
 
+    def install_bitters
+      run "bitters install --path app/assets/stylesheets"
+    end
+
     def gitignore_files
       remove_file '.gitignore'
       copy_file 'suspenders_gitignore', '.gitignore'

@@ -31,6 +31,7 @@ It includes application gems like:
 
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
+* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
 * [Email Validator](https://github.com/balexand/email_validator) for email
