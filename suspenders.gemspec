@@ -4,7 +4,7 @@ require 'suspenders/version'
 require 'date'
 
 Gem::Specification.new do |s|
-  s.required_ruby_version = Suspenders::RUBY_VERSION
+  s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
   s.authors = ['thoughtbot']
   s.date = Date.today.strftime('%Y-%m-%d')
 
@@ -31,8 +31,8 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.add_dependency 'bundler', '~> 1.3'
   s.add_dependency 'rails', Suspenders::RAILS_VERSION
 
-  s.add_development_dependency 'aruba', '~> 0.5.2'
+  s.add_development_dependency 'aruba', '~> 0.5'
   s.add_development_dependency 'cucumber', '~> 1.2'
-  s.add_development_dependency 'rspec'
-  s.add_development_dependency 'capybara'
+  s.add_development_dependency 'rspec', '~> 2.0'
+  s.add_development_dependency 'capybara', '~> 2.2', '>= 2.2.0'
 end
