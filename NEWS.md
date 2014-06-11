@@ -1,3 +1,11 @@
+1.14.0 (June 11, 2014)
+
+* Set up Bitters during Suspenders setup. http://bitters.bourbon.io/
+* Remove SimpleCov.
+* Force Suspenders to use a particular Rails version (4.1.1).
+* Use RSpec 2.x until Travis/Capybara issues resolve.
+* Set `viewport` to `initial-scale=1`.
+
 1.13.0 (May 29, 2014)
 
 * Remove `FactoryGirl.lint` in `before(:suite)` in order to avoid paying and
