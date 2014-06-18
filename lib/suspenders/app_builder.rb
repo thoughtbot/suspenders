@@ -183,8 +183,13 @@ end
       template 'travis.yml.erb', '.travis.yml'
     end
 
-    def configure_i18n_in_specs
+    def configure_i18n_for_test_environment
       copy_file 'i18n.rb', 'spec/support/i18n.rb'
+      raise_on_missing_translations_in("test")
+    end
+
+    def configure_i18n_for_development_environment
+      raise_on_missing_translations_in("development")
     end
 
     def configure_background_jobs_for_rspec
@@ -355,6 +360,12 @@ fi
     end
 
     private
+
+    def raise_on_missing_translations_in(environment)
+      config = 'config.action_view.raise_on_missing_translations = true'
+
+      uncomment_in_file("config/environments/#{environment}.rb", config)
+    end
 
     def override_path_for_tests
       if ENV['TESTING']

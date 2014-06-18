@@ -62,6 +62,15 @@ feature 'Suspend a new project with default configuration' do
       to include(%{window.analytics.load("<%= ENV["SEGMENT_IO_KEY"] %>");})
   end
 
+  scenario "raises on missing translations in development/test" do
+    run_suspenders
+
+    %w(test development).each do |environment|
+      environment_file = IO.read("#{project_path}/config/environments/#{environment}.rb")
+      expect(environment_file).to match /^ +config.action_view.raise_on_missing_translations = true$/
+    end
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
