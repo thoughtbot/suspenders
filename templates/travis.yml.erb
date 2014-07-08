@@ -16,13 +16,6 @@ cache:
 language:
   - ruby
 notifications:
-  campfire:
-    on_failure:
-      - always
-    on_success:
-      - change
-    template:
-      - '(%{branch} - %{author}): %{message} - %{build_url}'
   email:
     - false
 rvm:
