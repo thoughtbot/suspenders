@@ -91,9 +91,9 @@ module Suspenders
         '# config.action_controller.asset_host = "http://assets.example.com"',
         "config.action_controller.asset_host = ENV.fetch('ASSET_HOST')"
 
-      replace_in_file 'config/environments/production.rb',
+      replace_in_file 'config/initializers/assets.rb',
         "config.assets.version = '1.0'",
-        "config.assets.version = ENV.fetch('ASSETS_VERSION')"
+        "config.assets.version = (ENV['ASSETS_VERSION'] || '1.0')"
 
       replace_in_file 'config/environments/production.rb',
         'config.serve_static_assets = false',
