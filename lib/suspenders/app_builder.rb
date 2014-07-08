@@ -26,7 +26,7 @@ module Suspenders
     end
 
     def provide_setup_script
-      copy_file 'bin_setup', 'bin/setup'
+      template 'bin_setup.erb', 'bin/setup', port_number: port_number
       run 'chmod a+x bin/setup'
     end
 
@@ -219,7 +219,7 @@ end
     end
 
     def configure_action_mailer
-      action_mailer_host 'development', "#{app_name}.local"
+      action_mailer_host 'development', "localhost:#{port_number}"
       action_mailer_host 'test', 'www.example.com'
       action_mailer_host 'staging', "staging.#{app_name}.com"
       action_mailer_host 'production', "#{app_name}.com"
@@ -380,6 +380,10 @@ fi
 
     def generate_secret
       SecureRandom.hex(64)
+    end
+
+    def port_number
+      @port_number ||= [3000, 4000, 5000, 6000, 7000, 8000, 9000].sample
     end
   end
 end
