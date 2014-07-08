@@ -1,2 +1,0 @@
-install postgres --no-python
-install qt imagemagick
