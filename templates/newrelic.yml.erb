@@ -1,5 +1,5 @@
 common: &default_settings
-  app_name: '<%= app_name %>'
+  app_name: "<%= app_name %>"
   audit_log:
     enabled: false
   browser_monitoring:
@@ -9,8 +9,8 @@ common: &default_settings
   error_collector:
     capture_source: true
     enabled: true
-    ignore_errors: 'ActionController::RoutingError,Sinatra::NotFound'
-  license_key: '<%%= ENV['NEW_RELIC_LICENSE_KEY'] %>'
+    ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
+  license_key: "<%%= ENV["NEW_RELIC_LICENSE_KEY"] %>"
   log_level: info
   monitor_mode: true
   transaction_tracer:
@@ -30,5 +30,5 @@ production:
   monitor_mode: true
 staging:
   <<: *default_settings
-  app_name: '<%= app_name %> (Staging)'
+  app_name: "<%= app_name %> (Staging)"
   monitor_mode: true

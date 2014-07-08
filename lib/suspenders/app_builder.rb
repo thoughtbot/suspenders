@@ -63,7 +63,7 @@ module Suspenders
       copy_file 'smtp.rb', 'config/smtp.rb'
 
       prepend_file 'config/environments/production.rb',
-        "require Rails.root.join('config/smtp')\n"
+        %{require Rails.root.join("config/smtp")\n}
 
       config = <<-RUBY
 
@@ -89,11 +89,11 @@ module Suspenders
     def setup_asset_host
       replace_in_file 'config/environments/production.rb',
         '# config.action_controller.asset_host = "http://assets.example.com"',
-        "config.action_controller.asset_host = ENV.fetch('ASSET_HOST')"
+        'config.action_controller.asset_host = ENV.fetch("ASSET_HOST")'
 
       replace_in_file 'config/initializers/assets.rb',
         "config.assets.version = '1.0'",
-        "config.assets.version = (ENV['ASSETS_VERSION'] || '1.0')"
+        'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
       replace_in_file 'config/environments/production.rb',
         'config.serve_static_assets = false',
@@ -327,9 +327,9 @@ fi
 
     def customize_error_pages
       meta_tags =<<-EOS
-  <meta charset='utf-8' />
-  <meta name='ROBOTS' content='NOODP' />
-  <meta name='viewport' content='initial-scale=1' />
+  <meta charset="utf-8" />
+  <meta name="ROBOTS" content="NOODP" />
+  <meta name="viewport" content="initial-scale=1" />
       EOS
 
       %w(500 404 422).each do |page|
@@ -350,7 +350,7 @@ fi
 
     def setup_default_rake_task
       append_file 'Rakefile' do
-        "task(:default).clear\ntask :default => [:spec]\n"
+        "task(:default).clear\ntask default: [:spec]\n"
       end
     end
 

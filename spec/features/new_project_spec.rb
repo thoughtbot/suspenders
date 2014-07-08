@@ -17,7 +17,7 @@ feature 'Suspend a new project with default configuration' do
     staging_file = IO.read("#{project_path}/config/environments/staging.rb")
     config_stub = "Rails.application.configure do"
 
-    expect(staging_file).to match(/^require_relative 'production'/)
+    expect(staging_file).to match(/^require_relative "production"/)
     expect(staging_file).to match(/#{config_stub}/), staging_file
   end
 
@@ -34,7 +34,7 @@ feature 'Suspend a new project with default configuration' do
 
     secrets_file = IO.read("#{project_path}/config/secrets.yml")
 
-    expect(secrets_file).to match(/secret_key_base: <%= ENV\['SECRET_KEY_BASE'\] %>/)
+    expect(secrets_file).to match(/secret_key_base: <%= ENV\["SECRET_KEY_BASE"\] %>/)
   end
 
   scenario 'action mailer support file is added' do
@@ -49,7 +49,7 @@ feature 'Suspend a new project with default configuration' do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
 
     expect(newrelic_file).to match(
-      /license_key: '<%= ENV\['NEW_RELIC_LICENSE_KEY'\] %>'/
+      /license_key: "<%= ENV\["NEW_RELIC_LICENSE_KEY"\] %>"/
     )
   end
 
@@ -57,9 +57,9 @@ feature 'Suspend a new project with default configuration' do
     run_suspenders
 
     expect(analytics_partial).
-      to include("<% if ENV['SEGMENT_IO_KEY'] %>")
+      to include(%{<% if ENV["SEGMENT_IO_KEY"] %>})
     expect(analytics_partial).
-      to include("window.analytics.load('<%= ENV['SEGMENT_IO_KEY'] %>');")
+      to include(%{window.analytics.load("<%= ENV["SEGMENT_IO_KEY"] %>");})
   end
 
   def analytics_partial

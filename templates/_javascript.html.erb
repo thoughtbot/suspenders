@@ -2,7 +2,7 @@
 
 <%= yield :javascript %>
 
-<%= render 'analytics' %>
+<%= render "analytics" %>
 
 <% if Rails.env.test? %>
   <%= javascript_tag do %>

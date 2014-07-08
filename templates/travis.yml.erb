@@ -5,7 +5,7 @@ before_install:
   - sh -e /etc/init.d/xvfb start
 before_script:
   - cp .sample.env .env
-  <% if options[:database] == 'postgresql' %>
+  <% if options[:database] == "postgresql" %>
   - psql -c 'create database "<%= app_name %>_test";' -U postgres
   <% end %>
 branches:
