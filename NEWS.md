@@ -1,3 +1,13 @@
+1.15.0 (July 9, 2014)
+
+* Use Rails 4.1.4.
+* Use latest thoughtbot style guidelines in generated code so that
+  https://houndci.com will approve the initial commit.
+* Remove Campfire in favor of Slack.
+* Remove Pow in bin/setup.
+* Upgrade Capybara Webkit to support Capybara 2.3 API.
+* Add byebug.
+
 1.14.0 (June 11, 2014)
 
 * Set up Bitters during Suspenders setup. http://bitters.bourbon.io/

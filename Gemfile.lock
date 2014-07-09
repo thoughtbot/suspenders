@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    suspenders (1.14.0)
+    suspenders (1.15.0)
       bitters
       bundler (~> 1.3)
       rails (= 4.1.4)
