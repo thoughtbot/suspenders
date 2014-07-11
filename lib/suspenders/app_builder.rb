@@ -438,6 +438,28 @@ you can deploy to staging and production with:
       end
     end
 
+    def remove_config_comment_lines
+      config_files = [
+        "application.rb",
+        "environment.rb",
+        "environments/development.rb",
+        "environments/production.rb",
+        "environments/test.rb",
+      ]
+
+      config_files.each do |config_file|
+        path = File.join(destination_root, "config/#{config_file}")
+
+        accepted_content = File.readlines(path).reject do |line|
+          line =~ /^.*#.*$/ || line =~ /^$\n/
+        end
+
+        File.open(path, "w") do |file|
+          accepted_content.each { |line| file.puts line }
+        end
+      end
+    end
+
     def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
         /Rails\.application\.routes\.draw do.*end/m,

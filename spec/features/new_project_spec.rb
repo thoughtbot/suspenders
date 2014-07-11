@@ -133,6 +133,21 @@ RSpec.describe "Suspend a new project with default configuration" do
     end
   end
 
+  it "removes comments and extra newlines from config files" do
+    config_files = [
+      IO.read("#{project_path}/config/application.rb"),
+      IO.read("#{project_path}/config/environment.rb"),
+      IO.read("#{project_path}/config/environments/development.rb"),
+      IO.read("#{project_path}/config/environments/production.rb"),
+      IO.read("#{project_path}/config/environments/test.rb"),
+    ]
+
+    config_files.each do |file|
+      expect(file).not_to match(/.*#.*/)
+      expect(file).not_to match(/^$\n/)
+    end
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
