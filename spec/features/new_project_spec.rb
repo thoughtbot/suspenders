@@ -62,13 +62,26 @@ feature 'Suspend a new project with default configuration' do
       to include(%{window.analytics.load("<%= ENV["SEGMENT_IO_KEY"] %>");})
   end
 
-  scenario "raises on missing translations in development/test" do
+  scenario "raises on missing translations in development" do
     run_suspenders
 
-    %w(test development).each do |environment|
-      environment_file = IO.read("#{project_path}/config/environments/#{environment}.rb")
-      expect(environment_file).to match /^ +config.action_view.raise_on_missing_translations = true$/
-    end
+    environment_file =
+      IO.read("#{project_path}/config/environments/development.rb")
+    expect(environment_file).to match(
+      /^ +config.action_view.raise_on_missing_translations = true$/
+    )
+  end
+
+  scenario "specs for missing or unused translations" do
+    run_suspenders
+
+    expect(File).to exist("#{project_path}/spec/i18n_spec.rb")
+  end
+
+  scenario "config file for i18n tasks" do
+    run_suspenders
+
+    expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
   end
 
   def analytics_partial
