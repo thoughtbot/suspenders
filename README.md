@@ -18,9 +18,6 @@ Then run:
 
 This will create a Rails app in `projectname` using the latest version of Rails.
 
-By default this script creates a new git repository. See below if you
-want to use it against an existing repo.
-
 Gemfile
 -------
 
