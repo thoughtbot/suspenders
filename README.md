@@ -175,7 +175,7 @@ Contributing
 
 To update Suspenders' Ruby version, change `.ruby-version` and `.travis.yml`.
 
-Please see CONTRIBUTING.md for further details.
+Please see [CONTRIBUTING.md](CONTRIBUTING.md) for further details.
 
 Credits
 -------
