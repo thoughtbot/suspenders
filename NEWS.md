@@ -1,3 +1,17 @@
+1.16.0 (August 16, 2014)
+
+* Use the 3.x series of RSpec.
+* Use the 0.10.x series of Bitters.
+* Improve documentation in generated README for machine setup via `bin/setup`
+  and https://github.com/thoughtbot/laptop script.
+* Remove Foreman from `Gemfile`.
+* Use i18n-tasks for missing or unused translations.
+* Raise on missing translations in development environment. Fail fast!
+* Prevent empty div when there are no flashes.
+* Pick random port when generating Rails app so multiple apps can be run via
+  Foreman on a development machine at the same time.
+* Add `normalize-rails` gem for resetting browser styles.
+
 1.15.0 (July 9, 2014)
 
 * Use Rails 4.1.4.
