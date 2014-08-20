@@ -10,7 +10,7 @@ common: &default_settings
     capture_source: true
     enabled: true
     ignore_errors: "ActionController::RoutingError,Sinatra::NotFound"
-  license_key: "<%%= ENV["NEW_RELIC_LICENSE_KEY"] %>"
+  license_key: "<%= ENV["NEW_RELIC_LICENSE_KEY"] %>"
   log_level: info
   monitor_mode: true
   transaction_tracer:
