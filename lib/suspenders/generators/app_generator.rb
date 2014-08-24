@@ -83,6 +83,7 @@ module Suspenders
       build :enable_database_cleaner
       build :configure_spec_support_features
       build :configure_travis
+      build :configure_i18n_for_test_environment
       build :configure_i18n_tasks
       build :configure_action_mailer_in_specs
     end

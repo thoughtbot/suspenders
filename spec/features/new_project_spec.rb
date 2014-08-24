@@ -43,6 +43,12 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/spec/support/action_mailer.rb")
   end
 
+  scenario "i18n support file is added" do
+    run_suspenders
+
+    expect(File).to exist("#{project_path}/spec/support/i18n.rb")
+  end
+
   scenario 'newrelic.yml reads NewRelic license from env' do
     run_suspenders
 
