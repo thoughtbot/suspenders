@@ -88,12 +88,14 @@ Suspenders also comes with:
 * [Fast-failing factories][fast]
 * A [low database connection pool limit][pool]
 * [Safe binstubs][binstub]
+* Sendgrid[sendgrid] configured to work with the Heroku plugin
 
 [bin]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
 [fast]: http://robots.thoughtbot.com/testing-your-factories-first
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
+[sendgrid]: http://sendgrid.com/
 
 Suspenders fixes several of Rails' [insecure defaults]:
 
