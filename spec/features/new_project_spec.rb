@@ -90,6 +90,15 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
   end
 
+  scenario "seeds for development" do
+    run_suspenders
+
+    seeds_file = project_path.join("db", "seeds.rb")
+
+    expect(seeds_file.read).to match(/FactoryGirl/)
+    expect(File).to exist("#{project_path}/lib/tasks/development_seeds.rake")
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
