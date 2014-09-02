@@ -35,7 +35,7 @@ module Suspenders
     end
 
     def provide_seeds
-      copy_file 'seeds_file.rb', 'db/seeds.rb'
+      copy_file "seeds_file.rb", "db/seeds.rb"
     end
 
     def configure_generators
