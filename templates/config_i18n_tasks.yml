@@ -10,3 +10,4 @@ ignore_unused:
   - date.*
   - simple_form.*
   - time.*
+  - titles.*
