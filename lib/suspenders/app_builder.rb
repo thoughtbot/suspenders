@@ -18,11 +18,14 @@ module Suspenders
   # a parameter is not explicitly permitted but is passed anyway.
   config.action_controller.action_on_unpermitted_parameters = :raise
       RUBY
-      inject_into_file(
-        "config/environments/development.rb",
-        action_on_unpermitted_parameters,
-        before: "\nend"
-      )
+
+      %w[development test].each do |environment|
+        inject_into_file(
+          "config/environments/#{environment}.rb",
+          action_on_unpermitted_parameters,
+          before: "\nend"
+        )
+      end
     end
 
     def provide_setup_script
