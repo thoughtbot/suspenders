@@ -68,6 +68,21 @@ feature 'Suspend a new project with default configuration' do
       to include(%{window.analytics.load("<%= ENV["SEGMENT_IO_KEY"] %>");})
   end
 
+  scenario "raises on unpermitted parameters in development and test" do
+    run_suspenders
+
+    environment_files = %w[development test].map do |environment|
+      IO.read("#{project_path}/config/environments/#{environment}.rb")
+    end
+
+    all_raise_on_unpermitted = environment_files.all? do |file|
+      file =~ \
+        /^ +config.action_controller.action_on_unpermitted_parameters = :raise$/
+    end
+
+    expect(all_raise_on_unpermitted).to be true
+  end
+
   scenario "raises on missing translations in development" do
     run_suspenders
 
