@@ -76,7 +76,8 @@ feature 'Suspend a new project with default configuration' do
     end
 
     all_raise_on_unpermitted = environment_files.all? do |file|
-      file =~ /^ +config.action_controller.action_on_unpermitted_parameters = :raise$/
+      file =~ \
+        /^ +config.action_controller.action_on_unpermitted_parameters = :raise$/
     end
 
     expect(all_raise_on_unpermitted).to be true
