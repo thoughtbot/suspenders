@@ -28,6 +28,10 @@ module Suspenders
       copy_file 'development_seeds.rb', 'lib/tasks/development_seeds.rake'
     end
 
+    def provide_seeds
+      copy_file "seeds_file.rb", "db/seeds.rb"
+    end
+
     def configure_generators
       config = <<-RUBY
 
