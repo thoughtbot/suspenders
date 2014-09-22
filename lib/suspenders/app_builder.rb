@@ -182,8 +182,9 @@ end
       copy_file "i18n.rb", "spec/support/i18n.rb"
     end
 
-    def configure_i18n_for_development_environment
+    def configure_i18n_for_missing_translations
       raise_on_missing_translations_in("development")
+      raise_on_missing_translations_in("test")
     end
 
     def configure_i18n_tasks

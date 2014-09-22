@@ -71,7 +71,7 @@ module Suspenders
       build :provide_setup_script
       build :provide_dev_prime_task
       build :configure_generators
-      build :configure_i18n_for_development_environment
+      build :configure_i18n_for_missing_translations
     end
 
     def setup_test_environment

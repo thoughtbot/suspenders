@@ -78,14 +78,16 @@ feature 'Suspend a new project with default configuration' do
     )
   end
 
-  scenario "raises on missing translations in development" do
+  scenario "raises on missing translations in development and test" do
     run_suspenders
 
-    environment_file =
-      IO.read("#{project_path}/config/environments/development.rb")
-    expect(environment_file).to match(
-      /^ +config.action_view.raise_on_missing_translations = true$/
-    )
+    %w[development test].each do |environment|
+      environment_file =
+        IO.read("#{project_path}/config/environments/#{environment}.rb")
+      expect(environment_file).to match(
+        /^ +config.action_view.raise_on_missing_translations = true$/
+      )
+    end
   end
 
   scenario "specs for missing or unused translations" do
