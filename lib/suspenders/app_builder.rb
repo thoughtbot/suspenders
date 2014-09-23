@@ -24,6 +24,11 @@ module Suspenders
       run 'chmod a+x bin/setup'
     end
 
+    def provide_deploy_script
+      template 'bin_deploy.erb', 'bin/deploy'
+      run 'chmod a+x bin/deploy'
+    end
+
     def provide_dev_prime_task
       copy_file 'development_seeds.rb', 'lib/tasks/development_seeds.rake'
     end

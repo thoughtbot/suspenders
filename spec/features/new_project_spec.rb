@@ -88,6 +88,15 @@ feature 'Suspend a new project with default configuration' do
     )
   end
 
+  scenario "copies bin/deploy executable" do
+    run_suspenders
+
+    bin_deploy = File.new("#{project_path}/bin/deploy")
+
+    expect(bin_deploy).to exist
+    expect(bin_deploy).to be_executable
+  end
+
   scenario "specs for missing or unused translations" do
     run_suspenders
 
