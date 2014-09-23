@@ -25,8 +25,8 @@ module Suspenders
     end
 
     def provide_deploy_script
-      template 'bin_deploy.erb', 'bin/deploy'
-      run 'chmod a+x bin/deploy'
+      template "bin_deploy.erb", "bin/deploy"
+      run "chmod a+x bin/deploy"
     end
 
     def provide_dev_prime_task
