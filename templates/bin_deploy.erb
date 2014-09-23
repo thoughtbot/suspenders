@@ -1,0 +1,4 @@
+#!/usr/bin/env sh
+
+git push "${1:-staging}" master &&
+  heroku run rake db:migrate --remote "${1:-staging}"
