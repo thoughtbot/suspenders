@@ -170,8 +170,10 @@ end
     end
 
     def configure_rspec
-      remove_file 'spec/spec_helper.rb'
-      copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
+      remove_file "spec/rails_helper.rb"
+      remove_file "spec/spec_helper.rb"
+      copy_file "rails_helper.rb", "spec/rails_helper.rb"
+      copy_file "spec_helper.rb", "spec/spec_helper.rb"
     end
 
     def configure_travis
