@@ -1,3 +1,12 @@
+1.17.0 (September 30, 2014)
+
+* Use Rails 4.1.6.
+* Generate a `spec/rails_helper.rb` and `spec/spec_helper.rb` following
+  RSpec 3.x's example, but using our defaults.
+* Raise on missing i18n translations in test environment.
+* Raise on unpermitted parameters in test environment.
+* Provide example for using Title gem for internationalizing page title text.
+
 1.16.0 (August 16, 2014)
 
 * Use the 3.x series of RSpec.
