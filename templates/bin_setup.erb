@@ -7,6 +7,10 @@
 set -e
 
 # Set up Ruby dependencies via Bundler
+if ! command -v bundle > /dev/null; then
+  gem install bundler --no-document
+fi
+
 bundle install
 
 # Set up configurable environment variables
@@ -18,13 +22,18 @@ fi
 bundle exec rake dev:prime
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
-mkdir -p .git/safe
+if [ ! -d .git/safe ]; then
+  mkdir -p .git/safe
+fi
 
 # Pick a port for Foreman
-echo "port: <%= config[:port_number] %>" > .foreman
+if ! grep -qs 'port' .foreman; then
+  printf 'port: <%= config[:port_number] %>\n' >> .foreman
+fi
 
-# Print warning if Foreman is not installed
+# Error out if Foreman is not installed
 if ! command -v foreman > /dev/null; then
-  echo "foreman is not installed."
-  echo "See https://github.com/ddollar/foreman for install instructions."
+  printf 'Foreman is not installed.\n'
+  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+  exit 1
 fi
