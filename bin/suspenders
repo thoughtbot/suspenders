@@ -15,4 +15,8 @@ templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__F
 Suspenders::AppGenerator.source_root templates_root
 Suspenders::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
 
+if ARGV.include? "--api"
+  require "rails-api"
+end
+
 Suspenders::AppGenerator.start

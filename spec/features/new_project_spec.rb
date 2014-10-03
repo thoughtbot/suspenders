@@ -102,6 +102,18 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
   end
 
+  context "with --api" do
+    scenario "generates a rails-api instead" do
+      run_suspenders "--api"
+      application_controller_file =
+        IO.read("#{project_path}/app/controllers/application_controller.rb")
+
+      expect(application_controller_file).to match(
+        /< ActionController::API$/
+      )
+    end
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
