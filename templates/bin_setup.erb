@@ -22,9 +22,7 @@ fi
 bundle exec rake dev:prime
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
-if [ ! -d .git/safe ]; then
-  mkdir -p .git/safe
-fi
+mkdir -p .git/safe
 
 # Pick a port for Foreman
 if ! grep -qs 'port' .foreman; then
