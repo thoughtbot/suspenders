@@ -289,11 +289,7 @@ end
     def set_heroku_remotes
       remotes = <<-SHELL
 
-# Set up staging and production git remotes.
-git remote add staging git@heroku.com:#{app_name}-staging.git || true
-git remote add production git@heroku.com:#{app_name}-production.git || true
-
-# Join the staging and production apps.
+# Set up the staging and production apps.
 #{join_heroku_app('staging')}
 #{join_heroku_app('production')}
       SHELL
@@ -305,9 +301,10 @@ git remote add production git@heroku.com:#{app_name}-production.git || true
       heroku_app_name = "#{app_name}-#{environment}"
       <<-SHELL
 if heroku join --app #{heroku_app_name} &> /dev/null; then
-  echo 'You are a collaborator on the "#{heroku_app_name}" Heroku app'
+  git remote add #{environment} git@heroku.com:#{heroku_app_name}.git || true
+  printf 'You are a collaborator on the "#{heroku_app_name}" Heroku app\n'
 else
-  echo 'Ask for access to the "#{heroku_app_name}" Heroku app'
+  printf 'Ask for access to the "#{heroku_app_name}" Heroku app\n'
 fi
       SHELL
     end
