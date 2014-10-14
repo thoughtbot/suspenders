@@ -385,7 +385,7 @@ fi
     end
 
     def port_number
-      @port_number ||= [3000, 4000, 5000, 6000, 7000, 8000, 9000].sample
+      @port_number ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
     end
   end
 end
