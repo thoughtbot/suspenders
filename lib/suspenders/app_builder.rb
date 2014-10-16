@@ -212,8 +212,8 @@ end
     end
 
     def configure_time_formats
-      remove_file 'config/locales/en.yml'
-      copy_file 'config_locales_en.yml', 'config/locales/en.yml'
+      remove_file "config/locales/en.yml"
+      template "config_locales_en.yml.erb", "config/locales/en.yml"
     end
 
     def configure_rack_timeout
