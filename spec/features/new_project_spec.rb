@@ -102,6 +102,15 @@ feature 'Suspend a new project with default configuration' do
     expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
   end
 
+  scenario "generated en.yml is evaluated" do
+    run_suspenders
+
+    locales_en_file = IO.read("#{project_path}/config/locales/en.yml")
+    app_name = SuspendersTestHelpers::APP_NAME
+
+    expect(locales_en_file).to match(/application: #{app_name.humanize}/)
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
