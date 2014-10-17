@@ -20,7 +20,7 @@ module SuspendersTestHelpers
   end
 
   def drop_dummy_database
-    if File.exists?(project_path)
+    if File.exist?(project_path)
       Dir.chdir(project_path) do
         Bundler.with_clean_env do
           `rake db:drop`
