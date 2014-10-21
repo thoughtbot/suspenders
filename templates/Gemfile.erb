@@ -12,6 +12,7 @@ gem "high_voltage"
 gem "i18n-tasks"
 gem "jquery-rails"
 gem "neat", "~> 1.5.1"
+gem "newrelic_rpm", ">= 3.7.3"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "rack-timeout"
@@ -45,8 +46,7 @@ group :test do
   gem "shoulda-matchers", require: false
   gem "timecop"
   gem "webmock"
-end
+  end
 
 group :staging, :production do
-  gem "newrelic_rpm", ">= 3.7.3"
 end
