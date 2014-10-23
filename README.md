@@ -39,6 +39,7 @@ It includes application gems like:
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
 * [Neat](https://github.com/thoughtbot/neat) for semantic grids
+* [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
 * [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
 * [Rack Timeout](https://github.com/kch/rack-timeout) to abort requests that are
@@ -53,7 +54,6 @@ It includes application gems like:
 
 And gems only for staging and production like:
 
-* [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
 * [Rails 12 Factor](https://github.com/heroku/rails_12factor) to make running
   Rails 4 apps easier on Heroku
 
