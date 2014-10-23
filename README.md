@@ -52,11 +52,6 @@ It includes application gems like:
   translations
 * [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
 
-And gems only for staging and production like:
-
-* [Rails 12 Factor](https://github.com/heroku/rails_12factor) to make running
-  Rails 4 apps easier on Heroku
-
 And development gems like:
 
 * [Dotenv](https://github.com/bkeepers/dotenv) for loading environment variables
@@ -122,6 +117,8 @@ This:
 * Sets them as `staging` and `production` Git remotes
 * Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
   to `staging`
+* Adds the [Rails 12 Factor](https://github.com/heroku/rails_12factor) gem
+  to make running Rails 4 apps easier on Heroku
 
 Git
 ---
