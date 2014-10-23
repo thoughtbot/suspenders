@@ -1,3 +1,16 @@
+1.18.0 (October 23, 2014)
+
+* Use Ruby 2.1.3.
+* Move New Relic to all gem groups to more easily
+  [debug Rails performance in development][debug-performance].
+* Make `bin/setup` idempotent, failing fast with install messages.
+* Fix unevaluated app name in generated `en.yml` locale file.
+* Change `File.exists?` to `File.exist?` to fix Ruby warning.
+* Don't include port 6000 as an option for Foreman; Chome considers it unsafe.
+* Git ignore the entire /tmp directory.
+
+[debug-performance]: https://upcase.com/improving-rails-performance
+
 1.17.0 (September 30, 2014)
 
 * Use Rails 4.1.6.
