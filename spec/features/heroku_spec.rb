@@ -15,5 +15,14 @@ feature 'Heroku' do
 
     expect(bin_setup).to include("heroku join --app #{app_name}-staging")
     expect(bin_setup).to include("heroku join --app #{app_name}-production")
+
+    bin_deploy = IO.read("#{project_path}/bin/deploy")
+
+    expect(bin_deploy).to include("heroku run rake db:migrate")
+
+    readme = IO.read("#{project_path}/README.md")
+
+    expect(readme).to include("./bin/deploy staging")
+    expect(readme).to include("./bin/deploy production")
   end
 end

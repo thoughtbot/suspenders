@@ -158,6 +158,7 @@ module Suspenders
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_memory_management_variable
+        build :provide_deploy_script
       end
     end
 

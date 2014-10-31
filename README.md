@@ -83,7 +83,8 @@ Other goodies
 
 Suspenders also comes with:
 
-* The [`./bin/setup`][bin] convention for new developer setup
+* The [`./bin/setup`][setup] convention for new developer setup
+* The `./bin/deploy` convention for deploying to Heroku
 * Rails' flashes set up and in application layout
 * A few nice time formats set up for localization
 * `Rack::Deflater` to [compress responses with Gzip][compress]
@@ -96,7 +97,7 @@ Suspenders also comes with:
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 
-[bin]: http://robots.thoughtbot.com/bin-setup
+[setup]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
