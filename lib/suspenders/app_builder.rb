@@ -369,21 +369,26 @@ end
     end
 
     def add_redirection_helpers
-      append_file 'app/controllers/application_controller.rb' do
-        <<-EOS
-          private
+      helpers = <<-EOS
 
-          def successfully_redirect_to(path)
-            flash[:success] = t(".success")
-            redirect_to path
-          end
+  private
 
-          def render_form(action)
-            flash[:error] = t(".error")
-            render action
-          end
-        EOS
-      end
+  def successfully_redirect_to(path)
+    flash[:success] = t(".success")
+    redirect_to path
+  end
+
+  def render_form(action)
+    flash[:error] = t(".error")
+    render action
+  end
+      EOS
+
+      inject_into_file(
+        "app/controllers/application_controller.rb",
+        helpers,
+        after: "protect_from_forgery with: :exception\n",
+      )
     end
 
     private
