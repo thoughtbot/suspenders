@@ -83,6 +83,8 @@ Suspenders also comes with:
 
 * The [`./bin/setup`][bin] convention for new developer setup
 * Rails' flashes set up and in application layout
+* `successfully_redirect_to` and `render_form` helpers to automatically add flash messages
+  scoped to the controller and action.
 * A few nice time formats set up for localization
 * `Rack::Deflater` to [compress responses with Gzip][compress]
 * A [low database connection pool limit][pool]
