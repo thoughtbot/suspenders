@@ -85,7 +85,6 @@ Suspenders also comes with:
 * Rails' flashes set up and in application layout
 * A few nice time formats set up for localization
 * `Rack::Deflater` to [compress responses with Gzip][compress]
-* [Fast-failing factories][fast]
 * A [low database connection pool limit][pool]
 * [Safe binstubs][binstub]
 * [t() and l() in specs without prefixing with I18n][i18n]
@@ -97,7 +96,6 @@ Suspenders also comes with:
 
 [bin]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
-[fast]: http://robots.thoughtbot.com/testing-your-factories-first
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
