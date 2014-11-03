@@ -368,6 +368,24 @@ end
       end
     end
 
+    def add_redirection_helpers
+      append_file 'app/controllers/application_controller.rb' do
+        <<-EOS
+          private
+
+          def successfully_redirect_to(path)
+            flash[:success] = t(".success")
+            redirect_to path
+          end
+
+          def render_form(action)
+            flash[:error] = t(".error")
+            render action
+          end
+        EOS
+      end
+    end
+
     private
 
     def raise_on_missing_translations_in(environment)
