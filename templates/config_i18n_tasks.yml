@@ -1,10 +1,11 @@
 search:
+  exclude:
+      - "app/controllers/application_controller.rb"
   paths:
     - "app/controllers"
     - "app/helpers"
     - "app/presenters"
     - "app/views"
-
 ignore_unused:
   - activerecord.*
   - date.*
