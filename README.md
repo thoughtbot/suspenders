@@ -59,6 +59,8 @@ And development gems like:
   objects
 * [ByeBug](https://github.com/deivid-rodriguez/byebug) for interactively
   debugging behavior
+* [Bundler Audit](https://github.com/rubysec/bundler-audit) for scanning the
+  Gemfile for insecure dependencies based on published CVEs
 * [Spring](https://github.com/rails/spring) for fast Rails actions via
   pre-loading
 
@@ -89,10 +91,10 @@ Suspenders also comes with:
 * [Safe binstubs][binstub]
 * [t() and l() in specs without prefixing with I18n][i18n]
 * An automatically-created `SECRET_KEY_BASE` environment variable in all
-  environments.
-* Configuration for [Travis Pro][travis] continuous integration.
-* The analytics adapter [Segment.io][segment] (and therefore config for Google
-  Analytics, Intercom, Facebook Ads, Twitter Ads, etc.).
+  environments
+* Configuration for [Travis Pro][travis] continuous integration
+* The analytics adapter [Segment][segment] (and therefore config for Google
+  Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 
 [bin]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
