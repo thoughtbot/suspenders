@@ -6,11 +6,31 @@
 # Exit if any subcommand fails
 set -e
 
-# Set up Ruby dependencies via Bundler
-if ! command -v bundle > /dev/null; then
-  gem install bundler --no-document
+# Check Ruby version, install if necessary
+if ! ruby --version | grep -Fq "$(< .ruby-version)"; then
+  printf 'This app requires a Ruby version not installed on your machine...\n'
+
+  if command -v rbenv > /dev/null; then
+    ruby_build_path="$HOME/.rbenv/plugins/ruby-build"
+
+    if [[ -d "$ruby_build_path" ]]; then
+      printf 'Updating to latest ruby-build...\n'
+      cd "$ruby_build_path" && git pull && cd -
+    else
+      printf 'Installing ruby-build...\n'
+      git clone https://github.com/sstephenson/ruby-build.git "$ruby_build_path"
+    fi
+
+    printf 'Installing the version of Ruby for this project...\n'
+    rbenv install
+  else
+    printf "Install Ruby $(cat .ruby-version) using your preferred approach...\n"
+    exit 1
+  fi
 fi
 
+# Set up Ruby dependencies
+bundle --version &> /dev/null || gem install bundler --no-document
 bundle install
 
 # Set up configurable environment variables
@@ -25,13 +45,11 @@ bundle exec rake dev:prime
 mkdir -p .git/safe
 
 # Pick a port for Foreman
-if ! grep -qs 'port' .foreman; then
-  printf 'port: <%= config[:port_number] %>\n' >> .foreman
-fi
-
-# Error out if Foreman is not installed
-if ! command -v foreman > /dev/null; then
+if command -v foreman > /dev/null; then
+  if ! grep -qs 'port' .foreman; then
+    printf 'port: <%= config[:port_number] %>\n' >> .foreman
+  fi
+else
   printf 'Foreman is not installed.\n'
   printf 'See https://github.com/ddollar/foreman for install instructions.\n'
-  exit 1
 fi
