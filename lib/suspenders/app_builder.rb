@@ -280,10 +280,9 @@ end
     end
 
     def create_heroku_apps
-      path_addition = override_path_for_tests
-      run "#{path_addition} heroku create #{app_name}-production --remote=production"
-      run "#{path_addition} heroku create #{app_name}-staging --remote=staging"
-      run "#{path_addition} heroku config:add RACK_ENV=staging RAILS_ENV=staging --remote=staging"
+      run_heroku "create #{app_name}-production", "production"
+      run_heroku "create #{app_name}-staging", "staging"
+      run_heroku "config:add RACK_ENV=staging RAILS_ENV=staging", "staging"
     end
 
     def set_heroku_remotes
@@ -310,9 +309,15 @@ fi
     end
 
     def set_heroku_rails_secrets
-      path_addition = override_path_for_tests
-      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=staging"
-      run "#{path_addition} heroku config:add SECRET_KEY_BASE=#{generate_secret} --remote=production"
+      %w(staging production).each do |environment|
+        run_heroku "config:add SECRET_KEY_BASE=#{generate_secret}", environment
+      end
+    end
+
+    def set_memory_management_variable
+      %w(staging production).each do |environment|
+        run_heroku "config:add NEW_RELIC_AGGRESSIVE_KEEPALIVE=1", environment
+      end
     end
 
     def create_github_repo(repo_name)
@@ -381,6 +386,11 @@ end
         support_bin = File.expand_path(File.join('..', '..', 'spec', 'fakes', 'bin'))
         "PATH=#{support_bin}:$PATH"
       end
+    end
+
+    def run_heroku(command, environment)
+      path_addition = override_path_for_tests
+      run "#{path_addition} heroku #{command} --remote #{environment}"
     end
 
     def factories_spec_rake_task

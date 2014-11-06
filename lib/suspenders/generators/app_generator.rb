@@ -156,6 +156,7 @@ module Suspenders
         build :create_heroku_apps
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
+        build :set_memory_management_variable
       end
     end
 
