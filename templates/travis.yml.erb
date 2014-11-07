@@ -3,11 +3,8 @@ before_install:
   - "echo 'gem: --no-document' > ~/.gemrc"
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start
-before_script:
-  - cp .sample.env .env
-  <% if options[:database] == "postgresql" %>
-  - psql -c 'create database "<%= app_name %>_test";' -U postgres
-  <% end %>
+install:
+  - bin/setup
 branches:
   only:
     - master
