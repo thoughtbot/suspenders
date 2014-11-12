@@ -245,6 +245,7 @@ end
 
     def setup_foreman
       copy_file 'sample.env', '.sample.env'
+      copy_file 'sample.env', '.env'
       copy_file 'Procfile', 'Procfile'
     end
 
