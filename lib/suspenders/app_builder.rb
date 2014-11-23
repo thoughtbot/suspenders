@@ -279,9 +279,9 @@ end
       run 'git init'
     end
 
-    def create_heroku_apps
-      run_heroku "create #{app_name}-production", "production"
-      run_heroku "create #{app_name}-staging", "staging"
+    def create_heroku_apps(region)
+      run_heroku "create #{app_name}-production --region #{region}", "production"
+      run_heroku "create #{app_name}-staging --region #{region}", "staging"
       run_heroku "config:add RACK_ENV=staging RAILS_ENV=staging", "staging"
     end
 

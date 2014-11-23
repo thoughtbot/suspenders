@@ -120,6 +120,10 @@ This:
 * Adds the [Rails 12 Factor](https://github.com/heroku/rails_12factor) gem
   to make running Rails 4 apps easier on Heroku
 
+If you want to specify a different region from US:
+
+    suspenders app --heroku true --heroku-region eu
+
 Git
 ---
 
