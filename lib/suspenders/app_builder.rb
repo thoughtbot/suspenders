@@ -327,7 +327,7 @@ fi
 
     def copy_miscellaneous_files
       copy_file "errors.rb", "config/initializers/errors.rb"
-      copy_file "time.rb", "config/initializers/time.rb"
+      copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
     end
 
     def customize_error_pages
