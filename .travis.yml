@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 2.1.4
+  - 2.1.5
 before_install:
   - "echo '--colour' > ~/.rspec"
   - git config --global user.name 'Travis CI'
