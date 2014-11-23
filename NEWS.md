@@ -1,3 +1,15 @@
+1.19.0 (November 23, 2014)
+
+* Use Ruby 2.1.4.
+* Use Rails 4.1.8.
+* Add Bundler Audit gem for scanning the Gemfile
+  for insecure dependencies based on published CVEs.
+* Use Heroku-recommended timeout numbers.
+* [Improve memory] of app on Heroku with New Relic.
+* Turn off RSpec verbose mode by default.
+
+[Improve memory]: http://forum.upcase.com/t/how-to-free-up-swap-space-heroku/3017/13?u=croaky
+
 1.18.0 (October 23, 2014)
 
 * Use Ruby 2.1.3.
