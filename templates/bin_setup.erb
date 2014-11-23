@@ -23,12 +23,14 @@ mkdir -p .git/safe
 
 # Only if this isn't CI
 if [ -z "$CI" ]; then
-  # Ensure foreman is installed
-  gem list foreman --installed &> /dev/null || gem install foreman
-
-  # Pick a port for Foreman
-  if ! grep -qs 'port' .foreman; then
-    printf 'port: <%= config[:port_number] %>\n' >> .foreman
+  if ! command -v foreman > /dev/null; then
+    printf 'Foreman is not installed.\n'
+    printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+  else
+    # Pick a port for Foreman
+    if ! grep -qs 'port' .foreman; then
+      printf 'port: <%= config[:port_number] %>\n' >> .foreman
+    fi
   fi
 
   # Add dev-specific seed data
