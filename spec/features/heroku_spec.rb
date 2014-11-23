@@ -1,7 +1,7 @@
 require "spec_helper"
 
 feature "Heroku" do
-  scenario "Suspend a project with --heroku=true" do
+  scenario "Suspend a project for Heroku" do
     run_suspenders("--heroku=true")
 
     expect(FakeHeroku).
@@ -25,5 +25,12 @@ feature "Heroku" do
 
     expect(readme).to include("./bin/deploy staging")
     expect(readme).to include("./bin/deploy production")
+  end
+
+  scenario "Suspend a project with extra Heroku flags" do
+    run_suspenders(%{--heroku=true --heroku-flags="--region eu"})
+
+    expect(FakeHeroku).to have_created_app_for("staging", "--region eu")
+    expect(FakeHeroku).to have_created_app_for("production", "--region eu")
   end
 end

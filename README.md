@@ -125,6 +125,16 @@ This:
 [logging-gem]: https://github.com/heroku/rails_stdout_logging
 [heroku-logging]: https://devcenter.heroku.com/articles/logging#writing-to-your-log
 
+You can optionally specify alternate Heroku flags:
+
+    suspenders app \
+      --heroku true \
+      --heroku-flags "--region eu --addons newrelic,pgbackups,sendgrid,ssl"
+
+See all possible Heroku flags:
+
+    heroku help create
+
 ## Git
 
 This will initialize a new git repository for your Rails app. You can
