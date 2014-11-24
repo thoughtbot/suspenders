@@ -7,7 +7,7 @@
 set -e
 
 # Set up Ruby dependencies via Bundler
-gem list bundle --installed &> /dev/null || gem install bundler
+gem list bundler --installed &> /dev/null || gem install bundler
 bundle install
 
 # Set up configurable environment variables
