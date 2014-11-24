@@ -16,7 +16,7 @@ if [ ! -f .env ]; then
 fi
 
 # Set up database and add any development seed data
-bundle exec rake db:setup
+bundle exec rake db:setup dev:prime
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
@@ -32,7 +32,4 @@ if [ -z "$CI" ]; then
       printf 'port: <%= config[:port_number] %>\n' >> .foreman
     fi
   fi
-
-  # Add dev-specific seed data
-  bundle exec rake dev:prime
 fi
