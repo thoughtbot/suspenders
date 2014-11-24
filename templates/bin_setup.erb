@@ -26,10 +26,10 @@ if [ -z "$CI" ]; then
   if ! command -v foreman > /dev/null; then
     printf 'Foreman is not installed.\n'
     printf 'See https://github.com/ddollar/foreman for install instructions.\n'
-  else
-    # Pick a port for Foreman
-    if ! grep -qs 'port' .foreman; then
-      printf 'port: <%= config[:port_number] %>\n' >> .foreman
-    fi
+  fi
+
+  # Pick a port for Foreman
+  if ! grep -qs 'port' .foreman; then
+    printf 'port: <%= config[:port_number] %>\n' >> .foreman
   fi
 fi
