@@ -29,7 +29,7 @@ if [ -z "$CI" ]; then
   fi
 
   # Pick a port for Foreman
-  if ! grep -qs 'port' .foreman; then
+  if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
     printf 'port: <%= config[:port_number] %>\n' >> .foreman
   fi
 fi
