@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env sh
 
 # Set up Rails app. Run this script immediately after cloning the codebase.
 # https://github.com/thoughtbot/guides/tree/master/protocol
@@ -7,7 +7,7 @@
 set -e
 
 # Set up Ruby dependencies via Bundler
-gem list bundler --installed &> /dev/null || gem install bundler
+gem list bundler --installed > /dev/null || gem install bundler
 bundle install
 
 # Set up configurable environment variables
