@@ -1,3 +1,10 @@
+1.20.0 (November 25, 2014)
+
+* Use Ruby 2.1.5.
+* Use bin/setup from TravisCI to test executable documentation.
+* Default JSON time format to use ISO8601 to match Heroku API Design Guide.
+* Add Bundler Audit to scan Gemfile for insecure dependencies per CVEs.
+
 1.19.0 (November 23, 2014)
 
 * Use Ruby 2.1.4.
