@@ -9,6 +9,9 @@ module Suspenders
     class_option :heroku, :type => :boolean, :aliases => '-H', :default => false,
       :desc => 'Create staging and production Heroku apps'
 
+    class_option :heroku_region, :type => :string, :default => "us",
+      :desc => 'Set Heroku region'
+
     class_option :github, :type => :string, :aliases => '-G', :default => nil,
       :desc => 'Create Github repository and add remote origin pointed to repo'
 
@@ -154,7 +157,7 @@ module Suspenders
     def create_heroku_apps
       if options[:heroku]
         say 'Creating Heroku apps'
-        build :create_heroku_apps
+        build :create_heroku_apps, options[:heroku_region]
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_memory_management_variable
