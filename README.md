@@ -5,8 +5,7 @@ Suspenders is the base Rails application used at
 
   ![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
-Installation
-------------
+## Installation
 
 First install the suspenders gem:
 
@@ -18,8 +17,7 @@ Then run:
 
 This will create a Rails app in `projectname` using the latest version of Rails.
 
-Gemfile
--------
+## Gemfile
 
 To see the latest and greatest gems, look at Suspenders'
 [Gemfile](templates/Gemfile.erb), which will be appended to the default
@@ -78,8 +76,7 @@ And testing gems like:
   RSpec matchers
 * [Timecop](https://github.com/jtrupiano/timecop-console) for testing time
 
-Other goodies
--------------
+## Other goodies
 
 Suspenders also comes with:
 
@@ -105,8 +102,7 @@ Suspenders also comes with:
 [travis]: http://docs.travis-ci.com/user/travis-pro/
 [segment]: https://segment.io
 
-Heroku
-------
+## Heroku
 
 You can optionally create Heroku staging and production apps:
 
@@ -121,16 +117,14 @@ This:
 * Adds the [Rails 12 Factor](https://github.com/heroku/rails_12factor) gem
   to make running Rails 4 apps easier on Heroku
 
-Git
----
+## Git
 
 This will initialize a new git repository for your Rails app. You can
 bypass this with the `--skip-git` option:
 
     suspenders app --skip-git true
 
-GitHub
-------
+## GitHub
 
 You can optionally create a GitHub repository for the suspended Rails app. It
 requires that you have [Hub](https://github.com/github/hub) on your system:
@@ -142,8 +136,7 @@ This has the same effect as running:
 
     hub create organization/project
 
-Dependencies
-------------
+## Dependencies
 
 Suspenders requires the latest version of Ruby.
 
@@ -163,21 +156,18 @@ installing QT are
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
-Issues
-------
+## Issues
 
 If you have problems, please create a
 [GitHub Issue](https://github.com/thoughtbot/suspenders/issues).
 
-Contributing
-------------
+## Contributing
 
 To update Suspenders' Ruby version, change `.ruby-version` and `.travis.yml`.
 
 Please see [CONTRIBUTING.md](CONTRIBUTING.md) for further details.
 
-Credits
--------
+## Credits
 
 ![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
 
@@ -186,8 +176,7 @@ Suspenders is maintained and funded by
 
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
-License
--------
+## License
 
 Suspenders is Copyright © 2008-2014 thoughtbot. It is free software, and may be
 redistributed under the terms specified in the LICENSE file.
