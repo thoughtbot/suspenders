@@ -111,6 +111,16 @@ feature 'Suspend a new project with default configuration' do
     expect(locales_en_file).to match(/application: #{app_name.humanize}/)
   end
 
+  scenario "successfully_redirect_to and render_form are added" do
+    run_suspenders
+
+    path = "#{project_path}/app/controllers/application_controller.rb"
+    application_controller = IO.read(path)
+
+    expect(application_controller).to match(/def successfully_redirect_to/)
+    expect(application_controller).to match(/def render_form/)
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end

@@ -395,6 +395,29 @@ end
       end
     end
 
+    def add_redirection_helpers
+      helpers = <<-EOS
+
+  private
+
+  def successfully_redirect_to(path)
+    flash[:success] = t(".success")
+    redirect_to path
+  end
+
+  def render_form(action)
+    flash[:error] = t(".error")
+    render action
+  end
+      EOS
+
+      inject_into_file(
+        "app/controllers/application_controller.rb",
+        helpers,
+        after: "protect_from_forgery with: :exception\n",
+      )
+    end
+
     private
 
     def raise_on_missing_translations_in(environment)

@@ -73,6 +73,7 @@ module Suspenders
       build :provide_dev_prime_task
       build :configure_generators
       build :configure_i18n_for_missing_translations
+      build :add_redirection_helpers
     end
 
     def setup_test_environment
