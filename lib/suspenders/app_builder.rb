@@ -20,7 +20,7 @@ module Suspenders
     end
 
     def provide_setup_script
-      template 'bin_setup.erb', 'bin/setup', port_number: port_number
+      template 'bin_setup.erb', 'bin/setup', port_number: port_number, force: true
       run 'chmod a+x bin/setup'
     end
 
@@ -83,7 +83,7 @@ module Suspenders
 
     def setup_asset_host
       replace_in_file 'config/environments/production.rb',
-        '# config.action_controller.asset_host = "http://assets.example.com"',
+        '# config.action_controller.asset_host = \'http://assets.example.com\'',
         'config.action_controller.asset_host = ENV.fetch("ASSET_HOST")'
 
       replace_in_file 'config/initializers/assets.rb',
@@ -91,7 +91,7 @@ module Suspenders
         'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
       replace_in_file 'config/environments/production.rb',
-        'config.serve_static_assets = false',
+        'config.serve_static_files = ENV[\'RAILS_SERVE_STATIC_FILES\'].present?',
         'config.static_cache_control = "public, max-age=#{1.year.to_i}"'
     end
 
