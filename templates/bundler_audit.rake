@@ -1,4 +1,4 @@
-if Rails.env.development? || Rails.env.test?
+if Rails.env.development?
   require "bundler/audit/cli"
 
   namespace :bundler do
