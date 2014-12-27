@@ -20,8 +20,8 @@ module Suspenders
     end
 
     def provide_setup_script
-      template 'bin_setup.erb', 'bin/setup', port_number: port_number
-      run 'chmod a+x bin/setup'
+      template "bin_setup.erb", "bin/setup", port_number: port, force: true
+      run "chmod a+x bin/setup"
     end
 
     def provide_dev_prime_task
@@ -83,7 +83,7 @@ module Suspenders
 
     def setup_asset_host
       replace_in_file 'config/environments/production.rb',
-        '# config.action_controller.asset_host = "http://assets.example.com"',
+        "# config.action_controller.asset_host = 'http://assets.example.com'",
         'config.action_controller.asset_host = ENV.fetch("ASSET_HOST")'
 
       replace_in_file 'config/initializers/assets.rb',
@@ -91,7 +91,7 @@ module Suspenders
         'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
       replace_in_file 'config/environments/production.rb',
-        'config.serve_static_assets = false',
+        "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?",
         'config.static_cache_control = "public, max-age=#{1.year.to_i}"'
     end
 
@@ -221,7 +221,7 @@ end
     end
 
     def configure_action_mailer
-      action_mailer_host 'development', "localhost:#{port_number}"
+      action_mailer_host 'development', "localhost:#{port}"
       action_mailer_host 'test', 'www.example.com'
       action_mailer_host 'staging', "staging.#{app_name}.com"
       action_mailer_host 'production', "#{app_name}.com"
@@ -423,8 +423,8 @@ end
       SecureRandom.hex(64)
     end
 
-    def port_number
-      @port_number ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
+    def port
+      @port ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
     end
   end
 end

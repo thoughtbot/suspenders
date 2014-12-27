@@ -4,7 +4,7 @@ ruby "<%= Suspenders::RUBY_VERSION %>"
 
 gem "airbrake"
 gem "bourbon", "~> 3.2.1"
-gem "coffee-rails"
+gem "coffee-rails", "~> 4.1.0"
 gem "delayed_job_active_record"
 gem "email_validator"
 gem "flutie"
@@ -18,7 +18,7 @@ gem "pg"
 gem "rack-timeout"
 gem "rails", "<%= Suspenders::RAILS_VERSION %>"
 gem "recipient_interceptor"
-gem "sass-rails", "~> 4.0.3"
+gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
 gem "uglifier"
@@ -28,6 +28,7 @@ group :development do
   gem "bundler-audit"
   gem "spring"
   gem "spring-commands-rspec"
+  gem "web-console"
 end
 
 group :development, :test do
