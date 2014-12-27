@@ -25,7 +25,6 @@ gem "uglifier"
 gem "unicorn"
 
 group :development do
-  gem "bundler-audit"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
@@ -33,6 +32,7 @@ end
 
 group :development, :test do
   gem "awesome_print"
+  gem "bundler-audit", require: false
   gem "byebug"
   gem "dotenv-rails"
   gem "factory_girl_rails"
