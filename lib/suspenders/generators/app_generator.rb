@@ -15,6 +15,9 @@ module Suspenders
     class_option :skip_test_unit, :type => :boolean, :aliases => '-T', :default => true,
       :desc => 'Skip Test::Unit files'
 
+    class_option :skip_bundle, type: :boolean, aliases: "-B", default: false,
+      desc: "Don't run bundle install"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -52,7 +55,7 @@ module Suspenders
         build :setup_heroku_specific_gems
       end
 
-      bundle_command 'install'
+      bundle_command "install" unless options[:skip_bundle]
     end
 
     def setup_database
