@@ -77,8 +77,11 @@ module Suspenders
   config.middleware.use Rack::Deflater
       RUBY
 
-      inject_into_file 'config/environments/production.rb', config,
-        :after => "config.serve_static_assets = false\n"
+      inject_into_file(
+        "config/environments/production.rb",
+        config,
+        after: serve_static_files_line
+      )
     end
 
     def setup_asset_host
@@ -90,9 +93,11 @@ module Suspenders
         "config.assets.version = '1.0'",
         'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
-      replace_in_file 'config/environments/production.rb',
-        "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?",
-        'config.static_cache_control = "public, max-age=#{1.year.to_i}"'
+      inject_into_file(
+        "config/environments/production.rb",
+        'config.static_cache_control = "public, max-age=#{1.year.to_i}"',
+        after: serve_static_files_line
+      )
     end
 
     def setup_staging_environment
@@ -156,8 +161,11 @@ end
     end
 
     def setup_heroku_specific_gems
-      inject_into_file 'Gemfile', "\n\s\sgem 'rails_12factor'",
+      inject_into_file(
+        "Gemfile",
+        %{\n\s\sgem "rails_stdout_logging"},
         after: /group :staging, :production do/
+      )
     end
 
     def enable_database_cleaner
@@ -429,6 +437,10 @@ end
 
     def port
       @port ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
+    end
+
+    def serve_static_files_line
+      "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
     end
   end
 end
