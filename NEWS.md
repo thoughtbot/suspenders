@@ -1,3 +1,12 @@
+1.21.0 (January 4, 2015)
+
+* Use Ruby 2.2.0.
+* Use Rails 4.2.0.
+* Install [Refills] and Refills' "flashes" component.
+* Add `bin/deploy` script.
+
+[Refills]: http://refills.bourbon.io/components/#flashes
+
 1.20.0 (November 25, 2014)
 
 * Use Ruby 2.1.5.
