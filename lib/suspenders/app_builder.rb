@@ -233,10 +233,10 @@ end
     end
 
     def configure_action_mailer
-      action_mailer_host 'development', "localhost:#{port}"
-      action_mailer_host 'test', 'www.example.com'
-      action_mailer_host 'staging', "staging.#{app_name}.com"
-      action_mailer_host 'production', "#{app_name}.com"
+      action_mailer_host "development", "localhost:#{port}"
+      action_mailer_host "test", "www.example.com"
+      action_mailer_host "staging", %{ENV.fetch("HOST")}
+      action_mailer_host "production", %{ENV.fetch("HOST")}
     end
 
     def fix_i18n_deprecation_warning
