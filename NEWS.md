@@ -1,3 +1,13 @@
+1.22.0 (January 11, 2015)
+
+* Allow additional
+  [Heroku flags](https://github.com/thoughtbot/suspenders#heroku)
+  such as `--addons` and `--region`.
+* Use RSpec 3.1.0.
+* Use Travis' new Docker container infrastructure
+  for builds that start sooner and run faster.
+* Improve SMTP and ActionMailer default settings.
+
 1.21.0 (January 4, 2015)
 
 * Use Ruby 2.2.0.
