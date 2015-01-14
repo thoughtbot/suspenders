@@ -237,8 +237,8 @@ end
     end
 
     def configure_action_mailer
-      action_mailer_host "development", "localhost:#{port}"
-      action_mailer_host "test", "www.example.com"
+      action_mailer_host "development", %{"localhost:#{port}"}
+      action_mailer_host "test", %{"www.example.com"}
       action_mailer_host "staging", %{ENV.fetch("HOST")}
       action_mailer_host "production", %{ENV.fetch("HOST")}
     end

@@ -10,8 +10,8 @@ module Suspenders
     end
 
     def action_mailer_host(rails_env, host)
-      host_config = "config.action_mailer.default_url_options = { host: '#{host}' }"
-      configure_environment(rails_env, host_config)
+      config = "config.action_mailer.default_url_options = { host: #{host} }"
+      configure_environment(rails_env, config)
     end
 
     def configure_environment(rails_env, config)
