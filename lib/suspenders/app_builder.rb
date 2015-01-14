@@ -340,6 +340,7 @@ fi
       copy_file "bin_deploy", "bin/deploy"
 
       instructions = <<-MARKDOWN
+
 ## Deploying
 
 If you have previously run the `./bin/setup` script,
