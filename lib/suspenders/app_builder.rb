@@ -95,7 +95,7 @@ module Suspenders
 
       inject_into_file(
         "config/environments/production.rb",
-        'config.static_cache_control = "public, max-age=#{1.year.to_i}"',
+        '  config.static_cache_control = "public, max-age=#{1.year.to_i}"',
         after: serve_static_files_line
       )
     end
