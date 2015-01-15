@@ -118,6 +118,10 @@ end
       template 'secrets.yml', 'config/secrets.yml', force: true
     end
 
+    def disallow_wrapping_parameters
+      remove_file "config/initializers/wrap_parameters.rb"
+    end
+
     def create_partials_directory
       empty_directory 'app/views/application'
     end
