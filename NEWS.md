@@ -1,3 +1,17 @@
+1.23.0 (January 19, 2015)
+
+* Use Bourbon 4.1.0.
+* Use Neat 1.7.0.
+* Remove [parameter wrapping] for every format, including JSON.
+* Turn off TravisCI email notifications for Suspended apps.
+* Run `rake dev:prime` on CI in order to test
+  whether `bin/setup` has any regressions.
+* Fix `config.action_mailer.default_url_options`'s value.
+  It now correctly uses `ENV.fetch("HOST")` in staging
+  and production.
+
+[parameter wrapping]: http://api.rubyonrails.org/classes/ActionController/ParamsWrapper.html
+
 1.22.0 (January 11, 2015)
 
 * Allow additional
