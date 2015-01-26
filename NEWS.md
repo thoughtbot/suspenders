@@ -1,3 +1,9 @@
+Unreleased
+
+* Remove Unicorn in favor of Puma, as [recommended by Heroku].
+
+[recommended by Heroku]: https://devcenter.heroku.com/changelog-items/594
+
 1.29.0 (June 16, 2015)
 
 * Generate rake, rails and rspec binstubs with Spring

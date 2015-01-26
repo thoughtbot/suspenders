@@ -53,7 +53,7 @@ It includes application gems like:
   and style
 * [Title](https://github.com/calebthompson/title) for storing titles in
   translations
-* [Unicorn](https://github.com/defunkt/unicorn) to serve HTTP requests
+* [Puma](https://github.com/puma/puma) to serve HTTP requests
 
 And development gems like:
 
