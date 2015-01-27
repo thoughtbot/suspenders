@@ -21,6 +21,10 @@ bundle exec rake db:setup dev:prime
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
 
+# Remove old logs and tempfiles
+rm -f log/*
+rm -rf tmp/cache
+
 # Pick a port for Foreman
 if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
   printf 'port: <%= config[:port_number] %>\n' >> .foreman
