@@ -54,6 +54,10 @@ module Suspenders
       template 'newrelic.yml.erb', 'config/newrelic.yml'
     end
 
+    def configure_honeybadger
+      copy_file 'honeybadger.rb', 'config/initializers/honeybadger.rb'
+    end
+
     def configure_smtp
       copy_file 'smtp.rb', 'config/smtp.rb'
 

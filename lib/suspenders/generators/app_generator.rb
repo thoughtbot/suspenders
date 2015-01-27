@@ -98,6 +98,7 @@ module Suspenders
     def setup_production_environment
       say 'Setting up the production environment'
       build :configure_newrelic
+      build :configure_honeybadger
       build :configure_smtp
       build :enable_rack_deflater
       build :setup_asset_host
@@ -208,8 +209,10 @@ module Suspenders
     end
 
     def outro
-      say 'Congratulations! You just pulled our suspenders.'
-      say "Remember to run 'rails generate airbrake' with your API key."
+      say "Congratulations! You just pulled our suspenders."
+      say "Remember to run 'rails generate honeybadger --api-key' with your API key."
+      say "If you're on Heroku and have the honeybadger addon, you can find your API key", true
+      say "with `heroku config:get HONEYBADGER_API_KEY`", true
     end
 
     def run_bundle

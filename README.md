@@ -25,9 +25,9 @@ generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
-* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
+* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application
+  styles
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
 * [Email Validator](https://github.com/balexand/email_validator) for email
@@ -35,10 +35,13 @@ It includes application gems like:
 * [Flutie](https://github.com/thoughtbot/flutie) for and `body_class` view
   helper
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
+* [Honeybadger](https://github.com/honeybadger-io/honeybadger-ruby) for
+  exception notification
 * [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
 * [Neat](https://github.com/thoughtbot/neat) for semantic grids
 * [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
-* [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
+* [Normalize](https://necolas.github.io/normalize.css/) for resetting browser
+  styles
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
 * [Rack Timeout](https://github.com/kch/rack-timeout) to abort requests that are
   taking too long
