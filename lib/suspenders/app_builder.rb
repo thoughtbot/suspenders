@@ -135,7 +135,8 @@ end
     end
 
     def create_shared_flashes
-      copy_file '_flashes.html.erb', 'app/views/application/_flashes.html.erb'
+      copy_file "_flashes.html.erb", "app/views/application/_flashes.html.erb"
+      copy_file "flashes_helper.rb", "app/helpers/flashes_helper.rb"
     end
 
     def create_shared_javascripts
