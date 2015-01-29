@@ -196,13 +196,11 @@ end
     end
 
     def configure_i18n_tasks
-      run "cp $(i18n-tasks gem-path)/templates/rspec/i18n_spec.rb spec/"
       copy_file "config_i18n_tasks.yml", "config/i18n-tasks.yml"
     end
 
     def configure_background_jobs_for_rspec
       copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
-      run 'rails g delayed_job:active_record'
     end
 
     def configure_action_mailer_in_specs
@@ -216,10 +214,6 @@ end
 
     def configure_rack_timeout
       copy_file 'rack_timeout.rb', 'config/initializers/rack_timeout.rb'
-    end
-
-    def configure_simple_form
-      bundle_command "exec rails generate simple_form:install"
     end
 
     def configure_action_mailer
@@ -258,10 +252,6 @@ end
 
     def install_bitters
       run "bitters install --path app/assets/stylesheets"
-    end
-
-    def install_refills
-      run "rails generate refills:import flashes"
     end
 
     def gitignore_files
