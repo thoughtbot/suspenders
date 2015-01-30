@@ -349,7 +349,7 @@ you can deploy to staging and production with:
 
     def setup_bundler_audit
       copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
-      append_file "Rakefile", %{\ntask default: "bundler:audit"\n}
+      append_file "Rakefile", %{\n# task default: "bundler:audit"\n}
     end
 
     def copy_miscellaneous_files

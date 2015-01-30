@@ -59,24 +59,29 @@ gem "uglifier"
 gem "unicorn"
 
 group :development do
-#   gem "spring"
-#   gem "spring-commands-rspec"
-#   gem "web-console"
+  gem "spring" ### TODO
+#  gem "spring-commands-rspec"
+#  gem "web-console"
 end
 
 group :development, :test do
   gem "awesome_print"
-  gem "bundler-audit", require: false
-  gem "byebug"
+
+#  Enable and then edit:
+#    lib/tasks/bundler_audit.rake
+#    Rakefile
+#  gem "bundler-audit", require: false
+
+#  gem "byebug"
   gem "dotenv-rails"
-  gem "factory_girl_rails"
+  gem "factory_girl_rails" ### keep
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.1.0"
+  gem "rspec-rails", "~> 3.1.0" ### keep
 end
 
 group :test do
   gem "capybara-webkit", ">= 1.2.0"
-  gem "database_cleaner"
+  gem "database_cleaner" ### keep
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers", require: false
