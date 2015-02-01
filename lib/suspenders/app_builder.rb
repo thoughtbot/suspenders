@@ -426,10 +426,6 @@ end
       run "#{path_addition} heroku #{command} --remote #{environment}"
     end
 
-    def factories_spec_rake_task
-      IO.read find_in_source_paths('factories_spec_rake_task.rb')
-    end
-
     def generate_secret
       SecureRandom.hex(64)
     end
