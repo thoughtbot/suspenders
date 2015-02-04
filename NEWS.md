@@ -1,3 +1,10 @@
+1.24.0 (February 3, 2015)
+
+* Remove things in Suspenders that Rails does for us now.
+* Document how to use the `title` view helper.
+* Improve speed of bundling in `bin/setup` script.
+* Set ENV variable to make out-of-the-box Heroku static asset experience better.
+
 1.23.0 (January 19, 2015)
 
 * Use Bourbon 4.1.0.
