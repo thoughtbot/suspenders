@@ -353,6 +353,7 @@ you can deploy to staging and production with:
       MARKDOWN
 
       append_file "README.md", instructions
+      run "chmod a+x bin/deploy"
     end
 
     def create_github_repo(repo_name)

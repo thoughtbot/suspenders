@@ -11,15 +11,19 @@ feature "Heroku" do
     expect(FakeHeroku).to have_configured_vars("staging", "SECRET_KEY_BASE")
     expect(FakeHeroku).to have_configured_vars("production", "SECRET_KEY_BASE")
 
-    bin_setup = IO.read("#{project_path}/bin/setup")
+    bin_setup_path = "#{project_path}/bin/setup"
+    bin_setup = IO.read(bin_setup_path)
     app_name = SuspendersTestHelpers::APP_NAME
 
     expect(bin_setup).to include("heroku join --app #{app_name}-staging")
     expect(bin_setup).to include("heroku join --app #{app_name}-production")
+    expect(File.stat(bin_setup_path)).to be_executable
 
-    bin_deploy = IO.read("#{project_path}/bin/deploy")
+    bin_deploy_path = "#{project_path}/bin/deploy"
+    bin_deploy = IO.read(bin_deploy_path)
 
     expect(bin_deploy).to include("heroku run rake db:migrate")
+    expect(File.stat(bin_deploy_path)).to be_executable
 
     readme = IO.read("#{project_path}/README.md")
 
