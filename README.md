@@ -135,6 +135,14 @@ See all possible Heroku flags:
 
     heroku help create
 
+## Mongodb
+
+If you prefer using `mongodb`:
+
+    suspenders app --skip-active-record -d mongodb
+
+This adds `mongoid` instead of `pg` and `delayed_job_mongoid` instead of `delayed_job_active_record` to `Gemfile`.
+
 ## Git
 
 This will initialize a new git repository for your Rails app. You can
