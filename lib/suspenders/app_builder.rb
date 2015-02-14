@@ -145,6 +145,10 @@ end
         force: true
     end
 
+    def install_mongoid
+      run 'rails generate mongoid:config'
+    end
+
     def create_database
       bundle_command 'exec rake db:create db:migrate'
     end
@@ -152,6 +156,11 @@ end
     def replace_gemfile
       remove_file 'Gemfile'
       template 'Gemfile.erb', 'Gemfile'
+    end
+
+    def replace_gemfile_mongoid
+      remove_file 'Gemfile'
+      template 'Gemfile_mongoid.erb', 'Gemfile'
     end
 
     def set_ruby_to_version_being_used
@@ -205,6 +214,11 @@ end
       run 'rails g delayed_job:active_record'
     end
 
+    def configure_background_jobs_for_rspec_mongoid
+      copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
+      run 'rails g delayed_job'
+    end
+
     def configure_action_mailer_in_specs
       copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
     end
@@ -243,6 +257,10 @@ end
 
     def configure_unicorn
       copy_file 'unicorn.rb', 'config/unicorn.rb'
+    end
+
+    def configure_unicorn_mongoid
+      copy_file 'unicorn_mongoid.rb', 'config/unicorn.rb'
     end
 
     def setup_foreman

@@ -4,7 +4,7 @@ require 'rails/generators/rails/app/app_generator'
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
-      desc: "Configure for selected database (options: #{DATABASES.join("/")})"
+      desc: "Configure for selected database (options: #{DATABASES.push('mongodb').join("/")})"
 
     class_option :heroku, type: :boolean, aliases: "-H", default: false,
       desc: "Create staging and production Heroku apps"
@@ -54,7 +54,12 @@ module Suspenders
     end
 
     def customize_gemfile
-      build :replace_gemfile
+      if 'mongodb' == options[:database]
+        build :replace_gemfile_mongoid
+      else
+        build :replace_gemfile
+      end
+
       build :set_ruby_to_version_being_used
 
       if options[:heroku]
@@ -67,11 +72,15 @@ module Suspenders
     def setup_database
       say 'Setting up database'
 
-      if 'postgresql' == options[:database]
-        build :use_postgres_config_template
-      end
+      if 'mongodb' == options[:database]
+        build :install_mongoid
+      else
+        if 'postgresql' == options[:database]
+          build :use_postgres_config_template
+        end
 
-      build :create_database
+        build :create_database
+      end
     end
 
     def setup_development_environment
@@ -89,7 +98,13 @@ module Suspenders
       build :set_up_factory_girl_for_rspec
       build :generate_rspec
       build :configure_rspec
-      build :configure_background_jobs_for_rspec
+
+      if 'mongodb' == options[:database]
+        build :configure_background_jobs_for_rspec_mongoid
+      else
+        build :configure_background_jobs_for_rspec
+      end
+
       build :enable_database_cleaner
       build :configure_spec_support_features
       build :configure_travis
@@ -133,7 +148,13 @@ module Suspenders
       build :disable_xml_params
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
-      build :configure_unicorn
+
+      if 'mongodb' == options[:database]
+        build :configure_unicorn_mongoid
+      else
+        build :configure_unicorn
+      end
+
       build :setup_foreman
     end
 
