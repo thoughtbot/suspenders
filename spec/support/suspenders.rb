@@ -1,5 +1,5 @@
 module SuspendersTestHelpers
-  APP_NAME = 'dummy'
+  APP_NAME = "dummy_app"
 
   def remove_project_directory
     FileUtils.rm_rf(project_path)
