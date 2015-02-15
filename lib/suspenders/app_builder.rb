@@ -293,14 +293,23 @@ end
       run 'git init'
     end
 
-    def create_heroku_apps(flags)
+    def create_staging_heroku_app(flags)
       rack_env = "RACK_ENV=staging RAILS_ENV=staging"
-      rails_serve_static_files = "RAILS_SERVE_STATIC_FILES=true"
-      staging_config = "#{rack_env} #{rails_serve_static_files}"
-      run_heroku "create #{app_name}-production #{flags}", "production"
-      run_heroku "create #{app_name}-staging #{flags}", "staging"
-      run_heroku "config:add #{staging_config}", "staging"
-      run_heroku "config:add #{rails_serve_static_files}", "production"
+      app_name = heroku_app_name_for("staging")
+
+      run_heroku "create #{app_name} #{flags}", "staging"
+      run_heroku "config:add #{rack_env}", "staging"
+    end
+
+    def create_production_heroku_app(flags)
+      app_name = heroku_app_name_for("production")
+
+      run_heroku "create #{app_name} #{flags}", "production"
+    end
+
+    def create_heroku_apps(flags)
+      create_staging_heroku_app(flags)
+      create_production_heroku_app(flags)
     end
 
     def set_heroku_remotes
@@ -315,7 +324,7 @@ end
     end
 
     def join_heroku_app(environment)
-      heroku_app_name = "#{app_name}-#{environment}"
+      heroku_app_name = heroku_app_name_for(environment)
       <<-SHELL
 if heroku join --app #{heroku_app_name} &> /dev/null; then
   git remote add #{environment} git@heroku.com:#{heroku_app_name}.git || true
@@ -332,9 +341,15 @@ fi
       end
     end
 
-    def set_memory_management_variable
+    def set_heroku_memory_management_variable
       %w(staging production).each do |environment|
         run_heroku "config:add NEW_RELIC_AGGRESSIVE_KEEPALIVE=1", environment
+      end
+    end
+
+    def set_heroku_serve_static_files
+      %w(staging production).each do |environment|
+        run_heroku "config:add RAILS_SERVE_STATIC_FILES=true", environment
       end
     end
 
@@ -445,6 +460,10 @@ end
 
     def serve_static_files_line
       "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
+    end
+
+    def heroku_app_name_for(environment)
+      "#{app_name.dasherize}-#{environment}"
     end
   end
 end

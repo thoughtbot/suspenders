@@ -4,8 +4,9 @@ feature "Heroku" do
   scenario "Suspend a project for Heroku" do
     run_suspenders("--heroku=true")
 
-    expect(FakeHeroku).
-      to have_gem_included(project_path, "rails_stdout_logging")
+    expect(FakeHeroku).to(
+      have_gem_included(project_path, "rails_stdout_logging")
+    )
     expect(FakeHeroku).to have_created_app_for("staging")
     expect(FakeHeroku).to have_created_app_for("production")
     expect(FakeHeroku).to have_configured_vars("staging", "SECRET_KEY_BASE")
@@ -13,10 +14,10 @@ feature "Heroku" do
 
     bin_setup_path = "#{project_path}/bin/setup"
     bin_setup = IO.read(bin_setup_path)
-    app_name = SuspendersTestHelpers::APP_NAME
+    app_name = SuspendersTestHelpers::APP_NAME.dasherize
 
-    expect(bin_setup).to include("heroku join --app #{app_name}-staging")
     expect(bin_setup).to include("heroku join --app #{app_name}-production")
+    expect(bin_setup).to include("heroku join --app #{app_name}-staging")
     expect(File.stat(bin_setup_path)).to be_executable
 
     bin_deploy_path = "#{project_path}/bin/deploy"

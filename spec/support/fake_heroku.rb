@@ -23,16 +23,16 @@ class FakeHeroku
     end
   end
 
-  def self.has_created_app_for?(remote_name, flags = nil)
-    app_name = "#{SuspendersTestHelpers::APP_NAME}-#{remote_name}"
+  def self.has_created_app_for?(environment, flags = nil)
+    app_name = "#{SuspendersTestHelpers::APP_NAME.dasherize}-#{environment}"
 
-    expected_line = if flags
-      "create #{app_name} #{flags} --remote #{remote_name}\n"
-    else
-      "create #{app_name} --remote #{remote_name}\n"
-    end
+    command = if flags
+                "create #{app_name} #{flags} --remote #{environment}\n"
+              else
+                "create #{app_name} --remote #{environment}\n"
+              end
 
-    File.foreach(RECORDER).any? { |line| line == expected_line }
+    File.foreach(RECORDER).any? { |line| line == command }
   end
 
   def self.has_configured_vars?(remote_name, var)
