@@ -77,6 +77,7 @@ module Suspenders
     def setup_development_environment
       say 'Setting up the development environment'
       build :raise_on_delivery_errors
+      build :set_test_delivery_method
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
       build :provide_dev_prime_task

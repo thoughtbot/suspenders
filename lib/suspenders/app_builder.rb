@@ -11,6 +11,14 @@ module Suspenders
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
+    def set_test_delivery_method
+      inject_into_file(
+        "config/environments/development.rb",
+        "\n  config.action_mailer.delivery_method = :test",
+        after: "config.action_mailer.raise_delivery_errors = true",
+      )
+    end
+
     def raise_on_unpermitted_parameters
       config = <<-RUBY
     config.action_controller.action_on_unpermitted_parameters = :raise
