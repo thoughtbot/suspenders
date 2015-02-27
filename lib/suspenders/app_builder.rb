@@ -237,6 +237,15 @@ end
       action_mailer_host "production", %{ENV.fetch("HOST")}
     end
 
+    def configure_active_job
+      config = <<-RUBY
+
+    config.active_job.queue_adapter = :delayed_job
+      RUBY
+
+      inject_into_class "config/application.rb", "Application", config
+    end
+
     def fix_i18n_deprecation_warning
       config = <<-RUBY
     config.i18n.enforce_available_locales = true
