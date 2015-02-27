@@ -14,6 +14,14 @@ module Suspenders
       configure_environment(rails_env, config)
     end
 
+    def configure_application_file(config)
+      inject_into_file(
+        "config/application.rb",
+        "\n\n    #{config}",
+        before: "\n  end"
+      )
+    end
+
     def configure_environment(rails_env, config)
       inject_into_file(
         "config/environments/#{rails_env}.rb",

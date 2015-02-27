@@ -209,7 +209,6 @@ end
     end
 
     def configure_background_jobs_for_rspec
-      copy_file 'background_jobs_rspec.rb', 'spec/support/background_jobs.rb'
       run 'rails g delayed_job:active_record'
     end
 
@@ -235,6 +234,13 @@ end
       action_mailer_host "test", %{"www.example.com"}
       action_mailer_host "staging", %{ENV.fetch("HOST")}
       action_mailer_host "production", %{ENV.fetch("HOST")}
+    end
+
+    def configure_active_job
+      configure_application_file(
+        "config.active_job.queue_adapter = :delayed_job"
+      )
+      configure_environment "test", "config.active_job.queue_adapter = :inline"
     end
 
     def fix_i18n_deprecation_warning

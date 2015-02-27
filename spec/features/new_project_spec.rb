@@ -125,6 +125,20 @@ feature 'Suspend a new project with default configuration' do
       to match(/^ +config.action_mailer.delivery_method = :test$/)
   end
 
+  scenario "config active job queue adapter" do
+    run_suspenders
+
+    application_config = IO.read("#{project_path}/config/application.rb")
+    test_config = IO.read("#{project_path}/config/environments/test.rb")
+
+    expect(application_config).to match(
+      /^ +config.active_job.queue_adapter = :delayed_job$/
+    )
+    expect(test_config).to match(
+      /^ +config.active_job.queue_adapter = :inline$/
+    )
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
