@@ -1,3 +1,16 @@
+1.25.0 (March 7, 2015)
+
+* Configure Active Job queue adapter for test env
+* Use Ruby 2.2.1
+* Dasherize heroku app names
+* Update Bourbon to 4.2.0
+* Add ASSET_HOST to sample.env (defaults to HOST)
+* Set bin/deploy script as executable
+* Set email deliver method to :test for development
+* Include missing word in the Flutie description in README.
+* Remove unused dev gems: aruba & cucumber
+* Use skip_bundle class_option (rather than defining an empty run_bundle method)
+
 1.24.0 (February 3, 2015)
 
 * Remove things in Suspenders that Rails does for us now.
