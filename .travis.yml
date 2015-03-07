@@ -1,12 +1,10 @@
 language: ruby
-rvm:
-  - 2.2.1
+rvm: 2.2.1
+cache: bundler
+sudo: false
 before_install:
   - "echo '--colour' > ~/.rspec"
   - git config --global user.name 'Travis CI'
   - git config --global user.email 'travis-ci@example.com'
-install:
-  - bundle install
 notifications:
   email: false
-sudo: false
