@@ -6,5 +6,6 @@ before_install:
   - "echo '--colour' > ~/.rspec"
   - git config --global user.name 'Travis CI'
   - git config --global user.email 'travis-ci@example.com'
+install: bundle install
 notifications:
   email: false
