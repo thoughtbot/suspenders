@@ -183,16 +183,28 @@ If you have problems, please create a
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
 
-## Credits
+Thank you, [contributors]!
 
-![thoughtbot](http://thoughtbot.com/images/tm/logo.png)
-
-Suspenders is maintained and funded by
-[thoughtbot, inc](http://thoughtbot.com/community).
-
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+[contributors]: https://github.com/thoughtbot/suspenders/graphs/contributors
 
 ## License
 
-Suspenders is Copyright © 2008-2014 thoughtbot. It is free software, and may be
-redistributed under the terms specified in the LICENSE file.
+Suspenders is Copyright © 2008-2015 thoughtbot.
+It is free software,
+and may be redistributed under the terms specified in the [LICENSE] file.
+
+[LICENSE]: LICENSE
+
+## About thoughtbot
+
+![thoughtbot](https://thoughtbot.com/logo.png)
+
+Suspenders is maintained and funded by thoughtbot, inc.
+The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+
+We love open source software!
+See [our other projects][community].
+We are [available for hire][hire].
+
+[community]: https://thoughtbot.com/community?utm_source=github
+[hire]: https://thoughtbot.com?utm_source=github
