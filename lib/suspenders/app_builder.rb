@@ -347,12 +347,6 @@ fi
       end
     end
 
-    def set_heroku_memory_management_variable
-      %w(staging production).each do |environment|
-        run_heroku "config:add NEW_RELIC_AGGRESSIVE_KEEPALIVE=1", environment
-      end
-    end
-
     def set_heroku_serve_static_files
       %w(staging production).each do |environment|
         run_heroku "config:add RAILS_SERVE_STATIC_FILES=true", environment
