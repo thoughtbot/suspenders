@@ -187,6 +187,13 @@ Thank you, [contributors]!
 
 [contributors]: https://github.com/thoughtbot/suspenders/graphs/contributors
 
+## Need Help?
+
+We offer 1-on-1 coaching. We can help you set up a new Rails application, write
+your first feature, and get up and running on Heroku. [Get in touch].
+
+[Get in touch]: http://coaching.thoughtbot.com/rails/?utm_source=github
+
 ## License
 
 Suspenders is Copyright © 2008-2015 thoughtbot.
