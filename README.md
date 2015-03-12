@@ -179,6 +179,14 @@ PostgreSQL needs to be installed and running for the `db:create` rake task.
 If you have problems, please create a
 [GitHub Issue](https://github.com/thoughtbot/suspenders/issues).
 
+## Need Help?
+
+We offer 1-on-1 coaching. We can help you set up Clearance, write authentication
+and authorization extensions for your application, and work out a permission and
+role model which works for you. [Get in touch].
+
+[Get in touch]: http://coaching.thoughtbot.com/rails/?utm_source=github
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md).
