@@ -376,7 +376,7 @@ you can deploy to staging and production with:
       run "#{path_addition} hub create #{repo_name}"
     end
 
-    def setup_segment_io
+    def setup_segment
       copy_file '_analytics.html.erb',
         'app/views/application/_analytics.html.erb'
     end

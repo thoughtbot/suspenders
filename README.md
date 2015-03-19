@@ -104,7 +104,7 @@ Suspenders also comes with:
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
 [travis]: http://docs.travis-ci.com/user/travis-pro/
-[segment]: https://segment.io
+[segment]: https://segment.com
 
 ## Heroku
 
