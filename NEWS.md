@@ -1,7 +1,16 @@
+1.26.0 (March 23, 2015)
+
+* Update Rails to 4.2.1
+* Update Bitters to 1.0
+* Fix .ruby-version (should have been 2.1.1)
+* Enable `verify_partial_doubles`
+* Renames Segment.io to Segment
+* Removes New Relic unnecessary configuration setting
+
 1.25.0 (March 7, 2015)
 
 * Configure Active Job queue adapter for test env
-* Use Ruby 2.2.1
+* Use Ruby 2.2.1 (bug: `.ruby-version` wasn’t updated in the package)
 * Dasherize heroku app names
 * Update Bourbon to 4.2.0
 * Add ASSET_HOST to sample.env (defaults to HOST)
