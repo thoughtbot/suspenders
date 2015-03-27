@@ -102,6 +102,7 @@ module Suspenders
       say 'Setting up the production environment'
       build :configure_newrelic
       build :configure_smtp
+      build :configure_rack_timeout
       build :enable_rack_deflater
       build :setup_asset_host
     end
@@ -129,7 +130,6 @@ module Suspenders
       build :configure_action_mailer
       build :configure_active_job
       build :configure_time_formats
-      build :configure_rack_timeout
       build :configure_simple_form
       build :disable_xml_params
       build :fix_i18n_deprecation_warning
