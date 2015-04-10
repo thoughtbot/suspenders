@@ -1,3 +1,14 @@
+1.27.0 (April 10, 2015)
+
+* Add Autoprefixer and browserslist config file
+* Only display user-facing flashes
+* Add code of conduct to CONTRIBUTING document
+* Only use rack-timeout in staging and production
+* Add SimpleCov
+* Avoid generation of extra _flashes view
+* Fix Travis CI install step
+* Cache bundle in Travis CI runs
+
 1.26.0 (March 23, 2015)
 
 * Update Rails to 4.2.1
