@@ -1,5 +1,5 @@
 if Rails.env.development? || Rails.env.test?
-  require "factory_girl"
+  require "factory_girl_rails"
 
   namespace :dev do
     desc "Seed data for development environment"
