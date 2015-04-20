@@ -163,8 +163,8 @@ end
       template 'Gemfile.erb', 'Gemfile'
     end
 
-    def set_ruby_to_version_being_used
-      create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
+    def set_ruby_to_latest_version
+      create_file '.ruby-version', "#{Suspenders::LATEST_RUBY_VERSION}\n"
     end
 
     def setup_heroku_specific_gems

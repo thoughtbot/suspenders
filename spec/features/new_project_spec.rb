@@ -26,7 +26,7 @@ feature 'Suspend a new project with default configuration' do
 
     ruby_version_file = IO.read("#{project_path}/.ruby-version")
 
-    expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
+    expect(ruby_version_file).to eq "#{Suspenders::LATEST_RUBY_VERSION}\n"
   end
 
   scenario 'secrets.yml reads secret from env' do
