@@ -103,6 +103,7 @@ module Suspenders
       build :configure_newrelic
       build :configure_smtp
       build :configure_rack_timeout
+      build :enable_rack_canonical_host
       build :enable_rack_deflater
       build :setup_asset_host
     end

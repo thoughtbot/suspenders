@@ -78,6 +78,20 @@ module Suspenders
         :after => 'config.action_mailer.raise_delivery_errors = false'
     end
 
+    def enable_rack_canonical_host
+      config = <<-RUBY
+
+  # Ensure requests are only served from one, canonical host name
+  config.middleware.use Rack::CanonicalHost, ENV.fetch("HOST")
+      RUBY
+
+      inject_into_file(
+        "config/environments/production.rb",
+        config,
+        after: serve_static_files_line
+      )
+    end
+
     def enable_rack_deflater
       config = <<-RUBY
 
