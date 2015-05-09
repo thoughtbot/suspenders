@@ -1,3 +1,14 @@
+1.28.0 (May 9, 2015)
+
+* Require spec/support files in a certain order
+* Use rack-canonical-host
+* Swap `id="flash"` for `class="flashes"` in `_flashes.html.erb`
+* Provide EXECJS_RUNTIME env variable (Node, as in Heroku)
+* Removes .css file suffix from application stylesheet
+* Add mention of Autoprefixer Rails gem to readme
+* Use ruby 2.2.2
+* Update gems
+
 1.27.0 (April 10, 2015)
 
 * Add Autoprefixer and browserslist config file
