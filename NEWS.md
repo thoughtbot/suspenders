@@ -1,6 +1,9 @@
+1.29.0 (June 16, 2015)
 
 * Generate rake, rails and rspec binstubs with Spring
 * Remove Capybara and use RSpec 3.2 for development
+* Improves suspenders' test suite speed
+* Refills `flashes.scss` bugfix
 
 1.28.0 (May 9, 2015)
 
