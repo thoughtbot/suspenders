@@ -9,7 +9,8 @@ branches:
   only:
     - master
 cache:
-  - bundler
+  directories:
+    - vendor/bundle
 language:
   - ruby
 notifications:
