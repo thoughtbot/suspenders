@@ -1,4 +1,3 @@
-require 'capybara/rspec'
 require 'bundler/setup'
 
 Bundler.require(:default, :test)
