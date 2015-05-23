@@ -49,6 +49,7 @@ module Suspenders
       invoke :create_github_repo
       invoke :setup_segment
       invoke :setup_bundler_audit
+      invoke :setup_spring
       invoke :outro
     end
 
@@ -187,6 +188,11 @@ module Suspenders
     def setup_bundler_audit
       say "Setting up bundler-audit"
       build :setup_bundler_audit
+    end
+
+    def setup_spring
+      say "Springifying binstubs"
+      build :setup_spring
     end
 
     def init_git
