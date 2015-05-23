@@ -1,3 +1,7 @@
+
+* Generate rake, rails and rspec binstubs with Spring
+* Remove Capybara and use RSpec 3.2 for development
+
 1.28.0 (May 9, 2015)
 
 * Require spec/support files in a certain order
