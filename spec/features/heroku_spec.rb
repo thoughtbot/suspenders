@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Heroku" do
+RSpec.describe "Heroku" do
   it "suspends a project for Heroku" do
     run_suspenders("--heroku=true")
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "GitHub" do
+RSpec.describe "GitHub" do
   it "suspends a project with --github option" do
     repo_name = 'test'
     run_suspenders("--github=#{repo_name}")

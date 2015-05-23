@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe "Suspend a new project with default configuration" do
+RSpec.describe "Suspend a new project with default configuration" do
   it "ensures project specs pass" do
     run_suspenders
 
