@@ -42,7 +42,7 @@ module Suspenders
     config.generators do |generate|
       generate.helper false
       generate.javascript_engine false
-      generate.request_specs false
+      generate.request_specs true
       generate.routing_specs false
       generate.stylesheets false
       generate.test_framework :rspec
@@ -405,6 +405,7 @@ you can deploy to staging and production with:
       copy_file "browserslist", "browserslist"
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
+      copy_file "raygun.rb", "config/initializers/raygun.rb"
     end
 
     def customize_error_pages

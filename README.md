@@ -25,7 +25,6 @@ generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
 * [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
@@ -45,6 +44,7 @@ It includes application gems like:
   ensure all requests are served from the same domain
 * [Rack Timeout](https://github.com/kch/rack-timeout) to abort requests that are
   taking too long
+* [Raygun](https://github.com/MindscapeHQ/raygun4ruby) for exception notification
 * [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
   avoid accidentally sending emails to real people from staging
 * [Refills](https://github.com/thoughtbot/refills) for “copy-paste” components

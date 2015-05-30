@@ -209,7 +209,7 @@ module Suspenders
 
     def outro
       say 'Congratulations! You just pulled our suspenders.'
-      say "Remember to run 'rails generate airbrake' with your API key."
+      say "Remember to set your RayGun API key in your .env file and in your Heroku config."
     end
 
     protected
