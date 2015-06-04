@@ -157,6 +157,14 @@ This has the same effect as running:
 
     hub create organization/project
 
+## Spring
+
+Suspenders uses [spring](https://github.com/rails/spring) by default.
+It makes Rails applications load faster, but it might introduce confusing issues
+around stale code not being refreshed.
+If you think your application is running old code, run `spring stop`.
+And if you'd rather not use spring, add `DISABLE_SPRING=1` to your login file.
+
 ## Dependencies
 
 Suspenders requires the latest version of Ruby.
