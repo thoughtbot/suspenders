@@ -231,6 +231,14 @@ end
       copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
     end
 
+    def configure_helper_spec_helpers_in_specs
+      copy_file 'helper_spec_helpers.rb', 'spec/support/helper_spec_helpers.rb'
+    end
+
+    def configure_view_spec_helpers_in_specs
+      copy_file 'view_spec_helpers.rb', 'spec/support/view_spec_helpers.rb'
+    end
+
     def configure_time_formats
       remove_file "config/locales/en.yml"
       template "config_locales_en.yml.erb", "config/locales/en.yml"

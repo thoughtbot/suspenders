@@ -100,6 +100,8 @@ Suspenders also comes with:
 * Configuration for [Travis Pro][travis] continuous integration
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
+* `page` helper in views to allow Capybara matcher use
+* `stub_current_user` for view and helper specs
 
 [setup]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
