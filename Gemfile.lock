@@ -127,3 +127,6 @@ PLATFORMS
 DEPENDENCIES
   rspec (~> 3.2)
   suspenders!
+
+BUNDLED WITH
+   1.10.1
