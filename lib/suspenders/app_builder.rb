@@ -177,6 +177,30 @@ end
       template 'Gemfile.erb', 'Gemfile'
     end
 
+    def version_gems_in_gemfile
+      gemfile = File.read('Gemfile')
+
+      require 'bundler'
+      locks = Bundler.locked_gems
+      specs = locks.specs
+
+      # Naively convert to single quotes
+      gemfile.gsub! '"', "'"
+
+      specs.each do |gem|
+        name, version = gem.name, gem.version
+
+        # Don't try to set version if:
+        # * source is git or github
+        # * version is already set
+        gemfile.gsub! /^(?!.*, (git:|github:|'))( *gem '#{name}')/, "\\2, '~> #{version}'"
+      end
+
+      File.open 'Gemfile', 'w+' do |file|
+        file.puts gemfile
+      end
+    end
+
     def set_ruby_to_version_being_used
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end

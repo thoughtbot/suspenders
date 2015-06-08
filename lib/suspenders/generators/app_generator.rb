@@ -62,6 +62,8 @@ module Suspenders
       end
 
       bundle_command 'install'
+
+      build :version_gems_in_gemfile
     end
 
     def setup_database
