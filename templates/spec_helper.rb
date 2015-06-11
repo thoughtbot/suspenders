@@ -1,9 +1,9 @@
-if ENV.fetch("COVERAGE", false)
-  require "simplecov"
-  SimpleCov.start "rails"
+if ENV.fetch('COVERAGE', false)
+  require 'simplecov'
+  SimpleCov.start 'rails'
 end
 
-require "webmock/rspec"
+require 'webmock/rspec'
 
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|

@@ -1,0 +1,25 @@
+Encoding:
+  Enabled: false
+
+Documentation:
+  Enabled: false
+
+ClassAndModuleChildren:
+  Enabled: false
+
+ClassLength:
+  Enabled: false
+
+MethodLength:
+  Enabled: false
+
+DoubleNegation:
+  Enabled: false
+
+AllCops:
+  Exclude:
+    - "bin/**/*"
+    - "db/**/*"
+    - "config/**/*"
+    - "Rakefile"
+    - "spec/i18n_spec.rb"
