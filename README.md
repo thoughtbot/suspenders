@@ -29,8 +29,7 @@ It includes application gems like:
 
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
-* [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
-  processing
+* [Sidekiq](https://github.com/mperham/sidekiq) for background processing
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
   helpers
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
