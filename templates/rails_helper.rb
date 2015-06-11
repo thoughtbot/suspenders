@@ -9,7 +9,6 @@ Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |file| require file }
 
 module Features
   # Extend this module in spec/support/features/*.rb
-  include Formulaic::Dsl
 end
 
 RSpec.configure do |config|
