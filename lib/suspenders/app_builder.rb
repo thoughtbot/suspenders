@@ -309,10 +309,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
                 "app/assets/stylesheets/application.scss"
     end
 
-    def install_bitters
-      run "bitters install --path app/assets/stylesheets"
-    end
-
     def gitignore_files
       remove_file '.gitignore'
       copy_file 'suspenders_gitignore', '.gitignore'
