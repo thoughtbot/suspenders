@@ -39,7 +39,6 @@ module Suspenders
       invoke :create_suspenders_views
       invoke :configure_app
       invoke :setup_stylesheets
-      invoke :install_bitters
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
@@ -96,7 +95,6 @@ module Suspenders
       build :configure_background_jobs_for_rspec
       build :enable_database_cleaner
       build :configure_spec_support_features
-      build :configure_travis
       build :configure_i18n_for_test_environment
       build :configure_i18n_tasks
       build :configure_action_mailer_in_specs
@@ -146,11 +144,6 @@ module Suspenders
     def setup_stylesheets
       say 'Set up stylesheets'
       build :setup_stylesheets
-    end
-
-    def install_bitters
-      say 'Install Bitters'
-      build :install_bitters
     end
 
     def setup_git

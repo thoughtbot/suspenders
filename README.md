@@ -29,19 +29,13 @@ It includes application gems like:
 
 * [Airbrake](https://github.com/airbrake/airbrake) for exception notification
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
-* [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
-* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
-* [Email Validator](https://github.com/balexand/email_validator) for email
-  validation
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
   helpers
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
-* [Neat](https://github.com/thoughtbot/neat) for semantic grids
 * [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
-* [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
 * [Rack Canonical Host](https://github.com/tylerhunt/rack-canonical-host) to
   ensure all requests are served from the same domain
@@ -49,8 +43,6 @@ It includes application gems like:
   taking too long
 * [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
   avoid accidentally sending emails to real people from staging
-* [Refills](https://github.com/thoughtbot/refills) for “copy-paste” components
-  and patterns based on Bourbon, Neat and Bitters
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup
   and style
 * [Title](https://github.com/calebthompson/title) for storing titles in
@@ -79,8 +71,6 @@ And testing gems like:
   [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
   integration testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
-* [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
-  HTML forms
 * [RSpec](https://github.com/rspec/rspec) for unit testing
 * [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
 * [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
@@ -101,7 +91,6 @@ Suspenders also comes with:
 * [t() and l() in specs without prefixing with I18n][i18n]
 * An automatically-created `SECRET_KEY_BASE` environment variable in all
   environments
-* Configuration for [Travis Pro][travis] continuous integration
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 
@@ -110,7 +99,6 @@ Suspenders also comes with:
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
-[travis]: http://docs.travis-ci.com/user/travis-pro/
 [segment]: https://segment.com
 
 ## Heroku

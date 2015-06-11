@@ -229,10 +229,6 @@ end
       copy_file "spec_helper.rb", "spec/spec_helper.rb"
     end
 
-    def configure_travis
-      template 'travis.yml.erb', '.travis.yml'
-    end
-
     def configure_i18n_for_test_environment
       copy_file "i18n.rb", "spec/support/i18n.rb"
     end
@@ -311,10 +307,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       remove_file "app/assets/stylesheets/application.css"
       copy_file "application.scss",
                 "app/assets/stylesheets/application.scss"
-    end
-
-    def install_bitters
-      run "bitters install --path app/assets/stylesheets"
     end
 
     def gitignore_files
