@@ -422,7 +422,6 @@ you can deploy to staging and production with:
 
     def setup_bundler_audit
       copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
-      append_file "Rakefile", %{\ntask default: "bundler:audit"\n}
     end
 
     def setup_spring
@@ -462,16 +461,21 @@ you can deploy to staging and production with:
       append_file 'Rakefile' do
         <<-EOS
 task(:default).clear
-task default: [:spec]
 
-if defined? RSpec
-  task(:spec).clear
-  RSpec::Core::RakeTask.new(:spec) do |t|
-    t.verbose = false
-  end
+if defined?(RSpec) && defined?(RuboCop)
+  require 'rubocop/rake_task'
+  require 'rspec/core/rake_task'
+
+  RuboCop::RakeTask.new
+
+  task default: [:spec, :rubocop]
 end
         EOS
       end
+    end
+
+    def configure_rubocop
+      template '.rubocop.yml', '.rubocop.yml'
     end
 
     private
