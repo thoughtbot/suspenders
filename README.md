@@ -31,8 +31,6 @@ It includes application gems like:
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
-* [Email Validator](https://github.com/balexand/email_validator) for email
-  validation
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
   helpers
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
