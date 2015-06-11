@@ -21,7 +21,9 @@ This will create a Rails app in `projectname` using the latest version of Rails.
 
 To see the latest and greatest gems, look at Suspenders'
 [Gemfile](templates/Gemfile.erb), which will be appended to the default
-generated projectname/Gemfile.
+generated projectname/Gemfile. After the first bundle install, Suspenders will
+apply pessimistic version-locking on the Gemfile to only allow patch-level
+updates.
 
 It includes application gems like:
 
@@ -68,6 +70,8 @@ And development gems like:
   pre-loading
 * [Web Console](https://github.com/rails/web-console) for better debugging via
   in-browser IRB consoles.
+* [RuboCop](https://github.com/bbatsov/rubocop) with Philosophie's default
+  configuration to enforce Ruby Community Styleguide.
 
 And testing gems like:
 
