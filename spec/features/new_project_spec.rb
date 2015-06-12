@@ -43,6 +43,12 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/spec/support/i18n.rb")
   end
 
+  it "creates good default .hound.yml" do
+    hound_config_file = IO.read("#{project_path}/.hound.yml")
+
+    expect(hound_config_file).to include "enabled: true"
+  end
+
   it "ensures newrelic.yml reads NewRelic license from env" do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
 

@@ -97,7 +97,8 @@ Suspenders also comes with:
 * [t() and l() in specs without prefixing with I18n][i18n]
 * An automatically-created `SECRET_KEY_BASE` environment variable in all
   environments
-* Configuration for [Travis Pro][travis] continuous integration
+* Configuration for [Travis][travis] Continuous Integration (tests)
+* Configuration for [Hound][hound] Continuous Integration (style)
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 
@@ -107,6 +108,7 @@ Suspenders also comes with:
 [binstub]: https://github.com/thoughtbot/suspenders/pull/282
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
 [travis]: http://docs.travis-ci.com/user/travis-pro/
+[hound]: https://houndci.com
 [segment]: https://segment.com
 
 ## Heroku
