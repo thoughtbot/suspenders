@@ -1,6 +1,11 @@
 require "spec_helper"
 
 RSpec.describe "Heroku" do
+  before do
+    drop_dummy_database
+    remove_project_directory
+  end
+
   it "suspends a project for Heroku" do
     run_suspenders("--heroku=true")
 

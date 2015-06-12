@@ -14,9 +14,6 @@ RSpec.configure do |config|
   end
 
   config.before(:each) do
-    drop_dummy_database
-    remove_project_directory
-
     FakeHeroku.clear!
     FakeGithub.clear!
   end
