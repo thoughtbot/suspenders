@@ -43,6 +43,18 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/spec/support/i18n.rb")
   end
 
+  it "adds support file for view specs" do
+    run_suspenders
+
+    expect(File).to exist("#{project_path}/spec/support/view_spec_helpers.rb")
+  end
+
+  it "adds support file for helper specs" do
+    run_suspenders
+
+    expect(File).to exist("#{project_path}/spec/support/helper_spec_helpers.rb")
+  end
+
   it "ensures newrelic.yml reads NewRelic license from env" do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
 
