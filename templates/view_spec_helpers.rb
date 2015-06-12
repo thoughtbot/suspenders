@@ -1,8 +1,4 @@
 module ViewSpecHelpers
-  def page
-    Capybara.string(rendered)
-  end
-
   def stub_current_user(as: nil)
     allow(view).to receive(:current_user).and_return(as)
   end
