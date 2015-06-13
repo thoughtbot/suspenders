@@ -1,12 +1,26 @@
-development: &default
+default: &default
   adapter: postgresql
-  database: <%= app_name %>_development
   encoding: utf8
-  host: localhost
+
+local_default: &local_default
+  <<: *default
   min_messages: warning
   pool: 2
   timeout: 5000
+  host: localhost
+
+development:
+  <<: *local_default
+  database: <%= app_name %>_development
 
 test:
-  <<: *default
+  <<: *local_default
   database: <%= app_name %>_test
+
+staging:
+  <<: *default
+  url: <%%= ENV['DATABASE_URL'] %>
+
+production:
+  <<: *default
+  url: <%%= ENV['DATABASE_URL'] %>
