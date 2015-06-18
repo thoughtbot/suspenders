@@ -99,6 +99,15 @@ Suspenders also comes with:
 [i18n]: https://github.com/thoughtbot/suspenders/pull/304
 [segment]: https://segment.com
 
+## CSS Frameworks
+
+You can optionally install a CSS Framework
+options: bourbon_n_friends, bootstrap, foundation
+
+```
+philosophies-suspenders my_new_app --css-framework=CSS_FRAMEWORK
+```
+
 ## Heroku
 
 By default, suspenders will:

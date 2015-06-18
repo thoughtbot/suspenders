@@ -1,5 +1,6 @@
 require 'rails/generators'
 require 'rails/generators/rails/app/app_generator'
+require 'pry-byebug'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
@@ -17,6 +18,18 @@ module Suspenders
 
     class_option :origin, type: :string, default: nil,
       desc: "Add and push to git remote for origin"
+
+    class_option(
+      :css_framework,
+      type: :string,
+      aliases: "-C",
+      default: nil,
+      desc: "Install a css framework "\
+            "(options: bourbon_n_friends/bootstrap/foundation)"
+    )
+
+    class_option :skip_test_unit, type: :boolean, aliases: "-T", default: true,
+      desc: "Skip Test::Unit files"
 
     class_option :skip_git, type: :boolean, default: false,
       desc: "Don't create and commit to git repository"
@@ -50,6 +63,7 @@ module Suspenders
       invoke :run_stairs
       invoke :initial_commit_and_branching
       invoke :push_to_origin
+      invoke :setup_css_framework
       invoke :outro
     end
 
@@ -149,6 +163,18 @@ module Suspenders
     def setup_javascripts
       say 'Set up javascripts'
       build :setup_javascripts
+    end
+
+    def setup_css_framework
+      if options[:css_framework]
+        say "Installing #{options[:css_framework]}"
+        case options[:css_framework]
+        when 'bourbon_n_friends' then build :install_bourbon_n_friends
+        when 'bootstrap' then build :install_bootstrap
+        when 'foundation' then build :install_foundation
+        else say "Unrecognized Css Framework"
+        end
+      end
     end
 
     def setup_git

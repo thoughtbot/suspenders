@@ -305,6 +305,92 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       create_empty_directory('app/assets/javascripts/application')
     end
 
+    def install_bourbon_n_friends
+      inject_into_file(
+        'Gemfile',
+        %{\ngem 'bourbon'\ngem 'neat'},
+        after: Regexp.new("gem 'rails', '#{Suspenders::RAILS_VERSION}'")
+      )
+      bundle_command 'install'
+
+      inject_into_file(
+        'app/assets/stylesheets/application.scss',
+%{
+@import "bourbon";
+@import "neat";
+@import "base/grid-settings";
+@import "base/base";
+},
+        after: /@charset "utf-8";/
+      )
+    end
+
+    def install_bootstrap
+      inject_into_file(
+        'Gemfile',
+        %{\ngem 'bootstrap-sass'},
+        after: /gem 'sass-rails',.*$/
+      )
+      bundle_command 'install'
+
+      inject_into_file(
+        'app/assets/stylesheets/application.scss',
+        %{\n@import "bootstrap-sprockets";\n@import "bootstrap";},
+        after: /@charset "utf-8";/
+      )
+
+      inject_into_file(
+        'app/assets/javascripts/application.js',
+        %{\n\/\/= require bootstrap-sprockets},
+        after: /\/\/= require jquery-ujs/
+      )
+    end
+
+    def install_foundation
+      inject_into_file(
+        'Gemfile',
+        %{\ngem 'foundation-rails'},
+        after: /gem 'sass-rails',.*$/
+      )
+
+      inject_into_file(
+        'app/assets/stylesheets/application.scss',
+        %{\n@import "foundation_and_overrides";},
+        after: /@charset "utf-8";/
+      )
+
+      inject_into_file(
+        'app/assets/javascripts/application.js',
+        %{\n\/\/= require foundation},
+        after: /\/\/= require jquery-ujs/
+      )
+
+      inject_into_file(
+        'app/assets/javascripts/application.js',
+        %{\n$(document).foundation();},
+        after: /\/\/= require_tree ./
+      )
+
+      inject_into_file(
+        'app/views/layouts/application.html.erb',
+        %{<%= javascript_include_tag "vendor/modernizr" %>\n},
+        before: /<title>.*$/
+      )
+
+      bundle_command 'install'
+
+      result = run('bundle show foundation-rails', capture: true ).gsub("\n",'')
+      settings_file = File.join(
+        result,
+        'vendor', 'assets', 'stylesheets', 'foundation', '_settings.scss'
+      )
+
+      create_file(
+        "app/assets/stylesheets/foundation_and_overrides.scss",
+        File.read(settings_file)
+      )
+    end
+
     def gitignore_files
       remove_file '.gitignore'
       copy_file 'suspenders_gitignore', '.gitignore'
