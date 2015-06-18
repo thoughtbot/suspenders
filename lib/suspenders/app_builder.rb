@@ -243,10 +243,6 @@ end
       copy_file "config_i18n_tasks.yml", "config/i18n-tasks.yml"
     end
 
-    def configure_background_jobs_for_rspec
-      run 'rails g delayed_job:active_record'
-    end
-
     def configure_action_mailer_in_specs
       copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
     end
@@ -277,7 +273,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def configure_active_job
       configure_application_file(
-        "config.active_job.queue_adapter = :delayed_job"
+        "config.active_job.queue_adapter = :sidekiq"
       )
       configure_environment "test", "config.active_job.queue_adapter = :inline"
     end
@@ -314,6 +310,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       copy_file 'suspenders_gitignore', '.gitignore'
       [
         'app/views/pages',
+        'app/workers',
         'spec/lib',
         'spec/controllers',
         'spec/helpers',

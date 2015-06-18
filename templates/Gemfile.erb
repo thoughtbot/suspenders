@@ -5,7 +5,7 @@ ruby "<%= Suspenders::RUBY_VERSION %>"
 gem "airbrake"
 gem "autoprefixer-rails"
 gem "coffee-rails", "~> 4.1.0"
-gem "delayed_job_active_record"
+gem "sidekiq"
 gem "flutie"
 gem "high_voltage"
 gem "i18n-tasks"
@@ -35,6 +35,7 @@ group :development, :test do
   gem "pry-rails"
   gem "rspec-rails", "~> 3.1.0"
   gem "rubocop"
+  gem "rspec-sidekiq"
 end
 
 group :test do

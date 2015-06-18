@@ -132,7 +132,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     test_config = IO.read("#{project_path}/config/environments/test.rb")
 
     expect(application_config).to match(
-      /^ +config.active_job.queue_adapter = :delayed_job$/
+      /^ +config.active_job.queue_adapter = :sidekiq$/
     )
     expect(test_config).to match(
       /^ +config.active_job.queue_adapter = :inline$/
