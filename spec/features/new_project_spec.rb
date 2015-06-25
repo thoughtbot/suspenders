@@ -86,7 +86,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/spec/i18n_spec.rb")
   end
 
-  it "configs i18n-tasks" do
+  it "configures i18n-tasks" do
     expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
   end
 
@@ -127,6 +127,10 @@ RSpec.describe "Suspend a new project with default configuration" do
     bin_stubs.each do |bin_stub|
       expect(IO.read("#{project_path}/bin/#{bin_stub}")).to match(spring_line)
     end
+  end
+
+  it "adds a page object class for tests" do
+    expect(File).to exist("#{project_path}/spec/support/page_object.rb")
   end
 
   def analytics_partial
