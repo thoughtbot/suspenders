@@ -1,32 +1,39 @@
 # <%= app_name.humanize %>
 
-## Getting Started
+## Setup
 
-After you have cloned this repo, run this setup script to set up your machine
-with the necessary dependencies to run and test this app:
+```bash
+$ bundle
+$ rake newb
+```
 
-    % ./bin/setup
+## Definition of Done
 
-It assumes you have a machine equipped with Ruby, Postgres, etc. If not, set up
-your machine with [this script].
+In addition to satisfying acceptance criteria, new functionality/changes/etc
+must meet the following requirements before they can be considered "done":
 
-[this script]: https://github.com/thoughtbot/laptop
+1. Be well-tested according to our
+   [Automated Testing Policy](#automated-testing-policy), and the test suite
+   must be passing.
+1. [Conform to the Ruby Community Styleguide.](#styleguide-enforcement)
+1. Update the seed file with any new data that QA will need to accept your feature
+1. Ensure that any new ENV vars are added to `setup.rb` and updated on CI and
+   servers
+1. Views render correctly in all [supported browsers](#supported-browsers)
+1. Have received the :shipit: in peer review via Pull Request.
 
-After setting up, you can run the application using [foreman]:
+## Automated Testing Policy
 
-    % foreman start
+TODO: Add your team's agreed upon policy here.
 
-If you don't have `foreman`, see [Foreman's install instructions][foreman]. It
-is [purposefully excluded from the project's `Gemfile`][exclude].
+## Styleguide Enforcement
 
-[foreman]: https://github.com/ddollar/foreman
-[exclude]: https://github.com/ddollar/foreman/pull/437#issuecomment-41110407
+We run [rubocop][rubocop] with near vanilla configs to enforce the Ruby Community
+Styleguide. It runs as part of the default `$ rake` task on CI or can be run on
+its own with `$ rubocop`.
 
-## Guidelines
+[rubocop]: https://github.com/bbatsov/rubocop
 
-Use the following guides for getting things done, programming well, and
-programming in style.
+## Browser Compatibility
 
-* [Protocol](http://github.com/thoughtbot/guides/blob/master/protocol)
-* [Best Practices](http://github.com/thoughtbot/guides/blob/master/best-practices)
-* [Style](http://github.com/thoughtbot/guides/blob/master/style)
+TODO: Add your team's agreed upon policy here.
