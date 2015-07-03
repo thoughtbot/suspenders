@@ -459,6 +459,10 @@ end
       template '.rubocop.yml', '.rubocop.yml'
     end
 
+    def configure_airbrake
+      template 'airbrake.rb', 'config/initializers/airbrake.rb'
+    end
+
     def run_stairs
       bundle_command 'install'
       bundle_command 'exec stairs --use-defaults'

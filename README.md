@@ -18,7 +18,8 @@ updates.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
+* [Airbrake](https://github.com/airbrake/airbrake) for exception notification,
+  set your API key in the environment with `AIRBRAKE_API_KEY`
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
 * [Sidekiq](https://github.com/mperham/sidekiq) for background processing
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
