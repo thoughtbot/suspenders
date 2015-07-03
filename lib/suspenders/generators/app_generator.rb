@@ -24,6 +24,9 @@ module Suspenders
     class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
       desc: "Don't run bundle install"
 
+    class_option :origin, type: :string, default: nil,
+      desc: "Add and push to git remote for origin"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -49,6 +52,8 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :initial_commit_and_branching
+      invoke :push_to_origin
       invoke :outro
     end
 
@@ -150,6 +155,21 @@ module Suspenders
         say 'Initializing git'
         invoke :setup_gitignore
         invoke :init_git
+      end
+    end
+
+    def initial_commit_and_branching
+      if !options[:skip_git]
+        say 'Creating initial commit and branches'
+        build :create_initial_commit
+        build :setup_deployment_environment_branches
+      end
+    end
+
+    def push_to_origin
+      if !options[:skip_git] && options[:origin]
+        say 'Pushing to origin remote'
+        build :setup_and_push_to_origin_remote, options[:origin]
       end
     end
 
