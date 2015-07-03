@@ -305,6 +305,12 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
                 "app/assets/stylesheets/application.scss"
     end
 
+    def setup_javascripts
+      remove_file "app/assets/javascripts/application.js"
+      copy_file "application.js", "app/assets/javascripts/application.js"
+      create_empty_directory('app/assets/javascripts/application')
+    end
+
     def gitignore_files
       remove_file '.gitignore'
       copy_file 'suspenders_gitignore', '.gitignore'
@@ -318,8 +324,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
         'spec/support/mixins',
         'spec/support/shared_examples'
       ].each do |dir|
-        run "mkdir #{dir}"
-        run "touch #{dir}/.keep"
+        create_empty_directory(dir)
       end
     end
 
@@ -501,6 +506,11 @@ end
 
     def heroku_app_name_for(environment)
       "#{app_name.dasherize}-#{environment}"
+    end
+
+    def create_empty_directory(name)
+      run "mkdir #{name}"
+      run "touch #{name}/.keep"
     end
   end
 end

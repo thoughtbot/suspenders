@@ -39,6 +39,7 @@ module Suspenders
       invoke :create_suspenders_views
       invoke :configure_app
       invoke :setup_stylesheets
+      invoke :setup_javascripts
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
@@ -143,6 +144,11 @@ module Suspenders
     def setup_stylesheets
       say 'Set up stylesheets'
       build :setup_stylesheets
+    end
+
+    def setup_javascripts
+      say 'Set up javascripts'
+      build :setup_javascripts
     end
 
     def setup_git
