@@ -59,8 +59,8 @@ And development gems like:
   Gemfile for insecure dependencies based on published CVEs
 * [Spring](https://github.com/rails/spring) for fast Rails actions via
   pre-loading
-* [Web Console](https://github.com/rails/web-console) for better debugging via
-  in-browser IRB consoles.
+* [Better Errors](https://github.com/charliesome/better_errors) for better
+  debugging via in-browser IRB consoles.
 * [RuboCop](https://github.com/bbatsov/rubocop) with Philosophie's default
   configuration to enforce Ruby Community Styleguide.
 
