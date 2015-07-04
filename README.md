@@ -134,7 +134,7 @@ You can optionally specify alternate Heroku flags:
 
     suspenders app \
       --heroku true \
-      --heroku-flags "--region eu --addons newrelic,pgbackups,sendgrid,ssl"
+      --heroku-flags "--region eu --addons newrelic,sendgrid,ssl"
 
 See all possible Heroku flags:
 
