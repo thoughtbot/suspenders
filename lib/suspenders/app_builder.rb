@@ -217,6 +217,10 @@ end
       copy_file "i18n.rb", "spec/support/i18n.rb"
     end
 
+    def add_page_objects_for_tests
+      copy_file "page_object.rb", "spec/support/page_object.rb"
+    end
+
     def configure_i18n_for_missing_translations
       raise_on_missing_translations_in("development")
       raise_on_missing_translations_in("test")

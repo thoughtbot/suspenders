@@ -98,6 +98,7 @@ module Suspenders
       build :configure_travis
       build :configure_i18n_for_test_environment
       build :configure_i18n_tasks
+      build :add_page_objects_for_tests
       build :configure_action_mailer_in_specs
     end
 

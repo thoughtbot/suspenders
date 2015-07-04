@@ -101,6 +101,7 @@ Suspenders also comes with:
 * Configuration for [Hound][hound] Continuous Integration (style)
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
+* A `PageObject` class for [easier testing with page objects][page objects]
 
 [setup]: http://robots.thoughtbot.com/bin-setup
 [compress]: http://robots.thoughtbot.com/content-compression-with-rack-deflater/
@@ -110,6 +111,7 @@ Suspenders also comes with:
 [travis]: http://docs.travis-ci.com/user/travis-pro/
 [hound]: https://houndci.com
 [segment]: https://segment.com
+[page objects]: https://robots.thoughtbot.com/better-acceptance-tests-with-page-objects
 
 ## Heroku
 
