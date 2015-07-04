@@ -12,3 +12,4 @@
 /public/assets
 /tags
 /tmp/*
+/spec/examples.txt

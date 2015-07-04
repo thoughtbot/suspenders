@@ -129,6 +129,12 @@ RSpec.describe "Suspend a new project with default configuration" do
     end
   end
 
+  it "adds rspec's helper files" do
+    expect(File).to exist("#{project_path}/spec/spec_helper.rb")
+    expect(File).to exist("#{project_path}/spec/rails_helper.rb")
+  end
+
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
