@@ -53,7 +53,7 @@ And development gems like:
 * [Dotenv](https://github.com/bkeepers/dotenv) for loading environment variables
 * [Pry Rails](https://github.com/rweng/pry-rails) for interactively exploring
   objects
-* [ByeBug](https://github.com/deivid-rodriguez/byebug) for interactively
+* [Pry ByeBug](https://github.com/deivid-rodriguez/pry-byebug) for interactively
   debugging behavior
 * [Bundler Audit](https://github.com/rubysec/bundler-audit) for scanning the
   Gemfile for insecure dependencies based on published CVEs
