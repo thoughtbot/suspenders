@@ -53,6 +53,7 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :run_stairs
       invoke :initial_commit_and_branching
       invoke :push_to_origin
       invoke :outro
@@ -183,9 +184,7 @@ module Suspenders
         say "Creating Heroku apps"
         build :create_heroku_apps, options[:heroku_flags]
         build :set_heroku_serve_static_files
-        build :set_heroku_remotes
         build :set_heroku_rails_secrets
-        build :provide_deploy_script
       end
     end
 
@@ -233,9 +232,14 @@ module Suspenders
       build :remove_routes_comment_lines
     end
 
+    def run_stairs
+      build :run_stairs
+    end
+
     def outro
       say 'Congratulations! You just pulled our suspenders.'
       say "Remember to run 'rails generate airbrake' with your API key."
+      say 'Remember to update the README with specifics for your project.'
     end
 
     protected
