@@ -4,12 +4,12 @@ ruby "<%= Suspenders::RUBY_VERSION %>"
 
 gem "airbrake"
 gem "autoprefixer-rails"
+gem "bundler", ">= 1.8.4"
 gem "coffee-rails", "~> 4.1.0"
 gem "sidekiq"
 gem "flutie"
 gem "high_voltage"
 gem "i18n-tasks"
-gem "jquery-rails"
 gem "newrelic_rpm", ">= 3.9.8"
 gem "pg"
 gem "rack-canonical-host"
@@ -21,6 +21,11 @@ gem "title"
 gem "uglifier"
 gem "unicorn"
 gem "quiet_assets"
+
+source "https://rails-assets.org" do
+  gem "rails-assets-jquery"
+  gem "rails-assets-jquery-ujs"
+end
 
 group :development do
   gem "spring"
