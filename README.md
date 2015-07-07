@@ -1,9 +1,8 @@
-# Suspenders [![Build Status](https://secure.travis-ci.org/thoughtbot/suspenders.svg?branch=master)](http://travis-ci.org/thoughtbot/suspenders)
+# Suspenders
 
-Suspenders is the base Rails application used at
-[thoughtbot](http://thoughtbot.com).
-
-  ![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
+This is Philosophie's fork of Suspenders, a Rails application template
+originally created by thoughtbot. This repo has strayed significantly from
+thoughtbot's and is not intended to go back upstream.
 
 ## Installation
 
@@ -189,26 +188,6 @@ installing QT are
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
-## Issues
-
-If you have problems, please create a
-[GitHub Issue](https://github.com/thoughtbot/suspenders/issues).
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
-Thank you, [contributors]!
-
-[contributors]: https://github.com/thoughtbot/suspenders/graphs/contributors
-
-## Need Help?
-
-We offer 1-on-1 coaching. We can help you set up a new Rails application, write
-your first feature, and get up and running on Heroku. [Get in touch].
-
-[Get in touch]: http://coaching.thoughtbot.com/rails/?utm_source=github
-
 ## License
 
 Suspenders is Copyright © 2008-2015 thoughtbot.
@@ -216,17 +195,3 @@ It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
 [LICENSE]: LICENSE
-
-## About thoughtbot
-
-![thoughtbot](https://thoughtbot.com/logo.png)
-
-Suspenders is maintained and funded by thoughtbot, inc.
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
-
-We love open source software!
-See [our other projects][community].
-We are [available for hire][hire].
-
-[community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com?utm_source=github
