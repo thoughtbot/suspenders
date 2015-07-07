@@ -6,15 +6,7 @@ thoughtbot's and is not intended to go back upstream.
 
 ## Installation
 
-First install the suspenders gem:
-
-    gem install suspenders
-
-Then run:
-
-    suspenders projectname
-
-This will create a Rails app in `projectname` using the latest version of Rails.
+TODO. See issue #41
 
 ## Gemfile
 
