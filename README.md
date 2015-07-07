@@ -33,7 +33,10 @@ It includes application gems like:
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
   helpers
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
-* [jQuery Rails](https://github.com/rails/jquery-rails) for jQuery
+* [Rails Assets](https://rails-assets.org/) for managing frontend dependencies,
+  including by default:
+  * jquery
+  * jquery-ujs
 * [New Relic RPM](https://github.com/newrelic/rpm) for monitoring performance
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
 * [Rack Canonical Host](https://github.com/tylerhunt/rack-canonical-host) to
