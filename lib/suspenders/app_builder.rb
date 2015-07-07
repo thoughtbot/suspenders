@@ -332,6 +332,21 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       run 'git init'
     end
 
+    def setup_deployment_environment_branches
+      run 'git branch staging'
+      run 'git branch production'
+    end
+
+    def create_initial_commit
+      run 'git add -A'
+      run 'git commit -m "Initial app setup."'
+    end
+
+    def setup_and_push_to_origin_remote(remote_url)
+      run "git remote add origin #{remote_url}"
+      run 'git push --all origin'
+    end
+
     def create_staging_heroku_app(flags)
       rack_env = "RACK_ENV=staging RAILS_ENV=staging"
       app_name = heroku_app_name_for("staging")

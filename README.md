@@ -134,8 +134,18 @@ See all possible Heroku flags:
 
 ## Git
 
-This will initialize a new git repository for your Rails app. You can
-bypass this with the `--skip-git` option:
+By default, suspenders will:
+
+* Initialize a new git repository
+* Create `staging` and `production` branches for deployment
+* Make an initial commit
+
+You can optionally provide a remote URL via the `--origin` option and suspenders
+will push all branches to that remote.
+
+    suspenders app --origin git@github.com:philosopie/app.git
+
+You can bypass all git functionality with the `--skip-git` option:
 
     suspenders app --skip-git true
 
