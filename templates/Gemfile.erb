@@ -28,9 +28,10 @@ source "https://rails-assets.org" do
 end
 
 group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
   gem "spring"
   gem "spring-commands-rspec"
-  gem "web-console"
 end
 
 group :development, :test do
