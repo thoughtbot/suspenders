@@ -18,7 +18,8 @@ updates.
 
 It includes application gems like:
 
-* [Airbrake](https://github.com/airbrake/airbrake) for exception notification
+* [Airbrake](https://github.com/airbrake/airbrake) for exception notification,
+  set your API key in the environment with `AIRBRAKE_API_KEY`
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
 * [Sidekiq](https://github.com/mperham/sidekiq) for background processing
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
@@ -34,8 +35,6 @@ It includes application gems like:
   ensure all requests are served from the same domain
 * [Rack Timeout](https://github.com/kch/rack-timeout) to abort requests that are
   taking too long
-* [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
-  avoid accidentally sending emails to real people from staging
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup
   and style
 * [Title](https://github.com/calebthompson/title) for storing titles in
@@ -105,18 +104,18 @@ This:
 * Sets them as `staging` and `production` Git remotes
 * Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
   to `staging`
-* Adds the [Rails Stdout Logging][logging-gem] gem
-  to configure the app to log to standard out,
-  which is how [Heroku's logging][heroku-logging] works.
+* Adds the [Rails 12factor][rails-12factor] gem
+* Adds free Mandrill add-on and configure SMTP settings to use it
+* Adds free Airbrake add-on
+* Adds free Papertrail add-on
 
-[logging-gem]: https://github.com/heroku/rails_stdout_logging
-[heroku-logging]: https://devcenter.heroku.com/articles/logging#writing-to-your-log
+[rails-12factor]: https://github.com/heroku/rails_12factor
 
 You can optionally specify alternate Heroku flags:
 
     suspenders app \
       --heroku true \
-      --heroku-flags "--region eu --addons newrelic,pgbackups,sendgrid,ssl"
+      --heroku-flags "--region eu --addons newrelic,pgbackups,ssl"
 
 See all possible Heroku flags:
 

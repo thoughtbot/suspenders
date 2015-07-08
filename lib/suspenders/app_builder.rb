@@ -203,7 +203,7 @@ end
     def setup_heroku_specific_gems
       inject_into_file(
         "Gemfile",
-        %{\n\s\sgem "rails_stdout_logging"},
+        %{\n\s\sgem "rails_12factor"},
         after: /group :staging, :production do/
       )
     end
@@ -345,19 +345,39 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       rack_env = "RACK_ENV=staging RAILS_ENV=staging"
       app_name = heroku_app_name_for("staging")
 
-      run_heroku "create #{app_name} #{flags}", "staging"
+      run_heroku "create #{app_name} --ssh-git #{flags}", "staging"
       run_heroku "config:add #{rack_env}", "staging"
+      configure_heroku_app("staging")
     end
 
     def create_production_heroku_app(flags)
       app_name = heroku_app_name_for("production")
 
-      run_heroku "create #{app_name} #{flags}", "production"
+      run_heroku "create #{app_name} --ssh-git #{flags}", "production"
+      configure_heroku_app("production")
     end
 
     def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
+    end
+
+    def configure_heroku_app(environment)
+      run_heroku "addons:create mandrill", environment
+      run_heroku "addons:create airbrake:free_heroku", environment
+      run_heroku "addons:create papertrail", environment
+
+      domain = "#{heroku_app_name_for(environment)}.herokuapp.com"
+
+      env_vars = [
+        'SMTP_DOMAIN=heroku.com',
+        'SMTP_ADDRESS=smtp.mandrillapp.com',
+        'SMTP_PROVIDER=mandrill',
+        "HOST=#{domain}",
+        "ASSET_HOST=#{domain}"
+      ]
+
+      run_heroku "config:add #{env_vars.join(' ')}", environment
     end
 
     def set_heroku_rails_secrets
@@ -437,6 +457,10 @@ end
 
     def configure_rubocop
       template '.rubocop.yml', '.rubocop.yml'
+    end
+
+    def configure_airbrake
+      template 'airbrake.rb', 'config/initializers/airbrake.rb'
     end
 
     def run_stairs

@@ -144,6 +144,7 @@ module Suspenders
       build :setup_default_rake_task
       build :configure_unicorn
       build :setup_foreman
+      build :configure_airbrake
     end
 
     def setup_stylesheets
@@ -238,7 +239,6 @@ module Suspenders
 
     def outro
       say 'Congratulations! You just pulled our suspenders.'
-      say "Remember to run 'rails generate airbrake' with your API key."
       say 'Remember to update the README with specifics for your project.'
     end
 
