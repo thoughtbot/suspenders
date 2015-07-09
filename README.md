@@ -6,7 +6,15 @@ thoughtbot's and is not intended to go back upstream.
 
 ## Installation
 
-TODO. See issue #41
+First install the gem:
+
+    gem install philosophies-suspenders
+
+Then run:
+
+    philosophies-suspenders projectname
+
+This will create a Rails app in `projectname` using the latest version of Rails.
 
 ## Gemfile
 
