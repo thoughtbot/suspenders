@@ -6,8 +6,8 @@ module Suspenders
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
-    class_option :heroku, type: :boolean, aliases: "-H", default: false,
-      desc: "Create staging and production Heroku apps"
+    class_option :skip_heroku, type: :boolean, aliases: "-H", default: false,
+      desc: "Don't create staging and production Heroku apps"
 
     class_option :heroku_flags, type: :string, default: "",
       desc: "Set extra Heroku flags"
@@ -15,17 +15,11 @@ module Suspenders
     class_option :github, type: :string, aliases: "-G", default: nil,
       desc: "Create Github repository and add remote origin pointed to repo"
 
-    class_option :skip_test_unit, type: :boolean, aliases: "-T", default: true,
-      desc: "Skip Test::Unit files"
-
-    class_option :skip_turbolinks, type: :boolean, default: true,
-      desc: "Skip turbolinks gem"
-
-    class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
-      desc: "Don't run bundle install"
-
     class_option :origin, type: :string, default: nil,
       desc: "Add and push to git remote for origin"
+
+    class_option :skip_git, type: :boolean, default: false,
+      desc: "Don't create and commit to git repository"
 
     def finish_template
       invoke :suspenders_customization
@@ -63,7 +57,7 @@ module Suspenders
       build :replace_gemfile
       build :set_ruby_to_version_being_used
 
-      if options[:heroku]
+      unless options[:skip_heroku]
         build :setup_heroku_specific_gems
       end
 
@@ -181,7 +175,7 @@ module Suspenders
     end
 
     def create_heroku_apps
-      if options[:heroku]
+      unless options[:skip_heroku]
         say "Creating Heroku apps"
         build :create_heroku_apps, options[:heroku_flags]
         build :set_heroku_serve_static_files
