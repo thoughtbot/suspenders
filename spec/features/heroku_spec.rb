@@ -2,8 +2,6 @@ require "spec_helper"
 
 RSpec.describe "Heroku" do
   it "suspends a project for Heroku" do
-    run_suspenders("--heroku=true")
-
     expect(FakeHeroku).to(
       have_gem_included(project_path, "rails_stdout_logging")
     )
@@ -14,7 +12,7 @@ RSpec.describe "Heroku" do
   end
 
   it "suspends a project with extra Heroku flags" do
-    run_suspenders(%{--heroku=true --heroku-flags="--region eu"})
+    run_suspenders(%{--heroku-flags="--region eu"})
 
     expect(FakeHeroku).to have_created_app_for("staging", "--region eu")
     expect(FakeHeroku).to have_created_app_for("production", "--region eu")
