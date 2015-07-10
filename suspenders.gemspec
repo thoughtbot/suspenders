@@ -5,25 +5,25 @@ require 'date'
 
 Gem::Specification.new do |s|
   s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
-  s.authors = ['thoughtbot']
+  s.authors = ['Philosophie']
   s.date = Date.today.strftime('%Y-%m-%d')
 
   s.description = <<-HERE
 Suspenders is a base Rails project that you can upgrade. It is used by
-thoughtbot to get a jump start on a working app. Use Suspenders if you're in a
+Philosophie to get a jump start on a working app. Use Suspenders if you're in a
 rush to build something amazing; don't use it if you like missing deadlines.
   HERE
 
   s.email = 'support@thoughtbot.com'
-  s.executables = ['suspenders']
+  s.executables = ['philosophies-suspenders']
   s.extra_rdoc_files = %w[README.md LICENSE]
   s.files = `git ls-files`.split("\n")
-  s.homepage = 'http://github.com/thoughtbot/suspenders'
+  s.homepage = 'https://github.com/philosophie/suspenders'
   s.license = 'MIT'
-  s.name = 'suspenders'
+  s.name = 'philosophies-suspenders'
   s.rdoc_options = ['--charset=UTF-8']
   s.require_paths = ['lib']
-  s.summary = "Generate a Rails app using thoughtbot's best practices."
+  s.summary = "Generate a Rails app using Philosophie's best practices."
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Suspenders::VERSION
 
