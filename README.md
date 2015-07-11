@@ -32,7 +32,6 @@ It includes application gems like:
 * [Sidekiq](https://github.com/mperham/sidekiq) for background processing
 * [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
   helpers
-* [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [Rails Assets](https://rails-assets.org/) for managing frontend dependencies,
   including by default:
   * jquery
