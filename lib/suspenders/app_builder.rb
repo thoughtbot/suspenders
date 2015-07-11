@@ -309,7 +309,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       remove_file '.gitignore'
       copy_file 'suspenders_gitignore', '.gitignore'
       [
-        'app/views/pages',
         'app/workers',
         'spec/lib',
         'spec/controllers',
