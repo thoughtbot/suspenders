@@ -104,9 +104,7 @@ Suspenders also comes with:
 You can optionally install a CSS Framework
 options: bourbon_n_friends, bootstrap, foundation
 
-```
-philosophies-suspenders my_new_app --css-framework=CSS_FRAMEWORK
-```
+    philosophies-suspenders my_new_app --css-framework=CSS_FRAMEWORK
 
 ## Heroku
 
@@ -125,7 +123,7 @@ By default, suspenders will:
 
 You can optionally specify alternate Heroku flags:
 
-    suspenders app \
+    philosophies-suspenders app \
       --heroku-flags "--region eu --addons newrelic,pgbackups,ssl"
 
 See all possible Heroku flags:
@@ -151,7 +149,7 @@ will push all branches to that remote.
 
 You can bypass all git functionality with the `--skip-git` option:
 
-    suspenders app --skip-git true
+    philosophies-suspenders app --skip-git true
 
 ## GitHub
 
@@ -159,7 +157,7 @@ You can optionally create a GitHub repository for the suspended Rails app. It
 requires that you have [Hub](https://github.com/github/hub) on your system:
 
     curl http://hub.github.com/standalone -sLo ~/bin/hub && chmod +x ~/bin/hub
-    suspenders app --github organization/project
+    philosophies-suspenders app --github organization/project
 
 This has the same effect as running:
 
