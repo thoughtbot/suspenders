@@ -1,5 +1,7 @@
 # Suspenders
 
+[![Stories in Backlog](https://badge.waffle.io/philosophie/suspenders.svg?label=ready&title=Backlog)](http://waffle.io/philosophie/suspenders)
+
 This is Philosophie's fork of Suspenders, a Rails application template
 originally created by thoughtbot. This repo has strayed significantly from
 thoughtbot's and is not intended to go back upstream.
