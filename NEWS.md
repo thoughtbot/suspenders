@@ -1,6 +1,9 @@
-Unreleased
+1.30.0 (July 30, 2015)
 
-* Remove Unicorn in favor of Puma, as [recommended by Heroku].
+* Update to RSpec 3.3
+* Replace TravisCI with CircleCI
+* Rename development data concept to avoid confusion with db/seeds
+* Remove Unicorn in favor of Puma, as [recommended by Heroku]
 
 [recommended by Heroku]: https://devcenter.heroku.com/changelog-items/594
 
