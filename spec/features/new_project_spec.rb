@@ -29,6 +29,10 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
   end
 
+  it "copies dotfiles" do
+    expect(File).to exist("#{project_path}/.ctags")
+  end
+
   it "loads secret_key_base from env" do
     secrets_file = IO.read("#{project_path}/config/secrets.yml")
 
