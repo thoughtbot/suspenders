@@ -1,8 +1,9 @@
+checkout:
+  post:
+    - cp .sample.env .env
+database:
+  override:
+    - bin/setup
 test:
   override:
     - bundle exec rake
-deployment:
-  staging:
-    branch: master
-    commands:
-      - bin/deploy staging
