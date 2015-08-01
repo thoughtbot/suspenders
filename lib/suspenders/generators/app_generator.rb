@@ -44,6 +44,7 @@ module Suspenders
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_routes_comment_lines
+      invoke :setup_dotfiles
       invoke :setup_git
       invoke :setup_database
       invoke :create_heroku_apps
@@ -186,6 +187,10 @@ module Suspenders
     def setup_segment
       say 'Setting up Segment'
       build :setup_segment
+    end
+
+    def setup_dotfiles
+      build :copy_dotfiles
     end
 
     def setup_gitignore

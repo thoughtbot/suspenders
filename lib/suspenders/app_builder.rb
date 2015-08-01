@@ -320,6 +320,10 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       end
     end
 
+    def copy_dotfiles
+      directory("dotfiles", ".")
+    end
+
     def init_git
       run 'git init'
     end
