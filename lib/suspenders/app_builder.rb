@@ -79,7 +79,7 @@ module Suspenders
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-        :after => 'config.action_mailer.raise_delivery_errors = false'
+        after: "config.action_mailer.raise_delivery_errors = false"
     end
 
     def enable_rack_canonical_host
@@ -429,7 +429,7 @@ you can deploy to staging and production with:
       EOS
 
       %w(500 404 422).each do |page|
-        inject_into_file "public/#{page}.html", meta_tags, :after => "<head>\n"
+        inject_into_file "public/#{page}.html", meta_tags, after: "<head>\n"
         replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
       end
     end
