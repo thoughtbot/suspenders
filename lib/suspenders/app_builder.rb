@@ -79,7 +79,7 @@ module Suspenders
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-        after: 'config.action_mailer.raise_delivery_errors = false'
+        after: "config.action_mailer.raise_delivery_errors = false"
     end
 
     def enable_rack_canonical_host
