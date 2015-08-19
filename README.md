@@ -12,6 +12,10 @@ First install the gem:
 
     gem install philosophies-suspenders
 
+Or update if you already have the gem installed:
+
+    gem update philosophies-suspenders
+
 Then run:
 
     philosophies-suspenders projectname
