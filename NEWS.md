@@ -1,3 +1,7 @@
+1.31.0 (unreleased)
+
+* Update to Ruby 2.2.3
+
 1.30.0 (July 30, 2015)
 
 * Update to RSpec 3.3
