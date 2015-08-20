@@ -87,6 +87,20 @@ module Suspenders
       )
     end
 
+    def configure_production_log_level
+      replace_in_file(
+        'config/environments/production.rb',
+        "  # Use the lowest log level to ensure availability of diagnostic information\n  # when problems arise.",
+        ''
+      )
+
+      replace_in_file(
+        'config/environments/production.rb',
+        '  config.log_level = :debug',
+        '  config.log_level = :info'
+      )
+    end
+
     def enable_rack_deflater
       config = <<-RUBY
 
