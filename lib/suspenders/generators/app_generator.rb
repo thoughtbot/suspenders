@@ -175,6 +175,7 @@ module Suspenders
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :provide_deploy_script
+        build :configure_automatic_deployment
       end
     end
 
