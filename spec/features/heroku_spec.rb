@@ -35,6 +35,18 @@ RSpec.describe "Heroku" do
 
     expect(readme).to include("./bin/deploy staging")
     expect(readme).to include("./bin/deploy production")
+
+    circle_yml_path = "#{project_path}/circle.yml"
+    circle_yml = IO.read(circle_yml_path)
+
+    expect(circle_yml).to include <<-YML.strip_heredoc
+    deployment:
+      staging:
+        branch: master
+        commands:
+          - git remote add staging git@heroku.com:#{app_name}-staging.git
+          - bin/deploy staging
+    YML
   end
 
   it "suspends a project with extra Heroku flags" do

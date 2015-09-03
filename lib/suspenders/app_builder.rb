@@ -400,6 +400,20 @@ you can deploy to staging and production with:
       run "chmod a+x bin/deploy"
     end
 
+    def configure_automatic_deployment
+      staging_remote_name = heroku_app_name_for("staging")
+      deploy_command = <<-YML.strip_heredoc
+      deployment:
+        staging:
+          branch: master
+          commands:
+            - git remote add staging git@heroku.com:#{staging_remote_name}.git
+            - bin/deploy staging
+      YML
+
+      append_file "circle.yml", deploy_command
+    end
+
     def create_github_repo(repo_name)
       path_addition = override_path_for_tests
       run "#{path_addition} hub create #{repo_name}"
