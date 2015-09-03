@@ -1,6 +1,11 @@
-1.31.0 (unreleased)
+1.31.0 (September 3, 2015)
 
 * Update to Ruby 2.2.3
+* Add ctags configuration dotfile
+* Rename `$HOST` to `$APPLICATION_HOST` for zsh compatibility
+* Update Bitters to 1.1
+* Remove comments and newlines in config files
+* Abort tests run if `DATABASE_URL` env variable is set
 
 1.30.0 (July 30, 2015)
 

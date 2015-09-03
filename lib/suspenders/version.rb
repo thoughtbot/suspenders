@@ -1,5 +1,5 @@
 module Suspenders
   RAILS_VERSION = "~> 4.2.0"
   RUBY_VERSION = IO.read("#{File.dirname(__FILE__)}/../../.ruby-version").strip
-  VERSION = "1.30.0"
+  VERSION = "1.31.0"
 end
