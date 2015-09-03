@@ -6,7 +6,7 @@ module Suspenders
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
-    class_option :heroku, type: :boolean, aliases: "-H", default: false,
+    class_option :heroku, type: :boolean, aliases: "-H", default: true,
       desc: "Create staging and production Heroku apps"
 
     class_option :heroku_flags, type: :string, default: "",

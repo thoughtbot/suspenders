@@ -1,6 +1,7 @@
 1.31.0 (unreleased)
 
 * Update to Ruby 2.2.3
+* Assume new apps will be deployed to Heroku (like `--heroku true` in previous versions)
 
 1.30.0 (July 30, 2015)
 

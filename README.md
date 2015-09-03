@@ -113,11 +113,12 @@ Suspenders also comes with:
 
 ## Heroku
 
-You can optionally create Heroku staging and production apps:
+By default, suspenders will create Heroku staging and production apps. To turn
+off this behavior:
 
-    suspenders app --heroku true
+    suspenders app --heroku false
 
-This:
+The Heroku integration:
 
 * Creates a staging and production Heroku app
 * Sets them as `staging` and `production` Git remotes
@@ -133,7 +134,6 @@ This:
 You can optionally specify alternate Heroku flags:
 
     suspenders app \
-      --heroku true \
       --heroku-flags "--region eu --addons newrelic,sendgrid,ssl"
 
 See all possible Heroku flags:
