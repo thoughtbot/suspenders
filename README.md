@@ -197,6 +197,14 @@ installing QT are
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
+## Contributing / Feature requests
+
+Philosophie's Suspenders is meant to support the core functionality of a new rails project. Many nice to have features are therefore not appropriate. If you have an idea for a new feature, here are the steps for having it added:
+
+- please bring your idea up in the #nerds channel first to gauge it's popularity
+- if you are able to, create a PR for the new functionality
+- if you need help creating a PR find someone to pair with
+
 ## License
 
 Suspenders is Copyright © 2008-2015 thoughtbot.
