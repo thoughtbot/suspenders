@@ -262,14 +262,6 @@ end
       template "config_locales_en.yml.erb", "config/locales/en.yml"
     end
 
-    def configure_rack_timeout
-      rack_timeout_config = <<-RUBY
-Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
-      RUBY
-
-      append_file "config/environments/production.rb", rack_timeout_config
-    end
-
     def configure_simple_form
       bundle_command "exec rails generate simple_form:install"
     end
