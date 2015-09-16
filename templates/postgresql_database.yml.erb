@@ -4,8 +4,8 @@ development: &default
   encoding: utf8
   host: localhost
   min_messages: warning
-  pool: <%%= ENV.fetch("DB_POOL", 5) %>
-  reaping_frequency: <%%= ENV.fetch("DB_REAPING_FREQUENCY", 10) %>
+  pool: <%%= Integer(ENV.fetch("DB_POOL", 5)) %>
+  reaping_frequency: <%%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
   timeout: 5000
 
 test:
@@ -15,7 +15,7 @@ test:
 production: &deploy
   encoding: utf8
   min_messages: warning
-  pool: <%%= [ENV.fetch("MAX_THREADS", 5), ENV.fetch("DB_POOL", 5)].max %>
+  pool: <%%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
   url:  <%%= ENV.fetch("DATABASE_URL", "") %>
 
