@@ -511,7 +511,7 @@ end
     end
 
     def port
-      @port ||= [3000, 4000, 5000, 7000, 8000, 9000].sample
+      @port ||= [3000, 4000, 7000, 8000, 9000].sample
     end
 
     def serve_static_files_line
