@@ -86,7 +86,7 @@ module Suspenders
       config = <<-RUBY
 
   # Ensure requests are only served from one, canonical host name
-  config.middleware.use Rack::CanonicalHost, ENV.fetch("HOST")
+  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
 
       inject_into_file(
@@ -255,8 +255,8 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     def configure_action_mailer
       action_mailer_host "development", %{"localhost:#{port}"}
       action_mailer_host "test", %{"www.example.com"}
-      action_mailer_host "staging", %{ENV.fetch("HOST")}
-      action_mailer_host "production", %{ENV.fetch("HOST")}
+      action_mailer_host "staging", %{ENV.fetch("APPLICATION_HOST")}
+      action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
     end
 
     def configure_active_job

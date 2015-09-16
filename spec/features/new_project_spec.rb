@@ -111,6 +111,12 @@ RSpec.describe "Suspend a new project with default configuration" do
       to match(/^ +config.action_mailer.delivery_method = :test$/)
   end
 
+  it "uses APPLICATION_HOST, not HOST in the production config" do
+    prod_env_file = IO.read("#{project_path}/config/environments/production.rb")
+    expect(prod_env_file).to match(/"APPLICATION_HOST"/)
+    expect(prod_env_file).not_to match(/"HOST"/)
+  end
+
   it "configs active job queue adapter" do
     application_config = IO.read("#{project_path}/config/application.rb")
     test_config = IO.read("#{project_path}/config/environments/test.rb")
