@@ -2,7 +2,8 @@ development: &default
   adapter: postgresql
   database: <%= app_name %>_development
   encoding: utf8
-  host: localhost
+  host: <%%= ENV.fetch("POSTGRES_DEV_URL", "localhost") %>
+  port: <%%= ENV.fetch("POSTGRES_DEV_PORT", "5432") %>
   min_messages: warning
   pool: <%%= Integer(ENV.fetch("DB_POOL", 5)) %>
   reaping_frequency: <%%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
