@@ -27,8 +27,7 @@ if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
 fi
 
 if ! command -v foreman > /dev/null; then
-  printf 'Foreman is not installed.\n'
-  printf 'See https://github.com/ddollar/foreman for install instructions.\n'
+  gem install foreman
 fi
 
 # Only if this isn't CI
