@@ -23,7 +23,7 @@ mkdir -p .git/safe
 
 # Pick a port for Foreman
 if ! grep --quiet --no-messages --fixed-strings 'port' .foreman; then
-  printf 'port: <%= config[:port_number] %>\n' >> .foreman
+  printf 'port: 3000\n' >> .foreman
 fi
 
 if ! command -v foreman > /dev/null; then
