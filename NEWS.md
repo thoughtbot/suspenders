@@ -1,3 +1,13 @@
+1.32.0 (October 9, 2015)
+
+* Install Foreman automatically during setup script
+* Port always defaults to 3000
+* Provide shoulda-matchers config
+* Set CI auto-deploy for Heroku suspended apps
+* Configure capybara-webkit to block unknown URLs
+* Add mandatory environment variables to .sample.env
+* Other bugfixes
+
 1.31.0 (September 3, 2015)
 
 * Update to Ruby 2.2.3
