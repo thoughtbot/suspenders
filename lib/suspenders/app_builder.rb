@@ -28,7 +28,7 @@ module Suspenders
     end
 
     def provide_setup_script
-      template "bin_setup.erb", "bin/setup", port_number: port, force: true
+      template "bin_setup.erb", "bin/setup", force: true
       run "chmod a+x bin/setup"
     end
 
@@ -260,7 +260,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def configure_action_mailer
-      action_mailer_host "development", %{"localhost:#{port}"}
+      action_mailer_host "development", %{"localhost:3000"}
       action_mailer_host "test", %{"www.example.com"}
       action_mailer_host "staging", %{ENV.fetch("APPLICATION_HOST")}
       action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
@@ -529,10 +529,6 @@ end
 
     def generate_secret
       SecureRandom.hex(64)
-    end
-
-    def port
-      @port ||= [3000, 4000, 7000, 8000, 9000].sample
     end
 
     def serve_static_files_line
