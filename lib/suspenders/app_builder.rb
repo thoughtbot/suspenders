@@ -200,7 +200,7 @@ end
     def provide_shoulda_matchers_config
       copy_file(
         "shoulda_matchers_config_rspec.rb",
-        "spec/support/shoulda_matchers_config.rb"
+        "spec/support/shoulda_matchers.rb"
       )
     end
 
