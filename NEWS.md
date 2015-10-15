@@ -1,3 +1,8 @@
+HEAD
+
+* Add ability to use byebug navigation commands inside of Pry using the
+  `pry-byebug` gem
+
 1.34.0 (November 15, 2015)
 
 * Fix `block_unknown_urls` deprecation warning with capybara_webkit when running
