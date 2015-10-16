@@ -58,6 +58,10 @@ module Suspenders
       copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
     end
 
+    def generate_factories_file
+      copy_file "factories.rb", "spec/factories.rb"
+    end
+
     def set_up_hound
       copy_file "hound.yml", ".hound.yml"
     end

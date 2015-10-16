@@ -154,6 +154,10 @@ RSpec.describe "Suspend a new project with default configuration" do
     end
   end
 
+  it "copies factories.rb" do
+    expect(File).to exist("#{project_path}/spec/factories.rb")
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
