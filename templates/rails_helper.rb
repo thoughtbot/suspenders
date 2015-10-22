@@ -13,9 +13,6 @@ module Features
 end
 
 RSpec.configure do |config|
-  config.before(:each, js: true) do
-    page.driver.block_unknown_urls
-  end
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!
@@ -23,4 +20,3 @@ RSpec.configure do |config|
 end
 
 ActiveRecord::Migration.maintain_test_schema!
-Capybara.javascript_driver = :webkit
