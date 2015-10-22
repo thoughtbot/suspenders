@@ -27,6 +27,14 @@ module Suspenders
       inject_into_class "config/application.rb", "Application", config
     end
 
+    def configure_quiet_assets
+      config = <<-RUBY
+    config.quiet_assets = true
+      RUBY
+
+      inject_into_class "config/application.rb", "Application", config
+    end
+
     def provide_setup_script
       template "bin_setup.erb", "bin/setup", force: true
       run "chmod a+x bin/setup"

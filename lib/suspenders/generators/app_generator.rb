@@ -86,6 +86,7 @@ module Suspenders
       build :provide_dev_prime_task
       build :configure_generators
       build :configure_i18n_for_missing_translations
+      build :configure_quiet_assets
     end
 
     def setup_test_environment
