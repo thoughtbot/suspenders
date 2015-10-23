@@ -6,6 +6,11 @@ $LOAD_PATH << source_path
 
 require 'suspenders'
 
+if ['-v', '--version'].include? ARGV[0]
+  puts Suspenders::VERSION
+  exit 0
+end
+
 templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
 Suspenders::AppGenerator.source_root templates_root
 Suspenders::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root

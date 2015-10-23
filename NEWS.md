@@ -1,3 +1,7 @@
+1.34.0 (unreleased)
+
+* Suspenders command line responds to `-v` and `--version` options
+
 1.33.0 (October 23, 2015)
 
 * Add `quiet_assets` as development dependency
