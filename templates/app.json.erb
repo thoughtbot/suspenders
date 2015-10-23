@@ -1,0 +1,39 @@
+{
+  "name":"<%= app_name.dasherize %>",
+  "scripts":{},
+  "env":{
+    "AIRBRAKE_API_KEY":{
+      "required":true
+    },
+    "EMAIL_RECIPIENTS":{
+      "required":true
+    },
+    "RACK_ENV":{
+      "required":true
+    },
+    "RAILS_ENV":{
+      "required":true
+    },
+    "SECRET_KEY_BASE":{
+      "generator":"secret"
+    },
+    "SMTP_ADDRESS":{
+      "required":true
+    },
+    "SMTP_DOMAIN":{
+      "required":true
+    },
+    "SMTP_PASSWORD":{
+      "required":true
+    },
+    "SMTP_USERNAME":{
+      "required":true
+    },
+    "WEB_CONCURRENCY":{
+      "required":true
+    }
+  },
+  "addons":[
+    "heroku-postgresql"
+  ]
+}

@@ -41,6 +41,16 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(secrets_file).to match(/secret_key_base: <%= ENV\["SECRET_KEY_BASE"\] %>/)
   end
 
+  it "adds bin/setup file" do
+    expect(File).to exist("#{project_path}/bin/setup")
+  end
+
+  it "makes bin/setup executable" do
+    bin_setup_path = "#{project_path}/bin/setup"
+
+    expect(File.stat(bin_setup_path)).to be_executable
+  end
+
   it "adds support file for action mailer" do
     expect(File).to exist("#{project_path}/spec/support/action_mailer.rb")
   end
@@ -102,7 +112,6 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "evaluates en.yml.erb" do
     locales_en_file = IO.read("#{project_path}/config/locales/en.yml")
-    app_name = SuspendersTestHelpers::APP_NAME
 
     expect(locales_en_file).to match(/application: #{app_name.humanize}/)
   end
@@ -183,6 +192,10 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "copies factories.rb" do
     expect(File).to exist("#{project_path}/spec/factories.rb")
+  end
+
+  def app_name
+    SuspendersTestHelpers::APP_NAME
   end
 
   def analytics_partial

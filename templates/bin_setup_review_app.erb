@@ -1,0 +1,19 @@
+#!/bin/sh
+
+# Run this script to set up a review app's database and worker dyno
+
+set -e
+
+if [ -z "$1" ]; then
+  printf "You must provide a review app (same as the pull request) id.\n"
+  exit 64
+fi
+
+heroku pg:backups restore \
+  `heroku pg:backups public-url -a <%= app_name.dasherize %>-staging` \
+  DATABASE_URL \
+  --confirm <%= app_name.dasherize %>-staging-pr-$1 \
+  --app <%= app_name.dasherize %>-staging-pr-$1
+heroku run rake db:migrate --app <%= app_name.dasherize %>-staging-pr-$1
+heroku ps:scale worker=1 --app <%= app_name.dasherize %>-staging-pr-$1
+heroku restart --app <%= app_name.dasherize %>-staging-pr-$1

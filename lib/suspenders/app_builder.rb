@@ -6,9 +6,15 @@ module Suspenders
     extend Forwardable
 
     def_delegators :heroku_adapter,
+                   :create_heroku_pipelines_config_file,
+                   :create_heroku_pipeline,
+                   :create_production_heroku_app,
+                   :create_staging_heroku_app,
+                   :provide_review_apps_setup_script,
+                   :set_heroku_rails_secrets,
                    :set_heroku_remotes,
-                   :set_up_heroku_specific_gems,
-                   :set_heroku_rails_secrets
+                   :set_heroku_serve_static_files,
+                   :set_up_heroku_specific_gems
 
     def readme
       template 'README.md.erb', 'README.md'
@@ -69,7 +75,7 @@ module Suspenders
     end
 
     def provide_setup_script
-      template "bin_setup.erb", "bin/setup", force: true
+      template "bin_setup", "bin/setup", force: true
       run "chmod a+x bin/setup"
     end
 
@@ -130,6 +136,10 @@ module Suspenders
     def enable_rack_canonical_host
       config = <<-RUBY
 
+  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
+    ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
+  end
+
   # Ensure requests are only served from one, canonical host name
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
@@ -137,7 +147,7 @@ module Suspenders
       inject_into_file(
         "config/environments/production.rb",
         config,
-        after: serve_static_files_line
+        after: "Rails.application.configure do",
       )
     end
 
@@ -369,29 +379,9 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       run 'git init'
     end
 
-    def create_staging_heroku_app(flags)
-      rack_env = "RACK_ENV=staging RAILS_ENV=staging"
-      app_name = heroku_app_name_for("staging")
-
-      run_heroku "create #{app_name} #{flags}", "staging"
-      run_heroku "config:add #{rack_env}", "staging"
-    end
-
-    def create_production_heroku_app(flags)
-      app_name = heroku_app_name_for("production")
-
-      run_heroku "create #{app_name} #{flags}", "production"
-    end
-
     def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
-    end
-
-    def set_heroku_serve_static_files
-      %w(staging production).each do |environment|
-        run_heroku "config:add RAILS_SERVE_STATIC_FILES=true", environment
-      end
     end
 
     def provide_deploy_script
@@ -413,7 +403,6 @@ you can deploy to staging and production with:
     end
 
     def configure_automatic_deployment
-      staging_remote_name = heroku_app_name_for("staging")
       deploy_command = <<-YML.strip_heredoc
       deployment:
         staging:
@@ -518,20 +507,12 @@ end
       uncomment_lines("config/environments/#{environment}.rb", config)
     end
 
-    def run_heroku(command, environment)
-      run "heroku #{command} --remote #{environment}"
-    end
-
     def heroku_adapter
       @heroku_adapter ||= Adapters::Heroku.new(self)
     end
 
     def serve_static_files_line
       "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
-    end
-
-    def heroku_app_name_for(environment)
-      "#{app_name.dasherize}-#{environment}"
     end
   end
 end

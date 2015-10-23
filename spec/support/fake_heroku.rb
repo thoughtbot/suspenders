@@ -6,6 +6,9 @@ class FakeHeroku
   end
 
   def run!
+    if @args.first == "plugins"
+      puts "heroku-pipelines@0.29.0"
+    end
     File.open(RECORDER, 'a') do |file|
       file.puts @args.join(' ')
     end
@@ -37,6 +40,11 @@ class FakeHeroku
 
   def self.has_configured_vars?(remote_name, var)
     commands_ran =~ /^config:add #{var}=.+ --remote #{remote_name}\n/
+  end
+
+  def self.has_setup_pipeline_for?(app_name)
+    commands_ran =~ /^pipelines:create #{app_name} -a #{app_name}-staging --stage staging/ &&
+      commands_ran =~ /^pipelines:create #{app_name} -a #{app_name}-production --stage production/
   end
 
   def self.commands_ran

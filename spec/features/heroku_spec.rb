@@ -20,6 +20,7 @@ RSpec.describe "Heroku" do
         "production",
         "SECRET_KEY_BASE",
       )
+      expect(FakeHeroku).to have_setup_pipeline_for(app_name)
 
       bin_setup_path = "#{project_path}/bin/setup"
       bin_setup = IO.read(bin_setup_path)
@@ -27,6 +28,14 @@ RSpec.describe "Heroku" do
       expect(bin_setup).to include("heroku join --app #{app_name}-production")
       expect(bin_setup).to include("heroku join --app #{app_name}-staging")
       expect(bin_setup).to include("git config heroku.remote staging")
+      expect(File.stat(bin_setup_path)).to be_executable
+
+      bin_setup_path = "#{project_path}/bin/setup_review_app"
+      bin_setup = IO.read(bin_setup_path)
+
+      expect(bin_setup).to include("heroku run rake db:migrate --app #{app_name}-staging-pr-$1")
+      expect(bin_setup).to include("heroku ps:scale worker=1 --app #{app_name}-staging-pr-$1")
+      expect(bin_setup).to include("heroku restart --app #{app_name}-staging-pr-$1")
       expect(File.stat(bin_setup_path)).to be_executable
 
       bin_deploy_path = "#{project_path}/bin/deploy"
@@ -50,6 +59,17 @@ RSpec.describe "Heroku" do
           commands:
             - bin/deploy staging
       YML
+    end
+
+    it "adds app.json file" do
+      expect(File).to exist("#{project_path}/app.json")
+    end
+
+    it "includes application name in app.json file" do
+      app_json_file = IO.read("#{project_path}/app.json")
+      app_name = SuspendersTestHelpers::APP_NAME.dasherize
+
+      expect(app_json_file).to match(/"name":"#{app_name}"/)
     end
   end
 

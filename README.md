@@ -17,6 +17,12 @@ Then run:
 
 This will create a Rails app in `projectname` using the latest version of Rails.
 
+### Associated services
+
+* Enable [Circle CI](https://circleci.com/) Continuous Integration
+* Enable [GitHub auto deploys to Heroku staging and review
+    apps](https://dashboard.heroku.com/apps/app-name-staging/deploy/github).
+
 ## Gemfile
 
 To see the latest and greatest gems, look at Suspenders'
@@ -128,9 +134,11 @@ This:
 * Adds the [Rails Stdout Logging][logging-gem] gem
   to configure the app to log to standard out,
   which is how [Heroku's logging][heroku-logging] works.
+* Creates a [Heroku Pipeline] for review apps
 
 [logging-gem]: https://github.com/heroku/rails_stdout_logging
 [heroku-logging]: https://devcenter.heroku.com/articles/logging#writing-to-your-log
+[Heroku Pipeline]: https://devcenter.heroku.com/articles/pipelines
 
 You can optionally specify alternate Heroku flags:
 
