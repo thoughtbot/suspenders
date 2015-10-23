@@ -14,8 +14,9 @@ end
 
 RSpec.configure do |config|
   config.before(:each, js: true) do
-    page.driver.block_unknown_urls
+    page.block_unknown_urls = true
   end
+
   config.include Features, type: :feature
   config.infer_base_class_for_anonymous_controllers = false
   config.infer_spec_type_from_file_location!
