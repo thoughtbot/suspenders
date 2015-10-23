@@ -1,3 +1,13 @@
+1.33.0 (October 23, 2015)
+
+* Add `quiet_assets` as development dependency
+* Reduce number of Puma processes and threads to reduce memory usage
+* Move non-runtime-dependency i18n-tasks to development and test Gemfile groups
+* Move non-runtime-dependency refills to the development Gemfile group
+* Generate empty `spec/factories.rb` file in accordance with thoughtbot’s
+  styleguide
+* Shoulda Matchers 3.0 configuration
+
 1.32.0 (October 9, 2015)
 
 * Install Foreman automatically during setup script
