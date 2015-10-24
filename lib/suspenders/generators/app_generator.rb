@@ -58,6 +58,7 @@ module Suspenders
 
     def customize_gemfile
       build :replace_gemfile
+      build :configure_simple_form
       build :set_ruby_to_version_being_used
 
       if options[:heroku]
@@ -140,7 +141,6 @@ module Suspenders
       build :configure_action_mailer
       build :configure_active_job
       build :configure_time_formats
-      build :configure_simple_form
       build :disable_xml_params
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
