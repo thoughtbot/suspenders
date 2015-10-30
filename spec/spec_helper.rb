@@ -10,11 +10,11 @@ RSpec.configure do |config|
   config.include SuspendersTestHelpers
 
   config.before(:all) do
+    add_fakes_to_path
     create_tmp_directory
   end
 
   config.before(:each) do
-    FakeHeroku.clear!
     FakeGithub.clear!
   end
 end

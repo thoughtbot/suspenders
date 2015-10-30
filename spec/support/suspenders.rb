@@ -12,9 +12,10 @@ module SuspendersTestHelpers
   def run_suspenders(arguments = nil)
     Dir.chdir(tmp_path) do
       Bundler.with_clean_env do
-        ENV['TESTING'] = '1'
-
-        %x(#{suspenders_bin} #{APP_NAME} #{arguments})
+        add_fakes_to_path
+        `
+          #{suspenders_bin} #{APP_NAME} #{arguments}
+        `
       end
     end
   end
@@ -29,6 +30,10 @@ module SuspendersTestHelpers
     end
   end
 
+  def add_fakes_to_path
+    ENV["PATH"] = "#{support_bin}:#{ENV['PATH']}"
+  end
+
   def project_path
     @project_path ||= Pathname.new("#{tmp_path}/#{APP_NAME}")
   end
@@ -41,6 +46,10 @@ module SuspendersTestHelpers
 
   def suspenders_bin
     File.join(root_path, 'bin', 'suspenders')
+  end
+
+  def support_bin
+    File.join(root_path, "spec", "fakes", "bin")
   end
 
   def root_path

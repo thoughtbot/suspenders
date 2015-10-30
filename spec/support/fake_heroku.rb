@@ -36,8 +36,10 @@ class FakeHeroku
   end
 
   def self.has_configured_vars?(remote_name, var)
-    File.foreach(RECORDER).any? do |line|
-      line =~ /^config:add #{var}=.+ --remote #{remote_name}\n$/
-    end
+    commands_ran =~ /^config:add #{var}=.+ --remote #{remote_name}\n/
+  end
+
+  def self.commands_ran
+    @commands_ran ||= File.read(RECORDER)
   end
 end
