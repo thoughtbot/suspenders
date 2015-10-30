@@ -141,6 +141,14 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
+  it "configs bullet gem in development" do
+    test_config = IO.read("#{project_path}/config/environments/development.rb")
+
+    expect(test_config).to match /^ +Bullet.enable = true$/
+    expect(test_config).to match /^ +Bullet.bullet_logger = true$/
+    expect(test_config).to match /^ +Bullet.rails_logger = true$/
+  end
+
   it "adds spring to binstubs" do
     expect(File).to exist("#{project_path}/bin/spring")
 
