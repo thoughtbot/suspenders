@@ -58,7 +58,6 @@ module Suspenders
 
     def customize_gemfile
       build :replace_gemfile
-      build :configure_simple_form
       build :set_ruby_to_version_being_used
 
       if options[:heroku]
@@ -66,6 +65,7 @@ module Suspenders
       end
 
       bundle_command 'install'
+      build :configure_simple_form
     end
 
     def setup_database
