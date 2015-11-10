@@ -429,7 +429,6 @@ you can deploy to staging and production with:
         staging:
           branch: master
           commands:
-            - git remote add staging git@heroku.com:#{staging_remote_name}.git
             - bin/deploy staging
       YML
 

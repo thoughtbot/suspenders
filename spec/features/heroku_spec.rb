@@ -44,7 +44,6 @@ RSpec.describe "Heroku" do
       staging:
         branch: master
         commands:
-          - git remote add staging git@heroku.com:#{app_name}-staging.git
           - bin/deploy staging
     YML
   end
