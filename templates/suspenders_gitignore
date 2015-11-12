@@ -3,7 +3,7 @@
 *.swo
 *.swp
 /.bundle
-/.env
+/.env.local
 /.foreman
 /coverage/*
 /db/*.sqlite3
@@ -12,3 +12,4 @@
 /public/assets
 /tags
 /tmp/*
+!.env
