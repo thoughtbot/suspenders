@@ -149,6 +149,14 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(test_config).to match /^ +Bullet.rails_logger = true$/
   end
 
+  it "configs missing assets to raise in test" do
+    test_config = IO.read("#{project_path}/config/environments/test.rb")
+
+    expect(test_config).to match(
+      /^ +config.assets.raise_runtime_errors = true$/,
+    )
+  end
+
   it "adds spring to binstubs" do
     expect(File).to exist("#{project_path}/bin/spring")
 
