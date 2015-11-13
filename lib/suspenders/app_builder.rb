@@ -321,7 +321,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       copy_file "puma.rb", "config/puma.rb"
     end
 
-    def setup_foreman
+    def set_up_forego
       copy_file 'sample.env', '.sample.env'
       copy_file 'Procfile', 'Procfile'
     end

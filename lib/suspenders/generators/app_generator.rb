@@ -146,7 +146,7 @@ module Suspenders
       build :fix_i18n_deprecation_warning
       build :setup_default_rake_task
       build :configure_puma
-      build :setup_foreman
+      build :set_up_forego
     end
 
     def setup_stylesheets
