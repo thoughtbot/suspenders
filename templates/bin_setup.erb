@@ -8,6 +8,7 @@ set -e
 
 # Set up Ruby dependencies via Bundler
 gem install bundler --conservative
+gem install foreman
 bundle check || bundle install
 
 # Set up configurable environment variables
