@@ -25,8 +25,8 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "creates .ruby-version from Suspenders .ruby-version" do
     ruby_version_file = IO.read("#{project_path}/.ruby-version")
-
-    expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
+    app_name = SuspendersTestHelpers::APP_NAME
+    expect(ruby_version_file).to eq "#{RUBY_VERSION}@#{app_name}\n"
   end
 
   it "copies dotfiles" do
