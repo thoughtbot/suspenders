@@ -1,16 +1,15 @@
-1.34.0 (unreleased)
+1.34.0 (November 15, 2015)
 
 * Fix `block_unknown_urls` deprecation warning with capybara_webkit when running
   Javascript tests
 * Inherit staging's `action_mailer_host` config from production
 * Suspenders command line responds to `-v` and `--version` options
 * Clean up `bin/rake`
-* Remove email_validator gem from generated Gemfile
+* Remove `email_validator` gem from generated Gemfile
 * Fix Circle deploys by removing redundant remote
-* Add bullet as development dependency
+* Add `bullet` as development dependency
 * Use Heroku Local (Forego) instead of Foreman
 * Raise on missing Sprockets assets in test environment
-
 
 1.33.0 (October 23, 2015)
 
