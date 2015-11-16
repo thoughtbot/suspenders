@@ -11,6 +11,7 @@ module Suspenders
           # Set up the staging and production apps.
           #{command_to_join_heroku_app('staging')}
           #{command_to_join_heroku_app('production')}
+          git config heroku.remote staging
         SHELL
 
         app_builder.append_file "bin/setup", remotes
