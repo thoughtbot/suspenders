@@ -26,6 +26,7 @@ RSpec.describe "Heroku" do
 
       expect(bin_setup).to include("heroku join --app #{app_name}-production")
       expect(bin_setup).to include("heroku join --app #{app_name}-staging")
+      expect(bin_setup).to include("git config heroku.remote staging")
       expect(File.stat(bin_setup_path)).to be_executable
 
       bin_deploy_path = "#{project_path}/bin/deploy"
