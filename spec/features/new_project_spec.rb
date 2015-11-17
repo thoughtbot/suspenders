@@ -163,7 +163,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     bin_stub_files = [
       IO.read("#{project_path}/bin/rails"),
       IO.read("#{project_path}/bin/rake"),
-      IO.read("#{project_path}/bin/rspec")
+      IO.read("#{project_path}/bin/rspec"),
     ]
 
     spring_line1 = /^ +spring_bin_path = File.expand_path\('\.\.\/spring', __FILE__\)$/
