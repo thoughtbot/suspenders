@@ -160,10 +160,18 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "adds spring to binstubs" do
     expect(File).to exist("#{project_path}/bin/spring")
 
-    spring_line = /^ +load File.expand_path\('\.\.\/spring', __FILE__\)$/
-    bin_stubs = %w(rake rails rspec)
-    bin_stubs.each do |bin_stub|
-      expect(IO.read("#{project_path}/bin/#{bin_stub}")).to match(spring_line)
+    bin_stub_files = [
+      IO.read("#{project_path}/bin/rails"),
+      IO.read("#{project_path}/bin/rake"),
+      IO.read("#{project_path}/bin/rspec")
+    ]
+
+    spring_line1 = /^ +spring_bin_path = File.expand_path\('\.\.\/spring', __FILE__\)$/
+    spring_line2 = /^ +load spring_bin_path$/
+
+    bin_stub_files.each do |file|
+      expect(file).to match(spring_line1)
+      expect(file).to match(spring_line2)
     end
   end
 
