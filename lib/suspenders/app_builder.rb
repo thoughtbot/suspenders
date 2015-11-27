@@ -330,8 +330,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def set_up_forego
-      copy_file 'sample.env', '.sample.env'
-      copy_file 'Procfile', 'Procfile'
+      copy_file "Procfile", "Procfile"
     end
 
     def setup_stylesheets
