@@ -241,7 +241,7 @@ module Suspenders
 
     def outro
       say 'Congratulations! You just pulled our suspenders.'
-      say "Remember to run 'rails generate airbrake' with your API key."
+      say honeybadger_outro
     end
 
     protected
@@ -252,6 +252,18 @@ module Suspenders
 
     def using_active_record?
       !options[:skip_active_record]
+    end
+
+    private
+
+    def honeybadger_outro
+      "Run 'bundle exec honeybadger heroku install' with your API key#{honeybadger_message_suffix}."
+    end
+
+    def honeybadger_message_suffix
+      if options[:heroku]
+        " unless you're using the Heroku Honeybadger add-on"
+      end
     end
   end
 end
