@@ -30,7 +30,9 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "copies dotfiles" do
-    expect(File).to exist("#{project_path}/.ctags")
+    %w[.ctags .env].each do |dotfile|
+      expect(File).to exist("#{project_path}/#{dotfile}")
+    end
   end
 
   it "loads secret_key_base from env" do
