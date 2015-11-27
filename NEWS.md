@@ -1,3 +1,7 @@
+master (unreleased)
+
+* Switch from Airbrake to Honeybadger
+
 1.35.0 (December 30, 2015)
 
 * Introduce Heroku Pipelines support
