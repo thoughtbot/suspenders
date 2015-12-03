@@ -10,6 +10,7 @@ module SuspendersTestHelpers
   end
 
   def run_suspenders(arguments = nil)
+    arguments = "--path=#{root_path} #{arguments}"
     Dir.chdir(tmp_path) do
       Bundler.with_clean_env do
         add_fakes_to_path

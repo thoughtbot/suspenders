@@ -24,6 +24,9 @@ module Suspenders
     class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
       desc: "Don't run bundle install"
 
+    class_option :path, type: :string, default: nil,
+      desc: "Path to the gem"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -52,10 +55,12 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :generate_all
       invoke :outro
     end
 
     def customize_gemfile
+      build :replace_gemfile, options[:path]
       build :set_ruby_to_version_being_used
 
       if options[:heroku]
@@ -231,6 +236,11 @@ module Suspenders
 
     def remove_routes_comment_lines
       build :remove_routes_comment_lines
+    end
+
+    def generate_all
+      generate("suspenders:static")
+      bundle_command "install"
     end
 
     def outro

@@ -240,6 +240,17 @@ module Suspenders
       bundle_command 'exec rake db:create db:migrate'
     end
 
+    def replace_gemfile(path)
+      remove_file 'Gemfile'
+      template 'Gemfile.erb', 'Gemfile' do |content|
+        if path
+          content.gsub(%r{gem .suspenders.}) { |s| %{#{s}, path: "#{path}"} }
+        else
+          content
+        end
+      end
+    end
+
     def set_ruby_to_version_being_used
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end
@@ -342,6 +353,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def install_refills
       generate "refills:import", "flashes"
+      run "rm app/views/refills/_flashes.html.erb"
       remove_dir "app/views/refills"
     end
 
