@@ -3,6 +3,8 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
+    hide!
+
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
@@ -29,6 +31,9 @@ module Suspenders
 
     class_option :help, type: :boolean, aliases: '-h', group: :suspenders,
       desc: "Show this help message and quit"
+
+    class_option :path, type: :string, default: nil,
+      desc: "Path to the gem"
 
     def finish_template
       invoke :suspenders_customization
@@ -59,10 +64,12 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :generate_default
       invoke :outro
     end
 
     def customize_gemfile
+      build :replace_gemfile, options[:path]
       build :set_ruby_to_version_being_used
       bundle_command 'install'
       build :configure_simple_form
@@ -236,6 +243,11 @@ module Suspenders
 
     def remove_routes_comment_lines
       build :remove_routes_comment_lines
+    end
+
+    def generate_default
+      generate("suspenders:static")
+      bundle_command "install"
     end
 
     def outro

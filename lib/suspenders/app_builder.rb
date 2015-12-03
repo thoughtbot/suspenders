@@ -214,6 +214,16 @@ if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
       bundle_command 'exec rake db:create db:migrate'
     end
 
+    def replace_gemfile(path)
+      template 'Gemfile.erb', 'Gemfile', force: true do |content|
+        if path
+          content.gsub(%r{gem .suspenders.}) { |s| %{#{s}, path: "#{path}"} }
+        else
+          content
+        end
+      end
+    end
+
     def set_ruby_to_version_being_used
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end

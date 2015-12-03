@@ -259,6 +259,11 @@ RSpec.describe "Suspend a new project with default configuration" do
     SuspendersTestHelpers::APP_NAME
   end
 
+  it "adds high_voltage" do
+    gemfile = IO.read("#{project_path}/Gemfile")
+    expect(gemfile).to match(/high_voltage/)
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
