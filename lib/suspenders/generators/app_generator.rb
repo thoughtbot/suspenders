@@ -249,6 +249,7 @@ module Suspenders
       run("spring stop")
 
       generate("suspenders:static")
+      generate("suspenders:stylesheet_base")
 
       bundle_command "install"
     end
