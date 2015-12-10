@@ -82,6 +82,23 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(hound_config_file).to include "enabled: true"
   end
 
+  it "ensures Gemfile contains `rack-mini-profiler`" do
+    gemfile = IO.read("#{project_path}/Gemfile")
+
+    expect(gemfile).to include %{gem "rack-mini-profiler", require: false}
+  end
+
+  it "ensures .sample.env defaults to RACK_MINI_PROFILER=0" do
+    env = IO.read("#{project_path}/.env")
+
+    expect(env).to include "RACK_MINI_PROFILER=0"
+  end
+
+  it "creates a rack-mini-profiler initializer" do
+    expect(File).
+      to exist("#{project_path}/config/initializers/rack_mini_profiler.rb")
+  end
+
   it "ensures newrelic.yml reads NewRelic license from env" do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
 

@@ -1,6 +1,8 @@
 master (unreleased)
 
 * Switch from Airbrake to Honeybadger
+* Generate applications with `rack_mini_profiler` (disabled by default, enabled
+  by setting `RACK_MINI_PROFILER=1`)
 
 1.35.0 (December 30, 2015)
 
