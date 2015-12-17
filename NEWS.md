@@ -2,6 +2,7 @@ HEAD
 
 * Add ability to use byebug navigation commands inside of Pry using the
   `pry-byebug` gem
+* Remove i18n-tasks
 
 1.34.0 (November 15, 2015)
 

@@ -266,11 +266,6 @@ end
       raise_on_missing_translations_in("test")
     end
 
-    def configure_i18n_tasks
-      run "cp $(i18n-tasks gem-path)/templates/rspec/i18n_spec.rb spec/"
-      copy_file "config_i18n_tasks.yml", "config/i18n-tasks.yml"
-    end
-
     def configure_background_jobs_for_rspec
       run 'rails g delayed_job:active_record'
     end

@@ -100,14 +100,6 @@ RSpec.describe "Suspend a new project with default configuration" do
     end
   end
 
-  it "adds specs for missing or unused translations" do
-    expect(File).to exist("#{project_path}/spec/i18n_spec.rb")
-  end
-
-  it "configs i18n-tasks" do
-    expect(File).to exist("#{project_path}/config/i18n-tasks.yml")
-  end
-
   it "evaluates en.yml.erb" do
     locales_en_file = IO.read("#{project_path}/config/locales/en.yml")
     app_name = SuspendersTestHelpers::APP_NAME
