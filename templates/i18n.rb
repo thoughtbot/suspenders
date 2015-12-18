@@ -1,3 +1,3 @@
 RSpec.configure do |config|
-  config.include AbstractController::Translation
+  config.include ActionView::Helpers::TranslationHelper
 end
