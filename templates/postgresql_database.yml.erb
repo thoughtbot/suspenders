@@ -2,7 +2,6 @@ development: &default
   adapter: postgresql
   database: <%= app_name %>_development
   encoding: utf8
-  host: localhost
   min_messages: warning
   pool: <%%= Integer(ENV.fetch("DB_POOL", 5)) %>
   reaping_frequency: <%%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
