@@ -68,12 +68,17 @@ module Suspenders
         end
 
         heroku_app_name = app_builder.app_name.dasherize
-        %w(staging production).each do |environment|
-          run_toolbelt_command(
-            "pipelines:create #{heroku_app_name} -a #{heroku_app_name}-#{environment} --stage #{environment}",
-            environment,
-          )
-        end
+        run_toolbelt_command(
+          "pipelines:create #{heroku_app_name} \
+            -a #{heroku_app_name}-staging --stage staging",
+          "staging",
+        )
+
+        run_toolbelt_command(
+          "pipelines:add #{heroku_app_name} \
+            -a #{heroku_app_name}-production --stage production",
+          "production",
+        )
       end
 
       def set_heroku_serve_static_files
