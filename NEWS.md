@@ -1,8 +1,13 @@
-HEAD
+1.35.0 (December 30, 2015)
 
+* Introduce Heroku Pipelines support
+* Update to Ruby 2.3.0
+* Heroku commands run on staging by default
+* Git ignore `.env.local` instead of `.env`
 * Add ability to use byebug navigation commands inside of Pry using the
   `pry-byebug` gem
-* Remove i18n-tasks
+* Remove `i18n-tasks` from generated Gemfile
+* Accessibility: Add `lang` attribute to `html` element in layout
 
 1.34.0 (November 15, 2015)
 
