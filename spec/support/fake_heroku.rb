@@ -44,7 +44,7 @@ class FakeHeroku
 
   def self.has_setup_pipeline_for?(app_name)
     commands_ran =~ /^pipelines:create #{app_name} -a #{app_name}-staging --stage staging/ &&
-      commands_ran =~ /^pipelines:create #{app_name} -a #{app_name}-production --stage production/
+      commands_ran =~ /^pipelines:add #{app_name} -a #{app_name}-production --stage production/
   end
 
   def self.commands_ran
