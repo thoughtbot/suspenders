@@ -69,12 +69,14 @@ module Suspenders
 
         heroku_app_name = app_builder.app_name.dasherize
         run_toolbelt_command(
-          "pipelines:create #{heroku_app_name} -a #{heroku_app_name}-staging --stage staging",
+          "pipelines:create #{heroku_app_name} \
+            -a #{heroku_app_name}-staging --stage staging",
           "staging",
         )
 
         run_toolbelt_command(
-          "pipelines:add #{heroku_app_name} -a #{heroku_app_name}-production --stage production",
+          "pipelines:add #{heroku_app_name} \
+            -a #{heroku_app_name}-production --stage production",
           "production",
         )
       end
