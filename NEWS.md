@@ -4,6 +4,7 @@ master
 * Make new apps "deployable to Heroku" by default.
 * Make the help text returned when running `suspenders -h` Suspenders specific
 * Bugfix: Configure `static_cache_control` in production environment
+* Replace NewRelic with Skylight
 
 1.38.1 (April 20, 2016)
 
