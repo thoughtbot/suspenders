@@ -375,6 +375,21 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       directory("dotfiles", ".")
     end
 
+    def download_style_guides
+      download_file(
+        ".jscsrc",
+        "https://raw.githubusercontent.com/thoughtbot/guides/master/style/javascript/.jscsrc",
+      )
+      download_file(
+        ".rubocop.yml",
+        "https://raw.githubusercontent.com/thoughtbot/guides/master/style/ruby/.rubocop.yml",
+      )
+      download_file(
+        ".scss-lint.yml",
+        "https://raw.githubusercontent.com/thoughtbot/guides/master/style/sass/.scss-lint.yml",
+      )
+    end
+
     def init_git
       run 'git init'
     end

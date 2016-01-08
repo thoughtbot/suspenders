@@ -69,6 +69,24 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(hound_config_file).to include "enabled: true"
   end
 
+  it "downloads the JSCS styleguide from thoughtbot's guides" do
+    jscsrc_file = IO.read("#{project_path}/.jscsrc")
+
+    expect(jscsrc_file).to include('"disallowSpaceBeforeSemicolon": true')
+  end
+
+  it "downloads the Ruby styleguide from thoughtbot's guides" do
+    rubocop_file = IO.read("#{project_path}/.rubocop.yml")
+
+    expect(rubocop_file).to include("AllCops:")
+  end
+
+  it "downloads the SCSS styleguide from thoughtbot's guides" do
+    scss_lint_file = IO.read("#{project_path}/.scss-lint.yml")
+
+    expect(scss_lint_file).to include("ImportantRule:")
+  end
+
   it "ensures newrelic.yml reads NewRelic license from env" do
     newrelic_file = IO.read("#{project_path}/config/newrelic.yml")
 

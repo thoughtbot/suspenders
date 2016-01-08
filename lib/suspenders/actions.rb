@@ -1,5 +1,14 @@
+require "net/http"
+
 module Suspenders
   module Actions
+    def download_file(relative_path, source)
+      file_contents = Net::HTTP.get(URI(source))
+      path = File.join(destination_root, relative_path)
+
+      File.open(path, "w") { |file| file.write(file_contents) }
+    end
+
     def replace_in_file(relative_path, find, replace)
       path = File.join(destination_root, relative_path)
       contents = IO.read(path)
