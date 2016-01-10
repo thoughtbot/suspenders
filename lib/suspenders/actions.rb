@@ -2,9 +2,14 @@ require "net/http"
 
 module Suspenders
   module Actions
-    def download_file(relative_path, source)
-      file_contents = Net::HTTP.get(URI(source))
-      path = File.join(destination_root, relative_path)
+    def config_url(github_repository, relative_path)
+      github_uri_from_master_branch(github_repository, relative_path)
+    end
+
+    def download_file(uri, destination_path = "")
+      file_contents = Net::HTTP.get(uri)
+      filename = uri.path.split("/").last
+      path = File.join(destination_root, destination_path, filename)
 
       File.open(path, "w") { |file| file.write(file_contents) }
     end
@@ -37,6 +42,12 @@ module Suspenders
         "\n\n  #{config}",
         before: "\nend"
       )
+    end
+
+    private
+
+    def github_uri_from_master_branch(repo_name, path)
+      URI("https://raw.githubusercontent.com/#{repo_name}/master/#{path}")
     end
   end
 end

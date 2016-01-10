@@ -376,17 +376,10 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def download_style_guides
+      download_file(config_url("thoughtbot/guides", "style/javascript/.jscsrc"))
+      download_file(config_url("thoughtbot/guides", "style/ruby/.rubocop.yml"))
       download_file(
-        ".jscsrc",
-        "https://raw.githubusercontent.com/thoughtbot/guides/master/style/javascript/.jscsrc",
-      )
-      download_file(
-        ".rubocop.yml",
-        "https://raw.githubusercontent.com/thoughtbot/guides/master/style/ruby/.rubocop.yml",
-      )
-      download_file(
-        ".scss-lint.yml",
-        "https://raw.githubusercontent.com/thoughtbot/guides/master/style/sass/.scss-lint.yml",
+        config_url("thoughtbot/guides", "style/sass/.scss-lint.yml"),
       )
     end
 
