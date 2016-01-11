@@ -380,14 +380,16 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def git_init_commit
-      run 'git add .'
-      run 'git commit -m "Init commit"'
+      if @@user_choice.present? || @@user_choice.include?(:gitcommit)
+        run 'git add .'
+        run 'git commit -m "Init commit"'
+      end
     end
 
     def rvm_gemset_creation_or_ruby_version
-      unless  `rvm -v | grep 'rvm.io'`.empty? 
+      if system 'rvm -v'
         run "rvm gemset create #{app_name}"
-        run "rvm use --ruby-version #{Suspenders::RUBY_VERSION}@#{app_name}"
+        run "rvm --ruby-version #{Suspenders::RUBY_VERSION}@#{app_name}"
       else
         set_ruby_to_version_being_used
       end
@@ -513,7 +515,107 @@ end
       end
     end
 
+    def users_gems
+      @@user_choice = []
+      choose_template_engine
+      rails_db_gem
+      faker_gem
+      meta_request_gem
+      # Placeholder for other gem additions
+      
+      users_init_commit_choice
+      add_user_gems
+    end
+
+
+    def choose_template_engine
+       variants = {none: 'Erb', slim: 'Slim', haml: 'Haml' }
+       @@user_choice.push  choice 'Select template engine: ', variants
+    end
+
+    def meta_request_gem
+        gem_name = __callee__.to_s.gsub(/_gem/,'')
+        gem_description = <<-TEXT 
+        Rails meta panel in chrome console. Very usefull in AJAX debugging. Save link for chrome add-on.
+        https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg
+        TEXT
+       @@user_choice.push  yes_no_question gem_name, gem_description
+    end 
+
+    def rails_db_gem
+       gem_name = __callee__.to_s.gsub(/_gem/,'')
+       gem_description = 'Add gem for pretty view in browser & xls export for models?'
+       @@user_choice.push  yes_no_question gem_name, gem_description
+    end  
+
+    def faker_gem
+       gem_name = __callee__.to_s.gsub(/_gem/,'')
+       gem_description = 'Add gem for generate fake data in testing?'      
+       @@user_choice.push  yes_no_question gem_name, gem_description
+    end  
+
+    def users_init_commit_choice
+       variants = {none: 'No', gitcommit: 'Make init commit at the end?'}
+       @@user_choice.push  choice 'Commit? ', variants
+    end  
+
+
+    def add_haml_gem
+        inject_into_file("Gemfile","\ngem 'haml-rails'",after: '# user_choice')
+    end
+
+    def add_slim_gem
+        inject_into_file("Gemfile","\ngem 'slim-rails'",after: '# user_choice')
+    end
+
+    def add_rails_db_gem
+      inject_into_file("Gemfile","\n  gem 'rails_db'\n  gem 'axlsx_rails'",after: 'group :development do')
+    end
+
+    def add_meta_request_gem
+      inject_into_file("Gemfile","\n  gem 'meta_request'",after: 'group :development do')
+    end
+
+    def add_faker_gem
+      inject_into_file("Gemfile","\n  gem 'faker'", after: 'group :test do')
+    end
+
+    def add_user_gems
+      @@user_choice.each do |g|
+         case g
+           when :haml
+             add_haml_gem
+           when :slim 
+             add_slim_gem
+           when :rails_db
+             add_rails_db_gem
+           when :faker
+             add_faker_gem
+           when :meta_request
+             add_meta_request_gem
+         end
+       end
+    end  
+
     private
+
+    def yes_no_question gem_name, gem_description
+      gem_name_color = "\033[33m#{gem_name.capitalize}.\033[0m "
+      variants = {none: 'No', gem_name.to_sym => gem_name_color+gem_description }
+      choice "Use #{gem_name}? ", variants
+    end
+
+    def choice selector, variants
+       values = []
+       say "\n  \033[1m\033[36m#{selector}\033[0m"
+       variants.each_with_index do |wariant,i|
+         values.push wariant[0]
+         say "#{i.to_s.rjust(10)}. #{wariant[1]}"
+       end
+       answer = ask "\033[1m\033[36m  Enter choice: \033[0m".rjust(10) while !(0...variants.length).
+                                      to_a.map(&:to_s).include? answer
+       values[answer.to_i] 
+    end
 
     def raise_on_missing_translations_in(environment)
       config = 'config.action_view.raise_on_missing_translations = true'

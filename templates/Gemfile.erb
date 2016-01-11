@@ -22,10 +22,9 @@ gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
 gem "uglifier"
-gem 'slim-rails'                            # Slim support
+# user_choice
 
 group :development do
-  gem "meta_request"    # Rails meta panel in chrome console. https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg
   gem "better_errors"   # Much more useful browser error message   
   gem "quiet_assets"
   gem "refills"
@@ -34,8 +33,6 @@ group :development do
   gem "web-console"
   gem 'guard'
   gem 'guard-livereload', '~> 2.4', require: false            # makes frontend developing more fun
-  gem 'rails_db'        # DB viewer on http://localhost:3000/rails/db
-  gem 'axlsx_rails'     # Addition for xls data export
 end
 
 group :development, :test do
@@ -52,7 +49,6 @@ group :development, :test do
 end
 
 group :test do
-  gem "faker"               # Fake data generator
   gem "capybara-webkit"
   gem "database_cleaner"
   gem "formulaic"

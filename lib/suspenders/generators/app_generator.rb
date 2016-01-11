@@ -59,13 +59,13 @@ module Suspenders
 
     def customize_gemfile
       build :replace_gemfile
-      # build :set_ruby_to_version_being_used
-      build :rvm_gemset_creation
+      build :rvm_gemset_creation_or_ruby_version
 
       if options[:heroku]
         build :set_up_heroku_specific_gems
       end
 
+      build :users_gems 
       bundle_command 'install'
       build :configure_simple_form
     end
@@ -216,6 +216,10 @@ module Suspenders
       build :gitignore_files
     end
 
+    def git_init_commit
+      build :git_init_commit
+    end
+
     def setup_bundler_audit
       say "Setting up bundler-audit"
       build :setup_bundler_audit
@@ -254,6 +258,9 @@ module Suspenders
     end
 
     protected
+
+
+
 
     def get_builder_class
       Suspenders::AppBuilder
