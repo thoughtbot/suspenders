@@ -379,6 +379,20 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       run 'git init'
     end
 
+    def git_init_commit
+      run 'git add .'
+      run 'git commit -m "Init commit"'
+    end
+
+    def rvm_gemset_creation_or_ruby_version
+      unless  `rvm -v | grep 'rvm.io'`.empty? 
+        run "rvm gemset create #{app_name}"
+        run "rvm use --ruby-version #{Suspenders::RUBY_VERSION}@#{app_name}"
+      else
+        set_ruby_to_version_being_used
+      end
+    end
+
     def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
