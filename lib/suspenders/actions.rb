@@ -4,9 +4,9 @@ module Suspenders
       path = File.join(destination_root, relative_path)
       contents = IO.read(path)
       unless contents.gsub!(find, replace)
-        fail "#{find.inspect} not found in #{relative_path}"
+        raise "#{find.inspect} not found in #{relative_path}"
       end
-      File.open(path, 'w') { |file| file.write(contents) }
+      File.open(path, "w") { |file| file.write(contents) }
     end
 
     def action_mailer_host(rails_env, host)
@@ -16,7 +16,7 @@ module Suspenders
 
     def configure_application_file(config)
       inject_into_file(
-        'config/application.rb',
+        "config/application.rb",
         "\n\n    #{config}",
         before: "\n  end"
       )

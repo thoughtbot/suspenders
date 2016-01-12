@@ -6,7 +6,9 @@ class FakeHeroku
   end
 
   def run!
-    puts 'heroku-pipelines@0.29.0' if @args.first == 'plugins'
+    if @args.first == "plugins"
+      puts "heroku-pipelines@0.29.0"
+    end
     File.open(RECORDER, 'a') do |file|
       file.puts @args.join(' ')
     end

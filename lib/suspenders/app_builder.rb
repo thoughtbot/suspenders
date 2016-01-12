@@ -1,4 +1,4 @@
-require 'forwardable'
+require "forwardable"
 
 module Suspenders
   class AppBuilder < Rails::AppBuilder
@@ -22,61 +22,61 @@ module Suspenders
 
     def raise_on_missing_assets_in_test
       inject_into_file(
-        'config/environments/test.rb',
+        "config/environments/test.rb",
         "\n  config.assets.raise_runtime_errors = true",
-        after: 'Rails.application.configure do'
+        after: "Rails.application.configure do",
       )
     end
 
     def raise_on_delivery_errors
       replace_in_file 'config/environments/development.rb',
-                      'raise_delivery_errors = false', 'raise_delivery_errors = true'
+        'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
     def set_test_delivery_method
       inject_into_file(
-        'config/environments/development.rb',
+        "config/environments/development.rb",
         "\n  config.action_mailer.delivery_method = :test",
-        after: 'config.action_mailer.raise_delivery_errors = true'
+        after: "config.action_mailer.raise_delivery_errors = true",
       )
     end
 
     def add_bullet_gem_configuration
       config = <<-RUBY
-      config.after_initialize do
-        Bullet.enable = true
-        Bullet.bullet_logger = true
-        Bullet.rails_logger = true
-      end
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+    Bullet.rails_logger = true
+  end
 
       RUBY
 
       inject_into_file(
-        'config/environments/development.rb',
+        "config/environments/development.rb",
         config,
-        after: "config.action_mailer.raise_delivery_errors = true\n"
+        after: "config.action_mailer.raise_delivery_errors = true\n",
       )
     end
 
     def raise_on_unpermitted_parameters
       config = <<-RUBY
-      config.action_controller.action_on_unpermitted_parameters = :raise
+    config.action_controller.action_on_unpermitted_parameters = :raise
       RUBY
 
-      inject_into_class 'config/application.rb', 'Application', config
+      inject_into_class "config/application.rb", "Application", config
     end
 
     def configure_quiet_assets
       config = <<-RUBY
-      config.quiet_assets = true
+    config.quiet_assets = true
       RUBY
 
-      inject_into_class 'config/application.rb', 'Application', config
+      inject_into_class "config/application.rb", "Application", config
     end
 
     def provide_setup_script
-      template 'bin_setup', 'bin/setup', force: true
-      run 'chmod a+x bin/setup'
+      template "bin_setup", "bin/setup", force: true
+      run "chmod a+x bin/setup"
     end
 
     def provide_dev_prime_task
@@ -106,11 +106,11 @@ module Suspenders
     end
 
     def generate_factories_file
-      copy_file 'factories.rb', 'spec/factories.rb'
+      copy_file "factories.rb", "spec/factories.rb"
     end
 
     def set_up_hound
-      copy_file 'hound.yml', '.hound.yml'
+      copy_file "hound.yml", ".hound.yml"
     end
 
     def configure_newrelic
@@ -121,7 +121,7 @@ module Suspenders
       copy_file 'smtp.rb', 'config/smtp.rb'
 
       prepend_file 'config/environments/production.rb',
-                   %{require Rails.root.join("config/smtp")\n}
+        %{require Rails.root.join("config/smtp")\n}
 
       config = <<-RUBY
 
@@ -130,7 +130,7 @@ module Suspenders
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
-                       after: 'config.action_mailer.raise_delivery_errors = false'
+        after: "config.action_mailer.raise_delivery_errors = false"
     end
 
     def enable_rack_canonical_host
@@ -145,9 +145,9 @@ module Suspenders
       RUBY
 
       inject_into_file(
-        'config/environments/production.rb',
+        "config/environments/production.rb",
         config,
-        after: 'Rails.application.configure do'
+        after: "Rails.application.configure do",
       )
     end
 
@@ -159,7 +159,7 @@ module Suspenders
       RUBY
 
       inject_into_file(
-        'config/environments/production.rb',
+        "config/environments/production.rb",
         config,
         after: serve_static_files_line
       )
@@ -167,15 +167,15 @@ module Suspenders
 
     def setup_asset_host
       replace_in_file 'config/environments/production.rb',
-                      "# config.action_controller.asset_host = 'http://assets.example.com'",
-                      'config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))'
+        "# config.action_controller.asset_host = 'http://assets.example.com'",
+        'config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))'
 
       replace_in_file 'config/initializers/assets.rb',
-                      "config.assets.version = '1.0'",
-                      'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
+        "config.assets.version = '1.0'",
+        'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
       inject_into_file(
-        'config/environments/production.rb',
+        "config/environments/production.rb",
         '  config.static_cache_control = "public, max-age=#{1.year.to_i}"',
         after: serve_static_files_line
       )
@@ -190,7 +190,7 @@ module Suspenders
 Rails.application.configure do
   # ...
 end
-    RUBY
+      RUBY
 
       append_file staging_file, config
     end
@@ -200,7 +200,7 @@ end
     end
 
     def disallow_wrapping_parameters
-      remove_file 'config/initializers/wrap_parameters.rb'
+      remove_file "config/initializers/wrap_parameters.rb"
     end
 
     def create_partials_directory
@@ -208,8 +208,8 @@ end
     end
 
     def create_shared_flashes
-      copy_file '_flashes.html.erb', 'app/views/application/_flashes.html.erb'
-      copy_file 'flashes_helper.rb', 'app/helpers/flashes_helper.rb'
+      copy_file "_flashes.html.erb", "app/views/application/_flashes.html.erb"
+      copy_file "flashes_helper.rb", "app/helpers/flashes_helper.rb"
     end
 
     def create_shared_javascripts
@@ -218,13 +218,13 @@ end
 
     def create_application_layout
       template 'suspenders_layout.html.erb.erb',
-               'app/views/layouts/application.html.erb',
-               force: true
+        'app/views/layouts/application.html.erb',
+        force: true
     end
 
     def use_postgres_config_template
       template 'postgresql_database.yml.erb', 'config/database.yml',
-               force: true
+        force: true
     end
 
     def create_database
@@ -246,8 +246,8 @@ end
 
     def provide_shoulda_matchers_config
       copy_file(
-        'shoulda_matchers_config_rspec.rb',
-        'spec/support/shoulda_matchers.rb'
+        "shoulda_matchers_config_rspec.rb",
+        "spec/support/shoulda_matchers.rb"
       )
     end
 
@@ -257,23 +257,23 @@ end
     end
 
     def configure_rspec
-      remove_file 'spec/rails_helper.rb'
-      remove_file 'spec/spec_helper.rb'
-      copy_file 'rails_helper.rb', 'spec/rails_helper.rb'
-      copy_file 'spec_helper.rb', 'spec/spec_helper.rb'
+      remove_file "spec/rails_helper.rb"
+      remove_file "spec/spec_helper.rb"
+      copy_file "rails_helper.rb", "spec/rails_helper.rb"
+      copy_file "spec_helper.rb", "spec/spec_helper.rb"
     end
 
     def configure_ci
-      template 'circle.yml.erb', 'circle.yml'
+      template "circle.yml.erb", "circle.yml"
     end
 
     def configure_i18n_for_test_environment
-      copy_file 'i18n.rb', 'spec/support/i18n.rb'
+      copy_file "i18n.rb", "spec/support/i18n.rb"
     end
 
     def configure_i18n_for_missing_translations
-      raise_on_missing_translations_in('development')
-      raise_on_missing_translations_in('test')
+      raise_on_missing_translations_in("development")
+      raise_on_missing_translations_in("test")
     end
 
     def configure_background_jobs_for_rspec
@@ -285,12 +285,12 @@ end
     end
 
     def configure_capybara_webkit
-      copy_file 'capybara_webkit.rb', 'spec/support/capybara_webkit.rb'
+      copy_file "capybara_webkit.rb", "spec/support/capybara_webkit.rb"
     end
 
     def configure_time_formats
-      remove_file 'config/locales/en.yml'
-      template 'config_locales_en.yml.erb', 'config/locales/en.yml'
+      remove_file "config/locales/en.yml"
+      template "config_locales_en.yml.erb", "config/locales/en.yml"
     end
 
     def configure_rack_timeout
@@ -298,24 +298,24 @@ end
 Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       RUBY
 
-      append_file 'config/environments/production.rb', rack_timeout_config
+      append_file "config/environments/production.rb", rack_timeout_config
     end
 
     def configure_simple_form
-      bundle_command 'exec rails generate simple_form:install'
+      bundle_command "exec rails generate simple_form:install"
     end
 
     def configure_action_mailer
-      action_mailer_host 'development', %("localhost:3000")
-      action_mailer_host 'test', %("www.example.com")
-      action_mailer_host 'production', %{ENV.fetch("APPLICATION_HOST")}
+      action_mailer_host "development", %{"localhost:3000"}
+      action_mailer_host "test", %{"www.example.com"}
+      action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
     end
 
     def configure_active_job
       configure_application_file(
-        'config.active_job.queue_adapter = :delayed_job'
+        "config.active_job.queue_adapter = :delayed_job"
       )
-      configure_environment 'test', 'config.active_job.queue_adapter = :inline'
+      configure_environment "test", "config.active_job.queue_adapter = :inline"
     end
 
     def fix_i18n_deprecation_warning
@@ -331,27 +331,27 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def configure_puma
-      copy_file 'puma.rb', 'config/puma.rb'
+      copy_file "puma.rb", "config/puma.rb"
     end
 
     def set_up_forego
-      copy_file 'Procfile', 'Procfile'
+      copy_file "Procfile", "Procfile"
     end
 
     def setup_stylesheets
-      remove_file 'app/assets/stylesheets/application.css'
-      copy_file 'application.scss',
-                'app/assets/stylesheets/application.scss'
+      remove_file "app/assets/stylesheets/application.css"
+      copy_file "application.scss",
+                "app/assets/stylesheets/application.scss"
     end
 
     def install_refills
-      run 'rails generate refills:import flashes'
-      run 'rm app/views/refills/_flashes.html.erb'
-      run 'rmdir app/views/refills'
+      run "rails generate refills:import flashes"
+      run "rm app/views/refills/_flashes.html.erb"
+      run "rmdir app/views/refills"
     end
 
     def install_bitters
-      run 'bitters install --path app/assets/stylesheets'
+      run "bitters install --path app/assets/stylesheets"
     end
 
     def gitignore_files
@@ -372,7 +372,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def copy_dotfiles
-      directory('dotfiles', '.')
+      directory("dotfiles", ".")
     end
 
     def init_git
@@ -386,39 +386,39 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       end
     end
 
-    def create_heroku_apps(flags)
+  def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
     end
 
     def provide_deploy_script
-      copy_file 'bin_deploy', 'bin/deploy'
+      copy_file "bin_deploy", "bin/deploy"
 
       instructions = <<-MARKDOWN
 
 ## Deploying
 
 If you have previously run the `./bin/setup` script,
-  you can deploy to staging and production with:
+you can deploy to staging and production with:
 
-  $ ./bin/deploy staging
-  $ ./bin/deploy production
+    $ ./bin/deploy staging
+    $ ./bin/deploy production
       MARKDOWN
 
-      append_file 'README.md', instructions
-      run 'chmod a+x bin/deploy'
+      append_file "README.md", instructions
+      run "chmod a+x bin/deploy"
     end
 
     def configure_automatic_deployment
       deploy_command = <<-YML.strip_heredoc
       deployment:
         staging:
-        branch: master
-      commands:
-        - bin/deploy staging
+          branch: master
+          commands:
+            - bin/deploy staging
       YML
 
-      append_file 'circle.yml', deploy_command
+      append_file "circle.yml", deploy_command
     end
 
     def create_github_repo(repo_name)
@@ -427,26 +427,26 @@ If you have previously run the `./bin/setup` script,
 
     def setup_segment
       copy_file '_analytics.html.erb',
-                'app/views/application/_analytics.html.erb'
+        'app/views/application/_analytics.html.erb'
     end
 
     def setup_bundler_audit
-      copy_file 'bundler_audit.rake', 'lib/tasks/bundler_audit.rake'
-      append_file 'Rakefile', %(\ntask default: "bundler:audit"\n)
+      copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
+      append_file "Rakefile", %{\ntask default: "bundler:audit"\n}
     end
 
     def setup_spring
-      bundle_command 'exec spring binstub --all'
+      bundle_command "exec spring binstub --all"
     end
 
     def copy_miscellaneous_files
-      copy_file 'browserslist', 'browserslist'
-      copy_file 'errors.rb', 'config/initializers/errors.rb'
-      copy_file 'json_encoding.rb', 'config/initializers/json_encoding.rb'
+      copy_file "browserslist", "browserslist"
+      copy_file "errors.rb", "config/initializers/errors.rb"
+      copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
     end
 
     def customize_error_pages
-      meta_tags = <<-EOS
+      meta_tags =<<-EOS
   <meta charset="utf-8" />
   <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="initial-scale=1" />
@@ -460,11 +460,11 @@ If you have previously run the `./bin/setup` script,
 
     def remove_config_comment_lines
       config_files = [
-        'application.rb',
-        'environment.rb',
-        'environments/development.rb',
-        'environments/production.rb',
-        'environments/test.rb'
+        "application.rb",
+        "environment.rb",
+        "environments/development.rb",
+        "environments/production.rb",
+        "environments/test.rb",
       ]
 
       config_files.each do |config_file|
@@ -474,16 +474,16 @@ If you have previously run the `./bin/setup` script,
           line =~ /^.*#.*$/ || line =~ /^$\n/
         end
 
-        File.open(path, 'w') do |file|
+        File.open(path, "w") do |file|
           accepted_content.each { |line| file.puts line }
         end
       end
     end
 
-    def remove_routes_comment_lines
+  def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
-                      /Rails\.application\.routes\.draw do.*end/m,
-                      "Rails.application.routes.draw do\nend"
+        /Rails\.application\.routes\.draw do.*end/m,
+        "Rails.application.routes.draw do\nend"
     end
 
     def disable_xml_params
@@ -528,8 +528,9 @@ end
     def meta_request_gem
       gem_name = __callee__.to_s.gsub(/_gem/, '')
       gem_description = <<-TEXT
-      Rails meta panel in chrome console. Very usefull in AJAX debugging. Save link for chrome add-on.
-        https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg
+    Rails meta panel in chrome console. Very usefull in AJAX debugging. 
+    Save link for chrome add-on.
+    https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg
       TEXT
       @@user_choice.push yes_no_question gem_name, gem_description
     end

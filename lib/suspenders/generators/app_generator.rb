@@ -3,26 +3,26 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
-    class_option :database, type: :string, aliases: '-d', default: 'postgresql',
-                            desc: "Configure for selected database (options: #{DATABASES.join('/')})"
+    class_option :database, type: :string, aliases: "-d", default: "postgresql",
+      desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
-    class_option :heroku, type: :boolean, aliases: '-H', default: false,
-                          desc: 'Create staging and production Heroku apps'
+    class_option :heroku, type: :boolean, aliases: "-H", default: false,
+      desc: "Create staging and production Heroku apps"
 
-    class_option :heroku_flags, type: :string, default: '',
-                                desc: 'Set extra Heroku flags'
+    class_option :heroku_flags, type: :string, default: "",
+      desc: "Set extra Heroku flags"
 
-    class_option :github, type: :string, aliases: '-G', default: nil,
-                          desc: 'Create Github repository and add remote origin pointed to repo'
+    class_option :github, type: :string, aliases: "-G", default: nil,
+      desc: "Create Github repository and add remote origin pointed to repo"
 
-    class_option :skip_test_unit, type: :boolean, aliases: '-T', default: true,
-                                  desc: 'Skip Test::Unit files'
+    class_option :skip_test_unit, type: :boolean, aliases: "-T", default: true,
+      desc: "Skip Test::Unit files"
 
     class_option :skip_turbolinks, type: :boolean, default: true,
-                                   desc: 'Skip turbolinks gem'
+      desc: "Skip turbolinks gem"
 
-    class_option :skip_bundle, type: :boolean, aliases: '-B', default: true,
-                               desc: "Don't run bundle install"
+    class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
+      desc: "Don't run bundle install"
 
     def finish_template
       invoke :suspenders_customization
@@ -159,7 +159,7 @@ module Suspenders
     end
 
     def install_refills
-      say 'Install Refills'
+      say "Install Refills"
       build :install_refills
     end
 
@@ -180,7 +180,7 @@ module Suspenders
 
     def create_heroku_apps
       if options[:heroku]
-        say 'Creating Heroku apps'
+        say "Creating Heroku apps"
         build :create_heroku_apps, options[:heroku_flags]
         build :provide_review_apps_setup_script
         build :set_heroku_serve_static_files
@@ -218,12 +218,12 @@ module Suspenders
     end
 
     def setup_bundler_audit
-      say 'Setting up bundler-audit'
+      say "Setting up bundler-audit"
       build :setup_bundler_audit
     end
 
     def setup_spring
-      say 'Springifying binstubs'
+      say "Springifying binstubs"
       build :setup_spring
     end
 

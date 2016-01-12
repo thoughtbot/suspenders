@@ -1,5 +1,5 @@
 # -*- encoding: utf-8 -*-
-$LOAD_PATH.push File.expand_path('../lib', __FILE__)
+$:.push File.expand_path('../lib', __FILE__)
 require 'suspenders/version'
 require 'date'
 
@@ -16,7 +16,7 @@ rush to build something amazing; don't use it if you like missing deadlines.
 
   s.email = 'support@thoughtbot.com'
   s.executables = ['suspenders']
-  s.extra_rdoc_files = %w(README.md LICENSE)
+  s.extra_rdoc_files = %w[README.md LICENSE]
   s.files = `git ls-files`.split("\n")
   s.homepage = 'http://github.com/thoughtbot/suspenders'
   s.license = 'MIT'

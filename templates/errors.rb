@@ -1,5 +1,5 @@
-require 'net/http'
-require 'net/smtp'
+require "net/http"
+require "net/smtp"
 
 # Example:
 #   begin
@@ -15,7 +15,7 @@ HTTP_ERRORS = [
   Net::HTTPBadResponse,
   Net::HTTPHeaderSyntaxError,
   Net::ProtocolError,
-  Timeout::Error
+  Timeout::Error,
 ]
 
 SMTP_SERVER_ERRORS = [
@@ -23,12 +23,12 @@ SMTP_SERVER_ERRORS = [
   Net::SMTPAuthenticationError,
   Net::SMTPServerBusy,
   Net::SMTPUnknownError,
-  Timeout::Error
+  Timeout::Error,
 ]
 
 SMTP_CLIENT_ERRORS = [
   Net::SMTPFatalError,
-  Net::SMTPSyntaxError
+  Net::SMTPSyntaxError,
 ]
 
 SMTP_ERRORS = SMTP_SERVER_ERRORS + SMTP_CLIENT_ERRORS
