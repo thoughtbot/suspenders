@@ -387,7 +387,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
     end
 
     def rvm_gemset_creation_or_ruby_version
-      if system 'rvm -v'
+      if system 'rvm -v' && !defined? TRAVIS
         run "rvm gemset create #{app_name}"
         run "rvm --ruby-version #{Suspenders::RUBY_VERSION}@#{app_name}"
       else

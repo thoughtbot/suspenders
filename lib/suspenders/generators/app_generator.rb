@@ -259,9 +259,6 @@ module Suspenders
 
     protected
 
-
-
-
     def get_builder_class
       Suspenders::AppBuilder
     end
