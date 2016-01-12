@@ -13,57 +13,57 @@ module Suspenders
           git config heroku.remote staging
         SHELL
 
-        app_builder.append_file "bin/setup", remotes
+        app_builder.append_file 'bin/setup', remotes
       end
 
       def set_up_heroku_specific_gems
         app_builder.inject_into_file(
-          "Gemfile",
-          %{\n\s\sgem "rails_stdout_logging"},
-          after: /group :staging, :production do/,
+          'Gemfile',
+          %(\n\s\sgem "rails_stdout_logging"),
+          after: /group :staging, :production do/
         )
       end
 
       def create_staging_heroku_app(flags)
-        rack_env = "RACK_ENV=staging RAILS_ENV=staging"
-        app_name = heroku_app_name_for("staging")
+        rack_env = 'RACK_ENV=staging RAILS_ENV=staging'
+        app_name = heroku_app_name_for('staging')
 
-        run_toolbelt_command "create #{app_name} #{flags}", "staging"
-        run_toolbelt_command "config:add #{rack_env}", "staging"
+        run_toolbelt_command "create #{app_name} #{flags}", 'staging'
+        run_toolbelt_command "config:add #{rack_env}", 'staging'
       end
 
       def create_production_heroku_app(flags)
-        app_name = heroku_app_name_for("production")
+        app_name = heroku_app_name_for('production')
 
-        run_toolbelt_command "create #{app_name} #{flags}", "production"
+        run_toolbelt_command "create #{app_name} #{flags}", 'production'
       end
 
       def set_heroku_rails_secrets
         %w(staging production).each do |environment|
           run_toolbelt_command(
             "config:add SECRET_KEY_BASE=#{generate_secret}",
-            environment,
+            environment
           )
         end
       end
 
       def provide_review_apps_setup_script
         app_builder.template(
-          "bin_setup_review_app.erb",
-          "bin/setup_review_app",
-          force: true,
+          'bin_setup_review_app.erb',
+          'bin/setup_review_app',
+          force: true
         )
-        app_builder.run "chmod a+x bin/setup_review_app"
+        app_builder.run 'chmod a+x bin/setup_review_app'
       end
 
       def create_heroku_pipelines_config_file
-        app_builder.template "app.json.erb", "app.json"
+        app_builder.template 'app.json.erb', 'app.json'
       end
 
       def create_heroku_pipeline
         pipelines_plugin = `heroku plugins | grep pipelines`
         if pipelines_plugin.empty?
-          puts "You need heroku pipelines plugin. Run: heroku plugins:install heroku-pipelines"
+          puts 'You need heroku pipelines plugin. Run: heroku plugins:install heroku-pipelines'
           exit 1
         end
 
@@ -71,21 +71,21 @@ module Suspenders
         run_toolbelt_command(
           "pipelines:create #{heroku_app_name} \
             -a #{heroku_app_name}-staging --stage staging",
-          "staging",
+          'staging'
         )
 
         run_toolbelt_command(
           "pipelines:add #{heroku_app_name} \
             -a #{heroku_app_name}-production --stage production",
-          "production",
+          'production'
         )
       end
 
       def set_heroku_serve_static_files
         %w(staging production).each do |environment|
           run_toolbelt_command(
-            "config:add RAILS_SERVE_STATIC_FILES=true",
-            environment,
+            'config:add RAILS_SERVE_STATIC_FILES=true',
+            environment
           )
         end
       end
@@ -117,7 +117,7 @@ fi
 
       def run_toolbelt_command(command, environment)
         app_builder.run(
-          "heroku #{command} --remote #{environment}",
+          "heroku #{command} --remote #{environment}"
         )
       end
     end

@@ -25,26 +25,24 @@ gem "uglifier"
 # user_choice
 
 group :development do
-  gem "better_errors"   # Much more useful browser error message   
+  gem "better_errors"                # Much more useful browser error message   
   gem "quiet_assets"
   gem "refills"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
-  gem 'guard'
-  gem 'guard-livereload', '~> 2.4', require: false            # makes frontend developing more fun
 end
 
 group :development, :test do
   gem "awesome_print"
-  gem "hirb"                #pretty tables   
+  gem "hirb"                         # pretty tables   
   gem "bullet"
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "pry-coolline"        #colorize just entered syntax
+  gem "pry-coolline"                 # colorize just entered syntax
   gem "rspec-rails", "~> 3.4.0"
 end
 

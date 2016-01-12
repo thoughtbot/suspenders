@@ -1,5 +1,5 @@
 module SuspendersTestHelpers
-  APP_NAME = "dummy_app"
+  APP_NAME = 'dummy_app'
 
   def remove_project_directory
     FileUtils.rm_rf(project_path)
@@ -31,7 +31,7 @@ module SuspendersTestHelpers
   end
 
   def add_fakes_to_path
-    ENV["PATH"] = "#{support_bin}:#{ENV['PATH']}"
+    ENV['PATH'] = "#{support_bin}:#{ENV['PATH']}"
   end
 
   def project_path
@@ -49,7 +49,7 @@ module SuspendersTestHelpers
   end
 
   def support_bin
-    File.join(root_path, "spec", "fakes", "bin")
+    File.join(root_path, 'spec', 'fakes', 'bin')
   end
 
   def root_path
