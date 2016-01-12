@@ -22,23 +22,29 @@ gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
 gem "uglifier"
+# user_choice
 
 group :development do
+  gem "better_errors"   # Much more useful browser error message   
   gem "quiet_assets"
   gem "refills"
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.4', require: false            # makes frontend developing more fun
 end
 
 group :development, :test do
   gem "awesome_print"
+  gem "hirb"                #pretty tables   
   gem "bullet"
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
+  gem "pry-coolline"        #colorize just entered syntax
   gem "rspec-rails", "~> 3.4.0"
 end
 
@@ -56,3 +62,9 @@ end
 group :staging, :production do
   gem "rack-timeout"
 end
+
+# Heroku additions for easy go into
+# group :production do
+#   gem 'rails_12factor'              
+# end
+# gem "figaro"        #fast ENV with Heroku 

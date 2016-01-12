@@ -53,17 +53,19 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :git_first_commit
       invoke :outro
     end
 
     def customize_gemfile
       build :replace_gemfile
-      build :set_ruby_to_version_being_used
+      build :rvm_gemset_creation_or_ruby_version
 
       if options[:heroku]
         build :set_up_heroku_specific_gems
       end
 
+      build :users_gems 
       bundle_command 'install'
       build :configure_simple_form
     end
@@ -172,6 +174,13 @@ module Suspenders
       end
     end
 
+    def git_first_commit
+      if !options[:skip_git]
+        say 'Init commit'
+        invoke :git_init_commit
+      end   
+    end
+
     def create_heroku_apps
       if options[:heroku]
         say "Creating Heroku apps"
@@ -205,6 +214,10 @@ module Suspenders
 
     def setup_gitignore
       build :gitignore_files
+    end
+
+    def git_init_commit
+      build :git_init_commit
     end
 
     def setup_bundler_audit
