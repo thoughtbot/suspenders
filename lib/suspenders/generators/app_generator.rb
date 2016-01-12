@@ -53,6 +53,8 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :post_init
+      invoke :git_first_commit
       invoke :outro
     end
 
@@ -60,10 +62,9 @@ module Suspenders
       build :replace_gemfile
       build :set_ruby_to_version_being_used
 
-      if options[:heroku]
-        build :set_up_heroku_specific_gems
-      end
+      build :set_up_heroku_specific_gems if options[:heroku]
 
+      build :users_gems
       bundle_command 'install'
       build :configure_simple_form
     end
@@ -71,9 +72,7 @@ module Suspenders
     def setup_database
       say 'Setting up database'
 
-      if 'postgresql' == options[:database]
-        build :use_postgres_config_template
-      end
+      build :use_postgres_config_template if 'postgresql' == options[:database]
 
       build :create_database
     end
@@ -165,10 +164,17 @@ module Suspenders
     end
 
     def setup_git
-      if !options[:skip_git]
+      unless options[:skip_git]
         say 'Initializing git'
         invoke :setup_gitignore
         invoke :init_git
+      end
+    end
+
+    def git_first_commit
+      unless options[:skip_git]
+        say 'Init commit'
+        invoke :git_init_commit
       end
     end
 
@@ -207,6 +213,10 @@ module Suspenders
       build :gitignore_files
     end
 
+    def git_init_commit
+      build :git_init_commit
+    end
+
     def setup_bundler_audit
       say "Setting up bundler-audit"
       build :setup_bundler_audit
@@ -242,6 +252,10 @@ module Suspenders
     def outro
       say 'Congratulations! You just pulled our suspenders.'
       say "Remember to run 'rails generate airbrake' with your API key."
+    end
+
+    def post_init
+      build :post_init
     end
 
     protected

@@ -379,7 +379,14 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       run 'git init'
     end
 
-    def create_heroku_apps(flags)
+    def git_init_commit
+      if @@user_choice.present? && @@user_choice.include?(:gitcommit)
+        run 'git add .'
+        run 'git commit -m "Init commit"'
+      end
+    end
+
+  def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
     end
@@ -473,7 +480,7 @@ you can deploy to staging and production with:
       end
     end
 
-    def remove_routes_comment_lines
+  def remove_routes_comment_lines
       replace_in_file 'config/routes.rb',
         /Rails\.application\.routes\.draw do.*end/m,
         "Rails.application.routes.draw do\nend"
@@ -499,7 +506,142 @@ end
       end
     end
 
+    def users_gems
+      @@user_choice = []
+      choose_template_engine
+      rails_db_gem
+      faker_gem
+      meta_request_gem
+      rubocop_gem
+      guard_gem
+      # Placeholder for other gem additions
+
+      users_init_commit_choice
+      add_user_gems
+    end
+
+    def choose_template_engine
+      variants = { none: 'Erb', slim: 'Slim', haml: 'Haml' }
+      @@user_choice.push choice 'Select template engine: ', variants
+    end
+
+    def meta_request_gem
+      gem_name = __callee__.to_s.gsub(/_gem/, '')
+      gem_description = <<-TEXT
+    Rails meta panel in chrome console. Very usefull in AJAX debugging. 
+    Save link for chrome add-on.
+    https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg
+      TEXT
+      @@user_choice.push yes_no_question gem_name, gem_description
+    end
+
+    def rails_db_gem
+      gem_name = __callee__.to_s.gsub(/_gem/, '')
+      gem_description = 'Add gem for pretty view in browser & xls export for models?'
+      @@user_choice.push yes_no_question gem_name, gem_description
+    end
+
+    def faker_gem
+      gem_name = __callee__.to_s.gsub(/_gem/, '')
+      gem_description = 'Add gem for generate fake data in testing?'
+      @@user_choice.push yes_no_question gem_name, gem_description
+    end
+
+    def rubocop_gem
+      gem_name = __callee__.to_s.gsub(/_gem/, '')
+      gem_description = 'Add code inspector and code formatting tool?'
+      @@user_choice.push yes_no_question gem_name, gem_description
+    end
+
+    def guard_gem
+      gem_name = __callee__.to_s.gsub(/_gem/, '')
+      gem_description = 'Add guard (with livereliad) and dependences?'
+      @@user_choice.push yes_no_question gem_name, gem_description
+    end
+    
+    def users_init_commit_choice
+      variants = { none: 'No', gitcommit: 'Make init commit at the end?' }
+      @@user_choice.push choice 'Commit? ', variants
+    end
+
+    def add_haml_gem
+      inject_into_file('Gemfile', "\ngem 'haml-rails'", after: '# user_choice')
+    end
+
+    def add_slim_gem
+      inject_into_file('Gemfile', "\ngem 'slim-rails'", after: '# user_choice')
+    end
+
+    def add_rails_db_gem
+      inject_into_file('Gemfile', "\n  gem 'rails_db'\n  gem 'axlsx_rails'", after: 'group :development do')
+    end
+ 
+    def add_rubocop_gem
+      inject_into_file('Gemfile', "\n  gem 'rubocop', require: false", after: 'group :development do')
+    end
+
+    def add_guard_gem
+      t=<<-TEXT.chomp
+
+  gem 'guard'
+  gem 'guard-livereload', '~> 2.4', require: false
+      TEXT
+      inject_into_file('Gemfile', t, after: 'group :development do')
+    end
+
+    def add_guard_rubocop_gem
+      inject_into_file('Gemfile', "\n  gem 'guard-rubocop'", after: 'group :development do')
+    end
+
+    def add_meta_request_gem
+      inject_into_file('Gemfile', "\n  gem 'meta_request'", after: 'group :development do')
+    end
+
+    def add_faker_gem
+      inject_into_file('Gemfile', "\n  gem 'faker'", after: 'group :test do')
+    end
+
+    def add_user_gems
+      add_haml_gem           if @@user_choice.include? :haml
+      add_slim_gem           if @@user_choice.include? :slim   
+      add_rails_db_gem       if @@user_choice.include? :rails_db  
+      add_faker_gem          if @@user_choice.include? :faker 
+      add_meta_request_gem   if @@user_choice.include? :meta_request 
+      add_rubocop_gem        if @@user_choice.include? :rubocop 
+      add_guard_gem          if @@user_choice.include? :guard 
+      add_guard_rubocop_gem  if @@user_choice.include?(:guard) && @@user_choice.include?(:rubocop) 
+    end
+
+    def post_init
+      run 'guard init' if @@user_choice.present? && @@user_choice.include?(:guard)
+      if @@user_choice.include? :rubocop
+        t=<<-TEXT
+require 'rubocop/rake_task'
+RuboCop::RakeTask.new
+        TEXT
+        append_file 'Rakefile', t  
+      end
+    end
+
     private
+
+    def yes_no_question(gem_name, gem_description)
+      gem_name_color = "\033[33m#{gem_name.capitalize}.\033[0m "
+      variants = { none: 'No', gem_name.to_sym => gem_name_color + gem_description }
+      choice "Use #{gem_name}? ", variants
+    end
+
+    def choice(selector, variants)
+      values = []
+      say "\n  \033[1m\033[36m#{selector}\033[0m"
+      variants.each_with_index do |wariant, i|
+        values.push wariant[0]
+        say "#{i.to_s.rjust(10)}. #{wariant[1]}"
+      end
+      answer = ask "\033[1m\033[36m  Enter choice: \033[0m".rjust(10) until (0...variants.length)
+                                                                            .to_a.map(&:to_s).include? answer
+      values[answer.to_i]
+    end
 
     def raise_on_missing_translations_in(environment)
       config = 'config.action_view.raise_on_missing_translations = true'
