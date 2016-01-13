@@ -9,6 +9,15 @@ require 'suspenders'
 if ['-v', '--version'].include? ARGV[0]
   puts Suspenders::VERSION
   exit 0
+elsif ['-h', '--help'].include? ARGV[0]
+  puts "Suspenders app_path  [options]\n\n"
+  puts '  -v        --version        Suspenders version'
+  puts '  -h        --help           Suspenders help'
+  puts '  -c        --custom         Custom gems selection'
+  puts "Or you can manually can add gems from the list like options\n\n"
+
+  puts Suspenders::AppBuilder.public_instance_methods.map(&:to_s).grep(/_gem$/).grep_v(/add_/).map{|a| "--#{a[0..-5]}" }.sort.join('    ')
+  exit 0
 end
 
 templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
