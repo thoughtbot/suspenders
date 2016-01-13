@@ -22,6 +22,7 @@ gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "title"
 gem "uglifier"
+# user_choice
 
 group :development do
   gem "quiet_assets"
@@ -32,13 +33,17 @@ group :development do
 end
 
 group :development, :test do
-  gem "awesome_print"
+  gem "awesome_print", :require=>"ap"
   gem "bullet"
   gem "bundler-audit", require: false
   gem "dotenv-rails"
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
+  gem 'pry-doc'
+  gem 'pry-rescue'
+  gem 'pry-state'
+  gem 'pry-coolline'
   gem "rspec-rails", "~> 3.4.0"
 end
 

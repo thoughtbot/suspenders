@@ -31,6 +31,8 @@ module Suspenders
 
     def suspenders_customization
       invoke :customize_gemfile
+      invoke :custom_gems_setup
+      invoke :bundleinstall
       invoke :setup_development_environment
       invoke :setup_test_environment
       invoke :setup_production_environment
@@ -63,8 +65,13 @@ module Suspenders
       build :set_ruby_to_version_being_used
 
       build :set_up_heroku_specific_gems if options[:heroku]
+    end
 
+    def custom_gems_setup
       build :users_gems
+    end
+
+    def bundleinstall
       bundle_command 'install'
       build :configure_simple_form
     end

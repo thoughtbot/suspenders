@@ -386,7 +386,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       end
     end
 
-  def create_heroku_apps(flags)
+    def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
     end
@@ -467,17 +467,9 @@ you can deploy to staging and production with:
         "environments/test.rb",
       ]
 
-      config_files.each do |config_file|
-        path = File.join(destination_root, "config/#{config_file}")
-
-        accepted_content = File.readlines(path).reject do |line|
-          line =~ /^.*#.*$/ || line =~ /^$\n/
-        end
-
-        File.open(path, "w") do |file|
-          accepted_content.each { |line| file.puts line }
-        end
-      end
+      config_files.each { |config_file|
+        cleanup_comments File.join(destination_root, "config/#{config_file}")
+      }
     end
 
   def remove_routes_comment_lines
@@ -508,27 +500,34 @@ end
 
     def users_gems
       @@user_choice = []
-      choose_template_engine
-      rails_db_gem
-      faker_gem
-      meta_request_gem
-      rubocop_gem
-      guard_gem
-      # Placeholder for other gem additions
+      if custom_gems_flag?
+        choose_template_engine
+        rails_db_gem
+        faker_gem
+        meta_request_gem
+        rubocop_gem
+        guard_gem
+        # Placeholder for other gem additions
 
-      users_init_commit_choice
+        users_init_commit_choice
+      else
+        add_gems_from_args
+      end
       add_user_gems
+      cleanup_comments 'Gemfile'
     end
 
     def choose_template_engine
       variants = { none: 'Erb', slim: 'Slim', haml: 'Haml' }
       @@user_choice.push choice 'Select template engine: ', variants
     end
+    def slim_gem;end;
+    def haml_gem;end;
 
     def meta_request_gem
       gem_name = __callee__.to_s.gsub(/_gem/, '')
       gem_description = <<-TEXT
-    Rails meta panel in chrome console. Very usefull in AJAX debugging. 
+    Rails meta panel in chrome console. Very usefull in AJAX debugging.
     Save link for chrome add-on.
     https://chrome.google.com/webstore/detail/railspanel/gjpfobpafnhjhbajcjgccbbdofdckggg
       TEXT
@@ -558,7 +557,7 @@ end
       gem_description = 'Add guard (with livereliad) and dependences?'
       @@user_choice.push yes_no_question gem_name, gem_description
     end
-    
+
     def users_init_commit_choice
       variants = { none: 'No', gitcommit: 'Make init commit at the end?' }
       @@user_choice.push choice 'Commit? ', variants
@@ -575,7 +574,7 @@ end
     def add_rails_db_gem
       inject_into_file('Gemfile', "\n  gem 'rails_db'\n  gem 'axlsx_rails'", after: 'group :development do')
     end
- 
+
     def add_rubocop_gem
       inject_into_file('Gemfile', "\n  gem 'rubocop', require: false", after: 'group :development do')
     end
@@ -603,13 +602,13 @@ end
 
     def add_user_gems
       add_haml_gem           if @@user_choice.include? :haml
-      add_slim_gem           if @@user_choice.include? :slim   
-      add_rails_db_gem       if @@user_choice.include? :rails_db  
-      add_faker_gem          if @@user_choice.include? :faker 
-      add_meta_request_gem   if @@user_choice.include? :meta_request 
-      add_rubocop_gem        if @@user_choice.include? :rubocop 
-      add_guard_gem          if @@user_choice.include? :guard 
-      add_guard_rubocop_gem  if @@user_choice.include?(:guard) && @@user_choice.include?(:rubocop) 
+      add_slim_gem           if @@user_choice.include? :slim
+      add_rails_db_gem       if @@user_choice.include? :rails_db
+      add_faker_gem          if @@user_choice.include? :faker
+      add_meta_request_gem   if @@user_choice.include? :meta_request
+      add_rubocop_gem        if @@user_choice.include? :rubocop
+      add_guard_gem          if @@user_choice.include? :guard
+      add_guard_rubocop_gem  if @@user_choice.include?(:guard) && @@user_choice.include?(:rubocop)
     end
 
     def post_init
@@ -619,7 +618,7 @@ end
 require 'rubocop/rake_task'
 RuboCop::RakeTask.new
         TEXT
-        append_file 'Rakefile', t  
+        append_file 'Rakefile', t
       end
     end
 
@@ -638,8 +637,7 @@ RuboCop::RakeTask.new
         values.push wariant[0]
         say "#{i.to_s.rjust(10)}. #{wariant[1]}"
       end
-      answer = ask "\033[1m\033[36m  Enter choice: \033[0m".rjust(10) until (0...variants.length)
-                                                                            .to_a.map(&:to_s).include? answer
+      answer = ask "\033[1m\033[36m  Enter choice: \033[0m".rjust(10) until (0...variants.length).map(&:to_s).include? answer
       values[answer.to_i]
     end
 
@@ -656,5 +654,27 @@ RuboCop::RakeTask.new
     def serve_static_files_line
       "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
     end
+
+    def custom_gems_flag?
+      !(['-c', '--custom'] & ARGV).empty? && ARGV.length>1
+    end
+
+    def add_gems_from_args
+      ARGV.each do |g|
+        next unless g[0]=='-' && g[1]=='-'
+        @@user_choice.push g[2..-1].to_sym
+      end
+    end
+
+    def cleanup_comments file
+      accepted_content = File.readlines(file).reject do |line|
+        line =~ /^.*#.*$/ || line =~ /^$\n/
+      end
+
+      File.open(file, "w") do |file|
+        accepted_content.each { |line| file.puts line }
+      end
+    end
+
   end
 end
