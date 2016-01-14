@@ -318,14 +318,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       configure_environment "test", "config.active_job.queue_adapter = :inline"
     end
 
-    def fix_i18n_deprecation_warning
-      config = <<-RUBY
-    config.i18n.enforce_available_locales = true
-      RUBY
-
-      inject_into_class 'config/application.rb', 'Application', config
-    end
-
     def generate_rspec
       generate 'rspec:install'
     end
