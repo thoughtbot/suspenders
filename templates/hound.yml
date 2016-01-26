@@ -6,12 +6,12 @@ haml:
   # config_file: .haml-style.yml
   enabled: true
 javascript:
-  # config_file: .javascript-style.json
+  config_file: .jscsrc
   enabled: true
   # ignore_file: .javascript_ignore
 ruby:
-  # config_file: .ruby-style.yml
+  config_file: .rubocop.yml
   enabled: true
 scss:
-  # config_file: .scss-style.yml
+  config_file: .sass-lint.yml
   enabled: true

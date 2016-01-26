@@ -53,6 +53,7 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
+      invoke :download_style_guides
       invoke :outro
     end
 
@@ -223,6 +224,11 @@ module Suspenders
     def copy_miscellaneous_files
       say 'Copying miscellaneous support files'
       build :copy_miscellaneous_files
+    end
+
+    def download_style_guides
+      say "Downloading style guides from thoughtbot/guides"
+      build :download_style_guides
     end
 
     def customize_error_pages
