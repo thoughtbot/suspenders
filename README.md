@@ -212,7 +212,7 @@ Thank you, [contributors]!
 
 ## License
 
-Suspenders is Copyright © 2008-2015 thoughtbot.
+Suspenders is Copyright © 2008-2016 thoughtbot.
 It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
