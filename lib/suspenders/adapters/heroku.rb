@@ -25,7 +25,7 @@ module Suspenders
       end
 
       def create_staging_heroku_app(flags)
-        rack_env = "RACK_ENV=staging RAILS_ENV=staging"
+        rack_env = "RACK_ENV=staging"
         app_name = heroku_app_name_for("staging")
 
         run_toolbelt_command "create #{app_name} #{flags}", "staging"

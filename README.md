@@ -129,7 +129,7 @@ This:
 
 * Creates a staging and production Heroku app
 * Sets them as `staging` and `production` Git remotes
-* Configures staging with `RACK_ENV` and `RAILS_ENV` environment variables set
+* Configures staging with `RACK_ENV` environment variable set
   to `staging`
 * Adds the [Rails Stdout Logging][logging-gem] gem
   to configure the app to log to standard out,

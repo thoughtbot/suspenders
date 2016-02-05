@@ -1,3 +1,5 @@
+* Remove `RAILS_ENV` definitions
+
 1.36.0 (February 26, 2016)
 
 * Update Bitters to v1.2
