@@ -22,10 +22,19 @@ gem "simple_form"
 gem "title"
 gem "uglifier"
 
+gem "dotenv-rails"
+
+gem 'execjs'
+gem 'therubyracer'
+
 group :development do
   gem 'capistrano', '~> 3.1'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rbenv', '~> 2.0'
+  gem 'highline'
+  gem 'capistrano-bundler'
+  gem 'capistrano-passenger'
+
   gem "quiet_assets"
   gem "refills"
   gem "spring"

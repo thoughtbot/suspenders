@@ -41,6 +41,7 @@ module Suspenders
       invoke :setup_stylesheets
       invoke :install_bitters
       invoke :install_refills
+      invoke :configure_capistrano
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_config_comment_lines
@@ -54,6 +55,10 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :outro
+    end
+
+    def configure_capistrano
+      build :configure_capistrano
     end
 
     def customize_gemfile

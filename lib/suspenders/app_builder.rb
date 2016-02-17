@@ -341,6 +341,10 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       copy_file "puma.rb", "config/puma.rb"
     end
 
+    def configure_capistrano
+      directory('capistrano', '.')
+    end
+
     def set_up_forego
       copy_file "Procfile", "Procfile"
     end
