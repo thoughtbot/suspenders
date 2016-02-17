@@ -242,6 +242,11 @@ end
         force: true
     end
 
+    def use_mysql_config_template
+      template 'mysql_database.yml.erb', 'config/database.yml',
+        force: true
+    end
+
     def create_database
       bundle_command 'exec rake db:create db:migrate'
     end

@@ -3,7 +3,7 @@ require 'rails/generators/rails/app/app_generator'
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
-    class_option :database, type: :string, aliases: "-d", default: "postgresql",
+    class_option :database, type: :string, aliases: "-d", default: "mysql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
     class_option :heroku, type: :boolean, aliases: "-H", default: false,
@@ -72,6 +72,8 @@ module Suspenders
 
       if 'postgresql' == options[:database]
         build :use_postgres_config_template
+      elsif 'mysql' == options[:database]
+        build :use_mysql_config_template
       end
 
       build :create_database
