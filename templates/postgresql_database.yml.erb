@@ -17,6 +17,6 @@ production: &deploy
   min_messages: warning
   pool: <%%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
   timeout: 5000
-  url:  <%%= ENV.fetch("DATABASE_URL", "") %>
+  database:  <%%= ENV.fetch("DATABASE_NAME", "") %>
 
 staging: *deploy
