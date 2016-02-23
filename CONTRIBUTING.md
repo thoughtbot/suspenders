@@ -13,6 +13,9 @@ Set up your machine:
 
     ./bin/setup
 
+If you're having trouble installing `capybara-webkit` check their [installation
+instructions](https://github.com/thoughtbot/capybara-webkit#qt-dependency-and-installation-issues).
+
 Make sure the tests pass:
 
     rake
