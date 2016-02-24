@@ -27,11 +27,11 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Suspenders::VERSION
 
-  s.add_dependency 'bitters', '~> 1.2'
   s.add_dependency 'bundler', '~> 1.3'
   s.add_dependency 'rails', Suspenders::RAILS_VERSION
 
   s.add_development_dependency 'rspec', '~> 3.2'
+  s.add_development_dependency 'bitters', '~> 1.2'
   s.add_development_dependency 'simple_form', '~> 3.2'
   s.add_development_dependency 'title', '~> 0.0'
   s.add_development_dependency 'quiet_assets', '~> 1.1'
