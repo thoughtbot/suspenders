@@ -1,4 +1,6 @@
 * Remove `RAILS_ENV` definitions
+* Update Bourbon to v5.0.0.beta.3
+* Update Bitters to v1.3
 
 1.36.0 (February 26, 2016)
 
