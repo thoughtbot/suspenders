@@ -1,8 +1,11 @@
-master (unreleased)
+1.36.0 (February 26, 2016)
 
+* Update Bitters to v1.2
+* Remove deprecated `fix_i18n_deprecation_warning` method
 * Switch from Airbrake to Honeybadger
 * Generate applications with `rack_mini_profiler` (disabled by default, enabled
   by setting `RACK_MINI_PROFILER=1`)
+* Heroku Pipelines bug fixes
 
 1.35.0 (December 30, 2015)
 
