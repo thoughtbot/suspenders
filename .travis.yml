@@ -9,3 +9,6 @@ before_install:
 install: bundle install
 notifications:
   email: false
+env:
+  - RAILS_ENV=test
+  - RAILS_ENV=production

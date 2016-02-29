@@ -21,6 +21,14 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
+  it "ensures the `rails` command is configured properly" do
+    Bundler.with_clean_env do
+      properly_configured = system("rails runner 'exit(0)'")
+
+      expect(properly_configured).to be true
+    end
+  end
+
   it "ensures project specs pass" do
     Dir.chdir(project_path) do
       Bundler.with_clean_env do

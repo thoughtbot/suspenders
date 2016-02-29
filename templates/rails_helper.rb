@@ -1,4 +1,4 @@
-ENV["RACK_ENV"] = "test"
+ENV["RAILS_ENV"] ||= "test"
 
 require File.expand_path("../../config/environment", __FILE__)
 abort("DATABASE_URL environment variable is set") if ENV["DATABASE_URL"]
