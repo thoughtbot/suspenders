@@ -1,6 +1,7 @@
 * Remove `RAILS_ENV` definitions
 * Update Bourbon to v5.0.0.beta.3
 * Update Bitters to v1.3
+* Update Autoprefixer config, drop support for IE 9, IE 10 and iOS 7
 
 1.36.0 (February 26, 2016)
 
