@@ -51,7 +51,7 @@ module Suspenders
     def set_test_delivery_method
       inject_into_file(
         "config/environments/development.rb",
-        "\n  config.action_mailer.delivery_method = :test",
+        "\n  config.action_mailer.delivery_method = :file",
         after: "config.action_mailer.raise_delivery_errors = true",
       )
     end
