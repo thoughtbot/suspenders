@@ -1,7 +1,15 @@
+1.37.0 (March 13, 2016)
+
 * Remove `RAILS_ENV` definitions
+* Set development `action_mailer.delivery_method` to `:file`
+  so that mails are copied to `./tmp/mails/` directory for easy development
+  access.
 * Update Bourbon to v5.0.0.beta.3
 * Update Bitters to v1.3
 * Update Autoprefixer config, drop support for IE 9, IE 10 and iOS 7
+* Better db support in linux environments
+* Replaces coffeescript with babel
+* Update CSS tests to ignore transitions
 
 1.36.0 (February 26, 2016)
 
