@@ -443,17 +443,53 @@ you can deploy to staging and production with:
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
     end
 
-    def customize_error_pages
-      meta_tags =<<-EOS
-  <meta charset="utf-8" />
-  <meta name="ROBOTS" content="NOODP" />
-  <meta name="viewport" content="initial-scale=1" />
-      EOS
+    def inject_error_handling
+      page_methods = <<-EOS
 
-      %w(500 404 422).each do |page|
-        inject_into_file "public/#{page}.html", meta_tags, after: "<head>\n"
-        replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
-      end
+  if Rails.env.production?
+    rescue_from ActionController::RoutingError, with: :route_not_found
+    rescue_from ActiveRecord::RecordNotFound, with: :route_not_found
+
+    rescue_from NoMethodError, with: :internal_server_error
+  end
+
+  def internal_server_error
+    notify_exception
+    render "errors/internal_server_error", status: :internal_server_error
+  end
+
+  def route_not_found
+    notify_exception
+    render "errors/not_found", status: :not_found
+  end
+      EOS
+      inject_into_file "app/controllers/application_controller.rb",
+                       page_methods,
+                       after: "protect_from_forgery with: :exception\n"
+    end
+
+    def copy_error_controller
+      copy_file "errors_controller.rb", "app/controllers/errors_controller.rb"
+    end
+
+    def inject_error_routes
+      error_routes = <<-EOS
+  match "/404", :to => "errors#not_found", :via => :all
+  match "/500", :to => "errors#internal_server_error", :via => :all
+       EOS
+      inject_into_file "config/routes.rb",
+                       error_routes,
+                       before: "end"
+    end
+
+    def delete_static_error_pages
+      remove_file "public/404.html"
+      remove_file "public/500.html"
+    end
+
+    def copy_error_views
+      empty_directory "app/views/errors"
+      directory("errors", "app/views/errors")
     end
 
     def remove_config_comment_lines
