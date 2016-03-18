@@ -6,7 +6,12 @@ $LOAD_PATH << source_path
 
 require 'suspenders'
 
-if ['-v', '--version'].include? ARGV[0]
+if ARGV.empty?
+  puts "Please provide a path for the new application"
+  puts
+  puts "See --help for more info"
+  exit 0
+elsif ['-v', '--version'].include? ARGV[0]
   puts Suspenders::VERSION
   exit 0
 end
