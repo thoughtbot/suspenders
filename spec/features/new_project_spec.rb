@@ -224,6 +224,24 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/spec/factories.rb")
   end
 
+  it "creates an errors controller" do
+    expect(File).to exist(
+      "#{project_path}/app/controllers/errors_controller.rb",
+    )
+  end
+
+  it "creates a 404 page view" do
+    expect(File).to exist(
+      "#{project_path}/app/views/errors/not_found.html.erb",
+    )
+  end
+
+  it "creates a 500 page view" do
+    expect(File).to exist(
+      "#{project_path}/app/views/errors/internal_server_error.html.erb",
+    )
+  end
+
   def app_name
     SuspendersTestHelpers::APP_NAME
   end

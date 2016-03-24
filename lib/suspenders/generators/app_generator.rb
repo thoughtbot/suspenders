@@ -42,9 +42,9 @@ module Suspenders
       invoke :install_bitters
       invoke :install_refills
       invoke :copy_miscellaneous_files
-      invoke :customize_error_pages
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
+      invoke :setup_error_page_controller
       invoke :setup_dotfiles
       invoke :setup_git
       invoke :setup_database
@@ -226,17 +226,21 @@ module Suspenders
       build :copy_miscellaneous_files
     end
 
-    def customize_error_pages
-      say 'Customizing the 500/404/422 pages'
-      build :customize_error_pages
-    end
-
     def remove_config_comment_lines
       build :remove_config_comment_lines
     end
 
     def remove_routes_comment_lines
       build :remove_routes_comment_lines
+    end
+
+    def setup_error_page_controller
+      say "Setting up error pages"
+      build :inject_error_handling
+      build :copy_error_controller
+      build :inject_error_routes
+      build :delete_static_error_pages
+      build :copy_error_views
     end
 
     def outro
