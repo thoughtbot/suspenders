@@ -1,3 +1,7 @@
+1.38.0
+
+* Successful deploys with failing DB migrations on Heroku bugfix
+
 1.37.0 (March 13, 2016)
 
 * Remove `RAILS_ENV` definitions

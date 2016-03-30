@@ -33,7 +33,7 @@ RSpec.describe "Heroku" do
       bin_setup_path = "#{project_path}/bin/setup_review_app"
       bin_setup = IO.read(bin_setup_path)
 
-      expect(bin_setup).to include("heroku run rake db:migrate --app #{app_name}-staging-pr-$1")
+      expect(bin_setup).to include("heroku run rake db:migrate --exit-code --app #{app_name}-staging-pr-$1")
       expect(bin_setup).to include("heroku ps:scale worker=1 --app #{app_name}-staging-pr-$1")
       expect(bin_setup).to include("heroku restart --app #{app_name}-staging-pr-$1")
       expect(File.stat(bin_setup_path)).to be_executable
@@ -41,7 +41,7 @@ RSpec.describe "Heroku" do
       bin_deploy_path = "#{project_path}/bin/deploy"
       bin_deploy = IO.read(bin_deploy_path)
 
-      expect(bin_deploy).to include("heroku run rake db:migrate")
+      expect(bin_deploy).to include("heroku run rake db:migrate --exit-code")
       expect(File.stat(bin_deploy_path)).to be_executable
 
       readme = IO.read("#{project_path}/README.md")
