@@ -9,5 +9,7 @@ SMTP_SETTINGS = {
 }
 
 if ENV["EMAIL_RECIPIENTS"].present?
-  Mail.register_interceptor RecipientInterceptor.new(ENV["EMAIL_RECIPIENTS"])
+  Mail.register_interceptor RecipientInterceptor.new(
+    ENV.fetch("EMAIL_RECIPIENTS", ""),
+  )
 end
