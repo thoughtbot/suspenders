@@ -196,20 +196,6 @@ module Suspenders
       )
     end
 
-    def setup_staging_environment
-      staging_file = 'config/environments/staging.rb'
-      copy_file 'staging.rb', staging_file
-
-      config = <<-RUBY
-
-Rails.application.configure do
-  # ...
-end
-      RUBY
-
-      append_file staging_file, config
-    end
-
     def setup_secret_token
       template 'secrets.yml', 'config/secrets.yml', force: true
     end

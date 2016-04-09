@@ -1,3 +1,7 @@
+master
+
+* Drops staging environment in favor of configuration through env variables
+
 1.38.0
 
 * Successful deploys with failing DB migrations on Heroku bugfix
