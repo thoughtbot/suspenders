@@ -1,5 +1,6 @@
 master
 
+* Default an unspecified `EMAIL_RECIPIENTS` to be the empty string
 * Drops staging environment in favor of configuration through env variables
 
 1.38.0
