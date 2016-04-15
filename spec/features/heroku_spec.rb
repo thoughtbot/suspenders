@@ -5,6 +5,7 @@ RSpec.describe "Heroku" do
     before(:all) do
       clean_up
       run_suspenders("--heroku=true")
+      setup_app_dependencies
     end
 
     it "suspends a project for Heroku" do
@@ -77,6 +78,7 @@ RSpec.describe "Heroku" do
     before(:all) do
       clean_up
       run_suspenders(%{--heroku=true --heroku-flags="--region eu"})
+      setup_app_dependencies
     end
 
     it "suspends a project with extra Heroku flags" do
