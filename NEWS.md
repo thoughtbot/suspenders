@@ -1,10 +1,8 @@
-master
+1.38.0 (April 15, 2016)
 
+* Update bourbon to `v5.0.0.beta.5`
 * Drops staging environment in favor of configuration through env variables
-
-1.38.0
-
-* Successful deploys with failing DB migrations on Heroku bugfix
+* Bugfix: failing migrations were not making Heroku deploys fail
 
 1.37.0 (March 13, 2016)
 
