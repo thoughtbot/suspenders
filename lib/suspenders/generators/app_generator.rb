@@ -174,6 +174,7 @@ module Suspenders
         build :set_heroku_serve_static_files
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
+        build :set_heroku_application_host
         build :create_heroku_pipelines_config_file
         build :create_heroku_pipeline
         build :provide_deploy_script

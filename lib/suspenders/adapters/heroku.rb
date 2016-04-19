@@ -65,7 +65,6 @@ module Suspenders
           exit 1
         end
 
-        heroku_app_name = app_builder.app_name.dasherize
         run_toolbelt_command(
           "pipelines:create #{heroku_app_name} \
             -a #{heroku_app_name}-staging --stage staging",
@@ -88,6 +87,15 @@ module Suspenders
         end
       end
 
+      def set_heroku_application_host
+        %w(staging production).each do |environment|
+          run_toolbelt_command(
+            "config:add APPLICATION_HOST=#{heroku_app_name}-#{environment}.herokuapp.com",
+            environment,
+          )
+        end
+      end
+
       private
 
       attr_reader :app_builder
@@ -105,8 +113,12 @@ fi
         SHELL
       end
 
+      def heroku_app_name
+        app_builder.app_name.dasherize
+      end
+
       def heroku_app_name_for(environment)
-        "#{app_builder.app_name.dasherize}-#{environment}"
+        "#{heroku_app_name}-#{environment}"
       end
 
       def generate_secret

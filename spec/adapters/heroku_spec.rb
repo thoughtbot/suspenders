@@ -40,6 +40,21 @@ module Suspenders
         )
       end
 
+      it "sets the application host" do
+        app_builder = double(app_name: app_name)
+        allow(app_builder).to receive(:run)
+
+        Heroku.new(app_builder).set_heroku_application_host
+
+        expect(app_builder).to(
+          have_configured_var("staging", "APPLICATION_HOST"),
+        )
+
+        expect(app_builder).to(
+          have_configured_var("production", "APPLICATION_HOST"),
+        )
+      end
+
       def app_name
         SuspendersTestHelpers::APP_NAME
       end
