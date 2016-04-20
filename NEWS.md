@@ -1,3 +1,7 @@
+1.38.1 (April 20, 2016)
+
+* Bugfix: add bitters as suspenders’ dependency back.
+
 1.38.0 (April 15, 2016)
 
 * Update bourbon to `v5.0.0.beta.5`
