@@ -471,10 +471,6 @@ you can deploy to staging and production with:
         "Rails.application.routes.draw do\nend"
     end
 
-    def disable_xml_params
-      copy_file 'disable_xml_params.rb', 'config/initializers/disable_xml_params.rb'
-    end
-
     def setup_default_rake_task
       append_file 'Rakefile' do
         <<-EOS

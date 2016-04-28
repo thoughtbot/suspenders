@@ -136,7 +136,6 @@ module Suspenders
       build :configure_action_mailer
       build :configure_active_job
       build :configure_time_formats
-      build :disable_xml_params
       build :setup_default_rake_task
       build :configure_puma
       build :set_up_forego
