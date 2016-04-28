@@ -96,9 +96,9 @@ bower_components = Rails.root.join("vendor", "assets", "components")
 Rails.application.config.assets.paths << bower_components
       RUBY
 
-      inject_into_file "config/initializers/assets.rb",
-        config,
-        after: "# Rails.application.config.assets.paths << Emoji.images_path\n"
+      after = "# Rails.application.config.assets.paths << Emoji.images_path\n"
+
+      inject_into_file "config/initializers/assets.rb", config, after: after
     end
 
     def provide_setup_script
