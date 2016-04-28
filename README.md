@@ -74,8 +74,6 @@ And development gems like:
   pre-loading
 * [Web Console](https://github.com/rails/web-console) for better debugging via
   in-browser IRB consoles.
-* [Quiet Assets](https://github.com/evrone/quiet_assets) for muting assets
-  pipeline log messages
 
 And testing gems like:
 

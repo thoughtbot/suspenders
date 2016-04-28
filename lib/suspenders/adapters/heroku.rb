@@ -70,15 +70,6 @@ module Suspenders
         )
       end
 
-      def set_heroku_serve_static_files
-        %w(staging production).each do |environment|
-          run_toolbelt_command(
-            "config:add RAILS_SERVE_STATIC_FILES=true",
-            environment,
-          )
-        end
-      end
-
       def set_heroku_application_host
         %w(staging production).each do |environment|
           run_toolbelt_command(

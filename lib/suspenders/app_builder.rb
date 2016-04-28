@@ -13,8 +13,7 @@ module Suspenders
                    :create_review_apps_setup_script,
                    :set_heroku_rails_secrets,
                    :set_heroku_remotes,
-                   :set_heroku_application_host,
-                   :set_heroku_serve_static_files
+                   :set_heroku_application_host
 
     def readme
       template 'README.md.erb', 'README.md'
@@ -79,7 +78,7 @@ module Suspenders
 
     def configure_quiet_assets
       config = <<-RUBY
-    config.quiet_assets = true
+    config.assets.quiet = true
       RUBY
 
       inject_into_class "config/application.rb", "Application", config
@@ -315,8 +314,8 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       generate 'rspec:install'
     end
 
-    def configure_puma
-      copy_file "puma.rb", "config/puma.rb"
+    def replace_default_puma_configuration
+      copy_file "puma.rb", "config/puma.rb", force: true
     end
 
     def set_up_forego

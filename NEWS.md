@@ -1,5 +1,7 @@
 master
 
+* Update to Rails 5
+* Drop quiet_assets
 * Drop unneeded `suspenders` aliases: `--skip-test-unit`, `--skip-turbolinks`,
   `--skip-bundle`. Drops `-G` that clashes with Rails’ `--skip-git` alias.
 

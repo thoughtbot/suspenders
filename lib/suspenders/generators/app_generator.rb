@@ -136,7 +136,7 @@ module Suspenders
       build :configure_active_job
       build :configure_time_formats
       build :setup_default_rake_task
-      build :configure_puma
+      build :replace_default_puma_configuration
       build :set_up_forego
       build :setup_rack_mini_profiler
     end
@@ -175,7 +175,6 @@ module Suspenders
       if options[:heroku]
         say "Creating Heroku apps"
         build :create_heroku_apps, options[:heroku_flags]
-        build :set_heroku_serve_static_files
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_heroku_application_host
