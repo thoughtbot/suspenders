@@ -223,6 +223,18 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/spec/factories.rb")
   end
 
+  it "copies Bower config" do
+    expect(File).to exist("#{project_path}/.bowerrc")
+  end
+
+  it "adds Bower directory to assets paths" do
+    result = IO.read("#{project_path}/config/initializers/assets.rb")
+
+    expect(result).to match(
+      /^Rails.application.config.assets.paths << bower_components$/
+    )
+  end
+
   def app_name
     SuspendersTestHelpers::APP_NAME
   end
