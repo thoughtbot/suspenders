@@ -90,6 +90,17 @@ module Suspenders
       inject_into_class "config/application.rb", "Application", config
     end
 
+    def add_bower_dir_to_assets_paths
+      config = <<-RUBY
+bower_components = Rails.root.join("vendor", "assets", "components")
+Rails.application.config.assets.paths << bower_components
+      RUBY
+
+      after = "# Rails.application.config.assets.paths << Emoji.images_path\n"
+
+      inject_into_file "config/initializers/assets.rb", config, after: after
+    end
+
     def provide_setup_script
       template "bin_setup", "bin/setup", force: true
       run "chmod a+x bin/setup"
@@ -425,6 +436,7 @@ you can deploy to staging and production with:
     end
 
     def copy_miscellaneous_files
+      copy_file ".bowerrc", ".bowerrc"
       copy_file "browserslist", "browserslist"
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
