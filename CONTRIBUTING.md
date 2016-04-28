@@ -29,6 +29,9 @@ Make the tests pass:
 
     rake
 
+Mention how your changes affect the project to other developers and users in the
+`NEWS.md` file.
+
 Write a [good commit message][commit].
 Push to your fork.
 [Submit a pull request][pr].
