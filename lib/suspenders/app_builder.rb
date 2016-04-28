@@ -97,7 +97,8 @@ Rails.application.config.assets.paths << bower_components
       RUBY
 
       inject_into_file "config/initializers/assets.rb",
-        config, after: "# Rails.application.config.assets.paths << Emoji.images_path\n"
+        config,
+        after: "# Rails.application.config.assets.paths << Emoji.images_path\n"
     end
 
     def provide_setup_script
