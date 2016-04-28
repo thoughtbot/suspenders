@@ -88,6 +88,7 @@ module Suspenders
       build :configure_generators
       build :configure_i18n_for_missing_translations
       build :configure_quiet_assets
+      build :add_bower_dir_to_assets_paths
     end
 
     def setup_test_environment
