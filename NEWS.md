@@ -1,3 +1,7 @@
+master
+
+* Update to Ruby 2.3.1
+
 1.38.1 (April 20, 2016)
 
 * Bugfix: add bitters as suspenders’ dependency back.
