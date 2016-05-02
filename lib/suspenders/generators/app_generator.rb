@@ -47,6 +47,7 @@ module Suspenders
       invoke :setup_dotfiles
       invoke :setup_git
       invoke :setup_database
+      invoke :create_local_heroku_setup
       invoke :create_heroku_apps
       invoke :create_github_repo
       invoke :setup_segment
@@ -57,11 +58,6 @@ module Suspenders
 
     def customize_gemfile
       build :set_ruby_to_version_being_used
-
-      if options[:heroku]
-        build :set_up_heroku_specific_gems
-      end
-
       bundle_command 'install'
       build :configure_simple_form
     end
@@ -165,18 +161,22 @@ module Suspenders
       end
     end
 
+    def create_local_heroku_setup
+      say "Creating local Heroku setup"
+      build :create_review_apps_setup_script
+      build :create_deploy_script
+      build :create_heroku_application_manifest_file
+    end
+
     def create_heroku_apps
       if options[:heroku]
         say "Creating Heroku apps"
         build :create_heroku_apps, options[:heroku_flags]
-        build :provide_review_apps_setup_script
         build :set_heroku_serve_static_files
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_heroku_application_host
-        build :create_heroku_pipelines_config_file
         build :create_heroku_pipeline
-        build :provide_deploy_script
         build :configure_automatic_deployment
       end
     end

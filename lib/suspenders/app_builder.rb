@@ -6,16 +6,15 @@ module Suspenders
     extend Forwardable
 
     def_delegators :heroku_adapter,
-                   :create_heroku_pipelines_config_file,
+                   :create_heroku_application_manifest_file,
                    :create_heroku_pipeline,
                    :create_production_heroku_app,
                    :create_staging_heroku_app,
-                   :provide_review_apps_setup_script,
+                   :create_review_apps_setup_script,
                    :set_heroku_rails_secrets,
                    :set_heroku_remotes,
                    :set_heroku_application_host,
-                   :set_heroku_serve_static_files,
-                   :set_up_heroku_specific_gems
+                   :set_heroku_serve_static_files
 
     def readme
       template 'README.md.erb', 'README.md'
@@ -376,7 +375,7 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       create_production_heroku_app(flags)
     end
 
-    def provide_deploy_script
+    def create_deploy_script
       copy_file "bin_deploy", "bin/deploy"
 
       instructions = <<-MARKDOWN

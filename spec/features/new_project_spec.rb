@@ -223,6 +223,39 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/spec/factories.rb")
   end
 
+  it "creates review apps setup script" do
+    bin_setup_path = "#{project_path}/bin/setup_review_app"
+    bin_setup = IO.read(bin_setup_path)
+
+    expect(bin_setup).to include("heroku run rake db:migrate --exit-code "\
+                                 "--app #{app_name.dasherize}-staging-pr-$1")
+    expect(bin_setup).to include("heroku ps:scale worker=1 "\
+                                 "--app #{app_name.dasherize}-staging-pr-$1")
+    expect(bin_setup).to include("heroku restart "\
+                                 "--app #{app_name.dasherize}-staging-pr-$1")
+    expect(File.stat(bin_setup_path)).to be_executable
+  end
+
+  it "creates deploy script" do
+    bin_deploy_path = "#{project_path}/bin/deploy"
+    bin_deploy = IO.read(bin_deploy_path)
+
+    expect(bin_deploy).to include("heroku run rake db:migrate --exit-code")
+    expect(File.stat(bin_deploy_path)).to be_executable
+  end
+
+  it "creates heroku application manifest file with application name in it" do
+    app_json_file = IO.read("#{project_path}/app.json")
+
+    expect(app_json_file).to match(/"name":"#{app_name.dasherize}"/)
+  end
+
+  it "sets up heroku specific gems" do
+    gemfile_file = IO.read("#{project_path}/Gemfile")
+
+    expect(gemfile_file).to include %{gem "rails_stdout_logging"}
+  end
+
   def app_name
     SuspendersTestHelpers::APP_NAME
   end

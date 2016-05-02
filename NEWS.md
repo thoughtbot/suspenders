@@ -1,6 +1,7 @@
 master
 
 * Update to Ruby 2.3.1
+* Make new apps "deployable to Heroku" by default.
 
 1.38.1 (April 20, 2016)
 

@@ -16,14 +16,6 @@ module Suspenders
         app_builder.append_file "bin/setup", remotes
       end
 
-      def set_up_heroku_specific_gems
-        app_builder.inject_into_file(
-          "Gemfile",
-          %{\n\s\sgem "rails_stdout_logging"},
-          after: /group :staging, :production do/,
-        )
-      end
-
       def create_staging_heroku_app(flags)
         app_name = heroku_app_name_for("staging")
 
@@ -45,7 +37,7 @@ module Suspenders
         end
       end
 
-      def provide_review_apps_setup_script
+      def create_review_apps_setup_script
         app_builder.template(
           "bin_setup_review_app.erb",
           "bin/setup_review_app",
@@ -54,7 +46,7 @@ module Suspenders
         app_builder.run "chmod a+x bin/setup_review_app"
       end
 
-      def create_heroku_pipelines_config_file
+      def create_heroku_application_manifest_file
         app_builder.template "app.json.erb", "app.json"
       end
 
