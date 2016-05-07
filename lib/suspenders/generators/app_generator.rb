@@ -246,7 +246,10 @@ module Suspenders
     end
 
     def generate_default
+      run("spring stop")
+
       generate("suspenders:static")
+
       bundle_command "install"
     end
 
