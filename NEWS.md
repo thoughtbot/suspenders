@@ -2,6 +2,7 @@ master
 
 * Update to Ruby 2.3.1
 * Make new apps "deployable to Heroku" by default.
+* Make the help text returned when running `suspenders -h` Suspenders specific 
 
 1.38.1 (April 20, 2016)
 

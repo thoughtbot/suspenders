@@ -24,6 +24,12 @@ module Suspenders
     class_option :skip_bundle, type: :boolean, aliases: "-B", default: true,
       desc: "Don't run bundle install"
 
+    class_option :version, type: :boolean, aliases: "-v", group: :suspenders,
+      desc: "Show Suspenders version number and quit"
+
+    class_option :help, type: :boolean, aliases: '-h', group: :suspenders,
+      desc: "Show this help message and quit"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -236,6 +242,10 @@ module Suspenders
     def outro
       say 'Congratulations! You just pulled our suspenders.'
       say honeybadger_outro
+    end
+
+    def self.banner
+      "suspenders #{arguments.map(&:usage).join(' ')} [options]"
     end
 
     protected
