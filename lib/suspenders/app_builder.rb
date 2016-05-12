@@ -36,11 +36,7 @@ module Suspenders
     end
 
     def raise_on_missing_assets_in_test
-      inject_into_file(
-        "config/environments/test.rb",
-        "\n  config.assets.raise_runtime_errors = true",
-        after: "Rails.application.configure do",
-      )
+      configure_environment "test", "config.assets.raise_runtime_errors = true"
     end
 
     def raise_on_delivery_errors
@@ -150,34 +146,18 @@ module Suspenders
 
     def enable_rack_canonical_host
       config = <<-RUBY
-
-  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
+if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
     ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
   end
 
-  # Ensure requests are only served from one, canonical host name
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
 
-      inject_into_file(
-        "config/environments/production.rb",
-        config,
-        after: "Rails.application.configure do",
-      )
+      configure_environment "production", config
     end
 
     def enable_rack_deflater
-      config = <<-RUBY
-
-  # Enable deflate / gzip compression of controller-generated responses
-  config.middleware.use Rack::Deflater
-      RUBY
-
-      inject_into_file(
-        "config/environments/production.rb",
-        config,
-        after: serve_static_files_line
-      )
+      configure_environment "production", "config.middleware.use Rack::Deflater"
     end
 
     def setup_asset_host
@@ -189,10 +169,9 @@ module Suspenders
         "config.assets.version = '1.0'",
         'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
-      inject_into_file(
-        "config/environments/production.rb",
-        '  config.static_cache_control = "public, max-age=31557600"',
-        after: serve_static_files_line
+      configure_environment(
+        "production",
+        'config.static_cache_control = "public, max-age=31557600"',
       )
     end
 
@@ -496,10 +475,6 @@ end
 
     def heroku_adapter
       @heroku_adapter ||= Adapters::Heroku.new(self)
-    end
-
-    def serve_static_files_line
-      "config.serve_static_files = ENV['RAILS_SERVE_STATIC_FILES'].present?\n"
     end
   end
 end
