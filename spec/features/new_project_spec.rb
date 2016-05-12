@@ -123,6 +123,13 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
+  it "configures static_cache_control in production" do
+    prod_env_file = IO.read("#{project_path}/config/environments/production.rb")
+    expect(prod_env_file).to match(
+      /config.static_cache_control = "public, max-age=.+"/,
+    )
+  end
+
   it "raises on missing translations in development and test" do
     %w[development test].each do |environment|
       environment_file =
