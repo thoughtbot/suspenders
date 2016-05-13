@@ -241,8 +241,7 @@ module Suspenders
     end
 
     def replace_gemfile(path)
-      remove_file 'Gemfile'
-      template 'Gemfile.erb', 'Gemfile' do |content|
+      template 'Gemfile.erb', 'Gemfile', force: true do |content|
         if path
           content.gsub(%r{gem .suspenders.}) { |s| %{#{s}, path: "#{path}"} }
         else
@@ -353,7 +352,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def install_refills
       generate "refills:import", "flashes"
-      run "rm app/views/refills/_flashes.html.erb"
       remove_dir "app/views/refills"
     end
 
