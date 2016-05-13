@@ -55,7 +55,7 @@ module Suspenders
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
-      invoke :generate_all
+      invoke :generate_default
       invoke :outro
     end
 
@@ -238,7 +238,7 @@ module Suspenders
       build :remove_routes_comment_lines
     end
 
-    def generate_all
+    def generate_default
       run("spring stop")
 
       generate("suspenders:static")

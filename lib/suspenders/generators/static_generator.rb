@@ -1,4 +1,4 @@
-require 'rails/generators'
+require "rails/generators"
 
 module Suspenders
   class StaticGenerator < Rails::Generators::Base
