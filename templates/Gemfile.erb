@@ -3,12 +3,10 @@ source "https://rubygems.org"
 ruby "<%= Suspenders::RUBY_VERSION %>"
 
 gem "autoprefixer-rails"
-gem "bourbon", "5.0.0.beta.5"
 gem "delayed_job_active_record"
 gem "flutie"
 gem "honeybadger"
 gem "jquery-rails"
-gem "neat", "~> 1.7.0"
 gem "newrelic_rpm", ">= 3.9.8"
 gem "normalize-rails", "~> 3.0.0"
 gem "pg"
@@ -40,7 +38,6 @@ group :development, :test do
   gem "pry-byebug"
   gem "pry-rails"
   gem "rspec-rails", "~> 3.4.0"
-  gem "refills"
 end
 
 group :development, :staging do
