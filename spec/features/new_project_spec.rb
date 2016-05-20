@@ -232,6 +232,11 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(gemfile).to match(/high_voltage/)
   end
 
+  it "adds jquery" do
+    gemfile = IO.read("#{project_path}/Gemfile")
+    expect(gemfile).to match(/jquery-rails/)
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
