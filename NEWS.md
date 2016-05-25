@@ -1,10 +1,16 @@
 master
 
+1.39.0 (May 25, 2016)
+
 * Update to Ruby 2.3.1
 * Make new apps "deployable to Heroku" by default.
 * Make the help text returned when running `suspenders -h` Suspenders specific
 * Bugfix: Configure `static_cache_control` in production environment
 * Replace NewRelic with Skylight
+* Drop initializer for disabling XML parser
+* Start moving suspenders features into different Rails Generators
+* Set default `application_host` in Heroku
+* Update the viewport meta tag
 
 1.38.1 (April 20, 2016)
 
