@@ -51,9 +51,9 @@ module Suspenders
       end
 
       def create_heroku_pipeline
-        pipelines_plugin = `heroku plugins | grep pipelines`
+        pipelines_plugin = `heroku help | grep pipelines`
         if pipelines_plugin.empty?
-          puts "You need heroku pipelines plugin. Run: heroku plugins:install heroku-pipelines"
+          puts "You need heroku pipelines plugin. Run: brew upgrade heroku-toolbelt"
           exit 1
         end
 
