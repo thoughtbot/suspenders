@@ -53,7 +53,7 @@ module Suspenders
       def create_heroku_pipeline
         pipelines_plugin = `heroku help | grep '^\s*pipelines'`
         if pipelines_plugin.empty?
-          puts "You need heroku pipelines plugin. Run: heroku plugins:install heroku-pipelines"
+          puts "You need heroku pipelines plugin. Run: heroku update"
           exit 1
         end
 
