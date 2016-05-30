@@ -7,8 +7,7 @@ class FakeHeroku
 
   def run!
     if @args.first == "help"
-      # spaces in front are intentional
-      puts "  pipelines      #  manage collections of apps in pipelines"
+      puts "pipelines      #  manage collections of apps in pipelines"
     end
     File.open(RECORDER, 'a') do |file|
       file.puts @args.join(' ')
