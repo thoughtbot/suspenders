@@ -80,7 +80,7 @@ And development gems like:
 And testing gems like:
 
 * [Capybara](https://github.com/jnicklas/capybara) and
-  [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
+  [Capybara WebKit](https://github.com/thoughtbot/capybara-webkit) for
   integration testing
 * [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
 * [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
@@ -187,10 +187,10 @@ installed on your machine before generating an app with Suspenders.
 Use [OS X GCC Installer](https://github.com/kennethreitz/osx-gcc-installer/) for
 Snow Leopard (OS X 10.6).
 
-Use [Command Line Tools for XCode](https://developer.apple.com/downloads/index.action)
+Use [Command Line Tools for Xcode](https://developer.apple.com/downloads/index.action)
 for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
 
-We use [Capybara Webkit](https://github.com/thoughtbot/capybara-webkit) for
+We use [Capybara WebKit](https://github.com/thoughtbot/capybara-webkit) for
 full-stack JavaScript integration testing. It requires QT. Instructions for
 installing QT are
 [here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
