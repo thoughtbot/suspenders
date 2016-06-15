@@ -142,14 +142,19 @@ module Suspenders
 
     def enable_rack_canonical_host
       config = <<-RUBY
-if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
+
+  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
     ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
   end
 
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
 
-      configure_environment "production", config
+      inject_into_file(
+        "config/environments/production.rb",
+        config,
+        after: "Rails.application.configure do",
+      )
     end
 
     def enable_rack_deflater
