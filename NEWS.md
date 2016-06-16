@@ -1,5 +1,8 @@
 master
 
+* Drop unneeded `suspenders` aliases: `--skip-test-unit`, `--skip-turbolinks`,
+  `--skip-bundle`. Drops `-G` that clashes with Rails’ `--skip-git` alias.
+
 1.40.0 (June 25, 2016)
 
 * Upgrade bourbon to 5.0.0.beta.6
