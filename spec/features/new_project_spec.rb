@@ -44,7 +44,8 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "loads secret_key_base from env" do
     secrets_file = IO.read("#{project_path}/config/secrets.yml")
 
-    expect(secrets_file).to match(/secret_key_base: <%= ENV\["SECRET_KEY_BASE"\] %>/)
+    expect(secrets_file).
+      to match(/secret_key_base: <%= ENV\["SECRET_KEY_BASE"\] %>/)
   end
 
   it "adds bin/setup file" do
@@ -116,16 +117,13 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "configures static_cache_control in production" do
-    prod_env_file = IO.read("#{project_path}/config/environments/production.rb")
-    expect(prod_env_file).to match(
+    expect(production_config).to match(
       /config.static_cache_control = "public, max-age=.+"/,
     )
   end
 
   it "raises on missing translations in development and test" do
-    %w[development test].each do |environment|
-      environment_file =
-        IO.read("#{project_path}/config/environments/#{environment}.rb")
+    [development_config, test_config].each do |environment_file|
       expect(environment_file).to match(
         /^ +config.action_view.raise_on_missing_translations = true$/
       )
@@ -143,15 +141,13 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "configs :test email delivery method for development" do
-    dev_env_file = IO.read("#{project_path}/config/environments/development.rb")
-    expect(dev_env_file).
+    expect(development_config).
       to match(/^ +config.action_mailer.delivery_method = :file$/)
   end
 
   it "uses APPLICATION_HOST, not HOST in the production config" do
-    prod_env_file = IO.read("#{project_path}/config/environments/production.rb")
-    expect(prod_env_file).to match(/"APPLICATION_HOST"/)
-    expect(prod_env_file).not_to match(/"HOST"/)
+    expect(production_config).to match(/"APPLICATION_HOST"/)
+    expect(production_config).not_to match(/"HOST"/)
   end
 
   it "configures email interceptor in smtp config" do
@@ -168,7 +164,6 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "configs active job queue adapter" do
     application_config = IO.read("#{project_path}/config/application.rb")
-    test_config = IO.read("#{project_path}/config/environments/test.rb")
 
     expect(application_config).to match(
       /^ +config.active_job.queue_adapter = :delayed_job$/
@@ -179,16 +174,12 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "configs bullet gem in development" do
-    test_config = IO.read("#{project_path}/config/environments/development.rb")
-
-    expect(test_config).to match /^ +Bullet.enable = true$/
-    expect(test_config).to match /^ +Bullet.bullet_logger = true$/
-    expect(test_config).to match /^ +Bullet.rails_logger = true$/
+    expect(development_config).to match /^ +Bullet.enable = true$/
+    expect(development_config).to match /^ +Bullet.bullet_logger = true$/
+    expect(development_config).to match /^ +Bullet.rails_logger = true$/
   end
 
   it "configs missing assets to raise in test" do
-    test_config = IO.read("#{project_path}/config/environments/test.rb")
-
     expect(test_config).to match(
       /^ +config.assets.raise_runtime_errors = true$/,
     )
@@ -207,9 +198,9 @@ RSpec.describe "Suspend a new project with default configuration" do
     config_files = [
       IO.read("#{project_path}/config/application.rb"),
       IO.read("#{project_path}/config/environment.rb"),
-      IO.read("#{project_path}/config/environments/development.rb"),
-      IO.read("#{project_path}/config/environments/production.rb"),
-      IO.read("#{project_path}/config/environments/test.rb"),
+      development_config,
+      test_config,
+      production_config,
     ]
 
     config_files.each do |file|
@@ -275,6 +266,20 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "configures bourbon, neat, and refills" do
     app_css = read_project_file(%w(app assets stylesheets application.scss))
     expect(app_css).to match(/normalize-rails.*bourbon.*neat.*base.*refills/m)
+  end
+
+  def development_config
+    @_development_config ||=
+      read_project_file %w(config environments development.rb)
+  end
+
+  def test_config
+    @_test_config ||= read_project_file %w(config environments test.rb)
+  end
+
+  def production_config
+    @_production_config ||=
+      read_project_file %w(config environments production.rb)
   end
 
   def analytics_partial
