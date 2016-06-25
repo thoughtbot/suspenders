@@ -1,5 +1,16 @@
 master
 
+1.40.0 (June 25, 2016)
+
+* Upgrade bourbon to 5.0.0.beta.6
+* Update Neat to 1.8.0
+* `APPLICATION_HOST` bug fix in production environment (was used before it was
+  defined)
+* Update comment around Pipelines: it is now a Heroku core plugin
+* Drop unneeded `WEB_CONCURRENCY` from `app.json` file
+* Introduce a `suspenders:stylesheet_base` generator. The `application.scss`
+  must list the imports in a specific order. This removes the `application.css`.
+
 1.39.0 (May 25, 2016)
 
 * Update to Ruby 2.3.1
