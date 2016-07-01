@@ -1,5 +1,7 @@
 master
 
+1.41.0 (July 1, 2016)
+
 * Update to Rails 5
 * Drop quiet_assets
 * Drop unneeded `suspenders` aliases: `--skip-test-unit`, `--skip-turbolinks`,
