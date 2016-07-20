@@ -114,9 +114,10 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(result).to match(/^ +config.assets.quiet = true$/)
   end
 
-  it "configures static_cache_control in production" do
+  it "configures public_file_server.headers in production" do
+    IO.write("production_config.rb", production_config)
     expect(production_config).to match(
-      /config.static_cache_control = "public, max-age=.+"/,
+      /^ +config.public_file_server.headers = {\n +"Cache-Control" => "public,/,
     )
   end
 

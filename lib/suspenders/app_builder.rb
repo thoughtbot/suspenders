@@ -169,10 +169,13 @@ module Suspenders
         "config.assets.version = '1.0'",
         'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
 
-      configure_environment(
-        "production",
-        'config.static_cache_control = "public, max-age=31557600"',
-      )
+      config = <<-EOD
+config.public_file_server.headers = {
+    "Cache-Control" => "public, max-age=31557600",
+  }
+      EOD
+
+      configure_environment("production", config)
     end
 
     def setup_secret_token
