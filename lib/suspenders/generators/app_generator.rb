@@ -39,9 +39,6 @@ module Suspenders
       invoke :setup_secret_token
       invoke :create_suspenders_views
       invoke :configure_app
-      invoke :setup_stylesheets
-      invoke :install_bitters
-      invoke :install_refills
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :remove_config_comment_lines
@@ -141,21 +138,6 @@ module Suspenders
       build :setup_rack_mini_profiler
     end
 
-    def setup_stylesheets
-      say 'Set up stylesheets'
-      build :setup_stylesheets
-    end
-
-    def install_bitters
-      say 'Install Bitters'
-      build :install_bitters
-    end
-
-    def install_refills
-      say "Install Refills"
-      build :install_refills
-    end
-
     def setup_git
       if !options[:skip_git]
         say "Initializing git"
@@ -237,11 +219,8 @@ module Suspenders
 
     def generate_default
       run("spring stop")
-
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
-
-      bundle_command "install"
     end
 
     def outro

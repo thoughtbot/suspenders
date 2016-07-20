@@ -262,6 +262,9 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "configures bourbon, neat, and refills" do
+    flashes_path = %w(app assets stylesheets refills _flashes.scss)
+    expect(read_project_file(flashes_path)).to match(/mixin/m)
+
     app_css = read_project_file(%w(app assets stylesheets application.scss))
     expect(app_css).to match(/normalize-rails.*bourbon.*neat.*base.*refills/m)
   end

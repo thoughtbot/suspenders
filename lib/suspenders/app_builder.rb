@@ -322,15 +322,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       copy_file "Procfile", "Procfile"
     end
 
-    def install_refills
-      generate "refills:import", "flashes"
-      remove_dir "app/views/refills"
-    end
-
-    def install_bitters
-      run "bitters install --path app/assets/stylesheets"
-    end
-
     def setup_default_directories
       [
         'app/views/pages',
