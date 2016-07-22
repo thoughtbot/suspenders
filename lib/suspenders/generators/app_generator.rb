@@ -77,6 +77,7 @@ module Suspenders
       say 'Setting up the development environment'
       build :raise_on_missing_assets_in_test
       build :raise_on_delivery_errors
+      build :remove_turbolinks
       build :set_test_delivery_method
       build :add_bullet_gem_configuration
       build :raise_on_unpermitted_parameters

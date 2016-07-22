@@ -270,6 +270,11 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(app_css).to match(/normalize-rails.*bourbon.*neat.*base.*refills/m)
   end
 
+  it "doesn't use turbolinks" do
+    app_js = read_project_file(%w(app assets javascripts application.js))
+    expect(app_js).not_to match(/turbolinks/)
+  end
+
   def development_config
     @_development_config ||=
       read_project_file %w(config environments development.rb)
