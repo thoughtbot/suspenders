@@ -1,5 +1,12 @@
 master
 
+1.42.0 (July 23, 2016)
+
+* [#784] Require refills once
+* [#790] Ensure stylesheet_base generator runs with a clean bundle
+* [#791] Use Rails' 5 syntax for `public_file_server.headers`
+* [#792] Remove turbolinks from application.js file
+
 1.41.0 (July 1, 2016)
 
 * Update to Rails 5
