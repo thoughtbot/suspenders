@@ -7,10 +7,10 @@ module Suspenders
 
       def set_heroku_remotes
         remotes = <<-SHELL.strip_heredoc
-          #{command_to_join_heroku_app('staging')}
-          #{command_to_join_heroku_app('production')}
+#{command_to_join_heroku_app('staging')}
+#{command_to_join_heroku_app('production')}
 
-          git config heroku.remote staging
+git config heroku.remote staging
         SHELL
 
         app_builder.append_file "bin/setup", remotes
