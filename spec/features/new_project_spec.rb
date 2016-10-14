@@ -41,6 +41,10 @@ RSpec.describe "Suspend a new project with default configuration" do
     end
   end
 
+  it "doesn't generate test directory" do
+    expect(File).not_to exist("#{project_path}/test")
+  end
+
   it "loads secret_key_base from env" do
     secrets_file = IO.read("#{project_path}/config/secrets.yml")
 

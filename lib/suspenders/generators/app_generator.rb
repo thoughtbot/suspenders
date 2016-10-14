@@ -26,6 +26,9 @@ module Suspenders
     class_option :path, type: :string, default: nil,
       desc: "Path to the gem"
 
+    class_option :skip_test, type: :boolean, default: true,
+      desc: "Skip Test Unit"
+
     def finish_template
       invoke :suspenders_customization
       super
