@@ -225,6 +225,10 @@ config.public_file_server.headers = {
         force: true
     end
 
+    def use_mysql_config_template
+      template "mysql_database.yml.erb", "config/database.yml", force: true
+    end
+
     def create_database
       bundle_command 'exec rake db:create db:migrate'
     end
@@ -241,6 +245,12 @@ config.public_file_server.headers = {
 
     def set_ruby_to_version_being_used
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
+    end
+
+    def set_database_gem(database)
+      if database == "mysql"
+        replace_in_file "Gemfile", 'gem "pg"', 'gem "mysql2"'
+      end
     end
 
     def enable_database_cleaner

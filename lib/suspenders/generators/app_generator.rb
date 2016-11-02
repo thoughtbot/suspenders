@@ -62,6 +62,7 @@ module Suspenders
     def customize_gemfile
       build :replace_gemfile, options[:path]
       build :set_ruby_to_version_being_used
+      build :set_database_gem, options[:database]
       bundle_command 'install'
       build :configure_simple_form
     end
@@ -71,6 +72,8 @@ module Suspenders
 
       if 'postgresql' == options[:database]
         build :use_postgres_config_template
+      elsif "mysql" == options[:database]
+        build :use_mysql_config_template
       end
 
       build :create_database
