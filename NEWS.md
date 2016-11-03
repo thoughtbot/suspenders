@@ -1,5 +1,7 @@
 master
 
+* Update Bourbon to 5.0.0.beta.7
+
 1.42.0 (July 23, 2016)
 
 * [#784] Require refills once
