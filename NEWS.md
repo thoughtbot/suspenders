@@ -1,6 +1,7 @@
 master
 
 * Update Bourbon to 5.0.0.beta.7
+* Update Bitters to 1.5.0
 
 1.42.0 (July 23, 2016)
 
