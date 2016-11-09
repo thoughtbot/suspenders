@@ -1,7 +1,10 @@
-master
+1.43.0 (November 8, 2016)
 
 * Update Bourbon to 5.0.0.beta.7
+* Update Neat to 2.0.0.beta.1
 * Update Bitters to 1.5.0
+* Drop sprockets-es6
+* Bugfix: doesn’t generate unused `test/` directory
 
 1.42.0 (July 23, 2016)
 
