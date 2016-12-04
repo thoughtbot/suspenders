@@ -119,7 +119,6 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "configures public_file_server.headers in production" do
-    IO.write("production_config.rb", production_config)
     expect(production_config).to match(
       /^ +config.public_file_server.headers = {\n +"Cache-Control" => "public,/,
     )
