@@ -129,13 +129,8 @@ This:
 * Sets them as `staging` and `production` Git remotes
 * Configures staging with `RACK_ENV` environment variable set
   to `staging`
-* Adds the [Rails Stdout Logging][logging-gem] gem
-  to configure the app to log to standard out,
-  which is how [Heroku's logging][heroku-logging] works.
 * Creates a [Heroku Pipeline] for review apps
 
-[logging-gem]: https://github.com/heroku/rails_stdout_logging
-[heroku-logging]: https://devcenter.heroku.com/articles/logging#writing-to-your-log
 [Heroku Pipeline]: https://devcenter.heroku.com/articles/pipelines
 
 You can optionally specify alternate Heroku flags:
