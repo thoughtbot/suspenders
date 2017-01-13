@@ -242,12 +242,6 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(app_json_file).to match(/"name":"#{app_name.dasherize}"/)
   end
 
-  it "sets up heroku specific gems" do
-    gemfile_file = IO.read("#{project_path}/Gemfile")
-
-    expect(gemfile_file).to include %{gem "rails_stdout_logging"}
-  end
-
   def app_name
     SuspendersTestHelpers::APP_NAME
   end
