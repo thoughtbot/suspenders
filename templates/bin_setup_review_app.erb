@@ -9,11 +9,11 @@ if [ -z "$1" ]; then
   exit 64
 fi
 
-heroku pg:backups restore \
-  `heroku pg:backups public-url -a <%= app_name.dasherize %>-staging` \
-  DATABASE_URL \
-  --confirm <%= app_name.dasherize %>-staging-pr-$1 \
-  --app <%= app_name.dasherize %>-staging-pr-$1
-heroku run rake db:migrate --exit-code --app <%= app_name.dasherize %>-staging-pr-$1
-heroku ps:scale worker=1 --app <%= app_name.dasherize %>-staging-pr-$1
-heroku restart --app <%= app_name.dasherize %>-staging-pr-$1
+PARENT_APP_NAME=<%= app_name.dasherize %>-staging
+APP_NAME=<%= app_name.dasherize %>-staging-pr-$1
+URL=`heroku pg:backups public-url -a $PARENT_APP_NAME`
+
+heroku pg:backups restore $URL DATABASE_URL --confirm $APP_NAME --app $APP_NAME
+heroku run rake db:migrate --exit-code --app $APP_NAME
+heroku ps:scale worker=1 --app $APP_NAME
+heroku restart --app $APP_NAME
