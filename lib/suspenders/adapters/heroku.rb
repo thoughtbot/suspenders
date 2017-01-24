@@ -87,7 +87,7 @@ module Suspenders
         heroku_app_name = heroku_app_name_for(environment)
         <<~SHELL
 
-          if heroku join --app #{heroku_app_name} &> /dev/null; then
+          if heroku join --app #{heroku_app_name} > /dev/null 2>&1; then
             git remote add #{environment} git@heroku.com:#{heroku_app_name}.git || true
             printf 'You are a collaborator on the "#{heroku_app_name}" Heroku app\n'
           else
