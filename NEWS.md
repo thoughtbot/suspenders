@@ -1,3 +1,11 @@
+1.44.0 (January 25, 2017)
+
+* Improve readability of `bin/setup-review-app` (#819)
+* Update scripts to be `sh`-compatible (#820)
+* Remove `rails_stdout_logging` gem (#818)
+* Remove `12factor` gem (#817)
+* Update Ruby to 2.4.0 (#814)
+
 1.43.0 (November 8, 2016)
 
 * Update Bourbon to 5.0.0.beta.7
