@@ -101,7 +101,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(analytics_partial).
       to include(%{<% if ENV["SEGMENT_KEY"] %>})
     expect(analytics_partial).
-      to include(%{window.analytics.load("<%= ENV["SEGMENT_KEY"] %>");})
+      to include(%{analytics.load("<%= ENV["SEGMENT_KEY"] %>");})
   end
 
   it "raises on unpermitted parameters in all environments" do
