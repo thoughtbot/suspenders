@@ -1,0 +1,31 @@
+#!/usr/bin/env ruby
+
+rails_installed=`gem query --name-matches '^rails$' --installed`
+
+if rails_installed.chomp == 'true'
+  require 'pathname'
+
+  source_path = (Pathname.new(__FILE__).dirname + '../lib').expand_path
+  $LOAD_PATH << source_path
+
+  require 'voyage'
+
+  if ARGV.empty?
+    puts "Please provide a path for the new application"
+    puts
+    puts "See --help for more info"
+    exit 0
+  elsif ['-v', '--version'].include? ARGV[0]
+    puts Voyage::VERSION
+    exit 0
+  end
+
+  templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
+  template_additions = File.expand_path(File.join("..", "lib/voyage/templates"), File.dirname(__FILE__))
+  Suspenders::AppGenerator.source_root templates_root
+  Suspenders::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << template_additions << templates_root
+
+  Suspenders::AppGenerator.start
+else
+  puts "Please install Rails in the desired gemset before continuing..."
+end

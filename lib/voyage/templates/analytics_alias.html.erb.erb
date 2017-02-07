@@ -1,0 +1,18 @@
+<%% goto = Rails.application.routes.url_helpers.authenticated_root_path %>
+
+<%% content_for :javascript do %>
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      console.log('Aliased: 1st');
+
+      if (typeof analytics != 'undefined') {
+        analytics.alias('<%%= current_user.uuid %>');
+      }
+
+      console.log("Redirect to '<%%= goto %>' after alias & identify");
+
+      window.location.replace('<%%= goto %>');
+    });
+  </script>
+<%% end %>
+

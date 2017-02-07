@@ -1,0 +1,28 @@
+<h1>Listing Users</h1>
+
+<table>
+  <thead>
+    <tr><% if config[:adding_first_and_last_name] %>
+      <th>First Name</th>
+      <th>Last Name</th><% end %>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%% @users.each do |user| %>
+      <tr><% if config[:adding_first_and_last_name] %>
+        <td><%%= user.first_name %></td>
+        <td><%%= user.last_name %></td><% end %>
+        <td><%%= link_to user.email, impersonate_admin_user_path(user) %></td>
+        <td><%%= link_to 'Show', user %></td>
+        <td><%%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%%= link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete %></td>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<br />

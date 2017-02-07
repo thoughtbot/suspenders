@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Users schema based on JSON API",
+  "type": "object",
+  "required": [
+    "data"
+  ],
+  "data": {
+    "description": "List of user resources.",
+    "type": "array",
+    "items": {
+      "type": "object",
+      "required": [
+        "type",
+        "id"
+      ],
+      "properties": {
+        "type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "integer"
+        },
+        "attributes": {
+          "required": [
+            "first-name",
+            "last-name",
+            "email",
+            "authentication-token"
+          ],
+          "properties": {
+            "first-name": {
+              "type": "string"
+            },
+            "last-name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "authentication-token": {
+              "type": "string"
+            },
+            "created-at": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "updated-at": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "uniqueItems": true
+  }
+}

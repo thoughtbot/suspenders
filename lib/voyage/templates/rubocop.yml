@@ -1,0 +1,90 @@
+require: rubocop-rspec
+
+RSpec/NotToNot:
+   Description: 'Enforces the usage of the same method on all negative message expectations.'
+   EnforcedStyle: to_not
+   SupportedStyles:
+     - not_to
+     - to_not
+   Enabled: true
+
+RSpec/FilePath:
+  Exclude:
+    - spec/abilities/*_spec.rb
+
+RSpec/LeadingSubject:
+  Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
+
+RSpec/NestedGroups:
+  Max: 6
+
+RSpec/MultipleExpectations:
+  Max: 2
+
+RSpec/ExampleLength:
+  Max: 15
+
+Rails:
+ Enabled: true
+
+AllCops:
+  TargetRubyVersion: 2.4
+  DisplayCopNames: true
+  DisplayStyleGuide: true
+  RSpec:
+    Patterns:
+    - '.+'
+  Exclude:
+    - 'db/**/*'
+    - 'config/*'
+    - 'config/environments/*'
+    - 'config/locales/*'
+    - 'config/initializers/devise.rb'
+    - 'config/initializers/simple_form.rb'
+    - 'config/initializers/new_framework_defaults.rb'
+    - 'config/initializers/assets.rb'
+    - 'config/initializers/backtrace_silencers.rb'
+    - 'config/initializers/rack_mini_profiler.rb'
+    - 'config/initializers/wrap_parameters.rb'
+    - 'bin/**/*'
+    - 'Rakefile'
+    - 'node_modules/**/*'
+  Include:
+    - 'Gemfile'
+    - '.simplecov'
+    - 'config/initializers/*'
+
+Style/Documentation:
+  Description: 'Document classes and non-namespace modules.'
+  Enabled: false
+
+Style/DotPosition:
+  Description: 'Checks the position of the dot in multi-line method calls.'
+  StyleGuide: 'https://github.com/bbatsov/ruby-style-guide#consistent-multi-line-chains'
+  EnforcedStyle: leading
+  Enabled: true
+
+Style/TrailingCommaInLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/AbcSize:
+  Enabled: false
+
+Style/SymbolArray:
+  Enabled: false
+
+Style/AndOr:
+  Enabled: false

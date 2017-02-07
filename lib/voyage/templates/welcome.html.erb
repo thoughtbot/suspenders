@@ -1,0 +1,11 @@
+<h1>Welcome to Voyage!</h1>
+
+<pre>
+                __
+                \ \___     .__
+              .--""___\..--"/
+          .__.|-"""..... ' /
+  ________\_______________/_________
+</pre>
+
+<%%= Redcarpet::Markdown.new(Redcarpet::Render::HTML.new).render(File.read('README.md')).html_safe %>
