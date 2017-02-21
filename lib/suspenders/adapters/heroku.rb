@@ -37,6 +37,15 @@ module Suspenders
         end
       end
 
+      def set_heroku_backup_schedule
+        %w(staging production).each do |environment|
+          run_toolbelt_command(
+            "pg:backups:schedule DATABASE_URL --at '02:00 America/Los_Angeles'",
+            environment,
+          )
+        end
+      end
+      
       def create_review_apps_setup_script
         app_builder.template(
           "bin_setup_review_app.erb",
