@@ -39,7 +39,7 @@ module Suspenders
         expect(app_builder).to have_backup_schedule("staging")
         expect(app_builder).to have_backup_schedule("production")
       end
-      
+
       it "sets the application host" do
         app_builder = double(app_name: app_name)
         allow(app_builder).to receive(:run)
