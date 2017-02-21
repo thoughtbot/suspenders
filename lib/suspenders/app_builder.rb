@@ -12,6 +12,7 @@ module Suspenders
                    :create_staging_heroku_app,
                    :create_review_apps_setup_script,
                    :set_heroku_rails_secrets,
+                   :set_heroku_backup_schedule,
                    :set_heroku_remotes,
                    :set_heroku_application_host
 
