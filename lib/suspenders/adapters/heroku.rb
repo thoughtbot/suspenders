@@ -45,7 +45,7 @@ module Suspenders
           )
         end
       end
-      
+
       def create_review_apps_setup_script
         app_builder.template(
           "bin_setup_review_app.erb",
