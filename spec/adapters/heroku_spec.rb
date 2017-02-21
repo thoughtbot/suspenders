@@ -58,7 +58,7 @@ module Suspenders
       def app_name
         SuspendersTestHelpers::APP_NAME
       end
-      
+
       def have_backup_schedule(remote_name)
         have_received(:run).
           with(/pg:backups:schedule DATABASE_URL --at '02:00 America\/Los_Angeles' --remote #{remote_name}/)
