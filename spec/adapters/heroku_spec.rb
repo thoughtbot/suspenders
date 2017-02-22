@@ -61,7 +61,7 @@ module Suspenders
 
       def have_backup_schedule(remote_name)
         have_received(:run).
-          with(/pg:backups:schedule DATABASE_URL --at '02:00 America\/Los_Angeles' --remote #{remote_name}/)
+          with(/pg:backups:schedule DATABASE_URL --at '10:00 UTC' --remote #{remote_name}/)
       end
 
       def have_configured_var(remote_name, var)
