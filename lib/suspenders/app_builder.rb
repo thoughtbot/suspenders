@@ -370,8 +370,8 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 If you have previously run the `./bin/setup` script,
 you can deploy to staging and production with:
 
-    $ ./bin/deploy staging
-    $ ./bin/deploy production
+    % ./bin/deploy staging
+    % ./bin/deploy production
       MARKDOWN
 
       append_file "README.md", instructions
