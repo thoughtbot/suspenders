@@ -213,7 +213,7 @@ and may be redistributed under the terms specified in the [LICENSE] file.
 
 ## About thoughtbot
 
-![thoughtbot](https://thoughtbot.com/logo.png)
+[![thoughtbot][thoughtbot-logo]][thoughtbot]
 
 Suspenders is maintained and funded by thoughtbot, inc.
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
@@ -222,5 +222,7 @@ We love open source software!
 See [our other projects][community].
 We are [available for hire][hire].
 
+[thoughtbot]: https://thoughtbot.com?utm_source=github
+[thoughtbot-logo]: http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg
 [community]: https://thoughtbot.com/community?utm_source=github
 [hire]: https://thoughtbot.com?utm_source=github
