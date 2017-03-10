@@ -29,6 +29,14 @@ RSpec.describe "Suspend a new project with default configuration" do
     end
   end
 
+  it "includes the bundle:audit task" do
+    Dir.chdir(project_path) do
+      Bundler.with_clean_env do
+        expect(`rake -T`).to include('rake bundle:audit')
+      end
+    end
+  end
+
   it "creates .ruby-version from Suspenders .ruby-version" do
     ruby_version_file = IO.read("#{project_path}/.ruby-version")
 
