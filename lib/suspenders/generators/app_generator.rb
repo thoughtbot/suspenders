@@ -47,7 +47,6 @@ module Suspenders
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
       invoke :setup_dotfiles
-      invoke :setup_git
       invoke :setup_database
       invoke :create_local_heroku_setup
       invoke :create_heroku_apps
@@ -56,6 +55,7 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
+      invoke :setup_git
       invoke :outro
     end
 
