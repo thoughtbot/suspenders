@@ -11,6 +11,9 @@ fi
 
 PARENT_APP_NAME=<%= app_name.dasherize %>-staging
 APP_NAME=<%= app_name.dasherize %>-staging-pr-$1
+
+heroku pg:backups:capture --app $PARENT_APP_NAME
+
 URL=`heroku pg:backups public-url --app $PARENT_APP_NAME`
 
 heroku pg:backups restore $URL DATABASE_URL --confirm $APP_NAME --app $APP_NAME
