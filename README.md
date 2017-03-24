@@ -130,6 +130,7 @@ This:
 * Configures staging with `RACK_ENV` environment variable set
   to `staging`
 * Creates a [Heroku Pipeline] for review apps
+* Schedules automated backups for 10AM UTC for both `staging` and `production`
 
 [Heroku Pipeline]: https://devcenter.heroku.com/articles/pipelines
 
