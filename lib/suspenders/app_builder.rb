@@ -106,6 +106,7 @@ module Suspenders
       config = <<-RUBY
 
     config.generators do |generate|
+      generate.factory_girl false
       generate.helper false
       generate.javascripts false
       generate.request_specs false
