@@ -135,8 +135,10 @@ module Suspenders
     def configure_smtp
       copy_file 'smtp.rb', 'config/smtp.rb'
 
-      prepend_file 'config/environments/production.rb',
-        %{require Rails.root.join("config/smtp")\n}
+      prepend_file(
+        "config/environments/production.rb",
+        %{require_relative "../smtp"\n}
+      )
 
       config = <<-RUBY
 
