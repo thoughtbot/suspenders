@@ -136,12 +136,14 @@ module Suspenders
       copy_file 'smtp.rb', 'config/smtp.rb'
 
       prepend_file 'config/environments/production.rb',
-        %{require Rails.root.join("config/smtp")\n}
+        %{require Rails.root.join("config/smtp") if ENV["SMTP_ADDRESS"].present?\n}
 
       config = <<-RUBY
 
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = SMTP_SETTINGS
+  if ENV["SMTP_ADDRESS"].present?
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = SMTP_SETTINGS
+  end
       RUBY
 
       inject_into_file 'config/environments/production.rb', config,
