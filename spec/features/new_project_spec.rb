@@ -294,6 +294,15 @@ RSpec.describe "Suspend a new project with default configuration" do
       read_project_file %w(config environments production.rb)
   end
 
+  scenario "generated en.yml is evaluated" do
+    run_suspenders
+
+    locales_en_file = IO.read("#{project_path}/config/locales/en.yml")
+    app_name = SuspendersTestHelpers::APP_NAME
+
+    expect(locales_en_file).to match(/application: #{app_name.humanize}/)
+  end
+
   def analytics_partial
     IO.read("#{project_path}/app/views/application/_analytics.html.erb")
   end
