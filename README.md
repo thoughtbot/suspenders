@@ -173,7 +173,8 @@ And if you'd rather not use spring, add `DISABLE_SPRING=1` to your login file.
 
 ## Dependencies
 
-Suspenders requires the latest version of Ruby.
+Suspenders requires a recent version of Ruby - see
+[`.ruby-version`](.ruby-version) for the current version in use.
 
 Some gems included in Suspenders have native extensions. You should have GCC
 installed on your machine before generating an app with Suspenders.
