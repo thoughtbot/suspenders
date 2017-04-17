@@ -241,7 +241,7 @@ config.public_file_server.headers = {
     end
 
     def set_ruby_to_version_being_used
-      create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
+      create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}@#{app_name}\n"
     end
 
     def enable_database_cleaner
