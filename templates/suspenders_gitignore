@@ -3,6 +3,7 @@
 *.swo
 *.swp
 /.bundle
+/.byebug_history
 /.env.local
 /coverage/*
 /db/*.sqlite3
