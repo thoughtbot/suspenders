@@ -272,7 +272,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(read_project_file(flashes_path)).to match(/\$flashes/m)
 
     app_css = read_project_file(%w(app assets stylesheets application.scss))
-    expect(app_css).to match(/normalize-rails.*bourbon.*neat.*base.*refills/m)
+    expect(app_css).to match(/normalize-css.*bourbon.*neat.*base.*refills/m)
   end
 
   it "doesn't use turbolinks" do
