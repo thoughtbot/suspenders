@@ -280,6 +280,11 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(app_js).not_to match(/turbolinks/)
   end
 
+  it "configures Timecop safe mode" do
+    spec_helper = read_project_file(%w(spec spec_helper.rb))
+    expect(spec_helper).to match(/Timecop.safe_mode = true/)
+  end
+
   def development_config
     @_development_config ||=
       read_project_file %w(config environments development.rb)
