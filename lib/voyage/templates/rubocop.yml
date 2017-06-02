@@ -68,6 +68,10 @@ Style/DotPosition:
   EnforcedStyle: leading
   Enabled: true
 
+Style/MultilineMethodCallIndentation:
+  EnforcedStyle: indented
+  IndentationWidth: 2
+
 Style/TrailingCommaInLiteral:
   EnforcedStyleForMultiline: comma
 
