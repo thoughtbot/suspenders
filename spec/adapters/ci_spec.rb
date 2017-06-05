@@ -12,7 +12,8 @@ module Suspenders
 
           Ci.new(app_builder).setup_ci("travis")
 
-          expect(app_builder).to have_received(:template).with(src_file, dest_file)
+          expect(app_builder).to have_received(:template).
+            with(src_file, dest_file)
         end
 
         it "adds the properly formatted deploy commands" do
@@ -22,7 +23,8 @@ module Suspenders
 
           Ci.new(app_builder).configure_automatic_deployment("travis")
 
-          expect(app_builder).to have_received(:append_file).with(config_file, anything)
+          expect(app_builder).to have_received(:append_file).
+            with(config_file, anything)
         end
       end
 
@@ -35,7 +37,8 @@ module Suspenders
 
           Ci.new(app_builder).setup_ci("circle")
 
-          expect(app_builder).to have_received(:template).with(src_file, dest_file)
+          expect(app_builder).to have_received(:template).
+            with(src_file, dest_file)
         end
 
         it "adds the properly formatted deploy commands" do
@@ -45,7 +48,8 @@ module Suspenders
 
           Ci.new(app_builder).configure_automatic_deployment("circle")
 
-          expect(app_builder).to have_received(:append_file).with(config_file, anything)
+          expect(app_builder).to have_received(:append_file).
+            with(config_file, anything)
         end
       end
     end

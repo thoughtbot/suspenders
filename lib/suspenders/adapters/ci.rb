@@ -19,9 +19,8 @@ module Suspenders
 
       def adapter_for(provider)
         case provider
-        when 'travis' then Travis.new(app_builder)
-        when 'circle' then Circle.new(app_builder)
-        when 'codeship' then Codeship.new(app_builder)
+        when "travis" then Travis.new(app_builder)
+        when "circle" then Circle.new(app_builder)
         end
       end
 

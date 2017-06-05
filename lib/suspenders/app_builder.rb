@@ -19,8 +19,6 @@ module Suspenders
                    :setup_ci,
                    :configure_automatic_deployment
 
-
-
     def readme
       template 'README.md.erb', 'README.md'
     end
