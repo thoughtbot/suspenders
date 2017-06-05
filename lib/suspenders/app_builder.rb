@@ -15,6 +15,11 @@ module Suspenders
                    :set_heroku_backup_schedule,
                    :set_heroku_remotes,
                    :set_heroku_application_host
+    def_delegators :ci_adapter,
+                   :setup_ci,
+                   :configure_automatic_deployment
+
+
 
     def readme
       template 'README.md.erb', 'README.md'
@@ -267,10 +272,6 @@ config.public_file_server.headers = {
       copy_file "spec_helper.rb", "spec/spec_helper.rb"
     end
 
-    def configure_ci
-      template "circle.yml.erb", "circle.yml"
-    end
-
     def configure_i18n_for_test_environment
       copy_file "i18n.rb", "spec/support/i18n.rb"
     end
@@ -379,18 +380,6 @@ you can deploy to staging and production with:
       run "chmod a+x bin/deploy"
     end
 
-    def configure_automatic_deployment
-      deploy_command = <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
-      YML
-
-      append_file "circle.yml", deploy_command
-    end
-
     def create_github_repo(repo_name)
       run "hub create #{repo_name}"
     end
@@ -482,6 +471,10 @@ end
 
     def heroku_adapter
       @heroku_adapter ||= Adapters::Heroku.new(self)
+    end
+
+    def ci_adapter
+      @ci_adapter ||= Adapters::Ci.new(self)
     end
   end
 end

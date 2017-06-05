@@ -285,6 +285,11 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(spec_helper).to match(/Timecop.safe_mode = true/)
   end
 
+  it "configures CircleCI" do
+    circle_yml = read_project_file(%w(circle.yml))
+    expect(circle_yml).to match(/COVERAGE=true bin\/rake/)
+  end
+
   def development_config
     @_development_config ||=
       read_project_file %w(config environments development.rb)

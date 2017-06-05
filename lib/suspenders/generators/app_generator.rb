@@ -14,6 +14,9 @@ module Suspenders
     class_option :heroku_flags, type: :string, default: "",
       desc: "Set extra Heroku flags"
 
+    class_option :ci, type: :string, default: "circle",
+      desc: "Specify a CI provider (options: circle, travis, codeship)"
+
     class_option :github, type: :string, default: nil,
       desc: "Create Github repository and add remote origin pointed to repo"
 
@@ -99,10 +102,10 @@ module Suspenders
       build :generate_rspec
       build :configure_rspec
       build :configure_background_jobs_for_rspec
+      build :setup_ci, options[:ci]
       build :enable_database_cleaner
       build :provide_shoulda_matchers_config
       build :configure_spec_support_features
-      build :configure_ci
       build :configure_i18n_for_test_environment
       build :configure_action_mailer_in_specs
       build :configure_capybara_webkit
@@ -166,7 +169,7 @@ module Suspenders
         build :set_heroku_application_host
         build :set_heroku_backup_schedule
         build :create_heroku_pipeline
-        build :configure_automatic_deployment
+        build :configure_automatic_deployment, options[:ci]
       end
     end
 
