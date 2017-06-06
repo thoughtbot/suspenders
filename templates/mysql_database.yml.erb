@@ -1,0 +1,19 @@
+development: &default
+  adapter: mysql2
+  database: <%= app_name %>_development
+  encoding: utf8
+  pool: <%%= Integer(ENV.fetch("DB_POOL", 5)) %>
+  reaping_frequency: <%%= Integer(ENV.fetch("DB_REAPING_FREQUENCY", 10)) %>
+  timeout: 5000
+
+test:
+  <<: *default
+  database: <%= app_name %>_test
+
+production: &deploy
+  encoding: utf8
+  pool: <%%= [Integer(ENV.fetch("MAX_THREADS", 5)), Integer(ENV.fetch("DB_POOL", 5))].max %>
+  timeout: 5000
+  url:  <%%= ENV.fetch("DATABASE_URL", "") %>
+
+staging: *deploy
