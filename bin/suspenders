@@ -14,10 +14,16 @@ if ARGV.empty?
 elsif ['-v', '--version'].include? ARGV[0]
   puts Suspenders::VERSION
   exit 0
+elsif ARGV[1] == '-c'
+  $LOAD_PATH << "#{ARGV[2]}/lib"
+  require 'suspenders/generators/custom_app_generator'
+  custom_templates_root = "#{ARGV[2]}/templates"
+  custom_generator_class = Suspenders::CustomAppGenerator
 end
 
-templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
-Suspenders::AppGenerator.source_root templates_root
-Suspenders::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
+templates_root = custom_templates_root || File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
+generator_class = custom_generator_class || Suspenders::AppGenerator
+generator_class.source_root templates_root
+generator_class.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
 
-Suspenders::AppGenerator.start
+generator_class.start
