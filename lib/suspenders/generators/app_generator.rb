@@ -5,6 +5,8 @@ module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
     hide!
 
+    CI_PROVIDERS = %w( circle travis codeship )
+
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
@@ -15,7 +17,7 @@ module Suspenders
       desc: "Set extra Heroku flags"
 
     class_option :ci, type: :string, default: "circle",
-      desc: "Specify a CI provider (options: circle, travis, codeship)"
+      desc: "Specify a CI provider (options: #{CI_PROVIDERS.join("/")})"
 
     class_option :github, type: :string, default: nil,
       desc: "Create Github repository and add remote origin pointed to repo"
@@ -32,9 +34,14 @@ module Suspenders
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
+    def initialize(*args)
+      if options[:ci].present? && !CI_PROVIDERS.include?(options[:ci])
+         raise Error, "Invalid value for --ci option. Supported for providers are: #{CI_PROVIDERS.join(", ")}."
+      end
+    end
+
     def finish_template
       invoke :suspenders_customization
-      super
     end
 
     def suspenders_customization
@@ -102,10 +109,10 @@ module Suspenders
       build :generate_rspec
       build :configure_rspec
       build :configure_background_jobs_for_rspec
-      build :setup_ci, options[:ci]
       build :enable_database_cleaner
       build :provide_shoulda_matchers_config
       build :configure_spec_support_features
+      build :configure_ci, options[:ci]
       build :configure_i18n_for_test_environment
       build :configure_action_mailer_in_specs
       build :configure_capybara_webkit

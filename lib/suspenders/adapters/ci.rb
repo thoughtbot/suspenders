@@ -19,8 +19,9 @@ module Suspenders
 
       def adapter_for(provider)
         case provider
-        when "travis" then Travis.new(app_builder)
-        when "circle" then Circle.new(app_builder)
+        when "travis"   then Travis.new(app_builder)
+        when "circle"   then Circle.new(app_builder)
+        when "codeship" then Codeship.new(app_builder)
         end
       end
 
@@ -48,7 +49,7 @@ module Suspenders
         end
 
         def file_destination
-          ".travis.yml"
+          "travis.yml"
         end
 
         def deploy_commands
@@ -79,6 +80,34 @@ module Suspenders
               commands:
                 - bin/deploy staging
           YML
+        end
+      end
+
+      class Codeship < Base
+        def file_source
+          "codeship-steps.yml.erb"
+        end
+
+        def file_destination
+          "codeship-steps.yml"
+        end
+
+        def configure
+          app_builder.template "codeship-services.yml.erb", "codeship-services.yml"
+          super
+        end
+
+        def deploy_commands
+          <<-YML.strip_heredoc
+            TODO
+          YML
+        end
+      end
+
+      class Invalid < Circle
+        def initialize(app_builder)
+          puts "--ci option not valid, defaulting to CircleCI"
+          super(app_builder)
         end
       end
     end

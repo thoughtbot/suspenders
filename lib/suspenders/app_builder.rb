@@ -16,7 +16,7 @@ module Suspenders
                    :set_heroku_remotes,
                    :set_heroku_application_host
     def_delegators :ci_adapter,
-                   :setup_ci,
+                   :configure_ci,
                    :configure_automatic_deployment
 
     def readme
