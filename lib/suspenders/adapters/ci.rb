@@ -5,7 +5,7 @@ module Suspenders
         @app_builder = app_builder
       end
 
-      def setup_ci(provider)
+      def configure_ci(provider)
         adapter_for(provider).configure
       end
 
@@ -49,7 +49,7 @@ module Suspenders
         end
 
         def file_destination
-          "travis.yml"
+          ".travis.yml"
         end
 
         def deploy_commands
@@ -93,7 +93,9 @@ module Suspenders
         end
 
         def configure
-          app_builder.template "codeship-services.yml.erb", "codeship-services.yml"
+          app_builder.template "codeship-services.yml.erb",
+            "codeship-services.yml"
+
           super
         end
 

@@ -5,7 +5,7 @@ module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
     hide!
 
-    CI_PROVIDERS = %w( circle travis codeship )
+    CI_PROVIDERS = %w(circle travis codeship).freeze
 
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
@@ -34,9 +34,12 @@ module Suspenders
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
-    def initialize(*args)
+    def initialize(*)
+      super
+
       if options[:ci].present? && !CI_PROVIDERS.include?(options[:ci])
-         raise Error, "Invalid value for --ci option. Supported for providers are: #{CI_PROVIDERS.join(", ")}."
+        valid_options = CI_PROVIDERS.join(", ")
+        raise ArgumentError, "Invalid value --ci. Providers: #{valid_options}"
       end
     end
 

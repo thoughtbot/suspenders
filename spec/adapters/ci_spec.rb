@@ -10,7 +10,7 @@ module Suspenders
           app_builder = double(:app_builder)
           allow(app_builder).to receive(:template)
 
-          Ci.new(app_builder).setup_ci("travis")
+          Ci.new(app_builder).configure_ci("travis")
 
           expect(app_builder).to have_received(:template).
             with(src_file, dest_file)
@@ -35,7 +35,7 @@ module Suspenders
           app_builder = double(:app_builder)
           allow(app_builder).to receive(:template)
 
-          Ci.new(app_builder).setup_ci("circle")
+          Ci.new(app_builder).configure_ci("circle")
 
           expect(app_builder).to have_received(:template).
             with(src_file, dest_file)
