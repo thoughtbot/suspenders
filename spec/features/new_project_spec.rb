@@ -229,9 +229,8 @@ RSpec.describe "Suspend a new project with default configuration" do
 
     expect(bin_setup).to include("PARENT_APP_NAME=#{app_name.dasherize}-staging")
     expect(bin_setup).to include("APP_NAME=#{app_name.dasherize}-staging-pr-$1")
-    expect(bin_setup).to(
-      include("heroku run rails db:migrate --exit-code --app $APP_NAME")
-    )
+    expect(bin_setup).
+      to include("heroku run rails db:migrate --exit-code --app $APP_NAME")
     expect(bin_setup).to include("heroku ps:scale worker=1 --app $APP_NAME")
     expect(bin_setup).to include("heroku restart --app $APP_NAME")
 
