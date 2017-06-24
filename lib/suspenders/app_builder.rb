@@ -227,7 +227,7 @@ config.public_file_server.headers = {
     end
 
     def create_database
-      bundle_command 'exec rake db:create db:migrate'
+      bundle_command "exec rails db:create db:migrate"
     end
 
     def replace_gemfile(path)

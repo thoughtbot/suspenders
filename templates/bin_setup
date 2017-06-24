@@ -11,7 +11,7 @@ gem install bundler --conservative
 bundle check || bundle install
 
 # Set up database and add any development seed data
-bin/rake dev:prime
+bin/rails dev:prime
 
 # Add binstubs to PATH via export PATH=".git/safe/../../bin:$PATH" in ~/.zshenv
 mkdir -p .git/safe
