@@ -44,14 +44,6 @@ module Suspenders
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
-    def remove_turbolinks
-      replace_in_file(
-        "app/assets/javascripts/application.js",
-        "//= require turbolinks",
-        ""
-      )
-    end
-
     def set_test_delivery_method
       inject_into_file(
         "config/environments/development.rb",
