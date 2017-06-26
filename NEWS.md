@@ -2,6 +2,7 @@
 
 * Update Bitters to 1.7
 * Update Neat to 2.1
+* Update Bourbon to 5.0.0.beta.8
 
 1.44.0 (January 25, 2017)
 
