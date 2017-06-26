@@ -344,10 +344,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       directory("dotfiles", ".")
     end
 
-    def init_git
-      run 'git init'
-    end
-
     def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)

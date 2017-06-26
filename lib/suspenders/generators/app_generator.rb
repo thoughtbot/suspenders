@@ -61,7 +61,7 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
-      invoke :setup_git
+      invoke :setup_default_directories
       invoke :outro
     end
 
@@ -147,14 +147,6 @@ module Suspenders
       build :setup_rack_mini_profiler
     end
 
-    def setup_git
-      if !options[:skip_git]
-        say "Initializing git"
-        invoke :setup_default_directories
-        invoke :init_git
-      end
-    end
-
     def create_local_heroku_setup
       say "Creating local Heroku setup"
       build :create_review_apps_setup_script
@@ -203,10 +195,6 @@ module Suspenders
     def setup_spring
       say "Springifying binstubs"
       build :setup_spring
-    end
-
-    def init_git
-      build :init_git
     end
 
     def copy_miscellaneous_files
