@@ -1,6 +1,7 @@
 `master`
 
 * Update Bitters to 1.7
+* Update Neat to 2.1
 
 1.44.0 (January 25, 2017)
 
