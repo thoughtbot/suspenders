@@ -1,3 +1,7 @@
+`master`
+
+* Update Bitters to 1.7
+
 1.44.0 (January 25, 2017)
 
 * Improve readability of `bin/setup-review-app` (#819)
