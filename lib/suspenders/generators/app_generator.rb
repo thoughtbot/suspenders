@@ -5,6 +5,8 @@ module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
     hide!
 
+    CI_PROVIDERS = %w(circle travis codeship).freeze
+
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
       desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
@@ -13,6 +15,9 @@ module Suspenders
 
     class_option :heroku_flags, type: :string, default: "",
       desc: "Set extra Heroku flags"
+
+    class_option :ci, type: :string, default: "circle",
+      desc: "Specify a CI provider (options: #{CI_PROVIDERS.join("/")})"
 
     class_option :github, type: :string, default: nil,
       desc: "Create Github repository and add remote origin pointed to repo"
@@ -29,9 +34,17 @@ module Suspenders
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
+    def initialize(*)
+      super
+
+      if options[:ci].present? && !CI_PROVIDERS.include?(options[:ci])
+        valid_options = CI_PROVIDERS.join(", ")
+        raise ArgumentError, "Invalid value --ci. Providers: #{valid_options}"
+      end
+    end
+
     def finish_template
       invoke :suspenders_customization
-      super
     end
 
     def suspenders_customization
@@ -102,7 +115,7 @@ module Suspenders
       build :enable_database_cleaner
       build :provide_shoulda_matchers_config
       build :configure_spec_support_features
-      build :configure_ci
+      build :configure_ci, options[:ci]
       build :configure_i18n_for_test_environment
       build :configure_action_mailer_in_specs
       build :configure_capybara_webkit
@@ -166,7 +179,7 @@ module Suspenders
         build :set_heroku_application_host
         build :set_heroku_backup_schedule
         build :create_heroku_pipeline
-        build :configure_automatic_deployment
+        build :configure_automatic_deployment, options[:ci]
       end
     end
 
