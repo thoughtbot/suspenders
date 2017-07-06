@@ -44,14 +44,6 @@ module Suspenders
         'raise_delivery_errors = false', 'raise_delivery_errors = true'
     end
 
-    def remove_turbolinks
-      replace_in_file(
-        "app/assets/javascripts/application.js",
-        "//= require turbolinks",
-        ""
-      )
-    end
-
     def set_test_delivery_method
       inject_into_file(
         "config/environments/development.rb",
@@ -227,7 +219,7 @@ config.public_file_server.headers = {
     end
 
     def create_database
-      bundle_command 'exec rake db:create db:migrate'
+      bundle_command "exec rails db:create db:migrate"
     end
 
     def replace_gemfile(path)
@@ -350,10 +342,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def copy_dotfiles
       directory("dotfiles", ".")
-    end
-
-    def init_git
-      run 'git init'
     end
 
     def create_heroku_apps(flags)

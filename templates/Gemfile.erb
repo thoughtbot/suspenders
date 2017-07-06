@@ -1,5 +1,10 @@
 source "https://rubygems.org"
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 ruby "<%= Suspenders::RUBY_VERSION %>"
 
 gem "autoprefixer-rails"
@@ -20,6 +25,9 @@ gem "sprockets", ">= 3.0.0"
 gem "suspenders"
 gem "title"
 gem "uglifier"
+<% if options[:webpack] %>
+gem "webpacker"
+<% end %>
 
 group :development do
   gem "listen"

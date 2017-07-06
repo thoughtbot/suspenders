@@ -32,7 +32,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "includes the bundle:audit task" do
     Dir.chdir(project_path) do
       Bundler.with_clean_env do
-        expect(`rake -T`).to include('rake bundle:audit')
+        expect(`rails -T`).to include("rails bundle:audit")
       end
     end
   end
@@ -229,7 +229,8 @@ RSpec.describe "Suspend a new project with default configuration" do
 
     expect(bin_setup).to include("PARENT_APP_NAME=#{app_name.dasherize}-staging")
     expect(bin_setup).to include("APP_NAME=#{app_name.dasherize}-staging-pr-$1")
-    expect(bin_setup).to include("heroku run rake db:migrate --exit-code --app $APP_NAME")
+    expect(bin_setup).
+      to include("heroku run rails db:migrate --exit-code --app $APP_NAME")
     expect(bin_setup).to include("heroku ps:scale worker=1 --app $APP_NAME")
     expect(bin_setup).to include("heroku restart --app $APP_NAME")
 
@@ -240,7 +241,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     bin_deploy_path = "#{project_path}/bin/deploy"
     bin_deploy = IO.read(bin_deploy_path)
 
-    expect(bin_deploy).to include("heroku run rake db:migrate --exit-code")
+    expect(bin_deploy).to include("heroku run rails db:migrate --exit-code")
     expect(File.stat(bin_deploy_path)).to be_executable
   end
 

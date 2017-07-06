@@ -17,6 +17,6 @@ heroku pg:backups:capture --app $PARENT_APP_NAME
 URL=`heroku pg:backups public-url --app $PARENT_APP_NAME`
 
 heroku pg:backups restore $URL DATABASE_URL --confirm $APP_NAME --app $APP_NAME
-heroku run rake db:migrate --exit-code --app $APP_NAME
+heroku run rails db:migrate --exit-code --app $APP_NAME
 heroku ps:scale worker=1 --app $APP_NAME
 heroku restart --app $APP_NAME

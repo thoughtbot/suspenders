@@ -29,6 +29,12 @@ module Suspenders
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
+    class_option :skip_system_test,
+                 type: :boolean, default: true, desc: "Skip system test files"
+
+    class_option :skip_turbolinks,
+                 type: :boolean, default: true, desc: "Skip turbolinks gem"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -55,7 +61,7 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
-      invoke :setup_git
+      invoke :setup_default_directories
       invoke :outro
     end
 
@@ -80,7 +86,6 @@ module Suspenders
       say 'Setting up the development environment'
       build :raise_on_missing_assets_in_test
       build :raise_on_delivery_errors
-      build :remove_turbolinks
       build :set_test_delivery_method
       build :add_bullet_gem_configuration
       build :raise_on_unpermitted_parameters
@@ -142,14 +147,6 @@ module Suspenders
       build :setup_rack_mini_profiler
     end
 
-    def setup_git
-      if !options[:skip_git]
-        say "Initializing git"
-        invoke :setup_default_directories
-        invoke :init_git
-      end
-    end
-
     def create_local_heroku_setup
       say "Creating local Heroku setup"
       build :create_review_apps_setup_script
@@ -198,10 +195,6 @@ module Suspenders
     def setup_spring
       say "Springifying binstubs"
       build :setup_spring
-    end
-
-    def init_git
-      build :init_git
     end
 
     def copy_miscellaneous_files
