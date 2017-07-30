@@ -303,8 +303,14 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
 
     def configure_action_mailer
       action_mailer_host "development", %{"localhost:3000"}
+      action_mailer_asset_host "development", %{"localhost:3000"}
       action_mailer_host "test", %{"www.example.com"}
+      action_mailer_asset_host "test", %{"www.example.com"}
       action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
+      action_mailer_asset_host(
+        "production",
+        %{ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))},
+      )
     end
 
     def configure_active_job
