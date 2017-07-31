@@ -150,11 +150,7 @@ module Suspenders
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
 
-      inject_into_file(
-        "config/environments/production.rb",
-        config,
-        after: "Rails.application.configure do",
-      )
+      configure_environment "production", config
     end
 
     def enable_rack_deflater

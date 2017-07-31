@@ -132,6 +132,12 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
+  it "configures production environment to enforce SSL" do
+    expect(production_config).to match(
+      /^ +config.force_ssl = true/,
+    )
+  end
+
   it "raises on missing translations in development and test" do
     [development_config, test_config].each do |environment_file|
       expect(environment_file).to match(

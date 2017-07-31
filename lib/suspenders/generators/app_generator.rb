@@ -217,6 +217,7 @@ module Suspenders
 
     def generate_default
       run("spring stop")
+      generate("suspenders:enforce_ssl")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
     end
