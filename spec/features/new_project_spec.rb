@@ -100,6 +100,11 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(env).to include "RACK_MINI_PROFILER=0"
   end
 
+  it "initializes ActiveJob to avoid memory bloat" do
+    expect(File).
+      to exist("#{project_path}/config/initializers/active_job.rb")
+  end
+
   it "creates a rack-mini-profiler initializer" do
     expect(File).
       to exist("#{project_path}/config/initializers/rack_mini_profiler.rb")
