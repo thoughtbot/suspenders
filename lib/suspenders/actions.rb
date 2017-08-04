@@ -15,7 +15,7 @@ module Suspenders
     end
 
     def action_mailer_asset_host(rails_env, host)
-      config = "config.action_mailer.asset_host = { host: #{host} }"
+      config = "config.action_mailer.asset_host = #{host}"
       configure_environment(rails_env, config)
     end
 
