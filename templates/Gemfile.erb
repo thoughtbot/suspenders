@@ -30,6 +30,7 @@ gem "webpacker"
 
 group :development do
   gem "listen"
+  gem "rack-mini-profiler", require: false
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
@@ -46,10 +47,6 @@ group :development, :test do
   gem "rspec-rails", "~> 3.6"
 end
 
-group :development, :staging do
-  gem "rack-mini-profiler", require: false
-end
-
 group :test do
   gem "capybara-webkit"
   gem "database_cleaner"
@@ -61,6 +58,6 @@ group :test do
   gem "webmock"
 end
 
-group :staging, :production do
+group :production do
   gem "rack-timeout"
 end
