@@ -161,6 +161,7 @@ module Suspenders
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_heroku_application_host
+        build :set_heroku_honeybadger_env
         build :set_heroku_backup_schedule
         build :create_heroku_pipeline
         build :configure_automatic_deployment

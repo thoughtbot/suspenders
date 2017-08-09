@@ -127,6 +127,8 @@ This:
 
 * Creates a staging and production Heroku app
 * Sets them as `staging` and `production` Git remotes
+* Configures staging with `HONEYBADGER_ENV` environment variable set
+  to `staging`
 * Creates a [Heroku Pipeline] for review apps
 * Schedules automated backups for 10AM UTC for both `staging` and `production`
 

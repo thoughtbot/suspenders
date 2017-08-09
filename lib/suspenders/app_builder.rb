@@ -5,16 +5,19 @@ module Suspenders
     include Suspenders::Actions
     extend Forwardable
 
-    def_delegators :heroku_adapter,
-                   :create_heroku_application_manifest_file,
-                   :create_heroku_pipeline,
-                   :create_production_heroku_app,
-                   :create_staging_heroku_app,
-                   :create_review_apps_setup_script,
-                   :set_heroku_rails_secrets,
-                   :set_heroku_backup_schedule,
-                   :set_heroku_remotes,
-                   :set_heroku_application_host
+    def_delegators(
+      :heroku_adapter,
+      :create_heroku_application_manifest_file,
+      :create_heroku_pipeline,
+      :create_production_heroku_app,
+      :create_review_apps_setup_script,
+      :create_staging_heroku_app,
+      :set_heroku_application_host,
+      :set_heroku_backup_schedule,
+      :set_heroku_honeybadger_env,
+      :set_heroku_rails_secrets,
+      :set_heroku_remotes,
+    )
 
     def readme
       template 'README.md.erb', 'README.md'
