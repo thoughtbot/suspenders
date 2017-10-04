@@ -235,10 +235,6 @@ config.public_file_server.headers = {
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end
 
-    def enable_database_cleaner
-      copy_file 'database_cleaner_rspec.rb', 'spec/support/database_cleaner.rb'
-    end
-
     def provide_shoulda_matchers_config
       copy_file(
         "shoulda_matchers_config_rspec.rb",
