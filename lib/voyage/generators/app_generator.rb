@@ -32,12 +32,10 @@ module Suspenders
       invoke :generate_ruby_version_and_gemset
       invoke :generate_data_migrations
       invoke :add_high_voltage_static_pages
-      invoke :downgrade_neat_1_8_so_refills_media_mixin_works # this should be temporary until they get refills re-written to take advantage of Neat 2.0
-      invoke :generate_refills
       invoke :add_app_css_file
-      invoke :update_flashes_css_file
       invoke :update_application_css_file
       invoke :overwrite_application_layout
+      invoke :add_navigation_and_footer
       invoke :generate_test_environment
       invoke :update_test_environment
       invoke :add_rubocop_config
@@ -96,20 +94,8 @@ module Suspenders
       build :add_high_voltage_static_pages
     end
 
-    def downgrade_neat_1_8_so_refills_media_mixin_works
-      build :downgrade_neat_1_8_so_refills_media_mixin_works
-    end
-
-    def generate_refills
-      build :generate_refills
-    end
-
     def add_app_css_file
       build :add_app_css_file
-    end
-
-    def update_flashes_css_file
-      build :update_flashes_css_file
     end
 
     def update_application_css_file
@@ -118,6 +104,10 @@ module Suspenders
 
     def overwrite_application_layout
       build :overwrite_application_layout
+    end
+
+    def add_navigation_and_footer
+      build :add_navigation_and_footer
     end
 
     def generate_test_environment
@@ -183,6 +173,26 @@ module Suspenders
     def actually_setup_spring
       say "Springifying binstubs"
       build :setup_spring
+    end
+
+    def generate_default
+      run('spring stop')
+      generate('suspenders:static')
+
+      # NOTE: (2017-06-04) jon => do the junk from the stylesheet_base_generator, but without burbon, neat, bitters
+      gem 'refills', group: [:development, :test]
+      Bundler.with_clean_env { run 'bundle install' }
+
+      copy_file(
+        'application.scss',
+        'app/assets/stylesheets/application.scss',
+        force: true,
+      )
+
+      remove_file 'app/assets/stylesheets/application.css'
+
+      generate 'refills:import', 'flashes'
+      remove_dir 'app/views/refills'
     end
 
     def outro

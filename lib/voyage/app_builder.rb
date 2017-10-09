@@ -8,7 +8,7 @@ module Suspenders
     end
 
     def accept_defaults
-      if agree?('Would you like to accept all defaults? [slim, devise w/ first & last name, refills nav & footer] (Y/n)')
+      if agree?('Would you like to accept all defaults? [slim, devise w/ first & last name] (Y/n)')
         @@accept_defaults = true
       else
         @@accept_defaults = false
@@ -327,6 +327,7 @@ module Suspenders
         end
       end
 
+      # FIXME: (2017-06-04) jon => make these relevant
       template '../templates/admin_users_controller.rb', 'app/controllers/admin/users_controller.rb'
       template '../templates/admin_controller.rb', 'app/controllers/admin/admin_controller.rb'
     end
@@ -538,6 +539,7 @@ module Suspenders
       replace_in_file 'spec/models/user_spec.rb', find, replace
     end
 
+    # FIXME: (2017-06-04) jon => make this use tiddle
     def add_token_auth
       inject_into_file 'app/models/user.rb', after: "class User < ApplicationRecord" do <<-'RUBY'.gsub(/^ {6}/, '')
 
@@ -582,6 +584,13 @@ module Suspenders
 
     def customize_application_js
       template '../templates/application.js', 'app/assets/javascripts/application.js', force: true
+
+      template '../templates/app_name.js', "app/assets/javascripts/#{app_name}.js", force: true
+      inject_into_file 'app/assets/javascripts/application.js', after: '//= require foundation' do <<-RUBY.gsub(/^ {8}/, '')
+
+        //= require #{app_name}
+      RUBY
+      end
 
       inject_into_file 'app/views/application/_javascript.html.erb', after: '<%= render "analytics" %>' do <<-RUBY.gsub(/^ {8}/, '')
 
@@ -629,110 +638,33 @@ module Suspenders
       end
     end
 
-
-    # --------
-    # TEMP FIX
-    #   https://github.com/thoughtbot/bourbon/issues/993
-    #   https://github.com/thoughtbot/refills/issues/400
-    # --------
-    def downgrade_neat_1_8_so_refills_media_mixin_works
-      replace_in_file 'Gemfile', "gem 'neat', '~> 2.0.0.beta.1'", "gem 'neat', '~> 1.8.0'"
-      run 'gem uninstall -x neat -v2.0.0'
-      run 'bundle'
-    end
-    # ------------
-    # END TEMP FIX
-    # ------------
-
-
-    # -------------------------
-    # ADDING REFILLS COMPONENTS
-    # -------------------------
-    def generate_refills
-      if @@accept_defaults || agree?('Would you like to install default Refill components? (Y/n)')
-        @@add_refills = true
-
-        bundle_command 'exec rails generate refills:import navigation'
-        bundle_command 'exec rails generate refills:import footer'
-
-        add_admin_links_to_navigation
-
-        add_refills_to_stylesheets
-      else
-        @@add_refills = false
-      end
-    end
-
+    # TODO: (2017-06-04) jon => make this relevant
     def add_app_css_file
+      bundle_command 'exec rails generate foundation:install --skip'
+
+      run 'rm -f app/views/layouts/foundation_layout.html.slim'
+
       create_file "app/assets/stylesheets/#{app_name}.sass" do <<-RUBY.gsub(/^ {8}/, '')
-        .outer-wrapper
-          position: relative
-          min-height: 100%
+        //We can add some default styles here in voyage
 
-        .navigation-wrapper
-          @include outer-container
-
-        .main
-          padding: 18px
-          @include outer-container
-          padding-bottom: 450px
-
-        .footer
-          min-height: 420px
-          position: absolute
-          bottom: 0
-          left: 0
+        //Figure out what foundations visual grid settings are and turn them on here
+        //$visual-grid: true;
+        //$visual-grid-color: #9cf !default;
+        //$visual-grid-index: front !default;
+        //$visual-grid-opacity: 0.1 !default;
         RUBY
       end
-    end
 
-    def update_flashes_css_file
-      replace_in_file 'app/assets/stylesheets/refills/_flashes.scss', "margin-bottom: $base-spacing / 2;", "// margin-bottom: $base-spacing / 2;"
-    end
-
-    def update_application_css_file
-      inject_into_file 'app/assets/stylesheets/application.scss', before: '@import "neat";'  do <<-RUBY.gsub(/^ {8}/, '')
-        $visual-grid: true;
-        $visual-grid-color: #9cf !default;
-        $visual-grid-index: front !default;
-        $visual-grid-opacity: 0.1 !default;
-        RUBY
-      end
-    end
-
-    def add_admin_links_to_navigation
-      return unless @@use_devise
-      inject_into_file 'app/views/refills/_navigation.html.erb', after: '        <li class="nav-link"><a href="javascript:void(0)">Contact</a></li>'  do <<-RUBY
-
-        <% if current_user && true_user.admin? %>
-          <% if current_user != true_user %>
-            <li class='nav-link'><%= link_to 'Stop Impersonating', stop_impersonating_admin_users_path %></li>
-          <% else %>
-            <li class="nav-link"><a href="/admin/users">Admin</a></li>
-          <% end %>
-        <% end %>
-
-        <% if current_user %>
-          <li class='nav-link'><%= link_to 'Sign Out', sign_out_path %></li>
-        <% else %>
-          <li class='nav-link'><%= link_to 'Sign In', sign_in_path %></li>
-        <% end %>
-        RUBY
-      end
-    end
-
-    def add_refills_to_stylesheets
       inject_into_file 'app/assets/stylesheets/application.scss', after: '@import "refills/flashes";'  do <<-RUBY.gsub(/^ {8}/, '')
-        \n@import "refills/navigation";
-        @import "refills/footer";
-
-        @import "#{app_name}";
+        \n@import "#{app_name}";
         RUBY
       end
     end
-    # -----------------------------
-    # END ADDING REFILLS COMPONENTS
-    # -----------------------------
+
+    def add_navigation_and_footer
+      template '../templates/navigation.html.erb', 'app/views/components/_navigation.html.erb', force: true
+      template '../templates/footer.html.erb', 'app/views/components/_footer.html.erb', force: true
+    end
 
     def generate_test_environment
       template '../templates/controller_helpers.rb', 'spec/support/controller_helpers.rb'
@@ -751,15 +683,16 @@ module Suspenders
 
       template "../templates/rails_helper.rb.erb", "spec/rails_helper.rb", force: true
 
-      %w(test development).each do |environment|
-        inject_into_file "config/environments/#{environment}.rb", after: /^end/ do <<-RUBY.gsub(/^ {10}/, '')
+      # NOTE: (2017-06-04) jon => Comment out for now...this seems to break administrate
+      # %w(test development).each do |environment|
+      #   inject_into_file "config/environments/#{environment}.rb", after: /^end/ do <<-RUBY.gsub(/^ {10}/, '')
 
-          # NOTE: console can use create(:factory_name), or build(:factory_name) without
-          # needing to use FactoryGirl.create(:factory_name).
-          include FactoryGirl::Syntax::Methods
-          RUBY
-        end
-      end
+      #     # NOTE: console can use create(:factory_name), or build(:factory_name) without
+      #     # needing to use FactoryGirl.create(:factory_name).
+      #     include FactoryGirl::Syntax::Methods
+      #     RUBY
+      #   end
+      # end
     end
 
     def add_rubocop_config
@@ -863,7 +796,7 @@ module Suspenders
     end
 
     def overwrite_application_layout
-      template '../templates/voyage_layout.html.erb.erb', 'app/views/layouts/application.html.erb', force: true, add_refills: @@add_refills
+      template '../templates/voyage_layout.html.erb.erb', 'app/views/layouts/application.html.erb', force: true
       update_application_layout_for_slim if @@use_slim
 
       template '../templates/analytics_identify.html.erb.erb', 'app/views/application/_analytics_identify.html.erb', force: true

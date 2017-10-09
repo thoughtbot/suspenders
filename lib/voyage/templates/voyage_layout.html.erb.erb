@@ -14,6 +14,7 @@
     %>
     <title><%%= title %></title>
     <%%= stylesheet_link_tag :application, media: "all" %>
+    <%%= render 'javascript' %>
     <link rel='apple-touch-icon' href='/assets/apple-touch-icon.png' />
     <%%= csrf_meta_tags %>
     <%%= favicon_link_tag 'favicon.ico' %>
@@ -25,12 +26,11 @@
       <%%# Add gon here for turbolinks benefit %>
       <%%= Gon::Base.render_data %>
       <%%= render 'flashes' -%>
-      <% if config[:add_refills] %><%%= render 'refills/navigation' %><% end %>
+      <%%= render 'components/navigation' %>
       <div class='main'>
         <%%= yield %>
       </div>
-      <% if config[:add_refills] %><%%= render 'refills/footer' %><% end %>
-      <%%= render 'javascript' %>
+      <%%= render 'components/footer' %>
       <%%= render 'css_overrides' %>
     </div>
   </body>

@@ -1,0 +1,29 @@
+<div class="top-bar">
+  <div class="top-bar-left">
+    <ul class="menu">
+      <li class="menu-text">Bon Voyage</li>
+      <%% if current_user && true_user.admin? %>
+        <%% if current_user != true_user %>
+          <li><%%= link_to 'Stop Impersonating', stop_impersonating_admin_users_path %></li>
+        <%% else %>
+          <li><a href="/admin/users">Admin</a></li>
+        <%% end %>
+      <%% end %>
+    </ul>
+  </div>
+  <div class="top-bar-right">
+    <ul class="dropdown menu" data-dropdown-menu>
+      <li>
+        <a href="#">Settings</a>
+        <ul class="menu vertical">
+          <li><a href="/users/edit">My Profile</a></li>
+        </ul>
+      </li>
+      <%% if current_user %>
+        <li><%%= link_to 'Sign Out', sign_out_path %></li>
+      <%% else %>
+        <li><%%= link_to 'Sign In', sign_in_path %></li>
+      <%% end %>
+    </ul>
+  </div>
+</div>
