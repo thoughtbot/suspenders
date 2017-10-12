@@ -1,5 +1,5 @@
 language: ruby
-rvm: 2.4.1
+rvm: 2.4.2
 cache: bundler
 sudo: false
 before_install:
