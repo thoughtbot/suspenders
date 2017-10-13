@@ -49,6 +49,7 @@ module Suspenders
       invoke :add_api_foundation
       invoke :rake_db_setup
       invoke :configure_rvm_prepend_bin_to_path
+      invoke :configure_sidekiq
       invoke :run_rubocop_auto_correct
       invoke :copy_env_to_example
       invoke :add_to_gitignore
@@ -152,6 +153,10 @@ module Suspenders
 
     def configure_rvm_prepend_bin_to_path
       build :configure_rvm_prepend_bin_to_path
+    end
+
+    def configure_sidekiq
+      build :configure_sidekiq
     end
 
     def setup_spring

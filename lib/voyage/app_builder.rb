@@ -1,5 +1,7 @@
 module Suspenders
   class AppBuilder < Rails::AppBuilder
+    include Suspenders::Actions
+
     def agree?(prompt)
       puts prompt
       response = STDIN.gets.chomp
@@ -743,6 +745,20 @@ module Suspenders
       run 'chmod +x $rvm_path/hooks/after_cd_bundler'
 
       run 'mkdir -p .git/safe'
+    end
+
+    def configure_sidekiq
+      template '../templates/Procfile', 'Procfile', force: true
+      template '../templates/config_initializers_sidekiq.rb.erb', 'config/initializers/sidekiq.rb', force: true
+      template '../templates/config_sidekiq.yml', 'config/sidekiq.yml', force: true
+
+      sidekiq_config = <<-EOD
+# Use Sidekiq for background job processing
+  config.active_job.queue_adapter = :sidekiq
+      EOD
+
+      configure_environment('development', sidekiq_config)
+      configure_environment('production', sidekiq_config)
     end
 
     def run_rubocop_auto_correct
