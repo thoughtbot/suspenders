@@ -1,12 +1,15 @@
 module Admin
-  class UsersController < AdminController
+  class UsersController < Admin::ApplicationController
     skip_before_action :require_admin!, only: [:stop_impersonating]
-    respond_to :html, :json
+    respond_to :html
+    load_resource
 
-    def index
-      @users = User.all
-
-      respond_with(@users)
+    def update
+      if params[:user][:password].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+      super
     end
 
     def impersonate
@@ -23,6 +26,15 @@ module Admin
     end
 
     private
+
+    # :nocov:
+    def resource_params
+      params.require(resource_name).permit(
+        *dashboard.permitted_attributes,
+        roles: [],
+      )
+    end
+    # :nocov:
 
     def track_impersonation(user, status)
       analytics_track(

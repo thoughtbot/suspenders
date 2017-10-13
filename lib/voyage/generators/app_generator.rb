@@ -47,6 +47,7 @@ module Suspenders
 
       # Do these last
       invoke :add_api_foundation
+      invoke :add_administrate
       invoke :rake_db_setup
       invoke :configure_rvm_prepend_bin_to_path
       invoke :configure_sidekiq
@@ -145,6 +146,10 @@ module Suspenders
 
     def add_api_foundation
       build :add_api_foundation
+    end
+
+    def add_administrate
+      build :add_administrate
     end
 
     def rake_db_setup

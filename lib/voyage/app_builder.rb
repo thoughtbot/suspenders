@@ -316,9 +316,6 @@ module Suspenders
     end
 
     def add_admin_views_for_devise_resource(adding_first_and_last_name)
-      config = { adding_first_and_last_name: adding_first_and_last_name }
-      template '../templates/users_index.html.erb', 'app/views/admin/users/index.html.erb', config
-
       if @@use_slim
         inside('lib') do # arbitrary, run in context of newly generated app
           run "erb2slim '../app/views/users' '../app/views/users'"
@@ -329,9 +326,7 @@ module Suspenders
         end
       end
 
-      # FIXME: (2017-06-04) jon => make these relevant
-      template '../templates/admin_users_controller.rb', 'app/controllers/admin/users_controller.rb'
-      template '../templates/admin_controller.rb', 'app/controllers/admin/admin_controller.rb'
+      # Later on, we customize the admin/users_controller around administrate (in add_administrate method)
     end
 
     def authorize_devise_resource_for_index_action
@@ -582,6 +577,16 @@ module Suspenders
         end
         RUBY
       end
+    end
+
+    def add_administrate
+      generate 'administrate:install'
+
+      # Setup admin/application_controller
+      template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
+
+      # Setup admin/users_controller
+      template '../templates/admin_users_controller.rb', 'app/controllers/admin/users_controller.rb', force: true
     end
 
     def customize_application_js
