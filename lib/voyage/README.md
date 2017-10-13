@@ -1,3 +1,12 @@
+## Using Voyage
+
+To use Voyage to generate a bootstrapped Rails app, use the following commands (replacing {projectname} with the name of your new app).
+
+    rvm gemset create {projectname}
+    rvm gemset use {projectname}
+    gem install voyage
+    voyage {projectname}
+
 ## Updating to new Thoughtbot releases
 
 ### Files that we change in the mainline of the repo:
