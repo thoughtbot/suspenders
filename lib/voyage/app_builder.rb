@@ -582,11 +582,53 @@ module Suspenders
     def add_administrate
       generate 'administrate:install'
 
+      template '../templates/concerns_analytics_track.rb', 'app/controllers/concerns/analytics_track.rb', force: true
+
       # Setup admin/application_controller
       template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
 
       # Setup admin/users_controller
       template '../templates/admin_users_controller.rb', 'app/controllers/admin/users_controller.rb', force: true
+
+      inject_into_file 'app/dashboards/user_dashboard.rb', after: 'ATTRIBUTE_TYPES = {' do <<-RUBY.gsub(/^ {8}/, '')
+
+        id: Field::Number,
+        email: Field::String,
+        roles_mask: Field::Number,
+        roles: RolesField,
+        RUBY
+      end
+
+      inject_into_file 'app/dashboards/user_dashboard.rb', after: 'COLLECTION_ATTRIBUTES = [' do <<-RUBY.gsub(/^ {8}/, '')
+
+        :id,
+        :email,
+        :roles
+        RUBY
+      end
+
+      inject_into_file 'app/dashboards/user_dashboard.rb', after: 'SHOW_PAGE_ATTRIBUTES = [' do <<-RUBY.gsub(/^ {8}/, '')
+
+        :id,
+        :email,
+        :roles
+        RUBY
+      end
+
+      inject_into_file 'app/dashboards/user_dashboard.rb', after: 'FORM_ATTRIBUTES = [' do <<-RUBY.gsub(/^ {8}/, '')
+
+        :email,
+        :roles,
+        :password,
+        :password_confirmation
+        RUBY
+      end
+
+      inject_into_file 'config/routes.rb', after: 'namespace :admin do' do <<-RUBY.gsub(/^ {8}/, '')
+
+        root to: 'users#index'
+        RUBY
+      end
     end
 
     def customize_application_js
