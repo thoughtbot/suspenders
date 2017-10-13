@@ -45,6 +45,14 @@ gem 'devise'
 gem 'pretender' # impersonate users as an admin
 gem 'simple_token_authentication', '~> 1.0' # adds token authentication to Devise
 
+# Administrative panel
+gem 'administrate', git: 'https://github.com/thoughtbot/administrate.git'
+gem 'administrate-field-boolean_to_yes_no'
+gem 'administrate-field-carrierwave'
+gem 'administrate-field-collection_select'
+gem 'administrate-field-enum', git: 'https://github.com/headwayio/administrate-field-enum.git'
+gem 'administrate-field-hex_color_picker'
+
 # Database Tweaks
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'dynamic_form' # for custom messages without the database column
