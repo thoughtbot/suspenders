@@ -644,7 +644,7 @@ module Suspenders
 
       run 'rm -f app/views/layouts/foundation_layout.html.slim'
 
-      create_file "app/assets/stylesheets/#{app_name}.sass" do <<-RUBY.gsub(/^ {8}/, '')
+      create_file "app/assets/stylesheets/#{app_name}.scss" do <<-RUBY.gsub(/^ {8}/, '')
         //We can add some default styles here in voyage
 
         //Figure out what foundations visual grid settings are and turn them on here
@@ -652,6 +652,7 @@ module Suspenders
         //$visual-grid-color: #9cf !default;
         //$visual-grid-index: front !default;
         //$visual-grid-opacity: 0.1 !default;
+        .main { margin: 10px 30px; }
         RUBY
       end
 
