@@ -596,7 +596,9 @@ module Suspenders
         email: Field::String,
         roles_mask: Field::Number,
         roles: RolesField,
-        RUBY
+        password: Field::String,
+        password_confirmation: Field::String,
+RUBY
       end
 
       inject_into_file 'app/dashboards/user_dashboard.rb', after: 'COLLECTION_ATTRIBUTES = [' do <<-RUBY.gsub(/^ {8}/, '')
@@ -604,7 +606,7 @@ module Suspenders
         :id,
         :email,
         :roles
-        RUBY
+RUBY
       end
 
       inject_into_file 'app/dashboards/user_dashboard.rb', after: 'SHOW_PAGE_ATTRIBUTES = [' do <<-RUBY.gsub(/^ {8}/, '')
@@ -612,7 +614,7 @@ module Suspenders
         :id,
         :email,
         :roles
-        RUBY
+RUBY
       end
 
       inject_into_file 'app/dashboards/user_dashboard.rb', after: 'FORM_ATTRIBUTES = [' do <<-RUBY.gsub(/^ {8}/, '')
@@ -621,14 +623,20 @@ module Suspenders
         :roles,
         :password,
         :password_confirmation
-        RUBY
+RUBY
       end
 
-      inject_into_file 'config/routes.rb', after: 'namespace :admin do' do <<-RUBY.gsub(/^ {8}/, '')
+      inject_into_file 'config/routes.rb', after: 'namespace :admin do' do <<-RUBY.gsub(/^ {4}/, '')
 
         root to: 'users#index'
         RUBY
       end
+
+      template '../templates/fields/roles_field.rb', 'app/fields/roles_field.rb', force: true
+
+      copy_file '../templates/views/fields/roles_field/_form.html.erb', 'app/views/fields/roles_field/_form.html.erb', force: true
+      copy_file '../templates/views/fields/roles_field/_index.html.erb', 'app/views/fields/roles_field/_index.html.erb', force: true
+      copy_file '../templates/views/fields/roles_field/_show.html.erb', 'app/views/fields/roles_field/_show.html.erb', force: true
     end
 
     def customize_application_js
