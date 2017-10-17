@@ -587,6 +587,12 @@ module Suspenders
       # Setup admin/application_controller
       template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
 
+      setup_user_dashboard
+      setup_roles_field
+      setup_trix_field
+    end
+
+    def setup_user_dashboard
       # Setup admin/users_controller
       template '../templates/admin_users_controller.rb', 'app/controllers/admin/users_controller.rb', force: true
 
@@ -631,13 +637,25 @@ RUBY
         root to: 'users#index'
         RUBY
       end
+    end
 
+    def setup_roles_field
       template '../templates/fields/roles_field.rb', 'app/fields/roles_field.rb', force: true
 
       copy_file '../templates/views/fields/roles_field/_form.html.erb', 'app/views/fields/roles_field/_form.html.erb', force: true
       copy_file '../templates/views/fields/roles_field/_index.html.erb', 'app/views/fields/roles_field/_index.html.erb', force: true
       copy_file '../templates/views/fields/roles_field/_show.html.erb', 'app/views/fields/roles_field/_show.html.erb', force: true
     end
+
+    def setup_trix_field
+      inject_into_file 'Gemfile', after: "gem 'administrate-field-hex_color_picker'" do <<-RUBY.gsub(/^ {8}/, '')
+
+        gem 'administrate-field-trix', git: 'https://github.com/headwayio/administrate-field-trix.git'
+        gem 'trix', '>= 0.11.0'
+        RUBY
+      end
+    end
+
 
     def customize_application_js
       template '../templates/application.js', 'app/assets/javascripts/application.js', force: true
