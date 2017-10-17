@@ -10,7 +10,7 @@ module Suspenders
     end
 
     def accept_defaults
-      if agree?('Would you like to accept all defaults? [slim, devise w/ first & last name] (Y/n)')
+      if agree?('Would you like to accept all defaults? [slim, Administrate, devise w/ first & last name] (Y/n)')
         @@accept_defaults = true
       else
         @@accept_defaults = false
@@ -580,19 +580,21 @@ module Suspenders
     end
 
     def add_administrate
-      generate 'administrate:install'
+      if @@accept_defaults || agree?('Would you like to install Administrate? (Y/n)')
+        generate 'administrate:install'
 
-      template '../templates/concerns_analytics_track.rb', 'app/controllers/concerns/analytics_track.rb', force: true
+        template '../templates/concerns_analytics_track.rb', 'app/controllers/concerns/analytics_track.rb', force: true
 
-      # Setup admin/application_controller
-      template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
+        # Setup admin/application_controller
+        template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
 
-      # Setup administrate helper to allow hiding resources in the menu, and fix sorting parameters
-      template '../templates/helpers/administrate_resources_helper.rb', 'app/helpers/administrate_resources_helper.rb', force: true
-      template '../templates/helpers/admin/application_helper.rb', 'app/helpers/admin/application_helper.rb', force: true
+        # Setup administrate helper to allow hiding resources in the menu, and fix sorting parameters
+        template '../templates/helpers/administrate_resources_helper.rb', 'app/helpers/administrate_resources_helper.rb', force: true
+        template '../templates/helpers/admin/application_helper.rb', 'app/helpers/admin/application_helper.rb', force: true
 
-      setup_user_dashboard
-      setup_roles_field
+        setup_user_dashboard
+        setup_roles_field
+      end
     end
 
     def setup_user_dashboard
