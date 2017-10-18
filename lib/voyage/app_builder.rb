@@ -594,6 +594,9 @@ module Suspenders
 
         setup_user_dashboard
         setup_roles_field
+
+        copy_file '../templates/views/admin/users/_collection.html.erb', 'app/views/admin/users/_collection.html.erb', force: true
+        copy_file '../templates/views/admin/users/index.html.erb', 'app/views/admin/users/index.html.erb', force: true
       end
     end
 
