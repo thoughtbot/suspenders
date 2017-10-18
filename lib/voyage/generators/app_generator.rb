@@ -51,6 +51,7 @@ module Suspenders
       invoke :rake_db_setup
       invoke :configure_rvm_prepend_bin_to_path
       invoke :configure_sidekiq
+      invoke :configure_letter_opener
       invoke :run_rubocop_auto_correct
       invoke :copy_env_to_example
       invoke :add_to_gitignore
@@ -162,6 +163,10 @@ module Suspenders
 
     def configure_sidekiq
       build :configure_sidekiq
+    end
+
+    def configure_letter_opener
+      build :configure_letter_opener
     end
 
     def setup_spring

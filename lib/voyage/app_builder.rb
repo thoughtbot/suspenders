@@ -824,6 +824,12 @@ RUBY
       configure_environment('production', sidekiq_config)
     end
 
+    def configure_letter_opener
+      gsub_file 'config/environments/development.rb',
+        'config.action_mailer.delivery_method = :file',
+        'config.action_mailer.delivery_method = :letter_opener'
+    end
+
     def run_rubocop_auto_correct
       run 'rubocop --auto-correct'
     end
