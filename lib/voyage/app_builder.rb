@@ -10,7 +10,7 @@ module Suspenders
     end
 
     def accept_defaults
-      if agree?('Would you like to accept all defaults? [slim, Administrate, devise w/ first & last name] (Y/n)')
+      if agree?('Would you like to accept all defaults? [slim, devise w/ first & last name] (Y/n)')
         @@accept_defaults = true
       else
         @@accept_defaults = false
@@ -580,24 +580,22 @@ module Suspenders
     end
 
     def add_administrate
-      if @@accept_defaults || agree?('Would you like to install Administrate? (Y/n)')
-        generate 'administrate:install'
+      generate 'administrate:install'
 
-        template '../templates/concerns_analytics_track.rb', 'app/controllers/concerns/analytics_track.rb', force: true
+      template '../templates/concerns_analytics_track.rb', 'app/controllers/concerns/analytics_track.rb', force: true
 
-        # Setup admin/application_controller
-        template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
+      # Setup admin/application_controller
+      template '../templates/admin_application_controller.rb', 'app/controllers/admin/application_controller.rb', force: true
 
-        # Setup administrate helper to allow hiding resources in the menu, and fix sorting parameters
-        template '../templates/helpers/administrate_resources_helper.rb', 'app/helpers/administrate_resources_helper.rb', force: true
-        template '../templates/helpers/admin/application_helper.rb', 'app/helpers/admin/application_helper.rb', force: true
+      # Setup administrate helper to allow hiding resources in the menu, and fix sorting parameters
+      template '../templates/helpers/administrate_resources_helper.rb', 'app/helpers/administrate_resources_helper.rb', force: true
+      template '../templates/helpers/admin/application_helper.rb', 'app/helpers/admin/application_helper.rb', force: true
 
-        setup_user_dashboard
-        setup_roles_field
+      setup_user_dashboard
+      setup_roles_field
 
-        copy_file '../templates/views/admin/users/_collection.html.erb', 'app/views/admin/users/_collection.html.erb', force: true
-        copy_file '../templates/views/admin/users/index.html.erb', 'app/views/admin/users/index.html.erb', force: true
-      end
+      copy_file '../templates/views/admin/users/_collection.html.erb', 'app/views/admin/users/_collection.html.erb', force: true
+      copy_file '../templates/views/admin/users/index.html.erb', 'app/views/admin/users/index.html.erb', force: true
     end
 
     def setup_user_dashboard
@@ -757,17 +755,6 @@ RUBY
       end
 
       template "../templates/rails_helper.rb.erb", "spec/rails_helper.rb", force: true
-
-      # NOTE: (2017-06-04) jon => Comment out for now...this seems to break administrate
-      # %w(test development).each do |environment|
-      #   inject_into_file "config/environments/#{environment}.rb", after: /^end/ do <<-RUBY.gsub(/^ {10}/, '')
-
-      #     # NOTE: console can use create(:factory_name), or build(:factory_name) without
-      #     # needing to use FactoryGirl.create(:factory_name).
-      #     include FactoryGirl::Syntax::Methods
-      #     RUBY
-      #   end
-      # end
     end
 
     def add_rubocop_config
