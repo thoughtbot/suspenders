@@ -830,6 +830,12 @@ RUBY
         'config.action_mailer.delivery_method = :letter_opener'
     end
 
+    def configure_erd
+      bundle_command 'exec rails generate erd:install'
+
+      template '../templates/erdconfig.erb', '.erdconfig', force: true
+    end
+
     def run_rubocop_auto_correct
       run 'rubocop --auto-correct'
     end

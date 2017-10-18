@@ -1,0 +1,13 @@
+attributes:
+  - content
+  - primary_key
+  - foreign_key
+  - inheritance
+filename: <%= app_name %>-erd
+exclude:
+  - ActiveRecord::DataMigration
+  - Delayed::Backend::ActiveRecord::Job
+  - PgSearch::Document
+  - Rpush::Client::ActiveRecord::App
+  - Rpush::Client::ActiveRecord::Apns::Feedback
+  - Rpush::Client::ActiveRecord::Notification
