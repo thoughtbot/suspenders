@@ -4,9 +4,11 @@
       <li class="menu-text">Bon Voyage</li>
       <%% if current_user && true_user.admin? %>
         <%% if current_user != true_user %>
-          <li><%%= link_to 'Stop Impersonating', stop_impersonating_admin_users_path %></li>
+          <li><%%= active_link_to 'Stop Impersonating', stop_impersonating_admin_users_path %></li>
         <%% else %>
-          <li><a href="/admin/users" data-no-turbolink="true">Admin</a></li>
+        <li>
+          <%%= active_link_to 'Admin', '/admin/users', data: { no_turbolink: true } %>
+        </li>
         <%% end %>
       <%% end %>
     </ul>
@@ -16,13 +18,15 @@
       <li>
         <a href="#">Settings</a>
         <ul class="menu vertical">
-          <li><a href="/users/edit">My Profile</a></li>
+          <li>
+            <%%= active_link_to 'My Profile', '/users/edit' %>
+          </li>
         </ul>
       </li>
       <%% if current_user %>
-        <li><%%= link_to 'Sign Out', sign_out_path %></li>
+        <li><%%= active_link_to 'Sign Out', sign_out_path %></li>
       <%% else %>
-        <li><%%= link_to 'Sign In', sign_in_path %></li>
+        <li><%%= active_link_to 'Sign In', sign_in_path %></li>
       <%% end %>
     </ul>
   </div>

@@ -725,6 +725,10 @@ RUBY
         //$visual-grid-index: front !default;
         //$visual-grid-opacity: 0.1 !default;
         .main { margin: 10px 30px; }
+
+        a.active {
+          background-color: rgba(220, 81, 72, 0.3);
+        }
         RUBY
       end
 
