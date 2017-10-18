@@ -32,15 +32,4 @@ if Rails.env.development?
     puts 'Annotating models...'
     system 'bundle exec annotate -p after -i'
   end
-
-  # Run annotate task after db:migrate and db:rollback tasks
-  Rake::Task['db:migrate'].enhance do
-    Rake::Task['annotate'].invoke
-    Rake::Task['db:test:prepare'].invoke
-  end
-
-  Rake::Task['db:rollback'].enhance do
-    Rake::Task['annotate'].invoke
-    Rake::Task['db:test:prepare'].invoke
-  end
 end

@@ -766,7 +766,7 @@ RUBY
     end
 
     def add_auto_annotate_models_rake_task
-      template '../templates/auto_annotate_models.rake', 'lib/tasks/auto_annotate_models.rake', force: true
+      template '../templates/lib/tasks/auto_annotate_models.rake', 'lib/tasks/auto_annotate_models.rake', force: true
     end
 
     def add_favicon
@@ -834,6 +834,9 @@ RUBY
       bundle_command 'exec rails generate erd:install'
 
       template '../templates/erdconfig.erb', '.erdconfig', force: true
+
+      # Configure post-migration and -rollback hooks
+      template '../templates/lib/tasks/post_migrate_hooks.rake', 'lib/tasks/post_migrate_hooks.rake', force: true
     end
 
     def run_rubocop_auto_correct
