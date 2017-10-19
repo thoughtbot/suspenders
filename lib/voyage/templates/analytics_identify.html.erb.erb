@@ -1,0 +1,42 @@
+<%% if current_user %>
+  <%% address = current_user.try(:address) %>
+  <%% address_attrs = {} %>
+  <%% address_attrs.merge!(
+    city: (address.city rescue 'unknown'),
+    country: 'United States',
+    postal_code: (address.zip rescue 'unknown'),
+    state: (address.state.name rescue 'unknown'),
+    street: ("#{address.line1} #{address.line2}" rescue 'unknown'),
+  ) if address.present? %>
+
+  <script type='text/javascript'>
+    $(document).ready(function() {
+      console.log('Identified: 2nd');
+
+      var analytics_attrs = {
+        email:       "<%%= current_user.email %>",
+        first_name:  "<%%= escape_javascript(current_user.first_name) %>",
+        last_name:   "<%%= escape_javascript(current_user.last_name) %>",
+        address:     "<%%= raw controller.send(:sanitize_hash_javascript, address_attrs).to_json %>",
+        created_at:  "<%%= current_user.created_at.iso8601 %>",
+        roles:       "<%%= current_user.roles.map(&:to_s).join(',') %>",
+        rails_env:   "<%%= Rails.env.to_s %>",
+      }
+
+      console.log(analytics_attrs);
+
+      if (typeof analytics != 'undefined') {
+        analytics.identify(
+          "<%%= current_user.uuid %>",
+          analytics_attrs, {
+          integrations: {
+              Intercom : {
+                user_hash: "<%%= OpenSSL::HMAC.hexdigest('sha256', ENV['INTERCOM_SECURE_MODE_SECRET_KEY'].to_s, current_user.uuid.to_s) %>",
+              }
+            }
+          }
+        );
+      }
+    });
+  </script>
+<%% end %>

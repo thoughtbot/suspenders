@@ -1,0 +1,11 @@
+# FYI: Must add the environment variable SECRET_KEY_BASE
+# within the web panel for CircleCI
+
+dependencies:
+  pre:
+    - gem install bundler   # Make sure bundler is included
+    - gem update --system   # Necessary to update gem to work with frozen strings
+
+test:
+  override:
+    - COVERAGE=true RAILS_ENV=test bundle exec rspec -r rspec_junit_formatter --format progress --format RspecJunitFormatter -o $CIRCLE_TEST_REPORTS/rspec/junit.xml

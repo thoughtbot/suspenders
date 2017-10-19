@@ -1,0 +1,12 @@
+<div class="field-unit__label">
+  <%= f.label field.attribute %>
+</div>
+<div class="field-unit__field">
+  <% User::ROLES.each do |role| %>
+    <% checked = field.data.include?(role) %>
+    <%= check_box_tag "user[roles][#{role}]", role, checked, { name: 'user[roles][]', style: 'margin: 0px;' } %>
+    <%= label_tag "user_roles_#{role}", role.to_s.humanize, style: 'display: inline-block; font-weight: normal; margin-right: 10px;' %>
+  <% end %>
+
+  <%= hidden_field_tag 'user[roles][]', '' %>
+</div>

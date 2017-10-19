@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="ROBOTS" content="NOODP" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <%%#
+      Configure default and controller-, and view-specific titles in
+      config/locales/en.yml. For more see:
+      https://github.com/calebthompson/title#usage
+    %>
+    <title><%%= title %></title>
+    <%%= stylesheet_link_tag :application, media: "all" %>
+    <%%= render 'javascript' %>
+    <link rel='apple-touch-icon' href='/assets/apple-touch-icon.png' />
+    <%%= csrf_meta_tags %>
+    <%%= favicon_link_tag 'favicon.ico' %>
+    <%%# Add gon here for gon use inside the compiled js before the page is fully loaded %>
+    <%%= Gon::Base.render_data %>
+  </head>
+  <body class="<%%= devise_controller? ? 'devise' : 'application' %> <%%= body_class %>">
+    <div class='outer-wrapper'>
+      <%%# Add gon here for turbolinks benefit %>
+      <%%= Gon::Base.render_data %>
+      <%%= render 'flashes' -%>
+      <%%= render 'components/navigation' %>
+      <div class='main'>
+        <%%= yield %>
+      </div>
+      <%%= render 'components/footer' %>
+      <%%= render 'css_overrides' %>
+    </div>
+  </body>
+</html>
