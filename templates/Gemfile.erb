@@ -1,5 +1,10 @@
 source "https://rubygems.org"
 
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
+
 ruby "<%= Suspenders::RUBY_VERSION %>"
 
 gem "autoprefixer-rails"
@@ -7,7 +12,6 @@ gem "delayed_job_active_record"
 gem "flutie"
 gem "honeybadger"
 gem "jquery-rails"
-gem "normalize-rails", "~> 3.0.0"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
@@ -20,9 +24,13 @@ gem "sprockets", ">= 3.0.0"
 gem "suspenders"
 gem "title"
 gem "uglifier"
+<% if options[:webpack] %>
+gem "webpacker"
+<% end %>
 
 group :development do
   gem "listen"
+  gem "rack-mini-profiler", require: false
   gem "spring"
   gem "spring-commands-rspec"
   gem "web-console"
@@ -36,16 +44,11 @@ group :development, :test do
   gem "factory_girl_rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.5"
-end
-
-group :development, :staging do
-  gem "rack-mini-profiler", require: false
+  gem "rspec-rails", "~> 3.6"
 end
 
 group :test do
   gem "capybara-webkit"
-  gem "database_cleaner"
   gem "formulaic"
   gem "launchy"
   gem "shoulda-matchers"
@@ -54,6 +57,6 @@ group :test do
   gem "webmock"
 end
 
-group :staging, :production do
+group :production do
   gem "rack-timeout"
 end

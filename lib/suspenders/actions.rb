@@ -14,6 +14,11 @@ module Suspenders
       configure_environment(rails_env, config)
     end
 
+    def action_mailer_asset_host(rails_env, host)
+      config = "config.action_mailer.asset_host = #{host}"
+      configure_environment(rails_env, config)
+    end
+
     def configure_application_file(config)
       inject_into_file(
         "config/application.rb",
@@ -25,7 +30,7 @@ module Suspenders
     def configure_environment(rails_env, config)
       inject_into_file(
         "config/environments/#{rails_env}.rb",
-        "\n\n  #{config}",
+        "\n  #{config}",
         before: "\nend"
       )
     end

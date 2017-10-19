@@ -26,6 +26,7 @@ is used by Headway to get a jump start on a working app.
   s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.version = Voyage::VERSION
 
+  s.add_dependency 'bitters', '~> 1.7'
   s.add_dependency 'bundler', '~> 1.3'
   s.add_dependency 'rails', Voyage::RAILS_VERSION
 

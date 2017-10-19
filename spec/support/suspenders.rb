@@ -17,6 +17,12 @@ module SuspendersTestHelpers
         `
           #{suspenders_bin} #{APP_NAME} #{arguments}
         `
+        Dir.chdir(APP_NAME) do
+          with_env("HOME", tmp_path) do
+            `git add .`
+            `git commit -m 'Initial commit'`
+          end
+        end
       end
     end
   end
@@ -45,7 +51,7 @@ module SuspendersTestHelpers
     if File.exist?(project_path)
       Dir.chdir(project_path) do
         Bundler.with_clean_env do
-          `rake db:drop`
+          `rails db:drop`
         end
       end
     end
@@ -79,5 +85,15 @@ module SuspendersTestHelpers
 
   def root_path
     File.expand_path('../../../', __FILE__)
+  end
+
+  def with_env(name, new_value)
+    prior = ENV[name]
+    ENV[name] = new_value.to_s
+
+    yield
+
+  ensure
+    ENV[name] = prior
   end
 end

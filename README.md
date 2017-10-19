@@ -87,7 +87,7 @@ And testing gems like:
 * [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
 * [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
   RSpec matchers
-* [Timecop](https://github.com/ferndopolis/timecop-console) for testing time
+* [Timecop](https://github.com/travisjeffery/timecop) for testing time
 
 ## Other goodies
 
@@ -127,7 +127,7 @@ This:
 
 * Creates a staging and production Heroku app
 * Sets them as `staging` and `production` Git remotes
-* Configures staging with `RACK_ENV` environment variable set
+* Configures staging with `HONEYBADGER_ENV` environment variable set
   to `staging`
 * Creates a [Heroku Pipeline] for review apps
 * Schedules automated backups for 10AM UTC for both `staging` and `production`

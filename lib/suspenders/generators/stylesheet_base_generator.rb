@@ -7,8 +7,8 @@ module Suspenders
       File.dirname(__FILE__))
 
     def add_stylesheet_gems
-      gem "bourbon", "~> 5.0.0.beta.7"
-      gem "neat", "~> 2.0.0.beta.1"
+      gem "bourbon", "~> 5.0.0.beta.8"
+      gem "neat", "~> 2.1"
       gem "refills", group: [:development, :test]
       Bundler.with_clean_env { run "bundle install" }
     end
@@ -32,6 +32,10 @@ module Suspenders
 
     def install_bitters
       run "bitters install --path app/assets/stylesheets"
+    end
+
+    def install_normalize_css
+      run "bin/yarn add normalize.css"
     end
   end
 end

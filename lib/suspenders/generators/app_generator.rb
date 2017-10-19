@@ -29,6 +29,12 @@ module Suspenders
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
+    class_option :skip_system_test,
+                 type: :boolean, default: true, desc: "Skip system test files"
+
+    class_option :skip_turbolinks,
+                 type: :boolean, default: true, desc: "Skip turbolinks gem"
+
     def finish_template
       invoke :suspenders_customization
       super
@@ -47,7 +53,6 @@ module Suspenders
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
       invoke :setup_dotfiles
-      invoke :setup_git
       invoke :setup_database
       invoke :create_local_heroku_setup
       invoke :create_heroku_apps
@@ -56,6 +61,7 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
+      invoke :setup_default_directories
       invoke :outro
     end
 
@@ -80,7 +86,6 @@ module Suspenders
       say 'Setting up the development environment'
       build :raise_on_missing_assets_in_test
       build :raise_on_delivery_errors
-      build :remove_turbolinks
       build :set_test_delivery_method
       build :add_bullet_gem_configuration
       build :raise_on_unpermitted_parameters
@@ -99,7 +104,6 @@ module Suspenders
       build :generate_rspec
       build :configure_rspec
       build :configure_background_jobs_for_rspec
-      build :enable_database_cleaner
       build :provide_shoulda_matchers_config
       build :configure_spec_support_features
       build :configure_ci
@@ -142,14 +146,6 @@ module Suspenders
       build :setup_rack_mini_profiler
     end
 
-    def setup_git
-      if !options[:skip_git]
-        say "Initializing git"
-        invoke :setup_default_directories
-        invoke :init_git
-      end
-    end
-
     def create_local_heroku_setup
       say "Creating local Heroku setup"
       build :create_review_apps_setup_script
@@ -164,6 +160,7 @@ module Suspenders
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_heroku_application_host
+        build :set_heroku_honeybadger_env
         build :set_heroku_backup_schedule
         build :create_heroku_pipeline
         build :configure_automatic_deployment
@@ -200,10 +197,6 @@ module Suspenders
       build :setup_spring
     end
 
-    def init_git
-      build :init_git
-    end
-
     def copy_miscellaneous_files
       say 'Copying miscellaneous support files'
       build :copy_miscellaneous_files
@@ -224,6 +217,8 @@ module Suspenders
 
     def generate_default
       run("spring stop")
+      generate("suspenders:initialize_active_job")
+      generate("suspenders:enforce_ssl")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
     end
