@@ -80,7 +80,7 @@ And testing gems like:
 * [Capybara](https://github.com/jnicklas/capybara) and
   [Capybara WebKit](https://github.com/thoughtbot/capybara-webkit) for
   integration testing
-* [Factory Girl](https://github.com/thoughtbot/factory_girl) for test data
+* [Factory Bot](https://github.com/thoughtbot/factory_bot) for test data
 * [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
   HTML forms
 * [RSpec](https://github.com/rspec/rspec) for unit testing

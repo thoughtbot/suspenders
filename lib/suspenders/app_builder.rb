@@ -115,8 +115,8 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def set_up_factory_girl_for_rspec
-      copy_file 'factory_girl_rspec.rb', 'spec/support/factory_girl.rb'
+    def set_up_factory_bot_for_rspec
+      copy_file 'factory_bot_rspec.rb', 'spec/support/factory_bot.rb'
     end
 
     def generate_factories_file

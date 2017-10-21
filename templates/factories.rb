@@ -1,2 +1,2 @@
-FactoryGirl.define do
+FactoryBot.define do
 end

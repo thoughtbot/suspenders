@@ -98,7 +98,7 @@ module Suspenders
 
     def setup_test_environment
       say 'Setting up the test environment'
-      build :set_up_factory_girl_for_rspec
+      build :set_up_factory_bot_for_rspec
       build :generate_factories_file
       build :set_up_hound
       build :generate_rspec
