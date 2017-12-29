@@ -52,3 +52,11 @@ We may suggest changes.
 
 To update the Ruby version,
 change `.ruby-version` and `.travis.yml`.
+
+If you see this error while running tests:
+
+```
+Your Ruby version is XXX, but your Gemfile specified YYY (Bundler::RubyVersionMismatch)
+```
+
+Try removing the `tmp/` directory and re-running the tests.
