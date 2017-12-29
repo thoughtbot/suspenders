@@ -4,6 +4,7 @@ require "suspenders/generators/enforce_ssl_generator"
 require "suspenders/generators/initialize_active_job_generator"
 require 'suspenders/generators/static_generator'
 require 'suspenders/generators/stylesheet_base_generator'
+require 'suspenders/generators/ci_generator'
 require 'suspenders/actions'
 require "suspenders/adapters/heroku"
 require 'suspenders/app_builder'

@@ -54,14 +54,14 @@ module Suspenders
       invoke :remove_routes_comment_lines
       invoke :setup_dotfiles
       invoke :setup_database
-      invoke :create_local_heroku_setup
-      invoke :create_heroku_apps
       invoke :create_github_repo
       invoke :setup_segment
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
       invoke :setup_default_directories
+      invoke :create_local_heroku_setup
+      invoke :create_heroku_apps
       invoke :outro
     end
 
@@ -221,6 +221,7 @@ module Suspenders
       generate("suspenders:enforce_ssl")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
+      generate("suspenders:ci")
     end
 
     def outro
