@@ -222,6 +222,7 @@ module Suspenders
       generate("suspenders:db_optimizations")
       generate("suspenders:factories")
       generate("suspenders:lint")
+      generate("suspenders:ci")
     end
 
     def outro
