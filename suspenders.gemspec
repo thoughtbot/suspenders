@@ -5,6 +5,7 @@ require 'date'
 
 Gem::Specification.new do |s|
   s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
+  s.required_rubygems_version = ">= 2.7.4"
   s.authors = ['thoughtbot']
   s.date = Date.today.strftime('%Y-%m-%d')
 
@@ -28,7 +29,6 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.version = Suspenders::VERSION
 
   s.add_dependency 'bitters', '~> 1.7'
-  s.add_dependency 'bundler', '~> 1.3'
   s.add_dependency 'rails', Suspenders::RAILS_VERSION
 
   s.add_development_dependency 'rspec', '~> 3.2'
