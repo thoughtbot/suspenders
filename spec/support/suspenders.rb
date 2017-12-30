@@ -14,9 +14,11 @@ module SuspendersTestHelpers
     Dir.chdir(tmp_path) do
       Bundler.with_clean_env do
         add_fakes_to_path
-        `
-          #{suspenders_bin} #{APP_NAME} #{arguments}
-        `
+        with_revision_for_honeybadger do
+          `
+            #{suspenders_bin} #{APP_NAME} #{arguments}
+          `
+        end
         Dir.chdir(APP_NAME) do
           with_env("HOME", tmp_path) do
             `git add .`
@@ -88,12 +90,23 @@ module SuspendersTestHelpers
   end
 
   def with_env(name, new_value)
+    had_key = ENV.has_key?(name)
     prior = ENV[name]
     ENV[name] = new_value.to_s
 
     yield
 
   ensure
-    ENV[name] = prior
+    ENV.delete(name)
+
+    if had_key
+      ENV[name] = prior
+    end
+  end
+
+  def with_revision_for_honeybadger
+    with_env("HEROKU_SLUG_COMMIT", 1) do
+      yield
+    end
   end
 end
