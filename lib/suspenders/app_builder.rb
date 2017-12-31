@@ -288,10 +288,6 @@ Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
       append_file "config/environments/production.rb", rack_timeout_config
     end
 
-    def configure_simple_form
-      bundle_command "exec rails generate simple_form:install"
-    end
-
     def configure_action_mailer
       action_mailer_host "development", %{"localhost:3000"}
       action_mailer_asset_host "development", %{"http://localhost:3000"}
