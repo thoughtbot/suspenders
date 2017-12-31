@@ -94,14 +94,6 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def set_up_factory_bot_for_rspec
-      copy_file 'factory_bot_rspec.rb', 'spec/support/factory_bot.rb'
-    end
-
-    def generate_factories_file
-      copy_file "factories.rb", "spec/factories.rb"
-    end
-
     def configure_smtp
       copy_file 'smtp.rb', 'config/smtp.rb'
 
