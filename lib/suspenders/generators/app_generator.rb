@@ -223,6 +223,7 @@ module Suspenders
       generate("suspenders:factories")
       generate("suspenders:lint")
       generate("suspenders:ci")
+      generate("suspenders:forms")
     end
 
     def outro
