@@ -224,6 +224,7 @@ module Suspenders
       generate("suspenders:lint")
       generate("suspenders:ci")
       generate("suspenders:forms")
+      generate("suspenders:db_optimizations")
     end
 
     def outro
