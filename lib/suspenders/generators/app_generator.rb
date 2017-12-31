@@ -88,7 +88,6 @@ module Suspenders
       build :set_test_delivery_method
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
-      build :provide_dev_prime_task
       build :configure_generators
       build :configure_i18n_for_missing_translations
       build :configure_quiet_assets
@@ -96,8 +95,6 @@ module Suspenders
 
     def setup_test_environment
       say 'Setting up the test environment'
-      build :set_up_factory_bot_for_rspec
-      build :generate_factories_file
       build :set_up_hound
       build :generate_rspec
       build :configure_rspec
@@ -222,6 +219,7 @@ module Suspenders
       generate("suspenders:ci")
       generate("suspenders:forms")
       generate("suspenders:db_optimizations")
+      generate("suspenders:factories")
     end
 
     def outro
