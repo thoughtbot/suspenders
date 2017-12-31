@@ -86,7 +86,6 @@ module Suspenders
       build :raise_on_missing_assets_in_test
       build :raise_on_delivery_errors
       build :set_test_delivery_method
-      build :add_bullet_gem_configuration
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
       build :provide_dev_prime_task
@@ -222,6 +221,7 @@ module Suspenders
       generate("suspenders:stylesheet_base")
       generate("suspenders:ci")
       generate("suspenders:forms")
+      generate("suspenders:db_optimizations")
     end
 
     def outro

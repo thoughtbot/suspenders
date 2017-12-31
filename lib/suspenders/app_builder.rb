@@ -55,23 +55,6 @@ module Suspenders
       )
     end
 
-    def add_bullet_gem_configuration
-      config = <<-RUBY
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.bullet_logger = true
-    Bullet.rails_logger = true
-  end
-
-      RUBY
-
-      inject_into_file(
-        "config/environments/development.rb",
-        config,
-        after: "config.action_mailer.raise_delivery_errors = true\n",
-      )
-    end
-
     def raise_on_unpermitted_parameters
       config = <<-RUBY
     config.action_controller.action_on_unpermitted_parameters = :raise
