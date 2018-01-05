@@ -7,7 +7,7 @@ module Suspenders
       File.dirname(__FILE__))
 
     def add_stylesheet_gems
-      gem "bourbon", "~> 5.0.0.beta.8"
+      gem "bourbon", "~> 5.0"
       gem "neat", "~> 2.1"
       gem "refills", group: [:development, :test]
       Bundler.with_clean_env { run "bundle install" }
