@@ -332,11 +332,6 @@ you can deploy to staging and production with:
       run "hub create #{repo_name}"
     end
 
-    def setup_segment
-      copy_file '_analytics.html.erb',
-        'app/views/application/_analytics.html.erb'
-    end
-
     def setup_bundler_audit
       copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
       append_file "Rakefile", %{\ntask default: "bundle:audit"\n}
