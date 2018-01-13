@@ -43,7 +43,6 @@ module Suspenders
     def suspenders_customization
       invoke :customize_gemfile
       invoke :setup_development_environment
-      invoke :setup_test_environment
       invoke :setup_production_environment
       invoke :setup_secret_token
       invoke :configure_app
@@ -89,16 +88,6 @@ module Suspenders
       build :configure_generators
       build :configure_i18n_for_missing_translations
       build :configure_quiet_assets
-    end
-
-    def setup_test_environment
-      say 'Setting up the test environment'
-      build :generate_rspec
-      build :configure_rspec
-      build :provide_shoulda_matchers_config
-      build :configure_spec_support_features
-      build :configure_i18n_for_test_environment
-      build :configure_action_mailer_in_specs
     end
 
     def setup_production_environment
@@ -194,6 +183,7 @@ module Suspenders
       generate("suspenders:enforce_ssl")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
+      generate("suspenders:testing")
       generate("suspenders:ci")
       generate("suspenders:js_driver")
       generate("suspenders:forms")
