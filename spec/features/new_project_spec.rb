@@ -201,6 +201,14 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
+  it "configs background jobs for rspec" do
+    delayed_job = IO.read("#{project_path}/bin/delayed_job")
+
+    expect(delayed_job).to match(
+      /^require 'delayed\/command'$/,
+    )
+  end
+
   it "configs bullet gem in development" do
     expect(development_config).to match /^ +Bullet.enable = true$/
     expect(development_config).to match /^ +Bullet.bullet_logger = true$/
