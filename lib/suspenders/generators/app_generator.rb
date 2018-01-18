@@ -103,7 +103,6 @@ module Suspenders
       build :configure_ci
       build :configure_i18n_for_test_environment
       build :configure_action_mailer_in_specs
-      build :configure_capybara_webkit
     end
 
     def setup_production_environment
@@ -220,6 +219,7 @@ module Suspenders
       generate("suspenders:db_optimizations")
       generate("suspenders:factories")
       generate("suspenders:lint")
+      generate("suspenders:capybara")
     end
 
     def outro

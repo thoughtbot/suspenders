@@ -238,10 +238,6 @@ config.public_file_server.headers = {
       copy_file 'action_mailer.rb', 'spec/support/action_mailer.rb'
     end
 
-    def configure_capybara_webkit
-      copy_file "capybara_webkit.rb", "spec/support/capybara_webkit.rb"
-    end
-
     def configure_time_formats
       remove_file "config/locales/en.yml"
       template "config_locales_en.yml.erb", "config/locales/en.yml"
