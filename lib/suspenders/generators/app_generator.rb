@@ -97,7 +97,6 @@ module Suspenders
       say 'Setting up the test environment'
       build :generate_rspec
       build :configure_rspec
-      build :configure_background_jobs_for_rspec
       build :provide_shoulda_matchers_config
       build :configure_spec_support_features
       build :configure_ci
@@ -132,7 +131,6 @@ module Suspenders
     def configure_app
       say 'Configuring app'
       build :configure_action_mailer
-      build :configure_active_job
       build :configure_time_formats
       build :setup_default_rake_task
       build :replace_default_puma_configuration
@@ -211,7 +209,6 @@ module Suspenders
 
     def generate_default
       run("spring stop")
-      generate("suspenders:initialize_active_job")
       generate("suspenders:enforce_ssl")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
@@ -220,6 +217,7 @@ module Suspenders
       generate("suspenders:db_optimizations")
       generate("suspenders:factories")
       generate("suspenders:lint")
+      generate("suspenders:jobs")
     end
 
     def outro
