@@ -2,8 +2,6 @@
 
 <%= yield :javascript %>
 
-<%= render "analytics" %>
-
 <% if Rails.env.test? %>
   <%= javascript_tag do %>
     $.fx.off = true;
