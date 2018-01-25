@@ -30,7 +30,6 @@ group :development do
   gem "listen"
   gem "rack-mini-profiler", require: false
   gem "spring"
-  gem "spring-commands-rspec"
   gem "web-console"
 end
 
@@ -40,13 +39,11 @@ group :development, :test do
   gem "dotenv-rails"
   gem "pry-byebug"
   gem "pry-rails"
-  gem "rspec-rails", "~> 3.6"
 end
 
 group :test do
   gem "formulaic"
   gem "launchy"
-  gem "shoulda-matchers"
   gem "simplecov", require: false
   gem "timecop"
   gem "webmock"
