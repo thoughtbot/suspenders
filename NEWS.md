@@ -1,4 +1,22 @@
-* Update bourbon from 5.0.0.beta.8 to 5.0.0
+1.46.0 (January 26, 2018)
+
+* Bug fix: Fix for action mailer asset_host
+* Bug fix: Lock pg to ~> 0.18
+* Breaking: Remove Database Cleaner
+* Upgrade: Update to Rails 5.1.4
+* Upgrade: Update to Ruby 2.5.0
+* Upgrade: Update bourbon from 5.0.0.beta.8 to 5.0.0
+* Upgrade: Update FactoryGirl to FactoryBot
+* Generators: Analytics generator
+* Generators: CI generator
+* Generators: DB optimization generator
+* Generators: Factories generator
+* Generators: Forms generator
+* Generators: Javascript driver generator
+* Generators: Jobs generator
+* Generators: Lint generator
+* Generators: Testing driver generator
+* Generators: Views generator
 
 1.45.0 (September 8, 2017)
 
