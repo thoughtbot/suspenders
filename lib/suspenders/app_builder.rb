@@ -94,20 +94,8 @@ module Suspenders
       inject_into_class 'config/application.rb', 'Application', config
     end
 
-    def configure_smtp
-      copy_file 'smtp.rb', 'config/smtp.rb'
-
-      prepend_file 'config/environments/production.rb',
-        %{require Rails.root.join("config/smtp")\n}
-
-      config = <<-RUBY
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = SMTP_SETTINGS
-      RUBY
-
-      inject_into_file 'config/environments/production.rb', config,
-        after: "config.action_mailer.raise_delivery_errors = false"
+    def configure_local_mail
+      copy_file "email.rb", "config/initializers/email.rb"
     end
 
     def enable_rack_canonical_host

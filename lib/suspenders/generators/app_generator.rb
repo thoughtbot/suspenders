@@ -80,6 +80,7 @@ module Suspenders
 
     def setup_development_environment
       say 'Setting up the development environment'
+      build :configure_local_mail
       build :raise_on_missing_assets_in_test
       build :raise_on_delivery_errors
       build :set_test_delivery_method
@@ -92,7 +93,6 @@ module Suspenders
 
     def setup_production_environment
       say 'Setting up the production environment'
-      build :configure_smtp
       build :configure_rack_timeout
       build :enable_rack_canonical_host
       build :enable_rack_deflater
@@ -193,6 +193,7 @@ module Suspenders
       generate("suspenders:jobs")
       generate("suspenders:analytics")
       generate("suspenders:views")
+      generate("suspenders:production:email")
     end
 
     def outro

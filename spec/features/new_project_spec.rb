@@ -178,10 +178,12 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(production_config).not_to match(/"HOST"/)
   end
 
-  it "configures email interceptor in smtp config" do
-    smtp_file = IO.read("#{project_path}/config/smtp.rb")
-    expect(smtp_file).
-      to match(/RecipientInterceptor.new\(ENV\["EMAIL_RECIPIENTS"\]\)/)
+  it "configures email interceptor" do
+    email_file = File.join(project_path, "config", "initializers", "email.rb")
+    email_config = IO.read(email_file)
+
+    expect(email_config).
+      to include(%{RecipientInterceptor.new(ENV["EMAIL_RECIPIENTS"])})
   end
 
   it "configures language in html element" do
