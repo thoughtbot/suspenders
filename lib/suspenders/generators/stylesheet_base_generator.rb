@@ -9,7 +9,6 @@ module Suspenders
     def add_stylesheet_gems
       gem "bourbon", "~> 5.0"
       gem "neat", "~> 2.1"
-      gem "refills", group: [:development, :test]
       Bundler.with_clean_env { run "bundle install" }
     end
 
@@ -23,11 +22,6 @@ module Suspenders
 
     def remove_prior_config
       remove_file "app/assets/stylesheets/application.css"
-    end
-
-    def install_refills
-      generate "refills:import", "flashes"
-      remove_dir "app/views/refills"
     end
 
     def install_bitters

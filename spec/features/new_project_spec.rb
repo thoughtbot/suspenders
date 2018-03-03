@@ -288,21 +288,17 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(gemfile).to match(/high_voltage/)
   end
 
-  it "adds and configures bourbon, neat, and refills" do
+  it "adds and configures bourbon and neat" do
     gemfile = read_project_file("Gemfile")
 
     expect(gemfile).to match(/bourbon/)
     expect(gemfile).to match(/neat/)
-    expect(gemfile).to match(/refills/)
   end
 
-  it "configures bourbon, neat, and refills" do
-    flashes_path = %w(app assets stylesheets refills _flashes.scss)
-    expect(read_project_file(flashes_path)).to match(/\$flashes/m)
-
+  it "configures bourbon, neat, and bitters" do
     app_css = read_project_file(%w(app assets stylesheets application.scss))
     expect(app_css).to match(
-      /normalize\.css\/normalize.*bourbon.*neat.*base.*refills/m,
+      /normalize\.css\/normalize.*bourbon.*neat.*base/m,
     )
   end
 

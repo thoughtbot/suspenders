@@ -50,8 +50,6 @@ It includes application gems like:
   taking too long
 * [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
   avoid accidentally sending emails to real people from staging
-* [Refills](https://github.com/thoughtbot/refills) for “copy-paste” components
-  and patterns based on Bourbon, Neat and Bitters
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup
   and style
 * [Skylight](https://www.skylight.io/) for monitoring performance
