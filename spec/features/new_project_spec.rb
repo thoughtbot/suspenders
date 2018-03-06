@@ -300,7 +300,7 @@ RSpec.describe "Suspend a new project with default configuration" do
 
     app_css = read_project_file(%w(app assets stylesheets application.scss))
     expect(app_css).to match(
-      /normalize\.css\/normalize\.css.*bourbon.*neat.*base.*refills/m,
+      /normalize\.css\/normalize.*bourbon.*neat.*base.*refills/m,
     )
   end
 
