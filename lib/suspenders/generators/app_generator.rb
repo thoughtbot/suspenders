@@ -180,7 +180,6 @@ module Suspenders
 
     def generate_default
       run("spring stop")
-      generate("suspenders:enforce_ssl")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
       generate("suspenders:testing")
@@ -193,6 +192,7 @@ module Suspenders
       generate("suspenders:jobs")
       generate("suspenders:analytics")
       generate("suspenders:views")
+      generate("suspenders:production:force_tls")
       generate("suspenders:production:email")
     end
 

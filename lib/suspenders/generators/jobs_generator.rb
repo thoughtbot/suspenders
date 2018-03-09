@@ -1,4 +1,5 @@
 require "rails/generators"
+require_relative "../actions"
 
 module Suspenders
   class JobsGenerator < Rails::Generators::Base

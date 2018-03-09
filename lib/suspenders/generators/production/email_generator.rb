@@ -4,7 +4,7 @@ module Suspenders
   module Production
     class EmailGenerator < Rails::Generators::Base
       source_root File.expand_path(
-        File.join("..", "..", "..", "templates"),
+        File.join("..", "..", "..", "..", "templates"),
         File.dirname(__FILE__),
       )
 
@@ -12,7 +12,7 @@ module Suspenders
         copy_file "smtp.rb", "config/smtp.rb"
 
         prepend_file "config/environments/production.rb",
-          %{require Rails.root.join("config/smtp")\n\n}
+          %{require Rails.root.join("config/smtp")\n}
       end
 
       def use_smtp
