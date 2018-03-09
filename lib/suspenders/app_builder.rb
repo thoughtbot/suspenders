@@ -178,14 +178,6 @@ config.public_file_server.headers = {
       template "config_locales_en.yml.erb", "config/locales/en.yml"
     end
 
-    def configure_rack_timeout
-      rack_timeout_config = <<-RUBY
-Rack::Timeout.timeout = (ENV["RACK_TIMEOUT"] || 10).to_i
-      RUBY
-
-      append_file "config/environments/production.rb", rack_timeout_config
-    end
-
     def configure_action_mailer
       action_mailer_host "development", %{"localhost:3000"}
       action_mailer_asset_host "development", %{"http://localhost:3000"}
