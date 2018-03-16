@@ -11,52 +11,81 @@ module SuspendersTestHelpers
 
   def run_suspenders(arguments = nil)
     arguments = "--path=#{root_path} #{arguments}"
-    Dir.chdir(tmp_path) do
-      Bundler.with_clean_env do
-        add_fakes_to_path
-        with_revision_for_honeybadger do
-          `
-            #{suspenders_bin} #{APP_NAME} #{arguments}
-          `
+    run_in_tmp do
+      add_fakes_to_path
+
+      with_revision_for_honeybadger do
+        `#{suspenders_bin} #{APP_NAME} #{arguments}`
+      end
+
+      Dir.chdir(APP_NAME) do
+        with_env("HOME", tmp_path) do
+          `git add .`
+          `git commit -m 'Initial commit'`
         end
-        Dir.chdir(APP_NAME) do
-          with_env("HOME", tmp_path) do
-            `git add .`
-            `git commit -m 'Initial commit'`
-          end
+      end
+    end
+  end
+
+  def with_app
+    drop_dummy_database
+    remove_project_directory
+    rails_new
+    setup_app_dependencies
+
+    yield
+  end
+
+  def rails_new
+    run_in_tmp do
+      add_fakes_to_path
+
+      with_revision_for_honeybadger do
+        `#{system_rails_bin} new #{APP_NAME}`
+      end
+
+      Dir.chdir(APP_NAME) do
+        File.open("Gemfile", "a") do |file|
+          file.puts %{gem "suspenders", path: #{root_path.inspect}}
         end
+
+        with_env("HOME", tmp_path) do
+          `git add .`
+          `git commit -m 'Initial commit'`
+        end
+      end
+    end
+  end
+
+  def generate(generator)
+    run_in_project do
+      with_revision_for_honeybadger do
+        `bin/spring stop`
+        `#{project_rails_bin} generate #{generator}`
       end
     end
   end
 
   def suspenders_help_command
-    Dir.chdir(tmp_path) do
-      Bundler.with_clean_env do
-        `
-          #{suspenders_bin} -h
-        `
-      end
+    run_in_tmp do
+      `#{suspenders_bin} -h`
     end
   end
 
   def setup_app_dependencies
-    if File.exist?(project_path)
-      Dir.chdir(project_path) do
-        Bundler.with_clean_env do
-          `bundle check || bundle install`
-        end
-      end
+    run_in_project do
+      `bundle check || bundle install`
     end
+  rescue Errno::ENOENT
+    # The project_path might not exist, in which case we can skip this.
   end
 
   def drop_dummy_database
-    if File.exist?(project_path)
-      Dir.chdir(project_path) do
-        Bundler.with_clean_env do
-          `rails db:drop`
-        end
-      end
+    run_in_project do
+      `#{project_rails_bin} db:drop 2>&1`
     end
+  rescue Errno::ENOENT
+    # The project_path might not exist, in which case we can skip this.
   end
 
   def add_fakes_to_path
@@ -79,6 +108,14 @@ module SuspendersTestHelpers
 
   def suspenders_bin
     File.join(root_path, 'bin', 'suspenders')
+  end
+
+  def system_rails_bin
+    "rails"
+  end
+
+  def project_rails_bin
+    "bin/rails"
   end
 
   def support_bin
@@ -107,6 +144,22 @@ module SuspendersTestHelpers
   def with_revision_for_honeybadger
     with_env("HEROKU_SLUG_COMMIT", 1) do
       yield
+    end
+  end
+
+  def run_in_tmp
+    Dir.chdir(tmp_path) do
+      Bundler.with_clean_env do
+        yield
+      end
+    end
+  end
+
+  def run_in_project
+    Dir.chdir(project_path) do
+      Bundler.with_clean_env do
+        yield
+      end
     end
   end
 end
