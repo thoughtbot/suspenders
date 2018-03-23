@@ -19,7 +19,6 @@ gem "recipient_interceptor"
 gem "sass-rails", "~> 5.0"
 gem "skylight"
 gem "sprockets", ">= 3.0.0"
-gem "suspenders"
 gem "title"
 gem "uglifier"
 <% if options[:webpack] %>
@@ -48,3 +47,5 @@ group :test do
   gem "timecop"
   gem "webmock"
 end
+
+gem "suspenders", group: [:development, :test]
