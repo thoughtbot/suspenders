@@ -59,6 +59,7 @@ module Suspenders
       invoke :setup_default_directories
       invoke :create_local_heroku_setup
       invoke :create_heroku_apps
+      invoke :generate_production_default
       invoke :outro
     end
 
@@ -192,6 +193,9 @@ module Suspenders
       generate("suspenders:jobs")
       generate("suspenders:analytics")
       generate("suspenders:views")
+    end
+
+    def generate_production_default
       generate("suspenders:production:force_tls")
       generate("suspenders:production:email")
       generate("suspenders:production:timeout")
