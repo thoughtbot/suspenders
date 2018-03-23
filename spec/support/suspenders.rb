@@ -15,13 +15,13 @@ module SuspendersTestHelpers
       add_fakes_to_path
 
       with_revision_for_honeybadger do
-        `#{suspenders_bin} #{APP_NAME} #{arguments}`
+        debug `#{suspenders_bin} #{APP_NAME} #{arguments}`
       end
 
       Dir.chdir(APP_NAME) do
         with_env("HOME", tmp_path) do
-          `git add .`
-          `git commit -m 'Initial commit'`
+          debug `git add .`
+          debug `git commit -m 'Initial commit'`
         end
       end
     end
@@ -41,7 +41,7 @@ module SuspendersTestHelpers
       add_fakes_to_path
 
       with_revision_for_honeybadger do
-        `#{system_rails_bin} new #{APP_NAME}`
+        debug `#{system_rails_bin} new #{APP_NAME}`
       end
 
       Dir.chdir(APP_NAME) do
@@ -50,8 +50,8 @@ module SuspendersTestHelpers
         end
 
         with_env("HOME", tmp_path) do
-          `git add .`
-          `git commit -m 'Initial commit'`
+          debug `git add .`
+          debug `git commit -m 'Initial commit'`
         end
       end
     end
@@ -60,21 +60,21 @@ module SuspendersTestHelpers
   def generate(generator)
     run_in_project do
       with_revision_for_honeybadger do
-        `bin/spring stop`
-        `#{project_rails_bin} generate #{generator}`
+        debug `bin/spring stop`
+        debug `#{project_rails_bin} generate #{generator}`
       end
     end
   end
 
   def suspenders_help_command
     run_in_tmp do
-      `#{suspenders_bin} -h`
+      debug `#{suspenders_bin} -h`
     end
   end
 
   def setup_app_dependencies
     run_in_project do
-      `bundle check || bundle install`
+      debug `bundle check || bundle install`
     end
   rescue Errno::ENOENT
     # The project_path might not exist, in which case we can skip this.
@@ -82,7 +82,7 @@ module SuspendersTestHelpers
 
   def drop_dummy_database
     run_in_project do
-      `#{project_rails_bin} db:drop 2>&1`
+      debug `#{project_rails_bin} db:drop 2>&1`
     end
   rescue Errno::ENOENT
     # The project_path might not exist, in which case we can skip this.
@@ -161,5 +161,13 @@ module SuspendersTestHelpers
         yield
       end
     end
+  end
+
+  def debug(output)
+    if ENV["DEBUG"]
+      warn output
+    end
+
+    output
   end
 end
