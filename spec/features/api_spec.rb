@@ -11,7 +11,7 @@ RSpec.describe "Suspend a new project with --api flag" do
 
     Dir.chdir(project_path) do
       Bundler.with_clean_env do
-        expect(`rake`).to include('0 failures')
+        expect(`rake`).to include("0 failures")
       end
     end
   end
