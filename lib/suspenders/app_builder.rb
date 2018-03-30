@@ -243,7 +243,7 @@ you can deploy to staging and production with:
 
     def configure_automatic_deployment
       deploy_command = <<-EOS
-      release: bundle exec rails db:migrate
+release: bundle exec rails db:migrate
       EOS
 
       append_file "Procfile", deploy_command
