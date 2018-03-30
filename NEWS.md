@@ -1,3 +1,7 @@
+* Upgrade: Update to Ruby 2.5.1
+* Upgrade: Update to Rails 5.1.6
+
+
 1.46.0 (January 26, 2018)
 
 * Bug fix: Fix for action mailer asset_host
