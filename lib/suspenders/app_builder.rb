@@ -242,11 +242,7 @@ you can deploy to staging and production with:
     end
 
     def configure_automatic_deployment
-      deploy_command = <<-RELEASE
-release: bundle exec rails db:migrate
-      RELEASE
-
-      append_file "Procfile", deploy_command
+      append_file "Procfile", "release: bundle exec rails db:migrate"
     end
 
     def create_github_repo(repo_name)
