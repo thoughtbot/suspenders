@@ -242,15 +242,11 @@ you can deploy to staging and production with:
     end
 
     def configure_automatic_deployment
-      deploy_command = <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
-      YML
+      deploy_command = <<-EOS
+      release: bundle exec rails db:migrate
+      EOS
 
-      append_file "circle.yml", deploy_command
+      append_file "Procfile", deploy_command
     end
 
     def create_github_repo(repo_name)

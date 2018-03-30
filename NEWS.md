@@ -1,6 +1,7 @@
+* Automatically db:migrate on Heroku releases
+* Don't override CircleCI deploys
 * Upgrade: Update to Ruby 2.5.1
 * Upgrade: Update to Rails 5.1.6
-
 
 1.46.0 (January 26, 2018)
 
