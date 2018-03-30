@@ -39,9 +39,9 @@ RSpec.describe "Heroku" do
 
       procfile = IO.read("#{project_path}/Procfile")
 
-      expect(procfile).to include <<-EOS
-      release: bundle exec rails db:migrate
-      EOS
+      expect(procfile).to include <<-RELEASE
+release: bundle exec rails db:migrate
+      RELEASE
     end
   end
 
