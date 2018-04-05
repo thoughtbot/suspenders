@@ -120,9 +120,11 @@ module Suspenders
         "# config.action_controller.asset_host = 'http://assets.example.com'",
         'config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))'
 
-      replace_in_file 'config/initializers/assets.rb',
-        "config.assets.version = '1.0'",
-        'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
+      if File.exist?("config/initializers/assets.rb")
+        replace_in_file 'config/initializers/assets.rb',
+          "config.assets.version = '1.0'",
+          'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
+      end
 
       config = <<-EOD
 config.public_file_server.headers = {
@@ -278,8 +280,11 @@ you can deploy to staging and production with:
       EOS
 
       %w(500 404 422).each do |page|
-        inject_into_file "public/#{page}.html", meta_tags, after: "<head>\n"
-        replace_in_file "public/#{page}.html", /<!--.+-->\n/, ''
+        path = "public/#{page}.html"
+        if File.exist?(path)
+          inject_into_file path, meta_tags, after: "<head>\n"
+          replace_in_file path, /<!--.+-->\n/, ''
+        end
       end
     end
 
