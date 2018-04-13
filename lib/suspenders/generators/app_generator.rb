@@ -184,7 +184,9 @@ module Suspenders
       generate("suspenders:testing")
       generate("suspenders:ci")
       generate("suspenders:js_driver")
-      generate("suspenders:forms")
+      unless options[:api]
+        generate("suspenders:forms")
+      end
       generate("suspenders:db_optimizations")
       generate("suspenders:factories")
       generate("suspenders:lint")

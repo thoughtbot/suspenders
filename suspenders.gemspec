@@ -32,4 +32,9 @@ rush to build something amazing; don't use it if you like missing deadlines.
   s.add_dependency 'rails', Suspenders::RAILS_VERSION
 
   s.add_development_dependency 'rspec', '~> 3.2'
+
+  # Needed by the tests themselves
+  s.add_development_dependency 'capybara-webkit'
+  s.add_development_dependency 'factory_bot_rails'
+  s.add_development_dependency 'bullet'
 end
