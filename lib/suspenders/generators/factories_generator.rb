@@ -9,6 +9,7 @@ module Suspenders
 
     def add_factory_bot
       gem "factory_bot_rails", group: %i(development test)
+      Bundler.with_clean_env { run "bundle install" }
     end
 
     def set_up_factory_bot_for_rspec
