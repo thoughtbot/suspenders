@@ -76,7 +76,7 @@ And development gems like:
 And testing gems like:
 
 * [Capybara](https://github.com/jnicklas/capybara) and
-  [Capybara WebKit](https://github.com/thoughtbot/capybara-webkit) for
+  [Google Chromedriver]
   integration testing
 * [Factory Bot](https://github.com/thoughtbot/factory_bot) for test data
 * [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
@@ -182,10 +182,10 @@ Snow Leopard (OS X 10.6).
 Use [Command Line Tools for Xcode](https://developer.apple.com/downloads/index.action)
 for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
 
-We use [Capybara WebKit](https://github.com/thoughtbot/capybara-webkit) for
-full-stack JavaScript integration testing. It requires QT. Instructions for
-installing QT are
-[here](https://github.com/thoughtbot/capybara-webkit/wiki/Installing-Qt-and-compiling-capybara-webkit).
+We use [Google Chromedriver] for full-stack JavaScript integration testing. It
+requires Google Chrome or Chromium.
+
+[Google Chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
 
