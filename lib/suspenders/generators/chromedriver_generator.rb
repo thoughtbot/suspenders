@@ -11,7 +11,7 @@ module Suspenders
       gem "capybara-selenium", group: :test
       gem "chromedriver-helper", group: :test
     end
-    
+
     def remove_capybara_webkit
       remove_file "spec/support/capybara_webkit.rb"
     end
