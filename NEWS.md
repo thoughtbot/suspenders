@@ -1,6 +1,14 @@
-* Upgrade: Update to Ruby 2.5.1
-* Upgrade: Update to Rails 5.1.6
+1.47.0 (May 25, 2018)
 
+* Bug fix: normalize.css Sass import is concatenated with other styles now
+* Bug fix: the suspenders gem itself is not needed in production
+* Bug fix: bundle install after adding a gem
+* Breaking: remove Refills
+* Breaking: rename suspenders:enforce_ssl to suspenders:production:force_tls
+* Upgrade: update to Ruby 2.5.1
+* Upgrade: update to Rails 5.2.0
+* New generator: production email
+* New generator: production timeouts
 
 1.46.0 (January 26, 2018)
 
