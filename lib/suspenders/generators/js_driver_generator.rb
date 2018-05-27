@@ -8,12 +8,13 @@ module Suspenders
     )
 
     def add_gems
-      gem "capybara-webkit", group: :test
+      gem "capybara-selenium", group: :test
+      gem "chromedriver-helper", group: :test
       Bundler.with_clean_env { run "bundle install" }
     end
 
-    def configure_capybara_webkit
-      copy_file "capybara_webkit.rb", "spec/support/capybara_webkit.rb"
+    def configure_chromedriver
+      copy_file "chromedriver.rb", "spec/support/chromedriver.rb"
     end
   end
 end
