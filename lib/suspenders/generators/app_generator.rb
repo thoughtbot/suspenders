@@ -59,12 +59,12 @@ module Suspenders
       invoke :setup_default_directories
       invoke :create_local_heroku_setup
       invoke :create_heroku_apps
+      invoke :generate_production_default
       invoke :outro
     end
 
     def customize_gemfile
       build :replace_gemfile, options[:path]
-      build :set_ruby_to_version_being_used
       bundle_command 'install'
     end
 
@@ -184,13 +184,18 @@ module Suspenders
       generate("suspenders:testing")
       generate("suspenders:ci")
       generate("suspenders:js_driver")
-      generate("suspenders:forms")
+      unless options[:api]
+        generate("suspenders:forms")
+      end
       generate("suspenders:db_optimizations")
       generate("suspenders:factories")
       generate("suspenders:lint")
       generate("suspenders:jobs")
       generate("suspenders:analytics")
       generate("suspenders:views")
+    end
+
+    def generate_production_default
       generate("suspenders:production:force_tls")
       generate("suspenders:production:email")
       generate("suspenders:production:timeout")

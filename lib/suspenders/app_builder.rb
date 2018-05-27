@@ -162,7 +162,7 @@ config.public_file_server.headers = {
       end
     end
 
-    def set_ruby_to_version_being_used
+    def ruby_version
       create_file '.ruby-version', "#{Suspenders::RUBY_VERSION}\n"
     end
 

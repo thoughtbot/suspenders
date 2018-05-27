@@ -10,6 +10,7 @@ module Suspenders
     def add_gems
       gem "capybara-selenium", group: :test
       gem "chromedriver-helper", group: :test
+      Bundler.with_clean_env { run "bundle install" }
     end
 
     def configure_chromedriver

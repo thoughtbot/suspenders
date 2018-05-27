@@ -276,7 +276,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "creates heroku application manifest file with application name in it" do
     app_json_file = IO.read("#{project_path}/app.json")
 
-    expect(app_json_file).to match(/"name":"#{app_name.dasherize}"/)
+    expect(app_json_file).to match(/"name":\s*"#{app_name.dasherize}"/)
   end
 
   def app_name
