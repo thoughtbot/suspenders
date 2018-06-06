@@ -1,3 +1,6 @@
+* Bug fix: change production timeouts generator to use working configuration
+  method with latest version of Rack::Timeout
+
 1.47.0 (May 25, 2018)
 
 * Bug fix: normalize.css Sass import is concatenated with other styles now
