@@ -40,6 +40,7 @@ It includes application gems like:
 * [Honeybadger](https://honeybadger.io) for exception notification
 * [Neat](https://github.com/thoughtbot/neat) for semantic grids
 * [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
+* [Oj](http://www.ohler.com/oj/)
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
 * [Rack Canonical Host](https://github.com/tylerhunt/rack-canonical-host) to
   ensure all requests are served from the same domain
