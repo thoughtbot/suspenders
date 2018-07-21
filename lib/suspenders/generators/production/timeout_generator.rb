@@ -8,13 +8,13 @@ module Suspenders
       end
 
       def configure_rack_timeout
-        append_file "config/environments/production.rb", rack_timeout_config
+        append_file ".env", rack_timeout_config
       end
 
       private
 
       def rack_timeout_config
-        %{Rack::Timeout.timeout = ENV.fetch("RACK_TIMEOUT", 10).to_i}
+        %{RACK_TIMEOUT_SERVICE_TIMEOUT=10}
       end
     end
   end
