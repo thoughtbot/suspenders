@@ -11,7 +11,13 @@ gem "autoprefixer-rails"
 gem "flutie"
 gem "honeybadger"
 gem "jquery-rails"
+<% if "sqlite3" == options[:database] %>
+gem "sqlite3", "~> 1.3"
+<% elsif "mysql" == options[:database] %>
+gem "mysql2", "~> 0.5.2"
+<% else %>
 gem "pg", "~> 0.18"
+<% end %>
 gem "puma"
 gem "rack-canonical-host"
 gem "rails", "<%= Suspenders::RAILS_VERSION %>"
