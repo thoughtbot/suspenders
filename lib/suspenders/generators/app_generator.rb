@@ -71,10 +71,8 @@ module Suspenders
     def setup_database
       say 'Setting up database'
 
-      if 'postgresql' == options[:database]
-        build :use_postgres_config_template
-      end
-
+      build :add_database_to_gemfile, options[:database]
+      build :use_postgres_config_template if options[:database] == "postgresql"
       build :create_database
     end
 

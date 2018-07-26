@@ -148,6 +148,16 @@ config.public_file_server.headers = {
         force: true
     end
 
+    def add_database_to_gemfile(database)
+      if database == "sqlite3"
+        @generator.gem "sqlite3", "~> 1.3"
+      elsif database == "mysql"
+        @generator.gem "mysql2", "~> 0.5"
+      else
+        @generator.gem "pg", "~> 0.18"
+      end
+    end
+
     def create_database
       bundle_command "exec rails db:create db:migrate"
     end
