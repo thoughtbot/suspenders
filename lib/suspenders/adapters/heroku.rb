@@ -55,15 +55,6 @@ module Suspenders
         end
       end
 
-      def create_review_apps_setup_script
-        app_builder.template(
-          "bin_setup_review_app.erb",
-          "bin/setup_review_app",
-          force: true,
-        )
-        app_builder.run "chmod a+x bin/setup_review_app"
-      end
-
       def create_heroku_application_manifest_file
         app_builder.template "app.json.erb", "app.json"
       end

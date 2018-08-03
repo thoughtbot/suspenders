@@ -10,7 +10,6 @@ module Suspenders
       :create_heroku_application_manifest_file,
       :create_heroku_pipeline,
       :create_production_heroku_app,
-      :create_review_apps_setup_script,
       :create_staging_heroku_app,
       :set_heroku_application_host,
       :set_heroku_backup_schedule,
@@ -96,21 +95,6 @@ module Suspenders
 
     def configure_local_mail
       copy_file "email.rb", "config/initializers/email.rb"
-    end
-
-    def set_application_host_for_review_apps
-      config = <<-RUBY
-  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
-    ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
-    ENV["ASSET_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
-  end
-      RUBY
-
-      inject_into_file(
-        "config/environments/production.rb",
-        config,
-        after: "Rails.application.configure do\n",
-      )
     end
 
     def enable_rack_canonical_host

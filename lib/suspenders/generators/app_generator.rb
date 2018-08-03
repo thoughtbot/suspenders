@@ -57,7 +57,7 @@ module Suspenders
       invoke :setup_default_directories
       invoke :create_local_heroku_setup
       invoke :create_heroku_apps
-      invoke :generate_production_default
+      invoke :generate_deployment_default
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
       invoke :outro
@@ -93,7 +93,6 @@ module Suspenders
 
     def setup_production_environment
       say 'Setting up the production environment'
-      build :set_application_host_for_review_apps
       build :enable_rack_canonical_host
       build :enable_rack_deflater
       build :setup_asset_host
@@ -116,7 +115,6 @@ module Suspenders
 
     def create_local_heroku_setup
       say "Creating local Heroku setup"
-      build :create_review_apps_setup_script
       build :create_deploy_script
       build :create_heroku_application_manifest_file
     end
@@ -197,7 +195,8 @@ module Suspenders
       generate("suspenders:views")
     end
 
-    def generate_production_default
+    def generate_deployment_default
+      generate("suspenders:staging:pull_requests")
       generate("suspenders:production:force_tls")
       generate("suspenders:production:email")
       generate("suspenders:production:timeout")
