@@ -114,10 +114,12 @@ module Suspenders
     end
 
     def create_local_heroku_setup
-      say "Creating local Heroku setup"
-      build :create_review_apps_setup_script
-      build :create_deploy_script
-      build :create_heroku_application_manifest_file
+      if options[:heroku]
+        say "Creating local Heroku setup"
+        build :create_review_apps_setup_script
+        build :create_deploy_script
+        build :create_heroku_application_manifest_file
+      end
     end
 
     def create_heroku_apps
