@@ -1,5 +1,9 @@
+1.48.0 (August 10, 2018)
+
 * Bug fix: change production timeouts generator to use working configuration
   method with latest version of Rack::Timeout
+* Bug fix: Only add email environment requirements if configuring for email
+* Breaking: Replace capybara-webkit with chromedriver
 
 1.47.0 (May 25, 2018)
 
