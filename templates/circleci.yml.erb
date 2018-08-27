@@ -48,3 +48,6 @@ jobs:
       - run:
           name: Run tests
           command: COVERAGE=true bundle exec rake
+
+      - store_artifacts:
+           path: coverage
