@@ -19,6 +19,12 @@ module Suspenders
       :set_heroku_remotes,
     )
 
+    def_delegators(
+      :circleci_adapter,
+      :configure_circleci,
+      :configure_circleci_deployment,
+    )
+
     def readme
       template 'README.md.erb', 'README.md'
     end
@@ -242,31 +248,7 @@ you can deploy to staging and production with:
     end
 
     def configure_automatic_deployment
-      deploy_command = <<-YML.strip_heredoc
-      deploy:
-        docker:
-          - image: buildpack-deps:trusty
-        steps:
-          - checkout
-          - run:
-              name: Deploy to staging Heroku app
-              command: bin/deploy staging
-
-    workflows:
-      version: 2
-      build-deploy:
-        jobs:
-          - build
-          - deploy:
-              requires:
-                - build
-              filters:
-                branches:
-                  only: master
-
-      YML
-
-      append_file ".circleci/config.yml", deploy_command
+      configure_circleci_deployment
     end
 
     def create_github_repo(repo_name)
@@ -358,6 +340,10 @@ end
 
     def heroku_adapter
       @heroku_adapter ||= Adapters::Heroku.new(self)
+    end
+
+    def circleci_adapter
+      @circleci_adapter ||= Adapters::CircleCI.new(self)
     end
   end
 end

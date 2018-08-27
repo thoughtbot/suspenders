@@ -47,7 +47,7 @@ RSpec.describe "Heroku" do
         steps:
           - checkout
           - run:
-              name: Deploy to staging Heroku app
+              name: Deploy to staging
               command: bin/deploy staging
 
     workflows:
