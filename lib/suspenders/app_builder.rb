@@ -243,14 +243,30 @@ you can deploy to staging and production with:
 
     def configure_automatic_deployment
       deploy_command = <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
+      deploy:
+        docker:
+          - image: buildpack-deps:trusty
+        steps:
+          - checkout
+          - run:
+              name: Deploy to staging Heroku app
+              command: bin/deploy staging
+
+    workflows:
+      version: 2
+      build-deploy:
+        jobs:
+          - build
+          - deploy:
+              requires:
+                - build
+              filters:
+                branches:
+                  only: master
+
       YML
 
-      append_file "circle.yml", deploy_command
+      append_file ".circleci/config.yml", deploy_command
     end
 
     def create_github_repo(repo_name)

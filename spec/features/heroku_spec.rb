@@ -37,15 +37,30 @@ RSpec.describe "Heroku" do
       expect(readme).to include("./bin/deploy staging")
       expect(readme).to include("./bin/deploy production")
 
-      circle_yml_path = "#{project_path}/circle.yml"
+      circle_yml_path = "#{project_path}/.circleci/config.yml"
       circle_yml = IO.read(circle_yml_path)
 
       expect(circle_yml).to include <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
+      deploy:
+        docker:
+          - image: buildpack-deps:trusty
+        steps:
+          - checkout
+          - run:
+              name: Deploy to staging Heroku app
+              command: bin/deploy staging
+
+    workflows:
+      version: 2
+      build-deploy:
+        jobs:
+          - build
+          - deploy:
+              requires:
+                - build
+              filters:
+                branches:
+                  only: master
       YML
     end
   end

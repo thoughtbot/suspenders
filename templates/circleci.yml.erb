@@ -1,0 +1,50 @@
+version: 2
+jobs:
+  build:
+    working_directory: ~/<%= app_name %>
+    docker:
+      - image: circleci/ruby:<%= Suspenders::RUBY_VERSION %>-node
+        environment:
+          RAILS_ENV: test
+          PGHOST: localhost
+          PGUSER: <%= app_name %>
+      - image: postgres:10.5
+        environment:
+           POSTGRES_USER: <%= app_name %>
+           POSTGRES_DB: <%= app_name %>_test
+           POSTGRES_PASSWORD: ""
+    steps:
+      - checkout
+
+      - run:
+          name: Which Bundler?
+          command: bundle -v
+
+      - restore_cache:
+          keys:
+            - <%= app_name %>-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+            - <%= app_name %>-
+
+      - run:
+          name: Bundle Install
+          command: |
+            bundle install --deployment \
+                           --retry=3 \
+                           --jobs=3
+
+      - save_cache:
+          key: <%= app_name %>-{{ .Branch }}-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      - run:
+          name: Wait for database
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      - run:
+          name: Database setup
+          command: RAILS_ENV=development bin/setup
+
+      - run:
+          name: Run tests
+          command: COVERAGE=true bundle exec rake

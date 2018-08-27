@@ -20,7 +20,8 @@ module Suspenders
     end
 
     def configure_ci
-      template "circle.yml.erb", "circle.yml"
+      empty_directory(".circleci")
+      template "circleci.yml.erb", ".circleci/config.yml"
     end
   end
 end
