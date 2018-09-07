@@ -287,6 +287,12 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(gemfile).to match(/high_voltage/)
   end
 
+  it "adds sassc-rails" do
+    gemfile = read_project_file("Gemfile")
+
+    expect(gemfile).to match(/sassc-rails/)
+  end
+
   it "adds and configures bourbon and neat" do
     gemfile = read_project_file("Gemfile")
 
