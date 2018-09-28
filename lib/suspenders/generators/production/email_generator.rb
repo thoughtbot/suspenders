@@ -26,7 +26,7 @@ module Suspenders
         RUBY
 
         inject_into_file "config/environments/production.rb", config,
-          after: "config.action_mailer.raise_delivery_errors = false"
+          after: "config.action_mailer.perform_caching = false"
       end
 
       def env_vars
