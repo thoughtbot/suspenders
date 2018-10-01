@@ -10,6 +10,9 @@ set -e
 gem install bundler --conservative
 bundle check || bundle install
 
+# Install JavaScript dependencies
+bin/yarn
+
 # Set up database and add any development seed data
 bin/rails dev:prime
 
