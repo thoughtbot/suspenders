@@ -275,7 +275,6 @@ you can deploy to staging and production with:
     def customize_error_pages
       meta_tags =<<-EOS
   <meta charset="utf-8" />
-  <meta name="ROBOTS" content="NOODP" />
   <meta name="viewport" content="initial-scale=1" />
       EOS
 
