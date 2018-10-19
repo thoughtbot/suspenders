@@ -1,3 +1,11 @@
+1.49.0 (October 19, 2018)
+
+* Removed: NOODP robots meta tags
+* Removed: body class in application layout
+* Upgraded: remove version constraint for pg gem
+* Fixed: install JavaScript dependencies in bin/setup
+* Fixed: include action_mailer SMTP settings in production config
+
 1.48.0 (August 10, 2018)
 
 * Bug fix: change production timeouts generator to use working configuration
