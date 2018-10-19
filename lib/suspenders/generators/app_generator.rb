@@ -48,8 +48,6 @@ module Suspenders
       invoke :configure_app
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
-      invoke :remove_config_comment_lines
-      invoke :remove_routes_comment_lines
       invoke :setup_dotfiles
       invoke :setup_database
       invoke :create_github_repo
@@ -60,6 +58,8 @@ module Suspenders
       invoke :create_local_heroku_setup
       invoke :create_heroku_apps
       invoke :generate_production_default
+      invoke :remove_config_comment_lines
+      invoke :remove_routes_comment_lines
       invoke :outro
     end
 
