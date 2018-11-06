@@ -93,6 +93,7 @@ module Suspenders
 
     def setup_production_environment
       say 'Setting up the production environment'
+      build :set_application_host_for_review_apps
       build :enable_rack_canonical_host
       build :enable_rack_deflater
       build :setup_asset_host
