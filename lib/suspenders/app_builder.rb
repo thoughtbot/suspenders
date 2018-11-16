@@ -98,13 +98,23 @@ module Suspenders
       copy_file "email.rb", "config/initializers/email.rb"
     end
 
-    def enable_rack_canonical_host
+    def set_application_host_for_review_apps
       config = <<-RUBY
-
   if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
     ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
+    ENV["ASSET_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
   end
+      RUBY
 
+      inject_into_file(
+        "config/environments/production.rb",
+        config,
+        after: "Rails.application.configure do\n",
+      )
+    end
+
+    def enable_rack_canonical_host
+      config = <<-RUBY
   config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
 
