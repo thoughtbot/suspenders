@@ -36,8 +36,6 @@ It includes application gems like:
 * [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
-* [Flutie](https://github.com/thoughtbot/flutie) for `page_title` and `body_class` view
-  helpers
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [Honeybadger](https://honeybadger.io) for exception notification
 * [Neat](https://github.com/thoughtbot/neat) for semantic grids
