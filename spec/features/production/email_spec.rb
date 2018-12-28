@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:production:email" do
+RSpec.describe "suspenders:production:email", type: :generator do
   it "generates the configuration for a production email deployment" do
     with_app { generate("suspenders:production:email") }
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:json" do
+RSpec.describe "suspenders:json", type: :generator do
   it "generates the Gemfile for JSON parsing" do
     with_app { generate("suspenders:json") }
 
