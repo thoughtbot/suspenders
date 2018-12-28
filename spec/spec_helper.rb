@@ -8,6 +8,7 @@ Dir['./spec/support/**/*.rb'].each { |file| require file }
 
 RSpec.configure do |config|
   config.include SuspendersTestHelpers
+  config.include ProjectFiles
 
   config.before(:all) do
     add_fakes_to_path

@@ -30,7 +30,7 @@ RSpec.describe "Heroku" do
       expect(bin_setup).to match(/^if heroku join --app #{app_name}-production/)
       expect(bin_setup).to match(/^if heroku join --app #{app_name}-staging/)
       expect(bin_setup).to match(/^git config heroku.remote staging/)
-      expect(File.stat(bin_setup_path)).to be_executable
+      expect("bin/setup").to be_executable
 
       readme = IO.read("#{project_path}/README.md")
 

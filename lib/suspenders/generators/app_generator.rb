@@ -115,7 +115,6 @@ module Suspenders
 
     def create_local_heroku_setup
       say "Creating local Heroku setup"
-      build :create_deploy_script
       build :create_heroku_application_manifest_file
     end
 
@@ -200,6 +199,7 @@ module Suspenders
       generate("suspenders:production:force_tls")
       generate("suspenders:production:email")
       generate("suspenders:production:timeout")
+      generate("suspenders:production:deployment")
     end
 
     def outro

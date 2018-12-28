@@ -65,9 +65,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "makes bin/setup executable" do
-    bin_setup_path = "#{project_path}/bin/setup"
-
-    expect(File.stat(bin_setup_path)).to be_executable
+    expect("bin/setup").to be_executable
   end
 
   it "adds support file for action mailer" do
@@ -263,7 +261,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(bin_setup).to include("heroku ps:scale worker=1 --app $APP_NAME")
     expect(bin_setup).to include("heroku restart --app $APP_NAME")
 
-    expect(File.stat(bin_setup_path)).to be_executable
+    expect("bin/setup_review_app").to be_executable
   end
 
   it "creates deploy script" do
@@ -271,7 +269,7 @@ RSpec.describe "Suspend a new project with default configuration" do
     bin_deploy = IO.read(bin_deploy_path)
 
     expect(bin_deploy).to include("heroku run rails db:migrate --exit-code")
-    expect(File.stat(bin_deploy_path)).to be_executable
+    expect("bin/deploy").to be_executable
   end
 
   it "creates heroku application manifest file with application name in it" do
