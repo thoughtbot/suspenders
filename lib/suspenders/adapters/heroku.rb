@@ -55,10 +55,6 @@ module Suspenders
         end
       end
 
-      def create_heroku_application_manifest_file
-        app_builder.template "app.json.erb", "app.json"
-      end
-
       def create_heroku_pipeline
         pipelines_plugin = `heroku help | grep pipelines`
         if pipelines_plugin.empty?

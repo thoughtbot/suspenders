@@ -7,7 +7,6 @@ module Suspenders
 
     def_delegators(
       :heroku_adapter,
-      :create_heroku_application_manifest_file,
       :create_heroku_pipeline,
       :create_production_heroku_app,
       :create_staging_heroku_app,

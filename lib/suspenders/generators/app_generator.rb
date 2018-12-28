@@ -55,7 +55,6 @@ module Suspenders
       invoke :setup_spring
       invoke :generate_default
       invoke :setup_default_directories
-      invoke :create_local_heroku_setup
       invoke :create_heroku_apps
       invoke :generate_deployment_default
       invoke :remove_config_comment_lines
@@ -111,11 +110,6 @@ module Suspenders
       build :replace_default_puma_configuration
       build :set_up_forego
       build :setup_rack_mini_profiler
-    end
-
-    def create_local_heroku_setup
-      say "Creating local Heroku setup"
-      build :create_heroku_application_manifest_file
     end
 
     def create_heroku_apps
@@ -200,6 +194,7 @@ module Suspenders
       generate("suspenders:production:email")
       generate("suspenders:production:timeout")
       generate("suspenders:production:deployment")
+      generate("suspenders:production:manifest")
     end
 
     def outro
