@@ -1,3 +1,13 @@
+1.50.0 (December 28, 2018)
+
+* Removed: jquery-rails.
+* Changed: default FactoryBot to `use_parent_strategy = true`.
+* Upgraded: Ruby 2.5.3.
+* Fixed: set `ASSET_HOST` and `APPLICATION_HOST` at top of `production.rb`.
+* Fixed: `tzinfo-data` gem for Windows.
+* New generator: `suspenders:json` for JSON parsing.
+* New generator: `suspenders:staging:pull_requests` for Heroku app per PR.
+
 1.49.0 (October 19, 2018)
 
 * Removed: NOODP robots meta tags
