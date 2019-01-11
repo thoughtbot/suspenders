@@ -1,12 +1,7 @@
-require "rails/generators"
+require_relative "base"
 
 module Suspenders
-  class LintGenerator < Rails::Generators::Base
-    source_root File.expand_path(
-      File.join("..", "..", "..", "templates"),
-      File.dirname(__FILE__),
-    )
-
+  class LintGenerator < Generators::Base
     def set_up_hound
       copy_file "hound.yml", ".hound.yml"
     end

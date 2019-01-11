@@ -1,12 +1,7 @@
-require "rails/generators"
+require_relative "base"
 
 module Suspenders
-  class FactoriesGenerator < Rails::Generators::Base
-    source_root File.expand_path(
-      File.join("..", "..", "..", "templates"),
-      File.dirname(__FILE__),
-    )
-
+  class FactoriesGenerator < Generators::Base
     def add_factory_bot
       gem "factory_bot_rails", group: %i(development test)
       Bundler.with_clean_env { run "bundle install" }

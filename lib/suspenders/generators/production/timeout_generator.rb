@@ -1,8 +1,8 @@
-require "rails/generators"
+require_relative "../base"
 
 module Suspenders
   module Production
-    class TimeoutGenerator < Rails::Generators::Base
+    class TimeoutGenerator < Generators::Base
       def add_gem
         gem "rack-timeout", group: :production
       end

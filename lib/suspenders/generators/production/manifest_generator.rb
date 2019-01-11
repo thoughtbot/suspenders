@@ -1,11 +1,8 @@
-require "rails/generators"
-require_relative "../../actions"
+require_relative "../base"
 
 module Suspenders
   module Production
-    class ManifestGenerator < Rails::Generators::Base
-      include Suspenders::Actions
-
+    class ManifestGenerator < Generators::Base
       def render_manifest
         expand_json(
           "app.json",
@@ -21,12 +18,6 @@ module Suspenders
           },
           addons: ["heroku-postgresql"],
         )
-      end
-
-      private
-
-      def app_name
-        Rails.application.class.parent_name.demodulize.underscore.dasherize
       end
     end
   end

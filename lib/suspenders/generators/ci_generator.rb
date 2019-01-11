@@ -1,11 +1,7 @@
-require "rails/generators"
+require_relative "base"
 
 module Suspenders
-  class CiGenerator < Rails::Generators::Base
-    source_root File.expand_path(
-      File.join("..", "..", "..", "templates"),
-      File.dirname(__FILE__))
-
+  class CiGenerator < Generators::Base
     def simplecov_test_integration
       inject_into_file "spec/spec_helper.rb", before: 'SimpleCov.start "rails"' do
         <<-RUBY

@@ -1,17 +1,7 @@
-require "rails/generators"
-require_relative "../actions"
+require_relative "base"
 
 module Suspenders
-  class JobsGenerator < Rails::Generators::Base
-    include Suspenders::Actions
-
-    source_root(
-      File.expand_path(
-        File.join("..", "..", "..", "templates"),
-        File.dirname(__FILE__),
-      ),
-    )
-
+  class JobsGenerator < Generators::Base
     def add_jobs_gem
       gem "delayed_job_active_record"
       Bundler.with_clean_env { run "bundle install" }

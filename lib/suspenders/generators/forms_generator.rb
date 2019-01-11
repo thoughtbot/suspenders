@@ -1,7 +1,7 @@
-require "rails/generators"
+require_relative "base"
 
 module Suspenders
-  class FormsGenerator < Rails::Generators::Base
+  class FormsGenerator < Generators::Base
     def add_simple_form
       gem "simple_form"
       Bundler.with_clean_env { run "bundle install" }

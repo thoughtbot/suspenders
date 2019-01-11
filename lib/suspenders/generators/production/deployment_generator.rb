@@ -1,13 +1,8 @@
-require "rails/generators"
+require_relative "../base"
 
 module Suspenders
   module Production
-    class DeploymentGenerator < Rails::Generators::Base
-      source_root File.expand_path(
-        File.join("..", "..", "..", "..", "templates"),
-        File.dirname(__FILE__),
-      )
-
+    class DeploymentGenerator < Generators::Base
       def copy_script
         copy_file "bin_deploy", "bin/deploy"
         chmod "bin/deploy", 0o755

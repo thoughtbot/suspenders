@@ -1,16 +1,8 @@
-require "rails/generators"
-require_relative "../../actions"
+require_relative "../base"
 
 module Suspenders
   module Production
-    class EmailGenerator < Rails::Generators::Base
-      include Suspenders::Actions
-
-      source_root File.expand_path(
-        File.join("..", "..", "..", "..", "templates"),
-        File.dirname(__FILE__),
-      )
-
+    class EmailGenerator < Generators::Base
       def smtp_configuration
         copy_file "smtp.rb", "config/smtp.rb"
 

@@ -1,12 +1,7 @@
-require "rails/generators"
+require_relative "base"
 
 module Suspenders
-  class AnalyticsGenerator < Rails::Generators::Base
-    source_root File.expand_path(
-      File.join("..", "..", "..", "templates"),
-      File.dirname(__FILE__),
-    )
-
+  class AnalyticsGenerator < Generators::Base
     def install_partial
       copy_file "_analytics.html.erb",
         "app/views/application/_analytics.html.erb"

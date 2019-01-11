@@ -1,16 +1,8 @@
-require "rails/generators"
-require_relative "../../actions"
+require_relative "../base"
 
 module Suspenders
   module Staging
-    class PullRequestsGenerator < Rails::Generators::Base
-      include Suspenders::Actions
-
-      source_root File.expand_path(
-        File.join("..", "..", "..", "..", "templates"),
-        File.dirname(__FILE__),
-      )
-
+    class PullRequestsGenerator < Generators::Base
       def configure_heroku_staging_pr_pipeline_host
         config = <<-RUBY
 
@@ -35,12 +27,6 @@ module Suspenders
         )
 
         run "chmod a+x bin/setup_review_app"
-      end
-
-      private
-
-      def app_name
-        Rails.application.class.parent_name.demodulize.underscore.dasherize
       end
     end
   end
