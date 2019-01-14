@@ -11,9 +11,9 @@ module Suspenders
         Heroku.new(app_builder).set_heroku_remotes
 
         expect(app_builder).to have_received(:append_file).
-          with(setup_file, /heroku join --app #{app_name.dasherize}-production/)
+          with(setup_file, /heroku apps:info --app #{app_name.dasherize}-production/)
         expect(app_builder).to have_received(:append_file).
-          with(setup_file, /heroku join --app #{app_name.dasherize}-staging/)
+          with(setup_file, /heroku apps:info --app #{app_name.dasherize}-staging/)
       end
 
       it "sets the heroku rails secrets" do

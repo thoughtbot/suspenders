@@ -27,8 +27,8 @@ RSpec.describe "Heroku" do
       bin_setup_path = "#{project_path}/bin/setup"
       bin_setup = IO.read(bin_setup_path)
 
-      expect(bin_setup).to match(/^if heroku join --app #{app_name}-production/)
-      expect(bin_setup).to match(/^if heroku join --app #{app_name}-staging/)
+      expect(bin_setup).to assert_access_to_heroku_app("#{app_name}-production")
+      expect(bin_setup).to assert_access_to_heroku_app("#{app_name}-staging")
       expect(bin_setup).to match(/^git config heroku.remote staging/)
       expect("bin/setup").to be_executable
 
@@ -50,6 +50,10 @@ RSpec.describe "Heroku" do
       expect(FakeHeroku).to have_created_app_for("staging", "--region eu")
       expect(FakeHeroku).to have_created_app_for("production", "--region eu")
     end
+  end
+
+  def assert_access_to_heroku_app(app_name)
+    match(/^if heroku apps:info --app #{app_name}/)
   end
 
   def clean_up

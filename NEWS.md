@@ -1,3 +1,7 @@
+Unreleased
+
+* Changed: replace `heroku join` calls with `heroku apps:info` in `bin/setup`
+
 1.53.0 (August 23, 2019)
 * Upgraded: Rails 6.0.
 * New generator: `suspenders:inline_svg` for setting up the inline_svg gem.
