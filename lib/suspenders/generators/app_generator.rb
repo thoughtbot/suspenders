@@ -54,6 +54,7 @@ module Suspenders
       invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
+      invoke :configure_circleci
       invoke :setup_default_directories
       invoke :create_heroku_apps
       invoke :generate_deployment_default
@@ -169,13 +170,17 @@ module Suspenders
       build :remove_routes_comment_lines
     end
 
+    def configure_circleci
+      say "Configuring CircleCI"
+      build :configure_circleci
+    end
+
     def generate_default
       run("spring stop")
       generate("suspenders:json")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
       generate("suspenders:testing")
-      generate("suspenders:ci")
       generate("suspenders:js_driver")
       unless options[:api]
         generate("suspenders:forms")

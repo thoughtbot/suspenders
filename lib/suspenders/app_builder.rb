@@ -17,6 +17,12 @@ module Suspenders
       :set_heroku_remotes,
     )
 
+    def_delegators(
+      :circleci_adapter,
+      :configure_circleci,
+      :configure_circleci_deployment,
+    )
+
     def readme
       template 'README.md.erb', 'README.md'
     end
@@ -217,15 +223,7 @@ config.public_file_server.headers = {
     end
 
     def configure_automatic_deployment
-      deploy_command = <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
-      YML
-
-      append_file "circle.yml", deploy_command
+      configure_circleci_deployment
     end
 
     def create_github_repo(repo_name)
@@ -316,6 +314,10 @@ end
 
     def heroku_adapter
       @heroku_adapter ||= Adapters::Heroku.new(self)
+    end
+
+    def circleci_adapter
+      @circleci_adapter ||= Adapters::CircleCI.new(self)
     end
   end
 end
