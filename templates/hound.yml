@@ -10,5 +10,8 @@ ruby:
   # config_file: .ruby-style.yml
   enabled: true
 scss:
-  # config_file: .scss-style.yml
+  enabled: false
+sass:
+#   config_file: .sass-lint.yml
   enabled: true
+  
