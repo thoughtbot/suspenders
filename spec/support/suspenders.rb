@@ -45,10 +45,7 @@ module SuspendersTestHelpers
       end
 
       Dir.chdir(APP_NAME) do
-        File.open("Gemfile", "a") do |file|
-          file.puts %{gem "suspenders", path: #{root_path.inspect}}
-        end
-
+        append_dependencies_to_gemfile
         with_env("HOME", tmp_path) do
           debug `git add .`
           debug `git commit -m 'Initial commit'`
@@ -178,5 +175,18 @@ module SuspendersTestHelpers
     end
 
     output
+  end
+
+  def append_dependencies_to_gemfile
+    initial_gemfile = File.read("Gemfile")
+
+    File.open("Gemfile", "w") do |file|
+      file.puts locked_sqlite_version(initial_gemfile)
+      file.puts %{gem "suspenders", path: #{root_path.inspect}}
+    end
+  end
+
+  def locked_sqlite_version(initial_gemfile)
+    initial_gemfile.gsub(/^gem 'sqlite3'$/, 'gem "sqlite3", "~> 1.3.6"')
   end
 end
