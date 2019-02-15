@@ -92,7 +92,6 @@ module Suspenders
 
     def setup_production_environment
       say 'Setting up the production environment'
-      build :enable_rack_deflater
       build :setup_asset_host
     end
 
@@ -190,6 +189,7 @@ module Suspenders
     def generate_deployment_default
       generate("suspenders:staging:pull_requests")
       generate("suspenders:production:single_redirect")
+      generate("suspenders:production:compression")
       generate("suspenders:production:force_tls")
       generate("suspenders:production:email")
       generate("suspenders:production:timeout")
