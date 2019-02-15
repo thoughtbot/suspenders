@@ -167,6 +167,16 @@ around stale code not being refreshed.
 If you think your application is running old code, run `spring stop`.
 And if you'd rather not use spring, add `DISABLE_SPRING=1` to your login file.
 
+## Honeybadger
+
+If you are deploying to Heroku and _not_ using the Heroku Honeybadger add-on,
+connect Honeybadger to Heroku with this command:
+
+```sh
+HONEYBADGER_API_KEY=...
+bundle exec honeybadger heroku install $HONEYBADGER_API_KEY
+```
+
 ## Dependencies
 
 Suspenders requires the latest version of Ruby.

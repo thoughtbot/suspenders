@@ -1,0 +1,1038 @@
+Run options: include {:locations=>{"./spec/features/new_project_spec.rb"=>[11]}}
+Dropped database 'dummy_app_development'
+Dropped database 'dummy_app_test'
+      create  
+      create  README.md
+      create  Rakefile
+      create  .ruby-version
+      create  config.ru
+      create  .gitignore
+      create  Gemfile
+         run  git init from "."
+Initialized empty Git repository in /home/mike/thoughtbot/suspenders/tmp/dummy_app/.git/
+      create  package.json
+      create  app
+      create  app/assets/config/manifest.js
+      create  app/assets/javascripts/application.js
+      create  app/assets/javascripts/cable.js
+      create  app/assets/stylesheets/application.css
+      create  app/channels/application_cable/channel.rb
+      create  app/channels/application_cable/connection.rb
+      create  app/controllers/application_controller.rb
+      create  app/helpers/application_helper.rb
+      create  app/jobs/application_job.rb
+      create  app/mailers/application_mailer.rb
+      create  app/models/application_record.rb
+      create  app/views/layouts/application.html.erb
+      create  app/views/layouts/mailer.html.erb
+      create  app/views/layouts/mailer.text.erb
+      create  app/assets/images/.keep
+      create  app/assets/javascripts/channels
+      create  app/assets/javascripts/channels/.keep
+      create  app/controllers/concerns/.keep
+      create  app/models/concerns/.keep
+      create  bin
+      create  bin/bundle
+      create  bin/rails
+      create  bin/rake
+      create  bin/setup
+      create  bin/update
+      create  bin/yarn
+      create  config
+      create  config/routes.rb
+      create  config/application.rb
+      create  config/environment.rb
+      create  config/cable.yml
+      create  config/puma.rb
+      create  config/spring.rb
+      create  config/storage.yml
+      create  config/environments
+      create  config/environments/development.rb
+      create  config/environments/production.rb
+      create  config/environments/test.rb
+      create  config/initializers
+      create  config/initializers/application_controller_renderer.rb
+      create  config/initializers/assets.rb
+      create  config/initializers/backtrace_silencers.rb
+      create  config/initializers/content_security_policy.rb
+      create  config/initializers/cookies_serializer.rb
+      create  config/initializers/cors.rb
+      create  config/initializers/filter_parameter_logging.rb
+      create  config/initializers/inflections.rb
+      create  config/initializers/mime_types.rb
+      create  config/initializers/new_framework_defaults_5_2.rb
+      create  config/initializers/wrap_parameters.rb
+      create  config/locales
+      create  config/locales/en.yml
+      create  config/master.key
+      append  .gitignore
+      create  config/boot.rb
+      create  config/database.yml
+      create  db
+      create  db/seeds.rb
+      create  lib
+      create  lib/tasks
+      create  lib/tasks/.keep
+      create  lib/assets
+      create  lib/assets/.keep
+      create  log
+      create  log/.keep
+      create  public
+      create  public/404.html
+      create  public/422.html
+      create  public/500.html
+      create  public/apple-touch-icon-precomposed.png
+      create  public/apple-touch-icon.png
+      create  public/favicon.ico
+      create  public/robots.txt
+      create  tmp
+      create  tmp/.keep
+      create  tmp/cache
+      create  tmp/cache/assets
+      create  vendor
+      create  vendor/.keep
+      create  storage
+      create  storage/.keep
+      create  tmp/storage
+      create  tmp/storage/.keep
+      remove  config/initializers/cors.rb
+      remove  config/initializers/new_framework_defaults_5_2.rb
+       force  Gemfile
+         run  bundle install
+Running `bundle install` with bundler 1.17.1
+Found changes from the lockfile, re-resolving dependencies because bundler is unlocking gems: (suspenders), ruby
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x64-mingw32, x86-mswin32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x64-mingw32 x86-mswin32 java`.
+HTTP GET https://index.rubygems.org/versions
+HTTP 206 Partial Content https://index.rubygems.org/versions
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["autoprefixer-rails", "pg", "puma", "rack-canonical-host", "rails", "recipient_interceptor", "sassc-rails", "skylight", "sprockets", "title", "tzinfo-data", "uglifier", "bootsnap", "listen", "rack-mini-profiler", "spring", "web-console", "awesome_print", "bundler-audit", "dotenv-rails", "pry-byebug", "pry-rails", "formulaic", "launchy", "simplecov", "timecop", "webmock", "bitters"]
+Looking up gems ["railties", "sass", "sassc", "tilt", "sprockets-rails", "bundler", "thor", "i18n", "hike", "rack", "multi_json", "concurrent-ruby", "configuration", "rake", "spoon", "addressable", "ffi", "activesupport", "capybara", "simplecov-html", "docile", "lockfile", "json", "pry", "pry-doc", "mail", "dotenv", "actionmailer", "actionpack", "activerecord", "activeresource", "actionwebservice", "actionview", "activemodel", "activejob", "actioncable", "activestorage", "hoe", "crack", "hashdiff", "bourbon", "neat", "byebug", "tzinfo", "rb-fchange", "rb-fsevent", "rb-inotify", "rb-kqueue", "celluloid", "celluloid-io", "ruby_dep", "rake-compiler", "jquery-rails", "binding_of_caller", "debug_inspector", "bindex", "execjs", "therubyracer", "skylight-core", "msgpack", "snappy"]
+HTTP GET https://index.rubygems.org/info/snappy
+HTTP 206 Partial Content https://index.rubygems.org/info/snappy
+Looking up gems ["yard", "culerity", "database_cleaner", "nokogiri", "selenium-webdriver", "rack-test", "mime-types", "celerity", "xpath", "mini_mime", "regexp_parser", "dotenv-deployment", "erubis", "rack-mount", "builder", "rack-cache", "journey", "rails-deprecated_sanitizer", "rails-dom-testing", "rails-html-sanitizer", "camping", "fcgi", "memcache-client", "mongrel", "ruby-openid", "test-spec", "thin", "rack-ssl", "rdoc", "method_source", "ruby_parser", "coderay", "win32console", "slop", "safe_yaml", "bones", "minitest", "thread_safe", "win32-api", "erubi", "timers", "facter", "celluloid-essentials", "celluloid-extras", "celluloid-fsm", "celluloid-pool", "celluloid-supervision", "nenv", "rspec-logsplit", "columnize", "debugger-linecache", "rb-readline", "rspec", "public_suffix", "rails-observers", "activemodel-serializers-xml", "activemodel-globalid", "globalid", "marcel", "bcrypt-ruby", "sass-listen", "treetop", "tlsmail", "rubyforge", "RubyInline", "gemcutter", "text-format", "nio4r", "libv8", "ref", "arel", "activerecord-deprecated_finders", "functional-ruby", "coffee-rails", "em-hiredis", "faye-websocket", "redis", "websocket-driver", "snappy-jars"]
+Looking up gems ["cucumber", "archive-tar-minitar", "rcov", "mime-types-data", "loofah", "multimap", "atomic", "racc", "rexical", "tenderlove-frex", "weakling", "mini_portile", "mini_portile2", "pkg-config", "flexmock", "mocha", "ZenTest", "ruby-yadis", "abstract", "ruby_core_source", "debugger-ruby_core_source", "markaby", "metaid", "mab", "coveralls", "rubocop", "little-plugger", "loquacious", "bones-extras", "bones-git", "hitimes", "text-hyphen", "celluloid-gems", "mimemagic", "eventmachine", "diff-lcs", "spicycode-rcov", "syntax", "rspec-core", "rspec-expectations", "rspec-mocks", "psych", "test-unit", "CFPropertyList", "sys-admin", "win32-dir", "windows-api", "windows-pr", "win32-security", "daemons", "eventmachine-le", "http_parser.rb", "preforker", "json_pure", "cgi_multipart_eof_fix", "fastthread", "gem_plugin", "net-scp", "facets", "polyglot", "rubyzip", "childprocess", "libwebsocket", "websocket", "ParseTree", "sexp_processor", "hiredis", "coffee-script", "websocket-extensions", "bcrypt"]
+Looking up gems ["crass", "minitar", "minitar-cli", "term-ansicolor", "gherkin", "multi_test", "cucumber-core", "gherkin3", "cucumber-wire", "event-bus", "cucumber-expressions", "cucumber-formatter-dots", "mkrf", "bones-rcov", "bones-rspec", "bones-rubyforge", "bones-zentest", "power_assert", "rainbow", "parser", "backports", "powerpack", "ruby-progressbar", "astrolabe", "tins", "unicode-display_width", "parallel", "jaro_winkler", "metaclass", "colorize", "rest-client", "rspec-support", "git", "libxml-ruby", "ffi-win32-extensions", "spruz", "net-ssh", "jar-dependencies", "coffee-script-source", "SexpProcessor"]
+Looking up gems ["cucumber-tag_expressions", "cucumber-messages", "os", "c21e", "trollop", "pattern-match", "powerbar", "ruby-maven", "netrc", "http-cookie", "http-accept", "echoe", "needle", "jruby-pageant", "bcrypt_pbkdf", "rbnacl", "rbnacl-libsodium", "ast"]
+Looking up gems ["domain_name", "sqlite3", "curses", "maven-tools", "ruby-maven-libs", "google-protobuf", "highline", "allison", "ansi", "hashie"]
+Looking up gems ["unf", "virtus", "termios"]
+Looking up gems ["unf_ext", "descendants_tracker", "axiom-types", "coercible", "equalizer"]
+Looking up gems ["adamantium", "ice_nine"]
+Looking up gems ["memoizable"]
+Double checking for ["bundler"] in rubygems repository https://rubygems.org/ or installed locally
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["bundler"]
+Resolving dependencies....
+Using rake 12.3.2
+0:  rake (12.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/rake-12.3.2.gemspec
+Using concurrent-ruby 1.1.4
+0:  concurrent-ruby (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/concurrent-ruby-1.1.4.gemspec
+Using i18n 1.5.2
+0:  i18n (1.5.2) from /home/mike/.gem/ruby/2.5.3/specifications/i18n-1.5.2.gemspec
+Using minitest 5.11.3
+0:  minitest (5.11.3) from /home/mike/.gem/ruby/2.5.3/specifications/minitest-5.11.3.gemspec
+Using thread_safe 0.3.6
+0:  thread_safe (0.3.6) from /home/mike/.gem/ruby/2.5.3/specifications/thread_safe-0.3.6.gemspec
+Using tzinfo 1.2.5
+0:  tzinfo (1.2.5) from /home/mike/.gem/ruby/2.5.3/specifications/tzinfo-1.2.5.gemspec
+Using activesupport 5.2.2
+0:  activesupport (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activesupport-5.2.2.gemspec
+Using builder 3.2.3
+0:  builder (3.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/builder-3.2.3.gemspec
+Using erubi 1.8.0
+0:  erubi (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/erubi-1.8.0.gemspec
+Using mini_portile2 2.4.0
+0:  mini_portile2 (2.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/mini_portile2-2.4.0.gemspec
+Using nokogiri 1.10.1
+0:  nokogiri (1.10.1) from /home/mike/.gem/ruby/2.5.3/specifications/nokogiri-1.10.1.gemspec
+Using rails-dom-testing 2.0.3
+0:  rails-dom-testing (2.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/rails-dom-testing-2.0.3.gemspec
+Using crass 1.0.4
+0:  crass (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/crass-1.0.4.gemspec
+Using loofah 2.2.3
+0:  loofah (2.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/loofah-2.2.3.gemspec
+Using rails-html-sanitizer 1.0.4
+0:  rails-html-sanitizer (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/rails-html-sanitizer-1.0.4.gemspec
+Using actionview 5.2.2
+0:  actionview (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionview-5.2.2.gemspec
+Using rack 2.0.6
+0:  rack (2.0.6) from /home/mike/.gem/ruby/2.5.3/specifications/rack-2.0.6.gemspec
+Using rack-test 1.1.0
+0:  rack-test (1.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/rack-test-1.1.0.gemspec
+Using actionpack 5.2.2
+0:  actionpack (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionpack-5.2.2.gemspec
+Using nio4r 2.3.1
+0:  nio4r (2.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/nio4r-2.3.1.gemspec
+Using websocket-extensions 0.1.3
+0:  websocket-extensions (0.1.3) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-extensions-0.1.3.gemspec
+Using websocket-driver 0.7.0
+0:  websocket-driver (0.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-driver-0.7.0.gemspec
+Using actioncable 5.2.2
+0:  actioncable (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actioncable-5.2.2.gemspec
+Using globalid 0.4.2
+0:  globalid (0.4.2) from /home/mike/.gem/ruby/2.5.3/specifications/globalid-0.4.2.gemspec
+Using activejob 5.2.2
+0:  activejob (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activejob-5.2.2.gemspec
+Using mini_mime 1.0.1
+0:  mini_mime (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/mini_mime-1.0.1.gemspec
+Using mail 2.7.1
+0:  mail (2.7.1) from /home/mike/.gem/ruby/2.5.3/specifications/mail-2.7.1.gemspec
+Using actionmailer 5.2.2
+0:  actionmailer (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionmailer-5.2.2.gemspec
+Using activemodel 5.2.2
+0:  activemodel (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activemodel-5.2.2.gemspec
+Using arel 9.0.0
+0:  arel (9.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/arel-9.0.0.gemspec
+Using activerecord 5.2.2
+0:  activerecord (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activerecord-5.2.2.gemspec
+Using mimemagic 0.3.3
+0:  mimemagic (0.3.3) from /home/mike/.gem/ruby/2.5.3/specifications/mimemagic-0.3.3.gemspec
+Using marcel 0.3.3
+0:  marcel (0.3.3) from /home/mike/.gem/ruby/2.5.3/specifications/marcel-0.3.3.gemspec
+Using activestorage 5.2.2
+0:  activestorage (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activestorage-5.2.2.gemspec
+Using public_suffix 3.0.3
+0:  public_suffix (3.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/public_suffix-3.0.3.gemspec
+Using addressable 2.6.0
+0:  addressable (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/addressable-2.6.0.gemspec
+Using execjs 2.7.0
+0:  execjs (2.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/execjs-2.7.0.gemspec
+Using autoprefixer-rails 9.4.5
+0:  autoprefixer-rails (9.4.5) from /home/mike/.gem/ruby/2.5.3/specifications/autoprefixer-rails-9.4.5.gemspec
+Using awesome_print 1.8.0
+0:  awesome_print (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/awesome_print-1.8.0.gemspec
+Using bindex 0.5.0
+0:  bindex (0.5.0) from /home/mike/.gem/ruby/2.5.3/specifications/bindex-0.5.0.gemspec
+Using rb-fsevent 0.10.3
+0:  rb-fsevent (0.10.3) from /home/mike/.gem/ruby/2.5.3/specifications/rb-fsevent-0.10.3.gemspec
+Using ffi 1.9.25
+0:  ffi (1.9.25) from /home/mike/.gem/ruby/2.5.3/specifications/ffi-1.9.25.gemspec
+Using rb-inotify 0.10.0
+0:  rb-inotify (0.10.0) from /home/mike/.gem/ruby/2.5.3/specifications/rb-inotify-0.10.0.gemspec
+Using sass-listen 4.0.0
+0:  sass-listen (4.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/sass-listen-4.0.0.gemspec
+Using sass 3.7.3
+0:  sass (3.7.3) from /home/mike/.gem/ruby/2.5.3/specifications/sass-3.7.3.gemspec
+Using thor 0.20.3
+0:  thor (0.20.3) from /home/mike/.gem/ruby/2.5.3/specifications/thor-0.20.3.gemspec
+Using bourbon 5.1.0
+0:  bourbon (5.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/bourbon-5.1.0.gemspec
+Using bitters 1.8.0
+0:  bitters (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/bitters-1.8.0.gemspec
+Using msgpack 1.2.6
+0:  msgpack (1.2.6) from /home/mike/.gem/ruby/2.5.3/specifications/msgpack-1.2.6.gemspec
+Using bootsnap 1.3.2
+0:  bootsnap (1.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/bootsnap-1.3.2.gemspec
+Using bundler 1.17.1
+0:  bundler (1.17.1) from /home/mike/.gem/ruby/2.5.3/specifications/bundler-1.17.1.gemspec
+Using bundler-audit 0.6.1
+0:  bundler-audit (0.6.1) from /home/mike/.gem/ruby/2.5.3/specifications/bundler-audit-0.6.1.gemspec
+Using byebug 10.0.2
+0:  byebug (10.0.2) from /home/mike/.gem/ruby/2.5.3/specifications/byebug-10.0.2.gemspec
+Using regexp_parser 1.3.0
+0:  regexp_parser (1.3.0) from /home/mike/.gem/ruby/2.5.3/specifications/regexp_parser-1.3.0.gemspec
+Using xpath 3.2.0
+0:  xpath (3.2.0) from /home/mike/.gem/ruby/2.5.3/specifications/xpath-3.2.0.gemspec
+Using capybara 3.12.0
+0:  capybara (3.12.0) from /home/mike/.gem/ruby/2.5.3/specifications/capybara-3.12.0.gemspec
+Using coderay 1.1.2
+0:  coderay (1.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/coderay-1.1.2.gemspec
+Using safe_yaml 1.0.4
+0:  safe_yaml (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/safe_yaml-1.0.4.gemspec
+Using crack 0.4.3
+0:  crack (0.4.3) from /home/mike/.gem/ruby/2.5.3/specifications/crack-0.4.3.gemspec
+Using docile 1.3.1
+0:  docile (1.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/docile-1.3.1.gemspec
+Using dotenv 2.6.0
+0:  dotenv (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/dotenv-2.6.0.gemspec
+Using method_source 0.9.2
+0:  method_source (0.9.2) from /home/mike/.gem/ruby/2.5.3/specifications/method_source-0.9.2.gemspec
+Using railties 5.2.2
+0:  railties (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/railties-5.2.2.gemspec
+Using dotenv-rails 2.6.0
+0:  dotenv-rails (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/dotenv-rails-2.6.0.gemspec
+Using formulaic 0.4.0
+0:  formulaic (0.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/formulaic-0.4.0.gemspec
+Using hashdiff 0.3.8
+0:  hashdiff (0.3.8) from /home/mike/.gem/ruby/2.5.3/specifications/hashdiff-0.3.8.gemspec
+Using json 2.1.0
+0:  json (2.1.0) from /home/mike/.rubies/ruby-2.5.3/lib/ruby/gems/2.5.0/specifications/default/json-2.1.0.gemspec
+Using launchy 2.4.3
+0:  launchy (2.4.3) from /home/mike/.gem/ruby/2.5.3/specifications/launchy-2.4.3.gemspec
+Using ruby_dep 1.5.0
+0:  ruby_dep (1.5.0) from /home/mike/.gem/ruby/2.5.3/specifications/ruby_dep-1.5.0.gemspec
+Using listen 3.1.5
+0:  listen (3.1.5) from /home/mike/.gem/ruby/2.5.3/specifications/listen-3.1.5.gemspec
+Using pg 1.1.4
+0:  pg (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/pg-1.1.4.gemspec
+Using pry 0.12.2
+0:  pry (0.12.2) from /home/mike/.gem/ruby/2.5.3/specifications/pry-0.12.2.gemspec
+Using pry-byebug 3.6.0
+0:  pry-byebug (3.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/pry-byebug-3.6.0.gemspec
+Using pry-rails 0.3.9
+0:  pry-rails (0.3.9) from /home/mike/.gem/ruby/2.5.3/specifications/pry-rails-0.3.9.gemspec
+Using puma 3.12.0
+0:  puma (3.12.0) from /home/mike/.gem/ruby/2.5.3/specifications/puma-3.12.0.gemspec
+Using rack-canonical-host 0.2.3
+0:  rack-canonical-host (0.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/rack-canonical-host-0.2.3.gemspec
+Using rack-mini-profiler 1.0.1
+0:  rack-mini-profiler (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/rack-mini-profiler-1.0.1.gemspec
+Using sprockets 3.7.2
+0:  sprockets (3.7.2) from /home/mike/.gem/ruby/2.5.3/specifications/sprockets-3.7.2.gemspec
+Using sprockets-rails 3.2.1
+0:  sprockets-rails (3.2.1) from /home/mike/.gem/ruby/2.5.3/specifications/sprockets-rails-3.2.1.gemspec
+Using rails 5.2.2
+0:  rails (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/rails-5.2.2.gemspec
+Using recipient_interceptor 0.2.0
+0:  recipient_interceptor (0.2.0) from /home/mike/.gem/ruby/2.5.3/specifications/recipient_interceptor-0.2.0.gemspec
+Using sassc 2.0.0
+0:  sassc (2.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/sassc-2.0.0.gemspec
+Using tilt 2.0.9
+0:  tilt (2.0.9) from /home/mike/.gem/ruby/2.5.3/specifications/tilt-2.0.9.gemspec
+Using sassc-rails 2.1.0
+0:  sassc-rails (2.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/sassc-rails-2.1.0.gemspec
+Using simplecov-html 0.10.2
+0:  simplecov-html (0.10.2) from /home/mike/.gem/ruby/2.5.3/specifications/simplecov-html-0.10.2.gemspec
+Using simplecov 0.16.1
+0:  simplecov (0.16.1) from /home/mike/.gem/ruby/2.5.3/specifications/simplecov-0.16.1.gemspec
+Using skylight-core 3.1.2
+0:  skylight-core (3.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/skylight-core-3.1.2.gemspec
+Using skylight 3.1.2
+0:  skylight (3.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/skylight-3.1.2.gemspec
+Using spring 2.0.2
+0:  spring (2.0.2) from /home/mike/.gem/ruby/2.5.3/specifications/spring-2.0.2.gemspec
+Using suspenders 1.50.0 from source at `/home/mike/thoughtbot/suspenders`
+0:  suspenders (1.50.0) from /home/mike/thoughtbot/suspenders/suspenders.gemspec
+Using timecop 0.9.1
+0:  timecop (0.9.1) from /home/mike/.gem/ruby/2.5.3/specifications/timecop-0.9.1.gemspec
+Using title 0.0.7
+0:  title (0.0.7) from /home/mike/.gem/ruby/2.5.3/specifications/title-0.0.7.gemspec
+Using uglifier 4.1.20
+0:  uglifier (4.1.20) from /home/mike/.gem/ruby/2.5.3/specifications/uglifier-4.1.20.gemspec
+Using web-console 3.7.0
+0:  web-console (3.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/web-console-3.7.0.gemspec
+Using webmock 3.5.1
+0:  webmock (3.5.1) from /home/mike/.gem/ruby/2.5.3/specifications/webmock-3.5.1.gemspec
+Bundle complete! 28 Gemfile dependencies, 95 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+Setting up the development environment
+      create  config/initializers/email.rb
+      insert  config/environments/test.rb
+      insert  config/environments/development.rb
+      insert  config/application.rb
+       force  bin/setup
+         run  chmod a+x bin/setup from "."
+      insert  config/application.rb
+        gsub  config/environments/development.rb
+        gsub  config/environments/test.rb
+      insert  config/application.rb
+Setting up the production environment
+      insert  config/environments/production.rb
+      insert  config/environments/production.rb
+      insert  config/environments/production.rb
+Moving secret token out of version control
+      create  config/secrets.yml
+Configuring app
+      insert  config/environments/development.rb
+      insert  config/environments/development.rb
+      insert  config/environments/test.rb
+      insert  config/environments/test.rb
+      insert  config/environments/production.rb
+      insert  config/environments/production.rb
+      remove  config/locales/en.yml
+      create  config/locales/en.yml
+      append  Rakefile
+       force  config/puma.rb
+      create  Procfile
+      create  config/initializers/rack_mini_profiler.rb
+Copying miscellaneous support files
+      create  browserslist
+      create  config/initializers/errors.rb
+      create  config/initializers/json_encoding.rb
+Customizing the 500/404/422 pages
+      insert  public/500.html
+      insert  public/404.html
+      insert  public/422.html
+       exist  
+      create  .ctags
+      create  .env
+Setting up database
+       force  config/database.yml
+         run  bundle exec rails db:create db:migrate
+Created database 'dummy_app_development'
+Created database 'dummy_app_test'
+Setting up bundler-audit
+      create  lib/tasks/bundler_audit.rake
+      append  Rakefile
+Springifying binstubs
+         run  bundle exec spring binstub --all
+* bin/rake: spring inserted
+* bin/rails: spring inserted
+         run  spring stop from "."
+Spring is not running
+    generate  suspenders:json
+     gemfile  oj
+         run  bundle install from "."
+Running `bundle install` with bundler 1.17.1
+Found changes from the lockfile, re-resolving dependencies because the dependencies in your gemfile changed
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x64-mingw32, x86-mswin32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x64-mingw32 x86-mswin32 java`.
+HTTP GET https://index.rubygems.org/versions
+HTTP 206 Partial Content https://index.rubygems.org/versions
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["autoprefixer-rails", "pg", "puma", "rack-canonical-host", "rails", "recipient_interceptor", "sassc-rails", "skylight", "sprockets", "title", "tzinfo-data", "uglifier", "bootsnap", "listen", "rack-mini-profiler", "spring", "web-console", "awesome_print", "bundler-audit", "dotenv-rails", "pry-byebug", "pry-rails", "formulaic", "launchy", "simplecov", "timecop", "webmock", "oj", "bitters"]
+Looking up gems ["rb-fchange", "rb-fsevent", "rb-inotify", "rb-kqueue", "celluloid", "celluloid-io", "ruby_dep", "i18n", "therubyracer", "execjs", "json", "multi_json", "dotenv", "railties", "pry", "pry-doc", "activesupport", "capybara", "hoe", "configuration", "rake", "spoon", "addressable", "ffi", "byebug", "bundler", "thor", "mail", "msgpack", "snappy", "sass", "sassc", "tilt", "sprockets-rails", "skylight-core", "simplecov-html", "docile", "lockfile", "rack", "rake-compiler", "jquery-rails", "activemodel", "binding_of_caller", "debug_inspector", "actionview", "bindex", "crack", "hashdiff", "actionmailer", "actionpack", "activerecord", "activeresource", "actionwebservice", "activejob", "actioncable", "activestorage", "hike", "concurrent-ruby", "tzinfo", "bourbon", "neat"]
+HTTP GET https://index.rubygems.org/info/snappy
+HTTP 206 Partial Content https://index.rubygems.org/info/snappy
+Looking up gems ["win32-api", "rubyforge", "RubyInline", "gemcutter", "nio4r", "nenv", "rspec-logsplit", "timers", "bones", "dotenv-deployment", "ruby_parser", "method_source", "coderay", "win32console", "yard", "slop", "camping", "fcgi", "memcache-client", "mongrel", "ruby-openid", "test-spec", "thin", "mime-types", "treetop", "tlsmail", "mini_mime", "columnize", "debugger-linecache", "rb-readline", "facter", "celluloid-essentials", "celluloid-extras", "celluloid-fsm", "celluloid-pool", "celluloid-supervision", "rack-ssl", "rdoc", "activemodel-globalid", "globalid", "coffee-rails", "em-hiredis", "faye-websocket", "redis", "websocket-driver", "marcel", "culerity", "database_cleaner", "nokogiri", "selenium-webdriver", "rack-test", "celerity", "xpath", "regexp_parser", "builder", "minitest", "thread_safe", "rspec", "public_suffix", "rails-observers", "activemodel-serializers-xml", "sass-listen", "erubis", "rack-mount", "rack-cache", "journey", "rails-deprecated_sanitizer", "rails-dom-testing", "rails-html-sanitizer", "safe_yaml", "arel", "activerecord-deprecated_finders", "libv8", "ref", "functional-ruby", "erubi", "text-format", "bcrypt-ruby", "snappy-jars"]
+Looking up gems ["test-unit", "json_pure", "ZenTest", "net-scp", "markaby", "metaid", "mab", "cgi_multipart_eof_fix", "daemons", "fastthread", "gem_plugin", "ruby-yadis", "coveralls", "rubocop", "celluloid-gems", "CFPropertyList", "sys-admin", "win32-dir", "windows-api", "windows-pr", "win32-security", "coffee-script", "ParseTree", "sexp_processor", "hiredis", "eventmachine", "mimemagic", "archive-tar-minitar", "rcov", "mime-types-data", "little-plugger", "loquacious", "bones-extras", "bones-git", "atomic", "cucumber", "diff-lcs", "spicycode-rcov", "syntax", "rspec-core", "rspec-expectations", "rspec-mocks", "flexmock", "mocha", "hitimes", "loofah", "ruby_core_source", "debugger-ruby_core_source", "multimap", "racc", "rexical", "tenderlove-frex", "weakling", "mini_portile", "mini_portile2", "pkg-config", "facets", "polyglot", "text-hyphen", "abstract", "websocket-extensions", "psych", "eventmachine-le", "http_parser.rb", "preforker", "rubyzip", "childprocess", "libwebsocket", "websocket", "bcrypt"]
+Looking up gems ["libxml-ruby", "power_assert", "colorize", "rest-client", "term-ansicolor", "tins", "rainbow", "parser", "backports", "powerpack", "ruby-progressbar", "astrolabe", "unicode-display_width", "parallel", "jaro_winkler", "metaclass", "ffi-win32-extensions", "gherkin", "multi_test", "cucumber-core", "gherkin3", "cucumber-wire", "event-bus", "cucumber-expressions", "cucumber-formatter-dots", "mkrf", "bones-rcov", "bones-rspec", "bones-rubyforge", "bones-zentest", "spruz", "crass", "net-ssh", "git", "minitar", "minitar-cli", "rspec-support", "SexpProcessor", "coffee-script-source", "jar-dependencies"]
+Looking up gems ["cucumber-tag_expressions", "ast", "pattern-match", "trollop", "cucumber-messages", "c21e", "powerbar", "os", "ruby-maven", "echoe", "needle", "jruby-pageant", "bcrypt_pbkdf", "rbnacl", "rbnacl-libsodium", "netrc", "http-cookie", "http-accept"]
+Looking up gems ["ansi", "hashie", "curses", "google-protobuf", "maven-tools", "ruby-maven-libs", "highline", "allison", "domain_name", "sqlite3"]
+Looking up gems ["virtus", "unf", "termios"]
+Looking up gems ["descendants_tracker", "axiom-types", "coercible", "equalizer", "unf_ext"]
+Looking up gems ["ice_nine", "adamantium"]
+Looking up gems ["memoizable"]
+Double checking for ["bundler"] in rubygems repository https://rubygems.org/ or installed locally
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["bundler"]
+Resolving dependencies...
+Using rake 12.3.2
+0:  rake (12.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/rake-12.3.2.gemspec
+Using concurrent-ruby 1.1.4
+0:  concurrent-ruby (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/concurrent-ruby-1.1.4.gemspec
+Using i18n 1.5.2
+0:  i18n (1.5.2) from /home/mike/.gem/ruby/2.5.3/specifications/i18n-1.5.2.gemspec
+Using minitest 5.11.3
+0:  minitest (5.11.3) from /home/mike/.gem/ruby/2.5.3/specifications/minitest-5.11.3.gemspec
+Using thread_safe 0.3.6
+0:  thread_safe (0.3.6) from /home/mike/.gem/ruby/2.5.3/specifications/thread_safe-0.3.6.gemspec
+Using tzinfo 1.2.5
+0:  tzinfo (1.2.5) from /home/mike/.gem/ruby/2.5.3/specifications/tzinfo-1.2.5.gemspec
+Using activesupport 5.2.2
+0:  activesupport (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activesupport-5.2.2.gemspec
+Using builder 3.2.3
+0:  builder (3.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/builder-3.2.3.gemspec
+Using erubi 1.8.0
+0:  erubi (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/erubi-1.8.0.gemspec
+Using mini_portile2 2.4.0
+0:  mini_portile2 (2.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/mini_portile2-2.4.0.gemspec
+Using nokogiri 1.10.1
+0:  nokogiri (1.10.1) from /home/mike/.gem/ruby/2.5.3/specifications/nokogiri-1.10.1.gemspec
+Using rails-dom-testing 2.0.3
+0:  rails-dom-testing (2.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/rails-dom-testing-2.0.3.gemspec
+Using crass 1.0.4
+0:  crass (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/crass-1.0.4.gemspec
+Using loofah 2.2.3
+0:  loofah (2.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/loofah-2.2.3.gemspec
+Using rails-html-sanitizer 1.0.4
+0:  rails-html-sanitizer (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/rails-html-sanitizer-1.0.4.gemspec
+Using actionview 5.2.2
+0:  actionview (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionview-5.2.2.gemspec
+Using rack 2.0.6
+0:  rack (2.0.6) from /home/mike/.gem/ruby/2.5.3/specifications/rack-2.0.6.gemspec
+Using rack-test 1.1.0
+0:  rack-test (1.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/rack-test-1.1.0.gemspec
+Using actionpack 5.2.2
+0:  actionpack (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionpack-5.2.2.gemspec
+Using nio4r 2.3.1
+0:  nio4r (2.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/nio4r-2.3.1.gemspec
+Using websocket-extensions 0.1.3
+0:  websocket-extensions (0.1.3) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-extensions-0.1.3.gemspec
+Using websocket-driver 0.7.0
+0:  websocket-driver (0.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-driver-0.7.0.gemspec
+Using actioncable 5.2.2
+0:  actioncable (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actioncable-5.2.2.gemspec
+Using globalid 0.4.2
+0:  globalid (0.4.2) from /home/mike/.gem/ruby/2.5.3/specifications/globalid-0.4.2.gemspec
+Using activejob 5.2.2
+0:  activejob (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activejob-5.2.2.gemspec
+Using mini_mime 1.0.1
+0:  mini_mime (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/mini_mime-1.0.1.gemspec
+Using mail 2.7.1
+0:  mail (2.7.1) from /home/mike/.gem/ruby/2.5.3/specifications/mail-2.7.1.gemspec
+Using actionmailer 5.2.2
+0:  actionmailer (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionmailer-5.2.2.gemspec
+Using activemodel 5.2.2
+0:  activemodel (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activemodel-5.2.2.gemspec
+Using arel 9.0.0
+0:  arel (9.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/arel-9.0.0.gemspec
+Using activerecord 5.2.2
+0:  activerecord (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activerecord-5.2.2.gemspec
+Using mimemagic 0.3.3
+0:  mimemagic (0.3.3) from /home/mike/.gem/ruby/2.5.3/specifications/mimemagic-0.3.3.gemspec
+Using marcel 0.3.3
+0:  marcel (0.3.3) from /home/mike/.gem/ruby/2.5.3/specifications/marcel-0.3.3.gemspec
+Using activestorage 5.2.2
+0:  activestorage (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activestorage-5.2.2.gemspec
+Using public_suffix 3.0.3
+0:  public_suffix (3.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/public_suffix-3.0.3.gemspec
+Using addressable 2.6.0
+0:  addressable (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/addressable-2.6.0.gemspec
+Using execjs 2.7.0
+0:  execjs (2.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/execjs-2.7.0.gemspec
+Using autoprefixer-rails 9.4.5
+0:  autoprefixer-rails (9.4.5) from /home/mike/.gem/ruby/2.5.3/specifications/autoprefixer-rails-9.4.5.gemspec
+Using awesome_print 1.8.0
+0:  awesome_print (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/awesome_print-1.8.0.gemspec
+Using bindex 0.5.0
+0:  bindex (0.5.0) from /home/mike/.gem/ruby/2.5.3/specifications/bindex-0.5.0.gemspec
+Using rb-fsevent 0.10.3
+0:  rb-fsevent (0.10.3) from /home/mike/.gem/ruby/2.5.3/specifications/rb-fsevent-0.10.3.gemspec
+Using ffi 1.9.25
+0:  ffi (1.9.25) from /home/mike/.gem/ruby/2.5.3/specifications/ffi-1.9.25.gemspec
+Using rb-inotify 0.10.0
+0:  rb-inotify (0.10.0) from /home/mike/.gem/ruby/2.5.3/specifications/rb-inotify-0.10.0.gemspec
+Using sass-listen 4.0.0
+0:  sass-listen (4.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/sass-listen-4.0.0.gemspec
+Using sass 3.7.3
+0:  sass (3.7.3) from /home/mike/.gem/ruby/2.5.3/specifications/sass-3.7.3.gemspec
+Using thor 0.20.3
+0:  thor (0.20.3) from /home/mike/.gem/ruby/2.5.3/specifications/thor-0.20.3.gemspec
+Using bourbon 5.1.0
+0:  bourbon (5.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/bourbon-5.1.0.gemspec
+Using bitters 1.8.0
+0:  bitters (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/bitters-1.8.0.gemspec
+Using msgpack 1.2.6
+0:  msgpack (1.2.6) from /home/mike/.gem/ruby/2.5.3/specifications/msgpack-1.2.6.gemspec
+Using bootsnap 1.3.2
+0:  bootsnap (1.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/bootsnap-1.3.2.gemspec
+Using bundler 1.17.1
+0:  bundler (1.17.1) from /home/mike/.gem/ruby/2.5.3/specifications/bundler-1.17.1.gemspec
+Using bundler-audit 0.6.1
+0:  bundler-audit (0.6.1) from /home/mike/.gem/ruby/2.5.3/specifications/bundler-audit-0.6.1.gemspec
+Using byebug 10.0.2
+0:  byebug (10.0.2) from /home/mike/.gem/ruby/2.5.3/specifications/byebug-10.0.2.gemspec
+Using regexp_parser 1.3.0
+0:  regexp_parser (1.3.0) from /home/mike/.gem/ruby/2.5.3/specifications/regexp_parser-1.3.0.gemspec
+Using xpath 3.2.0
+0:  xpath (3.2.0) from /home/mike/.gem/ruby/2.5.3/specifications/xpath-3.2.0.gemspec
+Using capybara 3.12.0
+0:  capybara (3.12.0) from /home/mike/.gem/ruby/2.5.3/specifications/capybara-3.12.0.gemspec
+Using coderay 1.1.2
+0:  coderay (1.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/coderay-1.1.2.gemspec
+Using safe_yaml 1.0.4
+0:  safe_yaml (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/safe_yaml-1.0.4.gemspec
+Using crack 0.4.3
+0:  crack (0.4.3) from /home/mike/.gem/ruby/2.5.3/specifications/crack-0.4.3.gemspec
+Using docile 1.3.1
+0:  docile (1.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/docile-1.3.1.gemspec
+Using dotenv 2.6.0
+0:  dotenv (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/dotenv-2.6.0.gemspec
+Using method_source 0.9.2
+0:  method_source (0.9.2) from /home/mike/.gem/ruby/2.5.3/specifications/method_source-0.9.2.gemspec
+Using railties 5.2.2
+0:  railties (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/railties-5.2.2.gemspec
+Using dotenv-rails 2.6.0
+0:  dotenv-rails (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/dotenv-rails-2.6.0.gemspec
+Using formulaic 0.4.0
+0:  formulaic (0.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/formulaic-0.4.0.gemspec
+Using hashdiff 0.3.8
+0:  hashdiff (0.3.8) from /home/mike/.gem/ruby/2.5.3/specifications/hashdiff-0.3.8.gemspec
+Using json 2.1.0
+0:  json (2.1.0) from /home/mike/.rubies/ruby-2.5.3/lib/ruby/gems/2.5.0/specifications/default/json-2.1.0.gemspec
+Using launchy 2.4.3
+0:  launchy (2.4.3) from /home/mike/.gem/ruby/2.5.3/specifications/launchy-2.4.3.gemspec
+Using ruby_dep 1.5.0
+0:  ruby_dep (1.5.0) from /home/mike/.gem/ruby/2.5.3/specifications/ruby_dep-1.5.0.gemspec
+Using listen 3.1.5
+0:  listen (3.1.5) from /home/mike/.gem/ruby/2.5.3/specifications/listen-3.1.5.gemspec
+Using oj 3.7.7
+0:  oj (3.7.7) from /home/mike/.gem/ruby/2.5.3/specifications/oj-3.7.7.gemspec
+Using pg 1.1.4
+0:  pg (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/pg-1.1.4.gemspec
+Using pry 0.12.2
+0:  pry (0.12.2) from /home/mike/.gem/ruby/2.5.3/specifications/pry-0.12.2.gemspec
+Using pry-byebug 3.6.0
+0:  pry-byebug (3.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/pry-byebug-3.6.0.gemspec
+Using pry-rails 0.3.9
+0:  pry-rails (0.3.9) from /home/mike/.gem/ruby/2.5.3/specifications/pry-rails-0.3.9.gemspec
+Using puma 3.12.0
+0:  puma (3.12.0) from /home/mike/.gem/ruby/2.5.3/specifications/puma-3.12.0.gemspec
+Using rack-canonical-host 0.2.3
+0:  rack-canonical-host (0.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/rack-canonical-host-0.2.3.gemspec
+Using rack-mini-profiler 1.0.1
+0:  rack-mini-profiler (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/rack-mini-profiler-1.0.1.gemspec
+Using sprockets 3.7.2
+0:  sprockets (3.7.2) from /home/mike/.gem/ruby/2.5.3/specifications/sprockets-3.7.2.gemspec
+Using sprockets-rails 3.2.1
+0:  sprockets-rails (3.2.1) from /home/mike/.gem/ruby/2.5.3/specifications/sprockets-rails-3.2.1.gemspec
+Using rails 5.2.2
+0:  rails (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/rails-5.2.2.gemspec
+Using recipient_interceptor 0.2.0
+0:  recipient_interceptor (0.2.0) from /home/mike/.gem/ruby/2.5.3/specifications/recipient_interceptor-0.2.0.gemspec
+Using sassc 2.0.0
+0:  sassc (2.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/sassc-2.0.0.gemspec
+Using tilt 2.0.9
+0:  tilt (2.0.9) from /home/mike/.gem/ruby/2.5.3/specifications/tilt-2.0.9.gemspec
+Using sassc-rails 2.1.0
+0:  sassc-rails (2.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/sassc-rails-2.1.0.gemspec
+Using simplecov-html 0.10.2
+0:  simplecov-html (0.10.2) from /home/mike/.gem/ruby/2.5.3/specifications/simplecov-html-0.10.2.gemspec
+Using simplecov 0.16.1
+0:  simplecov (0.16.1) from /home/mike/.gem/ruby/2.5.3/specifications/simplecov-0.16.1.gemspec
+Using skylight-core 3.1.2
+0:  skylight-core (3.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/skylight-core-3.1.2.gemspec
+Using skylight 3.1.2
+0:  skylight (3.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/skylight-3.1.2.gemspec
+Using spring 2.0.2
+0:  spring (2.0.2) from /home/mike/.gem/ruby/2.5.3/specifications/spring-2.0.2.gemspec
+Using suspenders 1.50.0 from source at `/home/mike/thoughtbot/suspenders`
+0:  suspenders (1.50.0) from /home/mike/thoughtbot/suspenders/suspenders.gemspec
+Using timecop 0.9.1
+0:  timecop (0.9.1) from /home/mike/.gem/ruby/2.5.3/specifications/timecop-0.9.1.gemspec
+Using title 0.0.7
+0:  title (0.0.7) from /home/mike/.gem/ruby/2.5.3/specifications/title-0.0.7.gemspec
+Using uglifier 4.1.20
+0:  uglifier (4.1.20) from /home/mike/.gem/ruby/2.5.3/specifications/uglifier-4.1.20.gemspec
+Using web-console 3.7.0
+0:  web-console (3.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/web-console-3.7.0.gemspec
+Using webmock 3.5.1
+0:  webmock (3.5.1) from /home/mike/.gem/ruby/2.5.3/specifications/webmock-3.5.1.gemspec
+Bundle complete! 29 Gemfile dependencies, 96 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+    generate  suspenders:static
+     gemfile  high_voltage
+         run  bundle install from "."
+Running `bundle install` with bundler 1.17.1
+Found changes from the lockfile, re-resolving dependencies because the dependencies in your gemfile changed
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x64-mingw32, x86-mswin32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x64-mingw32 x86-mswin32 java`.
+HTTP GET https://index.rubygems.org/versions
+HTTP 206 Partial Content https://index.rubygems.org/versions
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["autoprefixer-rails", "pg", "puma", "rack-canonical-host", "rails", "recipient_interceptor", "sassc-rails", "skylight", "sprockets", "title", "tzinfo-data", "uglifier", "bootsnap", "listen", "rack-mini-profiler", "spring", "web-console", "awesome_print", "bundler-audit", "dotenv-rails", "pry-byebug", "pry-rails", "formulaic", "launchy", "simplecov", "timecop", "webmock", "oj", "high_voltage", "bitters"]
+Looking up gems ["dotenv", "railties", "rack", "addressable", "sass", "sassc", "tilt", "sprockets-rails", "msgpack", "snappy", "pry", "pry-doc", "mail", "hike", "multi_json", "concurrent-ruby", "therubyracer", "execjs", "json", "actionmailer", "actionpack", "activerecord", "activeresource", "activesupport", "rake", "actionwebservice", "bundler", "actionview", "activemodel", "activejob", "actioncable", "activestorage", "crack", "hashdiff", "bourbon", "neat", "thor", "tzinfo", "simplecov-html", "docile", "lockfile", "byebug", "hoe", "configuration", "spoon", "ffi", "rb-fchange", "rb-fsevent", "rb-inotify", "rb-kqueue", "celluloid", "celluloid-io", "ruby_dep", "capybara", "i18n", "rake-compiler", "skylight-core", "jquery-rails", "binding_of_caller", "debug_inspector", "bindex"]
+HTTP GET https://index.rubygems.org/info/snappy
+HTTP 206 Partial Content https://index.rubygems.org/info/snappy
+Looking up gems ["yard", "libv8", "ref", "mime-types", "treetop", "tlsmail", "mini_mime", "builder", "erubis", "rails-deprecated_sanitizer", "rails-dom-testing", "rails-html-sanitizer", "erubi", "dotenv-deployment", "rack-mount", "rack-test", "rack-cache", "journey", "marcel", "rack-ssl", "rdoc", "method_source", "rspec", "public_suffix", "sass-listen", "win32-api", "thread_safe", "arel", "activerecord-deprecated_finders", "nio4r", "nenv", "rspec-logsplit", "timers", "bones", "coffee-rails", "em-hiredis", "faye-websocket", "redis", "websocket-driver", "rails-observers", "activemodel-serializers-xml", "facter", "celluloid-essentials", "celluloid-extras", "celluloid-fsm", "celluloid-pool", "celluloid-supervision", "activemodel-globalid", "globalid", "columnize", "debugger-linecache", "slop", "rb-readline", "safe_yaml", "text-format", "rubyforge", "RubyInline", "gemcutter", "memcache-client", "minitest", "functional-ruby", "bcrypt-ruby", "camping", "fcgi", "mongrel", "ruby-openid", "test-spec", "thin", "culerity", "database_cleaner", "nokogiri", "selenium-webdriver", "celerity", "xpath", "regexp_parser", "ruby_parser", "coderay", "win32console", "snappy-jars"]
+Looking up gems ["facets", "polyglot", "abstract", "multimap", "hitimes", "archive-tar-minitar", "rcov", "mime-types-data", "little-plugger", "loquacious", "bones-extras", "bones-git", "test-unit", "coveralls", "rubocop", "atomic", "loofah", "coffee-script", "cucumber", "diff-lcs", "spicycode-rcov", "syntax", "rspec-core", "rspec-expectations", "rspec-mocks", "json_pure", "ruby_core_source", "debugger-ruby_core_source", "celluloid-gems", "bcrypt", "hiredis", "eventmachine", "mimemagic", "flexmock", "mocha", "text-hyphen", "ZenTest", "net-scp", "cgi_multipart_eof_fix", "daemons", "fastthread", "gem_plugin", "markaby", "metaid", "mab", "ruby-yadis", "websocket-extensions", "rubyzip", "childprocess", "libwebsocket", "websocket", "CFPropertyList", "sys-admin", "win32-dir", "windows-api", "windows-pr", "win32-security", "eventmachine-le", "http_parser.rb", "preforker", "psych", "racc", "rexical", "tenderlove-frex", "weakling", "mini_portile", "mini_portile2", "pkg-config", "ParseTree", "sexp_processor"]
+Looking up gems ["crass", "minitar", "minitar-cli", "term-ansicolor", "gherkin", "multi_test", "cucumber-core", "gherkin3", "cucumber-wire", "event-bus", "cucumber-expressions", "cucumber-formatter-dots", "colorize", "rest-client", "tins", "git", "coffee-script-source", "power_assert", "spruz", "net-ssh", "rspec-support", "ffi-win32-extensions", "mkrf", "bones-rcov", "bones-rspec", "bones-rubyforge", "bones-zentest", "libxml-ruby", "rainbow", "parser", "backports", "powerpack", "ruby-progressbar", "astrolabe", "unicode-display_width", "parallel", "jaro_winkler", "metaclass", "jar-dependencies", "SexpProcessor"]
+Looking up gems ["cucumber-tag_expressions", "powerbar", "pattern-match", "cucumber-messages", "os", "c21e", "netrc", "http-cookie", "http-accept", "ast", "ruby-maven", "trollop", "echoe", "needle", "jruby-pageant", "bcrypt_pbkdf", "rbnacl", "rbnacl-libsodium"]
+Looking up gems ["domain_name", "sqlite3", "ansi", "hashie", "maven-tools", "ruby-maven-libs", "highline", "allison", "google-protobuf", "curses"]
+Looking up gems ["unf", "virtus", "termios"]
+Looking up gems ["descendants_tracker", "axiom-types", "coercible", "equalizer", "unf_ext"]
+Looking up gems ["adamantium", "ice_nine"]
+Looking up gems ["memoizable"]
+Double checking for ["bundler"] in rubygems repository https://rubygems.org/ or installed locally
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["bundler"]
+Resolving dependencies...
+Using rake 12.3.2
+0:  rake (12.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/rake-12.3.2.gemspec
+Using concurrent-ruby 1.1.4
+0:  concurrent-ruby (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/concurrent-ruby-1.1.4.gemspec
+Using i18n 1.5.2
+0:  i18n (1.5.2) from /home/mike/.gem/ruby/2.5.3/specifications/i18n-1.5.2.gemspec
+Using minitest 5.11.3
+0:  minitest (5.11.3) from /home/mike/.gem/ruby/2.5.3/specifications/minitest-5.11.3.gemspec
+Using thread_safe 0.3.6
+0:  thread_safe (0.3.6) from /home/mike/.gem/ruby/2.5.3/specifications/thread_safe-0.3.6.gemspec
+Using tzinfo 1.2.5
+0:  tzinfo (1.2.5) from /home/mike/.gem/ruby/2.5.3/specifications/tzinfo-1.2.5.gemspec
+Using activesupport 5.2.2
+0:  activesupport (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activesupport-5.2.2.gemspec
+Using builder 3.2.3
+0:  builder (3.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/builder-3.2.3.gemspec
+Using erubi 1.8.0
+0:  erubi (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/erubi-1.8.0.gemspec
+Using mini_portile2 2.4.0
+0:  mini_portile2 (2.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/mini_portile2-2.4.0.gemspec
+Using nokogiri 1.10.1
+0:  nokogiri (1.10.1) from /home/mike/.gem/ruby/2.5.3/specifications/nokogiri-1.10.1.gemspec
+Using rails-dom-testing 2.0.3
+0:  rails-dom-testing (2.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/rails-dom-testing-2.0.3.gemspec
+Using crass 1.0.4
+0:  crass (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/crass-1.0.4.gemspec
+Using loofah 2.2.3
+0:  loofah (2.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/loofah-2.2.3.gemspec
+Using rails-html-sanitizer 1.0.4
+0:  rails-html-sanitizer (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/rails-html-sanitizer-1.0.4.gemspec
+Using actionview 5.2.2
+0:  actionview (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionview-5.2.2.gemspec
+Using rack 2.0.6
+0:  rack (2.0.6) from /home/mike/.gem/ruby/2.5.3/specifications/rack-2.0.6.gemspec
+Using rack-test 1.1.0
+0:  rack-test (1.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/rack-test-1.1.0.gemspec
+Using actionpack 5.2.2
+0:  actionpack (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionpack-5.2.2.gemspec
+Using nio4r 2.3.1
+0:  nio4r (2.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/nio4r-2.3.1.gemspec
+Using websocket-extensions 0.1.3
+0:  websocket-extensions (0.1.3) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-extensions-0.1.3.gemspec
+Using websocket-driver 0.7.0
+0:  websocket-driver (0.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-driver-0.7.0.gemspec
+Using actioncable 5.2.2
+0:  actioncable (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actioncable-5.2.2.gemspec
+Using globalid 0.4.2
+0:  globalid (0.4.2) from /home/mike/.gem/ruby/2.5.3/specifications/globalid-0.4.2.gemspec
+Using activejob 5.2.2
+0:  activejob (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activejob-5.2.2.gemspec
+Using mini_mime 1.0.1
+0:  mini_mime (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/mini_mime-1.0.1.gemspec
+Using mail 2.7.1
+0:  mail (2.7.1) from /home/mike/.gem/ruby/2.5.3/specifications/mail-2.7.1.gemspec
+Using actionmailer 5.2.2
+0:  actionmailer (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionmailer-5.2.2.gemspec
+Using activemodel 5.2.2
+0:  activemodel (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activemodel-5.2.2.gemspec
+Using arel 9.0.0
+0:  arel (9.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/arel-9.0.0.gemspec
+Using activerecord 5.2.2
+0:  activerecord (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activerecord-5.2.2.gemspec
+Using mimemagic 0.3.3
+0:  mimemagic (0.3.3) from /home/mike/.gem/ruby/2.5.3/specifications/mimemagic-0.3.3.gemspec
+Using marcel 0.3.3
+0:  marcel (0.3.3) from /home/mike/.gem/ruby/2.5.3/specifications/marcel-0.3.3.gemspec
+Using activestorage 5.2.2
+0:  activestorage (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activestorage-5.2.2.gemspec
+Using public_suffix 3.0.3
+0:  public_suffix (3.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/public_suffix-3.0.3.gemspec
+Using addressable 2.6.0
+0:  addressable (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/addressable-2.6.0.gemspec
+Using execjs 2.7.0
+0:  execjs (2.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/execjs-2.7.0.gemspec
+Using autoprefixer-rails 9.4.5
+0:  autoprefixer-rails (9.4.5) from /home/mike/.gem/ruby/2.5.3/specifications/autoprefixer-rails-9.4.5.gemspec
+Using awesome_print 1.8.0
+0:  awesome_print (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/awesome_print-1.8.0.gemspec
+Using bindex 0.5.0
+0:  bindex (0.5.0) from /home/mike/.gem/ruby/2.5.3/specifications/bindex-0.5.0.gemspec
+Using rb-fsevent 0.10.3
+0:  rb-fsevent (0.10.3) from /home/mike/.gem/ruby/2.5.3/specifications/rb-fsevent-0.10.3.gemspec
+Using ffi 1.9.25
+0:  ffi (1.9.25) from /home/mike/.gem/ruby/2.5.3/specifications/ffi-1.9.25.gemspec
+Using rb-inotify 0.10.0
+0:  rb-inotify (0.10.0) from /home/mike/.gem/ruby/2.5.3/specifications/rb-inotify-0.10.0.gemspec
+Using sass-listen 4.0.0
+0:  sass-listen (4.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/sass-listen-4.0.0.gemspec
+Using sass 3.7.3
+0:  sass (3.7.3) from /home/mike/.gem/ruby/2.5.3/specifications/sass-3.7.3.gemspec
+Using thor 0.20.3
+0:  thor (0.20.3) from /home/mike/.gem/ruby/2.5.3/specifications/thor-0.20.3.gemspec
+Using bourbon 5.1.0
+0:  bourbon (5.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/bourbon-5.1.0.gemspec
+Using bitters 1.8.0
+0:  bitters (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/bitters-1.8.0.gemspec
+Using msgpack 1.2.6
+0:  msgpack (1.2.6) from /home/mike/.gem/ruby/2.5.3/specifications/msgpack-1.2.6.gemspec
+Using bootsnap 1.3.2
+0:  bootsnap (1.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/bootsnap-1.3.2.gemspec
+Using bundler 1.17.1
+0:  bundler (1.17.1) from /home/mike/.gem/ruby/2.5.3/specifications/bundler-1.17.1.gemspec
+Using bundler-audit 0.6.1
+0:  bundler-audit (0.6.1) from /home/mike/.gem/ruby/2.5.3/specifications/bundler-audit-0.6.1.gemspec
+Using byebug 10.0.2
+0:  byebug (10.0.2) from /home/mike/.gem/ruby/2.5.3/specifications/byebug-10.0.2.gemspec
+Using regexp_parser 1.3.0
+0:  regexp_parser (1.3.0) from /home/mike/.gem/ruby/2.5.3/specifications/regexp_parser-1.3.0.gemspec
+Using xpath 3.2.0
+0:  xpath (3.2.0) from /home/mike/.gem/ruby/2.5.3/specifications/xpath-3.2.0.gemspec
+Using capybara 3.12.0
+0:  capybara (3.12.0) from /home/mike/.gem/ruby/2.5.3/specifications/capybara-3.12.0.gemspec
+Using coderay 1.1.2
+0:  coderay (1.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/coderay-1.1.2.gemspec
+Using safe_yaml 1.0.4
+0:  safe_yaml (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/safe_yaml-1.0.4.gemspec
+Using crack 0.4.3
+0:  crack (0.4.3) from /home/mike/.gem/ruby/2.5.3/specifications/crack-0.4.3.gemspec
+Using docile 1.3.1
+0:  docile (1.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/docile-1.3.1.gemspec
+Using dotenv 2.6.0
+0:  dotenv (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/dotenv-2.6.0.gemspec
+Using method_source 0.9.2
+0:  method_source (0.9.2) from /home/mike/.gem/ruby/2.5.3/specifications/method_source-0.9.2.gemspec
+Using railties 5.2.2
+0:  railties (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/railties-5.2.2.gemspec
+Using dotenv-rails 2.6.0
+0:  dotenv-rails (2.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/dotenv-rails-2.6.0.gemspec
+Using formulaic 0.4.0
+0:  formulaic (0.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/formulaic-0.4.0.gemspec
+Using hashdiff 0.3.8
+0:  hashdiff (0.3.8) from /home/mike/.gem/ruby/2.5.3/specifications/hashdiff-0.3.8.gemspec
+Using high_voltage 3.1.0
+0:  high_voltage (3.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/high_voltage-3.1.0.gemspec
+Using json 2.1.0
+0:  json (2.1.0) from /home/mike/.rubies/ruby-2.5.3/lib/ruby/gems/2.5.0/specifications/default/json-2.1.0.gemspec
+Using launchy 2.4.3
+0:  launchy (2.4.3) from /home/mike/.gem/ruby/2.5.3/specifications/launchy-2.4.3.gemspec
+Using ruby_dep 1.5.0
+0:  ruby_dep (1.5.0) from /home/mike/.gem/ruby/2.5.3/specifications/ruby_dep-1.5.0.gemspec
+Using listen 3.1.5
+0:  listen (3.1.5) from /home/mike/.gem/ruby/2.5.3/specifications/listen-3.1.5.gemspec
+Using oj 3.7.7
+0:  oj (3.7.7) from /home/mike/.gem/ruby/2.5.3/specifications/oj-3.7.7.gemspec
+Using pg 1.1.4
+0:  pg (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/pg-1.1.4.gemspec
+Using pry 0.12.2
+0:  pry (0.12.2) from /home/mike/.gem/ruby/2.5.3/specifications/pry-0.12.2.gemspec
+Using pry-byebug 3.6.0
+0:  pry-byebug (3.6.0) from /home/mike/.gem/ruby/2.5.3/specifications/pry-byebug-3.6.0.gemspec
+Using pry-rails 0.3.9
+0:  pry-rails (0.3.9) from /home/mike/.gem/ruby/2.5.3/specifications/pry-rails-0.3.9.gemspec
+Using puma 3.12.0
+0:  puma (3.12.0) from /home/mike/.gem/ruby/2.5.3/specifications/puma-3.12.0.gemspec
+Using rack-canonical-host 0.2.3
+0:  rack-canonical-host (0.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/rack-canonical-host-0.2.3.gemspec
+Using rack-mini-profiler 1.0.1
+0:  rack-mini-profiler (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/rack-mini-profiler-1.0.1.gemspec
+Using sprockets 3.7.2
+0:  sprockets (3.7.2) from /home/mike/.gem/ruby/2.5.3/specifications/sprockets-3.7.2.gemspec
+Using sprockets-rails 3.2.1
+0:  sprockets-rails (3.2.1) from /home/mike/.gem/ruby/2.5.3/specifications/sprockets-rails-3.2.1.gemspec
+Using rails 5.2.2
+0:  rails (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/rails-5.2.2.gemspec
+Using recipient_interceptor 0.2.0
+0:  recipient_interceptor (0.2.0) from /home/mike/.gem/ruby/2.5.3/specifications/recipient_interceptor-0.2.0.gemspec
+Using sassc 2.0.0
+0:  sassc (2.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/sassc-2.0.0.gemspec
+Using tilt 2.0.9
+0:  tilt (2.0.9) from /home/mike/.gem/ruby/2.5.3/specifications/tilt-2.0.9.gemspec
+Using sassc-rails 2.1.0
+0:  sassc-rails (2.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/sassc-rails-2.1.0.gemspec
+Using simplecov-html 0.10.2
+0:  simplecov-html (0.10.2) from /home/mike/.gem/ruby/2.5.3/specifications/simplecov-html-0.10.2.gemspec
+Using simplecov 0.16.1
+0:  simplecov (0.16.1) from /home/mike/.gem/ruby/2.5.3/specifications/simplecov-0.16.1.gemspec
+Using skylight-core 3.1.2
+0:  skylight-core (3.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/skylight-core-3.1.2.gemspec
+Using skylight 3.1.2
+0:  skylight (3.1.2) from /home/mike/.gem/ruby/2.5.3/specifications/skylight-3.1.2.gemspec
+Using spring 2.0.2
+0:  spring (2.0.2) from /home/mike/.gem/ruby/2.5.3/specifications/spring-2.0.2.gemspec
+Using suspenders 1.50.0 from source at `/home/mike/thoughtbot/suspenders`
+0:  suspenders (1.50.0) from /home/mike/thoughtbot/suspenders/suspenders.gemspec
+Using timecop 0.9.1
+0:  timecop (0.9.1) from /home/mike/.gem/ruby/2.5.3/specifications/timecop-0.9.1.gemspec
+Using title 0.0.7
+0:  title (0.0.7) from /home/mike/.gem/ruby/2.5.3/specifications/title-0.0.7.gemspec
+Using uglifier 4.1.20
+0:  uglifier (4.1.20) from /home/mike/.gem/ruby/2.5.3/specifications/uglifier-4.1.20.gemspec
+Using web-console 3.7.0
+0:  web-console (3.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/web-console-3.7.0.gemspec
+Using webmock 3.5.1
+0:  webmock (3.5.1) from /home/mike/.gem/ruby/2.5.3/specifications/webmock-3.5.1.gemspec
+Bundle complete! 30 Gemfile dependencies, 97 gems now installed.
+Use `bundle info [gemname]` to see where a bundled gem is installed.
+    generate  suspenders:stylesheet_base
+     gemfile  bourbon (>= 5.0.1)
+     gemfile  neat (>= 3.0.1)
+         run  bundle install from "."
+Running `bundle install` with bundler 1.17.1
+Found changes from the lockfile, re-resolving dependencies because the dependencies in your gemfile changed
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x64-mingw32, x86-mswin32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x64-mingw32 x86-mswin32 java`.
+HTTP GET https://index.rubygems.org/versions
+HTTP 206 Partial Content https://index.rubygems.org/versions
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["autoprefixer-rails", "pg", "puma", "rack-canonical-host", "rails", "recipient_interceptor", "sassc-rails", "skylight", "sprockets", "title", "tzinfo-data", "uglifier", "bootsnap", "listen", "rack-mini-profiler", "spring", "web-console", "awesome_print", "bundler-audit", "dotenv-rails", "pry-byebug", "pry-rails", "formulaic", "launchy", "simplecov", "timecop", "webmock", "oj", "high_voltage", "bourbon", "neat", "bitters"]
+Looking up gems ["bundler", "thor", "dotenv", "railties", "configuration", "rake", "spoon", "addressable", "ffi", "simplecov-html", "multi_json", "docile", "lockfile", "json", "hoe", "activesupport", "capybara", "i18n", "sass", "rack", "jquery-rails", "activemodel", "sprockets-rails", "binding_of_caller", "debug_inspector", "actionview", "bindex", "byebug", "pry", "pry-doc", "mail", "skylight-core", "crack", "hashdiff", "therubyracer", "execjs", "rake-compiler", "hike", "tilt", "concurrent-ruby", "actionmailer", "actionpack", "activerecord", "activeresource", "actionwebservice", "activejob", "actioncable", "activestorage", "msgpack", "snappy", "tzinfo", "sassc", "rb-fchange", "rb-fsevent", "rb-inotify", "rb-kqueue", "celluloid", "celluloid-io", "ruby_dep"]
+HTTP GET https://index.rubygems.org/info/snappy
+HTTP 206 Partial Content https://index.rubygems.org/info/snappy
+Looking up gems ["rubyforge", "RubyInline", "gemcutter", "culerity", "database_cleaner", "nokogiri", "selenium-webdriver", "rack-test", "mime-types", "celerity", "xpath", "mini_mime", "regexp_parser", "camping", "fcgi", "memcache-client", "mongrel", "ruby-openid", "test-spec", "thin", "ruby_parser", "method_source", "coderay", "win32console", "yard", "slop", "builder", "erubis", "rails-deprecated_sanitizer", "rails-dom-testing", "rails-html-sanitizer", "erubi", "rspec", "public_suffix", "libv8", "ref", "treetop", "tlsmail", "dotenv-deployment", "sass-listen", "safe_yaml", "minitest", "thread_safe", "bones", "rack-ssl", "rdoc", "win32-api", "bcrypt-ruby", "rails-observers", "activemodel-serializers-xml", "arel", "activerecord-deprecated_finders", "nio4r", "nenv", "rspec-logsplit", "timers", "marcel", "functional-ruby", "text-format", "coffee-rails", "em-hiredis", "faye-websocket", "redis", "websocket-driver", "activemodel-globalid", "globalid", "columnize", "debugger-linecache", "rb-readline", "facter", "celluloid-essentials", "celluloid-extras", "celluloid-fsm", "celluloid-pool", "celluloid-supervision", "rack-mount", "rack-cache", "journey", "snappy-jars"]
+Looking up gems ["ZenTest", "net-scp", "json_pure", "rubyzip", "childprocess", "libwebsocket", "websocket", "markaby", "metaid", "mab", "abstract", "cgi_multipart_eof_fix", "daemons", "fastthread", "gem_plugin", "archive-tar-minitar", "rcov", "mime-types-data", "ParseTree", "sexp_processor", "cucumber", "racc", "rexical", "tenderlove-frex", "weakling", "mini_portile", "mini_portile2", "pkg-config", "ruby-yadis", "test-unit", "atomic", "facets", "polyglot", "flexmock", "mocha", "eventmachine", "eventmachine-le", "http_parser.rb", "preforker", "text-hyphen", "loofah", "diff-lcs", "spicycode-rcov", "syntax", "rspec-core", "rspec-expectations", "rspec-mocks", "bcrypt", "coffee-script", "coveralls", "rubocop", "hiredis", "celluloid-gems", "multimap", "ruby_core_source", "debugger-ruby_core_source", "mimemagic", "hitimes", "CFPropertyList", "sys-admin", "win32-dir", "windows-api", "windows-pr", "win32-security", "psych", "little-plugger", "loquacious", "bones-extras", "bones-git", "websocket-extensions"]
+Looking up gems ["SexpProcessor", "net-ssh", "spruz", "minitar", "minitar-cli", "metaclass", "libxml-ruby", "power_assert", "term-ansicolor", "gherkin", "multi_test", "cucumber-core", "gherkin3", "cucumber-wire", "event-bus", "cucumber-expressions", "cucumber-formatter-dots", "rspec-support", "coffee-script-source", "rainbow", "parser", "backports", "powerpack", "ruby-progressbar", "astrolabe", "tins", "unicode-display_width", "parallel", "jaro_winkler", "crass", "colorize", "rest-client", "jar-dependencies", "mkrf", "bones-rcov", "bones-rspec", "bones-rubyforge", "bones-zentest", "git", "ffi-win32-extensions"]
+Looking up gems ["cucumber-messages", "os", "c21e", "trollop", "ruby-maven", "cucumber-tag_expressions", "powerbar", "pattern-match", "netrc", "http-cookie", "http-accept", "echoe", "needle", "jruby-pageant", "bcrypt_pbkdf", "rbnacl", "rbnacl-libsodium", "ast"]
+Looking up gems ["ansi", "hashie", "google-protobuf", "domain_name", "sqlite3", "curses", "maven-tools", "ruby-maven-libs", "highline", "allison"]
+Looking up gems ["virtus", "unf", "termios"]
+Looking up gems ["unf_ext", "descendants_tracker", "axiom-types", "coercible", "equalizer"]
+Looking up gems ["ice_nine", "adamantium"]
+Looking up gems ["memoizable"]
+Double checking for ["bundler"] in rubygems repository https://rubygems.org/ or installed locally
+Fetching gem metadata from https://rubygems.org/
+Looking up gems ["bundler"]
+Resolving dependencies...
+Using rake 12.3.2
+0:  rake (12.3.2) from /home/mike/.gem/ruby/2.5.3/specifications/rake-12.3.2.gemspec
+Using concurrent-ruby 1.1.4
+0:  concurrent-ruby (1.1.4) from /home/mike/.gem/ruby/2.5.3/specifications/concurrent-ruby-1.1.4.gemspec
+Using i18n 1.5.2
+0:  i18n (1.5.2) from /home/mike/.gem/ruby/2.5.3/specifications/i18n-1.5.2.gemspec
+Using minitest 5.11.3
+0:  minitest (5.11.3) from /home/mike/.gem/ruby/2.5.3/specifications/minitest-5.11.3.gemspec
+Using thread_safe 0.3.6
+0:  thread_safe (0.3.6) from /home/mike/.gem/ruby/2.5.3/specifications/thread_safe-0.3.6.gemspec
+Using tzinfo 1.2.5
+0:  tzinfo (1.2.5) from /home/mike/.gem/ruby/2.5.3/specifications/tzinfo-1.2.5.gemspec
+Using activesupport 5.2.2
+0:  activesupport (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activesupport-5.2.2.gemspec
+Using builder 3.2.3
+0:  builder (3.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/builder-3.2.3.gemspec
+Using erubi 1.8.0
+0:  erubi (1.8.0) from /home/mike/.gem/ruby/2.5.3/specifications/erubi-1.8.0.gemspec
+Using mini_portile2 2.4.0
+0:  mini_portile2 (2.4.0) from /home/mike/.gem/ruby/2.5.3/specifications/mini_portile2-2.4.0.gemspec
+Using nokogiri 1.10.1
+0:  nokogiri (1.10.1) from /home/mike/.gem/ruby/2.5.3/specifications/nokogiri-1.10.1.gemspec
+Using rails-dom-testing 2.0.3
+0:  rails-dom-testing (2.0.3) from /home/mike/.gem/ruby/2.5.3/specifications/rails-dom-testing-2.0.3.gemspec
+Using crass 1.0.4
+0:  crass (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/crass-1.0.4.gemspec
+Using loofah 2.2.3
+0:  loofah (2.2.3) from /home/mike/.gem/ruby/2.5.3/specifications/loofah-2.2.3.gemspec
+Using rails-html-sanitizer 1.0.4
+0:  rails-html-sanitizer (1.0.4) from /home/mike/.gem/ruby/2.5.3/specifications/rails-html-sanitizer-1.0.4.gemspec
+Using actionview 5.2.2
+0:  actionview (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionview-5.2.2.gemspec
+Using rack 2.0.6
+0:  rack (2.0.6) from /home/mike/.gem/ruby/2.5.3/specifications/rack-2.0.6.gemspec
+Using rack-test 1.1.0
+0:  rack-test (1.1.0) from /home/mike/.gem/ruby/2.5.3/specifications/rack-test-1.1.0.gemspec
+Using actionpack 5.2.2
+0:  actionpack (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionpack-5.2.2.gemspec
+Using nio4r 2.3.1
+0:  nio4r (2.3.1) from /home/mike/.gem/ruby/2.5.3/specifications/nio4r-2.3.1.gemspec
+Using websocket-extensions 0.1.3
+0:  websocket-extensions (0.1.3) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-extensions-0.1.3.gemspec
+Using websocket-driver 0.7.0
+0:  websocket-driver (0.7.0) from /home/mike/.gem/ruby/2.5.3/specifications/websocket-driver-0.7.0.gemspec
+Using actioncable 5.2.2
+0:  actioncable (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actioncable-5.2.2.gemspec
+Using globalid 0.4.2
+0:  globalid (0.4.2) from /home/mike/.gem/ruby/2.5.3/specifications/globalid-0.4.2.gemspec
+Using activejob 5.2.2
+0:  activejob (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activejob-5.2.2.gemspec
+Using mini_mime 1.0.1
+0:  mini_mime (1.0.1) from /home/mike/.gem/ruby/2.5.3/specifications/mini_mime-1.0.1.gemspec
+Using mail 2.7.1
+0:  mail (2.7.1) from /home/mike/.gem/ruby/2.5.3/specifications/mail-2.7.1.gemspec
+Using actionmailer 5.2.2
+0:  actionmailer (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/actionmailer-5.2.2.gemspec
+Using activemodel 5.2.2
+0:  activemodel (5.2.2) from /home/mike/.gem/ruby/2.5.3/specifications/activemodel-5.2.2.gemspec
+Using arel 9.0.0
+0:  arel (9.0.0) from /home/mike/.gem/ruby/2.5.3/specifications/arel-9.0.0.gemspec
+Using activerecord 5.2.2
+0:  activerecord (5.2.2) from /ho
+[master (root-commit) 82e673a] Initial commit
+ 126 files changed, 2187 insertions(+)
+ create mode 100644 .ctags
+ create mode 100644 .env
+ create mode 100644 .gitignore
+ create mode 100644 .hound.yml
+ create mode 100644 .rspec
+ create mode 100644 .ruby-version
+ create mode 100644 Gemfile
+ create mode 100644 Gemfile.lock
+ create mode 100644 Procfile
+ create mode 100644 README.md
+ create mode 100644 Rakefile
+ create mode 100644 app.json
+ create mode 100644 app/assets/config/manifest.js
+ create mode 100644 app/assets/images/.keep
+ create mode 100644 app/assets/javascripts/application.js
+ create mode 100644 app/assets/javascripts/cable.js
+ create mode 100644 app/assets/javascripts/channels/.keep
+ create mode 100644 app/assets/stylesheets/application.scss
+ create mode 100644 app/assets/stylesheets/base/_base.scss
+ create mode 100644 app/assets/stylesheets/base/_buttons.scss
+ create mode 100644 app/assets/stylesheets/base/_forms.scss
+ create mode 100644 app/assets/stylesheets/base/_layout.scss
+ create mode 100644 app/assets/stylesheets/base/_lists.scss
+ create mode 100644 app/assets/stylesheets/base/_media.scss
+ create mode 100644 app/assets/stylesheets/base/_tables.scss
+ create mode 100644 app/assets/stylesheets/base/_typography.scss
+ create mode 100644 app/assets/stylesheets/base/_variables.scss
+ create mode 100644 app/channels/application_cable/channel.rb
+ create mode 100644 app/channels/application_cable/connection.rb
+ create mode 100644 app/controllers/application_controller.rb
+ create mode 100644 app/controllers/concerns/.keep
+ create mode 100644 app/helpers/application_helper.rb
+ create mode 100644 app/helpers/flashes_helper.rb
+ create mode 100644 app/jobs/application_job.rb
+ create mode 100644 app/mailers/application_mailer.rb
+ create mode 100644 app/models/application_record.rb
+ create mode 100644 app/models/concerns/.keep
+ create mode 100644 app/views/application/_analytics.html.erb
+ create mode 100644 app/views/application/_css_overrides.html.erb
+ create mode 100644 app/views/application/_flashes.html.erb
+ create mode 100644 app/views/application/_javascript.html.erb
+ create mode 100644 app/views/layouts/application.html.erb
+ create mode 100644 app/views/layouts/mailer.html.erb
+ create mode 100644 app/views/layouts/mailer.text.erb
+ create mode 100644 app/views/pages/.keep
+ create mode 100755 bin/bundle
+ create mode 100755 bin/delayed_job
+ create mode 100755 bin/deploy
+ create mode 100755 bin/rails
+ create mode 100755 bin/rake
+ create mode 100755 bin/rspec
+ create mode 100755 bin/setup
+ create mode 100755 bin/setup_review_app
+ create mode 100755 bin/spring
+ create mode 100755 bin/update
+ create mode 100755 bin/yarn
+ create mode 100644 browserslist
+ create mode 100644 circle.yml
+ create mode 100644 config.ru
+ create mode 100644 config/application.rb
+ create mode 100644 config/boot.rb
+ create mode 100644 config/cable.yml
+ create mode 100644 config/credentials.yml.enc
+ create mode 100644 config/database.yml
+ create mode 100644 config/environment.rb
+ create mode 100644 config/environments/development.rb
+ create mode 100644 config/environments/production.rb
+ create mode 100644 config/environments/test.rb
+ create mode 100644 config/initializers/active_job.rb
+ create mode 100644 config/initializers/application_controller_renderer.rb
+ create mode 100644 config/initializers/assets.rb
+ create mode 100644 config/initializers/backtrace_silencers.rb
+ create mode 100644 config/initializers/content_security_policy.rb
+ create mode 100644 config/initializers/cookies_serializer.rb
+ create mode 100644 config/initializers/email.rb
+ create mode 100644 config/initializers/errors.rb
+ create mode 100644 config/initializers/filter_parameter_logging.rb
+ create mode 100644 config/initializers/inflections.rb
+ create mode 100644 config/initializers/json_encoding.rb
+ create mode 100644 config/initializers/mime_types.rb
+ create mode 100644 config/initializers/rack_mini_profiler.rb
+ create mode 100644 config/initializers/simple_form.rb
+ create mode 100644 config/initializers/wrap_parameters.rb
+ create mode 100644 config/locales/en.yml
+ create mode 100644 config/locales/simple_form.en.yml
+ create mode 100644 config/puma.rb
+ create mode 100644 config/routes.rb
+ create mode 100644 config/secrets.yml
+ create mode 100644 config/smtp.rb
+ create mode 100644 config/spring.rb
+ create mode 100644 config/storage.yml
+ create mode 100644 db/migrate/20190118170423_create_delayed_jobs.rb
+ create mode 100644 db/schema.rb
+ create mode 100644 db/seeds.rb
+ create mode 100644 lib/assets/.keep
+ create mode 100644 lib/tasks/.keep
+ create mode 100644 lib/tasks/bundler_audit.rake
+ create mode 100644 lib/tasks/dev.rake
+ create mode 100644 lib/templates/erb/scaffold/_form.html.erb
+ create mode 100644 package.json
+ create mode 100644 public/404.html
+ create mode 100644 public/422.html
+ create mode 100644 public/500.html
+ create mode 100644 public/apple-touch-icon-precomposed.png
+ create mode 100644 public/apple-touch-icon.png
+ create mode 100644 public/favicon.ico
+ create mode 100644 public/robots.txt
+ create mode 100644 spec/controllers/.keep
+ create mode 100644 spec/factories.rb
+ create mode 100644 spec/features/.keep
+ create mode 100644 spec/helpers/.keep
+ create mode 100644 spec/lib/.keep
+ create mode 100644 spec/rails_helper.rb
+ create mode 100644 spec/spec_helper.rb
+ create mode 100644 spec/support/action_mailer.rb
+ create mode 100644 spec/support/chromedriver.rb
+ create mode 100644 spec/support/factory_bot.rb
+ create mode 100644 spec/support/features/.keep
+ create mode 100644 spec/support/i18n.rb
+ create mode 100644 spec/support/matchers/.keep
+ create mode 100644 spec/support/mixins/.keep
+ create mode 100644 spec/support/shared_examples/.keep
+ create mode 100644 spec/support/shoulda_matchers.rb
+ create mode 100644 storage/.keep
+ create mode 100644 vendor/.keep
+ create mode 100644 yarn.lock
+Found no changes, using resolution from the lockfile
+The dependency tzinfo-data (>= 0) will be unused by any of the platforms Bundler is installing for. Bundler is installing for ruby but the dependency is only for x86-mingw32, x64-mingw32, x86-mswin32, java. To add those platforms to the bundle, run `bundle lock --add-platform x86-mingw32 x64-mingw32 x86-mswin32 java`.
+The Gemfile's dependencies are satisfied
+.
+
+Finished in 1 minute 28.77 seconds (files took 0.22294 seconds to load)
+1 example, 0 failures
+

@@ -59,7 +59,6 @@ module Suspenders
       invoke :generate_deployment_default
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
-      invoke :outro
     end
 
     def customize_gemfile
@@ -186,6 +185,7 @@ module Suspenders
       generate("suspenders:jobs")
       generate("suspenders:analytics")
       generate("suspenders:views")
+      generate("suspenders:error_tracker")
     end
 
     def generate_deployment_default
@@ -195,11 +195,6 @@ module Suspenders
       generate("suspenders:production:timeout")
       generate("suspenders:production:deployment")
       generate("suspenders:production:manifest")
-    end
-
-    def outro
-      say 'Congratulations! You just pulled our suspenders.'
-      say honeybadger_outro
     end
 
     def self.banner
@@ -214,18 +209,6 @@ module Suspenders
 
     def using_active_record?
       !options[:skip_active_record]
-    end
-
-    private
-
-    def honeybadger_outro
-      "Run 'bundle exec honeybadger heroku install' with your API key#{honeybadger_message_suffix}."
-    end
-
-    def honeybadger_message_suffix
-      if options[:heroku]
-        " unless you're using the Heroku Honeybadger add-on"
-      end
     end
   end
 end

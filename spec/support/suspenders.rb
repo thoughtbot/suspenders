@@ -69,8 +69,8 @@ module SuspendersTestHelpers
   def destroy(generator)
     run_in_project do
       with_revision_for_honeybadger do
-        `bin/spring stop`
-        `#{project_rails_bin} destroy #{generator}`
+        debug `bin/spring stop`
+        debug `#{project_rails_bin} destroy #{generator}`
       end
     end
   end
