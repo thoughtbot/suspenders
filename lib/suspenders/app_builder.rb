@@ -96,14 +96,6 @@ module Suspenders
       copy_file "email.rb", "config/initializers/email.rb"
     end
 
-    def enable_rack_canonical_host
-      config = <<-RUBY
-config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
-      RUBY
-
-      configure_environment "production", config
-    end
-
     def enable_rack_deflater
       configure_environment "production", "config.middleware.use Rack::Deflater"
     end
