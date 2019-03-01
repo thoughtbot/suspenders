@@ -1,3 +1,7 @@
+1.6.3 (March 01, 2019)
+
+* Fix wrong interpolation for `postgresql_database.yml.erb`
+
 1.6.2 (March 01, 2019)
 
 * Fix wrong interpolation for `dockerfile` ruby version

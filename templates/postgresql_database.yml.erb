@@ -1,4 +1,7 @@
 development: &default
+  host: <%%= ENV.fetch("POSTGRES_HOST") { nil } %>
+  username: <%%= ENV.fetch("POSTGRES_USER") { nil } %>
+  password: <%%= ENV.fetch("POSTGRES_PASSWORD") { nil } %>
   adapter: postgresql
   database: <%= app_name %>_development
   encoding: utf8
