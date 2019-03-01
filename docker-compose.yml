@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  ruby:
+    build: .
+    command: bash
+    volumes:
+      - .:/app
