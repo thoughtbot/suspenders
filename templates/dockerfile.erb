@@ -1,4 +1,4 @@
-FROM ruby:#{Bulldozer::RUBY_VERSION}
+FROM ruby:<%= Bulldozer::RUBY_VERSION %>
 # Install VIM to edit credentials.yml.enc file
 RUN apt-get update && apt-get install -y vim
 ENV EDITOR="vim"

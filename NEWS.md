@@ -1,4 +1,8 @@
-1.6.0 (March 01, 2019)
+1.6.2 (March 01, 2019)
+
+* Fix wrong interpolation for `dockerfile` ruby version
+
+1.6.1 (March 01, 2019)
 
 * Add docker support on the Gem
 * Add docker files to the created project by default
