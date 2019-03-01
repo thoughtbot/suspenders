@@ -6,7 +6,7 @@ require 'date'
 Gem::Specification.new do |s|
   s.required_ruby_version = ">= #{Bulldozer::RUBY_VERSION}"
   s.required_rubygems_version = ">= 2.7.4"
-  s.authors = ['seasoned']
+  s.authors = ['mpatrick']
   s.date = Date.today.strftime('%Y-%m-%d')
 
   s.description = <<-HERE

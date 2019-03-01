@@ -1,3 +1,8 @@
+1.6.0 (March 01, 2019)
+
+* Rename Project to bulldozer
+* All commands now will change from `suspenders` to `bulldozer`
+
 1.50.0 (December 28, 2018)
 
 * Removed: jquery-rails.
@@ -5,8 +10,8 @@
 * Upgraded: Ruby 2.5.3.
 * Fixed: set `ASSET_HOST` and `APPLICATION_HOST` at top of `production.rb`.
 * Fixed: `tzinfo-data` gem for Windows.
-* New generator: `bulldozer:json` for JSON parsing.
-* New generator: `bulldozer:staging:pull_requests` for Heroku app per PR.
+* New generator: `suspenders:json` for JSON parsing.
+* New generator: `suspenders:staging:pull_requests` for Heroku app per PR.
 
 1.49.0 (October 19, 2018)
 
@@ -26,10 +31,10 @@
 1.47.0 (May 25, 2018)
 
 * Bug fix: normalize.css Sass import is concatenated with other styles now
-* Bug fix: the bulldozer gem itself is not needed in production
+* Bug fix: the suspenders gem itself is not needed in production
 * Bug fix: bundle install after adding a gem
 * Breaking: remove Refills
-* Breaking: rename bulldozer:enforce_ssl to bulldozer:production:force_tls
+* Breaking: rename suspenders:enforce_ssl to suspenders:production:force_tls
 * Upgrade: update to Ruby 2.5.1
 * Upgrade: update to Rails 5.2.0
 * New generator: production email
@@ -78,7 +83,7 @@
 * Schedule Heroku Backups and Capture backup of existing staging database for
   Review Apps (#826)
 * Use bundle-audit rake task from the gem (#831)
-* Update seasoned logo (#829)
+* Update Thughtbot logo (#829)
 * Change terminal symbol in README's deploying section (#828)
 * Update Segment snippet to 4.0.0 (#822)
 
@@ -109,7 +114,7 @@
 
 * Update to Rails 5
 * Drop quiet_assets
-* Drop unneeded `bulldozer` aliases: `--skip-test-unit`, `--skip-turbolinks`,
+* Drop unneeded `suspenders` aliases: `--skip-test-unit`, `--skip-turbolinks`,
   `--skip-bundle`. Drops `-G` that clashes with Rails’ `--skip-git` alias.
 
 1.40.0 (June 25, 2016)
@@ -120,24 +125,24 @@
   defined)
 * Update comment around Pipelines: it is now a Heroku core plugin
 * Drop unneeded `WEB_CONCURRENCY` from `app.json` file
-* Introduce a `bulldozer:stylesheet_base` generator. The `application.scss`
+* Introduce a `suspenders:stylesheet_base` generator. The `application.scss`
   must list the imports in a specific order. This removes the `application.css`.
 
 1.39.0 (May 25, 2016)
 
 * Update to Ruby 2.3.1
 * Make new apps "deployable to Heroku" by default.
-* Make the help text returned when running `bulldozer -h` Bulldozer specific
+* Make the help text returned when running `suspenders -h` suspenders specific
 * Bugfix: Configure `static_cache_control` in production environment
 * Replace NewRelic with Skylight
 * Drop initializer for disabling XML parser
-* Start moving bulldozer features into different Rails Generators
+* Start moving suspenders features into different Rails Generators
 * Set default `application_host` in Heroku
 * Update the viewport meta tag
 
 1.38.1 (April 20, 2016)
 
-* Bugfix: add bitters as bulldozer’ dependency back.
+* Bugfix: add bitters as suspenders’ dependency back.
 
 1.38.0 (April 15, 2016)
 
@@ -183,7 +188,7 @@
 * Fix `block_unknown_urls` deprecation warning with capybara_webkit when running
   Javascript tests
 * Inherit staging's `action_mailer_host` config from production
-* Bulldozer command line responds to `-v` and `--version` options
+* suspenders command line responds to `-v` and `--version` options
 * Clean up `bin/rake`
 * Remove `email_validator` gem from generated Gemfile
 * Fix Circle deploys by removing redundant remote
@@ -197,7 +202,7 @@
 * Reduce number of Puma processes and threads to reduce memory usage
 * Move non-runtime-dependency i18n-tasks to development and test Gemfile groups
 * Move non-runtime-dependency refills to the development Gemfile group
-* Generate empty `spec/factories.rb` file in accordance with seasoned’s
+* Generate empty `spec/factories.rb` file in accordance with Thughtbot’s
   styleguide
 * Shoulda Matchers 3.0 configuration
 
@@ -233,7 +238,7 @@
 
 * Generate rake, rails and rspec binstubs with Spring
 * Remove Capybara and use RSpec 3.2 for development
-* Improves bulldozer' test suite speed
+* Improves suspenders' test suite speed
 * Refills `flashes.scss` bugfix
 
 1.28.0 (May 9, 2015)
@@ -282,7 +287,7 @@
 
 1.24.0 (February 3, 2015)
 
-* Remove things in Bulldozer that Rails does for us now.
+* Remove things in suspenders that Rails does for us now.
 * Document how to use the `title` view helper.
 * Improve speed of bundling in `bin/setup` script.
 * Set ENV variable to make out-of-the-box Heroku static asset experience better.
@@ -304,7 +309,7 @@
 1.22.0 (January 11, 2015)
 
 * Allow additional
-  [Heroku flags](https://github.com/SeasonedSoftware/bulldozer#heroku)
+  [Heroku flags](https://github.com/ThughtbotSoftware/suspenders#heroku)
   such as `--addons` and `--region`.
 * Use RSpec 3.1.0.
 * Use Travis' new Docker container infrastructure
@@ -366,7 +371,7 @@
 * Use the 3.x series of RSpec.
 * Use the 0.10.x series of Bitters.
 * Improve documentation in generated README for machine setup via `bin/setup`
-  and https://github.com/SeasonedSoftware/laptop script.
+  and https://github.com/ThughtbotSoftware/laptop script.
 * Remove Foreman from `Gemfile`.
 * Use i18n-tasks for missing or unused translations.
 * Raise on missing translations in development environment. Fail fast!
@@ -378,7 +383,7 @@
 1.15.0 (July 9, 2014)
 
 * Use Rails 4.1.4.
-* Use latest seasoned style guidelines in generated code so that
+* Use latest Thughtbot style guidelines in generated code so that
   https://houndci.com will approve the initial commit.
 * Remove Campfire in favor of Slack.
 * Remove Pow in bin/setup.
@@ -387,21 +392,21 @@
 
 1.14.0 (June 11, 2014)
 
-* Set up Bitters during Bulldozer setup. http://bitters.bourbon.io/
+* Set up Bitters during suspenders setup. http://bitters.bourbon.io/
 * Remove SimpleCov.
-* Force Bulldozer to use a particular Rails version (4.1.1).
+* Force suspenders to use a particular Rails version (4.1.1).
 * Use RSpec 2.x until Travis/Capybara issues resolve.
 * Set `viewport` to `initial-scale=1`.
 
 1.13.0 (May 29, 2014)
 
 * Remove `FactoryGirl.lint` in `before(:suite)` in order to avoid paying and
-  estimated extra ~300ms load time on a typical seasoned app.
+  estimated extra ~300ms load time on a typical Thughtbot app.
 * Automatically join Heroku app in `bin/setup` if using Heroku organizations.
 
 1.12.0 (May 26, 2014)
 
-* Fix `rake dev:prime` now that Bulldozer-generated apps require some `ENV`
+* Fix `rake dev:prime` now that suspenders-generated apps require some `ENV`
   variables to be set.
 * Ensure `EMAIL_RECIPIENTS` is set on staging.
 * Clear `ActionMailer` deliveries before every test.
@@ -572,7 +577,7 @@
 1.1.5 (October 22, 2012)
 
 * Ignore `.env`.
-* Link to seasoned/guides in generated README.
+* Link to Thughtbot/guides in generated README.
 * Remove Cucumber in favor of RSpec + Capybara.
 * Deliver emails in staging environment to an overriden email or set of emails.
 * Encode database as UTF8.
