@@ -1,6 +1,6 @@
 require "spec_helper"
 
-module Suspenders
+module Bulldozer
   module Adapters
     RSpec.describe Heroku do
       it "sets the heroku remotes" do
@@ -56,7 +56,7 @@ module Suspenders
       end
 
       def app_name
-        SuspendersTestHelpers::APP_NAME
+        BulldozerTestHelpers::APP_NAME
       end
 
       def have_backup_schedule(remote_name)

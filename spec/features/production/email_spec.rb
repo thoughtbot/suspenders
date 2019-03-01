@@ -1,8 +1,8 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:production:email", type: :generator do
+RSpec.describe "bulldozer:production:email", type: :generator do
   it "generates the configuration for a production email deployment" do
-    with_app { generate("suspenders:production:email") }
+    with_app { generate("bulldozer:production:email") }
 
     expect("config/smtp.rb").to match_contents(%r{SMTP_SETTINGS\s*=})
 
@@ -24,7 +24,7 @@ RSpec.describe "suspenders:production:email", type: :generator do
   end
 
   it "destroys the configuration for a production email deployment" do
-    with_app { destroy("suspenders:production:email") }
+    with_app { destroy("bulldozer:production:email") }
 
     expect("config/smtp.rb").not_to exist_as_a_file
 

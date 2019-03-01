@@ -5,14 +5,14 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby "<%= Suspenders::RUBY_VERSION %>"
+ruby "<%= Bulldozer::RUBY_VERSION %>"
 
 gem "autoprefixer-rails"
 gem "honeybadger"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
-gem "rails", "<%= Suspenders::RAILS_VERSION %>"
+gem "rails", "<%= Bulldozer::RAILS_VERSION %>"
 gem "recipient_interceptor"
 gem "sassc-rails"
 gem "skylight"
@@ -48,4 +48,4 @@ group :test do
   gem "webmock"
 end
 
-gem "suspenders", group: [:development, :test]
+gem "bulldozer", group: [:development, :test]

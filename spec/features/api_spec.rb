@@ -7,7 +7,7 @@ RSpec.describe "Suspend a new project with --api flag" do
   end
 
   it "ensures project specs pass" do
-    run_suspenders("--api")
+    run_bulldozer("--api")
 
     Dir.chdir(project_path) do
       Bundler.with_clean_env do

@@ -1,13 +1,13 @@
 # Contributing
 
 We love pull requests from everyone. By participating in this project, you agree
-to abide by the thoughtbot [code of conduct].
+to abide by the seasoned [code of conduct].
 
-[code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
+[code of conduct]: https://seasoned.cc/open-source-code-of-conduct
 
 Fork the repo:
 
-    git clone git@github.com:thoughtbot/suspenders.git
+    git clone git@github.com:seasoned/bulldozer.git
 
 Set up your machine:
 
@@ -22,7 +22,7 @@ Write tests.
 Follow our [style guide][style].
 Make the tests pass:
 
-[style]: https://github.com/thoughtbot/guides/tree/master/style
+[style]: https://github.com/SeasonedSoftware/guides/tree/master/style
 
     rake
 
@@ -34,7 +34,7 @@ Push to your fork.
 [Submit a pull request][pr].
 
 [commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-[pr]: https://github.com/thoughtbot/suspenders/compare/
+[pr]: https://github.com/SeasonedSoftware/bulldozer/compare/
 
 If [Hound] catches style violations,
 fix them.

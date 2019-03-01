@@ -1,19 +1,19 @@
-# Suspenders [![Build Status](https://secure.travis-ci.org/thoughtbot/suspenders.svg?branch=master)](http://travis-ci.org/thoughtbot/suspenders) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+# Bulldozer [![Build Status](https://secure.travis-ci.org/SeasonedSoftware/bulldozer.svg?branch=master)](http://travis-ci.org/SeasonedSoftware/bulldozer) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
-Suspenders is the base Rails application used at
-[thoughtbot](https://thoughtbot.com/).
+Bulldozer is the base Rails application used at
+[seasoned](https://seasoned.cc/).
 
-  ![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
+  ![Bulldozer](https://banner2.kisspng.com/20180509/epe/kisspng-excavator-architectural-engineering-bulldozer-logo-5af28c67e988a6.8792375915258450959566.jpg)
 
 ## Installation
 
-First install the suspenders gem:
+First install the bulldozer gem:
 
-    gem install suspenders
+    gem install bulldozer
 
 Then run:
 
-    suspenders projectname
+    bulldozer projectname
 
 This will create a Rails app in `projectname` using the latest version of Rails.
 
@@ -25,20 +25,20 @@ This will create a Rails app in `projectname` using the latest version of Rails.
 
 ## Gemfile
 
-To see the latest and greatest gems, look at Suspenders'
+To see the latest and greatest gems, look at Bulldozer'
 [Gemfile](templates/Gemfile.erb), which will be appended to the default
 generated projectname/Gemfile.
 
 It includes application gems like:
 
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
-* [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
-* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
+* [Bourbon](https://github.com/SeasonedSoftware/bourbon) for Sass mixins
+* [Bitters](https://github.com/SeasonedSoftware/bitters) for scaffold application styles
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
-* [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
+* [High Voltage](https://github.com/SeasonedSoftware/high_voltage) for static pages
 * [Honeybadger](https://honeybadger.io) for exception notification
-* [Neat](https://github.com/thoughtbot/neat) for semantic grids
+* [Neat](https://github.com/SeasonedSoftware/neat) for semantic grids
 * [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Oj](http://www.ohler.com/oj/)
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
@@ -76,18 +76,18 @@ And testing gems like:
 * [Capybara](https://github.com/jnicklas/capybara) and
   [Google Chromedriver]
   integration testing
-* [Factory Bot](https://github.com/thoughtbot/factory_bot) for test data
-* [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
+* [Factory Bot](https://github.com/SeasonedSoftware/factory_bot) for test data
+* [Formulaic](https://github.com/SeasonedSoftware/formulaic) for integration testing
   HTML forms
 * [RSpec](https://github.com/rspec/rspec) for unit testing
 * [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
-* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
+* [Shoulda Matchers](https://github.com/SeasonedSoftware/shoulda-matchers) for common
   RSpec matchers
 * [Timecop](https://github.com/travisjeffery/timecop) for testing time
 
 ## Other goodies
 
-Suspenders also comes with:
+Bulldozer also comes with:
 
 * The [`./bin/setup`][setup] convention for new developer setup
 * The `./bin/deploy` convention for deploying to Heroku
@@ -104,11 +104,11 @@ Suspenders also comes with:
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
 
-[setup]: https://robots.thoughtbot.com/bin-setup
-[compress]: https://robots.thoughtbot.com/content-compression-with-rack-deflater
+[setup]: https://robots.seasoned.cc/bin-setup
+[compress]: https://robots.seasoned.cc/content-compression-with-rack-deflater
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
-[binstub]: https://github.com/thoughtbot/suspenders/pull/282
-[i18n]: https://github.com/thoughtbot/suspenders/pull/304
+[binstub]: https://github.com/SeasonedSoftware/bulldozer/pull/282
+[i18n]: https://github.com/SeasonedSoftware/bulldozer/pull/304
 [circle]: https://circleci.com/docs
 [hound]: https://houndci.com
 [segment]: https://segment.com
@@ -117,7 +117,7 @@ Suspenders also comes with:
 
 You can optionally create Heroku staging and production apps:
 
-    suspenders app --heroku true
+    bulldozer app --heroku true
 
 This:
 
@@ -132,7 +132,7 @@ This:
 
 You can optionally specify alternate Heroku flags:
 
-    suspenders app \
+    bulldozer app \
       --heroku true \
       --heroku-flags "--region eu --addons sendgrid,ssl"
 
@@ -145,7 +145,7 @@ See all possible Heroku flags:
 This will initialize a new git repository for your Rails app. You can
 bypass this with the `--skip-git` option:
 
-    suspenders app --skip-git true
+    bulldozer app --skip-git true
 
 ## GitHub
 
@@ -153,7 +153,7 @@ You can optionally create a GitHub repository for the suspended Rails app. It
 requires that you have [Hub](https://github.com/github/hub) on your system:
 
     curl https://hub.github.com/standalone -sLo ~/bin/hub && chmod +x ~/bin/hub
-    suspenders app --github organization/project
+    bulldozer app --github organization/project
 
 This has the same effect as running:
 
@@ -161,7 +161,7 @@ This has the same effect as running:
 
 ## Spring
 
-Suspenders uses [spring](https://github.com/rails/spring) by default.
+Bulldozer uses [spring](https://github.com/rails/spring) by default.
 It makes Rails applications load faster, but it might introduce confusing issues
 around stale code not being refreshed.
 If you think your application is running old code, run `spring stop`.
@@ -169,10 +169,10 @@ And if you'd rather not use spring, add `DISABLE_SPRING=1` to your login file.
 
 ## Dependencies
 
-Suspenders requires the latest version of Ruby.
+Bulldozer requires the latest version of Ruby.
 
-Some gems included in Suspenders have native extensions. You should have GCC
-installed on your machine before generating an app with Suspenders.
+Some gems included in Bulldozer have native extensions. You should have GCC
+installed on your machine before generating an app with Bulldozer.
 
 Use [OS X GCC Installer](https://github.com/kennethreitz/osx-gcc-installer/) for
 Snow Leopard (OS X 10.6).
@@ -190,7 +190,7 @@ PostgreSQL needs to be installed and running for the `db:create` rake task.
 ## Issues
 
 If you have problems, please create a
-[GitHub Issue](https://github.com/thoughtbot/suspenders/issues).
+[GitHub Issue](https://github.com/SeasonedSoftware/bulldozer/issues).
 
 ## Contributing
 
@@ -198,28 +198,28 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Thank you, [contributors]!
 
-[contributors]: https://github.com/thoughtbot/suspenders/graphs/contributors
+[contributors]: https://github.com/SeasonedSoftware/bulldozer/graphs/contributors
 
 ## License
 
-Suspenders is Copyright © 2008-2017 thoughtbot.
+Bulldozer is Copyright © 2008-2017 seasoned.
 It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
 [LICENSE]: LICENSE
 
-## About thoughtbot
+## About seasoned
 
-[![thoughtbot][thoughtbot-logo]][thoughtbot]
+[![seasoned][seasoned-logo]][seasoned]
 
-Suspenders is maintained and funded by thoughtbot, inc.
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
+Bulldozer is maintained and funded by seasoned, inc.
+The names and logos for seasoned are trademarks of seasoned, inc.
 
 We love open source software!
 See [our other projects][community].
 We are [available for hire][hire].
 
-[thoughtbot]: https://thoughtbot.com?utm_source=github
-[thoughtbot-logo]: http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg
-[community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com?utm_source=github
+[seasoned]: https://seasoned.cc?utm_source=github
+[seasoned-logo]: http://presskit.seasoned.cc/images/seasoned-logo-for-readmes.svg
+[community]: https://seasoned.cc/community?utm_source=github
+[hire]: https://seasoned.cc?utm_source=github

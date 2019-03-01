@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Set up Rails app. Run this script immediately after cloning the codebase.
-# https://github.com/thoughtbot/guides/tree/master/protocol
+# https://github.com/SeasonedSoftware/guides/tree/master/protocol
 
 # Exit if any subcommand fails
 set -e

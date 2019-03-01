@@ -4,12 +4,12 @@ RSpec.describe "Heroku" do
   context "--heroku" do
     before(:all) do
       clean_up
-      run_suspenders("--heroku=true")
+      run_bulldozer("--heroku=true")
       setup_app_dependencies
     end
 
     it "suspends a project for Heroku" do
-      app_name = SuspendersTestHelpers::APP_NAME.dasherize
+      app_name = BulldozerTestHelpers::APP_NAME.dasherize
 
       expect(FakeHeroku).to have_created_app_for("staging")
       expect(FakeHeroku).to have_created_app_for("production")
@@ -53,7 +53,7 @@ RSpec.describe "Heroku" do
   context "--heroku with region flag" do
     before(:all) do
       clean_up
-      run_suspenders(%{--heroku=true --heroku-flags="--region eu"})
+      run_bulldozer(%{--heroku=true --heroku-flags="--region eu"})
       setup_app_dependencies
     end
 

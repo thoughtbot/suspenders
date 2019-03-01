@@ -1,0 +1,23 @@
+#!/usr/bin/env ruby
+require 'pathname'
+
+source_path = (Pathname.new(__FILE__).dirname + '../lib').expand_path
+$LOAD_PATH << source_path
+
+require 'bulldozer'
+
+if ARGV.empty?
+  puts "Please provide a path for the new application"
+  puts
+  puts "See --help for more info"
+  exit 0
+elsif ['-v', '--version'].include? ARGV[0]
+  puts Bulldozer::VERSION
+  exit 0
+end
+
+templates_root = File.expand_path(File.join("..", "templates"), File.dirname(__FILE__))
+Bulldozer::AppGenerator.source_root templates_root
+Bulldozer::AppGenerator.source_paths << Rails::Generators::AppGenerator.source_root << templates_root
+
+Bulldozer::AppGenerator.start
