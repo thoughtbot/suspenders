@@ -29,6 +29,11 @@ module Bulldozer
       template "Gemfile.erb", "Gemfile"
     end
 
+    def copy_dockerfiles
+      template "dockerfile.erb", "dockerfile"
+      copy_file "docker-compose.yml", "docker-compose.yml"
+    end
+
     def setup_rack_mini_profiler
       copy_file(
         "rack_mini_profiler.rb",

@@ -49,6 +49,7 @@ module Bulldozer
       invoke :copy_miscellaneous_files
       invoke :customize_error_pages
       invoke :setup_dotfiles
+      invoke :setup_docker
       invoke :setup_database
       invoke :create_github_repo
       invoke :setup_bundler_audit
@@ -135,6 +136,10 @@ module Bulldozer
 
     def setup_dotfiles
       build :copy_dotfiles
+    end
+    
+    def setup_docker
+      build :copy_dockerfiles
     end
 
     def setup_default_directories

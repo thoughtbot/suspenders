@@ -1,0 +1,54 @@
+version: '3'
+
+services:
+  rails:
+    build: .
+    env_file:
+    - .env
+    command: ruby bin/rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/app
+    links:
+      - redis
+      - postgres
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+
+  postgres:
+    image: postgres:10.4
+    env_file:
+    - .env
+    volumes:
+      - ".:/app"
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
+  
+  redis:
+    image: redis:alpine
+    env_file:
+    - .env
+    command: redis-server
+    volumes:
+      - ".:/app"
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+  
+  sidekiq:
+    build: .
+    env_file:
+    - .env
+    environment:
+      - RAILS_URL=http://rails:3000 # overwrite to match docker
+    command: bundle exec sidekiq -C config/sidekiq.yml
+    volumes:
+      - ".:/app"
+    links:
+      - redis
+      - rails
+      - postgres

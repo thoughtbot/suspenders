@@ -1,5 +1,10 @@
 1.6.0 (March 01, 2019)
 
+* Add docker support on the Gem
+* Add docker files to the created project by default
+
+1.6.0 (March 01, 2019)
+
 * Rename Project to bulldozer
 * All commands now will change from `suspenders` to `bulldozer`
 

@@ -21,6 +21,18 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
+  it "creates docker files" do
+    dockerfile = IO.read("#{project_path}/dockerfile")
+    docker_compose = IO.read("#{project_path}/docker-compose.yml")
+
+    expect(dockerfile).to match(
+      /^FROM ruby:"#{Bulldozer::RUBY_VERSION}"$/,
+    )
+    expect(docker_compose).to match(
+      /^ruby bin\/rails s -p 3000 -b "0.0.0.0"$/,
+    )
+  end
+
   it "ensures project specs pass" do
     Dir.chdir(project_path) do
       Bundler.with_clean_env do
