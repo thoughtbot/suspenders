@@ -25,12 +25,8 @@ RSpec.describe "Suspend a new project with default configuration" do
     dockerfile = IO.read("#{project_path}/dockerfile")
     docker_compose = IO.read("#{project_path}/docker-compose.yml")
 
-    expect(dockerfile).to match(
-      /^FROM ruby:"#{Bulldozer::RUBY_VERSION}"$/,
-    )
-    expect(docker_compose).to match(
-      /^ruby bin\/rails s -p 3000 -b "0.0.0.0"$/,
-    )
+    expect(dockerfile).to include %{FROM ruby:#{Bulldozer::RUBY_VERSION}}
+    expect(docker_compose).to include %{    command: ruby bin/rails s -p 3000 -b '0.0.0.0'}
   end
 
   it "ensures project specs pass" do
