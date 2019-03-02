@@ -1,4 +1,4 @@
-# Bulldozer [![Build Status](https://secure.travis-ci.org/SeasonedSoftware/bulldozer.svg?branch=master)](http://travis-ci.org/SeasonedSoftware/bulldozer) [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+# Bulldozer [![CircleCI](https://circleci.com/gh/SeasonedSoftware/bulldozer/tree/master.svg?style=svg)](https://circleci.com/gh/SeasonedSoftware/bulldozer/tree/master)
 
 Bulldozer is the base Rails application used at
 [seasoned](https://seasoned.cc/).
