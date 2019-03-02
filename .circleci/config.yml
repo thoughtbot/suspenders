@@ -41,9 +41,9 @@ jobs:
           name: install dependencies
           command: |
             gem update --system
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            bundle install --jobs=4 --retry=3
             sudo apt update
-            sudo apt install postgresql-client
+            sudo apt install postgresql-client sqlite
       - save_cache:
           paths:
             - ./vendor/bundle
