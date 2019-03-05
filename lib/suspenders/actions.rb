@@ -39,7 +39,7 @@ module Suspenders
       end
 
       def invoke!
-        write_out { |existing_json| existing_json.merge(data) }
+        write_out { |existing_json| existing_json.deep_merge(data) }
       end
 
       def revoke!
@@ -60,7 +60,7 @@ module Suspenders
       end
 
       def existing_json
-        JSON.parse(IO.read(destination_file))
+        JSON.parse(IO.read(destination_file), symbolize_names: true)
       rescue Errno::ENOENT
         {}
       end
