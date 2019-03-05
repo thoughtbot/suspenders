@@ -4,6 +4,7 @@
 *.swp
 .byebug_history
 /.bundle
+/.env
 /.env.local
 /coverage/*
 /db/*.sqlite3

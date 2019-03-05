@@ -32,27 +32,16 @@ generated projectname/Gemfile.
 It includes application gems like:
 
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
-* [Bourbon](https://github.com/SeasonedSoftware/bourbon) for Sass mixins
-* [Bitters](https://github.com/SeasonedSoftware/bitters) for scaffold application styles
+* [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
+* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
-* [High Voltage](https://github.com/SeasonedSoftware/high_voltage) for static pages
-* [Honeybadger](https://honeybadger.io) for exception notification
-* [Neat](https://github.com/SeasonedSoftware/neat) for semantic grids
+* [Neat](https://github.com/thoughtbot/neat) for semantic grids
 * [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Oj](http://www.ohler.com/oj/)
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
-* [Rack Canonical Host](https://github.com/tylerhunt/rack-canonical-host) to
-  ensure all requests are served from the same domain
-* [Rack Timeout](https://github.com/heroku/rack-timeout) to abort requests that are
-  taking too long
-* [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
-  avoid accidentally sending emails to real people from staging
 * [Simple Form](https://github.com/plataformatec/simple_form) for form markup
   and style
-* [Skylight](https://www.skylight.io/) for monitoring performance
-* [Title](https://github.com/calebthompson/title) for storing titles in
-  translations
 * [Puma](https://github.com/puma/puma) to serve HTTP requests
 
 And development gems like:
@@ -64,24 +53,20 @@ And development gems like:
   debugging behavior
 * [Bullet](https://github.com/flyerhzm/bullet) for help to kill N+1 queries and
   unused eager loading
-* [Bundler Audit](https://github.com/rubysec/bundler-audit) for scanning the
-  Gemfile for insecure dependencies based on published CVEs
 * [Spring](https://github.com/rails/spring) for fast Rails actions via
   pre-loading
-* [Web Console](https://github.com/rails/web-console) for better debugging via
-  in-browser IRB consoles.
 
 And testing gems like:
 
 * [Capybara](https://github.com/jnicklas/capybara) and
   [Google Chromedriver]
   integration testing
-* [Factory Bot](https://github.com/SeasonedSoftware/factory_bot) for test data
-* [Formulaic](https://github.com/SeasonedSoftware/formulaic) for integration testing
+* [Factory Bot](https://github.com/thoughtbot/factory_bot) for test data
+* [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
   HTML forms
 * [RSpec](https://github.com/rspec/rspec) for unit testing
 * [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
-* [Shoulda Matchers](https://github.com/SeasonedSoftware/shoulda-matchers) for common
+* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
   RSpec matchers
 * [Timecop](https://github.com/travisjeffery/timecop) for testing time
 
@@ -107,8 +92,8 @@ Bulldozer also comes with:
 [setup]: https://robots.seasoned.cc/bin-setup
 [compress]: https://robots.seasoned.cc/content-compression-with-rack-deflater
 [pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
-[binstub]: https://github.com/SeasonedSoftware/bulldozer/pull/282
-[i18n]: https://github.com/SeasonedSoftware/bulldozer/pull/304
+[binstub]: https://github.com/thoughtbot/bulldozer/pull/282
+[i18n]: https://github.com/thoughtbot/bulldozer/pull/304
 [circle]: https://circleci.com/docs
 [hound]: https://houndci.com
 [segment]: https://segment.com
@@ -190,7 +175,7 @@ PostgreSQL needs to be installed and running for the `db:create` rake task.
 ## Issues
 
 If you have problems, please create a
-[GitHub Issue](https://github.com/SeasonedSoftware/bulldozer/issues).
+[GitHub Issue](https://github.com/thoughtbot/bulldozer/issues).
 
 ## Contributing
 
@@ -198,7 +183,7 @@ See [CONTRIBUTING.md](CONTRIBUTING.md).
 
 Thank you, [contributors]!
 
-[contributors]: https://github.com/SeasonedSoftware/bulldozer/graphs/contributors
+[contributors]: https://github.com/thoughtbot/bulldozer/graphs/contributors
 
 ## License
 
@@ -217,9 +202,7 @@ The names and logos for seasoned are trademarks of seasoned, inc.
 
 We love open source software!
 See [our other projects][community].
-We are [available for hire][hire].
 
 [seasoned]: https://seasoned.cc?utm_source=github
-[seasoned-logo]: http://presskit.seasoned.cc/images/seasoned-logo-for-readmes.svg
-[community]: https://seasoned.cc/community?utm_source=github
-[hire]: https://seasoned.cc?utm_source=github
+[seasoned-logo]: https://raw.githubusercontent.com/SeasonedSoftware/site/master/app/assets/images/icon.png
+[community]: https://github.com/seasonedsoftware

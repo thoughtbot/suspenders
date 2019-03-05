@@ -7,45 +7,45 @@ end
 
 ruby "<%= Bulldozer::RUBY_VERSION %>"
 
-gem "autoprefixer-rails"
-gem "honeybadger"
-gem "pg"
-gem "puma"
-gem "rack-canonical-host"
-gem "rails", "<%= Bulldozer::RAILS_VERSION %>"
-gem "recipient_interceptor"
-gem "sassc-rails"
-gem "skylight"
-gem "sprockets", ">= 3.0.0"
-gem "title"
-gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
-gem "uglifier"
-gem "bootsnap", require: false
+gem 'awesome_print'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 3.11'
+gem 'rails', "<%= Bulldozer::RAILS_VERSION %>"
+gem 'bootsnap', '>= 1.1.0', require: false
+gem 'rack-cors', require: 'rack/cors'
+gem 'sidekiq', '~> 5.2.5'
 <% if options[:webpack] %>
-gem "webpacker"
+gem 'webpacker'
+<% end %>
+<% if options[:api] %>
+gem 'committee'
+gem 'prmd'
+gem 'devise_token_auth', '~> 1.0.0'
+<% end %>
+<% unless options[:api] %>
+gem 'autoprefixer-rails'
+gem 'uglifier'
+gem 'sassc-rails'
+gem 'sprockets', '>= 3.0.0'
 <% end %>
 
 group :development do
-  gem "listen"
-  gem "rack-mini-profiler", require: false
-  gem "spring"
-  gem "web-console"
+  gem 'listen', '>= 3.0.5', '< 3.2'
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :development, :test do
-  gem "awesome_print"
-  gem "bundler-audit", ">= 0.5.0", require: false
-  gem "dotenv-rails"
-  gem "pry-byebug"
-  gem "pry-rails"
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
+  gem 'dotenv-rails', '~> 2.5.0'
+  gem 'rubocop', '~> 0.58.2', require: false
+  gem 'rubocop-rspec', '~> 1.27.0', require: false
+  gem 'webmock', '~> 3.4.2'
 end
 
 group :test do
-  gem "formulaic"
-  gem "launchy"
-  gem "simplecov", require: false
-  gem "timecop"
-  gem "webmock"
+  gem 'simplecov', '~> 0.16.1', require: false
+  gem 'timecop', '~> 0.9.1'
 end
 
-gem "bulldozer", group: [:development, :test]
+gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]

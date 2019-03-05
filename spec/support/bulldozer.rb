@@ -14,9 +14,7 @@ module BulldozerTestHelpers
     run_in_tmp do
       add_fakes_to_path
 
-      with_revision_for_honeybadger do
-        debug `#{bulldozer_bin} #{APP_NAME} #{arguments}`
-      end
+      debug `#{bulldozer_bin} #{APP_NAME} #{arguments}`
 
       Dir.chdir(APP_NAME) do
         with_env("HOME", tmp_path) do
@@ -40,9 +38,7 @@ module BulldozerTestHelpers
     run_in_tmp do
       add_fakes_to_path
 
-      with_revision_for_honeybadger do
-        debug `#{system_rails_bin} new #{APP_NAME}`
-      end
+      debug `#{system_rails_bin} new #{APP_NAME}`
 
       Dir.chdir(APP_NAME) do
         File.open("Gemfile", "a") do |file|
@@ -59,19 +55,15 @@ module BulldozerTestHelpers
 
   def generate(generator)
     run_in_project do
-      with_revision_for_honeybadger do
-        debug `bin/spring stop`
-        debug `#{project_rails_bin} generate #{generator}`
-      end
+      debug `bin/spring stop`
+      debug `#{project_rails_bin} generate #{generator}`
     end
   end
 
   def destroy(generator)
     run_in_project do
-      with_revision_for_honeybadger do
-        `bin/spring stop`
-        `#{project_rails_bin} destroy #{generator}`
-      end
+      `bin/spring stop`
+      `#{project_rails_bin} destroy #{generator}`
     end
   end
 
@@ -147,12 +139,6 @@ module BulldozerTestHelpers
 
     if had_key
       ENV[name] = prior
-    end
-  end
-
-  def with_revision_for_honeybadger
-    with_env("HEROKU_SLUG_COMMIT", 1) do
-      yield
     end
   end
 

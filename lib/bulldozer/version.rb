@@ -4,5 +4,5 @@ module Bulldozer
     read("#{File.dirname(__FILE__)}/../../.ruby-version").
     strip.
     freeze
-  VERSION = "1.6.3".freeze
+  VERSION = "1.6.4".freeze
 end

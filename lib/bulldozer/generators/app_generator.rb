@@ -52,7 +52,6 @@ module Bulldozer
       invoke :setup_docker
       invoke :setup_database
       invoke :create_github_repo
-      invoke :setup_bundler_audit
       invoke :setup_spring
       invoke :generate_default
       invoke :setup_default_directories
@@ -93,7 +92,6 @@ module Bulldozer
 
     def setup_production_environment
       say 'Setting up the production environment'
-      build :enable_rack_canonical_host
       build :enable_rack_deflater
       build :setup_asset_host
     end
@@ -110,7 +108,6 @@ module Bulldozer
       build :setup_default_rake_task
       build :replace_default_puma_configuration
       build :set_up_forego
-      build :setup_rack_mini_profiler
     end
 
     def create_heroku_apps
@@ -120,7 +117,6 @@ module Bulldozer
         build :set_heroku_remotes
         build :set_heroku_rails_secrets
         build :set_heroku_application_host
-        build :set_heroku_honeybadger_env
         build :set_heroku_backup_schedule
         build :create_heroku_pipeline
         build :configure_automatic_deployment
@@ -144,11 +140,6 @@ module Bulldozer
 
     def setup_default_directories
       build :setup_default_directories
-    end
-
-    def setup_bundler_audit
-      say "Setting up bundler-audit"
-      build :setup_bundler_audit
     end
 
     def setup_spring
@@ -177,34 +168,35 @@ module Bulldozer
     def generate_default
       run("spring stop")
       generate("bulldozer:json")
-      generate("bulldozer:static")
-      generate("bulldozer:stylesheet_base")
+      generate("bulldozer:json")
       generate("bulldozer:testing")
       generate("bulldozer:ci")
       generate("bulldozer:js_driver")
+      if options[:api]
+        generate('bulldozer:committee')
+        generate('bulldozer:prmd')
+        generate('bulldozer:devise_token_auth')
+      end
       unless options[:api]
+        generate("bulldozer:stylesheet_base")
         generate("bulldozer:forms")
+        generate("bulldozer:analytics")
       end
       generate("bulldozer:db_optimizations")
       generate("bulldozer:factories")
-      generate("bulldozer:lint")
       generate("bulldozer:jobs")
-      generate("bulldozer:analytics")
-      generate("bulldozer:views")
     end
 
     def generate_deployment_default
       generate("bulldozer:staging:pull_requests")
       generate("bulldozer:production:force_tls")
-      generate("bulldozer:production:email")
-      generate("bulldozer:production:timeout")
+      generate("bulldozer:production:email")  
       generate("bulldozer:production:deployment")
       generate("bulldozer:production:manifest")
     end
 
     def outro
       say 'Congratulations! You just pulled our bulldozer.'
-      say honeybadger_outro
     end
 
     def self.banner
@@ -222,15 +214,5 @@ module Bulldozer
     end
 
     private
-
-    def honeybadger_outro
-      "Run 'bundle exec honeybadger heroku install' with your API key#{honeybadger_message_suffix}."
-    end
-
-    def honeybadger_message_suffix
-      if options[:heroku]
-        " unless you're using the Heroku Honeybadger add-on"
-      end
-    end
   end
 end

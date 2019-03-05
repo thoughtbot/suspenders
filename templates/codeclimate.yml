@@ -1,0 +1,24 @@
+version: "2"
+plugins:
+  brakeman:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  duplication:
+    enabled: true
+    config:
+      languages:
+        ruby:
+          mass_threshold: 18
+  fixme:
+    enabled: true
+  rubocop:
+    enabled: true
+    channel: rubocop-0-58
+exclude_patterns:
+- vendor/
+- .gems/
+- spec/
+- db/migrate/
+- db/seeds.rb
+- db/schema.rb

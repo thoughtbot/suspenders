@@ -37,15 +37,6 @@ module Bulldozer
         end
       end
 
-      def set_heroku_honeybadger_env
-        %w(staging production).each do |environment|
-          run_toolbelt_command(
-            "config:add HONEYBADGER_ENV=#{environment}",
-            environment,
-          )
-        end
-      end
-
       def set_heroku_backup_schedule
         %w(staging production).each do |environment|
           run_toolbelt_command(

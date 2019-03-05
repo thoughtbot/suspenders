@@ -52,7 +52,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "copies dotfiles" do
-    %w[.ctags .env].each do |dotfile|
+    %w[.ctags .env.example].each do |dotfile|
       expect(File).to exist("#{project_path}/#{dotfile}")
     end
   end
@@ -86,34 +86,6 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "adds support file for i18n" do
     expect(File).to exist("#{project_path}/spec/support/i18n.rb")
-  end
-
-  it "creates good default .hound.yml" do
-    hound_config_file = IO.read("#{project_path}/.hound.yml")
-
-    expect(hound_config_file).to include "enabled: true"
-  end
-
-  it "ensures Gemfile contains `rack-mini-profiler`" do
-    gemfile = IO.read("#{project_path}/Gemfile")
-
-    expect(gemfile).to include %{gem "rack-mini-profiler", require: false}
-  end
-
-  it "ensures .sample.env defaults to RACK_MINI_PROFILER=0" do
-    env = IO.read("#{project_path}/.env")
-
-    expect(env).to include "RACK_MINI_PROFILER=0"
-  end
-
-  it "initializes ActiveJob to avoid memory bloat" do
-    expect(File).
-      to exist("#{project_path}/config/initializers/active_job.rb")
-  end
-
-  it "creates a rack-mini-profiler initializer" do
-    expect(File).
-      to exist("#{project_path}/config/initializers/rack_mini_profiler.rb")
   end
 
   it "records pageviews through Segment if ENV variable set" do
@@ -167,11 +139,6 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(File).to exist("#{project_path}/config/initializers/simple_form.rb")
   end
 
-  it "configs :test email delivery method for development" do
-    expect(development_config).
-      to match(/^ +config.action_mailer.delivery_method = :file$/)
-  end
-
   it "sets action mailer default host and asset host" do
     config_key = 'config\.action_mailer\.asset_host'
     config_value =
@@ -184,14 +151,6 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(production_config).not_to match(/"HOST"/)
   end
 
-  it "configures email interceptor" do
-    email_file = File.join(project_path, "config", "initializers", "email.rb")
-    email_config = IO.read(email_file)
-
-    expect(email_config).
-      to include(%{RecipientInterceptor.new(ENV["EMAIL_RECIPIENTS"])})
-  end
-
   it "configures language in html element" do
     layout_path = "/app/views/layouts/application.html.erb"
     layout_file = IO.read("#{project_path}#{layout_path}")
@@ -202,18 +161,10 @@ RSpec.describe "Suspend a new project with default configuration" do
     application_config = IO.read("#{project_path}/config/application.rb")
 
     expect(application_config).to match(
-      /^ +config.active_job.queue_adapter = :delayed_job$/
+      /^ +config.active_job.queue_adapter = :sidekiq$/
     )
     expect(test_config).to match(
       /^ +config.active_job.queue_adapter = :inline$/
-    )
-  end
-
-  it "configs background jobs for rspec" do
-    delayed_job = IO.read("#{project_path}/bin/delayed_job")
-
-    expect(delayed_job).to match(
-      /^require 'delayed\/command'$/,
     )
   end
 

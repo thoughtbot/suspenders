@@ -12,7 +12,6 @@ module Bulldozer
       :create_staging_heroku_app,
       :set_heroku_application_host,
       :set_heroku_backup_schedule,
-      :set_heroku_honeybadger_env,
       :set_heroku_rails_secrets,
       :set_heroku_remotes,
     )
@@ -33,12 +32,9 @@ module Bulldozer
       template "dockerfile.erb", "dockerfile"
       copy_file "docker-compose.yml", "docker-compose.yml"
     end
-
-    def setup_rack_mini_profiler
-      copy_file(
-        "rack_mini_profiler.rb",
-        "config/initializers/rack_mini_profiler.rb",
-      )
+    
+    def copy_webmock
+      copy_file "webmock.rb", "spec/support/webmock.rb"
     end
 
     def raise_on_missing_assets_in_test
@@ -85,7 +81,7 @@ module Bulldozer
     config.generators do |generate|
       generate.helper false
       generate.javascripts false
-      generate.request_specs false
+      generate.request_specs true
       generate.routing_specs false
       generate.stylesheets false
       generate.test_framework :rspec
@@ -95,18 +91,6 @@ module Bulldozer
       RUBY
 
       inject_into_class 'config/application.rb', 'Application', config
-    end
-
-    def configure_local_mail
-      copy_file "email.rb", "config/initializers/email.rb"
-    end
-
-    def enable_rack_canonical_host
-      config = <<-RUBY
-  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
-      RUBY
-
-      configure_environment "production", config
     end
 
     def enable_rack_deflater
@@ -237,11 +221,6 @@ config.public_file_server.headers = {
       run "hub create #{repo_name}"
     end
 
-    def setup_bundler_audit
-      copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
-      append_file "Rakefile", %{\ntask default: "bundle:audit"\n}
-    end
-
     def setup_spring
       bundle_command "exec spring binstub --all"
     end
@@ -250,6 +229,10 @@ config.public_file_server.headers = {
       copy_file "browserslist", "browserslist"
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
+      copy_file "rspec", ".rspec"
+      copy_file "rubocop.yml", ".rubocop.yml"
+      copy_file "codeclimate.yml", ".codeclimate.yml"
+      copy_file "rbenv-gemsets.yml", ".rbenv-gemsets.yml"
     end
 
     def customize_error_pages

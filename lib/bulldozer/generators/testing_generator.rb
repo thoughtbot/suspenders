@@ -5,6 +5,7 @@ module Bulldozer
     def add_testing_gems
       gem "spring-commands-rspec", group: :development
       gem "rspec-rails", "~> 3.6", group: %i(development test)
+      gem "rspec_junit_formatter", "~> 0.4.1", group: %i(development test)
       gem "shoulda-matchers", group: :test
 
       Bundler.with_clean_env { run "bundle install" }
