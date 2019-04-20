@@ -7,7 +7,9 @@ end
 
 ruby "<%= Suspenders::RUBY_VERSION %>"
 
+<% unless options[:api] %>
 gem "autoprefixer-rails"
+<% end %>
 gem "honeybadger"
 gem "pg"
 gem "puma"
