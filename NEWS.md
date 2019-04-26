@@ -1,3 +1,12 @@
+1.51.0 (April 26, 2019)
+
+* Changed: from sass-rails to sassc-rails.
+* Upgraded: Ruby 2.6.3.
+* Fixed: Avoid installing autoprefixer-rails in api mode
+* New generator: `suspenders:stylelint` for setting up stylelint.
+* New generator: `suspenders:production:manifest` for app.json.
+* New generator: `suspenders:production:deployment` for bin/deploy script.
+
 1.50.0 (December 28, 2018)
 
 * Removed: jquery-rails.
