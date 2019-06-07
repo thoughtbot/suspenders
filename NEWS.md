@@ -1,3 +1,7 @@
+1.52.0 (June 7, 2019)
+* Changed: Setup system tests instead of feature specs
+* Upgraded: Rails 5.2.3
+
 1.51.0 (April 26, 2019)
 
 * Changed: from sass-rails to sassc-rails.
