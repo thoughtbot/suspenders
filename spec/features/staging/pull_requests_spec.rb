@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:staging:pull_requests", type: :generators do
+RSpec.describe "suspenders:staging:pull_requests", type: :generator do
   it "generates the configuration for Heroku pipeline review apps" do
     with_app { generate("suspenders:staging:pull_requests") }
 
