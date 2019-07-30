@@ -117,6 +117,8 @@ Suspenders also comes with:
 
 ## Heroku
 
+Read the documentation on [deploying to Heroku](heroku deploy)
+
 You can optionally create Heroku staging and production apps:
 
     suspenders app --heroku true
@@ -131,6 +133,7 @@ This:
 * Schedules automated backups for 10AM UTC for both `staging` and `production`
 
 [Heroku Pipeline]: https://devcenter.heroku.com/articles/pipelines
+[heroku deploy]: https://github.com/thoughtbot/suspenders/docs/heroku_deploy.md
 
 You can optionally specify alternate Heroku flags:
 
