@@ -3,7 +3,7 @@ require_relative "base"
 module Suspenders
   class StylesheetBaseGenerator < Generators::Base
     def add_stylesheet_gems
-      gem "bourbon", ">= 5.0.1"
+      gem "bourbon", ">= 6.0.0"
       Bundler.with_clean_env { run "bundle install" }
     end
 
