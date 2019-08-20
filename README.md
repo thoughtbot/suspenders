@@ -117,7 +117,7 @@ Suspenders also comes with:
 
 ## Heroku
 
-Read the documentation on [deploying to Heroku](heroku deploy)
+Read the documentation on [deploying to Heroku][heroku deploy]
 
 You can optionally create Heroku staging and production apps:
 
