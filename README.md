@@ -133,7 +133,7 @@ This:
 * Schedules automated backups for 10AM UTC for both `staging` and `production`
 
 [Heroku Pipeline]: https://devcenter.heroku.com/articles/pipelines
-[heroku deploy]: https://github.com/thoughtbot/suspenders/docs/heroku_deploy.md
+[heroku deploy]: https://github.com/thoughtbot/suspenders/blob/master/docs/heroku_deploy.md
 
 You can optionally specify alternate Heroku flags:
 
