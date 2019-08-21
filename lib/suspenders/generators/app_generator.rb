@@ -185,7 +185,6 @@ module Suspenders
       generate("suspenders:lint")
       generate("suspenders:jobs")
       generate("suspenders:analytics")
-      generate("suspenders:views")
     end
 
     def generate_deployment_default
@@ -195,6 +194,10 @@ module Suspenders
       generate("suspenders:production:timeout")
       generate("suspenders:production:deployment")
       generate("suspenders:production:manifest")
+    end
+
+    def generate_views
+      generate("suspenders:views")
     end
 
     def outro

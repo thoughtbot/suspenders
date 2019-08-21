@@ -10,3 +10,5 @@ before_install:
 install: bundle install
 notifications:
   email: false
+services:
+  - postgresql
