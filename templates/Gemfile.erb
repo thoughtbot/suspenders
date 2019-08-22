@@ -10,6 +10,7 @@ ruby "<%= Suspenders::RUBY_VERSION %>"
 <% unless options[:api] %>
 gem "autoprefixer-rails"
 <% end %>
+gem "bootsnap", require: false
 gem "honeybadger"
 gem "pg"
 gem "puma"
@@ -21,7 +22,6 @@ gem "skylight"
 gem "sprockets", ">= 3.0.0"
 gem "title"
 gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
-gem "bootsnap", require: false
 gem "webpacker"
 
 group :development do
