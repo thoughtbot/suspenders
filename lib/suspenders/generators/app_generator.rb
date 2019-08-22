@@ -185,6 +185,7 @@ module Suspenders
       generate("suspenders:lint")
       generate("suspenders:jobs")
       generate("suspenders:analytics")
+      generate("suspenders:inline_svg")
     end
 
     def generate_deployment_default
