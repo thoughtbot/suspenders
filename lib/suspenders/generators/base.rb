@@ -13,7 +13,7 @@ module Suspenders
       private
 
       def app_name
-        Rails.app_class.parent_name.demodulize.underscore.dasherize
+        Rails.app_class.module_parent_name.demodulize.underscore.dasherize
       end
     end
   end
