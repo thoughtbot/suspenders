@@ -242,7 +242,6 @@ config.public_file_server.headers = {
     end
 
     def copy_miscellaneous_files
-      copy_file "browserslist", "browserslist"
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
     end
