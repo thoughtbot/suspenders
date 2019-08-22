@@ -98,7 +98,7 @@ module Suspenders
 
     def enable_rack_canonical_host
       config = <<-RUBY
-  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
+config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")
       RUBY
 
       configure_environment "production", config
