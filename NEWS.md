@@ -1,3 +1,11 @@
+1.53.0 (August 23, 2019)
+* Upgraded: Rails 6.0.
+* New generator: `suspenders:inline_svg` for setting up the inline_svg gem.
+* Changed: silence Puma's startup messages in JS specs.
+* Changed: improve chromedriver configuration.
+* Added: documentation for deploying to Heroku.
+* Fixed: indentation in production config file.
+
 1.52.0 (June 7, 2019)
 * Changed: Setup system tests instead of feature specs
 * Upgraded: Rails 5.2.3
