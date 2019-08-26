@@ -217,15 +217,7 @@ config.public_file_server.headers = {
     end
 
     def configure_automatic_deployment
-      deploy_command = <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
-      YML
-
-      append_file "circle.yml", deploy_command
+      append_file "Procfile", "release: bin/auto_migrate"
     end
 
     def create_github_repo(repo_name)
