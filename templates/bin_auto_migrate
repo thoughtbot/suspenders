@@ -1,0 +1,5 @@
+ set -e
+
+ if [ -n "$AUTO_MIGRATE_DB" ]; then
+   bundle exec rake db:migrate
+ fi
