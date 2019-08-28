@@ -293,17 +293,16 @@ RSpec.describe "Suspend a new project with default configuration" do
     expect(gemfile).to match(/sassc-rails/)
   end
 
-  it "adds and configures bourbon and neat" do
+  it "adds and configures bourbon" do
     gemfile = read_project_file("Gemfile")
 
     expect(gemfile).to match(/bourbon/)
-    expect(gemfile).to match(/neat/)
   end
 
-  it "configures bourbon, neat, and bitters" do
+  it "configures bourbon, and bitters" do
     app_css = read_project_file(%w(app assets stylesheets application.scss))
     expect(app_css).to match(
-      /normalize\.css\/normalize.*bourbon.*neat.*base/m,
+      /normalize\.css\/normalize.*bourbon.*base/m,
     )
   end
 

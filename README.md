@@ -38,7 +38,6 @@ It includes application gems like:
   processing
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [Honeybadger](https://honeybadger.io) for exception notification
-* [Neat](https://github.com/thoughtbot/neat) for semantic grids
 * [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Oj](http://www.ohler.com/oj/)
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
