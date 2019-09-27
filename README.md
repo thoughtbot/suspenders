@@ -37,7 +37,7 @@ It includes application gems like:
 * [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
   processing
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
-* [Honeybadger](https://honeybadger.io) for exception notification
+* [Honeybadger](https://www.honeybadger.io/?affiliate=A43uwl) for exception notification
 * [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Oj](http://www.ohler.com/oj/)
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
