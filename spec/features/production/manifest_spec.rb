@@ -8,6 +8,7 @@ RSpec.describe "suspenders:production:manifest", type: :generator do
       name: SuspendersTestHelpers::APP_NAME.dasherize,
       env: {
         APPLICATION_HOST: { required: true },
+        AUTO_MIGRATE_DB: { value: "true" },
         EMAIL_RECIPIENTS: { required: true },
         HEROKU_APP_NAME: { required: true },
         HEROKU_PARENT_APP_NAME: { required: true },
@@ -24,6 +25,7 @@ RSpec.describe "suspenders:production:manifest", type: :generator do
       name: SuspendersTestHelpers::APP_NAME.dasherize,
       env: {
         APPLICATION_HOST: { required: true },
+        AUTO_MIGRATE_DB: { value: "true" },
         EMAIL_RECIPIENTS: { required: true },
         HEROKU_APP_NAME: { required: true },
         HEROKU_PARENT_APP_NAME: { required: true },
