@@ -5,6 +5,7 @@ module Suspenders
     class TimeoutGenerator < Generators::Base
       def add_gem
         gem "rack-timeout", group: :production
+        Bundler.with_clean_env { run "bundle install" }
       end
 
       def configure_rack_timeout
