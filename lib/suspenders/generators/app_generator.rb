@@ -119,6 +119,7 @@ module Suspenders
         build :set_heroku_application_host
         build :set_heroku_honeybadger_env
         build :set_heroku_backup_schedule
+        build :set_heroku_buildpacks
         build :create_heroku_pipeline
         build :configure_automatic_deployment
       end

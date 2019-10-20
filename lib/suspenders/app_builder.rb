@@ -15,6 +15,7 @@ module Suspenders
       :set_heroku_honeybadger_env,
       :set_heroku_rails_secrets,
       :set_heroku_remotes,
+      :set_heroku_buildpacks,
     )
 
     def readme

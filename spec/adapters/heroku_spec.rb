@@ -55,6 +55,26 @@ module Suspenders
         )
       end
 
+      it "configures nodejs and ruby packs" do
+        app_builder = double(app_name: app_name)
+        allow(app_builder).to receive(:run)
+
+        Heroku.new(app_builder).set_heroku_buildpacks
+
+        %w(staging production).each do |remote|
+          expect(app_builder).to(
+            have_configured_buildpack(
+              remote_name: remote, index: 1, packname: "heroku/nodejs",
+            ),
+          )
+          expect(app_builder).to(
+            have_configured_buildpack(
+              remote_name: remote, index: 2, packname: "heroku/ruby",
+            ),
+          )
+        end
+      end
+
       def app_name
         SuspendersTestHelpers::APP_NAME
       end
@@ -66,6 +86,12 @@ module Suspenders
 
       def have_configured_var(remote_name, var)
         have_received(:run).with(/config:add #{var}=.+ --remote #{remote_name}/)
+      end
+
+      def have_configured_buildpack(remote_name:, index:, packname:)
+        have_received(:run).with(
+          /buildpacks:add --index #{index} #{packname} --remote #{remote_name}/,
+        )
       end
     end
   end

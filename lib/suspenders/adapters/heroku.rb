@@ -84,6 +84,19 @@ module Suspenders
         end
       end
 
+      def set_heroku_buildpacks
+        %w(staging production).each do |environment|
+          run_toolbelt_command(
+            "buildpacks:add --index 1 heroku/nodejs",
+            environment,
+          )
+          run_toolbelt_command(
+            "buildpacks:add --index 2 heroku/ruby",
+            environment,
+          )
+        end
+      end
+
       private
 
       attr_reader :app_builder
