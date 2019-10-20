@@ -12,6 +12,7 @@ Deploying to Heroku requires two additional steps:
 - `SMTP_DOMAIN`: `example.com`
 - `SMTP_USERNAME`: `username`
 - `SMTP_PASSWORD`: `password`
+- `AUTO_MIGRATE_DB`: `true`
 
 ## Execution
 

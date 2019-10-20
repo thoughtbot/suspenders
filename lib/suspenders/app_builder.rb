@@ -206,7 +206,8 @@ config.public_file_server.headers = {
     end
 
     def configure_automatic_deployment
-      append_file "Procfile", "release: bin/auto_migrate"
+      append_file "Procfile", "release: bin/auto_migrate\n"
+      copy_file "bin_auto_migrate", "bin/auto_migrate"
     end
 
     def create_github_repo(repo_name)
