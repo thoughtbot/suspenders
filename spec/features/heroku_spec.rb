@@ -36,17 +36,6 @@ RSpec.describe "Heroku" do
 
       expect(readme).to include("./bin/deploy staging")
       expect(readme).to include("./bin/deploy production")
-
-      circle_yml_path = "#{project_path}/circle.yml"
-      circle_yml = IO.read(circle_yml_path)
-
-      expect(circle_yml).to include <<-YML.strip_heredoc
-      deployment:
-        staging:
-          branch: master
-          commands:
-            - bin/deploy staging
-      YML
     end
   end
 
