@@ -219,10 +219,6 @@ config.public_file_server.headers = {
       append_file "Rakefile", %{\ntask default: "bundle:audit"\n}
     end
 
-    def setup_spring
-      bundle_command "exec spring binstub --all"
-    end
-
     def copy_miscellaneous_files
       copy_file "errors.rb", "config/initializers/errors.rb"
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
