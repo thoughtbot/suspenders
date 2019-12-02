@@ -7,6 +7,7 @@ before_install:
   - git config --global user.email 'travis-ci@example.com'
   - gem update --system
   - gem install bundler
+  - bundler config --global disable_platform_warnings true
 install: bundle install
 notifications:
   email: false
