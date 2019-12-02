@@ -51,7 +51,6 @@ module Suspenders
       invoke :setup_dotfiles
       invoke :setup_database
       invoke :create_github_repo
-      invoke :setup_bundler_audit
       invoke :generate_default
       invoke :setup_default_directories
       invoke :create_heroku_apps
@@ -139,11 +138,6 @@ module Suspenders
       build :setup_default_directories
     end
 
-    def setup_bundler_audit
-      say "Setting up bundler-audit"
-      build :setup_bundler_audit
-    end
-
     def copy_miscellaneous_files
       say 'Copying miscellaneous support files'
       build :copy_miscellaneous_files
@@ -179,6 +173,7 @@ module Suspenders
       generate("suspenders:jobs")
       generate("suspenders:analytics")
       generate("suspenders:inline_svg")
+      generate("suspenders:advisories")
       generate("suspenders:preloader")
     end
 
