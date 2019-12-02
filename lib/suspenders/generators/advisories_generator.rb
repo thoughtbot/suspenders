@@ -4,6 +4,7 @@ module Suspenders
   class AdvisoriesGenerator < Generators::Base
     def bundler_audit_gem
       gem "bundler-audit", require: false, group: %i[development test]
+      Bundler.with_clean_env { run "bundle install" }
     end
 
     def rake_task
