@@ -6,7 +6,7 @@ module Suspenders
       gem "bundler-audit",
           ">= 0.5.0",
           require: false,
-          group: [:development, :test]
+          group: %i[development test]
     end
 
     def rake_task
