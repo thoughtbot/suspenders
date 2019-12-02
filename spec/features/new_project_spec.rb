@@ -44,9 +44,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   it "copies dotfiles" do
-    %w[.ctags .env].each do |dotfile|
-      expect(File).to exist("#{project_path}/#{dotfile}")
-    end
+    expect(File).to exist("#{project_path}/.env")
   end
 
   it "doesn't generate test directory" do
