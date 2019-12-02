@@ -4,9 +4,9 @@ module Suspenders
   class AdvisoriesGenerator < Generators::Base
     def bundler_audit_gem
       gem "bundler-audit",
-        ">= 0.5.0",
-        require: false,
-        group: [:development, :test]
+          ">= 0.5.0",
+          require: false,
+          group: [:development, :test]
     end
 
     def rake_task
