@@ -5,7 +5,7 @@ RSpec.describe "suspenders:advisories", type: :generator do
     with_app { generate("suspenders:advisories") }
 
     run_in_project do
-      expect(`rake -T`).to include('rake bundle:audit')
+      expect(`rake -T`).to include("rake bundle:audit")
     end
     expect("lib/tasks/bundler_audit.rake").to \
       match_contents(/Bundler::Audit::Task.new/)
@@ -18,7 +18,7 @@ RSpec.describe "suspenders:advisories", type: :generator do
     expect("Gemfile").not_to match_contents(/bundler-audit/)
     expect("lib/tasks/bundler_audit.rake").not_to exist_as_a_file
     run_in_project do
-      expect(`rake -T`).not_to include('rake bundle:audit')
+      expect(`rake -T`).not_to include("rake bundle:audit")
     end
   end
 end
