@@ -182,20 +182,6 @@ config.public_file_server.headers = {
       copy_file "Procfile", "Procfile"
     end
 
-    def setup_default_directories
-      [
-        'app/views/pages',
-        'spec/lib',
-        'spec/controllers',
-        'spec/helpers',
-        'spec/support/matchers',
-        'spec/support/mixins',
-        'spec/support/shared_examples'
-      ].each do |dir|
-        empty_directory_with_keep_file dir
-      end
-    end
-
     def copy_dotfiles
       directory("dotfiles", ".")
     end

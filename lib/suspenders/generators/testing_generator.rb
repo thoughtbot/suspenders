@@ -40,16 +40,5 @@ module Suspenders
     def configure_action_mailer_in_specs
       copy_file "action_mailer.rb", "spec/support/action_mailer.rb"
     end
-
-    private
-
-    def empty_directory_with_keep_file(destination)
-      empty_directory(destination, {})
-      keep_file(destination)
-    end
-
-    def keep_file(destination)
-      create_file(File.join(destination, ".keep"))
-    end
   end
 end

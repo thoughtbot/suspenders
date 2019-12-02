@@ -52,7 +52,6 @@ module Suspenders
       invoke :setup_database
       invoke :create_github_repo
       invoke :generate_default
-      invoke :setup_default_directories
       invoke :create_heroku_apps
       invoke :generate_deployment_default
       invoke :remove_config_comment_lines
@@ -132,10 +131,6 @@ module Suspenders
 
     def setup_dotfiles
       build :copy_dotfiles
-    end
-
-    def setup_default_directories
-      build :setup_default_directories
     end
 
     def copy_miscellaneous_files
