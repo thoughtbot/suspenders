@@ -103,7 +103,6 @@ module Suspenders
       build :setup_default_rake_task
       build :replace_default_puma_configuration
       build :set_up_forego
-      build :setup_rack_mini_profiler
     end
 
     def create_heroku_apps
@@ -147,6 +146,7 @@ module Suspenders
 
     def generate_default
       run("spring stop")
+      generate("suspenders:profiler")
       generate("suspenders:json")
       generate("suspenders:static")
       generate("suspenders:stylesheet_base")
