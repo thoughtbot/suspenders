@@ -205,21 +205,6 @@ config.public_file_server.headers = {
       copy_file "json_encoding.rb", "config/initializers/json_encoding.rb"
     end
 
-    def customize_error_pages
-      meta_tags =<<-EOS
-  <meta charset="utf-8" />
-  <meta name="viewport" content="initial-scale=1" />
-      EOS
-
-      %w(500 404 422).each do |page|
-        path = "public/#{page}.html"
-        if File.exist?(path)
-          inject_into_file path, meta_tags, after: "<head>\n"
-          replace_in_file path, /<!--.+-->\n/, ''
-        end
-      end
-    end
-
     def remove_config_comment_lines
       config_files = [
         "application.rb",

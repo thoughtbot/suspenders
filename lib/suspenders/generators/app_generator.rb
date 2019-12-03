@@ -47,7 +47,6 @@ module Suspenders
       invoke :setup_secret_token
       invoke :configure_app
       invoke :copy_miscellaneous_files
-      invoke :customize_error_pages
       invoke :setup_dotfiles
       invoke :setup_database
       invoke :create_github_repo
@@ -136,11 +135,6 @@ module Suspenders
     def copy_miscellaneous_files
       say 'Copying miscellaneous support files'
       build :copy_miscellaneous_files
-    end
-
-    def customize_error_pages
-      say 'Customizing the 500/404/422 pages'
-      build :customize_error_pages
     end
 
     def remove_config_comment_lines
