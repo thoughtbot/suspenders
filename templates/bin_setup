@@ -24,5 +24,5 @@ if [ ! -d .git/safe ] && echo $PATH | grep .git/safe > /dev/null; then
 fi
 
 # Only if this isn't CI
-# if [ -z "$CI" ]; then
-# fi
+if [ -z "$CI" ]; then
+fi

@@ -47,7 +47,6 @@ module Suspenders
       invoke :setup_secret_token
       invoke :configure_app
       invoke :copy_miscellaneous_files
-      invoke :setup_dotfiles
       invoke :setup_database
       invoke :create_github_repo
       invoke :generate_default
@@ -102,7 +101,6 @@ module Suspenders
       build :configure_time_formats
       build :setup_default_rake_task
       build :replace_default_puma_configuration
-      build :set_up_forego
     end
 
     def create_heroku_apps
@@ -125,10 +123,6 @@ module Suspenders
         say 'Creating Github repo'
         build :create_github_repo, options[:github]
       end
-    end
-
-    def setup_dotfiles
-      build :copy_dotfiles
     end
 
     def copy_miscellaneous_files
@@ -163,6 +157,7 @@ module Suspenders
       generate("suspenders:analytics")
       generate("suspenders:inline_svg")
       generate("suspenders:advisories")
+      generate("suspenders:runner")
       generate("suspenders:preloader")
     end
 

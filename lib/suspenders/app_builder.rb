@@ -178,14 +178,6 @@ config.public_file_server.headers = {
       copy_file "puma.rb", "config/puma.rb", force: true
     end
 
-    def set_up_forego
-      copy_file "Procfile", "Procfile"
-    end
-
-    def copy_dotfiles
-      directory("dotfiles", ".")
-    end
-
     def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
