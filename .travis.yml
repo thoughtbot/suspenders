@@ -1,7 +1,6 @@
 language: ruby
 rvm: 2.6.5
 cache: bundler
-sudo: false
 before_install:
   - git config --global user.name 'Travis CI'
   - git config --global user.email 'travis-ci@example.com'
