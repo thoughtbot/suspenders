@@ -2,6 +2,7 @@ language: ruby
 rvm: 2.6.5
 cache: bundler
 before_install:
+  - nvm install 8.16.0
   - git config --global user.name 'Travis CI'
   - git config --global user.email 'travis-ci@example.com'
   - gem update --system
