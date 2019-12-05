@@ -8,23 +8,11 @@ module Suspenders
     end
 
     def configure_bullet
-      inject_into_file(
+      inject_template_into_file(
         "config/environments/development.rb",
-        configuration,
-        after: "config.action_mailer.raise_delivery_errors = true\n",
+        "partials/db_optimizations_configuration.rb",
+        after: /config.action_mailer.raise_delivery_errors = .*/,
       )
-    end
-
-    private
-
-    def configuration
-      <<-RUBY
-  config.after_initialize do
-    Bullet.enable = true
-    Bullet.bullet_logger = true
-    Bullet.rails_logger = true
-  end
-      RUBY
     end
   end
 end

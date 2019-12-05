@@ -11,14 +11,11 @@ module Suspenders
       end
 
       def use_smtp
-        config = <<-RUBY
-
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.smtp_settings = SMTP_SETTINGS
-        RUBY
-
-        inject_into_file "config/environments/production.rb", config,
-          after: "config.action_mailer.perform_caching = false"
+        inject_template_into_file(
+          "config/environments/production.rb",
+          "partials/email_smtp.rb",
+          after: "config.action_mailer.perform_caching = false",
+        )
       end
 
       def env_vars

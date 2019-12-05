@@ -9,18 +9,7 @@ module Suspenders
       end
 
       def inform_user
-        instructions = <<~MARKDOWN
-
-          ## Deploying
-
-          If you have previously run the `./bin/setup` script,
-          you can deploy to staging and production with:
-
-              % ./bin/deploy staging
-              % ./bin/deploy production
-        MARKDOWN
-
-        append_file "README.md", instructions
+        append_template_to_file "README.md", "partials/deployment_readme.md"
       end
     end
   end

@@ -29,17 +29,7 @@ module Suspenders
     end
 
     def update_readme
-      config = <<~CONFIG
-
-        ## Profiler
-
-        The [rack-mini-profiler] gem can be enabled by setting
-        `RACK_MINI_PROFILER=1` in the environment. This will display a speed
-        badge on every page.
-
-        [rack-mini-profiler]: https://github.com/MiniProfiler/rack-mini-profiler
-      CONFIG
-      append_to_file "README.md", config
+      append_template_to_file "README.md", "partials/profiler_readme.md"
     end
   end
 end

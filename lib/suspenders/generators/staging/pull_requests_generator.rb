@@ -4,17 +4,9 @@ module Suspenders
   module Staging
     class PullRequestsGenerator < Generators::Base
       def configure_heroku_staging_pr_pipeline_host
-        config = <<-RUBY
-
-  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")
-    ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
-    ENV["ASSET_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"
-  end
-        RUBY
-
-        inject_into_file(
+        inject_template_into_file(
           "config/environments/production.rb",
-          config,
+          "partials/pull_requests_config.rb",
           after: "Rails.application.configure do\n",
         )
       end

@@ -27,13 +27,4 @@ RSpec.describe "suspenders:runner", type: :generator do
 
     expect("bin/setup").to match_contents(/\.sample\.env/)
   end
-
-  private
-
-  def copy_file(from_in_templates, to_in_project)
-    FileUtils.cp(
-      File.join(root_path, "templates", from_in_templates),
-      File.join(project_path, to_in_project),
-    )
-  end
 end

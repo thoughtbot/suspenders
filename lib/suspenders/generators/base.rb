@@ -24,6 +24,21 @@ module Suspenders
       def keep_file(destination)
         create_file(File.join(destination, ".keep"))
       end
+
+      def append_template_to_file(destination, source, *args)
+        partial = File.expand_path(find_in_source_paths(source))
+        append_to_file(destination, File.read(partial, *args))
+      end
+
+      def prepend_template_to_file(destination, source, *args)
+        partial = File.expand_path(find_in_source_paths(source))
+        prepend_to_file(destination, File.read(partial, *args))
+      end
+
+      def inject_template_into_file(destination, source, *args)
+        partial = File.expand_path(find_in_source_paths(source))
+        inject_into_file(destination, File.read(partial), *args)
+      end
     end
   end
 end
