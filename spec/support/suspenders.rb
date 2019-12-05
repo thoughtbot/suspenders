@@ -19,10 +19,7 @@ module SuspendersTestHelpers
       end
 
       Dir.chdir(APP_NAME) do
-        with_env("HOME", tmp_path) do
-          debug `git add .`
-          debug `git commit -m 'Initial commit'`
-        end
+        commit_all
       end
     end
   end
@@ -49,10 +46,7 @@ module SuspendersTestHelpers
           file.puts %{gem "suspenders", path: #{root_path.inspect}}
         end
 
-        with_env("HOME", tmp_path) do
-          debug `git add .`
-          debug `git commit -m 'Initial commit'`
-        end
+        commit_all
       end
     end
   end
@@ -133,6 +127,15 @@ module SuspendersTestHelpers
 
   def root_path
     File.expand_path('../../../', __FILE__)
+  end
+
+  def commit_all
+    with_env("HOME", tmp_path) do
+      debug `git config user.email suspenders@example.com`
+      debug `git config user.name "Suspenders Boy"`
+      debug `git add .`
+      debug `git commit -m 'Initial commit'`
+    end
   end
 
   def with_env(name, new_value)
