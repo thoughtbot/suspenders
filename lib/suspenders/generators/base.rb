@@ -10,6 +10,21 @@ module Suspenders
         File.expand_path(File.join("..", "..", "..", "templates"), __dir__)
       end
 
+      def self.inherited(subclass)
+        super
+
+        description_file = File.expand_path(
+          File.join(
+            default_source_root,
+            "descriptions",
+            "#{subclass.generator_name}.md",
+          ),
+        )
+
+        subclass.desc File.read(description_file)
+      rescue Errno::ENOENT
+      end
+
       private
 
       def app_name

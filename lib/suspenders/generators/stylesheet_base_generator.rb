@@ -7,16 +7,16 @@ module Suspenders
       Bundler.with_clean_env { run "bundle install" }
     end
 
+    def remove_prior_config
+      remove_file "app/assets/stylesheets/application.css"
+    end
+
     def add_css_config
       copy_file(
         "application.scss",
         "app/assets/stylesheets/application.scss",
         force: true,
       )
-    end
-
-    def remove_prior_config
-      remove_file "app/assets/stylesheets/application.css"
     end
 
     def install_bitters
