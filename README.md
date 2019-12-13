@@ -224,6 +224,6 @@ See [our other projects][community].
 We are [available for hire][hire].
 
 [thoughtbot]: https://thoughtbot.com?utm_source=github
-[thoughtbot-logo]: http://presskit.thoughtbot.com/images/thoughtbot-logo-for-readmes.svg
+[thoughtbot-logo]: https://thoughtbot.com/brand_assets/93:44.svg
 [community]: https://thoughtbot.com/community?utm_source=github
 [hire]: https://thoughtbot.com?utm_source=github
