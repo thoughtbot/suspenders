@@ -100,7 +100,6 @@ module Suspenders
       build :configure_action_mailer
       build :configure_time_formats
       build :setup_default_rake_task
-      build :replace_default_puma_configuration
     end
 
     def create_heroku_apps

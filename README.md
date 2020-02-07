@@ -52,7 +52,6 @@ It includes application gems like:
 * [Skylight](https://www.skylight.io/) for monitoring performance
 * [Title](https://github.com/calebthompson/title) for storing titles in
   translations
-* [Puma](https://github.com/puma/puma) to serve HTTP requests
 
 And development gems like:
 
