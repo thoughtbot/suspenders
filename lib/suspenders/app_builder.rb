@@ -174,10 +174,6 @@ config.public_file_server.headers = {
       )
     end
 
-    def replace_default_puma_configuration
-      copy_file "puma.rb", "config/puma.rb", force: true
-    end
-
     def create_heroku_apps(flags)
       create_staging_heroku_app(flags)
       create_production_heroku_app(flags)
