@@ -41,6 +41,11 @@ If [Hound] catches style violations, fix them.
 Wait for us. We try to at least comment on pull requests within one business
 day. We may suggest changes.
 
+## Generators
+
+All new contributions must be within the generator framework, as described in
+[our goals](GOALS.md).
+
 ## Versions
 
 To update the Ruby version, change `.ruby-version` and `.travis.yml`.
