@@ -38,14 +38,10 @@ module SuspendersTestHelpers
       add_fakes_to_path
 
       with_revision_for_honeybadger do
-        debug `#{system_rails_bin} new #{APP_NAME}`
+        debug `#{system_rails_bin} new #{APP_NAME} -m #{rails_template_path}`
       end
 
       Dir.chdir(APP_NAME) do
-        File.open("Gemfile", "a") do |file|
-          file.puts %{gem "suspenders", path: #{root_path.inspect}}
-        end
-
         commit_all
       end
     end
@@ -127,6 +123,10 @@ module SuspendersTestHelpers
 
   def root_path
     File.expand_path('../../../', __FILE__)
+  end
+
+  def rails_template_path
+    File.join(root_path, "spec", "support", "rails_template.rb")
   end
 
   def commit_all
