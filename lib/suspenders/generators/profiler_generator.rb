@@ -3,12 +3,12 @@ require_relative "base"
 module Suspenders
   class ProfilerGenerator < Generators::Base
     def augment_default_env
-      append_to_file ".env", "RACK_MINI_PROFILER=0\n"
+      append_to_file ".sample.env", "RACK_MINI_PROFILER=0\n"
     rescue Errno::ENOENT
-      create_file ".env", "RACK_MINI_PROFILER=0\n"
+      create_file ".sample.env", "RACK_MINI_PROFILER=0\n"
     rescue Thor::Error => e
       if e.message.match?(/does not appear to exist/)
-        create_file ".env", "RACK_MINI_PROFILER=0\n"
+        create_file ".sample.env", "RACK_MINI_PROFILER=0\n"
       else
         raise
       end
