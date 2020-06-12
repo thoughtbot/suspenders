@@ -3,8 +3,7 @@ require_relative "base"
 module Suspenders
   class JsDriverGenerator < Generators::Base
     def add_gems
-      gem "capybara-selenium", group: :test
-      gem "chromedriver-helper", group: :test
+      gem "webdrivers", group: :test
       Bundler.with_clean_env { run "bundle install" }
     end
 
