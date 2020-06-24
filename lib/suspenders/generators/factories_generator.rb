@@ -3,7 +3,7 @@ require_relative "base"
 module Suspenders
   class FactoriesGenerator < Generators::Base
     def add_factory_bot
-      gem "factory_bot_rails", group: %i(development test)
+      gem "factory_bot_rails", group: %i[development test]
       Bundler.with_unbundled_env { run "bundle install" }
     end
 

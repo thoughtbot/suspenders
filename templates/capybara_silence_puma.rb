@@ -1,1 +1,1 @@
-Capybara.server = :puma, { Silent: true }
+Capybara.server = :puma, {Silent: true}

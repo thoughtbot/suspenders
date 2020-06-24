@@ -54,7 +54,7 @@ module Suspenders
           :always_gsub_file,
           @config_file,
           "config.cache_classes = true",
-          "config.cache_classes = false",
+          "config.cache_classes = false"
         )
       end
 
@@ -63,7 +63,7 @@ module Suspenders
           :always_gsub_file,
           @config_file,
           "config.cache_classes = false",
-          "config.cache_classes = true",
+          "config.cache_classes = true"
         )
       end
     end
@@ -71,10 +71,10 @@ module Suspenders
     protected
 
     def always_run(command, with: nil, verbose: true, env: nil, capture: nil,
-                   abort_on_failure: nil)
+      abort_on_failure: nil)
       destination = relative_to_original_destination_root(
         destination_root,
-        false,
+        false
       )
       desc = "#{command} from #{destination.inspect}"
 

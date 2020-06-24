@@ -15,7 +15,7 @@ module Suspenders
       copy_file(
         "application.scss",
         "app/assets/stylesheets/application.scss",
-        force: true,
+        force: true
       )
     end
 

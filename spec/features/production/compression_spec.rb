@@ -6,7 +6,7 @@ RSpec.describe "suspenders:production:compression", type: :generator do
       with_app { generate("suspenders:production:compression") }
 
       expect("config/environments/production.rb").to match_contents(
-        %r{config.middleware.use Rack::Deflater},
+        %r{config.middleware.use Rack::Deflater}
       )
     end
   end
@@ -16,7 +16,7 @@ RSpec.describe "suspenders:production:compression", type: :generator do
       with_app { destroy("suspenders:production:compression") }
 
       expect("config/environments/production.rb").not_to match_contents(
-        %r{Rack::Deflater},
+        %r{Rack::Deflater}
       )
     end
   end

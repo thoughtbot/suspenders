@@ -1,13 +1,13 @@
 class FakeGithub
-  RECORDER = File.expand_path(File.join('..', '..', 'tmp', 'hub_commands'), File.dirname(__FILE__))
+  RECORDER = File.expand_path(File.join("..", "..", "tmp", "hub_commands"), File.dirname(__FILE__))
 
   def initialize(args)
     @args = args
   end
 
   def run!
-    File.open(RECORDER, 'a') do |file|
-      file.write @args.join(' ')
+    File.open(RECORDER, "a") do |file|
+      file.write @args.join(" ")
     end
   end
 

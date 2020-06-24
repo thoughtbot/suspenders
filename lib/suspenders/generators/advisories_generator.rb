@@ -9,7 +9,7 @@ module Suspenders
 
     def rake_task
       copy_file "bundler_audit.rake", "lib/tasks/bundler_audit.rake"
-      append_file "Rakefile", %{\ntask default: "bundle:audit"\n}
+      append_file "Rakefile", %(\ntask default: "bundle:audit"\n)
     end
   end
 end

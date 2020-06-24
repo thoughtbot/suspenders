@@ -19,7 +19,7 @@ module ProjectFiles
 
     FileUtils.cp(
       File.join(root_path, "templates", from_in_templates),
-      destination,
+      destination
     )
   end
 end

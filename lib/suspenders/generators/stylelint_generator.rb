@@ -26,7 +26,8 @@ module Suspenders
         @base.invoke @generator
       end
 
-      def revoke!; end
+      def revoke!
+      end
     end
 
     class ToggleComments

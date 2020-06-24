@@ -7,7 +7,7 @@ module Suspenders
         inject_into_file(
           "config/environments/production.rb",
           %{\n  config.middleware.use Rack::CanonicalHost, ENV.fetch("APPLICATION_HOST")},
-          before: "\nend",
+          before: "\nend"
         )
       end
     end

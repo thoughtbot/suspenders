@@ -15,18 +15,18 @@ module Suspenders
         inject_template_into_file(
           "bin/setup",
           "partials/runner_setup.rb",
-          before: %{  puts "\\n== Preparing database =="},
+          before: %(  puts "\\n== Preparing database ==")
         )
       elsif bin_setup_mentions_ci?
         inject_into_file(
           "bin/setup",
-          %{  cp -i .sample.env .env\n},
-          after: %{if [ -z "$CI" ]; then\n},
+          %(  cp -i .sample.env .env\n),
+          after: %(if [ -z "$CI" ]; then\n)
         )
       else
         append_to_file(
           "bin/setup",
-          %{\nif [ -z "$CI" ]; then\n  cp -i .sample.env .env\nfi},
+          %(\nif [ -z "$CI" ]; then\n  cp -i .sample.env .env\nfi)
         )
       end
     end

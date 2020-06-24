@@ -6,7 +6,7 @@ module Suspenders
       def add_rack_deflater
         configure_environment(
           :production,
-          %{config.middleware.use Rack::Deflater},
+          %(config.middleware.use Rack::Deflater)
         )
       end
     end

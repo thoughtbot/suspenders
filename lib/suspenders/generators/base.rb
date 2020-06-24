@@ -17,8 +17,8 @@ module Suspenders
           File.join(
             default_source_root,
             "descriptions",
-            "#{subclass.generator_name}.md",
-          ),
+            "#{subclass.generator_name}.md"
+          )
         )
 
         subclass.desc File.read(description_file)

@@ -15,11 +15,11 @@ RSpec.describe "suspenders:production:email", type: :generator do
 
     expect("app.json").to contain_json(
       env: {
-        SMTP_ADDRESS: { required: true },
-        SMTP_DOMAIN: { required: true },
-        SMTP_PASSWORD: { required: true },
-        SMTP_USERNAME: { required: true },
-      },
+        SMTP_ADDRESS: {required: true},
+        SMTP_DOMAIN: {required: true},
+        SMTP_PASSWORD: {required: true},
+        SMTP_USERNAME: {required: true}
+      }
     )
   end
 
@@ -37,11 +37,11 @@ RSpec.describe "suspenders:production:email", type: :generator do
 
     expect("app.json").not_to contain_json(
       env: {
-        SMTP_ADDRESS: { required: true },
-        SMTP_DOMAIN: { required: true },
-        SMTP_PASSWORD: { required: true },
-        SMTP_USERNAME: { required: true },
-      },
+        SMTP_ADDRESS: {required: true},
+        SMTP_DOMAIN: {required: true},
+        SMTP_PASSWORD: {required: true},
+        SMTP_USERNAME: {required: true}
+      }
     )
   end
 end

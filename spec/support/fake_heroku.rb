@@ -1,5 +1,5 @@
 class FakeHeroku
-  RECORDER = File.expand_path(File.join('..', '..', 'tmp', 'heroku_commands'), File.dirname(__FILE__))
+  RECORDER = File.expand_path(File.join("..", "..", "tmp", "heroku_commands"), File.dirname(__FILE__))
 
   def initialize(args)
     @args = args
@@ -9,8 +9,8 @@ class FakeHeroku
     if @args.first == "help"
       puts "pipelines      #  manage collections of apps in pipelines"
     end
-    File.open(RECORDER, 'a') do |file|
-      file.puts @args.join(' ')
+    File.open(RECORDER, "a") do |file|
+      file.puts @args.join(" ")
     end
   end
 
@@ -19,7 +19,7 @@ class FakeHeroku
   end
 
   def self.has_gem_included?(project_path, gem_name)
-    gemfile = File.open(File.join(project_path, 'Gemfile'), 'a')
+    gemfile = File.open(File.join(project_path, "Gemfile"), "a")
 
     File.foreach(gemfile).any? do |line|
       line.match(/#{Regexp.quote(gem_name)}/)
@@ -30,10 +30,10 @@ class FakeHeroku
     app_name = "#{SuspendersTestHelpers::APP_NAME.dasherize}-#{environment}"
 
     command = if flags
-                "create #{app_name} #{flags} --remote #{environment}\n"
-              else
-                "create #{app_name} --remote #{environment}\n"
-              end
+      "create #{app_name} #{flags} --remote #{environment}\n"
+    else
+      "create #{app_name} --remote #{environment}\n"
+    end
 
     File.foreach(RECORDER).any? { |line| line == command }
   end
