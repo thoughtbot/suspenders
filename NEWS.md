@@ -1,6 +1,31 @@
 Unreleased
 
+1.54.0 (June 24, 2020)
+
+* New generator: `suspenders:single_redirect` for setting up `Rack::CanonicalHost`
+* New generator: `suspenders:production:compression` for setting up `Rack::Deflater`
+* New generator: `suspenders:preloader` for managing spring
+* New generator: `suspenders:advisories` for installing bundler-audit
+* New generator: `suspenders:profiler` for setting up rack\_mini\_profiler
+* New generator: `suspenders:runner` for making an app runnable locally
+* Added: generator descriptions
+* Added: Heroku release phase for running database migrations
+* Added: automatic buildpack configuration for Heroku
+* Added: system test configuration to opt into JavaScript as needed
+* Added: spring-watcher-listen gem
+* Changed: from `chromedriver-helper` to `webdrivers`
 * Changed: replace `heroku join` calls with `heroku apps:info` in `bin/setup`
+* Changed: check environment instead of `DATABASE\_URL` in test helper
+* Fixed: `ExpandJson` merging
+* Fixed: spacing in the generated config file
+* Upgraded: bitters to version 2.x
+* Upgraded: bourbon to version 6.x
+* Upgraded: Ruby to version 2.6.6
+* Removed: neat gem
+* Removed: ctags configuration
+* Removed: custom placeholder directories
+* Removed: customization for error pages
+* Removed: custom Puma config
 
 1.53.0 (August 23, 2019)
 * Upgraded: Rails 6.0.
