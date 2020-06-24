@@ -10,7 +10,7 @@ module Suspenders
     def render_partial
       if File.exist?(js_partial)
         inject_into_file js_partial,
-          %{\n\n<%= render "analytics" %>},
+          %(\n\n<%= render "analytics" %>),
           after: "<%= yield :javascript %>"
       end
     end

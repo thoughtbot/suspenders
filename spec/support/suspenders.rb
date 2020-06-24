@@ -88,7 +88,7 @@ module SuspendersTestHelpers
   end
 
   def add_fakes_to_path
-    ENV["PATH"] = "#{support_bin}:#{ENV['PATH']}"
+    ENV["PATH"] = "#{support_bin}:#{ENV["PATH"]}"
   end
 
   def project_path
@@ -106,7 +106,7 @@ module SuspendersTestHelpers
   end
 
   def suspenders_bin
-    File.join(root_path, 'bin', 'suspenders')
+    File.join(root_path, "bin", "suspenders")
   end
 
   def system_rails_bin
@@ -122,7 +122,7 @@ module SuspendersTestHelpers
   end
 
   def root_path
-    File.expand_path('../../../', __FILE__)
+    File.expand_path("../../../", __FILE__)
   end
 
   def rails_template_path
@@ -144,7 +144,6 @@ module SuspendersTestHelpers
     ENV[name] = new_value.to_s
 
     yield
-
   ensure
     ENV.delete(name)
 

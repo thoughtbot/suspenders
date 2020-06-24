@@ -16,8 +16,8 @@ RSpec.describe Suspenders::Actions::ExpandJson do
           destination_root,
           destination_file_name,
           env: {
-            SMTP_ADDRESS: { required: true },
-          },
+            SMTP_ADDRESS: {required: true}
+          }
         ).invoke!
       end
 
@@ -26,8 +26,8 @@ RSpec.describe Suspenders::Actions::ExpandJson do
           destination_root,
           destination_file_name,
           env: {
-            HEROKU_APP_NAME: { required: true },
-          },
+            HEROKU_APP_NAME: {required: true}
+          }
         ).invoke!
 
         expected = <<~JSON
@@ -53,9 +53,9 @@ RSpec.describe Suspenders::Actions::ExpandJson do
         destination_root,
         destination_file_name,
         env: {
-          foo: { required: true },
-          bar: { required: true },
-        },
+          foo: {required: true},
+          bar: {required: true}
+        }
       ).invoke!
     end
 
@@ -64,8 +64,8 @@ RSpec.describe Suspenders::Actions::ExpandJson do
         destination_root,
         destination_file_name,
         env: {
-          foo: { required: true },
-        },
+          foo: {required: true}
+        }
       ).revoke!
 
       expected = <<~JSON

@@ -15,7 +15,7 @@ module Suspenders
       private
 
       def rack_timeout_config
-        %{RACK_TIMEOUT_SERVICE_TIMEOUT=10}
+        %(RACK_TIMEOUT_SERVICE_TIMEOUT=10)
       end
     end
   end

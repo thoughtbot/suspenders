@@ -24,7 +24,7 @@ module Suspenders
         "rack_mini_profiler.rb",
         "config/initializers/rack_mini_profiler.rb",
         force: false,
-        skip: true,
+        skip: true
       )
     end
 

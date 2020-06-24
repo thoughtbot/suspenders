@@ -7,7 +7,7 @@ RSpec.describe "suspenders:production:single_redirect", type: :generator do
       middleware_canonical_host = %r{config.middleware.use Rack::CanonicalHost, ENV.fetch\("APPLICATION_HOST"\)}
 
       expect("config/environments/production.rb").to match_contents(
-        middleware_canonical_host,
+        middleware_canonical_host
       )
     end
   end
@@ -18,7 +18,7 @@ RSpec.describe "suspenders:production:single_redirect", type: :generator do
       middleware_canonical_host = %r{config.middleware.use Rack::CanonicalHost, ENV.fetch\("APPLICATION_HOST"\)}
 
       expect("config/environments/production.rb").not_to match_contents(
-        middleware_canonical_host,
+        middleware_canonical_host
       )
     end
   end

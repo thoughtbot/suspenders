@@ -6,11 +6,9 @@ if ENV.fetch("COVERAGE", false)
     SimpleCov.coverage_dir(dir)
   end
 
-
   SimpleCov.start "rails"
 
   if defined?(Spring) && ENV["DISABLE_SPRING"].to_i == 1
     Rails.application.eager_load!
   end
 end
-

@@ -1,39 +1,39 @@
-require 'rails/generators'
-require 'rails/generators/rails/app/app_generator'
+require "rails/generators"
+require "rails/generators/rails/app/app_generator"
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
     hide!
 
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
-      desc: "Configure for selected database (options: #{DATABASES.join("/")})"
+                            desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
     class_option :heroku, type: :boolean, aliases: "-H", default: false,
-      desc: "Create staging and production Heroku apps"
+                          desc: "Create staging and production Heroku apps"
 
     class_option :heroku_flags, type: :string, default: "",
-      desc: "Set extra Heroku flags"
+                                desc: "Set extra Heroku flags"
 
     class_option :github, type: :string, default: nil,
-      desc: "Create Github repository and add remote origin pointed to repo"
+                          desc: "Create Github repository and add remote origin pointed to repo"
 
     class_option :version, type: :boolean, aliases: "-v", group: :suspenders,
-      desc: "Show Suspenders version number and quit"
+                           desc: "Show Suspenders version number and quit"
 
-    class_option :help, type: :boolean, aliases: '-h', group: :suspenders,
-      desc: "Show this help message and quit"
+    class_option :help, type: :boolean, aliases: "-h", group: :suspenders,
+                        desc: "Show this help message and quit"
 
     class_option :path, type: :string, default: nil,
-      desc: "Path to the gem"
+                        desc: "Path to the gem"
 
     class_option :skip_test, type: :boolean, default: true,
-      desc: "Skip Test Unit"
+                             desc: "Skip Test Unit"
 
     class_option :skip_system_test,
-                 type: :boolean, default: true, desc: "Skip system test files"
+      type: :boolean, default: true, desc: "Skip system test files"
 
     class_option :skip_turbolinks,
-                 type: :boolean, default: true, desc: "Skip turbolinks gem"
+      type: :boolean, default: true, desc: "Skip turbolinks gem"
 
     def finish_template
       invoke :suspenders_customization
@@ -59,13 +59,13 @@ module Suspenders
 
     def customize_gemfile
       build :replace_gemfile, options[:path]
-      bundle_command 'install'
+      bundle_command "install"
     end
 
     def setup_database
-      say 'Setting up database'
+      say "Setting up database"
 
-      if 'postgresql' == options[:database]
+      if options[:database] == "postgresql"
         build :use_postgres_config_template
       end
 
@@ -73,7 +73,7 @@ module Suspenders
     end
 
     def setup_development_environment
-      say 'Setting up the development environment'
+      say "Setting up the development environment"
       build :configure_local_mail
       build :raise_on_missing_assets_in_test
       build :raise_on_delivery_errors
@@ -86,17 +86,17 @@ module Suspenders
     end
 
     def setup_production_environment
-      say 'Setting up the production environment'
+      say "Setting up the production environment"
       build :setup_asset_host
     end
 
     def setup_secret_token
-      say 'Moving secret token out of version control'
+      say "Moving secret token out of version control"
       build :setup_secret_token
     end
 
     def configure_app
-      say 'Configuring app'
+      say "Configuring app"
       build :configure_action_mailer
       build :configure_time_formats
       build :setup_default_rake_task
@@ -119,13 +119,13 @@ module Suspenders
 
     def create_github_repo
       if !options[:skip_git] && options[:github]
-        say 'Creating Github repo'
+        say "Creating Github repo"
         build :create_github_repo, options[:github]
       end
     end
 
     def copy_miscellaneous_files
-      say 'Copying miscellaneous support files'
+      say "Copying miscellaneous support files"
       build :copy_miscellaneous_files
     end
 
@@ -176,12 +176,12 @@ module Suspenders
     end
 
     def outro
-      say 'Congratulations! You just pulled our suspenders.'
+      say "Congratulations! You just pulled our suspenders."
       say honeybadger_outro
     end
 
     def self.banner
-      "suspenders #{arguments.map(&:usage).join(' ')} [options]"
+      "suspenders #{arguments.map(&:usage).join(" ")} [options]"
     end
 
     protected

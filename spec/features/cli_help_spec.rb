@@ -20,10 +20,10 @@ RSpec.describe "Command line help output" do
 
   it "provides help and version usage within the suspenders group" do
     expect(help_text).to include <<~EOH
-Suspenders options:
-  -h, [--help], [--no-help]        # Show this help message and quit
-  -v, [--version], [--no-version]  # Show Suspenders version number and quit
-EOH
+      Suspenders options:
+        -h, [--help], [--no-help]        # Show this help message and quit
+        -v, [--version], [--no-version]  # Show Suspenders version number and quit
+    EOH
   end
 
   it "does not show the default extended rails help section" do
