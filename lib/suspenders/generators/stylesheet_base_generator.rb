@@ -4,7 +4,7 @@ module Suspenders
   class StylesheetBaseGenerator < Generators::Base
     def add_stylesheet_gems
       gem "bourbon", ">= 6.0.0"
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def remove_prior_config

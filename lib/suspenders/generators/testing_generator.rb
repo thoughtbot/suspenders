@@ -7,7 +7,7 @@ module Suspenders
       gem "rspec-rails", "~> 3.6", group: %i(development test)
       gem "shoulda-matchers", group: :test
 
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def generate_rspec

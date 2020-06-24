@@ -14,7 +14,7 @@ module Suspenders
         gem "spring-watcher-listen", "~> 2.0.0"
       end
 
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def cache_classes_test
@@ -31,13 +31,13 @@ module Suspenders
       end
 
       def invoke!
-        Bundler.with_clean_env do
+        Bundler.with_unbundled_env do
           @base.send(:always_run, "spring binstub --all")
         end
       end
 
       def revoke!
-        Bundler.with_clean_env do
+        Bundler.with_unbundled_env do
           @base.send(:always_run, "spring binstub --remove --all")
         end
       end

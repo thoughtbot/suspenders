@@ -23,7 +23,7 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "ensures project specs pass" do
     Dir.chdir(project_path) do
-      Bundler.with_clean_env do
+      Bundler.with_unbundled_env do
         expect(`rake`).to include('0 failures')
       end
     end
@@ -31,7 +31,7 @@ RSpec.describe "Suspend a new project with default configuration" do
 
   it "includes the bundle:audit task" do
     Dir.chdir(project_path) do
-      Bundler.with_clean_env do
+      Bundler.with_unbundled_env do
         expect(`rails -T`).to include("rails bundle:audit")
       end
     end

@@ -161,7 +161,7 @@ module SuspendersTestHelpers
 
   def run_in_tmp
     Dir.chdir(tmp_path) do
-      Bundler.with_clean_env do
+      Bundler.with_unbundled_env do
         yield
       end
     end
@@ -169,7 +169,7 @@ module SuspendersTestHelpers
 
   def run_in_project
     Dir.chdir(project_path) do
-      Bundler.with_clean_env do
+      Bundler.with_unbundled_env do
         yield
       end
     end
