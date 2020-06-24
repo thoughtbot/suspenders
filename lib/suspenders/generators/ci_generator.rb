@@ -4,7 +4,7 @@ module Suspenders
   class CiGenerator < Generators::Base
     def simplecov_gem
       gem "simplecov", require: false, group: [:test]
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def simplecov_test_integration

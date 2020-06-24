@@ -4,7 +4,7 @@ module Suspenders
   class JobsGenerator < Generators::Base
     def add_jobs_gem
       gem "delayed_job_active_record"
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def configure_background_jobs_for_rspec
