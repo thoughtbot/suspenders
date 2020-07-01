@@ -170,7 +170,7 @@ config.public_file_server.headers = {
       action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
       action_mailer_asset_host(
         "production",
-        %{ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))},
+        %q{"https://#{ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))}"}
       )
     end
 

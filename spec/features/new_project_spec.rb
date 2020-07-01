@@ -148,7 +148,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "sets action mailer default host and asset host" do
     config_key = 'config\.action_mailer\.asset_host'
     config_value =
-      %q{ENV\.fetch\("ASSET_HOST", ENV\.fetch\("APPLICATION_HOST"\)\)}
+      %q{"https://#{ENV\.fetch\("ASSET_HOST", ENV\.fetch\("APPLICATION_HOST"\)\)}}
     expect(production_config).to match(/#{config_key} = #{config_value}/)
   end
 
