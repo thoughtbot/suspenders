@@ -1,5 +1,10 @@
 Unreleased
 
+1.54.1 (June 30, 2020)
+
+* Fixed: invalid Gemfile entry for bundler-audit
+* Fixed: Deprecation warning for `Bundler.with_clean_env`
+
 1.54.0 (June 24, 2020)
 
 * New generator: `suspenders:single_redirect` for setting up `Rack::CanonicalHost`
