@@ -10,10 +10,10 @@ module Suspenders
 
         Heroku.new(app_builder).set_heroku_remotes
 
-        expect(app_builder).to have_received(:append_file).
-          with(setup_file, /heroku apps:info --app #{app_name.dasherize}-production/)
-        expect(app_builder).to have_received(:append_file).
-          with(setup_file, /heroku apps:info --app #{app_name.dasherize}-staging/)
+        expect(app_builder).to have_received(:append_file)
+          .with(setup_file, /heroku apps:info --app #{app_name.dasherize}-production/)
+        expect(app_builder).to have_received(:append_file)
+          .with(setup_file, /heroku apps:info --app #{app_name.dasherize}-staging/)
       end
 
       it "sets the heroku rails secrets" do
@@ -23,10 +23,10 @@ module Suspenders
         Heroku.new(app_builder).set_heroku_rails_secrets
 
         expect(app_builder).to(
-          have_configured_var("staging", "SECRET_KEY_BASE"),
+          have_configured_var("staging", "SECRET_KEY_BASE")
         )
         expect(app_builder).to(
-          have_configured_var("production", "SECRET_KEY_BASE"),
+          have_configured_var("production", "SECRET_KEY_BASE")
         )
       end
 
@@ -47,11 +47,11 @@ module Suspenders
         Heroku.new(app_builder).set_heroku_application_host
 
         expect(app_builder).to(
-          have_configured_var("staging", "APPLICATION_HOST"),
+          have_configured_var("staging", "APPLICATION_HOST")
         )
 
         expect(app_builder).to(
-          have_configured_var("production", "APPLICATION_HOST"),
+          have_configured_var("production", "APPLICATION_HOST")
         )
       end
 
@@ -61,16 +61,16 @@ module Suspenders
 
         Heroku.new(app_builder).set_heroku_buildpacks
 
-        %w(staging production).each do |remote|
+        %w[staging production].each do |remote|
           expect(app_builder).to(
             have_configured_buildpack(
-              remote_name: remote, index: 1, packname: "heroku/nodejs",
-            ),
+              remote_name: remote, index: 1, packname: "heroku/nodejs"
+            )
           )
           expect(app_builder).to(
             have_configured_buildpack(
-              remote_name: remote, index: 2, packname: "heroku/ruby",
-            ),
+              remote_name: remote, index: 2, packname: "heroku/ruby"
+            )
           )
         end
       end
@@ -80,8 +80,8 @@ module Suspenders
       end
 
       def have_backup_schedule(remote_name)
-        have_received(:run).
-          with(/pg:backups:schedule DATABASE_URL --at '10:00 UTC' --remote #{remote_name}/)
+        have_received(:run)
+          .with(/pg:backups:schedule DATABASE_URL --at '10:00 UTC' --remote #{remote_name}/)
       end
 
       def have_configured_var(remote_name, var)
@@ -90,7 +90,7 @@ module Suspenders
 
       def have_configured_buildpack(remote_name:, index:, packname:)
         have_received(:run).with(
-          /buildpacks:add --index #{index} #{packname} --remote #{remote_name}/,
+          /buildpacks:add --index #{index} #{packname} --remote #{remote_name}/
         )
       end
     end

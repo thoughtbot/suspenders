@@ -4,7 +4,7 @@ module Suspenders
   class FormsGenerator < Generators::Base
     def add_simple_form
       gem "simple_form"
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def configure_simple_form

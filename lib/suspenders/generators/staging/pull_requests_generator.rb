@@ -7,7 +7,7 @@ module Suspenders
         inject_template_into_file(
           "config/environments/production.rb",
           "partials/pull_requests_config.rb",
-          after: "Rails.application.configure do\n",
+          after: "Rails.application.configure do\n"
         )
       end
 
@@ -15,7 +15,7 @@ module Suspenders
         template(
           "bin_setup_review_app.erb",
           "bin/setup_review_app",
-          force: true,
+          force: true
         )
 
         run "chmod a+x bin/setup_review_app"

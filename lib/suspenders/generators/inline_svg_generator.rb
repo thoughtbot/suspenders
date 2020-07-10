@@ -4,7 +4,7 @@ module Suspenders
   class InlineSvgGenerator < Generators::Base
     def add_inline_svg
       gem "inline_svg"
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def configure_inline_svg

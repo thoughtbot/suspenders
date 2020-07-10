@@ -16,7 +16,7 @@ module Suspenders
 
     def add_gem
       gem "rack-mini-profiler", require: false
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def configure_rack_mini_profiler
@@ -24,7 +24,7 @@ module Suspenders
         "rack_mini_profiler.rb",
         "config/initializers/rack_mini_profiler.rb",
         force: false,
-        skip: true,
+        skip: true
       )
     end
 

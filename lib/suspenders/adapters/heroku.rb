@@ -7,8 +7,8 @@ module Suspenders
 
       def set_heroku_remotes
         remotes = <<~SHELL
-          #{command_to_join_heroku_app('staging')}
-          #{command_to_join_heroku_app('production')}
+          #{command_to_join_heroku_app("staging")}
+          #{command_to_join_heroku_app("production")}
 
           git config heroku.remote staging
         SHELL
@@ -29,28 +29,28 @@ module Suspenders
       end
 
       def set_heroku_rails_secrets
-        %w(staging production).each do |environment|
+        %w[staging production].each do |environment|
           run_toolbelt_command(
             "config:add SECRET_KEY_BASE=#{generate_secret}",
-            environment,
+            environment
           )
         end
       end
 
       def set_heroku_honeybadger_env
-        %w(staging production).each do |environment|
+        %w[staging production].each do |environment|
           run_toolbelt_command(
             "config:add HONEYBADGER_ENV=#{environment}",
-            environment,
+            environment
           )
         end
       end
 
       def set_heroku_backup_schedule
-        %w(staging production).each do |environment|
+        %w[staging production].each do |environment|
           run_toolbelt_command(
             "pg:backups:schedule DATABASE_URL --at '10:00 UTC'",
-            environment,
+            environment
           )
         end
       end
@@ -65,34 +65,34 @@ module Suspenders
         run_toolbelt_command(
           "pipelines:create #{heroku_app_name} \
             -a #{heroku_app_name}-staging --stage staging",
-          "staging",
+          "staging"
         )
 
         run_toolbelt_command(
           "pipelines:add #{heroku_app_name} \
             -a #{heroku_app_name}-production --stage production",
-          "production",
+          "production"
         )
       end
 
       def set_heroku_application_host
-        %w(staging production).each do |environment|
+        %w[staging production].each do |environment|
           run_toolbelt_command(
             "config:add APPLICATION_HOST=#{heroku_app_name}-#{environment}.herokuapp.com",
-            environment,
+            environment
           )
         end
       end
 
       def set_heroku_buildpacks
-        %w(staging production).each do |environment|
+        %w[staging production].each do |environment|
           run_toolbelt_command(
             "buildpacks:add --index 1 heroku/nodejs",
-            environment,
+            environment
           )
           run_toolbelt_command(
             "buildpacks:add --index 2 heroku/ruby",
-            environment,
+            environment
           )
         end
       end
@@ -128,7 +128,7 @@ module Suspenders
 
       def run_toolbelt_command(command, environment)
         app_builder.run(
-          "heroku #{command} --remote #{environment}",
+          "heroku #{command} --remote #{environment}"
         )
       end
     end

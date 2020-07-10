@@ -14,7 +14,7 @@ module Suspenders
         inject_template_into_file(
           "config/environments/production.rb",
           "partials/email_smtp.rb",
-          after: "config.action_mailer.perform_caching = false",
+          after: "config.action_mailer.perform_caching = false"
         )
       end
 
@@ -22,11 +22,11 @@ module Suspenders
         expand_json(
           "app.json",
           env: {
-            SMTP_ADDRESS: { required: true },
-            SMTP_DOMAIN: { required: true },
-            SMTP_PASSWORD: { required: true },
-            SMTP_USERNAME: { required: true },
-          },
+            SMTP_ADDRESS: {required: true},
+            SMTP_DOMAIN: {required: true},
+            SMTP_PASSWORD: {required: true},
+            SMTP_USERNAME: {required: true}
+          }
         )
       end
     end

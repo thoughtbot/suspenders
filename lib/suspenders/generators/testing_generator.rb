@@ -4,10 +4,10 @@ module Suspenders
   class TestingGenerator < Generators::Base
     def add_testing_gems
       gem "spring-commands-rspec", group: :development
-      gem "rspec-rails", "~> 3.6", group: %i(development test)
+      gem "rspec-rails", "~> 3.6", group: %i[development test]
       gem "shoulda-matchers", group: :test
 
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def generate_rspec
@@ -24,7 +24,7 @@ module Suspenders
     def provide_shoulda_matchers_config
       copy_file(
         "shoulda_matchers_config_rspec.rb",
-        "spec/support/shoulda_matchers.rb",
+        "spec/support/shoulda_matchers.rb"
       )
     end
 

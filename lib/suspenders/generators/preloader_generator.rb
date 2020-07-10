@@ -14,7 +14,7 @@ module Suspenders
         gem "spring-watcher-listen", "~> 2.0.0"
       end
 
-      Bundler.with_clean_env { run "bundle install" }
+      Bundler.with_unbundled_env { run "bundle install" }
     end
 
     def cache_classes_test
@@ -31,13 +31,13 @@ module Suspenders
       end
 
       def invoke!
-        Bundler.with_clean_env do
+        Bundler.with_unbundled_env do
           @base.send(:always_run, "spring binstub --all")
         end
       end
 
       def revoke!
-        Bundler.with_clean_env do
+        Bundler.with_unbundled_env do
           @base.send(:always_run, "spring binstub --remove --all")
         end
       end
@@ -54,7 +54,7 @@ module Suspenders
           :always_gsub_file,
           @config_file,
           "config.cache_classes = true",
-          "config.cache_classes = false",
+          "config.cache_classes = false"
         )
       end
 
@@ -63,7 +63,7 @@ module Suspenders
           :always_gsub_file,
           @config_file,
           "config.cache_classes = false",
-          "config.cache_classes = true",
+          "config.cache_classes = true"
         )
       end
     end
@@ -71,10 +71,10 @@ module Suspenders
     protected
 
     def always_run(command, with: nil, verbose: true, env: nil, capture: nil,
-                   abort_on_failure: nil)
+      abort_on_failure: nil)
       destination = relative_to_original_destination_root(
         destination_root,
-        false,
+        false
       )
       desc = "#{command} from #{destination.inspect}"
 

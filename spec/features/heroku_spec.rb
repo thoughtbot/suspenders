@@ -16,9 +16,9 @@ RSpec.describe "Heroku" do
       expect(FakeHeroku).to have_configured_vars("staging", "SECRET_KEY_BASE")
       expect(FakeHeroku).to have_configured_vars(
         "production",
-        "SECRET_KEY_BASE",
+        "SECRET_KEY_BASE"
       )
-      %w(staging production).each do |env|
+      %w[staging production].each do |env|
         expect(FakeHeroku).to have_configured_vars(env, "APPLICATION_HOST")
         expect(FakeHeroku).to have_configured_vars(env, "HONEYBADGER_ENV")
       end
@@ -42,7 +42,7 @@ RSpec.describe "Heroku" do
   context "--heroku with region flag" do
     before(:all) do
       clean_up
-      run_suspenders(%{--heroku=true --heroku-flags="--region eu"})
+      run_suspenders(%(--heroku=true --heroku-flags="--region eu"))
       setup_app_dependencies
     end
 
