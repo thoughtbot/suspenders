@@ -7,7 +7,7 @@ RSpec.describe "suspenders:profiler", type: :generator do
     expect("config/initializers/rack_mini_profiler.rb").to \
       match_contents(/Rack::MiniProfilerRails.initialize/)
     expect("Gemfile").to match_contents(/rack-mini-profiler/)
-    expect(".env").to match_contents(/RACK_MINI_PROFILER=0/)
+    expect(".sample.env").to match_contents(/RACK_MINI_PROFILER=0/)
   end
 
   it "removes rack-min-profiler" do
@@ -15,6 +15,6 @@ RSpec.describe "suspenders:profiler", type: :generator do
 
     expect("config/initializers/rack_mini_profiler.rb").not_to exist_as_a_file
     expect("Gemfile").not_to match_contents(/rack-mini-profiler/)
-    expect(".env").not_to exist_as_a_file
+    expect(".sample.env").not_to exist_as_a_file
   end
 end
