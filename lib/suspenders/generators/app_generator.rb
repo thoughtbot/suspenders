@@ -139,6 +139,7 @@ module Suspenders
 
     def generate_default
       run("spring stop")
+      generate("suspenders:runner")
       generate("suspenders:profiler")
       generate("suspenders:json")
       generate("suspenders:static")
@@ -156,7 +157,6 @@ module Suspenders
       generate("suspenders:analytics")
       generate("suspenders:inline_svg")
       generate("suspenders:advisories")
-      generate("suspenders:runner")
       generate("suspenders:preloader")
     end
 
