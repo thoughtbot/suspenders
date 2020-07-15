@@ -1,5 +1,11 @@
 Unreleased
 
+1.55.0 (July 15, 2020)
+
+* Changed: lint generator to install standard instead of RuboCop
+* Changed: profile generator and timeout generator to write to `.sample.env`
+  instead of `.env`
+
 1.54.1 (June 30, 2020)
 
 * Fixed: invalid Gemfile entry for bundler-audit
