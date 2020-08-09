@@ -1,5 +1,7 @@
 Unreleased
 
+* Upgraded: Ruby to version 2.7.1
+
 1.55.0 (July 15, 2020)
 
 * Changed: lint generator to install standard instead of RuboCop

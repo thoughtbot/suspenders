@@ -1,5 +1,5 @@
 language: ruby
-rvm: 2.6.6
+rvm: 2.7.1
 cache: bundler
 before_install:
   - nvm install 13.12.0
