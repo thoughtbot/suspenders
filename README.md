@@ -155,7 +155,7 @@ bypass this with the `--skip-git` option:
 You can optionally create a GitHub repository for the suspended Rails app. It
 requires that you have [Hub](https://github.com/github/hub) on your system:
 
-    curl https://hub.github.com/standalone -sLo ~/bin/hub && chmod +x ~/bin/hub
+    brew install hub # macOS, for other systems see https://github.com/github/hub#installation
     suspenders app --github organization/project
 
 This has the same effect as running:
