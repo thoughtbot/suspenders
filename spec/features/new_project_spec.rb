@@ -190,15 +190,12 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
-  it "does not make invalid config because of bullet config in development" do
-    expect(development_config).to match(/^ +Bullet.enable = true$/)
-    expect(development_config).to_not match(/trueconfig/)
-  end
-
   it "configs bullet gem in development" do
     expect(development_config).to match(/^ +Bullet.enable = true$/)
     expect(development_config).to match(/^ +Bullet.bullet_logger = true$/)
     expect(development_config).to match(/^ +Bullet.rails_logger = true$/)
+    # prevent broken result of standard removing whitespaces
+    expect(development_config).to_not match(/trueconfig/)
   end
 
   it "configs missing assets to raise in test" do
