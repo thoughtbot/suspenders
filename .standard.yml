@@ -1,0 +1,2 @@
+ignore:
+  - "templates/partials/db_optimizations_configuration.rb"
