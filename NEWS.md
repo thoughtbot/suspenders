@@ -1,5 +1,9 @@
 Unreleased
 
+1.55.1 (September 11, 2020)
+
+* Fixed: Missing newline in generated development config
+
 1.55.0 (July 15, 2020)
 
 * Changed: lint generator to install standard instead of RuboCop
