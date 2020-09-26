@@ -17,20 +17,20 @@ Gem::Specification.new do |s|
   s.email = "support@thoughtbot.com"
   s.executables = ["suspenders"]
   s.extra_rdoc_files = %w[README.md LICENSE]
-  s.files = `git ls-files`.split("\n")
+  s.files = Dir["{bin,docs,lib,templates}/**/*", "LICENSE", "NEWS.md", "README.md"]
   s.homepage = "http://github.com/thoughtbot/suspenders"
   s.license = "MIT"
   s.name = "suspenders"
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
   s.summary = "Generate a Rails app using thoughtbot's best practices."
-  s.test_files = `git ls-files -- {test,spec,features}/*`.split("\n")
+  s.test_files = Dir["spec/**/*"]
   s.version = Suspenders::VERSION
 
   s.add_dependency "bitters", ">= 2.0.4"
   s.add_dependency "rails", Suspenders::RAILS_VERSION
 
   s.add_development_dependency "rspec", "~> 3.2"
-  s.add_development_dependency "rubocop-packaging"
+  s.add_development_dependency "rubocop-packaging", "~> 0.5"
   s.add_development_dependency "standard"
 end
