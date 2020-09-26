@@ -1,0 +1,18 @@
+require:
+  - rubocop-packaging
+
+AllCops:
+  TargetRubyVersion: 2.4
+  DisabledByDefault: true
+
+Packaging/BundlerSetupInTests:
+  Enabled: true
+
+Packaging/GemspecGit:
+  Enabled: true
+
+Packaging/RequireHardcodingLib:
+  Enabled: true
+
+Packaging/RequireRelativeHardcodingLib:
+  Enabled: true
