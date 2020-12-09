@@ -30,7 +30,7 @@ RUN gem install bundler \
 
 COPY . /app
 
-# The SECRET_KEY_BASE here isn't used. Precomiling assets doesn't use your
+# The SECRET_KEY_BASE here isn't used. Precompiling assets doesn't use your
 # secret key, but Rails will fail to initialize if it isn't set.
 RUN RAILS_ENV=production \
   PRECOMPILE=true \
