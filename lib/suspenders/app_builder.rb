@@ -99,8 +99,8 @@ module Suspenders
 
     def setup_asset_host
       replace_in_file "config/environments/production.rb",
-        "# config.action_controller.asset_host = 'http://assets.example.com'",
-        'config.action_controller.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))'
+        "# config.asset_host = 'http://assets.example.com'",
+        'config.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))'
 
       if File.exist?("config/initializers/assets.rb")
         replace_in_file "config/initializers/assets.rb",
@@ -240,7 +240,7 @@ module Suspenders
     private
 
     def raise_on_missing_translations_in(environment)
-      config = "config.action_view.raise_on_missing_translations = true"
+      config = "config.i18n.raise_on_missing_translations = true"
 
       uncomment_lines("config/environments/#{environment}.rb", config)
     end

@@ -125,7 +125,7 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
   it "raises on missing translations in development and test" do
     [development_config, test_config].each do |environment_file|
       expect(environment_file).to match(
-        /^ +config.action_view.raise_on_missing_translations = true$/
+        /^ +config.i18n.raise_on_missing_translations = true$/
       )
     end
   end
