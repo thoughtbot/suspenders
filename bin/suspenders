@@ -4,6 +4,19 @@ require 'pathname'
 source_path = (Pathname.new(__FILE__).dirname + '../lib').expand_path
 $LOAD_PATH << source_path
 
+if str = ARGV.first
+  str = str.b[/\A_(.*)_\z/, 1]
+
+  if str && Gem::Version.correct?(str)
+    rails_version = str
+    ARGV.shift
+
+    rails_bin_path = Gem.activate_bin_path("railties", "rails", rails_version)
+    rails_path = File.expand_path("../..", rails_bin_path)
+    $LOAD_PATH.unshift(rails_path)
+  end
+end
+
 require 'suspenders'
 
 if ARGV.empty?

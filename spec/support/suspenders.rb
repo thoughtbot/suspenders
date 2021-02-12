@@ -15,7 +15,7 @@ module SuspendersTestHelpers
       add_fakes_to_path
 
       with_revision_for_honeybadger do
-        debug `#{suspenders_bin} #{APP_NAME} #{arguments}`
+        debug `#{suspenders_bin} _#{rails_version}_ #{APP_NAME} #{arguments}`
       end
 
       Dir.chdir(APP_NAME) do
@@ -38,7 +38,7 @@ module SuspendersTestHelpers
       add_fakes_to_path
 
       with_revision_for_honeybadger do
-        debug `#{system_rails_bin} new #{APP_NAME} -m #{rails_template_path}`
+        debug `#{system_rails_bin} _#{rails_version}_ new #{APP_NAME} -m #{rails_template_path}`
       end
 
       Dir.chdir(APP_NAME) do
@@ -127,6 +127,10 @@ module SuspendersTestHelpers
 
   def rails_template_path
     File.join(root_path, "spec", "support", "rails_template.rb")
+  end
+
+  def rails_version
+    Rails::VERSION::STRING
   end
 
   def commit_all
