@@ -1,11 +1,11 @@
 name: Ruby
 
 on:
-  workflow_dispatch
-  pull_request:
-    paths-ignore:
-      - 'docs/**'
-      - '**.md'
+  - workflow_dispatch
+  - pull_request:
+     paths-ignore:
+       - 'docs/**'
+       - '**.md'
 
 jobs:
   test:
