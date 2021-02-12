@@ -12,13 +12,37 @@ jobs:
 
     runs-on: ubuntu-latest
 
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     steps:
     - uses: actions/checkout@v2
+    - name: Set git detault branch
+      run: git config --global init.defaultBranch main
+    - name: Set git user name
+      run: git config --global user.name 'GitHub Actions'
+    - name: Set git user email
+      run: git config --global user.email 'microsoft@example.com'
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        bundler-cache: true
+        bundler-cache: false
     - name: Install dependencies
       run: bundle install
     - name: Run tests
       run: bundle exec rake
+      env:
+        DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/dummy_app_test"
+        DEBUG: 1
+        SPEC_OPTS: "--no-color -f d"

@@ -11,9 +11,13 @@ if str = ARGV.first
     rails_version = str
     ARGV.shift
 
-    rails_bin_path = Gem.activate_bin_path("railties", "rails", rails_version)
-    rails_path = File.expand_path("../..", rails_bin_path)
-    $LOAD_PATH.unshift(rails_path)
+    begin
+      rails_bin_path = Gem.activate_bin_path("railties", "rails", rails_version)
+      rails_path = File.expand_path("../..", rails_bin_path)
+      $LOAD_PATH.unshift(rails_path)
+    rescue Gem::GemNotFoundException
+      $stderr.puts "#{rails_version} requested but no Rails is installed yet. Hoping for the best with the default."
+    end
   end
 end
 
