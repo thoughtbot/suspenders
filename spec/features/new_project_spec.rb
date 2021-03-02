@@ -11,13 +11,13 @@ RSpec.describe "Suspend a new project with default configuration" do
   it "uses custom Gemfile" do
     gemfile_file = IO.read("#{project_path}/Gemfile")
     expect(gemfile_file).to match(
-      /^ruby "#{Suspenders::RUBY_VERSION}"$/
+      /^ruby "#{Suspenders::RUBY_VERSION}"$/o
     )
     expect(gemfile_file).to match(
       /^gem "autoprefixer-rails"$/
     )
     expect(gemfile_file).to match(
-      /^gem "rails", "#{Suspenders::RAILS_VERSION}"$/
+      /^gem "rails", "#{Suspenders::RAILS_VERSION}"$/o
     )
   end
 
