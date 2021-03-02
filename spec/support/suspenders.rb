@@ -38,7 +38,7 @@ module SuspendersTestHelpers
       add_fakes_to_path
 
       with_revision_for_honeybadger do
-        debug `#{system_rails_bin} _#{rails_version}_ new #{APP_NAME} -d postgresql -m #{rails_template_path}`
+        debug `#{system_rails_bin} _#{rails_version}_ new #{APP_NAME} --skip-spring -d postgresql -m #{rails_template_path}`
       end
 
       Dir.chdir(APP_NAME) do
@@ -50,7 +50,6 @@ module SuspendersTestHelpers
   def generate(generator)
     run_in_project do
       with_revision_for_honeybadger do
-        debug `bin/spring stop`
         debug `#{project_rails_bin} generate #{generator}`
       end
     end
@@ -59,7 +58,6 @@ module SuspendersTestHelpers
   def destroy(generator)
     run_in_project do
       with_revision_for_honeybadger do
-        debug `bin/spring stop`
         debug `#{project_rails_bin} destroy #{generator}`
       end
     end
