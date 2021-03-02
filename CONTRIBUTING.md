@@ -48,7 +48,7 @@ All new contributions must be within the generator framework, as described in
 
 ## Versions
 
-To update the Ruby version, change `.ruby-version` and `.travis.yml`.
+To update the Ruby version, change `.ruby-version`.
 
 If you see this error while running tests:
 
