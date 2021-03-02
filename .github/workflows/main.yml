@@ -1,4 +1,4 @@
-name: Ruby
+name: CI
 
 on:
   workflow_dispatch:
@@ -27,22 +27,26 @@ jobs:
           --health-retries 5
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set git detault branch
-      run: git config --global init.defaultBranch main
-    - name: Set git user name
-      run: git config --global user.name 'GitHub Actions'
-    - name: Set git user email
-      run: git config --global user.email 'microsoft@example.com'
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: false
-    - name: Install dependencies
-      run: bundle install
-    - name: Run tests
-      run: bundle exec rake
-      env:
-        DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/dummy_app_test"
-        DEBUG: 1
-        SPEC_OPTS: "--no-color -f d"
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set git configuration
+        run: |
+          git config --global init.defaultBranch main
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'microsoft@example.com'
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: false
+
+      - name: Install dependencies
+        run: bundle install
+
+      - name: Run tests
+        run: bin/rake
+        env:
+          DATABASE_URL: "postgresql://postgres:postgres@localhost:5432/dummy_app_test"
+          DEBUG: 1
+          SPEC_OPTS: "--no-color -f d"
