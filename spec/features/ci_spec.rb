@@ -11,7 +11,10 @@ RSpec.describe "suspenders:ci", type: :generator do
   end
 
   it "removes Circle and SimpleCov" do
-    with_app { destroy("suspenders:ci") }
+    with_app do
+      generate("suspenders:ci")
+      destroy("suspenders:ci")
+    end
 
     expect("circle.yml").not_to exist_as_a_file
     expect("test/test_helper.rb").not_to match_contents(/SimpleCov/)

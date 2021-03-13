@@ -9,7 +9,10 @@ RSpec.describe "suspenders:static", type: :generator do
   end
 
   it "removes the gem and pages directory" do
-    with_app { destroy("suspenders:static") }
+    with_app do
+      generate("suspenders:static")
+      destroy("suspenders:static")
+    end
 
     expect("app/views/pages/.keep").not_to exist_as_a_file
     expect("Gemfile").not_to match_contents(/high_voltage/)
