@@ -143,11 +143,11 @@ module Suspenders
       generate("suspenders:profiler")
       generate("suspenders:json")
       generate("suspenders:static")
-      generate("suspenders:stylesheet_base")
       generate("suspenders:testing")
       generate("suspenders:ci")
       generate("suspenders:js_driver")
       unless options[:api]
+        generate("suspenders:stylesheet_base")
         generate("suspenders:forms")
       end
       generate("suspenders:db_optimizations")
