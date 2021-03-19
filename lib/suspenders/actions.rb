@@ -237,10 +237,10 @@ module Suspenders
       end
 
       def gemline
-        parts = [%{"#{name}"}, version]
+        parts = [name, version].compact.map { |part| part.inspect }
 
         options&.each_pair do |k,v|
-          parts << %{#{k}: "#{v}"}
+          parts << %{#{k}: #{v.inspect}}
         end
 
         "gem #{parts.compact.join(", ")}\n"
