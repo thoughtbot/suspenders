@@ -142,7 +142,7 @@ module Suspenders
       end
 
       def gem_group(gemfile)
-        groups_re = groups.map {|group| ":#{group}" }.join("[, ]+")
+        groups_re = groups.map { |group| ":#{group}" }.join("[, ]+")
         data = /^group[ (]+#{groups_re}[ )]+do.+?^end/mo.match(gemfile)
 
         if data
@@ -180,8 +180,8 @@ module Suspenders
       end
 
       def remove_gemline(old_content, indentation:, positioning:)
-        group_without_gem = old_content.byteslice(positioning[0], positioning[1]).
-          sub(/^#{" " * indentation}gem[ (]+['"]#{name}.*\n/, "")
+        group_without_gem = old_content.byteslice(positioning[0], positioning[1])
+          .sub(/^#{" " * indentation}gem[ (]+['"]#{name}.*\n/, "")
         new_content = old_content.byteslice(0, positioning[0]) +
           group_without_gem +
           old_content.byteslice((positioning[0] + positioning[1])..)
@@ -192,7 +192,7 @@ module Suspenders
 
       def subsequent_gemline(gemfile, indentation:, positioning:)
         scanner = StringScanner.new(
-          gemfile.byteslice(positioning[0], positioning[1]),
+          gemfile.byteslice(positioning[0], positioning[1])
         )
 
         while scanner.scan_until(/^#{" " * indentation}gem[ (]+['"]([^'"]+)/)
@@ -208,24 +208,24 @@ module Suspenders
         announce
         IO.write(
           gemfile_path,
-          new_content(old_content, position: position, indentation: indentation),
+          new_content(old_content, position: position, indentation: indentation)
         )
       end
 
       def new_content(old_content, position:, indentation:)
         ensure_newline((old_content.byteslice(0, position) || "")) +
-          (" " *indentation) +
+          (" " * indentation) +
           gemline +
           ensure_newline((old_content.byteslice(position..) || ""))
       end
 
       def final_line(gemfile, indentation:, positioning:)
         scanner = StringScanner.new(
-          gemfile.byteslice(positioning[0], positioning[1]),
+          gemfile.byteslice(positioning[0], positioning[1])
         )
         result = nil
 
-        while scanner.scan_until(/#{" " *indentation}gem[ (]+['"][^'"]+['"]/)
+        while scanner.scan_until(/#{" " * indentation}gem[ (]+['"][^'"]+['"]/)
           result = [scanner.pos, scanner.matched.bytes.size]
         end
 
@@ -239,15 +239,15 @@ module Suspenders
       def gemline
         parts = [name, version].compact.map { |part| part.inspect }
 
-        options&.each_pair do |k,v|
-          parts << %{#{k}: #{v.inspect}}
+        options&.each_pair do |k, v|
+          parts << %(#{k}: #{v.inspect})
         end
 
         "gem #{parts.compact.join(", ")}\n"
       end
 
       def announce
-        message = "#{name}"
+        message = name.to_s.dup
 
         if version
           message << " (#{version})"
@@ -259,7 +259,6 @@ module Suspenders
 
         Thor::Base.shell.new.say_status :gemfile, message
       end
-
     end
   end
 end
