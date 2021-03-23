@@ -1,4 +1,5 @@
 require "active_job/logging"
+require "active_job/log_subscriber"
 
 ActiveSupport::Notifications.unsubscribe("enqueue.active_job")
 
