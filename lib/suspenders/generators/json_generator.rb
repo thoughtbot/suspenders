@@ -6,5 +6,9 @@ module Suspenders
       gem "oj"
       Bundler.with_unbundled_env { run "bundle install" }
     end
+
+    def configure_oj
+      copy_file "oj.rb", "config/initializers/oj.rb"
+    end
   end
 end
