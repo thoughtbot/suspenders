@@ -54,6 +54,10 @@ module Suspenders
         partial = File.expand_path(find_in_source_paths(source))
         inject_into_file(destination, File.read(partial), *args)
       end
+
+      def bundle_install
+        Bundler.with_unbundled_env { run "bundle install" }
+      end
     end
   end
 end

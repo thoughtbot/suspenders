@@ -4,7 +4,7 @@ module Suspenders
   class DbOptimizationsGenerator < Generators::Base
     def add_bullet
       gem "bullet", group: %i[development test]
-      Bundler.with_unbundled_env { run "bundle install" }
+      bundle_install
     end
 
     def configure_bullet

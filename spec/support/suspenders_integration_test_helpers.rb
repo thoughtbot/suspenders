@@ -2,20 +2,21 @@ module SuspendersIntegrationTestHelpers
   APP_NAME = "dummy_app"
 
   def self.included(spec)
+    spec.before { create_app_dir! }
     spec.after { destroy_app_dir! }
   end
 
-  def generate(generator_klass, *args)
-    create_app_dir!
-    within_app_dir do
-      generator_klass.start(args, behavior: :invoke)
-    end
+  def new_invoke_generator(klass, *given_args)
+    new_generator(klass, *given_args, behavior: :invoke)
   end
 
-  def destroy(generator_klass)
-    within_app_dir do
-      generator_klass.start([], behavior: :revoke)
-    end
+  def new_revoke_generator(klass, *given_args)
+    new_generator(klass, *given_args, behavior: :revoke)
+  end
+
+  def new_generator(klass, *given_args, **opts)
+    args, = Thor::Options.split(given_args)
+    klass.new(args, [], destination_root: app_path, **opts)
   end
 
   def create_app_dir!
@@ -23,33 +24,27 @@ module SuspendersIntegrationTestHelpers
   end
 
   def destroy_app_dir!
-    FileUtils.rm_rf app_path
-  end
-
-  def destroy_app_dir!
     FileUtils.rm_rf "#{tmp_path}/#{APP_NAME}"
-  end
-
-  def within_app_dir
-    run_in_tmp do
-      Dir.chdir(APP_NAME) { yield }
-    end
-  end
-
-  def run_in_tmp
-    Dir.chdir(tmp_path) do
-      Bundler.with_unbundled_env do
-        yield
-      end
-    end
   end
 
   def app_template_path
     fixtures_path.join(APP_NAME)
   end
 
+  module_function
+
   def app_path
     tmp_path.join(APP_NAME)
+  end
+
+  def app_path!
+    app_path = self.app_path
+
+    unless app_path.exist?
+      raise "Expected #{app_path} to exist"
+    end
+
+    app_path
   end
 
   def tmp_path

@@ -9,6 +9,8 @@ Dir["./spec/support/**/*.rb"].sort.each { |file| require file }
 RSpec.configure do |config|
   config.include SuspendersTestHelpers
   config.include SuspendersIntegrationTestHelpers, type: :integration
+  config.include BundlerStub, type: :integration
+  config.include OutputStub, type: :integration
   config.include ProjectFiles
 
   config.before(:all) do
