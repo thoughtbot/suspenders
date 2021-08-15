@@ -27,11 +27,11 @@ module GeneratorTestHelpers
     FileUtils.rm_rf "#{tmp_path}/#{APP_NAME}"
   end
 
+  module_function
+
   def app_template_path
     fixtures_path.join(APP_NAME)
   end
-
-  module_function
 
   def app_path
     tmp_path.join(APP_NAME)

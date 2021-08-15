@@ -17,8 +17,10 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
       generator.invoke_all
 
       expect(generator).to have_bundled.with_gemfile_not_matching(/bullet/)
+      expect("Gemfile").to match_original_file
       expect("config/environments/development.rb").not_to \
         match_contents(/Bullet.enable/)
+      expect("config/environments/development.rb").to match_original_file
     end
   end
 end
