@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe Suspenders::DbOptimizationsGenerator, type: :integration do
+RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
   it "generates and destroys bullet" do
     silence do
       generator = new_invoke_generator(Suspenders::DbOptimizationsGenerator)

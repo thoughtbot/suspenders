@@ -5,7 +5,7 @@ module BundlerStub
     attr_reader :gemfile_snapshot
 
     def bundle_install
-      app_path = SuspendersIntegrationTestHelpers.app_path!
+      app_path = GeneratorTestHelpers.app_path!
       @gemfile_snapshot = IO.read(app_path.join("Gemfile"))
     end
   end

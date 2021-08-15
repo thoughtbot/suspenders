@@ -1,4 +1,4 @@
-module SuspendersIntegrationTestHelpers
+module GeneratorTestHelpers
   APP_NAME = "dummy_app"
 
   def self.included(spec)
