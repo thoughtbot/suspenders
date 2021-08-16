@@ -7,8 +7,9 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
       stub_bundle_install!(generator)
       generator.invoke_all
 
-      expect("lib/tasks/bundler_audit.rake").to \
-        match_contents(/Bundler::Audit::Task.new/)
+      expect("lib/tasks/bundler_audit.rake")
+        .to not_have_syntax_error.and(match_contents(/Bundler::Audit::Task.new/))
+      expect("Gemfile").to not_have_syntax_error
       expect(generator).to have_bundled.with_gemfile_matching(/bundler-audit/)
 
       generator = new_revoke_generator(Suspenders::AdvisoriesGenerator)
@@ -16,8 +17,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
       generator.invoke_all
 
       expect("lib/tasks/bundler_audit.rake").not_to exist_as_a_file
-      expect(generator).not_to have_bundled.with_gemfile_matching(/bundler-audit/)
-      expect("Gemfile").to match_original_file
+      expect("Gemfile").to not_have_syntax_error.and(match_original_file)
     end
   end
 
