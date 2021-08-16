@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::JsonGenerator, type: :generator do
   it "generates and destroy the Gemfile for json parsing" do
-    silence do
+    with_app_dir do
       generator = new_invoke_generator(Suspenders::JsonGenerator)
       stub_bundle_install!(generator)
       generator.invoke_all

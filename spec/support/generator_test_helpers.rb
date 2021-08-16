@@ -1,11 +1,6 @@
 module GeneratorTestHelpers
   APP_NAME = "dummy_app"
 
-  def self.included(spec)
-    spec.before { create_app_dir! }
-    spec.after { destroy_app_dir! }
-  end
-
   def new_invoke_generator(klass, *given_args)
     new_generator(klass, *given_args, behavior: :invoke)
   end
@@ -19,11 +14,20 @@ module GeneratorTestHelpers
     klass.new(args, [], destination_root: app_path, **opts)
   end
 
-  def create_app_dir!
+  def with_app_dir
+    OutputStub.silence do
+      create_app_dir
+      yield
+    ensure
+      destroy_app_dir
+    end
+  end
+
+  def create_app_dir
     FileUtils.cp_r app_template_path, app_path
   end
 
-  def destroy_app_dir!
+  def destroy_app_dir
     FileUtils.rm_rf "#{tmp_path}/#{APP_NAME}"
   end
 

@@ -3,7 +3,7 @@ require "spec_helper"
 # TODO: Make sure db optimizations is covered at integration level
 RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
   it "generates and destroys bullet" do
-    silence do
+    with_app_dir do
       generator = new_invoke_generator(Suspenders::DbOptimizationsGenerator)
       stub_bundle_install!(generator)
       generator.invoke_all

@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
   it "generates and destroys bundler-audit" do
-    silence do
+    with_app_dir do
       generator = new_invoke_generator(Suspenders::AdvisoriesGenerator)
       stub_bundle_install!(generator)
       generator.invoke_all
