@@ -7,9 +7,8 @@ RSpec.describe Suspenders::InlineSvgGenerator, type: :generator do
       stub_bundle_install!(generator)
       generator.invoke_all
 
-      expect("config/initializers/inline_svg.rb").to not_have_syntax_error.and(
-        match_contents(/InlineSvg/)
-      )
+      expect("config/initializers/inline_svg.rb")
+        .to not_have_syntax_error.and(match_contents(/InlineSvg/))
       expect(generator).to have_bundled.with_gemfile_matching(/inline_svg/)
       expect("Gemfile").to match_contents(/inline_svg/)
 
