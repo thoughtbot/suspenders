@@ -24,12 +24,15 @@ RSpec::Matchers.define :match_original_file do
 end
 
 RSpec::Matchers.define :have_no_syntax_error do
+  # rubocop:disable Lint/RescueException
   match do |path|
-    @file = GeneratorTestHelpers.app_path.join(path)
-    `ruby -c #{@file}`
-
-    $CHILD_STATUS.success?
+    load GeneratorTestHelpers.app_path.join(path)
+  rescue SyntaxError
+    false
+  rescue Exception
+    true
   end
+  # rubocop:enable Lint/RescueException
 
   failure_message do
     "The file #{@file} has syntax errors!"
