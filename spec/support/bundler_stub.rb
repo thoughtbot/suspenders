@@ -2,11 +2,11 @@
 
 module BundlerStub
   module BundlerStub
-    attr_reader :gemfile_snapshot
+    attr_reader :__gemfile_snapshot__
 
     def bundle_install
       app_path = GeneratorTestHelpers.app_path!
-      @gemfile_snapshot = IO.read(app_path.join("Gemfile"))
+      @__gemfile_snapshot__ = IO.read(app_path.join("Gemfile"))
     end
   end
 
@@ -21,8 +21,8 @@ module BundlerStub
           "before using this matcher"
       end
 
-      snapshot = generator.gemfile_snapshot
-      @called_bundler = !generator.gemfile_snapshot.nil?
+      snapshot = generator.__gemfile_snapshot__
+      @called_bundler = !snapshot.nil?
 
       if !@called_bundler
         false
