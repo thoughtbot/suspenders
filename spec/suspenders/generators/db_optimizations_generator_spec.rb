@@ -8,9 +8,9 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
       stub_bundle_install!(generator)
       generator.invoke_all
 
-      expect("Gemfile").to not_have_syntax_error
+      expect("Gemfile").to have_no_syntax_error
       expect(generator).to have_bundled.with_gemfile_matching(/bullet/)
-      expect("config/environments/development.rb").to not_have_syntax_error.and(
+      expect("config/environments/development.rb").to have_no_syntax_error.and(
         match_contents(/Bullet.enable/)
       )
 
@@ -18,9 +18,9 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
       stub_bundle_install!(generator)
       generator.invoke_all
 
-      expect("Gemfile").to not_have_syntax_error.and(match_original_file)
+      expect("Gemfile").to have_no_syntax_error.and(match_original_file)
       expect("config/environments/development.rb")
-        .to not_have_syntax_error.and(match_original_file)
+        .to have_no_syntax_error.and(match_original_file)
     end
   end
 end

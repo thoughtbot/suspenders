@@ -23,7 +23,7 @@ RSpec::Matchers.define :match_original_file do
   end
 end
 
-RSpec::Matchers.define :not_have_syntax_error do
+RSpec::Matchers.define :have_no_syntax_error do
   match do |path|
     @file = GeneratorTestHelpers.app_path.join(path)
     `ruby -c #{@file}`
