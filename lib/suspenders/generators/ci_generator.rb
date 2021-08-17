@@ -4,7 +4,7 @@ module Suspenders
   class CiGenerator < Generators::Base
     def simplecov_gem
       gem "simplecov", require: false, group: [:test]
-      Bundler.with_unbundled_env { run "bundle install" }
+      bundle_install
     end
 
     def simplecov_test_integration
@@ -26,7 +26,9 @@ module Suspenders
     end
 
     def using_rspec?
-      File.exist?("spec/spec_helper.rb")
+      Pathname(destination_root)
+        .join("spec/spec_helper.rb")
+        .exist?
     end
   end
 end
