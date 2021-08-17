@@ -22,6 +22,7 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
       expect("spec/spec_helper.rb").not_to match_contents(/SimpleCov/)
       expect("spec/spec_helper.rb").to have_no_syntax_error
       expect("Gemfile").to have_no_syntax_error.and(match_original_file)
+      expect(generator).to have_bundled.with_gemfile_not_matching(/simplecov/)
     end
   end
 

@@ -15,7 +15,7 @@ RSpec.describe Suspenders::JsonGenerator, type: :generator do
       generator.invoke_all
 
       expect(generator).to have_bundled.with_gemfile_not_matching(%r{gem .oj.})
-      expect("Gemfile").to match_original_file
+      expect("Gemfile").to have_no_syntax_error.and(match_original_file)
     end
   end
 end
