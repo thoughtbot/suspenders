@@ -4,3 +4,5 @@ RSpec::Matchers.define :match_contents do |regexp|
     contents =~ regexp
   end
 end
+
+RSpec::Matchers.define_negated_matcher :not_match_contents, :match_contents
