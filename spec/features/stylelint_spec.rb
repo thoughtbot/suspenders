@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:stylelint", type: :generator do
+RSpec.describe "suspenders:stylelint", type: :feature do
   context "generate" do
     it "creates .stylelintrc.json" do
       with_app { generate("suspenders:stylelint") }

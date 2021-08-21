@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:production:deployment", type: :generator do
+RSpec.describe "suspenders:production:deployment", type: :feature do
   it "generates the configuration for a production deployment" do
     rm "bin/deploy"
 

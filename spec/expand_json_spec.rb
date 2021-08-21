@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::Actions::ExpandJson do
-  let(:destination_root) { File.join(root_path, "tmp") }
+  let(:destination_root) { File.join(TestPaths.root_path, "tmp") }
   let(:destination_file_name) { "app.json" }
   let(:destination_path) { File.join(destination_root, destination_file_name) }
 

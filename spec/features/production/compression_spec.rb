@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:production:compression", type: :generator do
+RSpec.describe "suspenders:production:compression", type: :feature do
   context "generate" do
     it "adds Rack::Deflater to the middleware" do
       with_app { generate("suspenders:production:compression") }

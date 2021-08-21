@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:preloader", type: :generator do
+RSpec.describe "suspenders:preloader", type: :feature do
   it "adds binstubs for Spring" do
     with_app { generate("suspenders:preloader") }
 

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "Suspend a new project with default configuration" do
+RSpec.describe "Suspend a new project with default configuration", type: :feature do
   before(:all) do
     drop_dummy_database
     remove_project_directory

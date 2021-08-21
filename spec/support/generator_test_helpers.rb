@@ -1,5 +1,7 @@
+require_relative "test_paths"
+
 module GeneratorTestHelpers
-  APP_NAME = "dummy_app"
+  include TestPaths
 
   def new_invoke_generator(klass, *given_args)
     new_generator(klass, *given_args, behavior: :invoke)
@@ -64,45 +66,5 @@ module GeneratorTestHelpers
     path.join("..").mkpath
 
     FileUtils.touch(app_path.join(file))
-  end
-
-  module_function
-
-  def app_fixture_path
-    fixtures_path.join(APP_NAME)
-  end
-
-  def app_path
-    tmp_path.join(APP_NAME)
-  end
-
-  def fakes_path
-    root_path.join("spec/fakes")
-  end
-
-  def template_path
-    root_path.join("templates")
-  end
-
-  def app_path!
-    app_path = self.app_path
-
-    unless app_path.exist?
-      raise "Expected #{app_path} to exist"
-    end
-
-    app_path
-  end
-
-  def tmp_path
-    @tmp_path ||= Pathname.new("#{root_path}/tmp")
-  end
-
-  def root_path
-    Pathname(__dir__).join("../..")
-  end
-
-  def fixtures_path
-    root_path.join("spec/fixtures")
   end
 end

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:production:single_redirect", type: :generator do
+RSpec.describe "suspenders:production:single_redirect", type: :feature do
   context "generate" do
     it "adds Rack::CanonicalHost to the production middleware" do
       with_app { generate("suspenders:production:single_redirect") }

@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:profiler", type: :generator do
+RSpec.describe "suspenders:profiler", type: :feature do
   it "sets up rack-min-profiler" do
     with_app { generate("suspenders:profiler") }
 

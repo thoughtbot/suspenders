@@ -1,4 +1,4 @@
-module SuspendersTestHelpers
+module FeatureTestHelpers
   APP_NAME = "dummy_app"
 
   def remove_project_directory

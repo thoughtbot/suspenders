@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:production:manifest", type: :generator do
+RSpec.describe "suspenders:production:manifest", type: :feature do
   it "generates the manifest for a production build" do
     with_app { generate("suspenders:production:manifest") }
 
