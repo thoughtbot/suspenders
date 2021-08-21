@@ -1,10 +1,16 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::LintGenerator, type: :generator do
-  # TODO: Should we run rake end-to-end somehow to test the require?
   it "sets up standard" do
     with_app_dir do
       invoke!(Suspenders::LintGenerator)
+
+      # standardrb is a Suspenders dependencies, so the task require
+      # will work and we don't need to fake it
+      rake_output = `rake -T`
+      expect(rake_output.lines.size).to eq 2
+      expect(rake_output.lines[0]).to start_with("rake standard")
+      expect(rake_output.lines[1]).to start_with("rake standard:fix")
 
       expect("Rakefile").to match_contents(%r{require "standard/rake"})
       expect("Gemfile")
@@ -12,7 +18,7 @@ RSpec.describe Suspenders::LintGenerator, type: :generator do
 
       revoke!(Suspenders::LintGenerator)
 
-      expect("Rakefile").not_to match_contents(%r{require "standard/rake"})
+      expect(`rake -T`).to be_empty
       expect("Gemfile")
         .to not_match_contents(/gem .standard./).and(have_no_syntax_error)
     end
