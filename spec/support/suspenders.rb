@@ -1,5 +1,5 @@
 module FeatureTestHelpers
-  APP_NAME = "dummy_app"
+  include TestPaths
 
   def remove_project_directory
     FileUtils.rm_rf(project_path)
@@ -89,19 +89,11 @@ module FeatureTestHelpers
     ENV["PATH"] = "#{support_bin}:#{ENV["PATH"]}"
   end
 
-  def project_path
-    @project_path ||= Pathname.new("#{tmp_path}/#{APP_NAME}")
-  end
-
   def usage_file
     @usage_path ||= File.join(root_path, "USAGE")
   end
 
   private
-
-  def tmp_path
-    @tmp_path ||= Pathname.new("#{root_path}/tmp")
-  end
 
   def suspenders_bin
     File.join(root_path, "bin", "suspenders")
@@ -117,14 +109,6 @@ module FeatureTestHelpers
 
   def support_bin
     File.join(root_path, "spec", "fakes", "bin")
-  end
-
-  def root_path
-    File.expand_path("../../../", __FILE__)
-  end
-
-  def rails_template_path
-    File.join(root_path, "spec", "support", "rails_template.rb")
   end
 
   def rails_version
