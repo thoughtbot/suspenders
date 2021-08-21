@@ -1,6 +1,5 @@
 require "spec_helper"
 
-# TODO: Make sure db optimizations is covered at integration level
 RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
   it "generates and destroys bullet" do
     with_fake_app do
