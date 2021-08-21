@@ -4,8 +4,8 @@ RSpec.describe Suspenders::RunnerGenerator, type: :generator do
   # TODO: (Bonus) Better test coverage, specially for bin/setup
   it "generates and destroys the configuration for the app to run" do
     with_app_dir do
-      copy_file_ "bin_setup", "bin/setup"
-      copy_file_ "README.md.erb", "README.md"
+      copy_file "bin_setup", "bin/setup"
+      copy_file "README.md.erb", "README.md"
 
       invoke!(Suspenders::RunnerGenerator)
 

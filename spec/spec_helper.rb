@@ -9,7 +9,6 @@ Dir["./spec/support/**/*.rb"].sort.each { |file| require file }
 RSpec.configure do |config|
   config.include FeatureTestHelpers, type: :feature
   config.include GeneratorTestHelpers, type: :generator
-  config.include ProjectFiles
 
   config.before(:all, type: :feature) do
     add_fakes_to_path

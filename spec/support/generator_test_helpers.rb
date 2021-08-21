@@ -2,6 +2,7 @@ require_relative "test_paths"
 
 module GeneratorTestHelpers
   include TestPaths
+  include FileOperations
 
   def invoke!(klass, *args, **kwargs)
     call_generator!(:new_invoke_generator, klass, *args, **kwargs)
@@ -41,30 +42,10 @@ module GeneratorTestHelpers
 
   def create_app_dir
     FileUtils.cp_r app_fixture_path, app_path
-    copy_file_ "spec_helper.rb", "spec/spec_helper.rb"
+    copy_file "spec_helper.rb", "spec/spec_helper.rb"
   end
 
   def destroy_app_dir
-    FileUtils.rm_rf "#{tmp_path}/#{APP_NAME}"
-  end
-
-  # TODO: Consolidate with equivalent method from end-to-end helper
-  def copy_file_(source_file, destination_file)
-    source_path = template_path.join(source_file)
-    destination_path = app_path.join(destination_file)
-
-    destination_path.join("..").mkpath
-    FileUtils.cp(source_path, destination_path)
-  end
-
-  def delete_file(file)
-    app_path.join(file).delete
-  end
-
-  def touch_file(file)
-    path = app_path.join(file)
-    path.join("..").mkpath
-
-    FileUtils.touch(app_path.join(file))
+    FileUtils.rm_rf tmp_path.join(APP_NAME)
   end
 end

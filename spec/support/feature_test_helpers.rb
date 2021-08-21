@@ -1,5 +1,6 @@
 module FeatureTestHelpers
   include TestPaths
+  include FileOperations
 
   def remove_project_directory
     FileUtils.rm_rf(project_path)

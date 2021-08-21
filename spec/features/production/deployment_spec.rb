@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe "suspenders:production:deployment", type: :feature do
   it "generates the configuration for a production deployment" do
-    rm "bin/deploy"
+    rm_file "bin/deploy"
 
     with_app { generate("suspenders:production:deployment") }
 
@@ -12,7 +12,7 @@ RSpec.describe "suspenders:production:deployment", type: :feature do
   end
 
   it "destroys the configuration for a production deployment" do
-    touch "bin/deploy"
+    touch_file "bin/deploy"
 
     with_app { destroy("suspenders:production:deployment") }
 
