@@ -7,9 +7,8 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
 
       expect("Gemfile").to have_no_syntax_error
       expect(generator).to have_bundled.with_gemfile_matching(/bullet/)
-      expect("config/environments/development.rb").to have_no_syntax_error.and(
-        match_contents(/Bullet.enable/)
-      )
+      expect("config/environments/development.rb")
+        .to have_no_syntax_error.and(match_contents(/Bullet.enable/))
 
       generator = revoke!(Suspenders::DbOptimizationsGenerator, stub_bundler: true)
 
