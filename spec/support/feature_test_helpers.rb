@@ -51,10 +51,6 @@ module FeatureTestHelpers
     end
   end
 
-  def rails_template_path
-    root_path.join("spec", "support", "rails_template.rb")
-  end
-
   def generate(generator)
     run_in_project do
       with_revision_for_honeybadger do
@@ -94,8 +90,8 @@ module FeatureTestHelpers
   end
 
   def add_fakes_to_path
-    ENV["PATH"] = "#{support_bin}:#{ENV["PATH"]}"
   end
+  ENV["PATH"] = "#{fake_bin_path}:#{ENV["PATH"]}"
 
   def usage_file
     @usage_path ||= File.join(root_path, "USAGE")
@@ -115,8 +111,8 @@ module FeatureTestHelpers
     "bin/rails"
   end
 
-  def support_bin
-    File.join(root_path, "spec", "support", "fakes", "bin")
+  def rails_template_path
+    root_path.join("spec", "support", "rails_template.rb")
   end
 
   def rails_version
