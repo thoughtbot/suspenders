@@ -1,3 +1,6 @@
+require_relative "test_paths"
+require_relative "file_operations"
+
 module FeatureTestHelpers
   include TestPaths
   include FileOperations
@@ -109,7 +112,7 @@ module FeatureTestHelpers
   end
 
   def support_bin
-    File.join(root_path, "spec", "fakes", "bin")
+    File.join(root_path, "spec", "support", "fakes", "bin")
   end
 
   def rails_version

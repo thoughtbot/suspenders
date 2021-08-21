@@ -15,7 +15,7 @@ module TestPaths
   alias_method :project_path, :app_path
 
   def fakes_path
-    root_path.join("spec/fakes")
+    root_path.join("spec", "support", "fakes")
   end
 
   def template_path

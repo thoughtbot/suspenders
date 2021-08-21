@@ -1,4 +1,5 @@
 require_relative "test_paths"
+require_relative "file_operations"
 
 module GeneratorTestHelpers
   include TestPaths
