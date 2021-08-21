@@ -31,7 +31,7 @@ module GeneratorTestHelpers
   def with_app_dir
     OutputStub.silence do
       create_app_dir
-      yield
+      Dir.chdir(app_path) { yield }
     ensure
       destroy_app_dir
     end
@@ -74,6 +74,10 @@ module GeneratorTestHelpers
 
   def app_path
     tmp_path.join(APP_NAME)
+  end
+
+  def fakes_path
+    root_path.join("spec/fakes")
   end
 
   def template_path

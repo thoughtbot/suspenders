@@ -18,12 +18,36 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
     end
   end
 
-  # TODO: Cover this functionality at the integration level
-  it "lists the bundler audit task" do
-    pending
+  context "when rails env is development" do
+    it "includes the bundler audit task" do
+      with_app_dir do
+        invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
 
-    run_in_project do
-      expect(`rake -T`).to include("rake bundle:audit")
+        expect(`RAILS_ENV=development rake -I#{fakes_path} -rfake_rails -T`)
+          .to eq("Fake task loaded\n")
+      end
+    end
+  end
+
+  context "when rails env is test" do
+    it "includes the bundler audit task" do
+      with_app_dir do
+        invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
+
+        expect(`RAILS_ENV=test rake -I#{fakes_path} -rfake_rails -T`)
+          .to eq("Fake task loaded\n")
+      end
+    end
+  end
+
+  context "when rails env is production" do
+    it "does not include the bundler audit task" do
+      with_app_dir do
+        invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
+
+        expect(`RAILS_ENV=production rake -I#{fakes_path} -rfake_rails -T`)
+          .to be_empty
+      end
     end
   end
 end
