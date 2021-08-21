@@ -41,7 +41,7 @@ module TestPaths
   end
 
   def fixtures_path
-    root_path.join("spec", "fixtures")
+    root_path.join("spec", "support", "fixtures")
   end
 
   def rails_template_path
