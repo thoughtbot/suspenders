@@ -3,30 +3,30 @@ require_relative "test_paths"
 module GeneratorTestHelpers
   include TestPaths
 
-  def new_invoke_generator(klass, *given_args)
-    new_generator(klass, *given_args, behavior: :invoke)
+  def invoke!(klass, *args, **kwargs)
+    call_generator!(:new_invoke_generator, klass, *args, **kwargs)
   end
 
-  def invoke!(klass, *given_args, stub_bundler: false)
-    generator = new_invoke_generator(klass, *given_args)
+  def revoke!(klass, *args, **kwargs)
+    call_generator!(:new_revoke_generator, klass, *args, **kwargs)
+  end
+
+  def call_generator!(method, klass, *args, stub_bundler: false)
+    generator = __send__(method, klass, *args)
     BundlerStub.stub_bundle_install!(generator) if stub_bundler
     generator.invoke_all
     generator
   end
 
-  def new_revoke_generator(klass, *given_args)
-    new_generator(klass, *given_args, behavior: :revoke)
+  def new_invoke_generator(klass, *args)
+    new_generator(klass, *args, behavior: :invoke)
   end
 
-  def revoke!(klass, *given_args, stub_bundler: false)
-    generator = new_revoke_generator(klass, *given_args)
-    BundlerStub.stub_bundle_install!(generator) if stub_bundler
-    generator.invoke_all
-    generator
+  def new_revoke_generator(klass, *args)
+    new_generator(klass, *args, behavior: :revoke)
   end
 
-  def new_generator(klass, *given_args, **opts)
-    args, = Thor::Options.split(given_args)
+  def new_generator(klass, *args, **opts)
     klass.new(args, [], destination_root: app_path, **opts)
   end
 
