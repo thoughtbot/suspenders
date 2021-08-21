@@ -5,8 +5,22 @@ module GeneratorTestHelpers
     new_generator(klass, *given_args, behavior: :invoke)
   end
 
+  def invoke!(klass, *given_args, stub_bundler: false)
+    generator = new_invoke_generator(klass, *given_args)
+    BundlerStub.stub_bundle_install!(generator) if stub_bundler
+    generator.invoke_all
+    generator
+  end
+
   def new_revoke_generator(klass, *given_args)
     new_generator(klass, *given_args, behavior: :revoke)
+  end
+
+  def revoke!(klass, *given_args, stub_bundler: false)
+    generator = new_revoke_generator(klass, *given_args)
+    BundlerStub.stub_bundle_install!(generator) if stub_bundler
+    generator.invoke_all
+    generator
   end
 
   def new_generator(klass, *given_args, **opts)

@@ -10,6 +10,8 @@ module BundlerStub
     end
   end
 
+  module_function
+
   def stub_bundle_install!(generator)
     generator.singleton_class.prepend(BundlerStub)
   end

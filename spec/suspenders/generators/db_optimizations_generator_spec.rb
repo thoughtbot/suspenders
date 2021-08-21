@@ -4,9 +4,7 @@ require "spec_helper"
 RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
   it "generates and destroys bullet" do
     with_app_dir do
-      generator = new_invoke_generator(Suspenders::DbOptimizationsGenerator)
-      stub_bundle_install!(generator)
-      generator.invoke_all
+      generator = invoke!(Suspenders::DbOptimizationsGenerator, stub_bundler: true)
 
       expect("Gemfile").to have_no_syntax_error
       expect(generator).to have_bundled.with_gemfile_matching(/bullet/)
@@ -14,9 +12,7 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
         match_contents(/Bullet.enable/)
       )
 
-      generator = new_revoke_generator(Suspenders::DbOptimizationsGenerator)
-      stub_bundle_install!(generator)
-      generator.invoke_all
+      generator = revoke!(Suspenders::DbOptimizationsGenerator, stub_bundler: true)
 
       expect("Gemfile").to have_no_syntax_error.and(match_original_file)
       expect(generator).to have_bundled.with_gemfile_not_matching(/bullet/)

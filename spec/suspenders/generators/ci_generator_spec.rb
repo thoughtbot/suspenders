@@ -3,9 +3,7 @@ require "spec_helper"
 RSpec.describe Suspenders::CiGenerator, type: :generator do
   it "generates and destroys Circle configuration with SimpleCov" do
     with_app_dir do
-      generator = new_invoke_generator(Suspenders::CiGenerator)
-      stub_bundle_install!(generator)
-      generator.invoke_all
+      generator = invoke!(Suspenders::CiGenerator, stub_bundler: true)
 
       expect(generator).to have_bundled.with_gemfile_matching(/simplecov/)
       expect("spec/spec_helper.rb")
@@ -14,9 +12,7 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
         .and(have_no_syntax_error)
       expect("circle.yml").to exist_as_a_file
 
-      generator = new_revoke_generator(Suspenders::CiGenerator)
-      stub_bundle_install!(generator)
-      generator.invoke_all
+      generator = revoke!(Suspenders::CiGenerator, stub_bundler: true)
 
       expect("circle.yml").not_to exist_as_a_file
       expect("spec/spec_helper.rb").not_to match_contents(/SimpleCov/)
@@ -32,9 +28,7 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
         delete_file "spec/spec_helper.rb"
         touch_file "test/test_helper.rb"
 
-        generator = new_invoke_generator(Suspenders::CiGenerator)
-        stub_bundle_install!(generator)
-        generator.invoke_all
+        invoke!(Suspenders::CiGenerator, stub_bundler: true)
 
         expect("test/test_helper.rb")
           .to match_contents(/SimpleCov.coverage_dir/)
