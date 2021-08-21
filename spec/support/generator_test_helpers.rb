@@ -32,21 +32,21 @@ module GeneratorTestHelpers
     klass.new(args, [], destination_root: app_path, **opts)
   end
 
-  def with_app_dir
+  def with_fake_app
     OutputStub.silence do
-      create_app_dir
+      create_fake_app_dir
       Dir.chdir(app_path) { yield }
     ensure
-      destroy_app_dir
+      destroy_fake_app_dir
     end
   end
 
-  def create_app_dir
+  def create_fake_app_dir
     FileUtils.cp_r fake_app_source_path, app_path
     copy_file "spec_helper.rb", "spec/spec_helper.rb"
   end
 
-  def destroy_app_dir
+  def destroy_fake_app_dir
     FileUtils.rm_rf tmp_path.join(APP_NAME)
   end
 end

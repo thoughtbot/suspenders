@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::JsonGenerator, type: :generator do
   it "generates and destroy the Gemfile for json parsing" do
-    with_app_dir do
+    with_fake_app do
       generator = invoke!(Suspenders::JsonGenerator, stub_bundler: true)
 
       expect("Gemfile").to have_no_syntax_error

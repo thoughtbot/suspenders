@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::LintGenerator, type: :generator do
   it "sets up standard" do
-    with_app_dir do
+    with_fake_app do
       invoke!(Suspenders::LintGenerator)
 
       # standardrb is a Suspenders dependencies, so the task require

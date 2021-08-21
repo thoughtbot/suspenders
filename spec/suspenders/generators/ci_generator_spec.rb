@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::CiGenerator, type: :generator do
   it "generates and destroys Circle configuration with SimpleCov" do
-    with_app_dir do
+    with_fake_app do
       generator = invoke!(Suspenders::CiGenerator, stub_bundler: true)
 
       expect(generator).to have_bundled.with_gemfile_matching(/simplecov/)
@@ -24,8 +24,8 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
 
   context "when it is a minitest project" do
     it "configures test_helper.rb instead of spec_helper.rb" do
-      with_app_dir do
-        delete_file "spec/spec_helper.rb"
+      with_fake_app do
+        rm_file "spec/spec_helper.rb"
         touch_file "test/test_helper.rb"
 
         invoke!(Suspenders::CiGenerator, stub_bundler: true)

@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
   it "generates and destroys bundler-audit" do
-    with_app_dir do
+    with_fake_app do
       generator = invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
 
       expect("lib/tasks/bundler_audit.rake")
@@ -20,7 +20,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
 
   context "when rails env is development" do
     it "includes the bundler audit task" do
-      with_app_dir do
+      with_fake_app do
         invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
 
         expect(`RAILS_ENV=development rake -I#{fakes_path} -rfake_rails -T`)
@@ -31,7 +31,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
 
   context "when rails env is test" do
     it "includes the bundler audit task" do
-      with_app_dir do
+      with_fake_app do
         invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
 
         expect(`RAILS_ENV=test rake -I#{fakes_path} -rfake_rails -T`)
@@ -42,7 +42,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
 
   context "when rails env is production" do
     it "does not include the bundler audit task" do
-      with_app_dir do
+      with_fake_app do
         invoke!(Suspenders::AdvisoriesGenerator, stub_bundler: true)
 
         expect(`RAILS_ENV=production rake -I#{fakes_path} -rfake_rails -T`)

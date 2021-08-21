@@ -3,7 +3,7 @@ require "spec_helper"
 # TODO: Make sure db optimizations is covered at integration level
 RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
   it "generates and destroys bullet" do
-    with_app_dir do
+    with_fake_app do
       generator = invoke!(Suspenders::DbOptimizationsGenerator, stub_bundler: true)
 
       expect("Gemfile").to have_no_syntax_error

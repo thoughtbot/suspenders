@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe Suspenders::InlineSvgGenerator, type: :generator do
   it "generates and destroys inline_svg" do
-    with_app_dir do
+    with_fake_app do
       generator = invoke!(Suspenders::InlineSvgGenerator, stub_bundler: true)
 
       expect("config/initializers/inline_svg.rb")
