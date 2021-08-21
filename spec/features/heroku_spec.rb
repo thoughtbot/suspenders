@@ -9,7 +9,7 @@ RSpec.describe "Heroku", type: :feature do
     end
 
     it "suspends a project for Heroku" do
-      app_name = SuspendersTestHelpers::APP_NAME.dasherize
+      app_name = TestPaths::APP_NAME.dasherize
 
       expect(FakeHeroku).to have_created_app_for("staging")
       expect(FakeHeroku).to have_created_app_for("production")

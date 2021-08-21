@@ -5,7 +5,7 @@ RSpec.describe "suspenders:production:manifest", type: :feature do
     with_app { generate("suspenders:production:manifest") }
 
     expect("app.json").to contain_json(
-      name: SuspendersTestHelpers::APP_NAME.dasherize,
+      name: TestPaths::APP_NAME.dasherize,
       env: {
         APPLICATION_HOST: {required: true},
         AUTO_MIGRATE_DB: {value: true},
@@ -22,7 +22,7 @@ RSpec.describe "suspenders:production:manifest", type: :feature do
     with_app { destroy("suspenders:production:manifest") }
 
     expect("app.json").not_to contain_json(
-      name: SuspendersTestHelpers::APP_NAME.dasherize,
+      name: TestPaths::APP_NAME.dasherize,
       env: {
         APPLICATION_HOST: {required: true},
         AUTO_MIGRATE_DB: {value: true},

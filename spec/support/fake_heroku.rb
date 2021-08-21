@@ -27,7 +27,7 @@ class FakeHeroku
   end
 
   def self.has_created_app_for?(environment, flags = nil)
-    app_name = "#{SuspendersTestHelpers::APP_NAME.dasherize}-#{environment}"
+    app_name = "#{TestPaths::APP_NAME.dasherize}-#{environment}"
 
     command = if flags
       "create #{app_name} #{flags} --remote #{environment}\n"

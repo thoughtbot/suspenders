@@ -260,7 +260,7 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
   end
 
   def app_name
-    SuspendersTestHelpers::APP_NAME
+    TestPaths::APP_NAME
   end
 
   it "adds high_voltage" do
