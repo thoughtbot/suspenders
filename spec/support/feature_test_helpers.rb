@@ -51,6 +51,10 @@ module FeatureTestHelpers
     end
   end
 
+  def rails_template_path
+    root_path.join("spec", "support", "rails_template.rb")
+  end
+
   def generate(generator)
     run_in_project do
       with_revision_for_honeybadger do

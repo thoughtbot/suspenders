@@ -42,7 +42,7 @@ module GeneratorTestHelpers
   end
 
   def create_app_dir
-    FileUtils.cp_r app_fixture_path, app_path
+    FileUtils.cp_r fake_app_source_path, app_path
     copy_file "spec_helper.rb", "spec/spec_helper.rb"
   end
 
