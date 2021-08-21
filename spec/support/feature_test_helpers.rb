@@ -90,8 +90,8 @@ module FeatureTestHelpers
   end
 
   def add_fakes_to_path
+    ENV["PATH"] = "#{fake_bin_path}:#{ENV["PATH"]}"
   end
-  ENV["PATH"] = "#{fake_bin_path}:#{ENV["PATH"]}"
 
   def usage_file
     @usage_path ||= File.join(root_path, "USAGE")
