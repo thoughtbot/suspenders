@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "Suspend a new project with --api flag", type: :feature do
+RSpec.describe "Suspend a new project with --api flag", type: :feature, autoclean: false do
   before(:all) do
     drop_dummy_database
     remove_project_directory

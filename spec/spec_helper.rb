@@ -17,6 +17,10 @@ RSpec.configure do |config|
 
   config.before(:each, type: :feature) do
     FakeGithub.clear!
+  end
+
+  config.before(:each, type: :feature) do |spec|
+    next if spec.metadata.key?(:autoclean) && !spec.metadata[:autoclean]
     remove_project_directory
   end
 end
