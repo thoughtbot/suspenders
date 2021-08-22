@@ -14,10 +14,6 @@ class FakeHeroku
     end
   end
 
-  def self.clear!
-    FileUtils.rm_rf RECORDER
-  end
-
   def self.has_gem_included?(project_path, gem_name)
     gemfile = File.open(File.join(project_path, "Gemfile"), "a")
 

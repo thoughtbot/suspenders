@@ -10,17 +10,13 @@ RSpec.configure do |config|
   config.include FeatureTestHelpers, type: :feature
   config.include GeneratorTestHelpers, type: :generator
 
-  config.before(:all, type: :feature) do
-    add_fakes_to_path
-    create_tmp_directory
-  end
-
-  config.before(:each, type: :feature) do
-    FakeGithub.clear!
+  config.before(:all) do
+    FileOperations.create_tmp_path
+    FakeOperations.add_fakes_to_path
   end
 
   config.before(:each, type: :feature) do |spec|
     next if spec.metadata.key?(:autoclean) && !spec.metadata[:autoclean]
-    remove_project_directory
+    FileOperations.clear_tmp_path
   end
 end

@@ -9,14 +9,10 @@ module FeatureTestHelpers
     FileUtils.rm_rf(project_path)
   end
 
-  def create_tmp_directory
-    FileUtils.mkdir_p(tmp_path)
-  end
-
   def run_suspenders(arguments = nil)
     arguments = "--path=#{root_path} #{arguments}"
     run_in_tmp do
-      add_fakes_to_path
+      FakeOperations.add_fakes_to_path
 
       with_revision_for_honeybadger do
         debug `#{suspenders_bin} _#{rails_version}_ #{APP_NAME} #{arguments}`
@@ -39,7 +35,7 @@ module FeatureTestHelpers
 
   def rails_new
     run_in_tmp do
-      add_fakes_to_path
+      FakeOperations.add_fakes_to_path
 
       with_revision_for_honeybadger do
         debug `#{system_rails_bin} _#{rails_version}_ new #{APP_NAME} --skip-spring -d postgresql -m #{rails_template_path}`
@@ -87,10 +83,6 @@ module FeatureTestHelpers
     end
   rescue Errno::ENOENT
     # The project_path might not exist, in which case we can skip this.
-  end
-
-  def add_fakes_to_path
-    ENV["PATH"] = "#{fake_bin_path}:#{ENV["PATH"]}"
   end
 
   def usage_file

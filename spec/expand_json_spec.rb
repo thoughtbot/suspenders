@@ -6,7 +6,6 @@ RSpec.describe Suspenders::Actions::ExpandJson do
   let(:destination_path) { File.join(destination_root, destination_file_name) }
 
   before do
-    destination_root.mkpath
     FileUtils.rm destination_path if File.exist?(destination_path)
   end
 

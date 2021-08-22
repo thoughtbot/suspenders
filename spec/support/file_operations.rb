@@ -1,20 +1,30 @@
 module FileOperations
+  extend self
+
   def touch_file(file)
     path = app_path.join(file)
     path.join("..").mkpath
 
-    FileUtils.touch(app_path.join(file))
+    FileUtils.touch(TestPaths.app_path.join(file))
   end
 
   def rm_file(file)
-    FileUtils.rm_rf(app_path.join(file))
+    FileUtils.rm_rf(TestPaths.app_path.join(file))
   end
 
   def copy_file(source_file, destination_file)
-    source_path = template_path.join(source_file)
-    destination_path = app_path.join(destination_file)
+    source_path = TestPaths.template_path.join(source_file)
+    destination_path = TestPaths.app_path.join(destination_file)
 
     destination_path.join("..").mkpath
     FileUtils.cp(source_path, destination_path)
+  end
+
+  def create_tmp_path
+    FileUtils.mkdir_p(TestPaths.tmp_path)
+  end
+
+  def clear_tmp_path
+    FileUtils.rm_rf(Dir[TestPaths.tmp_path / "*"])
   end
 end

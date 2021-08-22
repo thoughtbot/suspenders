@@ -58,7 +58,6 @@ RSpec.describe "Heroku", type: :feature, autoclean: false do
 
   def clean_up
     drop_dummy_database
-    remove_project_directory
-    FakeHeroku.clear!
+    clear_tmp_path
   end
 end
