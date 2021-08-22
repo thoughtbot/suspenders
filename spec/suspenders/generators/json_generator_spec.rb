@@ -3,15 +3,19 @@ require "spec_helper"
 RSpec.describe Suspenders::JsonGenerator, type: :generator do
   it "generates and destroy the Gemfile for json parsing" do
     with_fake_app do
-      generator = invoke!(Suspenders::JsonGenerator, stub_bundler: true)
+      invoke! Suspenders::JsonGenerator
 
-      expect("Gemfile").to have_no_syntax_error
-      expect(generator).to have_bundled.with_gemfile_matching(%r{gem .oj.})
+      expect("Gemfile")
+        .to have_no_syntax_error
+        .and have_bundled("install")
+        .with_gemfile_matching(%r{gem .oj.})
 
-      generator = revoke!(Suspenders::JsonGenerator, stub_bundler: true)
+      revoke!(Suspenders::JsonGenerator, stub_bundler: true)
 
-      expect(generator).to have_bundled.with_gemfile_not_matching(%r{gem .oj.})
-      expect("Gemfile").to have_no_syntax_error.and(match_original_file)
+      expect("Gemfile")
+        .to have_no_syntax_error
+        .and match_original_file
+        .and not_have_bundled
     end
   end
 end

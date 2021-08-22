@@ -13,9 +13,8 @@ module GeneratorTestHelpers
     call_generator!(:new_revoke_generator, klass, *args, **kwargs)
   end
 
-  def call_generator!(method, klass, *args, stub_bundler: false)
+  def call_generator!(method, klass, *args)
     generator = __send__(method, klass, *args)
-    BundlerStub.stub_bundle_install!(generator) if stub_bundler
     generator.invoke_all
     generator
   end
@@ -33,10 +32,14 @@ module GeneratorTestHelpers
   end
 
   def with_fake_app
-    OutputStub.silence do
-      clear_tmp_path
-      create_fake_app_dir
-      Dir.chdir(app_path) { yield }
+    FakeOperations.with_temp_path(fake_bundler_bin_path) do
+      allow(Bundler).to receive(:unbundled_env).and_return(ENV)
+
+      OutputStub.silence do
+        clear_tmp_path
+        create_fake_app_dir
+        Dir.chdir(app_path) { yield }
+      end
     end
   end
 

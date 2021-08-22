@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Suspenders::LintGenerator, type: :generator do
   it "sets up standard" do
     with_fake_app do
-      invoke!(Suspenders::LintGenerator)
+      invoke! Suspenders::LintGenerator
 
       # standardrb is a Suspenders dependency, so the require of the
       # rake task works and we don't need to fake it
@@ -14,13 +14,15 @@ RSpec.describe Suspenders::LintGenerator, type: :generator do
 
       expect("Rakefile").to match_contents(%r{require "standard/rake"})
       expect("Gemfile")
-        .to match_contents(/gem .standard./).and(have_no_syntax_error)
+        .to match_contents(/gem .standard./)
+        .and have_no_syntax_error
 
-      revoke!(Suspenders::LintGenerator)
+      revoke! Suspenders::LintGenerator
 
       expect(`rake -T`).to be_empty
       expect("Gemfile")
-        .to not_match_contents(/gem .standard./).and(have_no_syntax_error)
+        .to not_match_contents(/gem .standard./)
+        .and have_no_syntax_error
     end
   end
 end

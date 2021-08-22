@@ -6,14 +6,14 @@ RSpec.describe Suspenders::RunnerGenerator, type: :generator do
       copy_file "bin_setup", "bin/setup"
       copy_file "README.md.erb", "README.md"
 
-      invoke!(Suspenders::RunnerGenerator)
+      invoke! Suspenders::RunnerGenerator
 
       expect("Procfile").to exist_as_a_file
       expect(".sample.env").to exist_as_a_file
       expect("bin/setup").to match_contents(/\.sample\.env/)
       expect("README.md").to match_contents(/\.sample\.env/)
 
-      revoke!(Suspenders::RunnerGenerator)
+      revoke! Suspenders::RunnerGenerator
 
       expect("README.md").not_to match_contents(/\.sample\.env/)
       expect("bin/setup").not_to match_contents(/\.sample\.env/)

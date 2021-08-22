@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+echo "DEBUG: Running fake bundler"
+
+echo $@ > .bundler_arguments
+cat Gemfile > Gemfile.bundled
