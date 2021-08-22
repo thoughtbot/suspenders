@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module TestPaths
-  APP_NAME = "dummy_app"
-
   extend self
+
+  APP_NAME = "dummy_app"
 
   def app_path
     tmp_path.join(APP_NAME)
@@ -12,11 +12,7 @@ module TestPaths
 
   def app_path!
     app_path = self.app_path
-
-    unless app_path.exist?
-      raise "Expected #{app_path} to exist"
-    end
-
+    raise "Expected #{app_path} to exist" unless app_path.exist?
     app_path
   end
 

@@ -6,7 +6,7 @@ RSpec.describe Suspenders::LintGenerator, type: :generator do
       invoke!(Suspenders::LintGenerator)
 
       # standardrb is a Suspenders dependency, so the require of the
-      # task works and we don't need to fake it
+      # rake task works and we don't need to fake it
       rake_output = `rake -T`
       expect(rake_output.lines.size).to eq 2
       expect(rake_output.lines[0]).to start_with("rake standard")

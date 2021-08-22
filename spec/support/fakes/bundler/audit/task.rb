@@ -1,6 +1,6 @@
 require "pathname"
 
-load Pathname(__dir__).join("..", "..", "..", "message_matcher.rb")
+load Pathname(__dir__) / ".." / ".." / ".." / "message_matcher.rb"
 
 module Bundler
   module Audit

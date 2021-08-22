@@ -34,6 +34,7 @@ module GeneratorTestHelpers
 
   def with_fake_app
     OutputStub.silence do
+      destroy_fake_app_dir
       create_fake_app_dir
       Dir.chdir(app_path) { yield }
     ensure
