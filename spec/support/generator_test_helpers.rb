@@ -35,16 +35,28 @@ module GeneratorTestHelpers
     FakeOperations.with_temp_path(fake_bundler_bin_path) do |path|
       FakeBundler.stub_unbundled_env!(self, path: path)
 
-      OutputStub.silence do
+      execute = lambda do
         clear_tmp_path
         create_fake_app_dir
         Dir.chdir(app_path) { yield }
       end
+
+      if @no_silence
+        execute.call
+      else
+        OutputStub.silence { execute.call }
+      end
     end
   end
 
+  # This allows turning off output redirection per spec if you need to
+  # debug or use a debugger such as pry
+  def no_silence!
+    @no_silence = true
+  end
+
   def create_fake_app_dir
-    FileUtils.cp_r fake_app_source_path, app_path
+    FileUtils.cp_r fake_app_fixture_path, app_path
     copy_file "spec_helper.rb", "spec/spec_helper.rb"
   end
 
