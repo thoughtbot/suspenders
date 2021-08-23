@@ -32,7 +32,7 @@ module GeneratorTestHelpers
   end
 
   def with_fake_app
-    FakeOperations.with_temp_path(fake_bundler_bin_path) do |path|
+    FakeOperations.with_modified_env_path(fake_bundler_bin_path) do |path|
       FakeBundler.stub_unbundled_env!(self, path: path)
 
       execute = lambda do

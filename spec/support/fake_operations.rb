@@ -5,7 +5,7 @@ module FakeOperations
     ENV["PATH"] = "#{TestPaths.fake_bin_path}:#{ENV["PATH"]}"
   end
 
-  def with_temp_path(path)
+  def with_modified_env_path(path)
     old_path = ENV["PATH"]
     ENV["PATH"] = "#{path}:#{ENV["PATH"]}"
     yield ENV["PATH"]
