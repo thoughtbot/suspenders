@@ -17,8 +17,9 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
       revoke! Suspenders::CiGenerator
 
       expect("circle.yml").not_to exist_as_a_file
-      expect("spec/spec_helper.rb").not_to match_contents(/SimpleCov/)
-      expect("spec/spec_helper.rb").to have_no_syntax_error
+      expect("spec/spec_helper.rb")
+        .to not_match_contents(/SimpleCov/)
+        .and have_no_syntax_error
       expect("Gemfile")
         .to have_no_syntax_error
         .and match_original_file

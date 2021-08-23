@@ -20,7 +20,7 @@ module TestPaths
     root_path.join("templates")
   end
 
-  def fake_app_source_path
+  def fake_app_fixture_path
     root_path.join("spec", "support", "fixtures", APP_NAME)
   end
 

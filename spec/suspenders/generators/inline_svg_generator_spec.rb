@@ -9,7 +9,8 @@ RSpec.describe Suspenders::InlineSvgGenerator, type: :generator do
         .to have_no_syntax_error
         .and match_contents(/InlineSvg/)
       expect("Gemfile")
-        .to have_bundled("install")
+        .to have_no_syntax_error
+        .and have_bundled("install")
         .matching(/inline_svg/)
 
       revoke! Suspenders::InlineSvgGenerator
@@ -17,7 +18,7 @@ RSpec.describe Suspenders::InlineSvgGenerator, type: :generator do
       expect("config/initializers/inline_svg.rb").not_to exist_as_a_file
       expect("Gemfile")
         .to have_no_syntax_error
-        .and(match_original_file)
+        .and match_original_file
         .and not_have_bundled
     end
   end
