@@ -12,11 +12,7 @@ RSpec::Matchers.define :have_bundled do |actual_bundler_args = ""|
     @unexpected_bundler_args = actual_bundler_args != fake_bundler.given_args
     @bundled_gemfile = fake_bundler.bundled_gemfile
 
-    if !@ran_bundler
-      false
-    elsif !@with_unbundled_env
-      false
-    elsif @unexpected_bundler_args
+    if !@ran_bundler || !@with_unbundled_env || @unexpected_bundler_args
       false
     elsif @gemfile_matching
       @bundled_gemfile.match?(@gemfile_matching)
