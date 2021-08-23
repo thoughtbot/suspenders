@@ -8,7 +8,7 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
       expect("Gemfile")
         .to have_no_syntax_error
         .and have_bundled("install")
-        .with_gemfile_matching(/bullet/)
+        .matching(/bullet/)
       expect("config/environments/development.rb")
         .to have_no_syntax_error
         .and match_contents(/Bullet.enable/)

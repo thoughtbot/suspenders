@@ -32,8 +32,8 @@ module GeneratorTestHelpers
   end
 
   def with_fake_app
-    FakeOperations.with_temp_path(fake_bundler_bin_path) do
-      allow(Bundler).to receive(:unbundled_env).and_return(ENV)
+    FakeOperations.with_temp_path(fake_bundler_bin_path) do |path|
+      FakeBundler.stub_unbundled_env!(self, path: path)
 
       OutputStub.silence do
         clear_tmp_path

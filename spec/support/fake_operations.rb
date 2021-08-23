@@ -8,7 +8,7 @@ module FakeOperations
   def with_temp_path(path)
     old_path = ENV["PATH"]
     ENV["PATH"] = "#{path}:#{ENV["PATH"]}"
-    yield
+    yield ENV["PATH"]
   ensure
     ENV["PATH"] = old_path
   end

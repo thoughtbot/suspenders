@@ -1,6 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env ruby
 
-echo "DEBUG: Running fake bundler"
+require "pathname"
+require Pathname(__dir__) / ".." / ".." / "fake_bundler"
 
-echo $@ > .bundler_arguments
-cat Gemfile > Gemfile.bundled
+FakeBundler.new.record!

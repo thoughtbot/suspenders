@@ -8,7 +8,7 @@ RSpec.describe Suspenders::JsonGenerator, type: :generator do
       expect("Gemfile")
         .to have_no_syntax_error
         .and have_bundled("install")
-        .with_gemfile_matching(%r{gem .oj.})
+        .matching(%r{gem .oj.})
 
       revoke!(Suspenders::JsonGenerator, stub_bundler: true)
 

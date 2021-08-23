@@ -7,7 +7,7 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
 
       expect("Gemfile")
         .to have_bundled("install")
-        .with_gemfile_matching(/simplecov/)
+        .matching(/simplecov/)
       expect("spec/spec_helper.rb")
         .to match_contents(/SimpleCov.coverage_dir/)
         .and match_contents(/SimpleCov.start/)

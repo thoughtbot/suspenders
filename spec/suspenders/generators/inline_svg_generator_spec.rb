@@ -10,8 +10,7 @@ RSpec.describe Suspenders::InlineSvgGenerator, type: :generator do
         .and match_contents(/InlineSvg/)
       expect("Gemfile")
         .to have_bundled("install")
-        .with_gemfile_matching(/inline_svg/)
-      expect("Gemfile").to match_contents(/inline_svg/)
+        .matching(/inline_svg/)
 
       revoke! Suspenders::InlineSvgGenerator
 

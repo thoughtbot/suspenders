@@ -11,7 +11,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
       expect("Gemfile")
         .to have_no_syntax_error
         .and have_bundled("install")
-        .with_gemfile_matching(/bundler-audit/)
+        .matching(/bundler-audit/)
 
       revoke! Suspenders::AdvisoriesGenerator
 
