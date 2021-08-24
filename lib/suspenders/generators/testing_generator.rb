@@ -3,7 +3,6 @@ require_relative "base"
 module Suspenders
   class TestingGenerator < Generators::Base
     def add_testing_gems
-      gem "spring-commands-rspec", group: :development
       gem "rspec-rails", "~> 3.6", group: %i[development test]
       gem "shoulda-matchers", group: :test
 
