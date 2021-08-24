@@ -1,6 +1,6 @@
-require_relative "test_paths"
+require_relative "env_path"
 require_relative "file_operations"
-require_relative "fake_operations"
+require_relative "test_paths"
 
 module FeatureTestHelpers
   include TestPaths
