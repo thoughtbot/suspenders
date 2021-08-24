@@ -1,5 +1,6 @@
 RSpec::Matchers.define :match_original_file do
   match do |path|
+    @path = path
     @original_contents = TestPaths.fake_app_fixture_path.join(path).read
     @actual_contents = TestPaths.app_path.join(path).read
 
@@ -8,7 +9,7 @@ RSpec::Matchers.define :match_original_file do
 
   failure_message do
     <<~MESSAGE
-      Gemfile does not match original file. The diff is:
+      #{@path} does not match original file. The diff is:
       #{differ.diff_as_string(@actual_contents, @original_contents)}
     MESSAGE
   end
