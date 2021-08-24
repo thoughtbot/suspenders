@@ -10,12 +10,6 @@ module TestPaths
   end
   alias_method :project_path, :app_path
 
-  def app_path!
-    app_path = self.app_path
-    raise "Expected #{app_path} to exist" unless app_path.exist?
-    app_path
-  end
-
   def template_path
     root_path.join("templates")
   end
