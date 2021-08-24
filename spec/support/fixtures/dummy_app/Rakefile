@@ -1,6 +1,4 @@
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
-
+# This file is part of our fake Rails app, for testing purposes
 require "pathname"
 
 path = Pathname(__dir__) / "lib" / "tasks" / "**" / "*.rake"

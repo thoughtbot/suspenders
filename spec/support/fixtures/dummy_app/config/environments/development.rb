@@ -1,4 +1,4 @@
-# This is part of the fake Rails app for testing purposes
+# This file is part of our fake Rails app, for testing purposes
 Rails.application.configure do
   config.cache_classes = false
   config.eager_load = false
