@@ -12,7 +12,7 @@ RSpec.configure do |config|
 
   config.before(:all) do
     FileOperations.create_tmp_path
-    FakeOperations.add_fakes_to_path
+    EnvPath.prepend_env_path!(fake_bin_path)
   end
 
   config.before(:each, type: :feature) do |spec|

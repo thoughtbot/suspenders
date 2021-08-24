@@ -13,7 +13,7 @@ module FeatureTestHelpers
   def run_suspenders(arguments = nil)
     arguments = "--path=#{root_path} #{arguments}"
     run_in_tmp do
-      FakeOperations.add_fakes_to_path
+      EnvPath.prepend_env_path!(fake_bin_path)
 
       with_revision_for_honeybadger do
         debug `#{suspenders_bin} _#{rails_version}_ #{APP_NAME} #{arguments}`
@@ -36,7 +36,7 @@ module FeatureTestHelpers
 
   def rails_new
     run_in_tmp do
-      FakeOperations.add_fakes_to_path
+      EnvPath.prepend_env_path!(fake_bin_path)
 
       with_revision_for_honeybadger do
         debug `#{system_rails_bin} _#{rails_version}_ new #{APP_NAME} --skip-spring -d postgresql -m #{rails_template_path}`

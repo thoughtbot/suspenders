@@ -1,13 +1,17 @@
-module FakeOperations
+module EnvPath
   extend self
 
-  def add_fakes_to_path
-    ENV["PATH"] = "#{TestPaths.fake_bin_path}:#{ENV["PATH"]}"
+  def prepend_env_path!(path)
+    ENV["PATH"] = prepend_env_path(path)
   end
 
-  def with_modified_env_path(path)
+  def prepend_env_path(path)
+    "#{path}:#{ENV["PATH"]}"
+  end
+
+  def with_prepended_env_path(path)
     old_path = ENV["PATH"]
-    ENV["PATH"] = "#{path}:#{ENV["PATH"]}"
+    ENV["PATH"] = prepend_env_path(path)
     yield ENV["PATH"]
   ensure
     ENV["PATH"] = old_path
