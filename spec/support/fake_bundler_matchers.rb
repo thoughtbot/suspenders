@@ -1,5 +1,5 @@
-# FakeBundler records runtime information through a fake "bundler" bin
-# file. This RSpec matcher relies on that functionality.
+# FakeBundler records bundler information through a fake "bundler"
+# binary. This RSpec matcher relies on that functionality.
 RSpec::Matchers.define :have_bundled do |actual_bundler_args = ""|
   match do |file_str|
     raise 'Use expect("Gemfile")' if file_str != "Gemfile"
