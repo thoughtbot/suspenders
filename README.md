@@ -67,8 +67,6 @@ And development gems like:
   unused eager loading
 * [Bundler Audit](https://github.com/rubysec/bundler-audit) for scanning the
   Gemfile for insecure dependencies based on published CVEs
-* [Spring](https://github.com/rails/spring) for fast Rails actions via
-  pre-loading
 * [Web Console](https://github.com/rails/web-console) for better debugging via
   in-browser IRB consoles.
 
@@ -164,14 +162,6 @@ requires that you have [Hub](https://github.com/github/hub) on your system:
 This has the same effect as running:
 
     hub create organization/project
-
-## Spring
-
-Suspenders uses [spring](https://github.com/rails/spring) by default.
-It makes Rails applications load faster, but it might introduce confusing issues
-around stale code not being refreshed.
-If you think your application is running old code, run `spring stop`.
-And if you'd rather not use spring, add `DISABLE_SPRING=1` to your login file.
 
 ## Dependencies
 
