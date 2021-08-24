@@ -26,9 +26,7 @@ module Suspenders
     end
 
     def using_rspec?
-      Pathname(destination_root)
-        .join("spec/spec_helper.rb")
-        .exist?
+      File.exist?("spec/spec_helper.rb")
     end
   end
 end
