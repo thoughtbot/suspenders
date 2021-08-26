@@ -6,15 +6,14 @@ module GeneratorTestHelpers
   include FileOperations
 
   def invoke!(klass, *args, **kwargs)
-    call_generator!(:new_invoke_generator, klass, *args, **kwargs)
+    call_generator!(new_invoke_generator(klass, *args, **kwargs))
   end
 
   def revoke!(klass, *args, **kwargs)
-    call_generator!(:new_revoke_generator, klass, *args, **kwargs)
+    call_generator!(new_revoke_generator(klass, *args, **kwargs))
   end
 
-  def call_generator!(method, klass, *args)
-    generator = __send__(method, klass, *args)
+  def call_generator!(generator)
     generator.invoke_all
     generator
   end
