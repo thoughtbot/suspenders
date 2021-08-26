@@ -204,15 +204,6 @@ RSpec.describe "Suspend a new project with default configuration" do
     )
   end
 
-  it "adds spring to binstubs" do
-    expect(File).to exist("#{project_path}/bin/spring")
-
-    bin_stubs = %w[rake rails rspec]
-    bin_stubs.each do |bin_stub|
-      expect(IO.read("#{project_path}/bin/#{bin_stub}")).to match(/spring/)
-    end
-  end
-
   it "removes comments and extra newlines from config files" do
     config_files = [
       IO.read("#{project_path}/config/application.rb"),

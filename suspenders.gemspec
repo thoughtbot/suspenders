@@ -6,7 +6,6 @@ Gem::Specification.new do |s|
   s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
   s.required_rubygems_version = ">= 2.7.4"
   s.authors = ["thoughtbot"]
-  s.date = Date.today.strftime("%Y-%m-%d")
 
   s.description = <<~HERE
     Suspenders is a base Rails project that you can upgrade. It is used by

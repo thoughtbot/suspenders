@@ -157,7 +157,6 @@ module Suspenders
       generate("suspenders:analytics")
       generate("suspenders:inline_svg")
       generate("suspenders:advisories")
-      generate("suspenders:preloader")
     end
 
     def generate_deployment_default
