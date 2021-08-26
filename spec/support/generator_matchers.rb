@@ -36,6 +36,6 @@ RSpec::Matchers.define :have_no_syntax_error do
   # rubocop:enable Lint/RescueException
 
   failure_message do
-    "The file #{@file} has syntax errors!"
+    "The file #{@file} has syntax errors"
   end
 end
