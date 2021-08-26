@@ -27,7 +27,9 @@ end
 RSpec::Matchers.define :have_syntax_error do
   # rubocop:disable Lint/RescueException
   match do |path|
+    @path = path
     load TestPaths.app_path.join(path)
+    false
   rescue SyntaxError
     true
   rescue Exception
@@ -36,7 +38,7 @@ RSpec::Matchers.define :have_syntax_error do
   # rubocop:enable Lint/RescueException
 
   failure_message do
-    "The file #{@file} has NO syntax errors"
+    "The file #{@path} has NO syntax errors"
   end
 end
 

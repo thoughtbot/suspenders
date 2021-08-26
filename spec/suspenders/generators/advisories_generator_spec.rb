@@ -6,7 +6,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
       invoke! Suspenders::AdvisoriesGenerator
 
       expect("lib/tasks/bundler_audit.rake")
-        .to have_syntax_error
+        .to have_no_syntax_error
         .and(match_contents(/Bundler::Audit::Task.new/))
       expect("Gemfile")
         .to have_no_syntax_error
