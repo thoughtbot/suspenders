@@ -1,5 +1,6 @@
 Unreleased
 
+* Removed: preloader generator / spring
 * Upgraded: Ruby to version 2.7.1
 
 1.55.1 (September 11, 2020)
