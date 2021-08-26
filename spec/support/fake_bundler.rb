@@ -46,6 +46,10 @@ class FakeBundler
   def run_info
     @run_info ||= JSON.parse(File.read(TAPE))
   rescue Errno::ENOENT, JSON::ParserError
+    warn <<~MSG
+      Could not find #{TAPE.basename} file!
+      Fake bundler either did not run or the JSON from it is invalid.
+    MSG
     {}
   end
 end
