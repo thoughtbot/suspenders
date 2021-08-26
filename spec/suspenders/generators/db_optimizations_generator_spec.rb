@@ -20,7 +20,8 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
         .and match_original_file
         .and not_have_bundled
       expect("config/environments/development.rb")
-        .to have_no_syntax_error.and(match_original_file)
+        .to have_no_syntax_error
+        .and match_original_file
     end
   end
 end
