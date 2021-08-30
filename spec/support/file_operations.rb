@@ -20,11 +20,11 @@ module FileOperations
     FileUtils.cp(source_path, destination_path)
   end
 
-  def create_tmp_path
+  def create_tmp_directory
     FileUtils.mkdir_p(TestPaths.tmp_path)
   end
 
-  def clear_tmp_path
+  def clear_tmp_directory
     FileUtils.rm_rf(Dir[TestPaths.tmp_path / "*"])
   end
 end

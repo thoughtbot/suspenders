@@ -35,7 +35,7 @@ module GeneratorTestHelpers
       FakeBundler.stub_unbundled_env!(self, path: path)
 
       execute = lambda do
-        clear_tmp_path
+        clear_tmp_directory
         create_fake_app_dir
         Dir.chdir(app_path) { yield }
       end

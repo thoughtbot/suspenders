@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe "Suspend a new project with default configuration", type: :feature, autoclean: false do
   before(:all) do
     drop_dummy_database
-    clear_tmp_path
+    clear_tmp_directory
     run_suspenders
     setup_app_dependencies
   end

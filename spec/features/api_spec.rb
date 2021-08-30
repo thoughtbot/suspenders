@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe "Suspend a new project with --api flag", type: :feature, autoclean: false do
   before(:all) do
     drop_dummy_database
-    clear_tmp_path
+    clear_tmp_directory
   end
 
   it "ensures project specs pass" do

@@ -11,12 +11,12 @@ RSpec.configure do |config|
   config.include GeneratorTestHelpers, type: :generator
 
   config.before(:all) do
-    FileOperations.create_tmp_path
+    FileOperations.create_tmp_directory
     EnvPath.prepend_env_path!(TestPaths.fake_bin_path)
   end
 
   config.before(:each, type: :feature) do |spec|
     next if spec.metadata.key?(:autoclean) && !spec.metadata[:autoclean]
-    FileOperations.clear_tmp_path
+    FileOperations.clear_tmp_directory
   end
 end
