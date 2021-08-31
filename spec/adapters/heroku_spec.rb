@@ -76,7 +76,7 @@ module Suspenders
       end
 
       def app_name
-        SuspendersTestHelpers::APP_NAME
+        TestPaths::APP_NAME
       end
 
       def have_backup_schedule(remote_name)

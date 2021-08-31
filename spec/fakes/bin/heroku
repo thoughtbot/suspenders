@@ -1,5 +1,0 @@
-#!/usr/bin/env ruby
-
-require File.expand_path(File.join("..", "..", "support", "fake_heroku"), File.dirname(__FILE__))
-
-FakeHeroku.new(ARGV).run!

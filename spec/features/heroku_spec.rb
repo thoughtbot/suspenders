@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "Heroku" do
+RSpec.describe "Heroku", type: :feature, autoclean: false do
   context "--heroku" do
     before(:all) do
       clean_up
@@ -9,7 +9,7 @@ RSpec.describe "Heroku" do
     end
 
     it "suspends a project for Heroku" do
-      app_name = SuspendersTestHelpers::APP_NAME.dasherize
+      app_name = TestPaths::APP_NAME.dasherize
 
       expect(FakeHeroku).to have_created_app_for("staging")
       expect(FakeHeroku).to have_created_app_for("production")
@@ -58,7 +58,6 @@ RSpec.describe "Heroku" do
 
   def clean_up
     drop_dummy_database
-    remove_project_directory
-    FakeHeroku.clear!
+    clear_tmp_directory
   end
 end

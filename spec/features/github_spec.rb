@@ -1,9 +1,9 @@
 require "spec_helper"
 
-RSpec.describe "GitHub" do
+RSpec.describe "GitHub", type: :feature, autoclean: false do
   before do
     drop_dummy_database
-    remove_project_directory
+    clear_tmp_directory
   end
 
   it "suspends a project with --github option" do

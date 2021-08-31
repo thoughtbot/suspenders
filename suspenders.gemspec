@@ -29,6 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency "bitters", ">= 2.0.4"
   s.add_dependency "rails", Suspenders::RAILS_VERSION
 
+  s.add_development_dependency "pry"
   s.add_development_dependency "rspec", "~> 3.2"
   s.add_development_dependency "standard"
 end

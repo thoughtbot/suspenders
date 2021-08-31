@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "suspenders:static", type: :generator do
+RSpec.describe "suspenders:static", type: :feature do
   it "adds the gem and pages directory" do
     with_app { generate("suspenders:static") }
 

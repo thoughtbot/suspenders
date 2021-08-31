@@ -1,9 +1,9 @@
 require "spec_helper"
 
-RSpec.describe "Suspend a new project with default configuration" do
+RSpec.describe "Suspend a new project with default configuration", type: :feature, autoclean: false do
   before(:all) do
     drop_dummy_database
-    remove_project_directory
+    clear_tmp_directory
     run_suspenders
     setup_app_dependencies
   end
@@ -251,7 +251,7 @@ RSpec.describe "Suspend a new project with default configuration" do
   end
 
   def app_name
-    SuspendersTestHelpers::APP_NAME
+    TestPaths::APP_NAME
   end
 
   it "adds high_voltage" do

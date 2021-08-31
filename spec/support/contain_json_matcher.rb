@@ -7,8 +7,8 @@ RSpec::Matchers.define :contain_json do
     @sub_json = expected
     @filename = actual
 
-    @filepath = File.join(project_path, @filename)
-    @json = JSON.parse(IO.read(@filepath), symbolize_names: true)
+    filepath = TestPaths.app_path.join(@filename)
+    @json = JSON.parse(filepath.read, symbolize_names: true)
 
     subhash?(@sub_json, @json)
   end

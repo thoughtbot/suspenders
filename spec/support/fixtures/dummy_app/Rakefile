@@ -1,0 +1,8 @@
+# This file is part of our fake Rails app, for testing purposes
+require "pathname"
+
+path = Pathname(__dir__) / "lib" / "tasks" / "**" / "*.rake"
+
+Pathname.glob(path).each do |file|
+  load file
+end

@@ -14,10 +14,6 @@ class FakeHeroku
     end
   end
 
-  def self.clear!
-    FileUtils.rm_rf RECORDER
-  end
-
   def self.has_gem_included?(project_path, gem_name)
     gemfile = File.open(File.join(project_path, "Gemfile"), "a")
 
@@ -27,7 +23,7 @@ class FakeHeroku
   end
 
   def self.has_created_app_for?(environment, flags = nil)
-    app_name = "#{SuspendersTestHelpers::APP_NAME.dasherize}-#{environment}"
+    app_name = "#{TestPaths::APP_NAME.dasherize}-#{environment}"
 
     command = if flags
       "create #{app_name} #{flags} --remote #{environment}\n"
