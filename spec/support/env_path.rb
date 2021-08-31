@@ -1,5 +1,5 @@
 module EnvPath
-  extend self
+  module_function
 
   def prepend_env_path!(path)
     ENV["PATH"] = prepend_env_path(path)

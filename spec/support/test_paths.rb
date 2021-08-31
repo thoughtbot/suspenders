@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module TestPaths
-  extend self
-
   APP_NAME = "dummy_app"
+
+  module_function
 
   def app_path
     tmp_path.join(APP_NAME)

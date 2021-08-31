@@ -1,5 +1,5 @@
 module FileOperations
-  extend self
+  module_function
 
   def touch_file(file)
     path = app_path.join(file)

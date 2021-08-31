@@ -2,6 +2,6 @@
 
 RSpec::Matchers.define :exist_as_a_file do
   match do |filename|
-    File.exist?(File.join(project_path, filename))
+    TestPaths.app_path.join(filename).exist?
   end
 end
