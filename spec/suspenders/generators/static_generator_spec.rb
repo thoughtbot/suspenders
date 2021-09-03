@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::StaticGenerator, type: :generator do
-  it "adds the gem and pages directory" do
+  it "generates the high_voltage gem and pages directory" do
     with_fake_app do
       invoke! Suspenders::StaticGenerator
 
@@ -10,7 +10,12 @@ RSpec.describe Suspenders::StaticGenerator, type: :generator do
         .to have_no_syntax_error
         .and have_bundled("install")
         .matching(/high_voltage/)
+    end
+  end
 
+  it "destroys the high_voltage gem and pages directory" do
+    with_fake_app do
+      invoke! Suspenders::StaticGenerator
       revoke! Suspenders::StaticGenerator
 
       expect("app/views/pages/.keep").not_to exist_as_a_file

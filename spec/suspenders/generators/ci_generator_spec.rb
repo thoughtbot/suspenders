@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::CiGenerator, type: :generator do
-  it "generates and destroys Circle configuration with SimpleCov" do
+  it "generates Circle configuration / SimpleCov" do
     with_fake_app do
       invoke! Suspenders::CiGenerator
 
@@ -13,7 +13,12 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
         .and match_contents(/SimpleCov.start/)
         .and have_no_syntax_error
       expect("circle.yml").to exist_as_a_file
+    end
+  end
 
+  it "destroys Circle configuration / SimpleCov" do
+    with_fake_app do
+      invoke! Suspenders::CiGenerator
       revoke! Suspenders::CiGenerator
 
       expect("circle.yml").not_to exist_as_a_file
