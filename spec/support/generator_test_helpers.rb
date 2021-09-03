@@ -42,7 +42,7 @@ module GeneratorTestHelpers
         Dir.chdir(app_path) { yield }
       end
 
-      if @no_silence
+      if ENV["SUSPENDERS_NO_SILENCE"] || @no_silence
         execute.call
       else
         OutputStub.silence { execute.call }
