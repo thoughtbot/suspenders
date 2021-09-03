@@ -31,9 +31,7 @@ module GeneratorTestHelpers
   end
 
   def with_fake_app
-    paths = [fake_bundler_bin_path, fake_yarn_bin_path]
-
-    EnvPath.with_prepended_env_path(*paths) do |path|
+    EnvPath.with_prepended_env_path(fake_bundler_bin_path) do |path|
       FakeBundler.stub_unbundled_env!(self, path: path)
 
       execute = lambda do
