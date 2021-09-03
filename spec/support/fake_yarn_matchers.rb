@@ -8,9 +8,8 @@ RSpec::Matchers.define :have_yarned do |actual_yarn_args = ""|
 
     @yarn_ran = fake_yarn.ran?
     @given_yarn_args = fake_yarn.arguments
-    @args_are_correct = @given_yarn_args == actual_yarn_args
 
-    @yarn_ran && @args_are_correct
+    @yarn_ran && @given_yarn_args == actual_yarn_args
   end
 
   failure_message do
