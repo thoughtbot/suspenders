@@ -7,6 +7,7 @@ RSpec.describe Suspenders::StylelintGenerator, type: :generator do
   end
 
   def revoke_stylelint_generator!
+    invoke_stylelint_generator!
     revoke! Suspenders::StylelintGenerator
   end
 
@@ -53,7 +54,6 @@ RSpec.describe Suspenders::StylelintGenerator, type: :generator do
   context "revoke" do
     it "removes .stylelintrc.json" do
       with_fake_app do
-        invoke_stylelint_generator!
         revoke_stylelint_generator!
 
         expect(".stylelintrc.json").not_to exist_as_a_file
@@ -62,7 +62,6 @@ RSpec.describe Suspenders::StylelintGenerator, type: :generator do
 
     it "removes stylelint and @thoughtbot/stylelint-config from package.json" do
       with_fake_app do
-        invoke_stylelint_generator!
         revoke_stylelint_generator!
 
         expect("package.json")
@@ -72,7 +71,6 @@ RSpec.describe Suspenders::StylelintGenerator, type: :generator do
 
     it "comments in the hound config_file option" do
       with_fake_app do
-        invoke_stylelint_generator!
         revoke_stylelint_generator!
 
         expect(".hound.yml")
