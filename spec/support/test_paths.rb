@@ -30,6 +30,10 @@ module TestPaths
     fakes_path.join("bundler_bin")
   end
 
+  def fake_yarn_bin_path
+    fakes_path.join("yarn_bin")
+  end
+
   def tmp_path
     @tmp_path ||= root_path.join("tmp")
   end

@@ -9,9 +9,9 @@ module EnvPath
     "#{path}:#{ENV["PATH"]}"
   end
 
-  def with_prepended_env_path(path)
+  def with_prepended_env_path(*paths)
     old_path = ENV["PATH"]
-    ENV["PATH"] = prepend_env_path(path)
+    paths.each { |path| ENV["PATH"] = prepend_env_path(path) }
     yield ENV["PATH"]
   ensure
     ENV["PATH"] = old_path
