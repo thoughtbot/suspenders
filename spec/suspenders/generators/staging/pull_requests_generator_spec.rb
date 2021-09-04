@@ -1,10 +1,8 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
-  include RailsStub
-
   def before_invoke(app_class_name: nil)
-    proc { stub_app_class(app_class_name: app_class_name) }
+    proc { RailsStub.stub_app_class(app_class_name: app_class_name) }
   end
 
   describe "invoke" do

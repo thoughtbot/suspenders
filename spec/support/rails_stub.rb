@@ -1,4 +1,8 @@
 module RailsStub
+  extend RSpec::Mocks::ExampleMethods
+
+  module_function
+
   def stub_app_class(app_class_name: nil)
     require "active_support/core_ext/module/introspection"
 
