@@ -4,20 +4,17 @@ require "active_support/core_ext/module/introspection"
 RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
   include RailsStub
 
-  def invoke_manifest_generator!(app_class_name: nil)
-    stub_app_class(app_class_name: app_class_name)
-    invoke! Suspenders::Production::ManifestGenerator
-  end
-
-  def revoke_manifest_generator!(app_class_name: "RandomApp::Application")
-    invoke_manifest_generator!(app_class_name: app_class_name)
-    revoke! Suspenders::Production::ManifestGenerator
+  def before_generate(app_class_name: nil)
+    proc { stub_app_class(app_class_name: app_class_name) }
   end
 
   describe "invoke" do
     it "generates the manifest for a production build" do
       with_fake_app do
-        invoke_manifest_generator! app_class_name: "SomeApp::Application"
+        invoke!(
+          Suspenders::Production::ManifestGenerator,
+          &before_generate(app_class_name: "SomeApp::Application")
+        )
 
         expect("app.json").to contain_json(
           name: "some-app",
@@ -38,7 +35,10 @@ RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
   describe "revoke" do
     it "destroys the manifest for a production build" do
       with_fake_app do
-        revoke_manifest_generator!(app_class_name: "SomeApp::Application")
+        invoke_then_revoke!(
+          Suspenders::Production::ManifestGenerator,
+          &before_generate(app_class_name: "SomeApp::Application")
+        )
 
         expect("app.json").not_to contain_json(
           name: "some-app",

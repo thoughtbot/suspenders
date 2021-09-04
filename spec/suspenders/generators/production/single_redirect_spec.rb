@@ -18,8 +18,7 @@ RSpec.describe Suspenders::Production::SingleRedirect, type: :generator do
   describe "destroy" do
     it "removes Rack::CanonicalHost from the production middleware" do
       with_fake_app do
-        invoke! Suspenders::Production::SingleRedirect
-        revoke! Suspenders::Production::SingleRedirect
+        invoke_then_revoke! Suspenders::Production::SingleRedirect
 
         middleware_canonical_host =
           %r{config.middleware.use Rack::CanonicalHost, ENV.fetch\("APPLICATION_HOST"\)}

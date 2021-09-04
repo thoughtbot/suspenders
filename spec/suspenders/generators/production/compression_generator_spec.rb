@@ -15,8 +15,7 @@ RSpec.describe Suspenders::Production::CompressionGenerator, type: :generator do
   describe "revoke" do
     it "removes Rack::Deflater to the middleware" do
       with_fake_app do
-        invoke! Suspenders::Production::CompressionGenerator
-        revoke! Suspenders::Production::CompressionGenerator
+        invoke_then_revoke! Suspenders::Production::CompressionGenerator
 
         expect("config/environments/production.rb")
           .not_to match_contents(%r{Rack::Deflater})

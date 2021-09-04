@@ -5,12 +5,18 @@ module GeneratorTestHelpers
   include TestPaths
   include FileOperations
 
-  def invoke!(klass, *args, **kwargs)
+  def invoke!(klass, *args, **kwargs, &block)
+    instance_eval(&block) if block
     call_generator!(new_invoke_generator(klass, *args, **kwargs))
   end
 
   def revoke!(klass, *args, **kwargs)
     call_generator!(new_revoke_generator(klass, *args, **kwargs))
+  end
+
+  def invoke_then_revoke!(klass, *args, **kwargs, &block)
+    invoke! klass, *args, **kwargs, &block
+    revoke! klass, *args, **kwargs
   end
 
   def call_generator!(generator)
@@ -40,7 +46,7 @@ module GeneratorTestHelpers
         Dir.chdir(app_path) { yield }
       end
 
-      if ENV["SUSPENDERS_NO_SILENCE"] || @no_silence
+      if @no_silence
         execute.call
       else
         OutputStub.silence { execute.call }

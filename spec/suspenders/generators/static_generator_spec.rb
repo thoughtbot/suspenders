@@ -15,8 +15,7 @@ RSpec.describe Suspenders::StaticGenerator, type: :generator do
 
   it "destroys the high_voltage gem and pages directory" do
     with_fake_app do
-      invoke! Suspenders::StaticGenerator
-      revoke! Suspenders::StaticGenerator
+      invoke_then_revoke! Suspenders::StaticGenerator
 
       expect("app/views/pages/.keep").not_to exist_as_a_file
       expect("Gemfile")

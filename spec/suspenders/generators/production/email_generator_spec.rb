@@ -40,8 +40,7 @@ RSpec.describe Suspenders::Production::EmailGenerator, type: :generator do
   describe "revoke" do
     it "destroys the config/smtp.rb file" do
       with_fake_app do
-        invoke! Suspenders::Production::EmailGenerator
-        revoke! Suspenders::Production::EmailGenerator
+        invoke_then_revoke! Suspenders::Production::EmailGenerator
 
         expect("config/smtp.rb").not_to exist_as_a_file
       end
@@ -49,8 +48,7 @@ RSpec.describe Suspenders::Production::EmailGenerator, type: :generator do
 
     it "removes smtp configuration from config/smtp.rb" do
       with_fake_app do
-        invoke! Suspenders::Production::EmailGenerator
-        revoke! Suspenders::Production::EmailGenerator
+        invoke_then_revoke! Suspenders::Production::EmailGenerator
 
         expect("config/environments/production.rb")
           .to not_match_contents(%r{require.+config/smtp})
@@ -61,8 +59,7 @@ RSpec.describe Suspenders::Production::EmailGenerator, type: :generator do
 
     it "removes smtp variables to app.json" do
       with_fake_app do
-        invoke! Suspenders::Production::EmailGenerator
-        revoke! Suspenders::Production::EmailGenerator
+        invoke_then_revoke! Suspenders::Production::EmailGenerator
 
         expect("app.json").not_to contain_json(
           env: {
