@@ -2,11 +2,10 @@ require "spec_helper"
 require "active_support/core_ext/module/introspection"
 
 RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
-  def invoke_manifest_generator!(app_class_name: "RandomApp::Application")
-    fake_app_class = Class.new do
-      define_singleton_method(:name) { app_class_name }
-    end
-    allow(Rails).to receive(:app_class).and_return(fake_app_class)
+  include RailsStub
+
+  def invoke_manifest_generator!(app_class_name: nil)
+    stub_app_class(app_class_name: app_class_name)
     invoke! Suspenders::Production::ManifestGenerator
   end
 

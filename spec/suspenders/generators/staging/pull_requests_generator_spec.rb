@@ -2,11 +2,10 @@ require "spec_helper"
 require "active_support/core_ext/module/introspection"
 
 RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
+  include RailsStub
+
   def invoke_pull_requests_generator!(app_class_name: "RandomApp::Application")
-    fake_app_class = Class.new do
-      define_singleton_method(:name) { app_class_name }
-    end
-    allow(Rails).to receive(:app_class).and_return(fake_app_class)
+    stub_app_class(app_class_name: app_class_name)
     invoke! Suspenders::Staging::PullRequestsGenerator
   end
 
