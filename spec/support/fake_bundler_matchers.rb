@@ -43,7 +43,7 @@ RSpec::Matchers.define :have_bundled do |actual_bundler_args = ""|
 
       <<~MSG
         Bundler was given unexpected arguments.
-        Expected #{actual} but got #{given}
+        Expected #{given} but got #{actual}
       MSG
     elsif @gemfile_matching
       <<~MSG
