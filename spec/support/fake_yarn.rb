@@ -1,5 +1,4 @@
 require "pathname"
-require "forwardable"
 
 class FakeYarn
   TAPE = Pathname(__dir__).join("..", "..", "tmp", "yarn_info")
