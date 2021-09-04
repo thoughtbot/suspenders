@@ -3,14 +3,14 @@ require "spec_helper"
 RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
   include RailsStub
 
-  def before_generate(app_class_name: nil)
+  def before_invoke(app_class_name: nil)
     proc { stub_app_class(app_class_name: app_class_name) }
   end
 
   describe "invoke" do
     it "configures production.rb for heroku" do
       with_fake_app do
-        invoke! Suspenders::Staging::PullRequestsGenerator, &before_generate
+        invoke! Suspenders::Staging::PullRequestsGenerator, &before_invoke
 
         expect("config/environments/production.rb").to \
           match_contents(%r{HEROKU_APP_NAME})
@@ -21,7 +21,7 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
       with_fake_app do
         invoke!(
           Suspenders::Staging::PullRequestsGenerator,
-          &before_generate(app_class_name: "DummyApp::Application")
+          &before_invoke(app_class_name: "DummyApp::Application")
         )
 
         expect("bin/setup_review_app").to \
@@ -35,7 +35,7 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
       with_fake_app do
         invoke_then_revoke!(
           Suspenders::Staging::PullRequestsGenerator,
-          &before_generate
+          &before_invoke
         )
 
         expect("config/environments/production.rb").not_to \
@@ -47,7 +47,7 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
       with_fake_app do
         invoke_then_revoke!(
           Suspenders::Staging::PullRequestsGenerator,
-          &before_generate
+          &before_invoke
         )
 
         expect("bin/setup_review_app").not_to exist_as_a_file

@@ -3,7 +3,7 @@ require "spec_helper"
 RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
   include RailsStub
 
-  def before_generate(app_class_name: nil)
+  def before_invoke(app_class_name: nil)
     proc { stub_app_class(app_class_name: app_class_name) }
   end
 
@@ -12,7 +12,7 @@ RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
       with_fake_app do
         invoke!(
           Suspenders::Production::ManifestGenerator,
-          &before_generate(app_class_name: "SomeApp::Application")
+          &before_invoke(app_class_name: "SomeApp::Application")
         )
 
         expect("app.json").to contain_json(
@@ -36,7 +36,7 @@ RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
       with_fake_app do
         invoke_then_revoke!(
           Suspenders::Production::ManifestGenerator,
-          &before_generate(app_class_name: "SomeApp::Application")
+          &before_invoke(app_class_name: "SomeApp::Application")
         )
 
         expect("app.json").not_to contain_json(
