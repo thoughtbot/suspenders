@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "Command line help output", type: :feature, autoclean: false do
+RSpec.describe "Command line help output", type: :feature do
   let(:help_text) { suspenders_help_command }
 
   it "does not contain the default rails usage statement" do

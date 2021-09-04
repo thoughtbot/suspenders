@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "GitHub", type: :feature, autoclean: false do
+RSpec.describe "GitHub", type: :feature do
   before do
     drop_dummy_database
     clear_tmp_directory
