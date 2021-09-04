@@ -1,5 +1,4 @@
 require "spec_helper"
-require "active_support/core_ext/module/introspection"
 
 RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
   include RailsStub

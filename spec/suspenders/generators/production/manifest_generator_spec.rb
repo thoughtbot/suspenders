@@ -1,5 +1,4 @@
 require "spec_helper"
-require "active_support/core_ext/module/introspection"
 
 RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
   include RailsStub
