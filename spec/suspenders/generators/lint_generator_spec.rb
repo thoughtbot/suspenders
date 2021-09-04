@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::LintGenerator, type: :generator do
-  it "generates lint with standardrb" do
+  it "sets up standard" do
     with_fake_app do
       invoke! Suspenders::LintGenerator
 
@@ -16,12 +16,7 @@ RSpec.describe Suspenders::LintGenerator, type: :generator do
       expect("Gemfile")
         .to match_contents(/gem .standard./)
         .and have_no_syntax_error
-    end
-  end
 
-  it "destroys lint with standardrb" do
-    with_fake_app do
-      invoke! Suspenders::LintGenerator
       revoke! Suspenders::LintGenerator
 
       expect(`rake -T`).to be_empty

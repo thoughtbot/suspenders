@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
-  it "generates bullet" do
+  it "generates and destroys bullet" do
     with_fake_app do
       invoke! Suspenders::DbOptimizationsGenerator
 
@@ -12,12 +12,7 @@ RSpec.describe Suspenders::DbOptimizationsGenerator, type: :generator do
       expect("config/environments/development.rb")
         .to have_no_syntax_error
         .and match_contents(/Bullet.enable/)
-    end
-  end
 
-  it "destroys bullet" do
-    with_fake_app do
-      invoke! Suspenders::DbOptimizationsGenerator
       revoke! Suspenders::DbOptimizationsGenerator
 
       expect("Gemfile")

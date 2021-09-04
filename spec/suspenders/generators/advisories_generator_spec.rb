@@ -1,7 +1,7 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
-  it "generates bundler-audit" do
+  it "generates and destroys bundler-audit" do
     with_fake_app do
       invoke! Suspenders::AdvisoriesGenerator
 
@@ -12,12 +12,7 @@ RSpec.describe Suspenders::AdvisoriesGenerator, type: :generator do
         .to have_no_syntax_error
         .and have_bundled("install")
         .matching(/bundler-audit/)
-    end
-  end
 
-  it "destroys bundler-audit" do
-    with_fake_app do
-      invoke! Suspenders::AdvisoriesGenerator
       revoke! Suspenders::AdvisoriesGenerator
 
       expect("lib/tasks/bundler_audit.rake").not_to exist_as_a_file
