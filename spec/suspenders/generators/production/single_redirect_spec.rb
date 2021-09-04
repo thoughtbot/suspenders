@@ -7,10 +7,11 @@ RSpec.describe Suspenders::Production::SingleRedirect, type: :generator do
         invoke! Suspenders::Production::SingleRedirect
 
         middleware_canonical_host =
-          %r{config.middleware.use Rack::CanonicalHost, ENV.fetch\("APPLICATION_HOST"\)}
+          "config.middleware.use Rack::CanonicalHost, " \
+          'ENV.fetch("APPLICATION_HOST")'
 
         expect("config/environments/production.rb")
-          .to match_contents(middleware_canonical_host)
+          .to match_contents(/#{Regexp.escape(middleware_canonical_host)}/)
       end
     end
   end
@@ -21,10 +22,11 @@ RSpec.describe Suspenders::Production::SingleRedirect, type: :generator do
         invoke_then_revoke! Suspenders::Production::SingleRedirect
 
         middleware_canonical_host =
-          %r{config.middleware.use Rack::CanonicalHost, ENV.fetch\("APPLICATION_HOST"\)}
+          "config.middleware.use Rack::CanonicalHost, " \
+          'ENV.fetch("APPLICATION_HOST")'
 
         expect("config/environments/production.rb")
-          .not_to match_contents(middleware_canonical_host)
+          .not_to match_contents(/#{Regexp.escape(middleware_canonical_host)}/)
       end
     end
   end
