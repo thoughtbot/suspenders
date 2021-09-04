@@ -1,4 +1,4 @@
-# FakeYarn records bundler information through a fake "bin/yarn"
+# FakeYarn records yarn information through a fake "bin/yarn"
 # binary. This RSpec matcher relies on that functionality.
 RSpec::Matchers.define :have_yarned do |actual_yarn_args = ""|
   match do |file_str|
