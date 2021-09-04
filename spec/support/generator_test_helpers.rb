@@ -13,6 +13,11 @@ module GeneratorTestHelpers
     call_generator!(new_revoke_generator(klass, *args, **kwargs))
   end
 
+  def invoke_then_revoke!(klass, *args, **kwargs)
+    invoke! klass, *args, **kwargs
+    revoke! klass, *args, **kwargs
+  end
+
   def call_generator!(generator)
     generator.invoke_all
     generator
