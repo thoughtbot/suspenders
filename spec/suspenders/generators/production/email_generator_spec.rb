@@ -57,7 +57,7 @@ RSpec.describe Suspenders::Production::EmailGenerator, type: :generator do
       end
     end
 
-    it "removes smtp env configuration to app.json" do
+    it "removes smtp env configuration from app.json" do
       with_fake_app do
         invoke_then_revoke! Suspenders::Production::EmailGenerator
 

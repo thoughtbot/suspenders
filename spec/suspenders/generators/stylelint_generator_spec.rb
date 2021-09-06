@@ -25,7 +25,7 @@ RSpec.describe Suspenders::StylelintGenerator, type: :generator do
       end
     end
 
-    it "adds stylelint and @thoughtbot/stylelint-config to the package.json" do
+    it "adds stylelint and @thoughtbot/stylelint-config to package.json" do
       with_fake_app do
         invoke! Suspenders::StylelintGenerator, &before_invoke
 
