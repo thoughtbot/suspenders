@@ -10,8 +10,8 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
       with_fake_app do
         invoke! Suspenders::Staging::PullRequestsGenerator, &before_invoke
 
-        expect("config/environments/production.rb").to \
-          match_contents(%r{HEROKU_APP_NAME})
+        expect("config/environments/production.rb")
+          .to match_contents(%r{HEROKU_APP_NAME})
       end
     end
 
@@ -22,8 +22,8 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
           &before_invoke(app_class_name: "DummyApp::Application")
         )
 
-        expect("bin/setup_review_app").to \
-          match_contents(%r{APP_NAME=dummy-app-staging-pr-\$1})
+        expect("bin/setup_review_app")
+          .to match_contents(%r{APP_NAME=dummy-app-staging-pr-\$1})
       end
     end
   end
@@ -36,8 +36,8 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
           &before_invoke
         )
 
-        expect("config/environments/production.rb").not_to \
-          match_contents(%r{APP_NAME=dummy-app-staging-pr-\$1})
+        expect("config/environments/production.rb")
+          .not_to match_contents(%r{APP_NAME=dummy-app-staging-pr-\$1})
       end
     end
 

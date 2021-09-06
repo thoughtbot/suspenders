@@ -21,7 +21,7 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
         expect("README.md")
           .to match_contents(/Profiler/)
-          .and(match_contents(/rack-mini-profiler/))
+          .and match_contents(/rack-mini-profiler/)
       end
     end
 
