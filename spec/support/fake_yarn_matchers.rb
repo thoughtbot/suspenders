@@ -14,10 +14,10 @@ RSpec::Matchers.define :have_yarned do |expected_yarn_args = ""|
 
   failure_message do
     if !@yarn_ran
-      "The generator did not call yarn!"
+      "The generator did not call yarn"
     else
       <<~MSG
-        Yarn was executed, but the given arguments are incorrect!
+        Yarn was executed, but the given arguments are incorrect.
         Expected "#{expected_yarn_args}" but got "#{@actual_yarn_args}"
       MSG
     end
