@@ -1,14 +1,16 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
-  before_invoke = proc do
+  def copy_files_to_fake_app
     copy_file "README.md.erb", "README.md"
   end
 
   describe "invoke" do
     it "generates a rack-mini-profiler initializer" do
       with_fake_app do
-        invoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke! Suspenders::ProfilerGenerator
 
         expect("config/initializers/rack_mini_profiler.rb").to \
           match_contents(/Rack::MiniProfilerRails.initialize/)
@@ -17,7 +19,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
     it "adds a rack-mini-profiler entry to the README" do
       with_fake_app do
-        invoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke! Suspenders::ProfilerGenerator
 
         expect("README.md")
           .to match_contents(/Profiler/)
@@ -27,7 +31,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
     it "bundles the rack-mini-profiler gem" do
       with_fake_app do
-        invoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke! Suspenders::ProfilerGenerator
 
         expect("Gemfile")
           .to have_no_syntax_error
@@ -38,7 +44,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
     it "adds rack-mini-profiler env variables to .sample.env" do
       with_fake_app do
-        invoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke! Suspenders::ProfilerGenerator
 
         expect(".sample.env").to match_contents(/RACK_MINI_PROFILER=0/)
       end
@@ -48,7 +56,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
   describe "revoke" do
     it "destroys the rack-mini-profiler initializer" do
       with_fake_app do
-        invoke_then_revoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke_then_revoke! Suspenders::ProfilerGenerator
 
         expect("config/initializers/rack_mini_profiler.rb").not_to exist_as_a_file
       end
@@ -56,7 +66,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
     it "removes the rack-mini-profiler entry from the README" do
       with_fake_app do
-        invoke_then_revoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke_then_revoke! Suspenders::ProfilerGenerator
 
         expect("README.md")
           .to not_match_contents(/Profiler/)
@@ -66,7 +78,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
     it "removes the rack-mini-profiler gem" do
       with_fake_app do
-        invoke_then_revoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke_then_revoke! Suspenders::ProfilerGenerator
 
         expect("Gemfile")
           .to have_no_syntax_error
@@ -77,7 +91,9 @@ RSpec.describe Suspenders::ProfilerGenerator, type: :generator do
 
     it "removes the rack-mini-profiler env variables" do
       with_fake_app do
-        invoke_then_revoke! Suspenders::ProfilerGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke_then_revoke! Suspenders::ProfilerGenerator
 
         expect(".sample.env").not_to match_contents(/RACK_MINI_PROFILER=0/)
       end

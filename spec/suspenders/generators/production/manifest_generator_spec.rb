@@ -1,17 +1,16 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
-  def before_invoke(app_class_name: nil)
-    proc { RailsStub.stub_app_class(app_class_name: app_class_name) }
+  def setup_rails_stub(app_class_name: nil)
+    RailsStub.stub_app_class(app_class_name: app_class_name)
   end
 
   describe "invoke" do
     it "generates the manifest for a production build" do
       with_fake_app do
-        invoke!(
-          Suspenders::Production::ManifestGenerator,
-          &before_invoke(app_class_name: "SomeApp::Application")
-        )
+        setup_rails_stub app_class_name: "SomeApp::Application"
+
+        invoke! Suspenders::Production::ManifestGenerator
 
         expect("app.json").to contain_json(
           name: "some-app",
@@ -32,10 +31,9 @@ RSpec.describe Suspenders::Production::ManifestGenerator, type: :generator do
   describe "revoke" do
     it "destroys the manifest for a production build" do
       with_fake_app do
-        invoke_then_revoke!(
-          Suspenders::Production::ManifestGenerator,
-          &before_invoke(app_class_name: "SomeApp::Application")
-        )
+        setup_rails_stub app_class_name: "SomeApp::Application"
+
+        invoke_then_revoke! Suspenders::Production::ManifestGenerator
 
         expect("app.json").not_to contain_json(
           name: "some-app",
