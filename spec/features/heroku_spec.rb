@@ -1,6 +1,6 @@
 require "spec_helper"
 
-RSpec.describe "Heroku", type: :feature, autoclean: false do
+RSpec.describe "Heroku", type: :feature do
   context "--heroku" do
     before(:all) do
       clean_up
