@@ -1,14 +1,16 @@
 require "spec_helper"
 
 RSpec.describe Suspenders::Production::DeploymentGenerator, type: :generator do
-  before_invoke = proc do
+  def copy_files_to_fake_app
     copy_file "README.md.erb", "README.md"
   end
 
   describe "invoke" do
     it "generates a bin/deploy binary" do
       with_fake_app do
-        invoke! Suspenders::Production::DeploymentGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke! Suspenders::Production::DeploymentGenerator
 
         expect("bin/deploy").to exist_as_a_file.and be_executable
       end
@@ -16,7 +18,9 @@ RSpec.describe Suspenders::Production::DeploymentGenerator, type: :generator do
 
     it "generates a README entry" do
       with_fake_app do
-        invoke! Suspenders::Production::DeploymentGenerator, &before_invoke
+        copy_files_to_fake_app
+
+        invoke! Suspenders::Production::DeploymentGenerator
 
         expect("README.md").to match_contents(%r{bin/deploy})
       end
@@ -26,10 +30,9 @@ RSpec.describe Suspenders::Production::DeploymentGenerator, type: :generator do
   describe "revoke" do
     it "destroys the bin/deploy binary" do
       with_fake_app do
-        invoke_then_revoke!(
-          Suspenders::Production::DeploymentGenerator,
-          &before_invoke
-        )
+        copy_files_to_fake_app
+
+        invoke_then_revoke! Suspenders::Production::DeploymentGenerator
 
         expect("bin/deploy").not_to exist_as_a_file
       end
@@ -37,10 +40,9 @@ RSpec.describe Suspenders::Production::DeploymentGenerator, type: :generator do
 
     it "destroys the README entry" do
       with_fake_app do
-        invoke_then_revoke!(
-          Suspenders::Production::DeploymentGenerator,
-          &before_invoke
-        )
+        copy_files_to_fake_app
+
+        invoke_then_revoke! Suspenders::Production::DeploymentGenerator
 
         expect("README.md").not_to match_contents(%r{bin/deploy})
       end

@@ -14,8 +14,8 @@ module GeneratorTestHelpers
     call_generator!(new_revoke_generator(klass, *args, **kwargs))
   end
 
-  def invoke_then_revoke!(klass, *args, **kwargs, &block)
-    invoke! klass, *args, **kwargs, &block
+  def invoke_then_revoke!(klass, *args, **kwargs)
+    invoke! klass, *args, **kwargs
     revoke! klass, *args, **kwargs
   end
 
