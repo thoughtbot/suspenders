@@ -1,17 +1,18 @@
 RSpec::Matchers.define :match_contents do |regexp|
-  match do |filename|
-    @filename = filename
-    @contents = TestPaths.app_path.join(filename).read
-
-    @contents =~ regexp
+  def file_contents(filename)
+    TestPaths.app_path.join(filename).read
   end
 
-  failure_message do
-    <<~MESSAGE
-      #{@filename} does not match the regex #{regexp}.
-      Contents for #{@filename} are:
+  match do |filename|
+    file_contents(filename) =~ regexp
+  end
 
-      #{@contents}
+  failure_message do |filename|
+    <<~MESSAGE
+      #{filename} does not match the regex #{regexp}.
+      The contents for #{filename} are:
+
+      #{file_contents(filename)}
     MESSAGE
   end
 end
