@@ -18,14 +18,16 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
       end
     end
 
-    it "configures spec_helper.rb with SimpleCov" do
-      with_fake_app do
-        invoke! Suspenders::CiGenerator
+    context "when it is an rspec project" do
+      it "configures spec_helper.rb with SimpleCov" do
+        with_fake_app do
+          invoke! Suspenders::CiGenerator
 
-        expect("spec/spec_helper.rb")
-          .to match_contents(/SimpleCov.coverage_dir/)
-          .and match_contents(/SimpleCov.start/)
-          .and have_no_syntax_error
+          expect("spec/spec_helper.rb")
+            .to match_contents(/SimpleCov.coverage_dir/)
+            .and match_contents(/SimpleCov.start/)
+            .and have_no_syntax_error
+        end
       end
     end
 
@@ -66,13 +68,15 @@ RSpec.describe Suspenders::CiGenerator, type: :generator do
       end
     end
 
-    it "removes SimpleCov configuration from spec_helper.rb" do
-      with_fake_app do
-        invoke_then_revoke! Suspenders::CiGenerator
+    context "when it is an rspec project" do
+      it "removes SimpleCov configuration from spec_helper.rb" do
+        with_fake_app do
+          invoke_then_revoke! Suspenders::CiGenerator
 
-        expect("spec/spec_helper.rb")
-          .to not_match_contents(/SimpleCov/)
-          .and have_no_syntax_error
+          expect("spec/spec_helper.rb")
+            .to not_match_contents(/SimpleCov/)
+            .and have_no_syntax_error
+        end
       end
     end
 
