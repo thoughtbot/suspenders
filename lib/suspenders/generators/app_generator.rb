@@ -138,6 +138,7 @@ module Suspenders
     end
 
     def generate_default
+      run("spring stop > /dev/null 2>&1")
       generate("suspenders:runner")
       generate("suspenders:profiler")
       generate("suspenders:json")
