@@ -168,10 +168,12 @@ module Suspenders
       action_mailer_host "test", %("www.example.com")
       action_mailer_asset_host "test", %("http://www.example.com")
       action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
+      # rubocop:disable Lint/InterpolationCheck
       action_mailer_asset_host(
         "production",
-        %{ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))}
+        %q{"https://#{ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))}"}
       )
+      # rubocop:enable Lint/InterpolationCheck
     end
 
     def create_heroku_apps(flags)
@@ -206,7 +208,7 @@ module Suspenders
         path = File.join(destination_root, "config/#{config_file}")
 
         accepted_content = File.readlines(path).reject { |line|
-          line =~ /^.*#.*$/ || line =~ /^$\n/
+          line =~ /^\s*#.*$/ || line =~ /^$\n/
         }
 
         File.open(path, "w") do |file|
