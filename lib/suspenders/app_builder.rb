@@ -168,10 +168,12 @@ module Suspenders
       action_mailer_host "test", %("www.example.com")
       action_mailer_asset_host "test", %("http://www.example.com")
       action_mailer_host "production", %{ENV.fetch("APPLICATION_HOST")}
+      # rubocop:disable Lint/InterpolationCheck
       action_mailer_asset_host(
         "production",
         %q{"https://#{ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))}"}
       )
+      # rubocop:enable Lint/InterpolationCheck
     end
 
     def create_heroku_apps(flags)

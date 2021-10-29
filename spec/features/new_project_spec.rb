@@ -147,8 +147,10 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
 
   it "sets action mailer default host and asset host" do
     config_key = "config.action_mailer.asset_host"
+    # rubocop:disable Lint/InterpolationCheck
     config_value =
       %q{"https://#{ENV\.fetch\("ASSET_HOST", ENV\.fetch\("APPLICATION_HOST"\)\)}}
+    # rubocop:enable Lint/InterpolationCheck
     expect(production_config).to match(/#{config_key} = #{config_value}/)
   end
 
