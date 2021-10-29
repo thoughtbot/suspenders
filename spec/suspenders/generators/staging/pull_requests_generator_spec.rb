@@ -12,8 +12,15 @@ RSpec.describe Suspenders::Staging::PullRequestsGenerator, type: :generator do
 
         invoke! Suspenders::Staging::PullRequestsGenerator
 
-        expect("config/environments/production.rb")
-          .to match_contents(%r{HEROKU_APP_NAME})
+        expect(read_file("config/environments/production.rb")).to include(
+          [
+            "",
+            '  if ENV.fetch("HEROKU_APP_NAME", "").include?("staging-pr-")',
+            '    ENV["APPLICATION_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"',
+            '    ENV["ASSET_HOST"] = ENV["HEROKU_APP_NAME"] + ".herokuapp.com"',
+            "  end"
+          ].join("\n")
+        )
       end
     end
 

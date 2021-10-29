@@ -1,2 +1,4 @@
 ignore:
   - "templates/partials/db_optimizations_configuration.rb"
+  - "templates/partials/pull_requests_config.rb"
+  - "templates/partials/email_smtp.rb"

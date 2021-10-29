@@ -6,7 +6,7 @@ module Suspenders
       unless contents.gsub!(find, replace)
         raise "#{find.inspect} not found in #{relative_path}"
       end
-      File.open(path, "w") { |file| file.write(contents) }
+      File.write(path, contents)
     end
 
     def action_mailer_host(rails_env, host)

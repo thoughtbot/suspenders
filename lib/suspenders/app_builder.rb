@@ -205,15 +205,10 @@ module Suspenders
       ]
 
       config_files.each do |config_file|
-        path = File.join(destination_root, "config/#{config_file}")
+        path = Pathname(destination_root).join("config", config_file)
+        source = Actions::StripCommentsAction.call(path.read)
 
-        accepted_content = File.readlines(path).reject { |line|
-          line =~ /^\s*#.*$/ || line =~ /^$\n/
-        }
-
-        File.open(path, "w") do |file|
-          accepted_content.each { |line| file.puts line }
-        end
+        path.write(source)
       end
     end
 
