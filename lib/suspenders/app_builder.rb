@@ -206,7 +206,7 @@ module Suspenders
         path = File.join(destination_root, "config/#{config_file}")
 
         accepted_content = File.readlines(path).reject { |line|
-          line =~ /^.*#.*$/ || line =~ /^$\n/
+          line =~ /^\s*#.*$/ || line =~ /^$\n/
         }
 
         File.open(path, "w") do |file|

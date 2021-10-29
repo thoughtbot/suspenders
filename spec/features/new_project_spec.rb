@@ -214,7 +214,7 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     ]
 
     config_files.each do |file|
-      expect(file).not_to match(%r{.*#.*})
+      expect(file).not_to match(/^\s*#.*$/)
       expect(file).not_to eq(file.strip)
       expect(file).not_to match(%r{^$\n\n})
     end
