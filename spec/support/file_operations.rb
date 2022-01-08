@@ -1,6 +1,10 @@
 module FileOperations
   module_function
 
+  def read_file(file)
+    TestPaths.app_path.join(file).read
+  end
+
   def touch_file(file)
     path = app_path.join(file)
     path.join("..").mkpath

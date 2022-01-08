@@ -6,28 +6,28 @@ module Suspenders
     hide!
 
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
-                            desc: "Configure for selected database (options: #{DATABASES.join("/")})"
+      desc: "Configure for selected database (options: #{DATABASES.join("/")})"
 
     class_option :heroku, type: :boolean, aliases: "-H", default: false,
-                          desc: "Create staging and production Heroku apps"
+      desc: "Create staging and production Heroku apps"
 
     class_option :heroku_flags, type: :string, default: "",
-                                desc: "Set extra Heroku flags"
+      desc: "Set extra Heroku flags"
 
     class_option :github, type: :string, default: nil,
-                          desc: "Create Github repository and add remote origin pointed to repo"
+      desc: "Create Github repository and add remote origin pointed to repo"
 
     class_option :version, type: :boolean, aliases: "-v", group: :suspenders,
-                           desc: "Show Suspenders version number and quit"
+      desc: "Show Suspenders version number and quit"
 
     class_option :help, type: :boolean, aliases: "-h", group: :suspenders,
-                        desc: "Show this help message and quit"
+      desc: "Show this help message and quit"
 
     class_option :path, type: :string, default: nil,
-                        desc: "Path to the gem"
+      desc: "Path to the gem"
 
     class_option :skip_test, type: :boolean, default: true,
-                             desc: "Skip Test Unit"
+      desc: "Skip Test Unit"
 
     class_option :skip_system_test,
       type: :boolean, default: true, desc: "Skip system test files"

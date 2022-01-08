@@ -7,14 +7,14 @@ module Suspenders
         copy_file "smtp.rb", "config/smtp.rb"
 
         prepend_file "config/environments/production.rb",
-          %{require Rails.root.join("config/smtp")\n}
+          %{require Rails.root.join("config/smtp")\n\n}
       end
 
       def use_smtp
         inject_template_into_file(
           "config/environments/production.rb",
           "partials/email_smtp.rb",
-          after: "config.action_mailer.perform_caching = false"
+          after: "config.action_mailer.perform_caching = false\n"
         )
       end
 
