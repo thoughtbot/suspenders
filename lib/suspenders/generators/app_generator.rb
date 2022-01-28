@@ -3,6 +3,8 @@ require "rails/generators/rails/app/app_generator"
 
 module Suspenders
   class AppGenerator < Rails::Generators::AppGenerator
+    include ExitOnFailure
+
     hide!
 
     class_option :database, type: :string, aliases: "-d", default: "postgresql",
@@ -34,6 +36,9 @@ module Suspenders
 
     class_option :skip_turbolinks,
       type: :boolean, default: true, desc: "Skip turbolinks gem"
+
+    class_option :skip_spring, type: :boolean, default: true,
+      desc: class_options[:skip_spring].description
 
     def finish_template
       invoke :suspenders_customization
@@ -138,18 +143,16 @@ module Suspenders
     end
 
     def generate_default
-      run("spring stop > /dev/null 2>&1")
+      run("spring stop > /dev/null 2>&1 || true")
       generate("suspenders:runner")
       generate("suspenders:profiler")
       generate("suspenders:json")
       generate("suspenders:static")
-      generate("suspenders:stylesheet_base")
+      generate("suspenders:stylesheet_base") unless options[:api]
       generate("suspenders:testing")
       generate("suspenders:ci")
       generate("suspenders:js_driver")
-      unless options[:api]
-        generate("suspenders:forms")
-      end
+      generate("suspenders:forms") unless options[:api]
       generate("suspenders:db_optimizations")
       generate("suspenders:factories")
       generate("suspenders:lint")

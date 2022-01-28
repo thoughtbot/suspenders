@@ -1,3 +1,4 @@
+require "English"
 require_relative "env_path"
 require_relative "file_operations"
 require_relative "test_paths"
@@ -14,13 +15,31 @@ module FeatureTestHelpers
     arguments = "--path=#{root_path} #{arguments}"
     run_in_tmp do
       EnvPath.prepend_env_path!(fake_bin_path)
+      command = "#{suspenders_bin} _#{rails_version}_ #{APP_NAME} #{arguments}"
 
       with_revision_for_honeybadger do
-        debug `#{suspenders_bin} _#{rails_version}_ #{APP_NAME} #{arguments}`
+        result = `#{command}`
+        debug result
       end
+
+      yield command if block_given?
 
       Dir.chdir(APP_NAME) do
         commit_all
+      end
+    end
+  end
+
+  def run_suspenders!(*args)
+    run_suspenders(*args) do |command|
+      if $CHILD_STATUS.exitstatus.nonzero?
+        raise <<~MESSAGE
+          Suspenders failed. To debug, generate an app with:
+
+          #{command}
+
+          Or run rspec with SHOW_DEBUG=true to display the full output.
+        MESSAGE
       end
     end
   end
@@ -158,7 +177,7 @@ module FeatureTestHelpers
   end
 
   def debug(output)
-    if ENV["DEBUG"]
+    if ENV["SHOW_DEBUG"]
       warn output
     end
 
