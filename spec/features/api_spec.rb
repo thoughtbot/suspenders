@@ -7,7 +7,7 @@ RSpec.describe "Suspend a new project with --api flag", type: :feature do
   end
 
   it "ensures project specs pass" do
-    run_suspenders("--api")
+    run_suspenders!("--api")
 
     Dir.chdir(project_path) do
       Bundler.with_unbundled_env do

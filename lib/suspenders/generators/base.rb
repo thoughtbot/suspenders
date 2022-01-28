@@ -5,6 +5,7 @@ module Suspenders
   module Generators
     class Base < Rails::Generators::Base
       include Suspenders::Actions
+      include ExitOnFailure
 
       def self.default_source_root
         File.expand_path(File.join("..", "..", "..", "templates"), __dir__)
