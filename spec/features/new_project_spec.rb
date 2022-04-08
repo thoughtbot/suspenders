@@ -173,6 +173,14 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     expect(layout_file).to match(/<html lang="en">/)
   end
 
+  it "configures requests specs" do
+    application_config = IO.read("#{project_path}/config/application.rb")
+
+    expect(application_config).to match(
+      /^ +generate.request_specs true$/
+    )
+  end
+
   it "configs active job queue adapter" do
     application_config = IO.read("#{project_path}/config/application.rb")
 

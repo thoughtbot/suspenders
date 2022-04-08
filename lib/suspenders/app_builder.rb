@@ -81,7 +81,8 @@ module Suspenders
     config.generators do |generate|
       generate.helper false
       generate.javascripts false
-      generate.request_specs false
+      generate.controller_specs false
+      generate.request_specs true
       generate.routing_specs false
       generate.stylesheets false
       generate.test_framework :rspec
@@ -223,7 +224,7 @@ module Suspenders
         <<~EOS
           task(:default).clear
           task default: [:spec]
-          
+
           if defined? RSpec
             task(:spec).clear
             RSpec::Core::RakeTask.new(:spec) do |t|
