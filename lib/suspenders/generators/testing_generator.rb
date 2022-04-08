@@ -3,7 +3,7 @@ require_relative "base"
 module Suspenders
   class TestingGenerator < Generators::Base
     def add_testing_gems
-      gem "rspec-rails", "~> 3.6", group: %i[development test]
+      gem "rspec-rails", "~> 5.1", group: %i[development test]
       gem "shoulda-matchers", group: :test
 
       Bundler.with_unbundled_env { run "bundle install" }
