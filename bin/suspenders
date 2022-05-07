@@ -4,6 +4,12 @@ require 'pathname'
 source_path = (Pathname.new(__FILE__).dirname + '../lib').expand_path
 $LOAD_PATH << source_path
 
+activate_rails_version = ->(rails_version) do
+  rails_bin_path = Gem.activate_bin_path("railties", "rails", rails_version)
+  rails_path = File.expand_path("../..", rails_bin_path)
+  $LOAD_PATH.unshift(rails_path)
+end
+
 if str = ARGV.first
   str = str.b[/\A_(.*)_\z/, 1]
 
@@ -12,23 +18,31 @@ if str = ARGV.first
     ARGV.shift
 
     begin
-      rails_bin_path = Gem.activate_bin_path("railties", "rails", rails_version)
-      rails_path = File.expand_path("../..", rails_bin_path)
-      $LOAD_PATH.unshift(rails_path)
+      activate_rails_version.call(rails_version)
     rescue Gem::GemNotFoundException
-      $stderr.puts "#{rails_version} requested but no Rails is installed yet. Hoping for the best with the default."
+      abort "Suspenders error: Unable to find Rails version #{rails_version}"
     end
+  else
+    require "bundler"
+
+    spec = Bundler.definition.specs.find { |s| s.name == "rails" }
+
+    if spec.nil?
+      abort "Suspenders error: Unable to find Rails in Bundle"
+    end
+
+    activate_rails_version.call(spec.version.to_s)
   end
 end
 
-require 'suspenders'
+require "suspenders"
 
 if ARGV.empty?
   puts "Please provide a path for the new application"
   puts
   puts "See --help for more info"
   exit 0
-elsif ['-v', '--version'].include? ARGV[0]
+elsif ["-v", "--version"].include? ARGV[0]
   puts Suspenders::VERSION
   exit 0
 end
