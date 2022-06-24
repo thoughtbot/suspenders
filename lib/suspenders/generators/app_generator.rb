@@ -59,6 +59,7 @@ module Suspenders
       invoke :generate_deployment_default
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
+      invoke :run_database_migrations
       invoke :outro
     end
 
@@ -140,6 +141,10 @@ module Suspenders
 
     def remove_routes_comment_lines
       build :remove_routes_comment_lines
+    end
+
+    def run_database_migrations
+      build :run_database_migrations
     end
 
     def generate_default
