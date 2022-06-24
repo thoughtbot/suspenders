@@ -135,6 +135,10 @@ module Suspenders
       bundle_command "exec rails db:create db:migrate"
     end
 
+    def run_database_migrations
+      bundle_command "exec rails db:migrate"
+    end
+
     def replace_gemfile(path)
       template "Gemfile.erb", "Gemfile", force: true do |content|
         if path
