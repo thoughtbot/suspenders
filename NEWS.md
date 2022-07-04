@@ -1,7 +1,24 @@
-Unreleased
+1.56.0 (July 4, 2022)
 
-* Removed: preloader generator / spring
-* Upgraded: Ruby to version 2.7.1
+Maintenance release
+
+* Fixed: Make Suspenders fail if running with an unsupported Rails version
+* Added: Update default configuration to use request specs
+* Added: Add missing Errno::ECONNREFUSED to HTTP_ERRORS
+* Fixed: Drop use of git in gemspec
+* Fixed: Enforce bundler >= 2.1.0
+* Fixed: Make suspenders abort when something goes wrong
+* Fixed: Reliability and aesthetics of the config files comment stripper
+* Fixed: ActionMailer asset host in the production configuration
+* Added: Configure the oj gem (fast JSON parsing) when generating a new application
+* Fixed: Improve error message of the match_contents matcher
+* Fixed: Convert generator tests to unit tests thus speeding up the test suite
+* Removed: Preloader generator / spring
+* Added: Pull in DATABASE_URL env var explicitly in database.yml
+* Removed: Travis CI configuration
+* Upgraded: Ruby to version 2.7.4
+* Added: A GitHub Action for CI
+* Fixed: Run bin/suspenders in both CLI and tests against a fixed Rails version
 
 1.55.1 (September 11, 2020)
 
