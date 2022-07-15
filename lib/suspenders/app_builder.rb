@@ -139,10 +139,10 @@ module Suspenders
       bundle_command "exec rails db:migrate"
     end
 
-    def replace_gemfile(path)
+    def replace_gemfile
       template "Gemfile.erb", "Gemfile", force: true do |content|
-        if path
-          content.gsub(%r{gem .suspenders.}) { |s| %(#{s}, path: "#{path}") }
+        if development_env?
+          content.gsub(%r{gem .suspenders.}) { |s| %(#{s}, path: "#{root_path}") }
         else
           content
         end
@@ -240,6 +240,14 @@ module Suspenders
     end
 
     private
+
+    def root_path
+      @root_path ||= Pathname(__dir__).join("..", "..").expand_path
+    end
+
+    def development_env?
+      root_path.join("suspenders.gemspec").exist?
+    end
 
     def raise_on_missing_translations_in(environment)
       config = "config.action_view.raise_on_missing_translations = true"

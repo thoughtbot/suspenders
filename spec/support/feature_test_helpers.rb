@@ -12,10 +12,9 @@ module FeatureTestHelpers
   end
 
   def run_suspenders(arguments = nil)
-    arguments = "--path=#{root_path} #{arguments}"
     run_in_tmp do
       EnvPath.prepend_env_path!(fake_bin_path)
-      command = "#{suspenders_bin} _#{rails_version}_ #{APP_NAME} #{arguments}"
+      command = "#{suspenders_bin} #{APP_NAME} #{arguments}"
 
       with_revision_for_honeybadger do
         result = `#{command}`
@@ -58,7 +57,7 @@ module FeatureTestHelpers
       EnvPath.prepend_env_path!(fake_bin_path)
 
       with_revision_for_honeybadger do
-        debug `#{system_rails_bin} _#{rails_version}_ new #{APP_NAME} --skip-spring -d postgresql -m #{rails_template_path}`
+        debug `#{system_rails_bin} new #{APP_NAME} --skip-spring -d postgresql -m #{rails_template_path}`
       end
 
       Dir.chdir(APP_NAME) do
@@ -125,10 +124,6 @@ module FeatureTestHelpers
 
   def rails_template_path
     root_path.join("spec", "support", "rails_template.rb")
-  end
-
-  def rails_version
-    Rails::VERSION::STRING
   end
 
   def commit_all

@@ -25,9 +25,6 @@ module Suspenders
     class_option :help, type: :boolean, aliases: "-h", group: :suspenders,
       desc: "Show this help message and quit"
 
-    class_option :path, type: :string, default: nil,
-      desc: "Path to the gem"
-
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
@@ -64,7 +61,7 @@ module Suspenders
     end
 
     def customize_gemfile
-      build :replace_gemfile, options[:path]
+      build :replace_gemfile
       bundle_command "install"
     end
 
