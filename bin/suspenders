@@ -23,13 +23,9 @@ if str = ARGV.first
       abort "Suspenders error: Unable to find Rails version #{rails_version}"
     end
   else
-    require "bundler"
+    require "suspenders/version"
 
-    spec = Bundler.definition.specs.find { |s| s.name == "rails" }
-
-    if spec.nil?
-      abort "Suspenders error: Unable to find Rails in Bundle"
-    end
+    spec = Gem::Specification.find_by_name("rails", Suspenders::RAILS_VERSION)
 
     activate_rails_version.call(spec.version.to_s)
   end
