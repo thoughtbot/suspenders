@@ -1,3 +1,10 @@
+1.56.1 (July 17, 2022)
+
+Fixes a critical error with the previous release
+
+* Run database migrations as the last step of bin/suspenders
+* Fix bundler error on bin/suspenders script
+
 1.56.0 (July 4, 2022)
 
 Maintenance release
