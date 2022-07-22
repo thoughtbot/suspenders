@@ -3,7 +3,7 @@ require_relative "base"
 module Suspenders
   class AdvisoriesGenerator < Generators::Base
     def bundler_audit_gem
-      gem "bundler-audit", ">= 0.7.0", require: false, group: %i[development test]
+      gem "bundler-audit", ">= 0.7.0", require: false, group: [:development, :test]
       Bundler.with_unbundled_env { run "bundle install" }
     end
 

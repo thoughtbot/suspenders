@@ -3,7 +3,7 @@ require_relative "base"
 module Suspenders
   class JobsGenerator < Generators::Base
     def add_jobs_gem
-      append_file "Gemfile", %(\ngem "sidekiq"\n)
+      gem "sidekiq"
       Bundler.with_unbundled_env { run "bundle install" }
     end
 

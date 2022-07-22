@@ -31,6 +31,27 @@ module Suspenders
       action ExpandJson.new(destination_root, file, data)
     end
 
+    def gem(*args)
+      options = args.extract_options!
+      name, *versions = args
+
+      parts = [quote(name)]
+
+      if (versions = versions.any? ? versions : options.delete(:version))
+        versions = Array(versions)
+        versions.each do |version|
+          parts << quote(version)
+        end
+      end
+
+      parts << quote(options) unless options.empty?
+
+      str = []
+      str << indentation
+      str << "gem #{parts.join(", ")}"
+      append_file "Gemfile", %(\n#{str.join}\n), verbose: false
+    end
+
     class ExpandJson
       def initialize(destination_root, file, data)
         @destination_root = destination_root
