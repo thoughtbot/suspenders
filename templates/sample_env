@@ -3,6 +3,7 @@ ASSET_HOST=localhost:3000
 APPLICATION_HOST=localhost:3000
 PORT=3000
 RACK_ENV=development
+REDIS_URL=localhost:6379
 SECRET_KEY_BASE=development_secret
 SMTP_ADDRESS=smtp.example.com
 SMTP_DOMAIN=example.com

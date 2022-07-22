@@ -184,19 +184,14 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
   it "configs active job queue adapter" do
     application_config = IO.read("#{project_path}/config/application.rb")
 
-    expect(application_config).to match(
-      /^ +config.active_job.queue_adapter = :delayed_job$/
-    )
+    expect(application_config).to match(/^ +config.active_job.queue_adapter = :sidekiq$/) &
+      match(/^ +config.action_mailer.deliver_later_queue_name = nil$/) &
+      match(/^ +config.action_mailbox.queues.routing = nil$/) &
+      match(/^ +config.active_storage.queues.analysis = nil$/) &
+      match(/^ +config.active_storage.queues.purge = nil$/) &
+      match(/^ +config.active_storage.queues.mirror = nil$/)
     expect(test_config).to match(
       /^ +config.active_job.queue_adapter = :inline$/
-    )
-  end
-
-  it "configs background jobs for rspec" do
-    delayed_job = IO.read("#{project_path}/bin/delayed_job")
-
-    expect(delayed_job).to match(
-      /^require 'delayed\/command'$/
     )
   end
 

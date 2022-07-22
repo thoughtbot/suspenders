@@ -17,7 +17,7 @@ module Suspenders
             RACK_ENV: {required: true},
             SECRET_KEY_BASE: {generator: "secret"}
           },
-          addons: ["heroku-postgresql"]
+          addons: ["heroku-postgresql", "heroku-redis"]
         )
       end
     end
