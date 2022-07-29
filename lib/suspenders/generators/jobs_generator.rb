@@ -3,12 +3,8 @@ require_relative "base"
 module Suspenders
   class JobsGenerator < Generators::Base
     def add_jobs_gem
-      gem "delayed_job_active_record"
+      gem "sidekiq"
       Bundler.with_unbundled_env { run "bundle install" }
-    end
-
-    def configure_background_jobs_for_rspec
-      generate "delayed_job:active_record"
     end
 
     def initialize_active_job
@@ -19,9 +15,12 @@ module Suspenders
     end
 
     def configure_active_job
-      configure_application_file(
-        "config.active_job.queue_adapter = :delayed_job"
-      )
+      configure_application_file("config.active_job.queue_adapter = :sidekiq")
+      configure_application_file("config.action_mailer.deliver_later_queue_name = nil")
+      configure_application_file("config.action_mailbox.queues.routing = nil")
+      configure_application_file("config.active_storage.queues.analysis = nil")
+      configure_application_file("config.active_storage.queues.purge = nil")
+      configure_application_file("config.active_storage.queues.mirror = nil")
       configure_environment "test", "config.active_job.queue_adapter = :inline"
     end
 

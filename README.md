@@ -37,7 +37,7 @@ It includes application gems like:
 * [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
 * [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
 * [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
-* [Delayed Job](https://github.com/collectiveidea/delayed_job) for background
+* [Sidekiq](https://github.com/mperham/sidekiq) for background
   processing
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [Honeybadger](https://www.honeybadger.io/?affiliate=A43uwl) for exception notification
@@ -182,6 +182,8 @@ requires Google Chrome or Chromium.
 [Google Chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
 
 PostgreSQL needs to be installed and running for the `db:create` rake task.
+
+Redis needs to be installed and running for Sidekiq
 
 ## Issues
 
