@@ -100,13 +100,13 @@ module Suspenders
 
     def setup_asset_host
       replace_in_file "config/environments/production.rb",
-        "# config.asset_host = 'http://assets.example.com'",
+        %(# config.asset_host = "http://assets.example.com"),
         'config.asset_host = ENV.fetch("ASSET_HOST", ENV.fetch("APPLICATION_HOST"))'
 
       if File.exist?("config/initializers/assets.rb")
         replace_in_file "config/initializers/assets.rb",
-          "config.assets.version = '1.0'",
-          'config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
+          %(Rails.application.config.assets.version = "1.0"),
+          'Rails.application.config.assets.version = (ENV["ASSETS_VERSION"] || "1.0")'
       end
 
       config = <<~EOD

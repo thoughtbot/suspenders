@@ -34,9 +34,6 @@ module Suspenders
     class_option :skip_turbolinks,
       type: :boolean, default: true, desc: "Skip turbolinks gem"
 
-    class_option :skip_spring, type: :boolean, default: true,
-      desc: class_options[:skip_spring].description
-
     def finish_template
       invoke :suspenders_customization
       super
