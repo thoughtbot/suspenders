@@ -75,6 +75,8 @@ And testing gems like:
 * [Capybara](https://github.com/jnicklas/capybara) and
   [Google Chromedriver]
   integration testing
+* [capybara_accessibility_audit](https://github.com/thoughtbot/capybara_accessibility_audit) and
+  [capybara_accessible_selectors](https://github.com/citizensadvice/capybara_accessible_selectors)
 * [Factory Bot](https://github.com/thoughtbot/factory_bot) for test data
 * [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
   HTML forms
