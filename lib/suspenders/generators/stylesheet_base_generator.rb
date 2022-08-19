@@ -23,6 +23,7 @@ module Suspenders
       run "bitters install --path app/assets/stylesheets"
     end
 
+    # TODO: This is breaking the test suite
     def install_normalize_css
       run "bin/yarn add normalize.css"
     end
