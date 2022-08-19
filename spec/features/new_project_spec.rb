@@ -283,6 +283,7 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     )
   end
 
+  # TODO: Look for Turbo Drive
   it "doesn't use turbolinks" do
     app_js = read_project_file(%w[app javascript packs application.js])
     expect(app_js).not_to match(/turbolinks/)
