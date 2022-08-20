@@ -283,12 +283,6 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     )
   end
 
-  # TODO: Look for Turbo Drive
-  it "doesn't use turbolinks" do
-    app_js = read_project_file(%w[app javascript packs application.js])
-    expect(app_js).not_to match(/turbolinks/)
-  end
-
   it "configures Timecop safe mode" do
     spec_helper = read_project_file(%w[spec spec_helper.rb])
     expect(spec_helper).to match(/Timecop.safe_mode = true/)

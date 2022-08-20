@@ -31,10 +31,6 @@ module Suspenders
     class_option :skip_system_test,
       type: :boolean, default: true, desc: "Skip system test files"
 
-    # TODO: We can remove this
-    class_option :skip_turbolinks,
-      type: :boolean, default: true, desc: "Skip turbolinks gem"
-
     def finish_template
       invoke :suspenders_customization
       super
