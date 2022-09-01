@@ -1,5 +1,6 @@
 require "suspenders/version"
 require "suspenders/exit_on_failure"
+require "suspenders/generators/accessibility_generator"
 require "suspenders/generators/advisories_generator"
 require "suspenders/generators/app_generator"
 require "suspenders/generators/static_generator"
