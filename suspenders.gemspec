@@ -4,7 +4,7 @@ require "date"
 
 Gem::Specification.new do |s|
   s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
-  s.required_rubygems_version = ">= 3.0.0"
+  s.required_rubygems_version = ">= 3.1.2"
   s.authors = ["thoughtbot"]
 
   s.description = <<~HERE
