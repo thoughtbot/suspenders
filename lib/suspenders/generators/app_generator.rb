@@ -34,6 +34,9 @@ module Suspenders
     class_option :version, type: :boolean, aliases: "-v", group: :suspenders,
       desc: "Show Suspenders version number and quit"
 
+    class_option :skip_system_test,
+      type: :boolean, default: true, desc: "Skip system test files"
+
     def finish_template
       invoke :suspenders_customization
       super
