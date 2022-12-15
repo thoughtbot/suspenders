@@ -28,14 +28,11 @@ module Suspenders
     class_option :skip_test, type: :boolean, default: true,
       desc: "Skip Test Unit"
 
-    class_option :css,
-      type: :string, default: "postcss", aliases: "-c", desc: "Choose CSS processor"
-
-    class_option :version, type: :boolean, aliases: "-v", group: :suspenders,
-      desc: "Show Suspenders version number and quit"
-
     class_option :skip_system_test,
       type: :boolean, default: true, desc: "Skip system test files"
+
+    class_option :css,
+      type: :string, default: "postcss", aliases: "-c", desc: "Choose CSS processor"
 
     def finish_template
       invoke :suspenders_customization
