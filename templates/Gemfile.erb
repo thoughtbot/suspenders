@@ -7,9 +7,6 @@ end
 
 ruby "<%= Suspenders::RUBY_VERSION %>"
 
-<% unless options[:api] %>
-gem "autoprefixer-rails"
-<% end %>
 gem "bootsnap", require: false
 gem "honeybadger"
 gem "pg"
@@ -28,7 +25,8 @@ gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 <%# gem "webpacker" %>
 # Rails 7
 gem "sprockets-rails"
-gem "importmap-rails"
+gem "jsbundling-rails"
+gem "cssbundling-rails"
 gem "turbo-rails"
 gem "stimulus-rails"
 group :development do
