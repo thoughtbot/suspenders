@@ -16,7 +16,9 @@ gem "rails", "<%= Suspenders::RAILS_VERSION %>"
 gem "recipient_interceptor"
 gem "sassc-rails"
 gem "skylight"
+<% if options[:api] %>
 gem "sprockets", "< 4"
+<% end %>
 gem "title"
 gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
 <%# TODO: Remove this, and consider passing an option to the `rails new` command for esbuild  %>
