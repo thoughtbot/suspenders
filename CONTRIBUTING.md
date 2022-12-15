@@ -20,7 +20,7 @@ Make sure the tests pass:
 Make your change. Write tests. Follow our [style guide][style]. Make the tests
 pass:
 
-[style]: https://github.com/thoughtbot/guides/tree/master/style
+[style]: https://github.com/thoughtbot/guides/blob/main/ruby/README.md
 
     rake
 
