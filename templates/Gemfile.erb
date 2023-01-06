@@ -7,11 +7,14 @@ end
 
 ruby "<%= Suspenders::RUBY_VERSION %>"
 
-<% unless options[:api] %>
-gem "autoprefixer-rails"
+<% if options[:api] %>
+gem "sprockets", "< 4"
 <% end %>
+
 gem "bootsnap", require: false
+gem "cssbundling-rails"
 gem "honeybadger"
+gem "jsbundling-rails"
 gem "pg"
 gem "puma"
 gem "rack-canonical-host"
@@ -19,10 +22,11 @@ gem "rails", "<%= Suspenders::RAILS_VERSION %>"
 gem "recipient_interceptor"
 gem "sassc-rails"
 gem "skylight"
-gem "sprockets", "< 4"
+gem "sprockets-rails"
+gem "stimulus-rails"
 gem "title"
+gem "turbo-rails"
 gem "tzinfo-data", platforms: [:mingw, :x64_mingw, :mswin, :jruby]
-gem "webpacker"
 
 group :development do
   gem "listen"

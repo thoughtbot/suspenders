@@ -11,11 +11,6 @@ module Suspenders
       copy_file "flashes_helper.rb", "app/helpers/flashes_helper.rb"
     end
 
-    def create_shared_javascripts
-      copy_file "_javascript.html.erb",
-        "app/views/application/_javascript.html.erb"
-    end
-
     def create_shared_css_overrides
       copy_file "_css_overrides.html.erb",
         "app/views/application/_css_overrides.html.erb"

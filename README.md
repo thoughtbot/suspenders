@@ -34,14 +34,10 @@ generated projectname/Gemfile.
 
 It includes application gems like:
 
-* [Autoprefixer Rails](https://github.com/ai/autoprefixer-rails) for CSS vendor prefixes
-* [Bourbon](https://github.com/thoughtbot/bourbon) for Sass mixins
-* [Bitters](https://github.com/thoughtbot/bitters) for scaffold application styles
 * [Sidekiq](https://github.com/mperham/sidekiq) for background
   processing
 * [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
 * [Honeybadger](https://www.honeybadger.io/?affiliate=A43uwl) for exception notification
-* [Normalize](https://necolas.github.io/normalize.css/) for resetting browser styles
 * [Oj](http://www.ohler.com/oj/)
 * [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
 * [Rack Canonical Host](https://github.com/tylerhunt/rack-canonical-host) to
@@ -105,6 +101,8 @@ Suspenders also comes with:
 * Configuration for [stylelint][stylelint]
 * The analytics adapter [Segment][segment] (and therefore config for Google
   Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
+* [PostCSS Autoprefixer][autoprefixer] for CSS vendor prefixes
+* [PostCSS Normalize][normalize] for resetting browser styles
 
 [setup]: https://robots.thoughtbot.com/bin-setup
 [compress]: https://robots.thoughtbot.com/content-compression-with-rack-deflater
@@ -115,6 +113,8 @@ Suspenders also comes with:
 [hound]: https://houndci.com
 [stylelint]: https://stylelint.io/
 [segment]: https://segment.com
+[autoprefixer]: https://github.com/postcss/autoprefixer
+[normalize]: https://github.com/csstools/postcss-normalize
 
 ## Heroku
 

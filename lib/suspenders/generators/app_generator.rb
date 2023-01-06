@@ -31,15 +31,17 @@ module Suspenders
     class_option :skip_system_test,
       type: :boolean, default: true, desc: "Skip system test files"
 
-    class_option :skip_turbolinks,
-      type: :boolean, default: true, desc: "Skip turbolinks gem"
-
-    class_option :skip_spring, type: :boolean, default: true,
-      desc: class_options[:skip_spring].description
+    class_option :css,
+      type: :string, default: "postcss", aliases: "-c", desc: "Choose CSS processor"
 
     def finish_template
       invoke :suspenders_customization
       super
+    end
+
+    def leftovers
+      generate("suspenders:stylesheet_base") unless options[:api] || options[:css] != "postcss"
+      invoke :outro
     end
 
     def suspenders_customization
@@ -57,7 +59,7 @@ module Suspenders
       invoke :remove_config_comment_lines
       invoke :remove_routes_comment_lines
       invoke :run_database_migrations
-      invoke :outro
+      invoke :generate_views
     end
 
     def customize_gemfile
@@ -83,6 +85,7 @@ module Suspenders
       build :set_test_delivery_method
       build :raise_on_unpermitted_parameters
       build :provide_setup_script
+      build :provide_yarn_script
       build :configure_generators
       build :configure_i18n_for_missing_translations
       build :configure_quiet_assets
@@ -150,7 +153,6 @@ module Suspenders
       generate("suspenders:profiler")
       generate("suspenders:json")
       generate("suspenders:static")
-      generate("suspenders:stylesheet_base") unless options[:api]
       generate("suspenders:testing")
       generate("suspenders:ci")
       generate("suspenders:js_driver")
@@ -180,7 +182,7 @@ module Suspenders
     end
 
     def outro
-      say "Congratulations! You just pulled our suspenders."
+      say "\nCongratulations! You just pulled our suspenders."
       say honeybadger_outro
     end
 

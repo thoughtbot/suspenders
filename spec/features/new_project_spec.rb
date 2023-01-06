@@ -14,9 +14,6 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
       /^ruby "#{Suspenders::RUBY_VERSION}"$/o
     )
     expect(gemfile_file).to match(
-      /^gem "autoprefixer-rails"$/
-    )
-    expect(gemfile_file).to match(
       /^gem "rails", "#{Suspenders::RAILS_VERSION}"$/o
     )
   end
@@ -64,6 +61,14 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
 
   it "makes bin/setup executable" do
     expect("bin/setup").to be_executable
+  end
+
+  it "adds bin/yarn file" do
+    expect(File).to exist("#{project_path}/bin/yarn")
+  end
+
+  it "makes bin/setup executable" do
+    expect("bin/yarn").to be_executable
   end
 
   it "adds support file for action mailer" do
@@ -255,10 +260,6 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     expect(app_json_file).to match(/"name":\s*"#{app_name.dasherize}"/)
   end
 
-  def app_name
-    TestPaths::APP_NAME
-  end
-
   it "adds high_voltage" do
     gemfile = IO.read("#{project_path}/Gemfile")
     expect(gemfile).to match(/high_voltage/)
@@ -270,27 +271,53 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     expect(gemfile).to match(/sassc-rails/)
   end
 
-  it "adds and configures bourbon" do
-    gemfile = read_project_file("Gemfile")
-
-    expect(gemfile).to match(/bourbon/)
-  end
-
-  it "configures bourbon, and bitters" do
-    app_css = read_project_file(%w[app assets stylesheets application.scss])
-    expect(app_css).to match(
-      /normalize\.css\/normalize.*bourbon.*base/m
-    )
-  end
-
-  it "doesn't use turbolinks" do
-    app_js = read_project_file(%w[app javascript packs application.js])
-    expect(app_js).not_to match(/turbolinks/)
-  end
-
   it "configures Timecop safe mode" do
     spec_helper = read_project_file(%w[spec spec_helper.rb])
     expect(spec_helper).to match(/Timecop.safe_mode = true/)
+  end
+
+  it "adds and configures a bundler strategy for css and js" do
+    gemfile = read_project_file("Gemfile")
+
+    expect(gemfile).to match(/cssbundling-rails/)
+    expect(gemfile).to match(/jsbundling-rails/)
+    expect(File).to exist("#{project_path}/postcss.config.js")
+    expect(File).to exist("#{project_path}/package.json")
+    expect(File).to exist("#{project_path}/bin/dev")
+    expect(File).to exist("#{project_path}/app/assets/stylesheets/application.postcss.css")
+    expect(File).to exist("#{project_path}/app/javascript/application.js")
+  end
+
+  it "adds normalize.css" do
+    stylesheet = read_project_file %w[app assets stylesheets application.postcss.css]
+    dependencies = read_project_file %w[package.json]
+    configuration = read_project_file %w[postcss.config.js]
+
+    expect(stylesheet).to include(%(@import "normalize.css"))
+    expect(dependencies).to include(%("postcss-normalize"))
+    expect(configuration).to include(%(require('postcss-normalize')))
+  end
+
+  it "imports css and js" do
+    layout = read_project_file %w[app views layouts application.html.erb]
+
+    expect(layout)
+      .to include(%(<%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>))
+    expect(layout)
+      .to include(%(<%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>))
+  end
+
+  it "loads security helpers" do
+    layout = read_project_file %w[app views layouts application.html.erb]
+
+    expect(layout)
+      .to include(%(<%= csp_meta_tag %>))
+    expect(layout)
+      .to include(%(<%= csrf_meta_tags %>))
+  end
+
+  def app_name
+    TestPaths::APP_NAME
   end
 
   def development_config

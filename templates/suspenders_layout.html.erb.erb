@@ -1,21 +1,23 @@
 <!DOCTYPE html>
 <html lang="<%= I18n.locale %>">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <%%#
     Configure default and controller-, and view-specific titles in
     config/locales/en.yml. For more see:
     https://github.com/calebthompson/title#usage
   %>
   <title><%%= title %></title>
-  <%%= stylesheet_link_tag :application, media: "all" %>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <%%= csrf_meta_tags %>
+  <%%= csp_meta_tag %>
+
+  <%%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 <body>
   <%%= render "flashes" -%>
   <%%= yield %>
-  <%%= render "javascript" %>
   <%%= render "css_overrides" %>
 </body>
 </html>
