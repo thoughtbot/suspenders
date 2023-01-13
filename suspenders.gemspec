@@ -4,7 +4,7 @@ require "date"
 
 Gem::Specification.new do |s|
   s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
-  s.required_rubygems_version = ">= 2.7.4"
+  s.required_rubygems_version = ">= 3.0.0"
   s.authors = ["thoughtbot"]
 
   s.description = <<~HERE
@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
   s.summary = "Generate a Rails app using thoughtbot's best practices."
   s.version = Suspenders::VERSION
 
-  s.add_dependency "bitters", ">= 2.0.4"
   s.add_dependency "parser", ">= 3.0"
   s.add_dependency "bundler", ">= 2.1"
   s.add_dependency "rails", Suspenders::RAILS_VERSION

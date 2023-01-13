@@ -1,3 +1,16 @@
+20230113.0 (January, 13, 2023)
+
+Support Rails 7 and Ruby 3. Introduce CalVer.
+
+* Upgraded: Ruby to 3.0.5
+* Upgraded: Supported Rails version to 7.0.0
+* Removed: Bourbon
+* Removed: Bitters
+* Removed: Autoprefixer Rails
+* Added: cssbundling-rails
+* Added: PostCSS Autoprefixer
+* Added: PostCSS Normalize
+
 1.56.1 (July 17, 2022)
 
 Fixes a critical error with the previous release
