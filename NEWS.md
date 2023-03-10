@@ -1,3 +1,7 @@
+20230310.0 (March, 10, 2023)
+
+* Upgraded: Ruby to 3.2.1
+
 20230113.0 (January, 13, 2023)
 
 Support Rails 7 and Ruby 3. Introduce CalVer.
