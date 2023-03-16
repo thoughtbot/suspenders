@@ -8,6 +8,7 @@ RSpec.describe Suspenders::LintGenerator, type: :generator do
 
         expect("Gemfile")
           .to match_contents(/gem .standard./)
+          .and have_bundled("install")
           .and have_no_syntax_error
       end
     end
