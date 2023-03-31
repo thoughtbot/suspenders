@@ -109,6 +109,14 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     )
   end
 
+  it "prevents strict loading in development" do
+    result = IO.read("#{project_path}/config/environments/development.rb")
+
+    expect(result).to match(
+      /^ +config.active_record.strict_loading_by_default = true$/
+    )
+  end
+
   it "adds explicit quiet_assets configuration" do
     result = IO.read("#{project_path}/config/application.rb")
 
