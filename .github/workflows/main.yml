@@ -44,6 +44,12 @@ jobs:
         with:
           bundler-cache: false
 
+      - name: Check Node.js version
+        run: node --version
+
+      - name: Check Ruby version
+        run: ruby --version
+
       - name: Install dependencies
         run: bundle install
 
