@@ -44,17 +44,6 @@ jobs:
         with:
           bundler-cache: false
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version-file: '.nvmrc'
-
-      - name: Check Node.js version
-        run: node --version
-
-      - name: Check Ruby version
-        run: ruby --version
-
       - name: Install dependencies
         run: bundle install
 
