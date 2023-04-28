@@ -31,5 +31,5 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "pry"
   s.add_development_dependency "rspec", "~> 3.2"
-  s.add_development_dependency "standard", "~> 1.25.0"
+  s.add_development_dependency "standard"
 end

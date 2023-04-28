@@ -20,9 +20,10 @@ RSpec.describe Suspenders::LintGenerator, type: :generator do
         # rake task works and we don't need to fake it
         rake_output = `rake -T`
 
-        expect(rake_output.lines.size).to eq 2
+        expect(rake_output.lines.size).to eq 3
         expect(rake_output.lines[0]).to start_with("rake standard")
         expect(rake_output.lines[1]).to start_with("rake standard:fix")
+        expect(rake_output.lines[2]).to start_with("rake standard:fix_unsafely")
       end
     end
   end
