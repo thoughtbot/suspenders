@@ -9,10 +9,6 @@ module Suspenders
 
     def configure_capybara
       copy_file "chromedriver.rb", "spec/support/chromedriver.rb"
-      copy_file(
-        "capybara_silence_puma.rb",
-        "spec/support/capybara_silence_puma.rb"
-      )
     end
   end
 end
