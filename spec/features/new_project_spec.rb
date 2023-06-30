@@ -11,7 +11,7 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
   it "uses custom Gemfile" do
     gemfile_file = IO.read("#{project_path}/Gemfile")
     expect(gemfile_file).to match(
-      /^ruby "#{Suspenders::RUBY_VERSION}"$/o
+      /^ruby "#{RUBY_VERSION}"$/o
     )
     expect(gemfile_file).to match(
       /^gem "rails", "#{Suspenders::RAILS_VERSION}"$/o
@@ -34,8 +34,8 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     end
   end
 
-  it "creates .ruby-version from Suspenders .ruby-version" do
-    ruby_version_file = IO.read("#{project_path}/.ruby-version")
+  it "creates .ruby-version with the running ruby version" do
+    ruby_version_file = project_path.join(".ruby-version").read
 
     expect(ruby_version_file).to eq "#{RUBY_VERSION}\n"
   end

@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby "<%= Suspenders::RUBY_VERSION %>"
+ruby <%= RUBY_VERSION.inspect %>
 
 <% if options[:api] %>
 gem "sprockets", "< 4"

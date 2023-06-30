@@ -4,6 +4,19 @@ require 'pathname'
 source_path = (Pathname.new(__FILE__).dirname + '../lib').expand_path
 $LOAD_PATH << source_path
 
+require "suspenders/version"
+
+ruby_version_range = Suspenders::RUBY_VERSION_RANGE.map do |version|
+  Gem::Version.new(version)
+end
+
+current_ruby_version = Gem::Version.new(RUBY_VERSION)
+
+unless current_ruby_version.between?(*ruby_version_range)
+  abort "Your version of Ruby #{current_ruby_version} is not supported. " \
+        "Versions from #{ruby_version_range.map(&:to_s).join(" to ")} are supported."
+end
+
 activate_rails_version = ->(rails_version) do
   rails_bin_path = Gem.activate_bin_path("railties", "rails", rails_version)
   rails_path = File.expand_path("../..", rails_bin_path)
