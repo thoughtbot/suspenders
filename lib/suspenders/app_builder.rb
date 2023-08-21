@@ -155,7 +155,7 @@ module Suspenders
     end
 
     def ruby_version
-      create_file ".ruby-version", "#{Suspenders::RUBY_VERSION}\n"
+      create_file ".ruby-version", "#{RUBY_VERSION}\n"
     end
 
     def configure_i18n_for_missing_translations

@@ -3,7 +3,9 @@ require "suspenders/version"
 require "date"
 
 Gem::Specification.new do |s|
-  s.required_ruby_version = ">= #{Suspenders::RUBY_VERSION}"
+  minimum_ruby_version, maximum_ruby_version = Suspenders::RUBY_VERSION_RANGE
+
+  s.required_ruby_version = [">= #{minimum_ruby_version}", "<= #{maximum_ruby_version}"]
   s.required_rubygems_version = ">= 3.0.0"
   s.authors = ["thoughtbot"]
 
