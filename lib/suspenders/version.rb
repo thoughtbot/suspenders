@@ -1,3 +1,5 @@
+require "pathname"
+
 module Suspenders
   RAILS_VERSION = "~> 7.0.0".freeze
 
