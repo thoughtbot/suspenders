@@ -1,3 +1,7 @@
+Unreleased
+
+* Remove `suspenders` system executable
+
 20230113.0 (January, 13, 2023)
 
 Support Rails 7 and Ruby 3. Introduce CalVer.

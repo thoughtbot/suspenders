@@ -1,9 +1,13 @@
 require "bundler/setup"
 require "bundler/gem_tasks"
-require "rspec/core/rake_task"
+require "minitest/test_task"
 require "standard/rake"
 
-RSpec::Core::RakeTask.new(:rspec)
+Minitest::TestTask.create(:test) do |t|
+  t.libs << "test"
+  t.libs << "lib"
+  t.warning = false
+  t.test_globs = ["test/**/*_test.rb"]
+end
 
-desc "Run the test suite"
-task default: [:rspec, :standard]
+task default: %i[test standard]
