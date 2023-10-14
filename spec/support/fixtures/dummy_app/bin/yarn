@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require "pathname"
-require Pathname(__dir__) / ".." / ".." / ".." / "spec" / "support" / "fake_yarn"
-
-FakeYarn.new.record!
