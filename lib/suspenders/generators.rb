@@ -2,6 +2,24 @@ require "active_support/concern"
 
 module Suspenders
   module Generators
+    module Helpers
+      def default_test_suite?
+        File.exist? Rails.root.join("test")
+      end
+
+      def rspec_test_suite?
+        File.exist? Rails.root.join("spec/spec_helper.rb")
+      end
+
+      def default_test_helper_present?
+        File.exist? Rails.root.join("test/test_helper.rb")
+      end
+
+      def rspec_test_helper_present?
+        File.exist? Rails.root.join("spec/rails_helper.rb")
+      end
+    end
+
     module APIAppUnsupported
       class Error < StandardError
         def message

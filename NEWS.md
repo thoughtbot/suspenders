@@ -4,6 +4,7 @@ Unreleased
 * Introduce `suspenders:accessibility` generator
 * Introduce `Suspenders::Generators::APIAppUnsupported` module and concern
 * Introduce `suspenders:inline_svg` generator
+* Introduce `suspenders:factories` generator
 
 20230113.0 (January, 13, 2023)
 
