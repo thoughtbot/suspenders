@@ -1,6 +1,8 @@
 Unreleased
 
 * Remove `suspenders` system executable
+* Introduce `suspenders:accessibility` generator
+* Introduce `Suspenders::Generators::APIAppUnsupported` module and concern
 
 20230113.0 (January, 13, 2023)
 
