@@ -21,7 +21,14 @@ end
 
 ## Generators
 
-TODO
+### Accessibility
+
+Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
+
+`./bin/rails g suspenders:accessibility`
+
+  [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
+  [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
 
 ## Contributing
 
