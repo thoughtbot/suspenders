@@ -42,4 +42,41 @@ module Suspenders::TestHelpers
 
     FileUtils.touch path
   end
+
+  def within_api_only_app(&block)
+    backup_file "config/application.rb"
+    application_config = <<~RUBY
+      require_relative "boot"
+      require "rails/all"
+
+      Bundler.require(*Rails.groups)
+
+      module Dummy
+        class Application < Rails::Application
+          config.load_defaults 7.1
+
+          config.autoload_lib(ignore: %w(assets tasks))
+
+          config.api_only = true
+        end
+      end
+    RUBY
+    File.open(app_root("config/application.rb"), "w") { _1.write application_config }
+
+    yield
+  ensure
+    restore_file "config/application.rb"
+  end
+
+  private
+
+  def backup_file(file)
+    FileUtils.mv app_root(file), app_root("#{file}.bak")
+    touch file
+  end
+
+  def restore_file(file)
+    remove_file_if_exists(file)
+    FileUtils.mv app_root("#{file}.bak"), app_root(file)
+  end
 end
