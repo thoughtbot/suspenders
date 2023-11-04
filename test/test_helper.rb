@@ -68,8 +68,6 @@ module Suspenders::TestHelpers
     restore_file "config/application.rb"
   end
 
-  private
-
   def backup_file(file)
     FileUtils.mv app_root(file), app_root("#{file}.bak")
     touch file
