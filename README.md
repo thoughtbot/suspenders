@@ -116,6 +116,16 @@ Installs [Sidekiq][] for background job processing and configures ActiveJob for 
 
   [Sidekiq]: https://github.com/sidekiq/sidekiq
 
+### Rake
+
+Configures the default Rake task to audit and lint the codebase with
+[bundler-audit][] and [standard][] in addition to running the test suite.
+
+`bin/rails g suspenders:rake`
+
+  [bundler-audit]: https://github.com/rubysec/bundler-audit
+  [standard]: https://github.com/standardrb/standard
+
 ## Contributing
 
 See the [CONTRIBUTING] document.

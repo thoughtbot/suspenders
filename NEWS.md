@@ -8,6 +8,7 @@ Unreleased
 * Introduce `suspenders:styles` generator
 * Introduce `suspenders:jobs` generator
 * Introduce `suspenders:lint` generator
+* Introduce `suspenders:rake` generator
 
 20230113.0 (January, 13, 2023)
 
