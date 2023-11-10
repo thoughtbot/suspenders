@@ -30,6 +30,12 @@ Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
   [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
   [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
 
+### Lint
+
+Installs [standard].
+
+  [standard]: https://github.com/standardrb/standard
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
