@@ -16,7 +16,7 @@ end
 ```
 
 ```
-./bin/rails g suspenders:all
+bin/rails g suspenders:all
 ```
 
 ## Generators
@@ -25,7 +25,7 @@ end
 
 Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
 
-`./bin/rails g suspenders:accessibility`
+`bin/rails g suspenders:accessibility`
 
   [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
   [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
