@@ -30,6 +30,15 @@ Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
   [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
   [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
 
+### Inline SVG
+
+Render SVG images inline using the [inline_svg] gem, as a potential performance
+improvement for the viewer.
+
+`bin/rails g suspenders:inline_svg`
+
+  [inline_svg]: https://github.com/jamesmartin/inline_svg
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
