@@ -25,11 +25,7 @@ module Suspenders
       end
 
       test "does not raise if API configuration is commented out" do
-        within_api_only_app do
-          path = app_root("config/application.rb")
-          content = File.binread(path).gsub!("config.api_only = true", "# config.api_only = true")
-          File.binwrite(path, content)
-
+        within_api_only_app commented_out: true do
           run_generator
 
           assert_file app_root("Gemfile") do |file|
