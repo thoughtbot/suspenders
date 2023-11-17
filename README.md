@@ -30,6 +30,27 @@ Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
   [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
   [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
 
+### Factories
+
+Build test data with clarity and ease.
+
+This uses [FactoryBot] to help you define dummy and test data for your
+test suite. The `create`, `build`, and `build_stubbed` class methods are
+directly available to all tests.
+
+We recommend putting FactoryBot definitions in one `spec/factories.rb`
+(or `test/factories`) file, at least until it grows unwieldy. This helps reduce
+confusion around circular dependencies and makes it easy to jump between
+definitions.
+
+Supports the [default test suite] and [RSpec].
+
+`bin/rails g suspenders:factories`
+
+  [Factory Bot]: https://github.com/thoughtbot/factory_bot_rails
+  [default test suite]: https://guides.rubyonrails.org/testing.html
+  [RSpec]: https://rspec.info
+
 ### Inline SVG
 
 Render SVG images inline using the [inline_svg] gem, as a potential performance
