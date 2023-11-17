@@ -19,8 +19,9 @@ module Suspenders::TestHelpers
     Rails.root.join path
   end
 
-  def remove_file_if_exists(file)
-    path = app_root file
+  def remove_file_if_exists(file, **options)
+    root = options[:root]
+    path = root ? file : app_root(file)
 
     FileUtils.rm path if File.exist? path
   end
@@ -43,7 +44,14 @@ module Suspenders::TestHelpers
     FileUtils.touch path
   end
 
-  def within_api_only_app(&block)
+  def within_api_only_app(**options, &block)
+    commented_out = options[:commented_out]
+    set_config = if commented_out == true
+      "# config.api_only = true"
+    else
+      "config.api_only = true"
+    end
+
     backup_file "config/application.rb"
     application_config = <<~RUBY
       require_relative "boot"
@@ -57,7 +65,7 @@ module Suspenders::TestHelpers
 
           config.autoload_lib(ignore: %w(assets tasks))
 
-          config.api_only = true
+          #{set_config}
         end
       end
     RUBY
