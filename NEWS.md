@@ -2,7 +2,6 @@ Unreleased
 
 * Remove `suspenders` system executable
 * Introduce `suspenders:accessibility` generator
-* Introduce `Suspenders::Generators::APIAppUnsupported` module and concern
 * Introduce `suspenders:inline_svg` generator
 * Introduce `suspenders:factories` generator
 
