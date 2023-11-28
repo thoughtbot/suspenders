@@ -4,6 +4,7 @@ Unreleased
 * Introduce `suspenders:accessibility` generator
 * Introduce `suspenders:inline_svg` generator
 * Introduce `suspenders:factories` generator
+* Introduce `suspenders:advisories` generator
 
 20230113.0 (January, 13, 2023)
 
