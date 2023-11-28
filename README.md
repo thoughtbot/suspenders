@@ -72,6 +72,22 @@ improvement for the viewer.
 
   [inline_svg]: https://github.com/jamesmartin/inline_svg
 
+### Styles
+
+Configures applications to use [PostCSS][] or [Tailwind][] via
+[cssbundling-rails][]. Defaults to PostCSS with [modern-normalize][], with the
+option to override via `--css=tailwind`.
+
+Also creates a directory structure to store additional stylesheets if using
+PostCSS.
+
+`bin/rails g suspenders:styles --css[postcss:tailwind]`
+
+  [PostCSS]: https://postcss.org
+  [Tailwind]: https://tailwindcss.com
+  [cssbundling-rails]: https://github.com/rails/cssbundling-rails
+  [modern-normalize]: https://github.com/sindresorhus/modern-normalize
+
 ## Contributing
 
 See the [CONTRIBUTING] document.

@@ -5,6 +5,7 @@ Unreleased
 * Introduce `suspenders:inline_svg` generator
 * Introduce `suspenders:factories` generator
 * Introduce `suspenders:advisories` generator
+* Introduce `suspenders:styles` generator
 
 20230113.0 (January, 13, 2023)
 
