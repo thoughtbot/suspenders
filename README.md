@@ -30,6 +30,18 @@ Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
   [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
   [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
 
+### Advisories
+
+Show security advisories during development.
+
+Uses the [bundler-audit][] gem to update the local security database and
+show any relevant issues with the app's dependencies. This generator is
+only responsible for installing the gem and adding the Rake task.
+
+`bin/rails g suspenders:advisories`
+
+  [bundler-audit]: https://github.com/rubysec/bundler-audit
+
 ### Factories
 
 Build test data with clarity and ease.
