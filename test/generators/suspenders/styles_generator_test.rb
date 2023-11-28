@@ -51,8 +51,7 @@ module Suspenders
           Defaults to PostCSS with modern-normalize, with the option to override via
           --css=tailwind.
 
-          Also creates a directory structure to store additional stylesheets if using
-          PostCSS.
+          Also creates additional stylesheets if using PostCSS.
         TEXT
 
         assert_equal description, generator_class.desc
@@ -130,13 +129,13 @@ module Suspenders
         assert_match(/bin\/rails css:install:tailwind/, output)
       end
 
-      test "does not install normalize" do
+      test "does not install modern-normalize" do
         output = run_generator %w[--css=tailwind]
 
         assert_no_match(/add.*modern-normalize/, output)
       end
 
-      test "does not create directory structure" do
+      test "does not create stylesheets" do
         run_generator %w[--css=tailwind]
 
         assert_no_file app_root("app/assets/stylesheets/base.css")
@@ -168,7 +167,7 @@ module Suspenders
       setup :prepare_destination
       teardown :restore_destination
 
-      test "installs normalize and imports style sheets" do
+      test "installs modern-normalize and imports stylesheets" do
         output = run_generator %w[--css=postcss]
         application_stylesheet = <<~TEXT
           @import "modern-normalize";
@@ -184,7 +183,7 @@ module Suspenders
         end
       end
 
-      test "creates directory structure" do
+      test "creates stylesheets" do
         run_generator
 
         assert_file app_root("app/assets/stylesheets/base.css")
