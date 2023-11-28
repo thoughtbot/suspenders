@@ -11,8 +11,7 @@ module Suspenders
         Defaults to PostCSS with modern-normalize, with the option to override via
         --css=tailwind.
 
-        Also creates a directory structure to store additional stylesheets if using
-        PostCSS.
+        Also creates additional stylesheets if using PostCSS.
       TEXT
 
       def add_cssbundling_rails_gem
