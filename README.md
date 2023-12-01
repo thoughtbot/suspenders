@@ -72,6 +72,26 @@ improvement for the viewer.
 
   [inline_svg]: https://github.com/jamesmartin/inline_svg
 
+### Lint
+
+Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB.
+
+Introduces NPM commands that leverage [@thoughtbot/eslint-config][],
+[@thoughtbot/stylelint-config][] and [prettier][].
+
+Also introduces `.prettierrc` based off of our [Guides][].
+
+Introduces `rake standard` which also runs `erblint` to lint ERB files
+via [better_html][], [erb_lint][] and [erblint-github][].
+
+[@thoughtbot/eslint-config]: https://github.com/thoughtbot/eslint-config
+[@thoughtbot/stylelint-config]: https://github.com/thoughtbot/stylelint-config
+[prettier]: https://prettier.io
+[Guides]: https://github.com/thoughtbot/guides/blob/main/javascript/README.md#formatting
+[better_html]: https://github.com/Shopify/better-html
+[erb_lint]: https://github.com/Shopify/erb-lint
+[erblint-github]: https://github.com/github/erblint-github
+
 ### Styles
 
 Configures applications to use [PostCSS][] or [Tailwind][] via
