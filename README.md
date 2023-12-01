@@ -87,6 +87,15 @@ Also creates additional stylesheets if using PostCSS.
   [cssbundling-rails]: https://github.com/rails/cssbundling-rails
   [modern-normalize]: https://github.com/sindresorhus/modern-normalize
 
+
+### Jobs
+
+Installs [Sidekiq][] for background job processing and configures ActiveJob for job queueing.
+
+`bin/rails g suspenders:jobs`
+
+  [Sidekiq]: https://github.com/sidekiq/sidekiq
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
