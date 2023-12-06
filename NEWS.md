@@ -6,6 +6,7 @@ Unreleased
 * Introduce `suspenders:factories` generator
 * Introduce `suspenders:advisories` generator
 * Introduce `suspenders:styles` generator
+* Introduce `suspenders:jobs` generator
 
 20230113.0 (January, 13, 2023)
 
