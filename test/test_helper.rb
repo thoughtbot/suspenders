@@ -77,8 +77,7 @@ module Suspenders::TestHelpers
   end
 
   def backup_file(file)
-    FileUtils.mv app_root(file), app_root("#{file}.bak")
-    touch file
+    FileUtils.copy app_root(file), app_root("#{file}.bak")
   end
 
   def restore_file(file)
