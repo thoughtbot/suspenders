@@ -186,9 +186,15 @@ module Suspenders
       test "creates stylesheets" do
         run_generator
 
-        assert_file app_root("app/assets/stylesheets/base.css")
-        assert_file app_root("app/assets/stylesheets/components.css")
-        assert_file app_root("app/assets/stylesheets/utilities.css")
+        assert_file app_root("app/assets/stylesheets/base.css") do |file|
+          assert_equal "/* Base Styles */", file
+        end
+        assert_file app_root("app/assets/stylesheets/components.css") do |file|
+          assert_equal "/* Component Styles */", file
+        end
+        assert_file app_root("app/assets/stylesheets/utilities.css") do |file|
+          assert_equal "/* Utility Styles */", file
+        end
       end
 
       private
