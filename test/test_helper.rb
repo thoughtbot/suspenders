@@ -38,10 +38,16 @@ module Suspenders::TestHelpers
     FileUtils.mkdir path
   end
 
-  def touch(file)
+  # TODO: Update existing tests to use the content: option
+  def touch(file, **options)
+    content = options[:content]
     path = app_root file
 
     FileUtils.touch path
+
+    if content
+      File.write app_root(path), content
+    end
   end
 
   def within_api_only_app(**options, &block)
@@ -74,6 +80,24 @@ module Suspenders::TestHelpers
     yield
   ensure
     restore_file "config/application.rb"
+  end
+
+  # TODO: Refactor existing tests to use this
+  def with_test_suite(test_suite, &block)
+    case test_suite
+    when :minitest
+      mkdir "test"
+    when :rspec
+      mkdir "spec"
+      touch "spec/spec_helper.rb"
+    else
+      raise ArgumentError, "unknown test suite: #{test_suite.inspect}"
+    end
+
+    yield
+  ensure
+    remove_dir_if_exists "test"
+    remove_dir_if_exists "spec"
   end
 
   def backup_file(file)
