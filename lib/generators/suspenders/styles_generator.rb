@@ -25,8 +25,13 @@ module Suspenders
         return if is_tailwind?
 
         create_file "app/assets/stylesheets/base.css"
+        append_to_file "app/assets/stylesheets/base.css", "/* Base Styles */"
+
         create_file "app/assets/stylesheets/components.css"
+        append_to_file "app/assets/stylesheets/components.css", "/* Component Styles */"
+
         create_file "app/assets/stylesheets/utilities.css"
+        append_to_file "app/assets/stylesheets/utilities.css", "/* Utility Styles */"
       end
 
       # Modify if https://github.com/rails/cssbundling-rails/pull/139 is merged
