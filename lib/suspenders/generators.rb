@@ -18,6 +18,10 @@ module Suspenders
       def rspec_test_helper_present?
         File.exist? Rails.root.join("spec/rails_helper.rb")
       end
+
+      def using_tailwind?
+        File.exist? Rails.root.join("tailwind.config.js")
+      end
     end
 
     module APIAppUnsupported
