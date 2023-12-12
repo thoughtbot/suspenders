@@ -1,4 +1,5 @@
 require "suspenders/version"
+require "suspenders/engine"
 require "suspenders/railtie"
 require "suspenders/generators"
 
