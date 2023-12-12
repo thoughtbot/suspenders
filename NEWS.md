@@ -21,6 +21,7 @@ Unreleased
 * Introduce `suspenders:environments:production` generator
 * Introduce `suspenders:environments:test` generator
 * Introduce `suspenders:environments:development` generator
+* Introduce `suspenders:install:web` generator
 
 20230113.0 (January, 13, 2023)
 
