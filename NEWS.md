@@ -17,6 +17,7 @@ Unreleased
 * Introduce `suspenders:testing` generator
 * Introduce `suspenders:prerequisites` generator
 * Introduce `suspenders:ci` generator
+* Introduce `suspenders:install:web` generator
 
 20230113.0 (January, 13, 2023)
 
