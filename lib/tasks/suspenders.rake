@@ -1,8 +1,10 @@
 namespace :suspenders do
   desc "Extend the default Rails Rake task"
   task :rake do
-    if Bundler.rubygems.find_name("bundler-audit").any?
-      Rake::Task[:"bundle:audit"].invoke
+    if Rails.env.development? || Rails.env.test?
+      if Bundler.rubygems.find_name("bundler-audit").any?
+        Rake::Task[:"bundle:audit"].invoke
+      end
     end
 
     if Bundler.rubygems.find_name("standard").any?

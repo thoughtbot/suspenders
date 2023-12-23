@@ -52,8 +52,10 @@ module Suspenders
         File.open(app_root("Rakefile"), "w") { _1.write content }
         expected_rakefile = <<~TEXT
           require_relative "config/application"
-          require "bundler/audit/task"
-          Bundler::Audit::Task.new
+          if Rails.env.development? || Rails.env.test?
+            require "bundler/audit/task"
+            Bundler::Audit::Task.new
+          end
 
           Rails.application.load_tasks
         TEXT
