@@ -126,6 +126,14 @@ Configures the default Rake task to audit and lint the codebase with
   [bundler-audit]: https://github.com/rubysec/bundler-audit
   [standard]: https://github.com/standardrb/standard
 
+### Views
+
+Configures flash messages, page titles via the [title][] gem, and sets the
+document [lang][].
+
+[title]: https://github.com/calebhearth/title
+[lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
+
 ## Contributing
 
 See the [CONTRIBUTING] document.

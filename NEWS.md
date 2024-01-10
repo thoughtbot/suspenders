@@ -9,6 +9,7 @@ Unreleased
 * Introduce `suspenders:jobs` generator
 * Introduce `suspenders:lint` generator
 * Introduce `suspenders:rake` generator
+* Introduce `suspenders:views` generator
 
 20230113.0 (January, 13, 2023)
 
