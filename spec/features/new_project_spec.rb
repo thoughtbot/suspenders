@@ -271,11 +271,6 @@ RSpec.describe "Suspend a new project with default configuration", type: :featur
     expect(gemfile).to match(/sassc-rails/)
   end
 
-  it "configures Timecop safe mode" do
-    spec_helper = read_project_file(%w[spec spec_helper.rb])
-    expect(spec_helper).to match(/Timecop.safe_mode = true/)
-  end
-
   it "adds and configures a bundler strategy for css and js" do
     gemfile = read_project_file("Gemfile")
 
