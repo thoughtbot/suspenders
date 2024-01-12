@@ -173,6 +173,10 @@ Configures `default_url_options` in `test` and `development`.
 bin/rails g suspenders:email
 ```
 
+### Testing
+
+TODO
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
