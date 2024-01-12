@@ -1,5 +1,4 @@
 require "webmock/rspec"
-require "timecop"
 
 # http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
@@ -20,6 +19,3 @@ WebMock.disable_net_connect!(
   allow_localhost: true,
   allow: "chromedriver.storage.googleapis.com"
 )
-
-# Only allow Timecop with block syntax
-Timecop.safe_mode = true
