@@ -175,6 +175,10 @@ bin/rails g suspenders:email
 
 ### Testing
 
+#### Minitest
+
+#### RSpec
+
 TODO
 
 ## Contributing
