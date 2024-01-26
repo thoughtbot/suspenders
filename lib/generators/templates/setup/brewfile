@@ -1,0 +1,9 @@
+# https://formulae.brew.sh/formula/vips
+brew "vips"
+
+# https://formulae.brew.sh/formula/redis
+brew "redis"
+
+# https://formulae.brew.sh/formula/postgresql@15
+# Change version to match production
+brew "postgresql@15"

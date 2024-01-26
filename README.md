@@ -134,6 +134,20 @@ document [lang][].
 [title]: https://github.com/calebhearth/title
 [lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
 
+### Setup
+
+A holistic setup script.
+
+```sh
+bin/setup
+```
+
+or
+
+```sh
+WIPE_DATABASE=true bin/setup
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
