@@ -41,11 +41,7 @@ FileUtils.chdir APP_ROOT do
   system("yarn install --check-files") if using_node?
 
   puts "\n== Preparing database and adding development seed data =="
-  if ENV["WIPE_DATABASE"] == true
-    system! "bin/rails db:reset dev:prime"
-  else
-    system! "bin/rails dev:prime"
-  end
+  system! "bin/rails dev:prime"
 
   # https://github.com/rails/rails/pull/47719/files
   puts "\n== Setup test environment =="
