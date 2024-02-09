@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require "fileutils"
 require "open3"
+require "bundler"
 
 # path to your application root.
 APP_ROOT = File.expand_path("..", __dir__)
@@ -42,6 +43,11 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Preparing database and adding development seed data =="
   system! "bin/rails dev:prime"
+
+  if Bundler.rubygems.find_name("sprockets")
+    puts "\n== Generating assets =="
+    system! "bin/rails assets:clobber assets:precompile"
+  end
 
   # https://github.com/rails/rails/pull/47719/files
   puts "\n== Setup test environment =="
