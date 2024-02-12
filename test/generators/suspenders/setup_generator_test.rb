@@ -11,26 +11,6 @@ module Suspenders
       setup :prepare_destination
       teardown :restore_destination
 
-      test "creates Brewfile" do
-        expected = <<~TEXT
-          # https://formulae.brew.sh/formula/vips
-          brew "vips"
-
-          # https://formulae.brew.sh/formula/redis
-          brew "redis"
-
-          # https://formulae.brew.sh/formula/postgresql@15
-          # Change version to match production
-          brew "postgresql@15"
-        TEXT
-
-        run_generator
-
-        assert_file app_root("Brewfile") do |file|
-          assert_equal expected, file
-        end
-      end
-
       test "modifies bin/setup" do
         expected = bin_setup
 

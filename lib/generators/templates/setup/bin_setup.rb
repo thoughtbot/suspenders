@@ -1,6 +1,5 @@
 #!/usr/bin/env ruby
 require "fileutils"
-require "open3"
 require "bundler"
 
 # path to your application root.
@@ -15,28 +14,7 @@ def using_node?
 end
 
 FileUtils.chdir APP_ROOT do
-  if ENV["CI"].nil?
-    puts "\n== Installing Homebrew Bundle from Brewfile =="
-    system! "brew bundle"
-
-    puts "\n== Starting postgresql@15 =="
-    system! "brew services restart postgresql@15"
-
-    puts "\n== Starting redis =="
-    system! "brew services restart redis"
-
-    _, _, status = Open3.capture3("which asdf")
-    if status.success?
-      puts "\n== Installing tool dependecies via asdf =="
-      system! "asdf plugin-add ruby https://github.com/asdf-vm/asdf-ruby"
-      system! "asdf plugin-add nodejs https://github.com/asdf-vm/asdf-nodejs" if using_node?
-      system! "asdf plugin-add yarn https://github.com/twuni/asdf-yarn" if using_node?
-      system! "asdf plugin-update --all"
-      system! "asdf install"
-    end
-  end
-
-  puts "\n== Installing dependencies =="
+  puts "== Installing dependencies =="
   system! "gem install bundler --conservative"
   system("bundle check") || system!("bundle install")
   system("yarn install --check-files") if using_node?

@@ -10,10 +10,6 @@ module Suspenders
         ```
       TEXT
 
-      def create_brewfile
-        copy_file "brewfile", "Brewfile"
-      end
-
       def create_dev_prime
         copy_file "dev_prime.rb", "lib/tasks/dev.rake"
       end
