@@ -142,12 +142,6 @@ A holistic setup script.
 bin/setup
 ```
 
-or
-
-```sh
-WIPE_DATABASE=true bin/setup
-```
-
 ## Contributing
 
 See the [CONTRIBUTING] document.

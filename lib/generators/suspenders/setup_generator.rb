@@ -8,12 +8,6 @@ module Suspenders
         ```sh
         bin/setup
         ```
-
-        or
-
-        ```sh
-        WIPE_DATABASE=true bin/setup
-        ```
       TEXT
 
       def create_brewfile
