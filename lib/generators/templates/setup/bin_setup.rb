@@ -20,7 +20,11 @@ FileUtils.chdir APP_ROOT do
   system("yarn install --check-files") if using_node?
 
   puts "\n== Preparing database and adding development seed data =="
-  system! "bin/rails dev:prime"
+  if File.exist? "lib/tasks/dev.rake"
+    system! "bin/rails dev:rake"
+  else
+    system! "bin/rails db:prepare"
+  end
 
   if Bundler.rubygems.find_name("sprockets")
     puts "\n== Generating assets =="

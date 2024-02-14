@@ -10,10 +10,6 @@ module Suspenders
         ```
       TEXT
 
-      def create_dev_prime
-        copy_file "dev_prime.rb", "lib/tasks/dev.rake"
-      end
-
       def replace_bin_setup
         copy_file "bin_setup.rb", "bin/setup", force: true
       end
