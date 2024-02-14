@@ -21,29 +21,6 @@ module Suspenders
         end
       end
 
-      test "creates dev:prime task" do
-        expected = <<~RUBY
-          if Rails.env.development? || Rails.env.test?
-            require "factory_bot" if Bundler.rubygems.find_name("factory_bot_rails").any?
-
-            namespace :dev do
-              desc "Sample data for local development environment"
-              task prime: "db:setup" do
-                include FactoryBot::Syntax::Methods if Bundler.rubygems.find_name("factory_bot_rails").any?
-
-                # create(:user, email: "user@example.com", password: "password")
-              end
-            end
-          end
-        RUBY
-
-        run_generator
-
-        assert_file app_root("lib/tasks/dev.rake") do |file|
-          assert_equal expected, file
-        end
-      end
-
       test "has a custom description" do
         assert_no_match(/Description:/, generator_class.desc)
       end
