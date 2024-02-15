@@ -21,7 +21,7 @@ FileUtils.chdir APP_ROOT do
 
   puts "\n== Preparing database and adding development seed data =="
   if File.exist? "lib/tasks/dev.rake"
-    system! "bin/rails dev:rake"
+    system! "bin/rails dev:prime"
   else
     system! "bin/rails db:prepare"
   end
