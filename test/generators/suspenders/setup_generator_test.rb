@@ -32,9 +32,7 @@ module Suspenders
       end
 
       def restore_destination
-        remove_file_if_exists "Brewfile"
         restore_file "bin/setup"
-        remove_dir_if_exists "lib/tasks"
       end
 
       def bin_setup
