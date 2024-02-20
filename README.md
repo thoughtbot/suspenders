@@ -156,7 +156,7 @@ Custom Suspenders tasks
 
 ```
 bin/rails suspenders:rake
-bin/rails suspenders:migrate
+bin/rails suspenders:db:migrate
 ```
 
 ## Contributing

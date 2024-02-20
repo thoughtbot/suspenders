@@ -11,13 +11,15 @@ namespace :suspenders do
   end
 
   desc "Ensure a migration is reversible"
-  task :migrate do
-    Rake::Task["db:migrate"].invoke
-    Rake::Task["db:rollback"].invoke
+  namespace :db do
+    task :migrate do
+      Rake::Task["db:migrate"].invoke
+      Rake::Task["db:rollback"].invoke
 
-    Rake::Task["db:migrate"].reenable
-    Rake::Task["db:migrate"].invoke
+      Rake::Task["db:migrate"].reenable
+      Rake::Task["db:migrate"].invoke
 
-    Rake::Task["db:test:prepare"].invoke
+      Rake::Task["db:test:prepare"].invoke
+    end
   end
 end
