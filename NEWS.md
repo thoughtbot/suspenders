@@ -11,6 +11,7 @@ Unreleased
 * Introduce `suspenders:rake` generator
 * Introduce `suspenders:views` generator
 * Introduce `suspenders:setup` generator
+* Introduce `suspenders:tasks` generator
 
 20230113.0 (January, 13, 2023)
 
