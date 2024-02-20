@@ -142,6 +142,14 @@ A holistic setup script.
 bin/setup
 ```
 
+### Tasks
+
+Creates local Rake tasks for development
+
+```sh
+bin/rails dev:prime
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
