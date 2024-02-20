@@ -12,6 +12,7 @@ Unreleased
 * Introduce `suspenders:views` generator
 * Introduce `suspenders:setup` generator
 * Introduce `suspenders:tasks` generator
+* Introduce `suspenders:db:migrate` task
 
 20230113.0 (January, 13, 2023)
 
