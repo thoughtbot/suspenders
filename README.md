@@ -150,6 +150,15 @@ Creates local Rake tasks for development
 bin/rails dev:prime
 ```
 
+#### Suspenders Tasks
+
+Custom Suspenders tasks
+
+```
+bin/rails suspenders:rake
+bin/rails suspenders:migrate
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
