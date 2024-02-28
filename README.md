@@ -159,6 +159,20 @@ bin/rails suspenders:rake
 bin/rails suspenders:db:migrate
 ```
 
+### Email
+
+Intercepts emails in non-production environments by setting `INTERCEPTOR_ADDRESSES`.
+
+```sh
+INTERCEPTOR_ADDRESSES="user_1@example.com,user_2@example.com" bin/rails s
+```
+
+Configures `default_url_options` in `test` and `development`.
+
+```
+bin/rails g suspenders:email
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
