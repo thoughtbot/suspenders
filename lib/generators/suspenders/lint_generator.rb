@@ -7,7 +7,7 @@ module Suspenders
       desc "Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB."
 
       def install_dependencies
-        run "yarn add stylelint@^15.10.1 eslint @thoughtbot/stylelint-config@3.0.0 @thoughtbot/eslint-config npm-run-all prettier --dev"
+        run "yarn add stylelint eslint @thoughtbot/stylelint-config @thoughtbot/eslint-config npm-run-all prettier --dev"
       end
 
       def install_gems
