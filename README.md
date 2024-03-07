@@ -129,10 +129,13 @@ Configures the default Rake task to audit and lint the codebase with
 ### Views
 
 Configures flash messages, page titles via the [title][] gem, and sets the
-document [lang][].
+document [lang][]. Disables Turbo's [InstantClick][] to account for page
+requests that are [not debounced][].
 
 [title]: https://github.com/calebhearth/title
 [lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
+[InstantClick]: https://turbo.hotwired.dev/handbook/drive#prefetching-links-on-hover
+[not debounced]: https://github.com/hotwired/turbo/pull/1181#issuecomment-1936505362
 
 ### Setup
 
