@@ -87,6 +87,14 @@ module Suspenders
         assert_no_match(/Description:\n/, generator_class.desc)
       end
 
+      test "disables InstantClick" do
+        run_generator
+
+        assert_file app_root("app/views/layouts/application.html.erb") do |file|
+          assert_match(/<head>.*<\/title>\s{4}<meta\s*name="turbo-prefetch"\s*content=\s*"false">/m, file)
+        end
+      end
+
       private
 
       def prepare_destination
