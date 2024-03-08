@@ -35,20 +35,20 @@ module Suspenders
         order = "\s\sconfig.order = :random\n\n"
         webmock_config = <<~RUBY
 
-            WebMock.disable_net_connect!(
-              allow_localhost: true,
-              allow: [
-                /(chromedriver|storage)\.googleapis\.com/,
-                "googlechromelabs.github.io",
-              ]
-            )
+          WebMock.disable_net_connect!(
+            allow_localhost: true,
+            allow: [
+              /(chromedriver|storage).googleapis.com/,
+              "googlechromelabs.github.io",
+            ]
+          )
         RUBY
 
         insert_into_file "spec/spec_helper.rb",
           persistence_file_path + order,
           after: "RSpec.configure do |config|\n"
 
-        insert_into_file "spec/spec_helper.rb", "require \"webmock\/rspec\"\n\n", before: "RSpec.configure do |config|"
+        insert_into_file "spec/spec_helper.rb", "require \"webmock/rspec\"\n\n", before: "RSpec.configure do |config|"
         insert_into_file "spec/spec_helper.rb", webmock_config
       end
 

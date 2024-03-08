@@ -13,16 +13,16 @@ module Suspenders
 
       test "adds gems to Gemfile" do
         expected = <<~RUBY
-            group :development, :test do
-              gem "rspec-rails", "~> 6.1.0"
-            end
+          group :development, :test do
+            gem "rspec-rails", "~> 6.1.0"
+          end
 
-            group :test do
-              gem "action_dispatch-testing-integration-capybara", github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.0", require: "action_dispatch/testing/integration/capybara/rspec"
-              gem "shoulda-matchers", "~> 6.0"
-              gem "webdrivers"
-              gem "webmock"
-            end
+          group :test do
+            gem "action_dispatch-testing-integration-capybara", github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.0", require: "action_dispatch/testing/integration/capybara/rspec"
+            gem "shoulda-matchers", "~> 6.0"
+            gem "webdrivers"
+            gem "webmock"
+          end
         RUBY
 
         run_generator
@@ -51,36 +51,36 @@ module Suspenders
 
         assert_file "spec/rails_helper.rb" do |file|
           assert_match(/RSpec\.configure do \|config\|\s{3}config\.infer_base_class_for_anonymous_controllers\s*=\s*false/m,
-                       file)
+            file)
         end
       end
 
       test "configures spec_helper" do
         touch "spec/spec_helper.rb", content: spec_helper
         expected = <<~RUBY
-            require "webmock/rspec"
+          require "webmock/rspec"
 
-            RSpec.configure do |config|
-              config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
-              config.order = :random
+          RSpec.configure do |config|
+            config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
+            config.order = :random
 
-              config.expect_with :rspec do |expectations|
-                expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-              end
-
-              config.mock_with :rspec do |mocks|
-                mocks.verify_partial_doubles = true
-              end
-              config.shared_context_metadata_behavior = :apply_to_host_groups
+            config.expect_with :rspec do |expectations|
+              expectations.include_chain_clauses_in_custom_matcher_descriptions = true
             end
 
-            WebMock.disable_net_connect!(
-              allow_localhost: true,
-              allow: [
-                /(chromedriver|storage)\.googleapis\.com/,
-                "googlechromelabs.github.io",
-              ]
-            )
+            config.mock_with :rspec do |mocks|
+              mocks.verify_partial_doubles = true
+            end
+            config.shared_context_metadata_behavior = :apply_to_host_groups
+          end
+
+          WebMock.disable_net_connect!(
+            allow_localhost: true,
+            allow: [
+              /(chromedriver|storage).googleapis.com/,
+              "googlechromelabs.github.io",
+            ]
+          )
         RUBY
 
         run_generator
@@ -92,33 +92,33 @@ module Suspenders
 
       test "configures Chromedriver" do
         expected = <<~RUBY
-            require "selenium/webdriver"
+          require "selenium/webdriver"
 
-            Capybara.register_driver :chrome do |app|
-              Capybara::Selenium::Driver.new(app, browser: :chrome)
+          Capybara.register_driver :chrome do |app|
+            Capybara::Selenium::Driver.new(app, browser: :chrome)
+          end
+
+          Capybara.register_driver :headless_chrome do |app|
+            options = ::Selenium::WebDriver::Chrome::Options.new
+            options.headless!
+            options.add_argument "--window-size=1680,1050"
+
+            Capybara::Selenium::Driver.new app,
+              browser: :chrome,
+              options: options
+          end
+
+          Capybara.javascript_driver = :headless_chrome
+
+          RSpec.configure do |config|
+            config.before(:each, type: :system) do
+              driven_by :rack_test
             end
 
-            Capybara.register_driver :headless_chrome do |app|
-              options = ::Selenium::WebDriver::Chrome::Options.new
-              options.headless!
-              options.add_argument "--window-size=1680,1050"
-
-              Capybara::Selenium::Driver.new app,
-                browser: :chrome,
-                options: options
+            config.before(:each, type: :system, js: true) do
+              driven_by Capybara.javascript_driver
             end
-
-            Capybara.javascript_driver = :headless_chrome
-
-            RSpec.configure do |config|
-              config.before(:each, type: :system) do
-                driven_by :rack_test
-              end
-
-              config.before(:each, type: :system, js: true) do
-                driven_by Capybara.javascript_driver
-              end
-            end
+          end
         RUBY
 
         run_generator
@@ -136,12 +136,12 @@ module Suspenders
 
       test "configures Should Matchers" do
         expected = <<~RUBY
-            Shoulda::Matchers.configure do |config|
-              config.integrate do |with|
-                with.test_framework :rspec
-                with.library :rails
-              end
+          Shoulda::Matchers.configure do |config|
+            config.integrate do |with|
+              with.test_framework :rspec
+              with.library :rails
             end
+          end
         RUBY
 
         run_generator
@@ -153,9 +153,9 @@ module Suspenders
 
       test "configures i18n" do
         expected = <<~RUBY
-            RSpec.configure do |config|
-              config.include ActionView::Helpers::TranslationHelper
-            end
+          RSpec.configure do |config|
+            config.include ActionView::Helpers::TranslationHelper
+          end
         RUBY
 
         run_generator
@@ -167,11 +167,11 @@ module Suspenders
 
       test "configures Action Mailer" do
         expected = <<~RUBY
-            RSpec.configure do |config|
-              config.before(:each) do
-                ActionMailer::Base.deliveries.clear
-              end
+          RSpec.configure do |config|
+            config.before(:each) do
+              ActionMailer::Base.deliveries.clear
             end
+          end
         RUBY
 
         run_generator
@@ -211,25 +211,25 @@ module Suspenders
         # Generated from rails g rspec:install
         # Comments removed
         <<~RUBY
-            require 'spec_helper'
-            ENV['RAILS_ENV'] ||= 'test'
-            require_relative '../config/environment'
+          require 'spec_helper'
+          ENV['RAILS_ENV'] ||= 'test'
+          require_relative '../config/environment'
 
-            abort("The Rails environment is running in production mode!") if Rails.env.production?
-            require 'rspec/rails'
+          abort("The Rails environment is running in production mode!") if Rails.env.production?
+          require 'rspec/rails'
 
-            begin
-              ActiveRecord::Migration.maintain_test_schema!
-            rescue ActiveRecord::PendingMigrationError => e
-              abort e.to_s.strip
-            end
-            RSpec.configure do |config|
-              config.fixture_path = "#{::Rails.root}/spec/fixtures"
-              config.use_transactional_fixtures = true
-              config.infer_spec_type_from_file_location!
-              config.filter_rails_from_backtrace!
-            end
-            Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
+          begin
+            ActiveRecord::Migration.maintain_test_schema!
+          rescue ActiveRecord::PendingMigrationError => e
+            abort e.to_s.strip
+          end
+          RSpec.configure do |config|
+            config.fixture_path = "#{::Rails.root}/spec/fixtures"
+            config.use_transactional_fixtures = true
+            config.infer_spec_type_from_file_location!
+            config.filter_rails_from_backtrace!
+          end
+          Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
         RUBY
       end
 
@@ -237,16 +237,16 @@ module Suspenders
         # Generated from rails g rspec:install
         # Comments removed
         <<~RUBY
-            RSpec.configure do |config|
-              config.expect_with :rspec do |expectations|
-                expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-              end
-
-              config.mock_with :rspec do |mocks|
-                mocks.verify_partial_doubles = true
-              end
-              config.shared_context_metadata_behavior = :apply_to_host_groups
+          RSpec.configure do |config|
+            config.expect_with :rspec do |expectations|
+              expectations.include_chain_clauses_in_custom_matcher_descriptions = true
             end
+
+            config.mock_with :rspec do |mocks|
+              mocks.verify_partial_doubles = true
+            end
+            config.shared_context_metadata_behavior = :apply_to_host_groups
+          end
         RUBY
       end
     end
