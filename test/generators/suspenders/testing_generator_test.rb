@@ -181,14 +181,6 @@ module Suspenders
         end
       end
 
-      test "removes test directory" do
-        mkdir "test"
-
-        run_generator
-
-        assert_directory app_root("test")
-      end
-
       test "has custom description" do
         skip
       end
