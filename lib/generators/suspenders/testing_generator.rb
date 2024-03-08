@@ -71,12 +71,6 @@ module Suspenders
         # it manually with: ActionMailer::Base.deliveries.clear
         copy_file "action_mailer.rb", "spec/support/action_mailer.rb"
       end
-
-      def remove_test_directory
-        path = Rails.root.join("test")
-
-        FileUtils.rm_r path if File.exist? path
-      end
     end
   end
 end

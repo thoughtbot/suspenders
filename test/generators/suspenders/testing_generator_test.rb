@@ -180,7 +180,7 @@ module Suspenders
 
         run_generator
 
-        assert_no_directory app_root("test")
+        assert_directory app_root("test")
       end
 
       test "has custom description" do
