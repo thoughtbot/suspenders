@@ -1,19 +1,18 @@
 require "test_helper"
-require "generators/suspenders/testing/rspec_generator"
+require "generators/suspenders/testing_generator"
 
 module Suspenders
   module Generators
-    module Testing
-      class RSpecGeneratorTest < Rails::Generators::TestCase
-        include Suspenders::TestHelpers
+    class TestingGeneratorTest < Rails::Generators::TestCase
+      include Suspenders::TestHelpers
 
-        tests Suspenders::Generators::Testing::RSpecGenerator
-        destination Rails.root
-        setup :prepare_destination
-        teardown :restore_destination
+      tests Suspenders::Generators::TestingGenerator
+      destination Rails.root
+      setup :prepare_destination
+      teardown :restore_destination
 
-        test "adds gems to Gemfile" do
-          expected = <<~RUBY
+      test "adds gems to Gemfile" do
+        expected = <<~RUBY
             group :development, :test do
               gem "rspec-rails", "~> 6.1.0"
             end
@@ -23,41 +22,41 @@ module Suspenders
               gem "webdrivers"
               gem "webmock"
             end
-          RUBY
+        RUBY
 
-          run_generator
+        run_generator
 
-          assert_file app_root("Gemfile") do |file|
-            assert_match(expected, file)
-          end
+        assert_file app_root("Gemfile") do |file|
+          assert_match(expected, file)
         end
+      end
 
-        test "installs gems with Bundler" do
-          output = run_generator
+      test "installs gems with Bundler" do
+        output = run_generator
 
-          assert_match(/bundle install/, output)
+        assert_match(/bundle install/, output)
+      end
+
+      test "runs RSpec installation script" do
+        output = run_generator
+
+        assert_match(/generate rspec:install/, output)
+      end
+
+      test "configures rails_helper" do
+        touch "spec/rails_helper.rb", content: rails_helper
+
+        run_generator
+
+        assert_file "spec/rails_helper.rb" do |file|
+          assert_match(/RSpec\.configure do \|config\|\s{3}config\.infer_base_class_for_anonymous_controllers\s*=\s*false/m,
+                       file)
         end
+      end
 
-        test "runs RSpec installation script" do
-          output = run_generator
-
-          assert_match(/generate rspec:install/, output)
-        end
-
-        test "configures rails_helper" do
-          touch "spec/rails_helper.rb", content: rails_helper
-
-          run_generator
-
-          assert_file "spec/rails_helper.rb" do |file|
-            assert_match(/RSpec\.configure do \|config\|\s{3}config\.infer_base_class_for_anonymous_controllers\s*=\s*false/m,
-              file)
-          end
-        end
-
-        test "configures spec_helper" do
-          touch "spec/spec_helper.rb", content: spec_helper
-          expected = <<~RUBY
+      test "configures spec_helper" do
+        touch "spec/spec_helper.rb", content: spec_helper
+        expected = <<~RUBY
             RSpec.configure do |config|
               config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
               config.order = :random
@@ -76,17 +75,17 @@ module Suspenders
               allow_localhost: true,
               allow: "chromedriver.storage.googleapis.com"
             )
-          RUBY
+        RUBY
 
-          run_generator
+        run_generator
 
-          assert_file app_root("spec/spec_helper.rb") do |file|
-            assert_equal expected, file
-          end
+        assert_file app_root("spec/spec_helper.rb") do |file|
+          assert_equal expected, file
         end
+      end
 
-        test "configures Chromedriver" do
-          expected = <<~RUBY
+      test "configures Chromedriver" do
+        expected = <<~RUBY
             require "selenium/webdriver"
 
             Capybara.register_driver :chrome do |app|
@@ -114,98 +113,98 @@ module Suspenders
                 driven_by Capybara.javascript_driver
               end
             end
-          RUBY
+        RUBY
 
-          run_generator
+        run_generator
 
-          assert_file app_root("spec/support/chromedriver.rb") do |file|
-            assert_equal expected, file
-          end
+        assert_file app_root("spec/support/chromedriver.rb") do |file|
+          assert_equal expected, file
         end
+      end
 
-        test "creates system spec directory" do
-          run_generator
+      test "creates system spec directory" do
+        run_generator
 
-          assert_file app_root("spec/system/.gitkeep")
-        end
+        assert_file app_root("spec/system/.gitkeep")
+      end
 
-        test "configures Should Matchers" do
-          expected = <<~RUBY
+      test "configures Should Matchers" do
+        expected = <<~RUBY
             Shoulda::Matchers.configure do |config|
               config.integrate do |with|
                 with.test_framework :rspec
                 with.library :rails
               end
             end
-          RUBY
+        RUBY
 
-          run_generator
+        run_generator
 
-          assert_file app_root("spec/support/shoulda_matchers.rb") do |file|
-            assert_equal expected, file
-          end
+        assert_file app_root("spec/support/shoulda_matchers.rb") do |file|
+          assert_equal expected, file
         end
+      end
 
-        test "configures i18n" do
-          expected = <<~RUBY
+      test "configures i18n" do
+        expected = <<~RUBY
             RSpec.configure do |config|
               config.include ActionView::Helpers::TranslationHelper
             end
-          RUBY
+        RUBY
 
-          run_generator
+        run_generator
 
-          assert_file app_root("spec/support/i18n.rb") do |file|
-            assert_equal expected, file
-          end
+        assert_file app_root("spec/support/i18n.rb") do |file|
+          assert_equal expected, file
         end
+      end
 
-        test "configures Action Mailer" do
-          expected = <<~RUBY
+      test "configures Action Mailer" do
+        expected = <<~RUBY
             RSpec.configure do |config|
               config.before(:each) do
                 ActionMailer::Base.deliveries.clear
               end
             end
-          RUBY
+        RUBY
 
-          run_generator
+        run_generator
 
-          assert_file app_root("spec/support/action_mailer.rb") do |file|
-            assert_equal expected, file
-          end
+        assert_file app_root("spec/support/action_mailer.rb") do |file|
+          assert_equal expected, file
         end
+      end
 
-        test "removes test directory" do
-          mkdir "test"
+      test "removes test directory" do
+        mkdir "test"
 
-          run_generator
+        run_generator
 
-          assert_no_directory app_root("test")
-        end
+        assert_no_directory app_root("test")
+      end
 
-        test "has custom description" do
-          skip
-        end
+      test "has custom description" do
+        skip
+      end
 
-        private
+      private
 
-        def prepare_destination
-          touch "Gemfile"
-          mkdir "spec"
-          touch "spec/rails_helper.rb"
-          touch "spec/spec_helper.rb"
-        end
+      def prepare_destination
+        touch "Gemfile"
+        mkdir "spec"
+        touch "spec/rails_helper.rb"
+        touch "spec/spec_helper.rb"
+      end
 
-        def restore_destination
-          remove_file_if_exists "Gemfile"
-          remove_dir_if_exists "spec"
-        end
+      def restore_destination
+        remove_file_if_exists "Gemfile"
+        remove_dir_if_exists "spec"
+      end
 
-        def rails_helper
-          # Generated from rails g rspec:install
-          # Comments removed
-          <<~RUBY
+      def rails_helper
+        # Generated from rails g rspec:install
+        # Comments removed
+        <<~RUBY
             require 'spec_helper'
             ENV['RAILS_ENV'] ||= 'test'
             require_relative '../config/environment'
@@ -225,13 +224,13 @@ module Suspenders
               config.filter_rails_from_backtrace!
             end
             Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
-          RUBY
-        end
+        RUBY
+      end
 
-        def spec_helper
-          # Generated from rails g rspec:install
-          # Comments removed
-          <<~RUBY
+      def spec_helper
+        # Generated from rails g rspec:install
+        # Comments removed
+        <<~RUBY
             RSpec.configure do |config|
               config.expect_with :rspec do |expectations|
                 expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -242,8 +241,7 @@ module Suspenders
               end
               config.shared_context_metadata_behavior = :apply_to_host_groups
             end
-          RUBY
-        end
+        RUBY
       end
     end
   end
