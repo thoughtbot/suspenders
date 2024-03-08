@@ -9,6 +9,9 @@ module Suspenders
         end
 
         gem_group :test do
+          gem "action_dispatch-testing-integration-capybara",
+            github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.0",
+            require: "action_dispatch/testing/integration/capybara/rspec"
           gem "shoulda-matchers", "~> 6.0"
           gem "webdrivers"
           gem "webmock"
