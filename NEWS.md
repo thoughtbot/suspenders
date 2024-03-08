@@ -14,6 +14,7 @@ Unreleased
 * Introduce `suspenders:tasks` generator
 * Introduce `suspenders:db:migrate` task
 * Introduce `suspenders:email` generator
+* Introduce `suspenders:testing` generator
 
 20230113.0 (January, 13, 2023)
 
