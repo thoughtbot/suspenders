@@ -42,6 +42,7 @@ module Suspenders
           persistence_file_path + order,
           after: "RSpec.configure do |config|\n"
 
+        insert_into_file "spec/spec_helper.rb", "require \"webmock\/rspec\"\n\n", before: "RSpec.configure do |config|"
         insert_into_file "spec/spec_helper.rb", webmock_config
       end
 

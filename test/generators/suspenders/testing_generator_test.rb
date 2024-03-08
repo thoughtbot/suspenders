@@ -57,6 +57,8 @@ module Suspenders
       test "configures spec_helper" do
         touch "spec/spec_helper.rb", content: spec_helper
         expected = <<~RUBY
+            require "webmock/rspec"
+
             RSpec.configure do |config|
               config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
               config.order = :random
