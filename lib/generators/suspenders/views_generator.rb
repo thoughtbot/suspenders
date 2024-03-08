@@ -3,7 +3,7 @@ module Suspenders
     class ViewsGenerator < Rails::Generators::Base
       include Suspenders::Generators::APIAppUnsupported
 
-      desc "Configures flash messages, page titles and the document lang."
+      desc "Configures flash messages, page titles and the document lang. Disables Turbo's InstantClick."
       source_root File.expand_path("../../templates/views", __FILE__)
 
       def install_gems
@@ -20,6 +20,7 @@ module Suspenders
         insert_into_file "app/views/layouts/application.html.erb", "    <%= render \"flashes\" -%>\n", after: "<body>\n"
         gsub_file "app/views/layouts/application.html.erb", /<html>/, "<html lang=\"<%= I18n.locale %>\">"
         gsub_file "app/views/layouts/application.html.erb", /<title>.*<\/title>/, "<title><%= title %></title>"
+        insert_into_file "app/views/layouts/application.html.erb", "    <meta name=\"turbo-prefetch\" content=\"false\">\n", after: "</title>"
       end
     end
   end
