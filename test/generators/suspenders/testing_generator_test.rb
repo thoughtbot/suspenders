@@ -182,7 +182,7 @@ module Suspenders
       end
 
       test "has custom description" do
-        skip
+        assert_no_match /Description/, generator_class.desc
       end
 
       private
