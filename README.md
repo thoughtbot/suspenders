@@ -3,8 +3,7 @@
 [![Build Status](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/thoughtbot/suspenders/actions)
 [![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
 
-Suspenders is the base Rails application used at
-[thoughtbot](https://thoughtbot.com/).
+Suspenders is the base Rails application used at [thoughtbot].
 
   ![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
@@ -201,24 +200,13 @@ Thank you, [contributors]!
 
 ## License
 
-Suspenders is Copyright © 2008-2017 thoughtbot.
+Suspenders is Copyright © 2008-2024 thoughtbot.
 It is free software,
 and may be redistributed under the terms specified in the [LICENSE] file.
 
 [LICENSE]: LICENSE
 
-## About thoughtbot
-
-[![thoughtbot][thoughtbot-logo]][thoughtbot]
-
-Suspenders is maintained and funded by thoughtbot, inc.
-The names and logos for thoughtbot are trademarks of thoughtbot, inc.
-
-We love open source software!
-See [our other projects][community].
-We are [available for hire][hire].
+<!-- START /templates/footer.md -->
+<!-- END /templates/footer.md -->
 
 [thoughtbot]: https://thoughtbot.com?utm_source=github
-[thoughtbot-logo]: https://thoughtbot.com/brand_assets/93:44.svg
-[community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com?utm_source=github
