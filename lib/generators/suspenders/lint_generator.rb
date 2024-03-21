@@ -42,12 +42,6 @@ module Suspenders
         copy_file "config_initializers_better_html.rb", "config/initializers/better_html.rb"
         copy_file "erblint.rake", "lib/tasks/erblint.rake"
         template "rubocop.yml.tt", ".rubocop.yml"
-
-        if default_test_suite?
-          copy_file "better_html_test.rb", "test/views/better_html_test.rb"
-        elsif rspec_test_suite?
-          copy_file "better_html_spec.rb", "spec/views/better_html_spec.rb"
-        end
       end
 
       def update_package_json
