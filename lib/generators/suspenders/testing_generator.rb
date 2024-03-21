@@ -10,11 +10,12 @@ module Suspenders
         end
 
         gem_group :test do
+          gem "capybara"
           gem "action_dispatch-testing-integration-capybara",
-            github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.0",
+            github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.1",
             require: "action_dispatch/testing/integration/capybara/rspec"
+          gem "selenium-webdriver"
           gem "shoulda-matchers", "~> 6.0"
-          gem "webdrivers"
           gem "webmock"
         end
 
@@ -29,6 +30,8 @@ module Suspenders
         insert_into_file "spec/rails_helper.rb",
           "\s\sconfig.infer_base_class_for_anonymous_controllers = false\n",
           after: "RSpec.configure do |config|\n"
+
+        uncomment_lines "spec/rails_helper.rb", /Rails\.root\.glob/
       end
 
       def modify_spec_helper
@@ -59,7 +62,7 @@ module Suspenders
       end
 
       def configure_chromedriver
-        copy_file "chromedriver.rb", "spec/support/chromedriver.rb"
+        copy_file "driver.rb", "spec/support/driver.rb"
       end
 
       def configure_i18n_helper

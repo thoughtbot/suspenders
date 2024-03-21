@@ -18,9 +18,10 @@ module Suspenders
           end
 
           group :test do
-            gem "action_dispatch-testing-integration-capybara", github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.0", require: "action_dispatch/testing/integration/capybara/rspec"
+            gem "capybara"
+            gem "action_dispatch-testing-integration-capybara", github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.1.1", require: "action_dispatch/testing/integration/capybara/rspec"
+            gem "selenium-webdriver"
             gem "shoulda-matchers", "~> 6.0"
-            gem "webdrivers"
             gem "webmock"
           end
         RUBY
@@ -52,6 +53,7 @@ module Suspenders
         assert_file "spec/rails_helper.rb" do |file|
           assert_match(/RSpec\.configure do \|config\|\s{3}config\.infer_base_class_for_anonymous_controllers\s*=\s*false/m,
             file)
+          assert_match(/^\#{0}\s*Rails\.root\.glob\(\"spec\/support\/\*\*\/\*\.rb\"\)\.sort\.each { \|f\| require f }/, file)
         end
       end
 
@@ -90,40 +92,18 @@ module Suspenders
         end
       end
 
-      test "configures Chromedriver" do
+      test "configures driver" do
         expected = <<~RUBY
-          require "selenium/webdriver"
-
-          Capybara.register_driver :chrome do |app|
-            Capybara::Selenium::Driver.new(app, browser: :chrome)
-          end
-
-          Capybara.register_driver :headless_chrome do |app|
-            options = ::Selenium::WebDriver::Chrome::Options.new
-            options.headless!
-            options.add_argument "--window-size=1680,1050"
-
-            Capybara::Selenium::Driver.new app,
-              browser: :chrome,
-              options: options
-          end
-
-          Capybara.javascript_driver = :headless_chrome
-
           RSpec.configure do |config|
             config.before(:each, type: :system) do
-              driven_by :rack_test
-            end
-
-            config.before(:each, type: :system, js: true) do
-              driven_by Capybara.javascript_driver
+              driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
             end
           end
         RUBY
 
         run_generator
 
-        assert_file app_root("spec/support/chromedriver.rb") do |file|
+        assert_file app_root("spec/support/driver.rb") do |file|
           assert_equal expected, file
         end
       end
@@ -209,6 +189,8 @@ module Suspenders
 
           abort("The Rails environment is running in production mode!") if Rails.env.production?
           require 'rspec/rails'
+
+          # Rails.root.glob("spec/support/**/*.rb").sort.each { |f| require f }
 
           begin
             ActiveRecord::Migration.maintain_test_schema!

@@ -178,17 +178,10 @@ bin/rails g suspenders:email
 
 ### Testing
 
-Set up the project for an in-depth test-driven development workflow.
-
-Installs and configures [rspec-rails][],
-[action_dispatch-testing-integration-capybara][], [shoulda-matchers][],
-[webdrivers][] and [webmock][].
+Set up the project for an in-depth test-driven development workflow via
+[rspec-rails][] and friends.
 
 [rspec-rails]: https://github.com/rspec/rspec-rails
-[action_dispatch-testing-integration-capybara]: https://github.com/thoughtbot/action_dispatch-testing-integration-capybara
-[shoulda-matchers]: https://github.com/thoughtbot/shoulda-matchers
-[webdrivers]: https://github.com/titusfortner/webdrivers
-[webmock]: https://github.com/bblimke/webmock
 
 ## Contributing
 
