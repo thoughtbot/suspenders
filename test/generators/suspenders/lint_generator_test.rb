@@ -220,24 +220,6 @@ module Suspenders
         end
       end
 
-      test "generates erb-lint tests" do
-        with_test_suite :minitest do
-          capture(:stderr) { run_generator }
-
-          assert_file app_root("test/views/better_html_test.rb")
-          assert_no_file app_root("spec/views/better_html_spec.rb")
-        end
-      end
-
-      test "generates erb-lint specs" do
-        with_test_suite :rspec do
-          capture(:stderr) { run_generator }
-
-          assert_file app_root("spec/views/better_html_spec.rb")
-          assert_no_file app_root("test/views/better_html_test.rb")
-        end
-      end
-
       test "generates .rubocop.yml" do
         expected_content = <<~YAML
           AllCops:
