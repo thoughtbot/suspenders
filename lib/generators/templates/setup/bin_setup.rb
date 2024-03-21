@@ -31,10 +31,6 @@ FileUtils.chdir APP_ROOT do
     system! "bin/rails assets:clobber assets:precompile"
   end
 
-  # https://github.com/rails/rails/pull/47719/files
-  puts "\n== Setup test environment =="
-  system! "bin/rails test:prepare"
-
   puts "\n== Removing old logs and tempfiles =="
   system! "bin/rails log:clear tmp:clear"
 
