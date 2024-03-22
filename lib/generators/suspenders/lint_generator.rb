@@ -21,11 +21,7 @@ module Suspenders
       end
 
       def configure_stylelint
-        if using_tailwind?
-          copy_file "tailwind.stylelintrc.json", ".stylelintrc.json"
-        else
-          copy_file "stylelintrc.json", ".stylelintrc.json"
-        end
+        copy_file "stylelintrc.json", ".stylelintrc.json"
       end
 
       def configure_eslint
