@@ -91,6 +91,14 @@ module Suspenders
         assert_file app_root(".prettierrc") do |file|
           assert_equal expected_content, file
         end
+
+        assert_file app_root(".prettierignore") do |file|
+          expected = <<~TEXT
+            vendor/bundle/**
+          TEXT
+
+          assert_equal expected, file
+        end
       end
 
       test "configures erb-lint" do
