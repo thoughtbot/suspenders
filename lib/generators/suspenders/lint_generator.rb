@@ -30,6 +30,7 @@ module Suspenders
 
       def configure_prettier
         copy_file "prettierrc", ".prettierrc"
+        copy_file "prettierignore", ".prettierignore"
       end
 
       def configure_erb_lint
