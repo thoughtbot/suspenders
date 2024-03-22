@@ -180,6 +180,14 @@ Set up the project for an in-depth test-driven development workflow via
 
 [rspec-rails]: https://github.com/rspec/rspec-rails
 
+#### Prerequisites
+
+Configures prerequisites. Currently Node.
+
+```
+bin/rails g suspenders:prerequisites
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
