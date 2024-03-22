@@ -1,0 +1,1 @@
+<%= Suspenders::NODE_LTS_VERSION %>
