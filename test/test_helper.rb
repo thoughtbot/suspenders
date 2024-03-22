@@ -100,21 +100,6 @@ module Suspenders::TestHelpers
     remove_dir_if_exists "spec"
   end
 
-  def with_css_option(css, &block)
-    case css
-    when :postcss
-      touch "postcss.config.js"
-    when :tailwind
-      touch "tailwind.config.js"
-    else
-      raise ArgumentError, "unknown css option: #{css.inspect}"
-    end
-    yield
-  ensure
-    remove_file_if_exists "postcss.config.js"
-    remove_file_if_exists "tailwind.config.js"
-  end
-
   def backup_file(file)
     FileUtils.copy app_root(file), app_root("#{file}.bak")
   end

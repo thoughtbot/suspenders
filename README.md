@@ -94,16 +94,13 @@ via [better_html][], [erb_lint][] and [erblint-github][].
 
 ### Styles
 
-Configures applications to use [PostCSS][] or [Tailwind][] via
-[cssbundling-rails][]. Defaults to PostCSS with [modern-normalize][], with the
-option to override via `--css=tailwind`.
+Configures applications to use [PostCSS][] via [cssbundling-rails][].
 
-Also creates additional stylesheets if using PostCSS.
+Adds [modern-normalize][], and style sheet structure.
 
-`bin/rails g suspenders:styles --css[postcss:tailwind]`
+`bin/rails g suspenders:styles`
 
   [PostCSS]: https://postcss.org
-  [Tailwind]: https://tailwindcss.com
   [cssbundling-rails]: https://github.com/rails/cssbundling-rails
   [modern-normalize]: https://github.com/sindresorhus/modern-normalize
 

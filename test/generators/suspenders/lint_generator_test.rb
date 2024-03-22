@@ -53,30 +53,6 @@ module Suspenders
         end
       end
 
-      test "configures stylelint for tailwind" do
-        expected_content = <<~TEXT
-          {
-            "extends": "@thoughtbot/stylelint-config",
-            "rules": {
-              "scss/at-rule-no-unknown": [
-                true,
-                {
-                  "ignoreAtRules": ["tailwind"]
-                }
-              ]
-            }
-          }
-        TEXT
-
-        with_css_option :tailwind do
-          capture(:stderr) { run_generator }
-
-          assert_file app_root(".stylelintrc.json") do |file|
-            assert_equal expected_content, file
-          end
-        end
-      end
-
       test "configures eslint" do
         expected_content = <<~JSON
           {
