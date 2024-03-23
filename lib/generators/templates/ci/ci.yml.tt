@@ -130,9 +130,9 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
           # REDIS_URL: redis://localhost:6379/0
         <%- if using_rspec? -%>
-          run: bin/rails db:setup spec
+        run: bin/rails db:setup spec
         <%- else -%>
-          run: bin/rails db:setup test test:system
+        run: bin/rails db:setup test test:system
         <%- end -%>
 
       - name: Keep screenshots from failed system tests
