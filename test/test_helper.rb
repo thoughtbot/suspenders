@@ -100,6 +100,18 @@ module Suspenders::TestHelpers
     remove_dir_if_exists "spec"
   end
 
+  def with_database(database, &block)
+    backup_file "config/database.yml"
+    configuration = File.read app_root("config/database.yml")
+    configuration = YAML.load(configuration, aliases: true)
+    configuration["default"]["adapter"] = database
+    File.open(app_root("config/database.yml"), "w") { _1.write configuration.to_yaml }
+
+    yield
+  ensure
+    restore_file "config/database.yml"
+  end
+
   def backup_file(file)
     FileUtils.copy app_root(file), app_root("#{file}.bak")
   end

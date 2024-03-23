@@ -44,5 +44,33 @@ module Suspenders
           .match?(/^\s*config\.api_only\s*=\s*true/i)
       end
     end
+
+    module DatabaseUnsupported
+      class Error < StandardError
+        def message
+          "This generator requires PostgreSQL"
+        end
+      end
+
+      extend ActiveSupport::Concern
+
+      included do
+        def raise_if_database_unsupported
+          if database_unsupported?
+            raise Suspenders::Generators::DatabaseUnsupported::Error
+          end
+        end
+
+        private
+
+        def database_unsupported?
+          configuration = File.read(Rails.root.join("config/database.yml"))
+          configuration = YAML.load(configuration, aliases: true)
+          adapter = configuration["default"]["adapter"]
+
+          adapter != "postgresql"
+        end
+      end
+    end
   end
 end
