@@ -188,6 +188,14 @@ Configures prerequisites. Currently Node.
 bin/rails g suspenders:prerequisites
 ```
 
+### CI
+
+Creates CI files for GitHub Actions.
+
+```
+bin/rails g suspenders:ci
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.

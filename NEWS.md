@@ -16,6 +16,7 @@ Unreleased
 * Introduce `suspenders:email` generator
 * Introduce `suspenders:testing` generator
 * Introduce `suspenders:prerequisites` generator
+* Introduce `suspenders:ci` generator
 
 20230113.0 (January, 13, 2023)
 
