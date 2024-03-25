@@ -248,15 +248,6 @@ module Suspenders
         assert_equal desc, generator_class.desc
       end
 
-      test "fixes violations" do
-        capture(:stderr) do
-          output = run_generator
-
-          assert_match(/yarn run fix:prettier/, output)
-          assert_match(/bundle exec rake standard:fix_unsafely/, output)
-        end
-      end
-
       private
 
       def prepare_destination

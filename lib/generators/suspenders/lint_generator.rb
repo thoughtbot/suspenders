@@ -55,13 +55,6 @@ module Suspenders
         File.write package_json, JSON.pretty_generate(json)
       end
 
-      # This needs to be the last method definition to ensure everything is
-      # properly configured
-      def fix_violations
-        run "yarn run fix:prettier"
-        run "bundle exec rake standard:fix_unsafely"
-      end
-
       private
 
       def package_json
