@@ -65,7 +65,7 @@ module Suspenders
 
         def database_unsupported?
           configuration = File.read(Rails.root.join("config/database.yml"))
-          configuration = YAML.load(configuration, aliases: true)
+          configuration = YAML.safe_load(configuration, aliases: true)
           adapter = configuration["default"]["adapter"]
 
           adapter != "postgresql"
