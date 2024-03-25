@@ -53,7 +53,7 @@ module Suspenders
         assert_file "spec/rails_helper.rb" do |file|
           assert_match(/RSpec\.configure do \|config\|\s{3}config\.infer_base_class_for_anonymous_controllers\s*=\s*false/m,
             file)
-          assert_match(/^\#{0}\s*Rails\.root\.glob\(\"spec\/support\/\*\*\/\*\.rb\"\)\.sort\.each { \|f\| require f }/, file)
+          assert_match(/^\#{0}\s*Rails\.root\.glob\("spec\/support\/\*\*\/\*\.rb"\)\.sort\.each { \|f\| require f }/, file)
         end
       end
 
