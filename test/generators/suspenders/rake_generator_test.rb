@@ -15,7 +15,7 @@ module Suspenders
         run_generator
 
         assert_file app_root("Rakefile") do |file|
-          assert_match /task default: "suspenders:rake"/, file
+          assert_match(/task default: "suspenders:rake"/, file)
         end
       end
 

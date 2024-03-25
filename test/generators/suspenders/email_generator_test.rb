@@ -52,7 +52,7 @@ module Suspenders
       test "configures application to user email intercepter" do
         run_generator
 
-        assert_file app_root("config/application.rb"), /config\.to_prepare\s*do.\s*EmailInterceptor\.config\.interceptor_addresses\s*=\s*ENV\.fetch\("INTERCEPTOR_ADDRESSES",\s*\"\"\)\.split\(\",\"\).\s*end/m
+        assert_file app_root("config/application.rb"), /config\.to_prepare\s*do.\s*EmailInterceptor\.config\.interceptor_addresses\s*=\s*ENV\.fetch\("INTERCEPTOR_ADDRESSES",\s*""\)\.split\(","\).\s*end/m
       end
 
       test "configures action mailer in development" do

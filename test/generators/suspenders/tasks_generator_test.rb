@@ -25,7 +25,7 @@ module Suspenders
       test "returns early if factory_bot_rails is not installed" do
         output = run_generator
 
-        assert_match /This generator requires Factory Bot/, output
+        assert_match(/This generator requires Factory Bot/, output)
         assert_no_file app_root("lib/tasks/dev.rake")
       end
 
