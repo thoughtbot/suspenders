@@ -103,7 +103,7 @@ module Suspenders::TestHelpers
   def with_database(database, &block)
     backup_file "config/database.yml"
     configuration = File.read app_root("config/database.yml")
-    configuration = YAML.load(configuration, aliases: true)
+    configuration = YAML.safe_load(configuration, aliases: true)
     configuration["default"]["adapter"] = database
     File.open(app_root("config/database.yml"), "w") { _1.write configuration.to_yaml }
 
