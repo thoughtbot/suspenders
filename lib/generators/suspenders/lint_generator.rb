@@ -6,6 +6,12 @@ module Suspenders
       source_root File.expand_path("../../templates/lint", __FILE__)
       desc "Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB."
 
+      def check_package_json
+        unless File.exist? Rails.root.join("package.json")
+          copy_file "package.json", "package.json"
+        end
+      end
+
       def install_dependencies
         run "yarn add stylelint eslint @thoughtbot/stylelint-config @thoughtbot/eslint-config npm-run-all prettier --dev"
       end
