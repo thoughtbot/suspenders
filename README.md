@@ -157,6 +157,7 @@ Custom Suspenders tasks
 ```
 bin/rails suspenders:rake
 bin/rails suspenders:db:migrate
+bin/rails suspenders:cleanup:organize_gemfile
 ```
 
 ### Email

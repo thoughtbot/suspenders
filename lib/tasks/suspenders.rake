@@ -22,4 +22,11 @@ namespace :suspenders do
       Rake::Task["db:test:prepare"].invoke
     end
   end
+
+  namespace :cleanup do
+    desc "Organizes Gemfile"
+    task :organize_gemfile do
+      Suspenders::Cleanup::OrganizeGemfile.perform(Rails.root.join("Gemfile"))
+    end
+  end
 end

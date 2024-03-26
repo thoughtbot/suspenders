@@ -17,6 +17,7 @@ Unreleased
 * Introduce `suspenders:testing` generator
 * Introduce `suspenders:prerequisites` generator
 * Introduce `suspenders:ci` generator
+* Introduce `suspenders:cleanup:organize_gemfile` task
 
 20230113.0 (January, 13, 2023)
 
