@@ -1,0 +1,35 @@
+source "https://rubygems.org"
+
+# comment one
+gem "first"
+
+group :development, :test do
+  # development test comment one
+  gem "group_development_test_one"
+  # development test comment two
+  gem "group_development_test_two"
+end
+
+group :development, :test do
+  # development test comment three
+  gem "group_development_test_three"
+  # development test comment four
+  gem "group_development_test_four"
+end
+
+group :test do
+  # test comment one
+  gem "group_test_one"
+  # test comment two
+  gem "group_test_two"
+end
+
+# comment two
+gem "second"
+
+group :test do
+  # test comment three
+  gem "group_test_three"
+  # test comment four
+  gem "group_test_four"
+end
