@@ -260,6 +260,7 @@ module Suspenders
         remove_file_if_exists ".stylelintrc.json"
         remove_file_if_exists ".eslintrc.json"
         remove_file_if_exists ".prettierrc"
+        remove_file_if_exists ".prettierignore"
         remove_file_if_exists "package.json"
         remove_file_if_exists ".erb-lint.yml"
         remove_file_if_exists "config/better_html.yml"
