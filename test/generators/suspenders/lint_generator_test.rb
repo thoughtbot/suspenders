@@ -248,6 +248,14 @@ module Suspenders
         assert_equal desc, generator_class.desc
       end
 
+      test "created package.json if one does not exist" do
+        remove_file_if_exists "package.json"
+
+        run_generator
+
+        assert_file app_root("package.json")
+      end
+
       private
 
       def prepare_destination
