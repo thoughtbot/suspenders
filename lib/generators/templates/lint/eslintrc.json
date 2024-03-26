@@ -1,0 +1,7 @@
+{
+  "extends": ["@thoughtbot/eslint-config/prettier"],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  }
+}

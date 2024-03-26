@@ -1,59 +1,55 @@
 # Contributing
 
-We love pull requests from everyone. By participating in this project, you
-agree to abide by the thoughtbot [code of conduct].
+We love contributions from everyone.
+By participating in this project,
+you agree to abide by the thoughtbot [code of conduct].
 
-[code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
+  [code of conduct]: https://thoughtbot.com/open-source-code-of-conduct
 
-Fork the repo:
+We expect everyone to follow the code of conduct
+anywhere in thoughtbot's project codebases,
+issue trackers, chatrooms, and mailing lists.
 
-    git clone git@github.com:thoughtbot/suspenders.git
+## Contributing Code
 
-Set up your machine:
+Fork the repo.
 
-    ./bin/setup
+Run the setup script.
+
+```
+./bin/setup
+```
 
 Make sure the tests pass:
 
-    rake
-
-Make your change. Write tests. Follow our [style guide][style]. Make the tests
-pass:
-
-[style]: https://github.com/thoughtbot/guides/blob/main/ruby/README.md
-
-    rake
-
-Mention how your changes affect the project to other developers and users in
-the `NEWS.md` file.
-
-Write a [good commit message][commit].
-Push to your fork.
-[Submit a pull request][pr].
-
-[commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
-[pr]: https://github.com/thoughtbot/suspenders/compare/
-
-If [Hound] catches style violations, fix them.
-
-[hound]: https://houndci.com
-
-Wait for us. We try to at least comment on pull requests within one business
-day. We may suggest changes.
-
-## Generators
-
-All new contributions must be within the generator framework, as described in
-[our goals](GOALS.md).
-
-## Versions
-
-To update the Ruby version, change `.ruby-version`.
-
-If you see this error while running tests:
-
 ```
-Your Ruby version is XXX, but your Gemfile specified YYY (Bundler::RubyVersionMismatch)
+bundle exec rake
 ```
 
-Try removing the `tmp/` directory and re-running the tests.
+Make your change, with new passing tests. Follow the [style guide][style].
+
+  [style]: https://github.com/thoughtbot/guides/tree/master/style
+
+Mention how your changes affect the project to other developers and users in the
+`NEWS.md` file.
+
+Push to your fork. Write a [good commit message][commit]. Submit a pull request.
+
+  [commit]: http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html
+
+Others will give constructive feedback.
+This is a time for discussion and improvements,
+and making the necessary changes will be required before we can
+merge the contribution.
+
+## Publishing to RubyGems
+
+When the gem is ready to be shared as a formal release, it can be
+[published][published] to RubyGems.
+
+  [published]: https://guides.rubyonrails.org/plugins.html#publishing-your-gem
+
+1. Bump the version number in `Suspenders::VERSION`
+2. Run `bundle exec rake build`
+3. Run `bundle exec rake install`
+4. Run `bundle exec rake release`

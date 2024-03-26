@@ -1,0 +1,63 @@
+---
+glob: "app/views/**/*.{html,turbo_stream}{+*,}.erb"
+
+linters:
+  AllowedScriptType:
+    enabled: true
+    allowed_types:
+      - "module"
+      - "text/javascript"
+  ErbSafety:
+    enabled: true
+    better_html_config: "config/better_html.yml"
+  GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter:
+    enabled: true
+  GitHub::Accessibility::AvoidGenericLinkTextCounter:
+    enabled: true
+  GitHub::Accessibility::DisabledAttributeCounter:
+    enabled: true
+  GitHub::Accessibility::IframeHasTitleCounter:
+    enabled: true
+  GitHub::Accessibility::ImageHasAltCounter:
+    enabled: true
+  GitHub::Accessibility::LandmarkHasLabelCounter:
+    enabled: true
+  GitHub::Accessibility::LinkHasHrefCounter:
+    enabled: true
+  GitHub::Accessibility::NestedInteractiveElementsCounter:
+    enabled: true
+  GitHub::Accessibility::NoAriaLabelMisuseCounter:
+    enabled: true
+  GitHub::Accessibility::NoPositiveTabIndexCounter:
+    enabled: true
+  GitHub::Accessibility::NoRedundantImageAltCounter:
+    enabled: true
+  GitHub::Accessibility::NoTitleAttributeCounter:
+    enabled: true
+  GitHub::Accessibility::SvgHasAccessibleTextCounter:
+    enabled: true
+  Rubocop:
+    enabled: true
+    rubocop_config:
+      inherit_from:
+        - .rubocop.yml
+
+      Lint/EmptyBlock:
+        Enabled: false
+      Layout/InitialIndentation:
+        Enabled: false
+      Layout/TrailingEmptyLines:
+        Enabled: false
+      Layout/TrailingWhitespace:
+        Enabled: false
+      Layout/LeadingEmptyLines:
+        Enabled: false
+      Style/FrozenStringLiteralComment:
+        Enabled: false
+      Style/MultilineTernaryOperator:
+        Enabled: false
+      Lint/UselessAssignment:
+        Exclude:
+          - "app/views/**/*"
+
+EnableDefaultLinters: true

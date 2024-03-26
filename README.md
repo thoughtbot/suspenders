@@ -1,224 +1,229 @@
 # Suspenders
 
-[![Build Status](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml/badge.svg?branch=master)](https://github.com/thoughtbot/suspenders/actions)
-[![Reviewed by Hound](https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg)](https://houndci.com)
+Suspenders is a Rails plugin containing generators for configuring Rails
+applications. It is used by thoughtbot to get a jump start on a new or existing
+app. Use Suspenders if you're in a rush to build something amazing; don't use it
+if you like missing deadlines.
 
-Suspenders is the base Rails application used at
-[thoughtbot](https://thoughtbot.com/).
+![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
-  ![Suspenders boy](http://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
+## Usage
 
-## Installation
+```
+group :development, :test do
+  gem "suspenders"
+end
+```
 
-First install the suspenders gem:
+```
+bin/rails g suspenders:all
+```
 
-    gem install suspenders
+## Generators
 
-Then run:
+### Accessibility
 
-    suspenders projectname
+Installs [capybara_accessibility_audit] and [capybara_accessible_selectors]
 
-This will create a Rails app in `projectname` using the latest version of Rails.
+`bin/rails g suspenders:accessibility`
 
-### Associated services
+  [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
+  [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
 
-* Enable [Circle CI](https://circleci.com/) Continuous Integration
-* Enable [GitHub auto deploys to Heroku staging and review
-    apps](https://dashboard.heroku.com/apps/app-name-staging/deploy/github).
+### Advisories
 
-## Gemfile
+Show security advisories during development.
 
-To see the latest and greatest gems, look at Suspenders'
-[Gemfile](templates/Gemfile.erb), which will be appended to the default
-generated projectname/Gemfile.
+Uses the [bundler-audit][] gem to update the local security database and
+show any relevant issues with the app's dependencies. This generator is
+only responsible for installing the gem and adding the Rake task.
 
-It includes application gems like:
+`bin/rails g suspenders:advisories`
 
-* [Sidekiq](https://github.com/mperham/sidekiq) for background
-  processing
-* [High Voltage](https://github.com/thoughtbot/high_voltage) for static pages
-* [Honeybadger](https://www.honeybadger.io/?affiliate=A43uwl) for exception notification
-* [Oj](http://www.ohler.com/oj/)
-* [Postgres](https://github.com/ged/ruby-pg) for access to the Postgres database
-* [Rack Canonical Host](https://github.com/tylerhunt/rack-canonical-host) to
-  ensure all requests are served from the same domain
-* [Rack Timeout](https://github.com/heroku/rack-timeout) to abort requests that are
-  taking too long
-* [Recipient Interceptor](https://github.com/croaky/recipient_interceptor) to
-  avoid accidentally sending emails to real people from staging
-* [Simple Form](https://github.com/plataformatec/simple_form) for form markup
-  and style
-* [Skylight](https://www.skylight.io/) for monitoring performance
-* [Title](https://github.com/calebthompson/title) for storing titles in
-  translations
+  [bundler-audit]: https://github.com/rubysec/bundler-audit
 
-And development gems like:
+### Factories
 
-* [Dotenv](https://github.com/bkeepers/dotenv) for loading environment variables
-* [Pry Rails](https://github.com/rweng/pry-rails) for interactively exploring
-  objects
-* [ByeBug](https://github.com/deivid-rodriguez/byebug) for interactively
-  debugging behavior
-* [Bullet](https://github.com/flyerhzm/bullet) for help to kill N+1 queries and
-  unused eager loading
-* [Bundler Audit](https://github.com/rubysec/bundler-audit) for scanning the
-  Gemfile for insecure dependencies based on published CVEs
-* [Web Console](https://github.com/rails/web-console) for better debugging via
-  in-browser IRB consoles.
+Build test data with clarity and ease.
 
-And testing gems like:
+This uses [FactoryBot] to help you define dummy and test data for your
+test suite. The `create`, `build`, and `build_stubbed` class methods are
+directly available to all tests.
 
-* [Capybara](https://github.com/jnicklas/capybara) and
-  [Google Chromedriver]
-  integration testing
-* [capybara_accessibility_audit](https://github.com/thoughtbot/capybara_accessibility_audit) and
-  [capybara_accessible_selectors](https://github.com/citizensadvice/capybara_accessible_selectors)
-* [Factory Bot](https://github.com/thoughtbot/factory_bot) for test data
-* [Formulaic](https://github.com/thoughtbot/formulaic) for integration testing
-  HTML forms
-* [RSpec](https://github.com/rspec/rspec) for unit testing
-* [RSpec Mocks](https://github.com/rspec/rspec-mocks) for stubbing and spying
-* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) for common
-  RSpec matchers
+We recommend putting FactoryBot definitions in one `spec/factories.rb`
+(or `test/factories`) file, at least until it grows unwieldy. This helps reduce
+confusion around circular dependencies and makes it easy to jump between
+definitions.
 
-## Other goodies
+Supports the [default test suite] and [RSpec].
 
-Suspenders also comes with:
+`bin/rails g suspenders:factories`
 
-* The [`./bin/setup`][setup] convention for new developer setup
-* The `./bin/deploy` convention for deploying to Heroku
-* Rails' flashes set up and in application layout
-* A few nice time formats set up for localization
-* `Rack::Deflater` to [compress responses with Gzip][compress]
-* A [low database connection pool limit][pool]
-* [Safe binstubs][binstub]
-* [t() and l() in specs without prefixing with I18n][i18n]
-* An automatically-created `SECRET_KEY_BASE` environment variable in all
-  environments
-* Configuration for [CircleCI][circle] Continuous Integration (tests)
-* Configuration for [Hound][hound] Continuous Integration (style)
-* Configuration for [stylelint][stylelint]
-* The analytics adapter [Segment][segment] (and therefore config for Google
-  Analytics, Intercom, Facebook Ads, Twitter Ads, etc.)
-* [PostCSS Autoprefixer][autoprefixer] for CSS vendor prefixes
-* [PostCSS Normalize][normalize] for resetting browser styles
+  [Factory Bot]: https://github.com/thoughtbot/factory_bot_rails
+  [default test suite]: https://guides.rubyonrails.org/testing.html
+  [RSpec]: https://rspec.info
 
-[setup]: https://robots.thoughtbot.com/bin-setup
-[compress]: https://robots.thoughtbot.com/content-compression-with-rack-deflater
-[pool]: https://devcenter.heroku.com/articles/concurrency-and-database-connections
-[binstub]: https://github.com/thoughtbot/suspenders/pull/282
-[i18n]: https://github.com/thoughtbot/suspenders/pull/304
-[circle]: https://circleci.com/docs
-[hound]: https://houndci.com
-[stylelint]: https://stylelint.io/
-[segment]: https://segment.com
-[autoprefixer]: https://github.com/postcss/autoprefixer
-[normalize]: https://github.com/csstools/postcss-normalize
+### Inline SVG
 
-## Heroku
+Render SVG images inline using the [inline_svg] gem, as a potential performance
+improvement for the viewer.
 
-Read the documentation on [deploying to Heroku][heroku deploy]
+`bin/rails g suspenders:inline_svg`
 
-You can optionally create Heroku staging and production apps:
+  [inline_svg]: https://github.com/jamesmartin/inline_svg
 
-    suspenders app --heroku true
+### Lint
 
-This:
+Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB.
 
-* Creates a staging and production Heroku app
-* Sets them as `staging` and `production` Git remotes
-* Configures staging with `HONEYBADGER_ENV` environment variable set
-  to `staging`
-* Creates a [Heroku Pipeline] for review apps
-* Schedules automated backups for 10AM UTC for both `staging` and `production`
+Introduces NPM commands that leverage [@thoughtbot/eslint-config][],
+[@thoughtbot/stylelint-config][] and [prettier][].
 
-[Heroku Pipeline]: https://devcenter.heroku.com/articles/pipelines
-[heroku deploy]: https://github.com/thoughtbot/suspenders/blob/master/docs/heroku_deploy.md
+Also introduces `.prettierrc` based off of our [Guides][].
 
-You can optionally specify alternate Heroku flags:
+Introduces `rake standard` which also runs `erblint` to lint ERB files
+via [better_html][], [erb_lint][] and [erblint-github][].
 
-    suspenders app \
-      --heroku true \
-      --heroku-flags "--region eu --addons sendgrid,ssl"
+[@thoughtbot/eslint-config]: https://github.com/thoughtbot/eslint-config
+[@thoughtbot/stylelint-config]: https://github.com/thoughtbot/stylelint-config
+[prettier]: https://prettier.io
+[Guides]: https://github.com/thoughtbot/guides/blob/main/javascript/README.md#formatting
+[better_html]: https://github.com/Shopify/better-html
+[erb_lint]: https://github.com/Shopify/erb-lint
+[erblint-github]: https://github.com/github/erblint-github
 
-See all possible Heroku flags:
+### Styles
 
-    heroku help create
+Configures applications to use [PostCSS][] via [cssbundling-rails][].
 
-## Git
+Adds [modern-normalize][], and style sheet structure.
 
-This will initialize a new git repository for your Rails app. You can
-bypass this with the `--skip-git` option:
+`bin/rails g suspenders:styles`
 
-    suspenders app --skip-git true
+  [PostCSS]: https://postcss.org
+  [cssbundling-rails]: https://github.com/rails/cssbundling-rails
+  [modern-normalize]: https://github.com/sindresorhus/modern-normalize
 
-## GitHub
 
-You can optionally create a GitHub repository for the suspended Rails app. It
-requires that you have [Hub](https://github.com/github/hub) on your system:
+### Jobs
 
-    brew install hub # macOS, for other systems see https://github.com/github/hub#installation
-    suspenders app --github organization/project
+Installs [Sidekiq][] for background job processing and configures ActiveJob for job queueing.
 
-This has the same effect as running:
+`bin/rails g suspenders:jobs`
 
-    hub create organization/project
+  [Sidekiq]: https://github.com/sidekiq/sidekiq
 
-## Dependencies
+### Rake
 
-Suspenders requires the latest version of Ruby.
+Configures the default Rake task to audit and lint the codebase with
+[bundler-audit][] and [standard][] in addition to running the test suite.
 
-Some gems included in Suspenders have native extensions. You should have GCC
-installed on your machine before generating an app with Suspenders.
+`bin/rails g suspenders:rake`
 
-Use [OS X GCC Installer](https://github.com/kennethreitz/osx-gcc-installer/) for
-Snow Leopard (OS X 10.6).
+  [bundler-audit]: https://github.com/rubysec/bundler-audit
+  [standard]: https://github.com/standardrb/standard
 
-Use [Command Line Tools for Xcode](https://developer.apple.com/downloads/index.action)
-for Lion (OS X 10.7) or Mountain Lion (OS X 10.8).
+### Views
 
-We use [Google Chromedriver] for full-stack JavaScript integration testing. It
-requires Google Chrome or Chromium.
+Configures flash messages, page titles via the [title][] gem, and sets the
+document [lang][]. Disables Turbo's [InstantClick][] to account for page
+requests that are [not debounced][].
 
-[Google Chromedriver]: https://sites.google.com/a/chromium.org/chromedriver/home
+[title]: https://github.com/calebhearth/title
+[lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
+[InstantClick]: https://turbo.hotwired.dev/handbook/drive#prefetching-links-on-hover
+[not debounced]: https://github.com/hotwired/turbo/pull/1181#issuecomment-1936505362
 
-PostgreSQL needs to be installed and running for the `db:create` rake task.
+### Setup
 
-Redis needs to be installed and running for Sidekiq
+A holistic setup script.
 
-## Issues
+```sh
+bin/setup
+```
 
-If you have problems, please create a
-[GitHub Issue](https://github.com/thoughtbot/suspenders/issues).
+### Tasks
+
+Creates local Rake tasks for development
+
+```sh
+bin/rails dev:prime
+```
+
+#### Suspenders Tasks
+
+Custom Suspenders tasks
+
+```
+bin/rails suspenders:rake
+bin/rails suspenders:db:migrate
+```
+
+### Email
+
+Intercepts emails in non-production environments by setting `INTERCEPTOR_ADDRESSES`.
+
+```sh
+INTERCEPTOR_ADDRESSES="user_1@example.com,user_2@example.com" bin/rails s
+```
+
+Configures `default_url_options` in `test` and `development`.
+
+```
+bin/rails g suspenders:email
+```
+
+### Testing
+
+Set up the project for an in-depth test-driven development workflow via
+[rspec-rails][] and friends.
+
+[rspec-rails]: https://github.com/rspec/rspec-rails
+
+#### Prerequisites
+
+Configures prerequisites. Currently Node.
+
+```
+bin/rails g suspenders:prerequisites
+```
+
+### CI
+
+Creates CI files for GitHub Actions.
+
+```
+bin/rails g suspenders:ci
+```
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md).
-
+See the [CONTRIBUTING] document.
 Thank you, [contributors]!
 
-[contributors]: https://github.com/thoughtbot/suspenders/graphs/contributors
+  [CONTRIBUTING]: CONTRIBUTING.md
+  [contributors]: https://github.com/thoughtbot/suspenders/graphs/contributors
 
 ## License
 
-Suspenders is Copyright © 2008-2017 thoughtbot.
-It is free software,
-and may be redistributed under the terms specified in the [LICENSE] file.
+Suspenders is Copyright (c) thoughtbot, inc.
+It is free software, and may be redistributed
+under the terms specified in the [LICENSE] file.
 
-[LICENSE]: LICENSE
+  [LICENSE]: /LICENSE
 
-## About thoughtbot
+## About
 
-[![thoughtbot][thoughtbot-logo]][thoughtbot]
+Suspenders is maintained by [thoughtbot].
+
+![thoughtbot](https://thoughtbot.com/brand_assets/93:44.svg)
 
 Suspenders is maintained and funded by thoughtbot, inc.
 The names and logos for thoughtbot are trademarks of thoughtbot, inc.
 
 We love open source software!
-See [our other projects][community].
-We are [available for hire][hire].
+See [our other projects][community]
+or [hire us][hire] to help build your product.
 
-[thoughtbot]: https://thoughtbot.com?utm_source=github
-[thoughtbot-logo]: https://thoughtbot.com/brand_assets/93:44.svg
-[community]: https://thoughtbot.com/community?utm_source=github
-[hire]: https://thoughtbot.com?utm_source=github
+  [community]: https://thoughtbot.com/community?utm_source=github
+  [hire]: https://thoughtbot.com/hire-us?utm_source=github

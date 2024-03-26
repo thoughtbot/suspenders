@@ -1,3 +1,23 @@
+Unreleased
+
+* Remove `suspenders` system executable
+* Introduce `suspenders:accessibility` generator
+* Introduce `suspenders:inline_svg` generator
+* Introduce `suspenders:factories` generator
+* Introduce `suspenders:advisories` generator
+* Introduce `suspenders:styles` generator
+* Introduce `suspenders:jobs` generator
+* Introduce `suspenders:lint` generator
+* Introduce `suspenders:rake` generator
+* Introduce `suspenders:views` generator
+* Introduce `suspenders:setup` generator
+* Introduce `suspenders:tasks` generator
+* Introduce `suspenders:db:migrate` task
+* Introduce `suspenders:email` generator
+* Introduce `suspenders:testing` generator
+* Introduce `suspenders:prerequisites` generator
+* Introduce `suspenders:ci` generator
+
 20230113.0 (January, 13, 2023)
 
 Support Rails 7 and Ruby 3. Introduce CalVer.
