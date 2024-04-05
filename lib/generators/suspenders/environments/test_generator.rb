@@ -1,7 +1,7 @@
 module Suspenders
   module Generators
-    module Test
-      class EnvironmentGenerator < Rails::Generators::Base
+    module Environments
+      class TestGenerator < Rails::Generators::Base
         desc <<~MARKDOWN
           Configures test environment.
 

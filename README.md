@@ -203,7 +203,11 @@ bin/rails g suspenders:ci
 
 Configures the production environment.
 
- - Enables [require_master_key][]
+```
+bin/rails g suspenders:evironments:production
+```
+
+- Enables [require_master_key][]
 
 [require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
 
@@ -213,7 +217,7 @@ Configures the production environment.
 Configures test environment.
 
 ```
-bin/rails g suspenders:test:environment
+bin/rails g suspenders:environments:test
 ```
 
 - Enables [raise_on_missing_translations][]
@@ -227,7 +231,7 @@ bin/rails g suspenders:test:environment
 Configures the development environment.
 
 ```
-bin/rails g suspenders:development:evironment
+bin/rails g suspenders:evironments:development
 ```
 
 - Enables [raise_on_missing_translations][]
