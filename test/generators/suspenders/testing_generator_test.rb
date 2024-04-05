@@ -59,31 +59,7 @@ module Suspenders
 
       test "configures spec_helper" do
         touch "spec/spec_helper.rb", content: spec_helper
-        expected = <<~RUBY
-          require "webmock/rspec"
-
-          RSpec.configure do |config|
-            config.example_status_persistence_file_path = "tmp/rspec_examples.txt"
-            config.order = :random
-
-            config.expect_with :rspec do |expectations|
-              expectations.include_chain_clauses_in_custom_matcher_descriptions = true
-            end
-
-            config.mock_with :rspec do |mocks|
-              mocks.verify_partial_doubles = true
-            end
-            config.shared_context_metadata_behavior = :apply_to_host_groups
-          end
-
-          WebMock.disable_net_connect!(
-            allow_localhost: true,
-            allow: [
-              /(chromedriver|storage).googleapis.com/,
-              "googlechromelabs.github.io",
-            ]
-          )
-        RUBY
+        expected = file_fixture("spec_helper.rb").read
 
         run_generator
 
@@ -93,13 +69,7 @@ module Suspenders
       end
 
       test "configures driver" do
-        expected = <<~RUBY
-          RSpec.configure do |config|
-            config.before(:each, type: :system) do
-              driven_by :selenium, using: :headless_chrome, screen_size: [1400, 1400]
-            end
-          end
-        RUBY
+        expected = file_fixture("driver.rb").read
 
         run_generator
 
@@ -115,14 +85,7 @@ module Suspenders
       end
 
       test "configures Should Matchers" do
-        expected = <<~RUBY
-          Shoulda::Matchers.configure do |config|
-            config.integrate do |with|
-              with.test_framework :rspec
-              with.library :rails
-            end
-          end
-        RUBY
+        expected = file_fixture("shoulda_matchers.rb").read
 
         run_generator
 
@@ -132,11 +95,7 @@ module Suspenders
       end
 
       test "configures i18n" do
-        expected = <<~RUBY
-          RSpec.configure do |config|
-            config.include ActionView::Helpers::TranslationHelper
-          end
-        RUBY
+        expected = file_fixture("i18n.rb").read
 
         run_generator
 
@@ -146,13 +105,7 @@ module Suspenders
       end
 
       test "configures Action Mailer" do
-        expected = <<~RUBY
-          RSpec.configure do |config|
-            config.before(:each) do
-              ActionMailer::Base.deliveries.clear
-            end
-          end
-        RUBY
+        expected = file_fixture("action_mailer.rb").read
 
         run_generator
 

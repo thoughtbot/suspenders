@@ -61,11 +61,7 @@ module Suspenders
       end
 
       test "configures raising an error when an SVG file is not found" do
-        expected_configuration = <<~RUBY
-          InlineSvg.configure do |config|
-            config.raise_on_file_not_found = true
-          end
-        RUBY
+        expected_configuration = file_fixture("inline_svg.rb").read
 
         run_generator
 

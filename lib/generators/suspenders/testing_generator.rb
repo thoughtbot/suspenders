@@ -43,7 +43,7 @@ module Suspenders
             allow_localhost: true,
             allow: [
               /(chromedriver|storage).googleapis.com/,
-              "googlechromelabs.github.io",
+              "googlechromelabs.github.io"
             ]
           )
         RUBY
