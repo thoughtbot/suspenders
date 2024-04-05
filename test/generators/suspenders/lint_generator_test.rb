@@ -40,11 +40,7 @@ module Suspenders
       end
 
       test "configures stylelint" do
-        expected_content = <<~TEXT
-          {
-            "extends": "@thoughtbot/stylelint-config"
-          }
-        TEXT
+        expected_content = file_fixture("stylelintrc.json").read
 
         capture(:stderr) { run_generator }
 
@@ -54,15 +50,7 @@ module Suspenders
       end
 
       test "configures eslint" do
-        expected_content = <<~JSON
-          {
-            "extends": ["@thoughtbot/eslint-config/prettier"],
-            "parserOptions": {
-              "ecmaVersion": "latest",
-              "sourceType": "module"
-            }
-          }
-        JSON
+        expected_content = file_fixture("eslintrc.json").read
 
         capture(:stderr) { run_generator }
 
@@ -72,32 +60,17 @@ module Suspenders
       end
 
       test "configures prettier" do
-        expected_content = <<~JSON
-          {
-            "singleQuote": true,
-            "overrides": [
-              {
-                "files": ["**/*.css", "**/*.scss", "**/*.html"],
-                "options": {
-                  "singleQuote": false
-                }
-              }
-            ]
-          }
-        JSON
+        prettierrc = file_fixture("prettierrc.json").read
+        prettierignore = file_fixture("prettierignore").read
 
         capture(:stderr) { run_generator }
 
         assert_file app_root(".prettierrc") do |file|
-          assert_equal expected_content, file
+          assert_equal prettierrc, file
         end
 
         assert_file app_root(".prettierignore") do |file|
-          expected = <<~TEXT
-            vendor/bundle/**
-          TEXT
-
-          assert_equal expected, file
+          assert_equal prettierignore, file
         end
       end
 
@@ -111,71 +84,7 @@ module Suspenders
       end
 
       test "erb-lint.yml configuration" do
-        expected_content = <<~YAML
-          ---
-          glob: "app/views/**/*.{html,turbo_stream}{+*,}.erb"
-
-          linters:
-            AllowedScriptType:
-              enabled: true
-              allowed_types:
-                - "module"
-                - "text/javascript"
-            ErbSafety:
-              enabled: true
-              better_html_config: "config/better_html.yml"
-            GitHub::Accessibility::AvoidBothDisabledAndAriaDisabledCounter:
-              enabled: true
-            GitHub::Accessibility::AvoidGenericLinkTextCounter:
-              enabled: true
-            GitHub::Accessibility::DisabledAttributeCounter:
-              enabled: true
-            GitHub::Accessibility::IframeHasTitleCounter:
-              enabled: true
-            GitHub::Accessibility::ImageHasAltCounter:
-              enabled: true
-            GitHub::Accessibility::LandmarkHasLabelCounter:
-              enabled: true
-            GitHub::Accessibility::LinkHasHrefCounter:
-              enabled: true
-            GitHub::Accessibility::NestedInteractiveElementsCounter:
-              enabled: true
-            GitHub::Accessibility::NoAriaLabelMisuseCounter:
-              enabled: true
-            GitHub::Accessibility::NoPositiveTabIndexCounter:
-              enabled: true
-            GitHub::Accessibility::NoRedundantImageAltCounter:
-              enabled: true
-            GitHub::Accessibility::NoTitleAttributeCounter:
-              enabled: true
-            GitHub::Accessibility::SvgHasAccessibleTextCounter:
-              enabled: true
-            Rubocop:
-              enabled: true
-              rubocop_config:
-                inherit_from:
-                  - .rubocop.yml
-
-                Lint/EmptyBlock:
-                  Enabled: false
-                Layout/InitialIndentation:
-                  Enabled: false
-                Layout/TrailingEmptyLines:
-                  Enabled: false
-                Layout/TrailingWhitespace:
-                  Enabled: false
-                Layout/LeadingEmptyLines:
-                  Enabled: false
-                Style/FrozenStringLiteralComment:
-                  Enabled: false
-                Style/MultilineTernaryOperator:
-                  Enabled: false
-                Lint/UselessAssignment:
-                  Exclude:
-                    - "app/views/**/*"
-
-          EnableDefaultLinters: true
-        YAML
+        expected_content = file_fixture("erb-lint.yml").read
 
         capture(:stderr) { run_generator }
 
@@ -185,17 +94,7 @@ module Suspenders
       end
 
       test "better html configuration" do
-        expected_content = <<~RUBY
-          Rails.configuration.to_prepare do
-            if Rails.env.test?
-              require "better_html"
-
-              BetterHtml.config = BetterHtml::Config.new(Rails.configuration.x.better_html)
-
-              BetterHtml.config.template_exclusion_filter = proc { |filename| !filename.start_with?(Rails.root.to_s) }
-            end
-          end
-        RUBY
+        expected_content = file_fixture("better_html.rb").read
 
         capture(:stderr) { run_generator }
 

@@ -40,7 +40,7 @@ module Suspenders
       end
 
       test "removes fixture definitions" do
-        File.open(app_root("test/test_helper.rb"), "w") { _1.write test_helper }
+        touch "test/test_helper.rb", content: test_helper
 
         run_generator
 
@@ -58,7 +58,7 @@ module Suspenders
       end
 
       test "includes syntax methods" do
-        File.open(app_root("test/test_helper.rb"), "w") { _1.write test_helper }
+        touch "test/test_helper.rb", content: test_helper
 
         run_generator
 
@@ -68,10 +68,7 @@ module Suspenders
       end
 
       test "creates definition file" do
-        definition_file = <<~RUBY
-          FactoryBot.define do
-          end
-        RUBY
+        definition_file = file_fixture("factories.rb").read
 
         run_generator
 
@@ -81,17 +78,7 @@ module Suspenders
       end
 
       test "creates linting test" do
-        factories_test = <<~RUBY
-          require "test_helper"
-
-          class FactoryBotsTest < ActiveSupport::TestCase
-            class FactoryLintingTest < FactoryBotsTest
-              test "linting of factories" do
-                FactoryBot.lint traits: true
-              end
-            end
-          end
-        RUBY
+        factories_test = file_fixture("factories_test_lint.rb").read
 
         run_generator
 
@@ -114,23 +101,7 @@ module Suspenders
       end
 
       def test_helper
-        <<~RUBY
-          ENV["RAILS_ENV"] ||= "test"
-          require_relative "../config/environment"
-          require "rails/test_help"
-
-          module ActiveSupport
-            class TestCase
-              # Run tests in parallel with specified workers
-              parallelize(workers: :number_of_processors)
-
-              # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-              fixtures :all
-
-              # Add more helper methods to be used by all tests here...
-            end
-          end
-        RUBY
+        file_fixture("test_helper.rb").read
       end
     end
 
@@ -163,10 +134,7 @@ module Suspenders
       end
 
       test "creates definition file" do
-        definition_file = <<~RUBY
-          FactoryBot.define do
-          end
-        RUBY
+        definition_file = file_fixture("factories.rb").read
 
         run_generator
 
@@ -176,11 +144,10 @@ module Suspenders
       end
 
       test "does not modify rails_helper if it's configured to include support files" do
-        touch("spec/rails_helper.rb")
         rails_helper = <<~RUBY
           Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |file| require file }
         RUBY
-        File.open(app_root("spec/rails_helper.rb"), "w") { _1.write rails_helper }
+        touch "spec/rails_helper.rb", content: rails_helper
 
         run_generator
 
@@ -190,15 +157,7 @@ module Suspenders
       end
 
       test "creates linting test" do
-        factories_spec = <<~RUBY
-          require "rails_helper"
-
-          RSpec.describe "Factories" do
-            it "has valid factoties" do
-              FactoryBot.lint traits: true
-            end
-          end
-        RUBY
+        factories_spec = file_fixture("factories_spec_lint.rb").read
 
         run_generator
 

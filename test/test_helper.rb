@@ -38,7 +38,6 @@ module Suspenders::TestHelpers
     FileUtils.mkdir path
   end
 
-  # TODO: Update existing tests to use the content: option
   def touch(file, **options)
     content = options[:content]
     path = app_root file
