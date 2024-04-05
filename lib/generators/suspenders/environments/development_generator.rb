@@ -1,7 +1,7 @@
 module Suspenders
   module Generators
-    module Development
-      class EnvironmentGenerator < Rails::Generators::Base
+    module Environments
+      class DevelopmentGenerator < Rails::Generators::Base
         desc <<~MARKDOWN
           Configures the development environment.
 
