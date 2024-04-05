@@ -197,6 +197,20 @@ Creates CI files for GitHub Actions.
 bin/rails g suspenders:ci
 ```
 
+### Environments
+
+#### Production
+
+Configures the production environment.
+
+ - Enables [require_master_key][]
+
+[require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
+
+```
+bin/rails g suspenders:production:environment
+```
+
 ## Contributing
 
 See the [CONTRIBUTING] document.
