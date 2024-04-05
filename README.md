@@ -199,6 +199,7 @@ bin/rails g suspenders:ci
 
 ### Environments
 
+<<<<<<< HEAD
 #### Production
 
 Configures the production environment.
@@ -211,6 +212,22 @@ Configures the production environment.
 bin/rails g suspenders:production:environment
 ```
 
+=======
+#### Test
+
+Configures test environment.
+
+```
+bin/rails g suspenders:test:environment
+```
+
+- Enables [raise_on_missing_translations][]
+- Disables [action_dispatch.show_exceptions][]
+
+[raise_on_missing_translations]: https://guides.rubyonrails.org/configuring.html#config-i18n-raise-on-missing-translations
+[action_dispatch.show_exceptions]: https://edgeguides.rubyonrails.org/configuring.html#config-action-dispatch-show-exceptions
+
+>>>>>>> 9102851 (Introduce `suspenders:test:environment` generator)
 ## Contributing
 
 See the [CONTRIBUTING] document.
