@@ -1,7 +1,7 @@
 module Suspenders
   module Generators
-    module Production
-      class EnvironmentGenerator < Rails::Generators::Base
+    module Environments
+      class ProductionGenerator < Rails::Generators::Base
         desc <<~MARKDOWN
           Configures the production environment.
 

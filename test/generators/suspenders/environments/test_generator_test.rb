@@ -1,13 +1,13 @@
 require "test_helper"
-require "generators/suspenders/test/environment_generator"
+require "generators/suspenders/environments/test_generator"
 
 module Suspenders
   module Generators
-    module Test
-      class EnvironmentGeneratorTest < Rails::Generators::TestCase
+    module Environments
+      class TestGeneratorTest < Rails::Generators::TestCase
         include Suspenders::TestHelpers
 
-        tests Suspenders::Generators::Test::EnvironmentGenerator
+        tests Suspenders::Generators::Environments::TestGenerator
         destination Rails.root
         setup :prepare_destination
         teardown :restore_destination
