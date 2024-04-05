@@ -43,20 +43,12 @@ module Suspenders
       end
 
       test "modifies Rakefile" do
-        touch "Rakefile"
-        content = <<~TEXT
+        touch "Rakefile", content: <<~TEXT
           require_relative "config/application"
 
           Rails.application.load_tasks
         TEXT
-        File.open(app_root("Rakefile"), "w") { _1.write content }
-        expected_rakefile = <<~TEXT
-          require_relative "config/application"
-          require "bundler/audit/task"
-          Bundler::Audit::Task.new
-
-          Rails.application.load_tasks
-        TEXT
+        expected_rakefile = file_fixture("Rakefile").read
 
         run_generator
 

@@ -24,15 +24,7 @@ module Suspenders
       end
 
       test "creates flash partial" do
-        expected = <<~ERB
-          <% if flash.any? %>
-            <div class="flashes">
-              <% flash.each do |type, message| -%>
-                <div class="flash-<%= type %>"><%= message %></div>
-              <% end -%>
-            </div>
-          <% end %>
-        ERB
+        expected = file_fixture("_flashes.html.erb").read
 
         run_generator
 

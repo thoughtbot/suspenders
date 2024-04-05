@@ -36,22 +36,7 @@ module Suspenders
       end
 
       test "configures ActiveJob logging" do
-        expected_configuration = <<~RUBY
-          require "active_job/logging"
-          require "active_job/log_subscriber"
-
-          ActiveSupport::Notifications.unsubscribe("enqueue.active_job")
-
-          module ActiveJob
-            module Logging
-              class EnqueueLogSubscriber < LogSubscriber
-                define_method :enqueue, instance_method(:enqueue)
-              end
-            end
-          end
-
-          ActiveJob::Logging::EnqueueLogSubscriber.attach_to(:active_job)
-        RUBY
+        expected_configuration = file_fixture("active_job.rb").read
 
         run_generator
 
@@ -90,10 +75,7 @@ module Suspenders
       end
 
       test "adds Sidekiq configuration if procfile exists" do
-        proc_file = <<~TEXT
-        TEXT
-
-        File.write(app_root("Procfile.dev"), proc_file)
+        touch "Procfile.dev"
 
         run_generator
 

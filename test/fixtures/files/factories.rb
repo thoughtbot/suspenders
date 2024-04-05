@@ -1,0 +1,2 @@
+FactoryBot.define do
+end

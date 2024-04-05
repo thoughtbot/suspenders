@@ -12,19 +12,7 @@ module Suspenders
       teardown :restore_destination
 
       test "creates a mailer intercepter" do
-        expected = <<~RUBY
-          class EmailInterceptor
-            include ActiveSupport::Configurable
-
-            config_accessor :interceptor_addresses, default: []
-
-            def self.delivering_email(message)
-              to = interceptor_addresses
-
-              message.to = to if to.any?
-            end
-          end
-        RUBY
+        expected = file_fixture("email_interceptor.rb").read
 
         run_generator
 
@@ -34,13 +22,7 @@ module Suspenders
       end
 
       test "creates initializer" do
-        expected = <<~RUBY
-          Rails.application.configure do
-            if ENV["INTERCEPTOR_ADDRESSES"].present?
-              config.action_mailer.interceptors = %w[EmailInterceptor]
-            end
-          end
-        RUBY
+        expected = file_fixture("email_interceptor_initializer.rb").read
 
         run_generator
 
