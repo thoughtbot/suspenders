@@ -48,7 +48,7 @@ module Suspenders
 
           Rails.application.load_tasks
         TEXT
-        expected_rakefile = file_fixture("Rakefile").read
+        expected_rakefile = file_fixture("Rakefile_advisories").read
 
         run_generator
 
