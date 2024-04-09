@@ -12,10 +12,12 @@ module Suspenders
       teardown :restore_destination
 
       test "modifies existing Rakefile" do
+        content = file_fixture("Rakefile").read
+
         run_generator
 
         assert_file app_root("Rakefile") do |file|
-          assert_match(/task default: "suspenders:rake"/, file)
+          assert_equal content, file
         end
       end
 

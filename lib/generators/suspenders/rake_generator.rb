@@ -8,7 +8,12 @@ module Suspenders
       TEXT
 
       def configure_default_rake_task
-        append_to_file "Rakefile", %(task default: "suspenders:rake")
+        append_to_file "Rakefile", <<~RUBY
+
+          if Rails.env.local?
+            task default: "suspenders:rake"
+          end
+        RUBY
       end
     end
   end

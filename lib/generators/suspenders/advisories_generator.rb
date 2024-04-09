@@ -17,10 +17,15 @@ module Suspenders
       end
 
       def modify_rakefile
-        insert_into_file "Rakefile", "\nrequire \"bundler/audit/task\"",
-          after: 'require_relative "config/application"'
-        insert_into_file "Rakefile", "\nBundler::Audit::Task.new",
-          after: 'require "bundler/audit/task"'
+        content = <<~RUBY
+
+          if Rails.env.local?
+            require "bundler/audit/task"
+            Bundler::Audit::Task.new
+          end
+        RUBY
+
+        insert_into_file "Rakefile", content, after: /require_relative "config\/application"\n/
       end
     end
   end
