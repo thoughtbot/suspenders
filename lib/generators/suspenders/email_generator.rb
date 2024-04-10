@@ -2,7 +2,7 @@ module Suspenders
   module Generators
     class EmailGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/email", __FILE__)
-      desc <<~TEXT
+      desc <<~MARKDOWN
         Intercepts emails in non-production environments by setting `INTERCEPTOR_ADDRESSES`.
 
         ```sh
@@ -10,7 +10,7 @@ module Suspenders
         ```
 
         Configures `default_url_options` in `test` and `development`.
-      TEXT
+      MARKDOWN
 
       def create_email_interceptor
         copy_file "email_interceptor.rb", "app/mailers/email_interceptor.rb"

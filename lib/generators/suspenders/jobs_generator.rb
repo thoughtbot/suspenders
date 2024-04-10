@@ -2,7 +2,9 @@ module Suspenders
   module Generators
     class JobsGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/active_job", __FILE__)
-      desc "Installs Sidekiq for background job processing."
+      desc <<~MARKDOWN
+        Installs Sidekiq for background job processing.
+      MARKDOWN
 
       def add_sidekiq_gem
         gem "sidekiq"

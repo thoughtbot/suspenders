@@ -57,7 +57,7 @@ module Suspenders
       test "generator has a description" do
         description = "Render SVG images inline, as a potential performance improvement for the viewer."
 
-        assert_equal description, Suspenders::Generators::InlineSvgGenerator.desc
+        assert_match description, Suspenders::Generators::InlineSvgGenerator.desc
       end
 
       test "configures raising an error when an SVG file is not found" do

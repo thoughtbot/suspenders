@@ -5,7 +5,9 @@ module Suspenders
       include Suspenders::Generators::Helpers
 
       source_root File.expand_path("../../templates/ci", __FILE__)
-      desc "Creates CI files for GitHub Actions"
+      desc <<~MARKDOWN
+        Creates CI files for GitHub Actions
+      MARKDOWN
 
       def ci_files
         empty_directory ".github/workflows"

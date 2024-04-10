@@ -2,7 +2,9 @@ module Suspenders
   module Generators
     class TestingGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/testing", __FILE__)
-      desc "Set up the project for an in-depth test-driven development workflow."
+      desc <<~MARKDOWN
+        Set up the project for an in-depth test-driven development workflow.
+      MARKDOWN
 
       def add_gems
         gem_group :development, :test do
