@@ -32,7 +32,7 @@ module Suspenders
       test "generator has a description" do
         description = "Installs Sidekiq for background job processing."
 
-        assert_equal description, Suspenders::Generators::JobsGenerator.desc
+        assert_match description, Suspenders::Generators::JobsGenerator.desc
       end
 
       test "configures ActiveJob logging" do

@@ -3,7 +3,9 @@ module Suspenders
     class ViewsGenerator < Rails::Generators::Base
       include Suspenders::Generators::APIAppUnsupported
 
-      desc "Configures flash messages, page titles and the document lang. Disables Turbo's InstantClick."
+      desc <<~MARKDOWN
+        Configures flash messages, page titles and the document lang. Disables Turbo's InstantClick.
+      MARKDOWN
       source_root File.expand_path("../../templates/views", __FILE__)
 
       def install_gems

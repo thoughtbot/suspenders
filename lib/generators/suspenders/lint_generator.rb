@@ -4,7 +4,9 @@ module Suspenders
       include Suspenders::Generators::Helpers
 
       source_root File.expand_path("../../templates/lint", __FILE__)
-      desc "Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB."
+      desc <<~MARKDOWN
+        Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB.
+      MARKDOWN
 
       def check_package_json
         unless File.exist? Rails.root.join("package.json")

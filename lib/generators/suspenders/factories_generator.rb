@@ -4,7 +4,7 @@ module Suspenders
       include Suspenders::Generators::Helpers
 
       source_root File.expand_path("../../templates/factories", __FILE__)
-      desc <<~TEXT
+      desc <<~MARKDOWN
         Build test data with clarity and ease.
 
         This uses FactoryBot to help you define dummy and test data for your test
@@ -17,7 +17,7 @@ module Suspenders
         definitions.
 
         Supports the default test suite and RSpec.
-      TEXT
+      MARKDOWN
 
       def add_factory_bot
         gem_group :development, :test do
