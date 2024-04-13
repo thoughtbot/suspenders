@@ -3,7 +3,9 @@ module Suspenders
     class AccessibilityGenerator < Rails::Generators::Base
       include Suspenders::Generators::APIAppUnsupported
 
-      desc "Installs capybara_accessibility_audit and capybara_accessible_selectors"
+      desc <<~MARKDOWN
+        Installs capybara_accessibility_audit and capybara_accessible_selectors"
+      MARKDOWN
 
       def add_capybara_gems
         gem_group :test do

@@ -144,7 +144,7 @@ module Suspenders
       test "description" do
         desc = "Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB."
 
-        assert_equal desc, generator_class.desc
+        assert_match desc, generator_class.desc
       end
 
       test "created package.json if one does not exist" do

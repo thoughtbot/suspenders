@@ -3,7 +3,9 @@ module Suspenders
     class PrerequisitesGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/prerequisites", __FILE__)
 
-      desc "Configures prerequisites. Currently Node."
+      desc <<~MARKDOWN
+        Configures prerequisites. Currently Node.
+      MARKDOWN
 
       def node_version
         template "node-version", ".node-version"

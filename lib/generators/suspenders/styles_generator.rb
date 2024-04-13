@@ -3,11 +3,11 @@ module Suspenders
     class StylesGenerator < Rails::Generators::Base
       include Suspenders::Generators::APIAppUnsupported
 
-      desc <<~TEXT
+      desc <<~MARKDOWN
         Configures application to use PostCSS via cssbundling-rails.
 
         Adds modern-normalize, and style sheet structure.
-      TEXT
+      MARKDOWN
 
       def add_cssbundling_rails_gem
         gem "cssbundling-rails"

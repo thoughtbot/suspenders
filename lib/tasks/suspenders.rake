@@ -28,5 +28,10 @@ namespace :suspenders do
     task :organize_gemfile do
       Suspenders::Cleanup::OrganizeGemfile.perform(Rails.root.join("Gemfile"))
     end
+
+    desc "Generate README"
+    task :generate_readme do
+      Suspenders::Cleanup::GenerateReadme.perform(Rails.root.join("README.md"), Rails.application.class.module_parent_name)
+    end
   end
 end
