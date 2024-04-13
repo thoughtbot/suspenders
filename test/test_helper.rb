@@ -81,11 +81,11 @@ module Suspenders::TestHelpers
     restore_file "config/application.rb"
   end
 
-  # TODO: Refactor existing tests to use this
   def with_test_suite(test_suite, &block)
     case test_suite
     when :minitest
       mkdir "test"
+      touch "test/test_helper.rb", content: file_fixture("test_helper.rb").read
     when :rspec
       mkdir "spec"
       touch "spec/spec_helper.rb"
