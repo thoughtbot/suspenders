@@ -9,6 +9,8 @@ if you like missing deadlines.
 
 ## Usage
 
+### Existing Rails Applications
+
 ```
 group :development, :test do
   gem "suspenders"
@@ -16,7 +18,15 @@ end
 ```
 
 ```
-bin/rails g suspenders:all
+bin/rails g suspenders:install:web
+```
+
+### New Rails Applications
+
+```
+rails new my_app \
+-d=postgresql \
+-m=https://raw.githubusercontent.com/thoughtbot/suspenders/lib/install/web.rb
 ```
 
 ## Generators
