@@ -32,12 +32,9 @@ module Suspenders
 
       test "installs gem with Bundler" do
         with_test_suite :minitest do
-          Bundler.stubs(:with_unbundled_env).yields
-          generator.expects(:run).with("bundle install").once
+          output = run_generator
 
-          capture(:stdout) do
-            generator.add_factory_bot
-          end
+          assert_match(/bundle install/, output)
         end
       end
 
