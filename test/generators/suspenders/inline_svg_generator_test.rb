@@ -46,12 +46,9 @@ module Suspenders
       end
 
       test "installs gems with Bundler" do
-        Bundler.stubs(:with_unbundled_env).yields
-        generator.expects(:run).with("bundle install").once
+        output = run_generator
 
-        capture(:stdout) do
-          generator.add_inline_svg_gem
-        end
+        assert_match(/bundle install/, output)
       end
 
       test "generator has a description" do
