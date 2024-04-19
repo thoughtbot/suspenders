@@ -14,8 +14,10 @@ module Suspenders
         end
       end
 
+      # TODO: Remove eslint version pin once the follownig is solved
+      # https://github.com/thoughtbot/eslint-config/issues/10
       def install_dependencies
-        run "yarn add stylelint eslint @thoughtbot/stylelint-config @thoughtbot/eslint-config npm-run-all prettier --dev"
+        run "yarn add stylelint eslint@^8.9.0 @thoughtbot/stylelint-config @thoughtbot/eslint-config npm-run-all prettier --dev"
       end
 
       def install_gems

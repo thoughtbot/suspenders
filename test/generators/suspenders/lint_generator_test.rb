@@ -15,7 +15,7 @@ module Suspenders
         capture(:stderr) do
           output = run_generator
 
-          assert_match(/yarn add stylelint eslint @thoughtbot\/stylelint-config @thoughtbot\/eslint-config npm-run-all prettier --dev/, output)
+          assert_match(/yarn add stylelint eslint@\^8\.9\.0 @thoughtbot\/stylelint-config @thoughtbot\/eslint-config npm-run-all prettier --dev/, output)
         end
       end
 
