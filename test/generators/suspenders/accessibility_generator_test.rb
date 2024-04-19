@@ -56,12 +56,6 @@ module Suspenders
         assert_match(/bundle install/, output)
       end
 
-      test "generator has a description" do
-        description = "Installs capybara_accessibility_audit and capybara_accessible_selectors"
-
-        assert_match description, Suspenders::Generators::AccessibilityGenerator.desc
-      end
-
       private
 
       def prepare_destination

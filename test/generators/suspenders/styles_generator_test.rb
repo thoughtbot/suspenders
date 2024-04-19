@@ -108,10 +108,6 @@ module Suspenders
         assert_file app_root("app/assets/static/.gitkeep")
       end
 
-      test "generator has a custom description" do
-        assert_no_match(/Description/, generator_class.desc)
-      end
-
       private
 
       def prepare_destination

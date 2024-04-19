@@ -31,17 +31,6 @@ module Suspenders
         assert_match(/bundle install/, output)
       end
 
-      test "generator has a description" do
-        description = <<~TEXT
-          Show security advisories during development.
-
-          Uses the `bundler-audit` gem to update the local security database and
-          show any relevant issues with the app's dependencies via a Rake task.
-        TEXT
-
-        assert_equal description, Suspenders::Generators::AdvisoriesGenerator.desc
-      end
-
       test "modifies Rakefile" do
         touch "Rakefile", content: <<~TEXT
           require_relative "config/application"

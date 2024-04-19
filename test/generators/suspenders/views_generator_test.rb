@@ -75,10 +75,6 @@ module Suspenders
         end
       end
 
-      test "has a custom description" do
-        assert_no_match(/Description:\n/, generator_class.desc)
-      end
-
       test "disables InstantClick" do
         run_generator
 

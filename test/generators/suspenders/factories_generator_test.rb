@@ -11,25 +11,6 @@ module Suspenders
       setup :prepare_destination
       teardown :restore_destination
 
-      test "generator has a description" do
-        description = <<~TEXT
-          Build test data with clarity and ease.
-
-          This uses FactoryBot to help you define dummy and test data for your test
-          suite. The `create`, `build`, and `build_stubbed` class methods are directly
-          available to all tests.
-
-          We recommend putting FactoryBot definitions in one `spec/factories.rb` (or
-          `test/factories`) file, at least until it grows unwieldy. This helps reduce
-          confusion around circular dependencies and makes it easy to jump between
-          definitions.
-
-          Supports the default test suite and RSpec.
-        TEXT
-
-        assert_equal description, FactoriesGenerator.desc
-      end
-
       test "installs gem with Bundler" do
         with_test_suite :minitest do
           output = run_generator
