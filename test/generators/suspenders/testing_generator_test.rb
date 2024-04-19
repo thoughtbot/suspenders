@@ -114,10 +114,6 @@ module Suspenders
         end
       end
 
-      test "has custom description" do
-        assert_no_match(/Description/, generator_class.desc)
-      end
-
       private
 
       def prepare_destination

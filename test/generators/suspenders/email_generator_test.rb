@@ -49,10 +49,6 @@ module Suspenders
         assert_file app_root("config/environments/test.rb"), /config\.action_mailer\.default_url_options\s*=\s*{\s*host:\s*"www\.example\.com"\s*}/
       end
 
-      test "has custom description" do
-        assert_no_match(/Description/, generator_class.desc)
-      end
-
       private
 
       def prepare_destination

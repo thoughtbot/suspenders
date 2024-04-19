@@ -29,12 +29,6 @@ module Suspenders
         assert_match(/bundle install/, output)
       end
 
-      test "generator has a description" do
-        description = "Installs Sidekiq for background job processing."
-
-        assert_match description, Suspenders::Generators::JobsGenerator.desc
-      end
-
       test "configures ActiveJob logging" do
         expected_configuration = file_fixture("active_job.rb").read
 

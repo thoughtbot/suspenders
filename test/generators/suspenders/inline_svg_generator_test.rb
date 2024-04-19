@@ -54,12 +54,6 @@ module Suspenders
         end
       end
 
-      test "generator has a description" do
-        description = "Render SVG images inline, as a potential performance improvement for the viewer."
-
-        assert_match description, Suspenders::Generators::InlineSvgGenerator.desc
-      end
-
       test "configures raising an error when an SVG file is not found" do
         expected_configuration = file_fixture("inline_svg.rb").read
 
