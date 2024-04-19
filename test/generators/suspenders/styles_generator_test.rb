@@ -75,6 +75,39 @@ module Suspenders
         end
       end
 
+      test "installs postcss-url" do
+        output = run_generator
+
+        assert_match(/add\s*postcss-url/, output)
+      end
+
+      test "configures postcss.config.js" do
+        expected = file_fixture("postcss.config.js").read
+
+        run_generator
+
+        assert_file app_root("postcss.config.js") do |file|
+          assert_equal expected, file
+        end
+      end
+
+      test "overrides existing postcss.config.js" do
+        touch "postcss.config.js", content: "unexpected"
+        expected = file_fixture("postcss.config.js").read
+
+        run_generator
+
+        assert_file app_root("postcss.config.js") do |file|
+          assert_equal expected, file
+        end
+      end
+
+      test "creates directory to store static assets generated from postcss-url" do
+        run_generator
+
+        assert_file app_root("app/assets/static/.gitkeep")
+      end
+
       test "generator has a custom description" do
         assert_no_match(/Description/, generator_class.desc)
       end
@@ -94,6 +127,8 @@ module Suspenders
         remove_file_if_exists "app/assets/stylesheets/base.css"
         remove_file_if_exists "app/assets/stylesheets/components.css"
         remove_file_if_exists "app/assets/stylesheets/utilities.css"
+        remove_file_if_exists "postcss.config.js"
+        remove_dir_if_exists "app/assets/static"
       end
     end
   end

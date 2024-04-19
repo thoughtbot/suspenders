@@ -3,6 +3,7 @@ module Suspenders
     class StylesGenerator < Rails::Generators::Base
       include Suspenders::Generators::APIAppUnsupported
 
+      source_root File.expand_path("../../templates/styles", __FILE__)
       desc <<~MARKDOWN
         Configures application to use PostCSS via cssbundling-rails.
 
@@ -38,6 +39,25 @@ module Suspenders
             @import "utilities.css";
           TEXT
         end
+      end
+
+      def install_postcss_url
+        run "yarn add postcss-url"
+      end
+
+      def configures_postcss
+        File.delete(postcss_config) if File.exist?(postcss_config)
+
+        empty_directory "app/assets/static"
+        create_file "app/assets/static/.gitkeep"
+
+        copy_file "postcss.config.js", "postcss.config.js"
+      end
+
+      private
+
+      def postcss_config
+        Rails.root.join("postcss.config.js")
       end
     end
   end
