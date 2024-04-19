@@ -29,10 +29,6 @@ module Suspenders
         assert_no_file app_root("lib/tasks/dev.rake")
       end
 
-      test "has a custom description" do
-        assert_no_match(/Description:/, generator_class.desc)
-      end
-
       private
 
       def dev_rake

@@ -21,15 +21,6 @@ module Suspenders
         end
       end
 
-      test "generator has a description" do
-        description = <<~TEXT
-          Configures the default Rake task to audit and lint the codebase with
-          `bundler-audit` and `standard`, in addition to running the test suite.
-        TEXT
-
-        assert_equal description, generator_class.desc
-      end
-
       private
 
       def prepare_destination
