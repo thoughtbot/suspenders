@@ -3,13 +3,17 @@ module Suspenders
     class EmailGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/email", __FILE__)
       desc <<~MARKDOWN
-        Intercepts emails in non-production environments by setting `INTERCEPTOR_ADDRESSES`.
+        [Intercept][] emails in non-production environments by setting `INTERCEPTOR_ADDRESSES`.
 
         ```sh
         INTERCEPTOR_ADDRESSES="user_1@example.com,user_2@example.com" bin/rails s
         ```
 
-        Configures `default_url_options` in `test` and `development`.
+        Configuration can be found at `config/initializers/email_interceptor.rb`.
+
+        Interceptor can be found at `app/mailers/email_interceptor.rb`.
+
+        [Intercept]: https://guides.rubyonrails.org/action_mailer_basics.html#intercepting-emails
       MARKDOWN
 
       def create_email_interceptor

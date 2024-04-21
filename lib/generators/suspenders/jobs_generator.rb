@@ -2,7 +2,13 @@ module Suspenders
   module Generators
     class JobsGenerator < Rails::Generators::Base
       desc <<~MARKDOWN
-        Installs Sidekiq for background job processing.
+        Uses [Sidekiq][] for [background job][] processing.
+
+        Configures the `test` environment to use the [inline][] adapter.
+
+        [Sidekiq]: https://github.com/sidekiq/sidekiq
+        [background job]: https://guides.rubyonrails.org/active_job_basics.html
+        [inline]: https://api.rubyonrails.org/classes/ActiveJob/QueueAdapters/InlineAdapter.html
       MARKDOWN
 
       def add_sidekiq_gem

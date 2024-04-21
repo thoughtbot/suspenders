@@ -3,9 +3,9 @@ module Suspenders
     class TasksGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/tasks", __FILE__)
       desc <<~MARKDOWN
-        Creates local Rake tasks for development
+        Creates `lib/tasks/dev.rake` which contains the following tasks:
 
-        bin/rails dev:prime # Sample data for local development environment
+        `bin/rails dev:prime` which loads sample data for local development.
       MARKDOWN
 
       def create_dev_rake

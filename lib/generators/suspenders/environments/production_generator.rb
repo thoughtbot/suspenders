@@ -3,9 +3,7 @@ module Suspenders
     module Environments
       class ProductionGenerator < Rails::Generators::Base
         desc <<~MARKDOWN
-          Configures the production environment.
-
-          - Enables [require_master_key][]
+          - Enables [require_master_key][].
 
           [require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
         MARKDOWN
