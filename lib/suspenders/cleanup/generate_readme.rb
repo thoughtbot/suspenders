@@ -31,7 +31,7 @@ module Suspenders
         File.open(readme, "w+") do |file|
           @file = file
 
-          heading app_name, level: 1
+          heading app_name.titleize, level: 1
 
           prerequisites
 
