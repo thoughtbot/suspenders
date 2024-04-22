@@ -9,7 +9,7 @@ module Suspenders
         Tempfile.create "README.md" do |readme|
           path = readme.path
 
-          Suspenders::Cleanup::GenerateReadme.perform(path, "Expected App Name")
+          Suspenders::Cleanup::GenerateReadme.perform(path, "ExpectedAppName")
 
           readme.rewind
           readme = readme.read
