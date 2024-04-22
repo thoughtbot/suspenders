@@ -5,6 +5,7 @@ module Suspenders
         include Suspenders::Generators::APIAppUnsupported
         include Suspenders::Generators::DatabaseUnsupported
 
+        source_root File.expand_path("../../../templates/install/web", __FILE__)
         desc <<~MARKDOWN
           Invokes all necessary generators for new Rails applications generated with Suspenders.
 
@@ -55,6 +56,7 @@ module Suspenders
         def cleanup
           rake "suspenders:cleanup:organize_gemfile"
           rake "suspenders:cleanup:generate_readme"
+          copy_file "CONTRIBUTING.md", "CONTRIBUTING.md"
         end
 
         def lint

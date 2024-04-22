@@ -59,6 +59,14 @@ module Suspenders
 
           heading "Accessibility", level: 2
           description_for Suspenders::Generators::AccessibilityGenerator
+          content <<~MARKDOWN
+            For more information, review the [Accessibility Tooling][] section in 
+            the [CONTRIBUTING][] guide.
+
+            [Accessibility Tooling]: ./CONTRIBUTING.md#accessibility-tooling
+            [CONTRIBUTING]: ./CONTRIBUTING.md
+          MARKDOWN
+          new_line
 
           heading "Advisories", level: 2
           description_for Suspenders::Generators::AdvisoriesGenerator
@@ -83,6 +91,10 @@ module Suspenders
       end
 
       private
+
+      def content(text)
+        @file.write text
+      end
 
       def new_line
         @file.write "\n"
