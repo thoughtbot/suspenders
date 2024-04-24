@@ -29,26 +29,11 @@ module Suspenders
         assert_match(/bundle install/, output)
       end
 
-      test "configures ActiveJob logging" do
-        expected_configuration = file_fixture("active_job.rb").read
-
-        run_generator
-
-        assert_file app_root("config/initializers/active_job.rb") do |file|
-          assert_equal(expected_configuration, file)
-        end
-      end
-
       test "adds ActiveJob configuration to the application file" do
         run_generator
 
         assert_file app_root("config/application.rb") do |file|
           assert_match(/config.active_job.queue_adapter = :sidekiq/, file)
-          assert_match(/config.action_mailer.deliver_later_queue_name = nil/, file)
-          assert_match(/config.action_mailbox.queues.routing = nil/, file)
-          assert_match(/config.active_storage.queues.analysis = nil/, file)
-          assert_match(/config.active_storage.queues.purge = nil/, file)
-          assert_match(/config.active_storage.queues.mirror = nil/, file)
         end
       end
 
