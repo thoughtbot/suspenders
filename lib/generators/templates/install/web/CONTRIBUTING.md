@@ -2,7 +2,7 @@
 
 ## Accessibility Tooling
 
-Building accessible applications is as complex, multi-faceted, and mission critical endeavor. While tooling cannot guarantee an accessible experience, it can help raise the bar for the baseline experience in important ways.
+Building accessible applications is a complex, multi-faceted, and mission critical endeavor. While tooling cannot guarantee an accessible experience, it can help raise the bar for the baseline experience in important ways.
 
 In addition to the W3C's [WAI Overview][], [WAI Authoring Practices Guide][], and [WAI-ARIA Specification][], along with MDN's [Accessibility Documentation][], the [thoughtbot handbook][] includes some high-level technical guidance.
 
@@ -62,7 +62,7 @@ The [Testing RSpec][] section of the `thoughtbot/guides` provides some general g
 
 This project depends on the [capybara_accessibility_audit][] gem to enhance the application's System Test suite to audit the browser's DOM for statically detectable accessibility violations. Under the hood, `capybara_accessibility_audit` utilizes [axe.js][] for auditing.
 
-The categories of violation that `capybara_accessibility_audit` can detect span a wide range from insufficient [color contrast][] to invalid of insufficient [landmark-based information hierarchy][landmark], to [unnamed form controls][] and beyond.
+The categories of violation that `capybara_accessibility_audit` can detect span a wide range from insufficient [color contrast][] to invalid or insufficient [landmark-based information hierarchy][landmark], to [unnamed form controls][] and beyond.
 
 Out of the box, `capybara_accessibility_audit` will extend Capybara to conduct an accessibility audit after a variety of actions like `visit` and `click_link`. That project can [be configured to suit this application's needs][capybara_accessibility_audit-configuration].
 
@@ -77,7 +77,7 @@ If you can integrate `capybara_accessibility_audit` from the project's inception
 
 ### VoiceOver on macos
 
-VoiceOver is a screen reader integrated directly into the macos operating system. You can learn more from [Apple's Accessibility Support][].
+VoiceOver is a screen reader integrated directly into the macOS operating system. You can learn more from [Apple's Accessibility Support][].
 
 VoiceOver and Safari are tightly integrated. If you're developing this
 application on a Mac, you should familiarize yourself with how to navigate in
