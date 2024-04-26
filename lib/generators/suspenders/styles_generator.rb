@@ -5,9 +5,26 @@ module Suspenders
 
       source_root File.expand_path("../../templates/styles", __FILE__)
       desc <<~MARKDOWN
-        Configures application to use PostCSS via cssbundling-rails.
+        - Uses [PostCSS][] via [cssbundling-rails][].
+        - Uses [modern-normalize][] to normalize browsers' default style.
 
-        Adds modern-normalize, and style sheet structure.
+        Configuration can be found at `postcss.config.js`.
+
+        Adds the following stylesheet structure.
+
+        ```
+        app/assets/stylesheets/base.css
+        app/assets/stylesheets/components.css
+        app/assets/stylesheets/utilities.css
+        ```
+
+        Adds `app/assets/static` so that [postcss-url][] has a directory to copy
+        assets to.
+
+        [PostCSS]: https://postcss.org
+        [cssbundling-rails]: https://github.com/rails/cssbundling-rails
+        [modern-normalize]: https://github.com/sindresorhus/modern-normalize
+        [postcss-url]: https://github.com/postcss/postcss-url
       MARKDOWN
 
       def add_cssbundling_rails_gem

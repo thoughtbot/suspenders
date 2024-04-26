@@ -3,10 +3,10 @@ module Suspenders
     class AdvisoriesGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/advisories", __FILE__)
       desc <<~MARKDOWN
-        Show security advisories during development.
+        Uses [bundler-audit][] to update the local security database and show
+        any relevant issues with the app's dependencies via a Rake task.
 
-        Uses the `bundler-audit` gem to update the local security database and
-        show any relevant issues with the app's dependencies via a Rake task.
+        [bundler-audit]: https://github.com/rubysec/bundler-audit
       MARKDOWN
 
       def add_bundler_audit

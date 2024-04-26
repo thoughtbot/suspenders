@@ -3,11 +3,7 @@ module Suspenders
     class SetupGenerator < Rails::Generators::Base
       source_root File.expand_path("../../templates/setup", __FILE__)
       desc <<~MARKDOWN
-        A holistic setup script.
-
-        ```sh
-        bin/setup
-        ```
+        Run `bin/setup` to install dependencies and seed development data.
       MARKDOWN
 
       def replace_bin_setup

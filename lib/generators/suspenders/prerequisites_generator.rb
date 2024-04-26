@@ -4,7 +4,7 @@ module Suspenders
       source_root File.expand_path("../../templates/prerequisites", __FILE__)
 
       desc <<~MARKDOWN
-        Configures prerequisites. Currently Node.
+        Creates `.node-version` file set to the current LTS version.
       MARKDOWN
 
       def node_version
