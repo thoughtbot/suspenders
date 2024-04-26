@@ -3,12 +3,10 @@ module Suspenders
     module Environments
       class DevelopmentGenerator < Rails::Generators::Base
         desc <<~MARKDOWN
-          Configures the development environment.
-
-          - Enables [raise_on_missing_translations][]
-          - Enables [annotate_rendered_view_with_filenames][]
-          - Enables [i18n_customize_full_message][]
-          - Enables [query_log_tags_enabled][]
+          - Enables [raise_on_missing_translations][].
+          - Enables [annotate_rendered_view_with_filenames][].
+          - Enables [i18n_customize_full_message][].
+          - Enables [query_log_tags_enabled][].
 
           [raise_on_missing_translations]: https://guides.rubyonrails.org/configuring.html#config-i18n-raise-on-missing-translations
           [annotate_rendered_view_with_filenames]: https://guides.rubyonrails.org/configuring.html#config-action-view-annotate-rendered-view-with-filenames

@@ -128,7 +128,7 @@ module Suspenders
           - Use `bin/rails default` to run the default Rake task. This will do the following:
             - Run the test suite.
             - Run a Ruby and ERB linter.
-            - Scan the Ruby codebase for any dependecy vulnerabilities.
+            - Scan the Ruby codebase for any dependency vulnerabilities.
 
           [database migrations]: https://edgeguides.rubyonrails.org/active_record_migrations.html#running-migrations
           [reversible]: https://edgeguides.rubyonrails.org/active_record_migrations.html#making-the-irreversible-possible

@@ -5,7 +5,26 @@ module Suspenders
 
       source_root File.expand_path("../../templates/lint", __FILE__)
       desc <<~MARKDOWN
-        Creates a holistic linting solution that covers JavaScript, CSS, Ruby and ERB.
+        - Uses [@thoughtbot/eslint-config][] for JavaScript linting.
+        - Uses [@thoughtbot/stylelint-config][] for CSS linting.
+        - Uses [prettier][] for additional linting.
+        - Uses [better_html][], [erb_lint][], and [erblint-github][] for ERB linting.
+        - Uses [standard][] for Ruby linting.
+
+        **Available Commands**
+
+        - Run `yarn lint` to lint front-end code.
+        - Run `yarn fix:prettier` to automatically fix prettier violations.
+        - Run `bin/rails standard` to lint ERB and Ruby code.
+        - Run `bundle exec standardrb --fix` to fix standard violations.
+
+        [@thoughtbot/eslint-config]: https://github.com/thoughtbot/eslint-config
+        [@thoughtbot/stylelint-config]: https://github.com/thoughtbot/stylelint-config
+        [prettier]: https://prettier.io
+        [better_html]: https://github.com/Shopify/better-html
+        [erb_lint]: https://github.com/Shopify/erb-lint
+        [erblint-github]: https://github.com/github/erblint-github
+        [standard]: https://github.com/standardrb/standard
       MARKDOWN
 
       def check_package_json

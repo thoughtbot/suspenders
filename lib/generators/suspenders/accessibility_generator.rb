@@ -4,7 +4,12 @@ module Suspenders
       include Suspenders::Generators::APIAppUnsupported
 
       desc <<~MARKDOWN
-        Installs capybara_accessibility_audit and capybara_accessible_selectors"
+        Uses [capybara_accessibility_audit][] and
+        [capybara_accessible_selectors][] to encourage and enforce accessibility best
+        practices.
+
+        [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
+        [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
       MARKDOWN
 
       def add_capybara_gems

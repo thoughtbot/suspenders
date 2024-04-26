@@ -6,7 +6,10 @@ module Suspenders
 
       source_root File.expand_path("../../templates/ci", __FILE__)
       desc <<~MARKDOWN
-        Creates CI files for GitHub Actions
+        Uses [GitHub Actions][] for CI, and [Dependabot][] for dependency updates.
+
+        [GitHub Actions]: https://docs.github.com/en/actions
+        [Dependabot]: https://docs.github.com/en/code-security/dependabot/working-with-dependabot
       MARKDOWN
 
       def ci_files

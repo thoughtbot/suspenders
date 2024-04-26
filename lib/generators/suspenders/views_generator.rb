@@ -3,10 +3,19 @@ module Suspenders
     class ViewsGenerator < Rails::Generators::Base
       include Suspenders::Generators::APIAppUnsupported
 
-      desc <<~MARKDOWN
-        Configures flash messages, page titles and the document lang. Disables Turbo's InstantClick.
-      MARKDOWN
       source_root File.expand_path("../../templates/views", __FILE__)
+      desc <<~MARKDOWN
+        - A [partial][] for [flash messages][] is located in `app/views/application/_flashes.html.erb`.
+        - Sets [lang][] attribute on `<html>` element to `en` via `I18n.local`.
+        - Dynamically sets `<title>` via the [title][] gem.
+        - Disables Turbo's [Prefetch][] in an effort to reduce unnecessary network requests.
+
+        [partial]: https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials
+        [flash messages]: https://guides.rubyonrails.org/action_controller_overview.html#the-flash
+        [lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
+        [title]: https://github.com/calebhearth/title
+        [Prefetch]: https://turbo.hotwired.dev/handbook/drive#prefetching-links-on-hover
+      MARKDOWN
 
       def install_gems
         gem "title"

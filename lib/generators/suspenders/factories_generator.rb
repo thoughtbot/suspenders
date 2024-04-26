@@ -5,18 +5,16 @@ module Suspenders
 
       source_root File.expand_path("../../templates/factories", __FILE__)
       desc <<~MARKDOWN
-        Build test data with clarity and ease.
+        Uses [FactoryBot][] as an alternative to [Fixtures][] to help you define
+        dummy and test data for your test suite. The `create`, `build`, and
+        `build_stubbed` class methods are directly available to all tests.
 
-        This uses FactoryBot to help you define dummy and test data for your test
-        suite. The `create`, `build`, and `build_stubbed` class methods are directly
-        available to all tests.
+        Place FactoryBot definitions in `spec/factories.rb`, at least until it
+        grows unwieldy. This helps reduce confusion around circular dependencies and
+        makes it easy to jump between definitions.
 
-        We recommend putting FactoryBot definitions in one `spec/factories.rb` (or
-        `test/factories`) file, at least until it grows unwieldy. This helps reduce
-        confusion around circular dependencies and makes it easy to jump between
-        definitions.
-
-        Supports the default test suite and RSpec.
+        [FactoryBot]: https://github.com/thoughtbot/factory_bot
+        [Fixtures]: https://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures
       MARKDOWN
 
       def add_factory_bot
