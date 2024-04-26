@@ -23,12 +23,16 @@ Run the setup script.
 Make sure the tests pass:
 
 ```
-bundle exec rake
+bin/rails test
 ```
 
-Make your change, with new passing tests. Follow the [style guide][style].
+Make sure there are no linting violations:
 
-  [style]: https://github.com/thoughtbot/guides/tree/master/style
+```
+bin/rails standard
+```
+
+Make your change, with new passing tests.
 
 Mention how your changes affect the project to other developers and users in the
 `NEWS.md` file.
@@ -41,6 +45,17 @@ Others will give constructive feedback.
 This is a time for discussion and improvements,
 and making the necessary changes will be required before we can
 merge the contribution.
+
+## Testing Generators
+
+There is a smaller dummy application at `test/dummy`. This application is used
+as a mounting point for the engine, to make testing the engine extremely simple.
+
+There are a number of [assertions][] and [helpers][] that make testing
+generators easier.
+
+[assertions]: https://api.rubyonrails.org/classes/Rails/Generators/Testing/Assertions.html
+[helpers]: https://api.rubyonrails.org/classes/Rails/Generators/Testing/Behavior.html
 
 ## Publishing to RubyGems
 
