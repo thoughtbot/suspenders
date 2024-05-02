@@ -31,10 +31,10 @@ We skip the [default test framework][] in favor of [RSpec][], and [prefer
 PostgreSQL][] as our database.
 
 ```
-rails new <my_app> \
---skip-test \
--d=postgresql \
--m=https://raw.githubusercontent.com/thoughtbot/suspenders/lib/install/web.rb
+rails new app_name \
+ --skip-test \
+ -d=postgresql \
+ -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
 ```
 
 Then run `bin/setup` within the newly generated application.
