@@ -1,6 +1,6 @@
 Unreleased
 
-* Remove `suspenders` system executable
+* Remove `suspenders` system executable and introduce [application template][]
 * Introduce `suspenders:accessibility` generator
 * Introduce `suspenders:inline_svg` generator
 * Introduce `suspenders:factories` generator
@@ -22,6 +22,8 @@ Unreleased
 * Introduce `suspenders:environments:test` generator
 * Introduce `suspenders:environments:development` generator
 * Introduce `suspenders:install:web` generator
+
+[application template]: https://guides.rubyonrails.org/rails_application_templates.html
 
 20230113.0 (January, 13, 2023)
 
