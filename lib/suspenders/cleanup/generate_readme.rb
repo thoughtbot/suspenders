@@ -16,6 +16,8 @@ require_relative "../../generators/suspenders/views_generator"
 module Suspenders
   module Cleanup
     class GenerateReadme
+      include Suspenders::Generators::Helpers
+
       def self.perform(readme, app_name)
         new(readme, app_name).perform
       end
@@ -153,7 +155,7 @@ module Suspenders
 
         @file.write <<~MARKDOWN
           Ruby: `#{Suspenders::MINIMUM_RUBY_VERSION}`
-          Node: `#{Suspenders::NODE_LTS_VERSION}`
+          Node: `#{node_version}`
         MARKDOWN
 
         new_line
