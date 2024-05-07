@@ -28,6 +28,16 @@ module Suspenders
           end
         end
 
+        test "raises if Node is not installed" do
+          Object.any_instance.stubs(:`).returns("")
+
+          with_database "postgresql" do
+            assert_raises Suspenders::Generators::NodeNotInstalled::Error do
+              run_generator
+            end
+          end
+        end
+
         private
 
         def prepare_destination

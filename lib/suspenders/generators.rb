@@ -18,6 +18,10 @@ module Suspenders
       def rspec_test_helper_present?
         File.exist? Rails.root.join("spec/rails_helper.rb")
       end
+
+      def node_version
+        ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+      end
     end
 
     module APIAppUnsupported
@@ -46,6 +50,8 @@ module Suspenders
     end
 
     module DatabaseUnsupported
+      include Helpers
+
       class Error < StandardError
         def message
           "This generator requires PostgreSQL"
@@ -70,6 +76,27 @@ module Suspenders
 
           adapter != "postgresql"
         end
+      end
+    end
+
+    module NodeNotInstalled
+      class Error < StandardError
+      end
+
+      extend ActiveSupport::Concern
+
+      included do
+        def raise_if_node_not_installed
+          if node_not_installed?
+            raise Suspenders::Generators::NodeNotInstalled::Error
+          end
+        end
+      end
+
+      private
+
+      def node_not_installed?
+        !node_version.present?
       end
     end
   end
