@@ -4,6 +4,7 @@ module Suspenders
       class WebGenerator < Rails::Generators::Base
         include Suspenders::Generators::APIAppUnsupported
         include Suspenders::Generators::DatabaseUnsupported
+        include Suspenders::Generators::NodeNotInstalled
 
         source_root File.expand_path("../../../templates/install/web", __FILE__)
         desc <<~MARKDOWN

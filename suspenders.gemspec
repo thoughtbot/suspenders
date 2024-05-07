@@ -27,6 +27,7 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rails", Suspenders::RAILS_VERSION
 
+  spec.add_development_dependency "climate_control"
   spec.add_development_dependency "mocha"
   spec.add_development_dependency "standard"
 end
