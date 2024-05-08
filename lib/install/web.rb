@@ -1,4 +1,14 @@
-extend Suspenders::Generators::Helpers
+def node_version
+  ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+end
+
+def node_not_installed?
+  !node_version.present?
+end
+
+def node_version_unsupported?
+  node_version < "20.0.0"
+end
 
 def apply_template!
   if node_not_installed? || node_version_unsupported?
@@ -7,7 +17,7 @@ def apply_template!
 
     === Node version unsupported ===
 
-    Suspenders requires Node >= #{Suspenders::MINIMUM_NODE_VERSION}
+    Suspenders requires Node >= 20.0.0
     ERROR
 
     fail Rails::Generators::Error, message
