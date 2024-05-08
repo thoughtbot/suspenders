@@ -6,7 +6,7 @@ module Suspenders
   module Cleanup
     class GenerateReadmeTest < ActiveSupport::TestCase
       test "generates README using generator descriptions" do
-        Object.any_instance.stubs(:`).returns("v1.2.3\n")
+        Object.any_instance.stubs(:`).returns("v20.0.0\n")
 
         Tempfile.create "README.md" do |readme|
           path = readme.path
@@ -20,7 +20,7 @@ module Suspenders
 
           assert_match "## Prerequisites", readme
           assert_match Suspenders::MINIMUM_RUBY_VERSION, readme
-          assert_match "Node: `1.2.3`", readme
+          assert_match "Node: `20.0.0`", readme
 
           assert_match "## Configuration", readme
           assert_match "### Test", readme

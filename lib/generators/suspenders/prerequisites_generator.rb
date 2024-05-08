@@ -3,6 +3,7 @@ module Suspenders
     class PrerequisitesGenerator < Rails::Generators::Base
       include Suspenders::Generators::Helpers
       include Suspenders::Generators::NodeNotInstalled
+      include Suspenders::Generators::NodeVersionUnsupported
 
       source_root File.expand_path("../../templates/prerequisites", __FILE__)
 

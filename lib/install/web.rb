@@ -1,4 +1,27 @@
+def node_version
+  ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+end
+
+def node_not_installed?
+  !node_version.present?
+end
+
+def node_version_unsupported?
+  node_version < "20.0.0"
+end
+
 def apply_template!
+  if node_not_installed? || node_version_unsupported?
+    message = <<~ERROR
+
+
+      === Node version unsupported ===
+
+      Suspenders requires Node >= 20.0.0
+    ERROR
+
+    fail Rails::Generators::Error, message
+  end
   if options[:database] == "postgresql" && options[:skip_test]
     after_bundle do
       gem_group :development, :test do

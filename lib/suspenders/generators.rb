@@ -22,6 +22,14 @@ module Suspenders
       def node_version
         ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
       end
+
+      def node_not_installed?
+        !node_version.present?
+      end
+
+      def node_version_unsupported?
+        node_version < Suspenders::MINIMUM_NODE_VERSION
+      end
     end
 
     module APIAppUnsupported
@@ -81,6 +89,9 @@ module Suspenders
 
     module NodeNotInstalled
       class Error < StandardError
+        def message
+          "This generator requires Node"
+        end
       end
 
       extend ActiveSupport::Concern
@@ -92,11 +103,23 @@ module Suspenders
           end
         end
       end
+    end
 
-      private
+    module NodeVersionUnsupported
+      class Error < StandardError
+        def message
+          "This generator requires Node >= #{Suspenders::MINIMUM_NODE_VERSION}"
+        end
+      end
 
-      def node_not_installed?
-        !node_version.present?
+      extend ActiveSupport::Concern
+
+      included do
+        def raise_if_node_version_unsupported
+          if node_version_unsupported?
+            raise Suspenders::Generators::NodeVersionUnsupported::Error
+          end
+        end
       end
     end
   end
