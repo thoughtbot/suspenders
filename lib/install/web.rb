@@ -1,4 +1,17 @@
+extend Suspenders::Generators::Helpers
+
 def apply_template!
+  if node_not_installed? || node_version_unsupported?
+    message = <<~ERROR
+
+
+    === Node version unsupported ===
+
+    Suspenders requires Node >= #{Suspenders::MINIMUM_NODE_VERSION}
+    ERROR
+
+    fail Rails::Generators::Error, message
+  end
   if options[:database] == "postgresql" && options[:skip_test]
     after_bundle do
       gem_group :development, :test do

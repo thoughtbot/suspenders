@@ -5,6 +5,7 @@ module Suspenders
         include Suspenders::Generators::APIAppUnsupported
         include Suspenders::Generators::DatabaseUnsupported
         include Suspenders::Generators::NodeNotInstalled
+        include Suspenders::Generators::NodeVersionUnsupported
 
         source_root File.expand_path("../../../templates/install/web", __FILE__)
         desc <<~MARKDOWN

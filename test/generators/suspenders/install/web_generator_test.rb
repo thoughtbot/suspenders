@@ -38,6 +38,16 @@ module Suspenders
           end
         end
 
+        test "raises if Node is unsupported" do
+          Object.any_instance.stubs(:`).returns("v19.9.9\n")
+
+          with_database "postgresql" do
+            assert_raises Suspenders::Generators::NodeVersionUnsupported::Error do
+              run_generator
+            end
+          end
+        end
+
         private
 
         def prepare_destination
