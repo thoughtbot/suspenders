@@ -12,4 +12,8 @@ class SuspendersTest < ActiveSupport::TestCase
   test "it has a Minimum Ruby version number" do
     assert Suspenders::MINIMUM_RUBY_VERSION
   end
+
+  test "it has a Minimum Node version number" do
+    assert Suspenders::MINIMUM_NODE_VERSION
+  end
 end
