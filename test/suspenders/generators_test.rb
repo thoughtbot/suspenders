@@ -17,7 +17,7 @@ class Suspenders::GeneratorsTest < ActiveSupport::TestCase
     end
   end
 
-  class NodeNotInstalledTest< ActiveSupport::TestCase
+  class NodeNotInstalledTest < ActiveSupport::TestCase
     test "message returns a custom message" do
       expected = "This generator requires Node"
 

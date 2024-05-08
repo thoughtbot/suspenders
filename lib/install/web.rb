@@ -15,9 +15,9 @@ def apply_template!
     message = <<~ERROR
 
 
-    === Node version unsupported ===
+      === Node version unsupported ===
 
-    Suspenders requires Node >= 20.0.0
+      Suspenders requires Node >= 20.0.0
     ERROR
 
     fail Rails::Generators::Error, message
