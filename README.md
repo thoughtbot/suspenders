@@ -17,6 +17,12 @@ like missing deadlines.
 
 ![Suspenders boy](https://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
+## Requirements
+
+- Rails `~> 7.0`
+- Ruby `>= 3.1`
+- Node `>= 20.0.0`
+
 ## Usage
 
 Suspenders can be used to create a new Rails application, or to enhance an
