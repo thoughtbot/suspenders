@@ -63,7 +63,10 @@ module Suspenders
       end
 
       def configures_postcss
-        File.delete(postcss_config) if File.exist?(postcss_config)
+        begin
+          File.delete(postcss_config)
+        rescue Errno::ENOENT
+        end
 
         empty_directory "app/assets/static"
         create_file "app/assets/static/.gitkeep"
