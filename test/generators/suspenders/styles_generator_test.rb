@@ -21,12 +21,12 @@ module Suspenders
 
       test "does not raise if API configuration is commented out" do
         within_api_only_app(commented_out: true) do
-          run_generator
+          capture(:stderr) { run_generator }
         end
       end
 
       test "adds gems to Gemfile" do
-        run_generator
+        capture(:stderr) { run_generator }
 
         assert_file app_root("Gemfile") do |file|
           assert_match "cssbundling-rails", file
@@ -34,35 +34,41 @@ module Suspenders
       end
 
       test "installs gems with Bundler" do
-        output = run_generator
+        capture(:stderr) do
+          output = run_generator
 
-        assert_match(/bundle install/, output)
+          assert_match(/bundle install/, output)
+        end
       end
 
       test "runs install script" do
-        output = run_generator
+        capture(:stderr) do
+          output = run_generator
 
-        assert_match(/bin\/rails css:install:postcss/, output)
+          assert_match(/bin\/rails css:install:postcss/, output)
+        end
       end
 
       test "installs modern-normalize and imports stylesheets" do
-        output = run_generator
-        application_stylesheet = <<~TEXT
-          @import "modern-normalize";
-          @import "base.css";
-          @import "components.css";
-          @import "utilities.css";
-        TEXT
+        capture(:stderr) do
+          output = run_generator
+          application_stylesheet = <<~TEXT
+            @import "modern-normalize";
+            @import "base.css";
+            @import "components.css";
+            @import "utilities.css";
+          TEXT
 
-        assert_match(/add.*modern-normalize/, output)
+          assert_match(/add.*modern-normalize/, output)
 
-        assert_file app_root("app/assets/stylesheets/application.postcss.css") do |file|
-          assert_equal application_stylesheet, file
+          assert_file app_root("app/assets/stylesheets/application.postcss.css") do |file|
+            assert_equal application_stylesheet, file
+          end
         end
       end
 
       test "creates stylesheets" do
-        run_generator
+        capture(:stderr) { run_generator }
 
         assert_file app_root("app/assets/stylesheets/base.css") do |file|
           assert_equal "/* Base Styles */", file
@@ -76,15 +82,17 @@ module Suspenders
       end
 
       test "installs postcss-url" do
-        output = run_generator
+        capture(:stderr) do
+          output = run_generator
 
-        assert_match(/add\s*postcss-url/, output)
+          assert_match(/add\s*postcss-url/, output)
+        end
       end
 
       test "configures postcss.config.js" do
         expected = file_fixture("postcss.config.js").read
 
-        run_generator
+        capture(:stderr) { run_generator }
 
         assert_file app_root("postcss.config.js") do |file|
           assert_equal expected, file
@@ -95,7 +103,7 @@ module Suspenders
         touch "postcss.config.js", content: "unexpected"
         expected = file_fixture("postcss.config.js").read
 
-        run_generator
+        capture(:stderr) { run_generator }
 
         assert_file app_root("postcss.config.js") do |file|
           assert_equal expected, file
@@ -103,7 +111,7 @@ module Suspenders
       end
 
       test "creates directory to store static assets generated from postcss-url" do
-        run_generator
+        capture(:stderr) { run_generator }
 
         assert_file app_root("app/assets/static/.gitkeep")
       end
