@@ -45,10 +45,21 @@ rails new app_name \
 
 Then run `bin/setup` within the newly generated application.
 
+Alternatively, if you're using our [dotfiles][], then you can just run `rails new
+app_name`, or create your own [railsrc][] file with the following configuration:
+
+```
+--skip-test
+--database=postgresql
+-m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
+```
+
 [application template]: https://guides.rubyonrails.org/rails_application_templates.html
 [default test framework]: https://guides.rubyonrails.org/testing.html
 [RSpec]: http://rspec.info
 [prefer PostgreSQL]: https://github.com/thoughtbot/dotfiles/pull/728
+[dotfiles]: https://github.com/thoughtbot/dotfiles
+[railsrc]: https://github.com/rails/rails/blob/7f7f9df8641e35a076fe26bd097f6a1b22cb4e2d/railties/lib/rails/generators/rails/app/USAGE#L5C1-L7
 
 ### With Existing Rails Applications
 
