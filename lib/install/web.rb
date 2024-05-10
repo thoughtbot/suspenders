@@ -25,8 +25,7 @@ def apply_template!
   if options[:database] == "postgresql" && options[:skip_test]
     after_bundle do
       gem_group :development, :test do
-        # TODO: Update once in `main`
-        gem "suspenders", github: "thoughtbot/suspenders", branch: "suspenders-3-0-0"
+        gem "suspenders", github: "thoughtbot/suspenders"
       end
 
       run "bundle install"
