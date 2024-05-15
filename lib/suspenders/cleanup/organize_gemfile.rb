@@ -37,20 +37,20 @@ module Suspenders
 
       def sort_gems_and_groups
         current_lines.each do |line|
-          if line.starts_with?(/group/)
+          if line.start_with?("group")
             @current_group = line
           end
 
           # Consolidate gem groups
           if current_group
-            if line.starts_with?(/end/)
+            if line.start_with?("end")
               @current_group = nil
-            elsif !line.starts_with?(/group/)
+            elsif !line.start_with?("group")
               gem_groups[current_group] ||= []
               gem_groups[current_group] << line
             end
           # Add non-grouped gems
-          elsif !line.starts_with?(/\n/)
+          elsif !line.start_with?("\n")
             new_lines << line
             @current_group = nil
           end
@@ -82,35 +82,35 @@ module Suspenders
           marker = index + 1
 
           # Add line break if it's a gem and the next line is commented out
-          if (line.starts_with?(/\s*gem/) || line.starts_with?(/\s*\#\s*gem/)) && next_line&.starts_with?(/\s*\#/)
+          if line.start_with?(/\s*gem/, /\s*\#\s*gem/) && next_line&.start_with?(/\s*\#/)
             new_line_markers << marker
           end
 
           # Add line break if it's a commented out gem and the next line is a gem
-          if line.starts_with?(/\s*\#\s*gem/) && next_line&.starts_with?(/\s*gem/)
+          if line.start_with?(/\s*\#\s*gem/) && next_line&.start_with?(/\s*gem/)
             new_line_markers << marker
           end
 
           # Add line break if it's a gem with a comment and the next line is a gem
-          if previous_line&.starts_with?(/\s*\#/) \
-              && line.starts_with?(/\s*gem/) \
-              && next_line&.starts_with?(/\s*gem/) \
-              && !previous_line.starts_with?(/\s*\#\s*gem/)
+          if previous_line&.start_with?(/\s*\#/) \
+              && line.start_with?(/\s*gem/) \
+              && next_line&.start_with?(/\s*gem/) \
+              && !previous_line.start_with?(/\s*\#\s*gem/)
             new_line_markers << marker
           end
 
           # Add a line break if it's /end/
-          if line.starts_with?(/end/)
+          if line.start_with?("end")
             new_line_markers << marker
           end
 
           # Add a line break if it's a gem and the next line is a group
-          if line.starts_with?(/gem/) && next_line&.starts_with?(/group/)
+          if line.start_with?("gem") && next_line&.start_with?("group")
             new_line_markers << marker
           end
 
           # Add line break if it's /source/ or /ruby/
-          if line.starts_with?(/\w/) && !line.starts_with?(/\s*(gem|group|end)/)
+          if line.start_with?(/\w/) && !line.start_with?(/\s*(gem|group|end)/)
             new_line_markers << marker
           end
         end
