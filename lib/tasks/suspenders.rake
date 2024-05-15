@@ -25,7 +25,7 @@ namespace :suspenders do
 
   namespace :cleanup do
     desc "Organizes Gemfile"
-    task :organize_gemfile do
+    task organize_gemfile: :environment do
       Suspenders::Cleanup::OrganizeGemfile.perform(Rails.root.join("Gemfile"))
     end
 
