@@ -2,9 +2,6 @@
 
 [![CI](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml/badge.svg)](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml)
 
-> [!NOTE]
-> You are viewing the latest build of Suspenders, but not the latest release.
-
 Suspenders is a [Rails Engine][] containing generators for configuring Rails
 applications with these [features][].
 
@@ -68,7 +65,7 @@ Suspenders can be used on an existing Rails application by adding it to the
 
 ```ruby
 group :development, :test do
-  gem "suspenders", github: "thoughtbot/suspenders"
+  gem "suspenders"
 end
 ```
 

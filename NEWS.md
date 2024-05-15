@@ -1,4 +1,6 @@
-Unreleased
+20240516.0 (May, 16, 2024)
+
+"Tailored" release
 
 * Remove `suspenders` system executable and introduce [application template][]
 * Introduce `suspenders:accessibility` generator
