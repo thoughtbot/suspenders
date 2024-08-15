@@ -22,7 +22,7 @@ def apply_template!
 
     fail Rails::Generators::Error, message
   end
-  if options[:database] == "postgresql" && options[:skip_test]
+  if options[:database] == "postgresql" && options[:skip_test] && options[:skip_rubocop]
     after_bundle do
       gem_group :development, :test do
         gem "suspenders"
@@ -42,6 +42,7 @@ def apply_template!
       === Please use the correct options ===
 
       rails new <app_name> \\
+      --skip-rubocop \\
       --skip-test \\
       -d=postgresql \\
       -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb

@@ -1,3 +1,9 @@
+Unreleased
+
+* Require `--skip-rubocop` in favor of our [linting configuration][]
+
+[linting configuration]: https://github.com/thoughtbot/suspenders/blob/main/FEATURES.md#linting
+
 20240516.0 (May, 16, 2024)
 
 "Tailored" release
