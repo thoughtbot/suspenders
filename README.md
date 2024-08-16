@@ -33,8 +33,11 @@ application with Suspenders.
 We skip the [default test framework][] in favor of [RSpec][], and [prefer
 PostgreSQL][] as our database.
 
+We skip [RuboCop rules by default][] in favor of our [holistic linting rules][].
+
 ```
 rails new app_name \
+ --skip_rubocop \
  --skip-test \
  -d=postgresql \
  -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
@@ -46,6 +49,7 @@ Alternatively, if you're using our [dotfiles][], then you can just run `rails ne
 app_name`, or create your own [railsrc][] file with the following configuration:
 
 ```
+--skip_rubocop
 --skip-test
 --database=postgresql
 -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
@@ -57,6 +61,8 @@ app_name`, or create your own [railsrc][] file with the following configuration:
 [prefer PostgreSQL]: https://github.com/thoughtbot/dotfiles/pull/728
 [dotfiles]: https://github.com/thoughtbot/dotfiles
 [railsrc]: https://github.com/rails/rails/blob/7f7f9df8641e35a076fe26bd097f6a1b22cb4e2d/railties/lib/rails/generators/rails/app/USAGE#L5C1-L7
+[RuboCop rules by default]: https://guides.rubyonrails.org/v7.2/7_2_release_notes.html#add-omakase-rubocop-rules-by-default
+[holistic linting rules]: https://github.com/thoughtbot/suspenders/blob/main/FEATURES.md#linting
 
 ### With Existing Rails Applications
 
