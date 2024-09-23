@@ -86,18 +86,18 @@ spec/spec_helper.rb
 spec/support/action_mailer.rb
 spec/support/driver.rb
 spec/support/i18n.rb
-spec/support/should_matchers.rb
+spec/support/shoulda_matchers.rb
 ```
 
 - Uses [action_dispatch-testing-integration-capybara][] to introduce Capybara assertions into Request specs.
-- Uses [should-matchers][] for simple one-liner tests for common Rails functionality.
+- Uses [shoulda-matchers][] for simple one-liner tests for common Rails functionality.
 - Uses [webmock][] for stubbing and setting expectations on HTTP requests in Ruby.
 
 [RSpec]: http://rspec.info
 [RSpec Rails]: https://github.com/rspec/rspec-rails
 [default test suite]: https://guides.rubyonrails.org/testing.html
 [action_dispatch-testing-integration-capybara]: https://github.com/thoughtbot/action_dispatch-testing-integration-capybara
-[should-matchers]: https://github.com/thoughtbot/shoulda-matchers
+[shoulda-matchers]: https://github.com/thoughtbot/shoulda-matchers
 [webmock]: https://github.com/bblimke/webmock
 
 ### Factories
