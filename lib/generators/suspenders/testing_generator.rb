@@ -15,7 +15,7 @@ module Suspenders
         spec/support/action_mailer.rb
         spec/support/driver.rb
         spec/support/i18n.rb
-        spec/support/should_matchers.rb
+        spec/support/shoulda_matchers.rb
         ```
 
         - Uses [action_dispatch-testing-integration-capybara][] to introduce Capybara assertions into Request specs.
