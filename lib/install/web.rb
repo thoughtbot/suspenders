@@ -60,7 +60,7 @@ def apply_template!
       -d=postgresql \\
       -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
 
-      ERROR
+    ERROR
 
     fail Rails::Generators::Error, message
   end
