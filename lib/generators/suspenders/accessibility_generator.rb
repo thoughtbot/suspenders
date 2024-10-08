@@ -15,7 +15,7 @@ module Suspenders
       def add_capybara_gems
         gem_group :test do
           gem "capybara_accessibility_audit", github: "thoughtbot/capybara_accessibility_audit"
-          gem "capybara_accessible_selectors", github: "citizensadvice/capybara_accessible_selectors"
+          gem "capybara_accessible_selectors", github: "citizensadvice/capybara_accessible_selectors", tag: "v0.12.0"
         end
         Bundler.with_unbundled_env { run "bundle install" }
       end
