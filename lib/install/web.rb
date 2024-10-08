@@ -24,12 +24,10 @@ def apply_template!
   end
   if options[:database] == "postgresql" && options[:skip_test] && options[:skip_rubocop]
     after_bundle do
-      if ARGV.include?("--suspenders_main")
-        gem_group :development, :test do
+      gem_group :development, :test do
+        if ARGV.include?("--suspenders_main")
           gem "suspenders", github: "thoughtbot/suspenders", branch: "main"
-        end
-      else
-        gem_group :development, :test do
+        else
           gem "suspenders"
         end
       end
