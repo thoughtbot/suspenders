@@ -39,7 +39,7 @@ We skip [RuboCop rules by default][] in favor of our [holistic linting rules][].
 
 ```
 rails new app_name \
- --skip_rubocop \
+ --skip-rubocop \
  --skip-test \
  -d=postgresql \
  -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
@@ -50,7 +50,7 @@ rails new app_name \
 ```
 rails new app_name \
  --suspenders-main \
- --skip_rubocop \
+ --skip-rubocop \
  --skip-test \
  -d=postgresql \
  -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
@@ -62,7 +62,7 @@ Alternatively, if you're using our [dotfiles][], then you can just run `rails ne
 app_name`, or create your own [railsrc][] file with the following configuration:
 
 ```
---skip_rubocop
+--skip-rubocop
 --skip-test
 --database=postgresql
 -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb

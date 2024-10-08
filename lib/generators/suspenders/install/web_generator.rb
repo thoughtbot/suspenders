@@ -28,7 +28,7 @@ module Suspenders
           ```
           rails new app_name \\
           --suspenders-main \\
-          --skip_rubocop \\
+          --skip-rubocop \\
           --skip-test \\
           -d=postgresql \\
           -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
