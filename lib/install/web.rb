@@ -24,8 +24,14 @@ def apply_template!
   end
   if options[:database] == "postgresql" && options[:skip_test] && options[:skip_rubocop]
     after_bundle do
-      gem_group :development, :test do
-        gem "suspenders"
+      if ARGV.include?("--suspenders_main")
+        gem_group :development, :test do
+          gem "suspenders", github: "thoughtbot/suspenders", branch: "main"
+        end
+      else
+        gem_group :development, :test do
+          gem "suspenders"
+        end
       end
 
       run "bundle install"
@@ -41,12 +47,22 @@ def apply_template!
 
       === Please use the correct options ===
 
+      # Use the latest suspenders release:
       rails new <app_name> \\
       --skip-rubocop \\
       --skip-test \\
       -d=postgresql \\
       -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
-    ERROR
+
+      # OR use the current (possibly unreleased) `main` branch of suspenders:
+      rails new <app_name> \\
+      --suspenders_main \\
+      --skip-rubocop \\
+      --skip-test \\
+      -d=postgresql \\
+      -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
+
+      ERROR
 
     fail Rails::Generators::Error, message
   end
