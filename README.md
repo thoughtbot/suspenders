@@ -49,7 +49,7 @@ rails new app_name \
 
 ```
 rails new app_name \
- --suspenders_main \
+ --suspenders-main \
  --skip_rubocop \
  --skip-test \
  -d=postgresql \

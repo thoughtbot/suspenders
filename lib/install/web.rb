@@ -25,7 +25,7 @@ def apply_template!
   if options[:database] == "postgresql" && options[:skip_test] && options[:skip_rubocop]
     after_bundle do
       gem_group :development, :test do
-        if ARGV.include?("--suspenders_main")
+        if ARGV.include?("--suspenders-main")
           gem "suspenders", github: "thoughtbot/suspenders", branch: "main"
         else
           gem "suspenders"
@@ -54,7 +54,7 @@ def apply_template!
 
       # OR use the current (possibly unreleased) `main` branch of suspenders:
       rails new <app_name> \\
-      --suspenders_main \\
+      --suspenders-main \\
       --skip-rubocop \\
       --skip-test \\
       -d=postgresql \\
