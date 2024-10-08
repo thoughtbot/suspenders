@@ -35,9 +35,22 @@ PostgreSQL][] as our database.
 
 We skip [RuboCop rules by default][] in favor of our [holistic linting rules][].
 
+#### Use the latest suspenders release:
+
 ```
 rails new app_name \
- --skip_rubocop \
+ --skip-rubocop \
+ --skip-test \
+ -d=postgresql \
+ -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
+```
+
+#### OR use the current (possibly unreleased) `main` branch of suspenders:
+
+```
+rails new app_name \
+ --suspenders-main \
+ --skip-rubocop \
  --skip-test \
  -d=postgresql \
  -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
@@ -49,7 +62,7 @@ Alternatively, if you're using our [dotfiles][], then you can just run `rails ne
 app_name`, or create your own [railsrc][] file with the following configuration:
 
 ```
---skip_rubocop
+--skip-rubocop
 --skip-test
 --database=postgresql
 -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb

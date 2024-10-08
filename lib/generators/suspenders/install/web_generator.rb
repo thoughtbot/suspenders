@@ -13,11 +13,24 @@ module Suspenders
 
           This generatator is intended to be invoked as part of an [application template][].
 
+          #### Use the latest suspenders release:
+
           ```
-          rails new <app_name> \
+          rails new <app_name> \\
           --skip-rubocop \\
-          --skip-test \
-          -d=postgresql \
+          --skip-test \\
+          -d=postgresql \\
+          -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
+          ```
+
+          #### OR use the current (possibly unreleased) `main` branch of suspenders:
+
+          ```
+          rails new app_name \\
+          --suspenders-main \\
+          --skip-rubocop \\
+          --skip-test \\
+          -d=postgresql \\
           -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
           ```
 
