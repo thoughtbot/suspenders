@@ -62,7 +62,7 @@ module Suspenders
           heading "Accessibility", level: 2
           description_for Suspenders::Generators::AccessibilityGenerator
           content <<~MARKDOWN
-            For more information, review the [Accessibility Tooling][] section in 
+            For more information, review the [Accessibility Tooling][] section in
             the [CONTRIBUTING][] guide.
 
             [Accessibility Tooling]: ./CONTRIBUTING.md#accessibility-tooling
@@ -125,7 +125,7 @@ module Suspenders
           ### Running the Development Server
 
           ```
-          bin/rails dev
+          bin/dev
           ```
 
           ### Seed Data
