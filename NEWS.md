@@ -3,6 +3,7 @@ Unreleased
 * Require `--skip-rubocop` in favor of our [linting configuration][]
 * Fixed: [Specify a tag when installing capybara_accessible_selectors](https://github.com/thoughtbot/suspenders/issues/1228)
 * Fixed: [Issue 1229: How do we want to handle un-released versions?](https://github.com/thoughtbot/suspenders/issues/1229)
+* Fixed: [Issue 1222: README instructions for running the development server are wrong](https://github.com/thoughtbot/suspenders/issues/1222)
 
 [linting configuration]: https://github.com/thoughtbot/suspenders/blob/main/FEATURES.md#linting
 
