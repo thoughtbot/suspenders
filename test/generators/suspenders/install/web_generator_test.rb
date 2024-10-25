@@ -29,7 +29,7 @@ module Suspenders
         end
 
         test "raises if Node is not installed" do
-          Object.any_instance.stubs(:`).returns("")
+          Generators::Install::WebGenerator.any_instance.stubs(:node_version).returns("")
 
           with_database "postgresql" do
             assert_raises Suspenders::Generators::NodeNotInstalled::Error do
@@ -39,7 +39,7 @@ module Suspenders
         end
 
         test "raises if Node is unsupported" do
-          Object.any_instance.stubs(:`).returns("v19.9.9\n")
+          Generators::Install::WebGenerator.any_instance.stubs(:node_version).returns("19.9.9")
 
           with_database "postgresql" do
             assert_raises Suspenders::Generators::NodeVersionUnsupported::Error do
