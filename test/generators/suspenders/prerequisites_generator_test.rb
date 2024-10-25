@@ -16,7 +16,7 @@ module Suspenders
           run_generator
 
           assert_file app_root(".node-version") do |file|
-            assert_match(/20\.0\.0/, file)
+            assert_match(/^20\.0\.0$/, file)
           end
         end
       end
@@ -27,7 +27,7 @@ module Suspenders
         run_generator
 
         assert_file app_root(".node-version") do |file|
-          assert_match(/20\.0\.0/, file)
+          assert_match(/^20\.0\.0$/, file)
         end
       end
 
