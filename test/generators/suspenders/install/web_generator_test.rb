@@ -52,6 +52,10 @@ module Suspenders
 
         def prepare_destination
           touch "Gemfile"
+
+          File.open("test/dummy/Gemfile", "w") do |f|
+            f.write('source "https://rubygems.org"')
+          end
         end
 
         def restore_destination
