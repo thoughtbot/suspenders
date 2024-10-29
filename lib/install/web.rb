@@ -3,7 +3,7 @@ def node_version
 end
 
 def node_not_installed?
-  !node_version.present?
+  node_version.blank?
 end
 
 def node_version_unsupported?
