@@ -48,7 +48,7 @@ module Suspenders
           end
         end
 
-        test "evaluates support for Node versions correctly" do
+        test "evaluates supported Node versions correctly" do
           web_generator = Generators::Install::WebGenerator.new
 
           unsupported_versions = %w[1.0.0 1.100.200 10.0.0 19.0.0 19.9.9 19.9999.99999]
