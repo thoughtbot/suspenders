@@ -20,7 +20,11 @@ module Suspenders
       end
 
       def node_version
-        ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+        version = ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+
+        return if version.blank?
+
+        Gem::Version.new(version)
       end
 
       def node_not_installed?
@@ -28,7 +32,9 @@ module Suspenders
       end
 
       def node_version_unsupported?
-        node_version < Suspenders::MINIMUM_NODE_VERSION
+        minimum_node_version = Gem::Version.new(Suspenders::MINIMUM_NODE_VERSION)
+
+        node_version < minimum_node_version
       end
     end
 

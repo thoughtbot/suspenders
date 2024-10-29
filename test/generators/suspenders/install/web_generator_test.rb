@@ -48,14 +48,32 @@ module Suspenders
           end
         end
 
+        test "evaluates support for Node versions correctly" do
+          web_generator = Generators::Install::WebGenerator.new
+
+          unsupported_versions = %w[1.0.0 1.100.200 10.0.0 19.0.0 19.9.9 19.9999.99999]
+
+          unsupported_versions.each do |unsupported_version|
+            Generators::Install::WebGenerator.any_instance.stubs(:node_version).returns(unsupported_version)
+
+            assert_predicate web_generator, :node_version_unsupported?, "Node version #{unsupported_version} should not be supported"
+          end
+
+          supported_versions = %w[20.0.0 20.1.0 20.100.200 50.0.0 100.0.0]
+
+          supported_versions.each do |supported_version|
+            Generators::Install::WebGenerator.any_instance.stubs(:node_version).returns(supported_version)
+
+            assert_not_predicate web_generator, :node_version_unsupported?, "Node version #{supported_version} should be supported"
+          end
+        end
+
         private
 
         def prepare_destination
           touch "Gemfile"
 
-          File.open("test/dummy/Gemfile", "w") do |f|
-            f.write('source "https://rubygems.org"')
-          end
+          File.write("test/dummy/Gemfile", 'source "https://rubygems.org"')
         end
 
         def restore_destination

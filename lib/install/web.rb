@@ -1,5 +1,9 @@
 def node_version
-  ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+  version = ENV["NODE_VERSION"] || `node --version`[/\d+\.\d+\.\d+/]
+
+  return if version.blank?
+
+  Gem::Version.new(version)
 end
 
 def node_not_installed?
@@ -7,7 +11,9 @@ def node_not_installed?
 end
 
 def node_version_unsupported?
-  node_version < "20.0.0"
+  minimum_node_version = Gem::Version.new("20.0.0")
+
+  node_version < minimum_node_version
 end
 
 def apply_template!
