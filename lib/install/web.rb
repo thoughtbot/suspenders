@@ -10,18 +10,8 @@ def node_version_unsupported?
   node_version < "20.0.0"
 end
 
-def rails_version
-  version = `rails --version`[/\d+\.\d+\.\d+/]
-
-  return if version.blank?
-
-  Gem::Version.new(version)
-end
-
 def rails_version_unsupported?
-  minimum_rails_version = Gem::Version.new("7.2.0")
-
-  rails_version < minimum_rails_version
+  Rails.gem_version < Gem::Version.new("7.2.0")
 end
 
 def apply_template!
