@@ -204,8 +204,8 @@ GEM
     ruby-progressbar (1.13.0)
     ruby2_keywords (0.0.5)
     securerandom (0.3.2)
-    sqlite3 (1.7.3-arm64-darwin)
-    sqlite3 (1.7.3-x86_64-linux)
+    sqlite3 (2.3.1-arm64-darwin)
+    sqlite3 (2.3.1-x86_64-linux-gnu)
     standard (1.31.2)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -241,7 +241,7 @@ DEPENDENCIES
   climate_control
   mocha
   puma
-  sqlite3
+  sqlite3 (>= 2.1)
   standard
   suspenders!
 
