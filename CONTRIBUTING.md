@@ -46,6 +46,32 @@ This is a time for discussion and improvements,
 and making the necessary changes will be required before we can
 merge the contribution.
 
+## Testing a Local Build
+
+There are cases where you'll want to use a local build, rather tha a released
+version.
+
+```
+SUSPENDERS_LOCAL_PATH=/path/to/suspenders \
+ rails new app_name \
+ --suspenders-local \
+ --skip-rubocop \
+ --skip-test \
+ -d=postgresql \
+ -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
+```
+
+You can also change the path used for the application template by setting the
+`-m` flag to something else.
+
+```
+rails new app_name \
+ --skip-rubocop \
+ --skip-test \
+ -d=postgresql \
+ -m=path/to/suspenders/lib/install/web.rb
+```
+
 ## Testing Generators
 
 There is a smaller dummy application at `test/dummy`. This application is used
