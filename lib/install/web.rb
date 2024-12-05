@@ -36,6 +36,7 @@ def apply_template!
 
       generate "suspenders:install:web"
       rails_command "db:prepare"
+      rails_command "db:migrate"
 
       say "\nCongratulations! You just pulled our suspenders."
     end
