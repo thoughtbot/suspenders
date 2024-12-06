@@ -28,7 +28,7 @@ def apply_template!
         if ARGV.include?("--suspenders-main")
           gem "suspenders", github: "thoughtbot/suspenders", branch: "main"
         else
-          gem "suspenders"
+          gem "suspenders", "> 20240101"
         end
       end
 
