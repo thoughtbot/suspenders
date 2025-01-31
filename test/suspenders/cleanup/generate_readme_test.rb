@@ -6,7 +6,7 @@ module Suspenders
   module Cleanup
     class GenerateReadmeTest < ActiveSupport::TestCase
       test "generates README using generator descriptions" do
-        Object.any_instance.stubs(:`).returns("v20.0.0\n")
+        Suspenders::Cleanup::GenerateReadme.any_instance.stubs(:node_version).returns("20.0.0")
 
         Tempfile.create "README.md" do |readme|
           path = readme.path
