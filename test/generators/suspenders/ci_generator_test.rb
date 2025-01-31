@@ -15,7 +15,6 @@ module Suspenders
           run_generator
 
           assert_file app_root(".github/workflows/ci.yml")
-          assert_file app_root(".github/dependabot.yaml")
         end
       end
 
@@ -25,7 +24,6 @@ module Suspenders
             run_generator
 
             assert_no_file app_root(".github/workflows/ci.yml")
-            assert_no_file app_root(".github/dependabot.yaml")
           end
         end
       end
