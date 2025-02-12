@@ -10,6 +10,10 @@ def node_version_unsupported?
   node_version < "20.0.0"
 end
 
+def database_supported?
+  ["postgresql", "sqlite"].include?(options[:database])
+end
+
 def apply_template!
   if node_not_installed? || node_version_unsupported?
     message = <<~ERROR
@@ -22,7 +26,7 @@ def apply_template!
 
     fail Rails::Generators::Error, message
   end
-  if options[:database] == "postgresql" && options[:skip_test] && options[:skip_rubocop]
+  if database_supported? && options[:skip_test] && options[:skip_rubocop]
     after_bundle do
       gem_group :development, :test do
         if ARGV.include?("--suspenders-main")

@@ -86,6 +86,7 @@ jobs:
     runs-on: ubuntu-latest
 
     services:
+      <%- if using_postgres? -%>
       postgres:
         image: postgres
         env:
@@ -94,6 +95,7 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+      <%- end %>
 
       # redis:
       #   image: redis
@@ -127,7 +129,9 @@ jobs:
       - name: Run tests
         env:
           RAILS_ENV: test
+          <%- if using_postgres? -%>
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          <%- end -%>
           # REDIS_URL: redis://localhost:6379/0
         <%- if using_rspec? -%>
         run: bin/rails db:setup spec

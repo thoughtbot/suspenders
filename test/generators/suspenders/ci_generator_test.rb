@@ -21,7 +21,7 @@ module Suspenders
 
       test "raises if PostgreSQL is not the adapter" do
         with_database "unsupported" do
-          assert_raises Suspenders::Generators::DatabaseUnsupported::Error, match: "This generator requires PostgreSQL" do
+          assert_raises Suspenders::Generators::DatabaseUnsupported::Error, match: "This generator requires either PostgreSQL or SQLite" do
             run_generator
 
             assert_no_file app_root(".github/workflows/ci.yaml")

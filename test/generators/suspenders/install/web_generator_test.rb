@@ -20,7 +20,7 @@ module Suspenders
           end
         end
 
-        test "raises if PostgreSQL is not the adapter" do
+        test "raises if the provided database is not supported" do
           with_database "unsupported" do
             assert_raises Suspenders::Generators::DatabaseUnsupported::Error do
               run_generator
