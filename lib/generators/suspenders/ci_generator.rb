@@ -6,16 +6,14 @@ module Suspenders
 
       source_root File.expand_path("../../templates/ci", __FILE__)
       desc <<~MARKDOWN
-        Uses [GitHub Actions][] for CI, and [Dependabot][] for dependency updates.
+        Uses [GitHub Actions][] for CI
 
         [GitHub Actions]: https://docs.github.com/en/actions
-        [Dependabot]: https://docs.github.com/en/code-security/dependabot/working-with-dependabot
       MARKDOWN
 
       def ci_files
         empty_directory ".github/workflows"
         template "ci.yml", ".github/workflows/ci.yml"
-        template "dependabot.yml", ".github/dependabot.yaml"
       end
 
       private
