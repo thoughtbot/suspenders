@@ -35,7 +35,7 @@ module Suspenders::TestHelpers
   def mkdir(dir)
     path = app_root dir
 
-    FileUtils.mkdir path
+    FileUtils.mkdir_p path
   end
 
   def touch(file, **options)
