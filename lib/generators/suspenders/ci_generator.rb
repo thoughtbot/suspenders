@@ -12,8 +12,7 @@ module Suspenders
       MARKDOWN
 
       def ci_files
-        empty_directory ".github/workflows"
-        template "ci.yml", ".github/workflows/ci.yml"
+        template "ci.yml", ".github/workflows/ci.yml", force: true
       end
 
       private

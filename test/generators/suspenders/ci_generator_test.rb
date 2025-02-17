@@ -11,6 +11,9 @@ module Suspenders
       teardown :restore_destination
 
       test "generates CI files" do
+        mkdir(".github/workflows")
+        touch(".github/workflows/ci.yml")
+
         with_database "postgresql" do
           run_generator
 
