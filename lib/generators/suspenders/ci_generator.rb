@@ -33,6 +33,10 @@ module Suspenders
         File.exist? "package.json"
       end
 
+      def using_postgres?
+        database_adapter == "postgresql"
+      end
+
       def has_gem?(name)
         Bundler.rubygems.find_name(name).any?
       end

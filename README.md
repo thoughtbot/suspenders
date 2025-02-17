@@ -31,7 +31,7 @@ This approach uses an [application template][] to generate a new Rails
 application with Suspenders.
 
 We skip the [default test framework][] in favor of [RSpec][], and [prefer
-PostgreSQL][] as our database.
+PostgreSQL][] as our database, although we do support SQLite.
 
 We skip [RuboCop rules by default][] in favor of our [holistic linting rules][].
 
