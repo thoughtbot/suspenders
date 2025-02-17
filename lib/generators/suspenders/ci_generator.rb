@@ -14,7 +14,7 @@ module Suspenders
 
       def ci_files
         empty_directory ".github/workflows"
-        template "ci.yml", ".github/workflows/ci.yaml"
+        template "ci.yml", ".github/workflows/ci.yml"
         template "dependabot.yml", ".github/dependabot.yaml"
       end
 

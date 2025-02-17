@@ -14,7 +14,7 @@ module Suspenders
         with_database "postgresql" do
           run_generator
 
-          assert_file app_root(".github/workflows/ci.yaml")
+          assert_file app_root(".github/workflows/ci.yml")
           assert_file app_root(".github/dependabot.yaml")
         end
       end
@@ -24,7 +24,7 @@ module Suspenders
           assert_raises Suspenders::Generators::DatabaseUnsupported::Error, match: "This generator requires PostgreSQL" do
             run_generator
 
-            assert_no_file app_root(".github/workflows/ci.yaml")
+            assert_no_file app_root(".github/workflows/ci.yml")
             assert_no_file app_root(".github/dependabot.yaml")
           end
         end
