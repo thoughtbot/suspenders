@@ -16,7 +16,7 @@ like missing deadlines.
 
 ## Requirements
 
-- Rails `~> 7.0`
+- Rails `~> 8.0`
 - Ruby `>= 3.1`
 - Node `>= 20.0.0`
 
