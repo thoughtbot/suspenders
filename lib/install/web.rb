@@ -10,6 +10,10 @@ def node_version_unsupported?
   node_version < "20.0.0"
 end
 
+def rails_version_unsupported?
+  Rails.gem_version < Gem::Version.new("7.2.0")
+end
+
 def apply_template!
   if node_not_installed? || node_version_unsupported?
     message = <<~ERROR
@@ -22,6 +26,22 @@ def apply_template!
 
     fail Rails::Generators::Error, message
   end
+
+  if rails_version_unsupported?
+    message = <<~ERROR
+
+
+      === Rails version unsupported for creating new apps ===
+
+      Suspenders requires Rails >= 7.2.0 when creating a **new** app.
+
+      Suspenders can be added to an **existing** app meeting "~> 7.0.0".
+
+    ERROR
+
+    fail Rails::Generators::Error, message
+  end
+
   if options[:database] == "postgresql" && options[:skip_test] && options[:skip_rubocop]
     after_bundle do
       gem_group :development, :test do
