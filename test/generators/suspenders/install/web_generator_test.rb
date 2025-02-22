@@ -12,6 +12,14 @@ module Suspenders
         setup :prepare_destination
         teardown :restore_destination
 
+        test "generates Gemfile entry with version constraint" do
+          with_database "postgresql" do
+            run_generator
+          end
+
+          assert_file "Gemfile", /gem "suspenders", "> 20240101"/
+        end
+
         test "raises if API only application" do
           within_api_only_app do
             assert_raises Suspenders::Generators::APIAppUnsupported::Error do
