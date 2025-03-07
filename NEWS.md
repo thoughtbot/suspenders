@@ -5,6 +5,7 @@ Unreleased
 * Fixed: [Issue 1229: How do we want to handle un-released versions?](https://github.com/thoughtbot/suspenders/issues/1229)
 * Fixed: [Issue 1222: README instructions for running the development server are wrong](https://github.com/thoughtbot/suspenders/issues/1222)
 * Fixed: [#1224](https://github.com/thoughtbot/suspenders/issues/1224)
+* Replace `dev:prime` with `development:seed`. Introduce `development:seed:replant`
 
 [linting configuration]: https://github.com/thoughtbot/suspenders/blob/main/FEATURES.md#linting
 
