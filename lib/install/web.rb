@@ -27,6 +27,8 @@ def apply_template!
       gem_group :development, :test do
         if ARGV.include?("--suspenders-main")
           gem "suspenders", github: "thoughtbot/suspenders", branch: "main"
+        elsif ARGV.include?("--suspenders-local") && ENV["SUSPENDERS_LOCAL_PATH"]
+          gem "suspenders", path: ENV.fetch("SUSPENDERS_LOCAL_PATH")
         else
           gem "suspenders"
         end
