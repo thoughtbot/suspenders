@@ -3,6 +3,12 @@ require "active_support/concern"
 module Suspenders
   module Generators
     module Helpers
+      def database_adapter
+        configuration = File.read(Rails.root.join("config/database.yml"))
+        configuration = YAML.safe_load(configuration, aliases: true)
+        configuration["default"]["adapter"]
+      end
+
       def default_test_suite?
         File.exist? Rails.root.join("test")
       end
@@ -62,7 +68,7 @@ module Suspenders
 
       class Error < StandardError
         def message
-          "This generator requires PostgreSQL"
+          "This generator requires either PostgreSQL or SQLite"
         end
       end
 
@@ -78,11 +84,7 @@ module Suspenders
         private
 
         def database_unsupported?
-          configuration = File.read(Rails.root.join("config/database.yml"))
-          configuration = YAML.safe_load(configuration, aliases: true)
-          adapter = configuration["default"]["adapter"]
-
-          adapter != "postgresql"
+          database_adapter != ("postgresql" || "sqlite")
         end
       end
     end
