@@ -10,14 +10,26 @@ module Suspenders
       destination Rails.root
       teardown :restore_destination
 
-      test "creates dev.rake file" do
+      test "creates development.rake file" do
         Bundler.rubygems.stubs(:find_name).with("factory_bot").returns([true])
 
-        expected = dev_rake
+        expected = development_rake
 
         run_generator
 
-        assert_file app_root("lib/tasks/dev.rake") do |file|
+        assert_file app_root("lib/tasks/development.rake") do |file|
+          assert_equal expected, file
+        end
+      end
+
+      test "creates Seeder file" do
+        Bundler.rubygems.stubs(:find_name).with("factory_bot").returns([true])
+
+        expected = seeder
+
+        run_generator
+
+        assert_file app_root("lib/seeder.rb") do |file|
           assert_equal expected, file
         end
       end
@@ -26,17 +38,22 @@ module Suspenders
         output = run_generator
 
         assert_match(/This generator requires Factory Bot/, output)
-        assert_no_file app_root("lib/tasks/dev.rake")
+        assert_no_file app_root("lib/tasks/development.rake")
       end
 
       private
 
-      def dev_rake
-        File.read("./lib/generators/templates/tasks/dev.rake")
+      def development_rake
+        File.read("./lib/generators/templates/tasks/development.rake")
+      end
+
+      def seeder
+        File.read("./lib/generators/templates/tasks/seeder.rb")
       end
 
       def restore_destination
-        remove_file_if_exists "lib/tasks/dev.rake"
+        remove_file_if_exists "lib/tasks/development.rake"
+        remove_file_if_exists "lib/seeder.rb"
       end
     end
   end

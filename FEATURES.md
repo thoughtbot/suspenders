@@ -5,9 +5,13 @@
 ### Seed Data
 
 - Use `db/seeds.rb` to create records that need to exist in all environments.
-- Use `lib/tasks/dev.rake` to create records that only need to exist in development.
+- Use `lib/seeder.rb` to create records that only need to exist in development.
 
-Running `bin/setup` will run `dev:prime`.
+Running `bin/rake development:seed` will load seed data in development.
+
+Running `bin/rake development:seed:replant` will truncate tables and then load seed data in development.
+
+Running `bin/setup` will run `db:prepare` and `development:seed`.
 
 ### Tasks
 
