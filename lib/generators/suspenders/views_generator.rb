@@ -31,6 +31,8 @@ module Suspenders
         insert_into_file "app/views/layouts/application.html.erb", "    <%= render \"flashes\" -%>\n", after: "<body>\n"
         gsub_file "app/views/layouts/application.html.erb", /<html>/, "<html lang=\"<%= I18n.locale %>\">"
         gsub_file "app/views/layouts/application.html.erb", /<title>.*<\/title>/, "<title><%= title %></title>"
+        gsub_file "app/views/layouts/application.html.erb", %r{<%# Includes all stylesheet files in app/assets/stylesheets %>\s*}, ""
+        gsub_file "app/views/layouts/application.html.erb", "<%= stylesheet_link_tag :app, ", '<%= stylesheet_link_tag "application.css", '
         insert_into_file "app/views/layouts/application.html.erb", "    <meta name=\"turbo-prefetch\" content=\"false\">\n", after: "</title>"
       end
     end

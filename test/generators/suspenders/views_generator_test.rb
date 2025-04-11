@@ -83,6 +83,22 @@ module Suspenders
         end
       end
 
+      test "loads application.css instead of special `:app` wildcard" do
+        capture(:stderr) { run_generator }
+
+        assert_file app_root("app/views/layouts/application.html.erb") do |file|
+          assert_match '<%= stylesheet_link_tag "application.css", ', file
+        end
+      end
+
+      test "removes comment about :app stylesheet" do
+        capture(:stderr) { run_generator }
+
+        assert_file app_root("app/views/layouts/application.html.erb") do |file|
+          assert_no_match "<%# Includes all stylesheet files in app/assets/stylesheets %>", file
+        end
+      end
+
       private
 
       def prepare_destination
