@@ -93,7 +93,7 @@ jobs:
           POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
-        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="pg_isready" --health-interval=10ms --health-timeout=500ms --health-retries=15
 
       # redis:
       #   image: redis
