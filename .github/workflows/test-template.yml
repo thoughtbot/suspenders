@@ -1,0 +1,47 @@
+name: Test Template
+
+on:
+  push:
+    branches: [ main, sp-rewrite ]
+  pull_request:
+    branches: [ main, sp-rewrite ]
+
+jobs:
+  test-template:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout template
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: false
+
+      - name: Install Rails
+        run: gem install rails
+
+      - name: Generate new Rails app with template
+        run: |
+          cd /tmp
+          rails new test_app -m $GITHUB_WORKSPACE/template.rb
+
+      - name: Set up generated app
+        working-directory: /tmp/test_app
+        run: |
+          bundle install
+          bin/setup --skip-server
+          bin/rails db:migrate
+
+      - name: Run tests in generated app
+        working-directory: /tmp/test_app
+        run: bin/rails test:all
+
+      - name: Verify app can start
+        working-directory: /tmp/test_app
+        run: |
+          timeout 10 bin/rails server > /dev/null 2>&1 &
+          sleep 5
+          curl -f http://localhost:3000 || exit 1

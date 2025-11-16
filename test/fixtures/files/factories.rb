@@ -1,2 +1,0 @@
-FactoryBot.define do
-end

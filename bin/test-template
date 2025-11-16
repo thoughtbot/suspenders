@@ -1,0 +1,55 @@
+#!/usr/bin/env ruby
+
+require "fileutils"
+
+# Configuration
+app_name = ARGV[0] || "test_app"
+template_path = File.expand_path("../template.rb", __dir__)
+test_dir = ENV.fetch("TEST_DIR", "/tmp")
+app_path = File.join(test_dir, app_name)
+
+puts "Testing Rails template..."
+puts "Template: #{template_path}"
+puts "Test app: #{app_path}"
+puts ""
+
+# Clean up existing test app
+if File.directory?(app_path)
+  puts "Removing existing test app..."
+  FileUtils.rm_rf(app_path)
+end
+
+# Generate new Rails app with template
+puts "Generating new Rails app with template..."
+Dir.chdir(test_dir) do
+  system("rails", "new", app_name, "-m", template_path) || abort("Failed to generate app")
+end
+
+# Set up the generated app
+puts "\nSetting up generated app..."
+Dir.chdir(app_path) do
+  system("bundle", "install") || abort("Failed to install gems")
+  system("bin/rails", "db:setup") || abort("Failed to setup database")
+end
+
+# Run tests
+puts "\nRunning tests..."
+Dir.chdir(app_path) do
+  system("bin/rails", "test") || abort("Tests failed")
+end
+
+# Verify app can start
+puts "\nVerifying app can start..."
+Dir.chdir(app_path) do
+  pid = spawn("bin/rails", "server", out: "/dev/null", err: "/dev/null")
+  sleep 5
+
+  success = system("curl", "-f", "http://localhost:3000", out: "/dev/null", err: "/dev/null")
+  Process.kill("TERM", pid)
+  Process.wait(pid)
+
+  abort("App failed to start") unless success
+end
+
+puts "\n✓ All checks passed!"
+puts "Test app location: #{app_path}"
