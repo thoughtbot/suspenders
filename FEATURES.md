@@ -155,29 +155,6 @@ Configures the `test` environment to use the [inline][] adapter.
 
 ## Layout and Assets
 
-### Stylesheets
-
-- Uses [PostCSS][] via [cssbundling-rails][].
-- Uses [modern-normalize][] to normalize browsers' default style.
-
-Configuration can be found at `postcss.config.js`.
-
-Adds the following stylesheet structure.
-
-```
-app/assets/stylesheets/base.css
-app/assets/stylesheets/components.css
-app/assets/stylesheets/utilities.css
-```
-
-Adds `app/assets/static` so that [postcss-url][] has a directory to copy
-assets to.
-
-[PostCSS]: https://postcss.org
-[cssbundling-rails]: https://github.com/rails/cssbundling-rails
-[modern-normalize]: https://github.com/sindresorhus/modern-normalize
-[postcss-url]: https://github.com/postcss/postcss-url
-
 ### Inline SVG
 
 Uses [inline_svg][] for embedding SVG documents into views.
@@ -189,8 +166,8 @@ Configuration can be found at `config/initializers/inline_svg.rb`
 ### Layout
 
 - A [partial][] for [flash messages][] is located in `app/views/application/_flashes.html.erb`.
+- A [partial][] for form errors is located in `app/views/application/_form_errors.html.erb`.
 - Sets [lang][] attribute on `<html>` element to `en` via `I18n.local`.
-- Dynamically sets `<title>` via the [title][] gem.
 - Disables Turbo's [Prefetch][] in an effort to reduce unnecessary network requests.
 
 [partial]: https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials
