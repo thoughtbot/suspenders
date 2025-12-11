@@ -80,6 +80,6 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
         working-directory: /tmp/test_app
         run: |
-          timeout 10 bin/rails server > /dev/null 2>&1 &
+          timeout 10 bin/dev > /dev/null 2>&1 &
           sleep 5
           curl -f http://localhost:3000 || exit 1
