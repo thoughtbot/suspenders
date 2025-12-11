@@ -35,6 +35,7 @@ after_bundle do
   configure_test_suite
   configure_ci
   configure_sidekiq
+  configure_mailer_intercepter
 
   # Deployment and server
   update_bin_dev
@@ -199,6 +200,24 @@ def configure_sidekiq
   # https://github.com/sidekiq/sidekiq/wiki/Active+Job
   environment "config.active_job.queue_adapter = :sidekiq"
   environment "config.active_job.queue_adapter = :inline", env: "test"
+end
+
+def configure_mailer_intercepter
+  lib "email_interceptor.rb", <<~RUBY
+    class EmailInterceptor
+      def self.delivering_email(message)
+        message.to = ENV.fetch("INTERCEPTOR_ADDRESSES", "").split(",")
+      end
+    end
+  RUBY
+
+  initializer "email_interceptor.rb", <<~RUBY
+    Rails.application.configure do
+      if ENV.fetch("INTERCEPTOR_ADDRESSES", "").split(",").any?
+        config.action_mailer.interceptors = %w[EmailInterceptor]
+      end
+    end
+  RUBY
 end
 
 def update_bin_dev
