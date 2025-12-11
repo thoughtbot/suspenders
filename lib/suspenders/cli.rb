@@ -26,14 +26,15 @@ module Suspenders
     end
 
     def rails_new_command
-      options = BASE_OPTIONS
+      template_path = File.expand_path("../generators/templates/base.rb", __dir__)
+      options = BASE_OPTIONS + ["-m=#{template_path}"]
 
       if system("rails", "new", app_name, *options)
         true
       else
-        Rails.logger.error "Failed to create Rails application: #{app_name}"
+        warn "Failed to create Rails application: #{app_name}"
         false
       end
-    end 
+    end
   end
 end
