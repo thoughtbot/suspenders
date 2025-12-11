@@ -15,6 +15,9 @@ after_bundle do
   # Deployment
   add_procfiles
 
+  # Environments
+  setup_test_environment
+
   # Finalization
   run_migrations
   lint_codebase
@@ -32,6 +35,13 @@ end
 
 def add_procfiles
   copy_file "Procfile"
+end
+
+def setup_test_environment
+  uncomment_lines(
+    "config/environments/test.rb",
+    /config\.i18n\.raise_on_missing_translations\s*=\s*true/
+  )
 end
 
 def run_migrations

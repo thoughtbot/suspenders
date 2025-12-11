@@ -1,0 +1,32 @@
+require "tmpdir"
+require "spec_helper"
+
+RSpec.describe "Test environment" do
+  it "enables the raising of errors for missing translations" do
+    with_temp_directory do |tmp_dir|
+      generate tmp_dir, "test_app"
+      configuration = File.read(
+        File.join(
+          tmp_dir,
+          "test_app",
+          "config/environments/test.rb"
+        )
+      )
+
+      expect(configuration)
+        .to match /^\s*config\.i18n\.raise_on_missing_translations\s=\strue$/
+      expect(configuration)
+        .not_to match /^\s*#\sconfig\.i18n\.raise_on_missing_translations/
+    end
+  end
+
+  def with_temp_directory
+    yield Dir.mktmpdir
+  end
+
+  def generate(directory, app_name)
+    Dir.chdir directory do
+      Suspenders::CLI.run app_name
+    end
+  end
+end
