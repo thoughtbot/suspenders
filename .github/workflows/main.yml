@@ -73,8 +73,8 @@ jobs:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
         working-directory: /tmp/test_app
         run: |
-          bin/rails db:test:prepare
-          bin/rails test:all
+          bin/rails db:setup
+          bin/rails spec
       - name: Verify app can start
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
