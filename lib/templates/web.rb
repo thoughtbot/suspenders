@@ -4,6 +4,7 @@ def source_paths
 end
 
 def install_gems
+  gem "inline_svg"
   gem "sidekiq"
 
   gem_group :test do
@@ -36,6 +37,7 @@ after_bundle do
   configure_ci
   configure_sidekiq
   configure_mailer_intercepter
+  configure_inline_svg
 
   # Deployment and server
   update_bin_dev
@@ -186,6 +188,7 @@ def configure_ci
 end
 
 def configure_sidekiq
+  # TODO: Use #initializer instead
   copy_file "config/initializers/sidekiq.rb"
 
   prepend_to_file "config/routes.rb", "require \"sidekiq/web\"\n\n"
@@ -216,6 +219,14 @@ def configure_mailer_intercepter
       if ENV.fetch("INTERCEPTOR_ADDRESSES", "").split(",").any?
         config.action_mailer.interceptors = %w[EmailInterceptor]
       end
+    end
+  RUBY
+end
+
+def configure_inline_svg
+  initializer "inline_svg.rb", <<~RUBY
+    InlineSvg.configure do |config|
+      config.raise_on_file_not_found = true
     end
   RUBY
 end
