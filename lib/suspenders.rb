@@ -4,7 +4,8 @@ require "suspenders/railtie"
 require "suspenders/generators"
 require "suspenders/cleanup/organize_gemfile"
 require "suspenders/cleanup/generate_readme"
+require "suspenders/cli"
 
 module Suspenders
-  # Your code goes here...
+  class Error < StandardError; end
 end
