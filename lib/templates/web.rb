@@ -42,6 +42,10 @@ def setup_test_environment
     "config/environments/test.rb",
     /config\.i18n\.raise_on_missing_translations\s*=\s*true/
   )
+  comment_lines(
+    "config/environments/test.rb",
+    /config\.action_dispatch\.show_exceptions\s=\s:rescuable/
+  )
 end
 
 def run_migrations

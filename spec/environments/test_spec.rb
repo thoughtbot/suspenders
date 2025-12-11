@@ -20,6 +20,22 @@ RSpec.describe "Test environment" do
     end
   end
 
+  it "disables action dispatch show exceptions" do
+    with_temp_directory do |tmp_dir|
+      generate tmp_dir, "test_app"
+      configuration = File.read(
+        File.join(
+          tmp_dir,
+          "test_app",
+          "config/environments/test.rb"
+        )
+      )
+
+      expect(configuration).to match(/^\s*#\sconfig\.action_dispatch\.show_exceptions\s=\s:rescuable$/)
+      expect(configuration).not_to match(/^\s*config\.action_dispatch\.show_exceptions\s=\s:rescuable$/)
+    end
+  end
+
   def with_temp_directory
     yield Dir.mktmpdir
   end
