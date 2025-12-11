@@ -1,6 +1,6 @@
 module Suspenders
   class CLI
-    BASE_OPTIONS = ["-d=postgresql"]
+    BASE_OPTIONS = ["-d=postgresql", "--skip-solid", "--skip-test"]
 
     def initialize(app_name)
       @app_name = app_name
