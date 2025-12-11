@@ -39,6 +39,9 @@ after_bundle do
   configure_mailer_intercepter
   configure_inline_svg
 
+  # Environments
+  setup_development_environment
+
   # Deployment and server
   update_bin_dev
   add_procfiles
@@ -229,6 +232,12 @@ def configure_inline_svg
       config.raise_on_file_not_found = true
     end
   RUBY
+end
+
+def setup_development_environment
+  environment "config.active_model.i18n_customize_full_message = true", env: "development"
+  uncomment_lines "config/environments/development.rb", /config\.i18n\.raise_on_missing_translations/
+  uncomment_lines "config/environments/development.rb", /config\.generators\.apply_rubocop_autocorrect_after_generate!/
 end
 
 def update_bin_dev

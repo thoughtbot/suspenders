@@ -34,14 +34,12 @@ Running `bin/setup` will run `dev:prime`.
 ### Development
 
 - Enables [raise_on_missing_translations][].
-- Enables [annotate_rendered_view_with_filenames][].
 - Enables [i18n_customize_full_message][].
-- Enables [query_log_tags_enabled][].
+- Enables [apply_rubocop_autocorrect_after_generate!][].
 
 [raise_on_missing_translations]: https://guides.rubyonrails.org/configuring.html#config-i18n-raise-on-missing-translations
-[annotate_rendered_view_with_filenames]: https://guides.rubyonrails.org/configuring.html#config-action-view-annotate-rendered-view-with-filenames
 [i18n_customize_full_message]: https://guides.rubyonrails.org/configuring.html#config-active-model-i18n-customize-full-message
-[query_log_tags_enabled]: https://guides.rubyonrails.org/configuring.html#config-active-record-query-log-tags-enabled
+[apply_rubocop_autocorrect_after_generate!]: https://guides.rubyonrails.org/configuring.html#configuring-generators
 
 ### Production
 
