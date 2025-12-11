@@ -36,6 +36,9 @@ after_bundle do
   update_bin_dev
   add_procfiles
 
+  # Views
+  update_layout
+
   # Finalization
   run_migrations
   lint_codebase
@@ -222,6 +225,24 @@ end
 def add_procfiles
   copy_file "Procfile"
   copy_file "Procfile.dev"
+end
+
+def update_layout
+  # General partials
+  copy_file "app/views/application/_form_errors.html.erb"
+  copy_file "app/views/application/_flashes.html.erb"
+
+  # Application Layout
+  gsub_file "app/views/layouts/application.html.erb", /<html>/, "<html lang=\"<%= I18n.locale %>\">"
+  application_html_erb = <<-ERB
+    <%= render "nav" %>
+    <main class="container" aria-labelledby="main_label">
+      <%= render "flashes" %>
+      <%= yield %>
+    </main>
+  ERB
+  gsub_file "app/views/layouts/application.html.erb", /^    <%= yield %>\n/, application_html_erb
+  insert_into_file "app/views/layouts/application.html.erb", "    <meta name=\"turbo-prefetch\" content=\"false\">\n", after: "</title>\n"
 end
 
 def run_migrations
