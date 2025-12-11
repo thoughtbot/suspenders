@@ -139,7 +139,7 @@ INTERCEPTOR_ADDRESSES="user_1@example.com,user_2@example.com" bin/rails s
 
 Configuration can be found at `config/initializers/email_interceptor.rb`.
 
-Interceptor can be found at `app/mailers/email_interceptor.rb`.
+Interceptor can be found at `lib/email_interceptor.rb`.
 
 [Intercept]: https://guides.rubyonrails.org/action_mailer_basics.html#intercepting-emails
 
