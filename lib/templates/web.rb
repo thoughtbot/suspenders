@@ -12,11 +12,11 @@ after_bundle do
   # Initializers & Configuration
   configure_database
 
-  # Deployment
-  add_procfiles
-
   # Environments
   setup_test_environment
+
+  # Deployment
+  add_procfiles
 
   # Finalization
   run_migrations
