@@ -12,6 +12,10 @@ def install_gems
       github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.2.0",
       require: "action_dispatch/testing/integration/capybara/rspec"
     gem "capybara"
+    gem "capybara_accessibility_audit"
+    # TODO: How can we ensure we're notified of new releases?
+    gem "capybara_accessible_selectors",
+      git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.12.0"
     gem "selenium-webdriver"
     gem "shoulda-matchers", "~> 6.0"
     gem "webmock"
