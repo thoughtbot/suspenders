@@ -8,28 +8,78 @@ on:
   pull_request:
 
 jobs:
-  lint:
+  build:
     runs-on: ubuntu-latest
+    name: Ruby ${{ matrix.ruby }}
+    strategy:
+      matrix:
+        ruby:
+          - '3.4.7'
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          bundler-cache: true
+      - name: Run the default task
+        run: bundle exec rake
 
-    - name: Lint
-      run: bin/rails standard
-
-  test:
+  test-template:
     runs-on: ubuntu-latest
 
-    steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        bundler-cache: true
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432:5432
+        options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
 
-    - name: Run tests
-      run: bin/rails test
+    steps:
+      - name: Checkout template
+        uses: actions/checkout@v4
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.4.7'
+          bundler-cache: false
+      - name: Install Rails
+        run: gem install rails
+      - name: Install dependencies
+        run: bundle install
+      - name: Install Staples
+        run: bundle exec rake install
+      - name: Generate new Rails app with template
+        run: |
+          cd /tmp
+          suspenders test_app
+      - name: Set up generated app
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        working-directory: /tmp/test_app
+        run: |
+          bundle install
+          bin/setup --skip-server
+          bin/rails db:migrate
+      - name: Run tests in generated app
+        env:
+          RAILS_ENV: test
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        working-directory: /tmp/test_app
+        run: |
+          bin/rails db:test:prepare
+          bin/rails test:all
+      - name: Verify app can start
+        env:
+          DATABASE_URL: postgres://postgres:postgres@localhost:5432
+        working-directory: /tmp/test_app
+        run: |
+          timeout 10 bin/rails server > /dev/null 2>&1 &
+          sleep 5
+          curl -f http://localhost:3000 || exit 1

@@ -1,7 +1,0 @@
-AllCops:
-  TargetRubyVersion: <%= RUBY_VERSION %>
-
-require: standard
-
-inherit_gem:
-  standard: config/base.yml

@@ -1,10 +1,9 @@
-require "suspenders/version"
-require "suspenders/engine"
-require "suspenders/railtie"
-require "suspenders/generators"
-require "suspenders/cleanup/organize_gemfile"
-require "suspenders/cleanup/generate_readme"
+# frozen_string_literal: true
+
+require_relative "suspenders/version"
+require_relative "suspenders/cli"
 
 module Suspenders
+  class Error < StandardError; end
   # Your code goes here...
 end

@@ -20,16 +20,10 @@ Run the setup script.
 ./bin/setup
 ```
 
-Make sure the tests pass:
+Make sure everything passes:
 
 ```
-bin/rails test
-```
-
-Make sure there are no linting violations:
-
-```
-bin/rails standard
+bundle exec rake
 ```
 
 Make your change, with new passing tests.
@@ -46,16 +40,10 @@ This is a time for discussion and improvements,
 and making the necessary changes will be required before we can
 merge the contribution.
 
-## Testing Generators
+## Testing the executable Locally
 
-There is a smaller dummy application at `test/dummy`. This application is used
-as a mounting point for the engine, to make testing the engine extremely simple.
-
-There are a number of [assertions][] and [helpers][] that make testing
-generators easier.
-
-[assertions]: https://api.rubyonrails.org/classes/Rails/Generators/Testing/Assertions.html
-[helpers]: https://api.rubyonrails.org/classes/Rails/Generators/Testing/Behavior.html
+To install this gem onto your local machine, run `bundle exec rake install`.
+From there, you can run `suspenders <app_name>` to test the current code.
 
 ## Publishing to RubyGems
 

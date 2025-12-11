@@ -2,111 +2,62 @@
 
 [![CI](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml/badge.svg)](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml)
 
-Suspenders is a [Rails Engine][] containing generators for configuring Rails
-applications with these [features][].
+Suspenders is intended to create a new Rails applications with these
+[features][], and is optimised for deployment to Heroku. 
 
-It is used by thoughtbot to get a jump start on a new or existing app. Use
-Suspenders if you're in a rush to build something amazing; don't use it if you
-like missing deadlines.
+It is used by thoughtbot to get a jump start on new apps. Use Suspenders if
+you're in a rush to build something amazing; don't use it if you like missing
+deadlines.
 
-[Rails Engine]: https://guides.rubyonrails.org/engines.html
 [features]: ./FEATURES.md
 
 ![Suspenders boy](https://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
 ## Requirements
 
-- Rails `~> 8.0`
-- Ruby `>= 3.1`
-- Node `>= 20.0.0`
+Suspenders requires the latest version of [Rails][rails] and its dependencies.
+
+Additionally, Suspenders requires [yarn][yarn], [PostgreSQL][postgresql] and
+[Redis][redis].
+
+[rails]: https://guides.rubyonrails.org/install_ruby_on_rails.html
+[yarn]: https://yarnpkg.com/getting-started/install
+[postgresql]: https://formulae.brew.sh/formula/postgresql@17
+[redis]: https://formulae.brew.sh/formula/redis
+
+## Installation
+
+```
+gem install suspenders
+```
 
 ## Usage
 
-Suspenders can be used to create a new Rails application, or to enhance an
-existing Rails application.
+```
+suspenders <app_name>
+```
 
-### With New Rails Applications
+Under the hood, Suspenders uses an [application template][] to generate a new Rails
+application like so:
 
-This approach uses an [application template][] to generate a new Rails
-application with Suspenders.
+```
+rails new <app_name> \
+ -d=postgresql \
+ --skip-test \
+ --skip-solid \
+ --m=~/path/to/template.rb
+```
 
 We skip the [default test framework][] in favor of [RSpec][], and [prefer
-PostgreSQL][] as our database.
-
-We skip [RuboCop rules by default][] in favor of our [holistic linting rules][].
-
-#### Use the latest suspenders release:
-
-```
-rails new app_name \
- --skip-rubocop \
- --skip-test \
- -d=postgresql \
- -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
-```
-
-#### OR use the current (possibly unreleased) `main` branch of suspenders:
-
-```
-rails new app_name \
- --suspenders-main \
- --skip-rubocop \
- --skip-test \
- -d=postgresql \
- -m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
-```
-
-Then run `bin/setup` within the newly generated application.
-
-Alternatively, if you're using our [dotfiles][], then you can just run `rails new
-app_name`, or create your own [railsrc][] file with the following configuration:
-
-```
---skip-rubocop
---skip-test
---database=postgresql
--m=https://raw.githubusercontent.com/thoughtbot/suspenders/main/lib/install/web.rb
-```
+PostgreSQL][] as our database. We skip the Solid ecosystm since we prefer
+[Sidekiq][], and because Solid Queue has [performance issues][] on Heroku.
 
 [application template]: https://guides.rubyonrails.org/rails_application_templates.html
 [default test framework]: https://guides.rubyonrails.org/testing.html
 [RSpec]: http://rspec.info
 [prefer PostgreSQL]: https://github.com/thoughtbot/dotfiles/pull/728
-[dotfiles]: https://github.com/thoughtbot/dotfiles
-[railsrc]: https://github.com/rails/rails/blob/7f7f9df8641e35a076fe26bd097f6a1b22cb4e2d/railties/lib/rails/generators/rails/app/USAGE#L5C1-L7
-[RuboCop rules by default]: https://guides.rubyonrails.org/v7.2/7_2_release_notes.html#add-omakase-rubocop-rules-by-default
-[holistic linting rules]: https://github.com/thoughtbot/suspenders/blob/main/FEATURES.md#linting
-
-### With Existing Rails Applications
-
-Suspenders can be used on an existing Rails application by adding it to the
-`:development` and `:test` group.
-
-```ruby
-group :development, :test do
-  gem "suspenders"
-end
-```
-
-Once installed, you can invoke the web installation generator, which will
-invoke all generators.
-
-```
-bin/rails g suspenders:install:web
-```
-
-Or, you can invoke generators individually. To see a list of available
-generators run:
-
-```
-bin/rails g | grep suspenders
-```
-
-To learn more about a generator, run:
-
-```
-bin/rails g suspenders:[generator_name] --help
-```
+[Sidekiq]: https://github.com/sidekiq/sidekiq/
+[performance issues]: https://github.com/rails/solid_queue/issues/330
 
 ### Available Tasks
 
