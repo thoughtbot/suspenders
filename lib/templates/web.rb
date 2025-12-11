@@ -9,11 +9,29 @@ end
 install_gems
 
 after_bundle do
+  # Initializers & Configuration
+  configure_database
+
+  # Deployment
+  add_procfiles
+
   # Finalization
   run_migrations
   lint_codebase
 
   print_message
+end
+
+def configure_database
+  gsub_file "config/database.yml", /^production:.*?password:.*?\n/m, <<~YAML
+    production:
+      <<: *default
+      url: <%= ENV["DATABASE_URL"] %>
+  YAML
+end
+
+def add_procfiles
+  copy_file "Procfile"
 end
 
 def run_migrations
