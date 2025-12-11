@@ -4,6 +4,21 @@ def source_paths
 end
 
 def install_gems
+  gem_group :test do
+    # TODO: How can we ensure we're notified of new releases?
+    gem "action_dispatch-testing-integration-capybara",
+      github: "thoughtbot/action_dispatch-testing-integration-capybara", tag: "v0.2.0",
+      require: "action_dispatch/testing/integration/capybara/rspec"
+    gem "capybara"
+    gem "selenium-webdriver"
+    gem "shoulda-matchers", "~> 6.0"
+    gem "webmock"
+  end
+
+  gem_group :development, :test do
+    gem "factory_bot_rails"
+    gem "rspec-rails", "~> 8.0.0"
+  end
 end
 
 install_gems
@@ -11,6 +26,8 @@ install_gems
 after_bundle do
   # Initializers & Configuration
   configure_database
+  configure_test_suite
+  configure_ci
 
   # Deployment
   add_procfiles
@@ -27,6 +44,132 @@ def configure_database
     production:
       <<: *default
       url: <%= ENV["DATABASE_URL"] %>
+  YAML
+end
+
+def configure_test_suite
+  rails_command "generate rspec:install"
+
+  # Update default configuration
+  uncomment_lines "spec/rails_helper.rb", /config\.infer_spec_type_from_file_location!/
+  uncomment_lines "spec/rails_helper.rb", /Rails\.root\.glob/
+  gsub_file "spec/spec_helper.rb", /^=begin\n/, ""
+  gsub_file "spec/spec_helper.rb", /^=end\n/, ""
+
+  # Configure Webmock
+  inject_into_file "spec/spec_helper.rb", "require \"webmock/rspec\"\n", before: /^RSpec\.configure/
+  append_to_file "spec/spec_helper.rb", <<~RUBY
+
+    WebMock.disable_net_connect!(
+      allow_localhost: true,
+      allow: [
+        /(chromedriver|storage).googleapis.com/,
+        "googlechromelabs.github.io"
+      ]
+    )
+  RUBY
+
+  # Custom configuration
+  copy_file "spec/support/action_mailer.rb"
+  copy_file "spec/support/driver.rb"
+  copy_file "spec/support/i18n.rb"
+  copy_file "spec/support/factory_bot.rb"
+  copy_file "spec/support/shoulda_matchers.rb"
+
+  # Custom specs
+  copy_file "spec/factories_spec.rb"
+  empty_directory "spec/system"
+  create_file "spec/system/.gitkeep"
+end
+
+def configure_ci
+  # https://thoughtbot.com/blog/rspec-rails-github-actions-configuration
+  append_to_file ".github/workflows/ci.yml", "\n" + <<~YAML.gsub(/^/, "  ")
+    test:
+      runs-on: ubuntu-latest
+
+      services:
+        postgres:
+          image: postgres
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+          ports:
+            - 5432:5432
+          options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+
+        # redis:
+        #   image: valkey/valkey:8
+        #   ports:
+        #     - 6379:6379
+        #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+
+      steps:
+        - name: Install packages
+          run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev
+
+        - name: Checkout code
+          uses: actions/checkout@v5
+
+        - name: Set up Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
+
+        - name: Run tests
+          env:
+            RAILS_ENV: test
+            DATABASE_URL: postgres://postgres:postgres@localhost:5432
+            # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+            # REDIS_URL: redis://localhost:6379/0
+          run: bin/rails db:test:prepare test
+
+    system-test:
+      runs-on: ubuntu-latest
+
+      services:
+        postgres:
+          image: postgres
+          env:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+          ports:
+            - 5432:5432
+          options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+
+        # redis:
+        #   image: valkey/valkey:8
+        #   ports:
+        #     - 6379:6379
+        #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
+
+      steps:
+        - name: Install packages
+          run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev
+
+        - name: Checkout code
+          uses: actions/checkout@v5
+
+        - name: Set up Ruby
+          uses: ruby/setup-ruby@v1
+          with:
+            bundler-cache: true
+
+        - name: Run System Tests
+          env:
+            RAILS_ENV: test
+            DATABASE_URL: postgres://postgres:postgres@localhost:5432
+            # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+            # REDIS_URL: redis://localhost:6379/0
+          run: bin/rails db:setup spec
+
+        - name: Keep screenshots from failed system tests
+          uses: actions/upload-artifact@v4
+          if: failure()
+          with:
+            name: screenshots
+            path: ${{ github.workspace }}/tmp/capybara
+            if-no-files-found: ignore
   YAML
 end
 
