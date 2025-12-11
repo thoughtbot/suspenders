@@ -4,3 +4,6 @@ IFS=$'\n\t'
 set -vx
 
 bundle install
+
+# Do any other automated setup that you need to do here
+chmod +x exe/suspenders

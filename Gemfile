@@ -1,12 +1,13 @@
-source "https://rubygems.org"
-git_source(:github) { |repo| "https://github.com/#{repo}.git" }
+# frozen_string_literal: true
 
-# Specify your gem's dependencies in suspenders.gemspec.
+source "https://rubygems.org"
+
+# Specify your gem's dependencies in suspenders.gemspec
 gemspec
 
-gem "puma"
+gem "irb"
+gem "rake", "~> 13.0"
 
-gem "sqlite3", ">= 2.1"
+gem "rspec", "~> 3.0"
 
-# Start debugger with binding.b [https://github.com/ruby/debug]
-# gem "debug", ">= 1.0.0"
+gem "standard", "~> 1.3"

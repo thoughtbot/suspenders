@@ -1,5 +1,7 @@
 Unreleased
 
+Rewrite
+
 20250317.0 (March 17, 2025)
 
 Support Rails 8.
