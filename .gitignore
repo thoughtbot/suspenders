@@ -7,5 +7,8 @@
 /spec/reports/
 /tmp/
 
+spec/dummy/Gemfile.lock
+spec/dummy/log/development.log
+
 # rspec failure tracking
 .rspec_status
