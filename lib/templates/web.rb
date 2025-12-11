@@ -4,6 +4,8 @@ def source_paths
 end
 
 def install_gems
+  gem "sidekiq"
+
   gem_group :test do
     # TODO: How can we ensure we're notified of new releases?
     gem "action_dispatch-testing-integration-capybara",
@@ -28,8 +30,10 @@ after_bundle do
   configure_database
   configure_test_suite
   configure_ci
+  configure_sidekiq
 
-  # Deployment
+  # Deployment and server
+  update_bin_dev
   add_procfiles
 
   # Finalization
@@ -173,8 +177,51 @@ def configure_ci
   YAML
 end
 
+def configure_sidekiq
+  copy_file "config/initializers/sidekiq.rb"
+
+  prepend_to_file "config/routes.rb", "require \"sidekiq/web\"\n\n"
+  sidekiq_route = <<-RUBY
+  if Rails.env.local?
+    mount Sidekiq::Web => "/sidekiq"
+  end
+
+  RUBY
+  insert_into_file "config/routes.rb", sidekiq_route, after: "Rails.application.routes.draw do\n  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html\n"
+
+  # https://github.com/sidekiq/sidekiq/wiki/Active+Job
+  environment "config.active_job.queue_adapter = :sidekiq"
+  environment "config.active_job.queue_adapter = :inline", env: "test"
+end
+
+def update_bin_dev
+  # https://github.com/rails/jsbundling-rails/blob/main/lib/install/dev
+  # rubocop:disable Style/RedundantStringEscape
+  create_file "bin/dev", force: true do
+    <<~BASH
+      #!/usr/bin/env sh
+
+      if gem list --no-installed --exact --silent foreman; then
+        echo "Installing foreman..."
+        gem install foreman
+      fi
+
+      # Default to port 3000 if not specified
+      export PORT="\${PORT:-3000}"
+
+      exec foreman start -f Procfile.dev --env /dev/null "$@"
+    BASH
+  end
+  # rubocop:enable Style/RedundantStringEscape
+
+  # rubocop:disable Style/NumericLiteralPrefix
+  chmod "bin/dev", 0755
+  # rubocop:enable Style/NumericLiteralPrefix
+end
+
 def add_procfiles
   copy_file "Procfile"
+  copy_file "Procfile.dev"
 end
 
 def run_migrations
