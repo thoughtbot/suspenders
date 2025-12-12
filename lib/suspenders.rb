@@ -2,7 +2,7 @@
 
 require_relative "suspenders/version"
 require_relative "suspenders/cli"
-require_relative "suspenders/actions/environments/test/raise_on_missing_translations"
+require_relative "suspenders/actions/test/raise_i18n_error"
 
 module Suspenders
   class Error < StandardError; end

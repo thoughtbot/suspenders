@@ -1,11 +1,11 @@
 require "tmpdir"
 require "spec_helper"
 
-RSpec.describe Suspenders::Actions::Environments::Test::RaiseOnMissingTranslations do
+RSpec.describe Suspenders::Actions::Test::RaiseI18nError do
   describe "#apply" do
     it "enables the raising of errors for missing translations" do
       within_temp_app do |app_dir|
-        action = Suspenders::Actions::Environments::Test::RaiseOnMissingTranslations.new app_dir
+        action = Suspenders::Actions::Test::RaiseI18nError.new([app_dir])
         write_file action.file_path, <<~RUBY
           # Raises error for missing translations.
           # config.i18n.raise_on_missing_translations = true
@@ -13,8 +13,8 @@ RSpec.describe Suspenders::Actions::Environments::Test::RaiseOnMissingTranslatio
 
         action.apply
 
-        content = File.read(action.file_path)
-        expect(content).to match(/^\s*config\.i18n\.raise_on_missing_translations = true/)
+        expect(File.read(action.file_path))
+          .to match(/^\s*config\.i18n\.raise_on_missing_translations = true/)
       end
     end
   end
