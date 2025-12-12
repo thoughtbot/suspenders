@@ -41,6 +41,8 @@ after_bundle do
 
   # Environments
   setup_development_environment
+  setup_production_environment
+  setup_application
 
   # Deployment and server
   update_bin_dev
@@ -137,7 +139,7 @@ def configure_ci
           env:
             RAILS_ENV: test
             DATABASE_URL: postgres://postgres:postgres@localhost:5432
-            # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+            RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
             # REDIS_URL: redis://localhost:6379/0
           run: bin/rails db:test:prepare test
 
@@ -176,7 +178,7 @@ def configure_ci
           env:
             RAILS_ENV: test
             DATABASE_URL: postgres://postgres:postgres@localhost:5432
-            # RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+            RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
             # REDIS_URL: redis://localhost:6379/0
           run: bin/rails db:setup spec
 
@@ -238,6 +240,19 @@ def setup_development_environment
   environment "config.active_model.i18n_customize_full_message = true", env: "development"
   uncomment_lines "config/environments/development.rb", /config\.i18n\.raise_on_missing_translations/
   uncomment_lines "config/environments/development.rb", /config\.generators\.apply_rubocop_autocorrect_after_generate!/
+end
+
+def setup_production_environment
+  environment "config.sandbox_by_default = true", env: "production"
+  environment "config.active_record.action_on_strict_loading_violation = :log", env: "production"
+  gsub_file "config/environments/production.rb", /# config\.asset_host =.*$/, 'config.asset_host = ENV["ASSET_HOST"]'
+  gsub_file "config/environments/production.rb", /config\.action_mailer\.default_url_options = \{ host: .*? \}/, 'config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }'
+end
+
+def setup_application
+  environment "config.active_record.strict_loading_by_default = true"
+  environment "config.active_record.strict_loading_mode = :n_plus_one_only"
+  environment "config.require_master_key = true"
 end
 
 def update_bin_dev
