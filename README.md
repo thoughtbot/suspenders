@@ -47,8 +47,19 @@ rails new <app_name> \
 ```
 
 We skip the [default test framework][] in favor of [RSpec][], and [prefer
-PostgreSQL][] as our database. We skip the Solid ecosystm since we prefer
+PostgreSQL][] as our database. We skip the Solid ecosystem since we prefer
 [Sidekiq][], and because Solid Queue has [performance issues][] on Heroku.
+
+> [!IMPORTANT]
+> Since Suspenders generates an application that enables `require_master_key`,
+> you'll need to add it to GitHub as a [secret][] in order for GitHub Actions to
+> work.
+
+```
+cd <app_name>
+
+gh secret set RAILS_MASTER_KEY value-from-config/master.key
+```
 
 [application template]: https://guides.rubyonrails.org/rails_application_templates.html
 [default test framework]: https://guides.rubyonrails.org/testing.html
@@ -56,6 +67,31 @@ PostgreSQL][] as our database. We skip the Solid ecosystm since we prefer
 [prefer PostgreSQL]: https://github.com/thoughtbot/dotfiles/pull/728
 [Sidekiq]: https://github.com/sidekiq/sidekiq/
 [performance issues]: https://github.com/rails/solid_queue/issues/330
+[secret]: https://docs.github.com/en/actions/how-tos/write-workflows/choose-what-workflows-do/use-secrets
+
+## Initial deployment to Heroku
+
+Once your application is generated, you can deploy to Heroku with [Heroku
+CLI][cli].
+
+
+```
+cd <app_name>
+
+heroku apps:create
+
+heroku buildpacks:set heroku/ruby
+
+heroku addons:create heroku-postgresql:essential-0
+heroku addons:create heroku-redis:mini
+heroku config:set \
+ APPLICATION_HOST=value-from-heroku
+ RAILS_MASTER_KEY=value-from-config/master.key
+
+heroku ps:scale worker=1
+```
+
+[cli]: https://devcenter.heroku.com/articles/heroku-cli
 
 ## Contributing
 
