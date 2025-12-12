@@ -29,7 +29,7 @@ The following environment variables are available in `production`:
 ### Test
 
 - Enables [raise_on_missing_translations][].
-- Disables [action_dispatch.show_exceptions][].
+- Sets [action_dispatch.show_exceptions][] to `:none`.
 
 [raise_on_missing_translations]: https://guides.rubyonrails.org/configuring.html#config-i18n-raise-on-missing-translations
 [action_dispatch.show_exceptions]: https://edgeguides.rubyonrails.org/configuring.html#config-action-dispatch-show-exceptions
