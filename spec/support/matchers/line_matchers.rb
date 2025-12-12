@@ -9,7 +9,6 @@ RSpec::Matchers.define :have_commented do |expected_line|
 
   failure_message do |file_path|
     content = File.read file_path
-    uncommented_pattern = /^\s*#{Regexp.escape expected_line}/
     commented_pattern = /^\s*#\s#{Regexp.escape expected_line}$/
 
     unless content.match? commented_pattern
