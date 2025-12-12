@@ -21,7 +21,25 @@ Running `bin/setup` will run `dev:prime`.
 [database migrations]: https://edgeguides.rubyonrails.org/active_record_migrations.html#running-migrations
 [reversible]: https://edgeguides.rubyonrails.org/active_record_migrations.html#making-the-irreversible-possible
 
+## Environment Variables
+
+The following environment variables are available in `production`:
+
+- `APPLICATION_HOST` - The domain where your application is hosted (required, used for mailer URL generation)
+- `ASSET_HOST` - CDN or asset host URL (optional, for serving static assets)
+- `RAILS_MASTER_KEY` - Required for decrypting credentials (automatically set in CI)
+
 ## Configuration
+
+### All Environments
+
+- Enables [strict_loading_by_default][].
+- Sets [strict_loading_mode][] to `:n_plus_one`.
+- Enables [require_master_key][].
+
+[strict_loading_by_default]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-by-default
+[strict_loading_mode]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-mode
+[require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
 
 ### Test
 
@@ -43,9 +61,11 @@ Running `bin/setup` will run `dev:prime`.
 
 ### Production
 
-- Enables [require_master_key][].
+- Enables [sandbox_by_default][].
+- Sets [action_on_strict_loading_violation][] to `:log`.
 
-[require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
+[sandbox_by_default]: https://guides.rubyonrails.org/configuring.html#config-sandbox-by-default
+[action_on_strict_loading_violation]: https://guides.rubyonrails.org/configuring.html#config-active-record-action-on-strict-loading-violation
 
 ### Linting
 
