@@ -1,4 +1,5 @@
-require_relative "suspenders/actions/test/raise_i18n_error"
+require_relative "../suspenders/actions/test/raise_i18n_error"
+require_relative "../suspenders/actions/test/disable_show_dispatch_exception"
 
 # Methods like `copy_file` will accept relative paths to the template's location.
 def source_paths
@@ -37,7 +38,7 @@ end
 
 def configure_test_environment
   invoke Suspenders::Actions::Test::RaiseI18nError
-  invoke Suspenders::Actions::Test::DisableShowDispatchExceptions
+  invoke Suspenders::Actions::Test::DisableShowDispatchException
 end
 
 def add_procfiles
