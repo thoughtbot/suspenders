@@ -22,6 +22,12 @@ elsif ["new"].include?(command)
     puts "Usage: suspenders new APP_NAME"
     exit 1
   end
+else
+  puts "Error: Invalid command"
+  puts "Available commands are"
+  puts "suspenders new APP_NAME"
+  puts "suspenders -v"
+  exit 1
 end
 
 begin
