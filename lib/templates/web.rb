@@ -138,46 +138,7 @@ def configure_ci
           with:
             bundler-cache: true
 
-        - name: Run tests
-          env:
-            RAILS_ENV: test
-            DATABASE_URL: postgres://postgres:postgres@localhost:5432
-            RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-            # REDIS_URL: redis://localhost:6379/0
-          run: bin/rails db:test:prepare test
-
-    system-test:
-      runs-on: ubuntu-latest
-
-      services:
-        postgres:
-          image: postgres
-          env:
-            POSTGRES_USER: postgres
-            POSTGRES_PASSWORD: postgres
-          ports:
-            - 5432:5432
-          options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
-
-        # redis:
-        #   image: valkey/valkey:8
-        #   ports:
-        #     - 6379:6379
-        #   options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-
-      steps:
-        - name: Install packages
-          run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev
-
-        - name: Checkout code
-          uses: actions/checkout@v5
-
-        - name: Set up Ruby
-          uses: ruby/setup-ruby@v1
-          with:
-            bundler-cache: true
-
-        - name: Run System Tests
+        - name: Run Tests
           env:
             RAILS_ENV: test
             DATABASE_URL: postgres://postgres:postgres@localhost:5432
