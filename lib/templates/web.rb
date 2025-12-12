@@ -299,7 +299,6 @@ def update_layout
   # Application Layout
   gsub_file "app/views/layouts/application.html.erb", /<html>/, "<html lang=\"<%= I18n.locale %>\">"
   application_html_erb = <<-ERB
-    <%= render "nav" %>
     <main class="container" aria-labelledby="main_label">
       <%= render "flashes" %>
       <%= yield %>
