@@ -42,6 +42,7 @@ after_bundle do
   configure_inline_svg
 
   # Environments
+  setup_test_environment
   setup_development_environment
   setup_production_environment
   setup_application
@@ -207,6 +208,11 @@ def configure_inline_svg
   RUBY
 end
 
+def setup_test_environment
+  gsub_file "config/environments/test.rb", /config\.action_dispatch\.show_exceptions = :rescuable/, "config.action_dispatch.show_exceptions = :none"
+  uncomment_lines "config/environments/test.rb", /config\.i18n\.raise_on_missing_translations/
+end
+
 def setup_development_environment
   environment "config.active_model.i18n_customize_full_message = true", env: "development"
   uncomment_lines "config/environments/development.rb", /config\.i18n\.raise_on_missing_translations/
@@ -312,7 +318,7 @@ def update_readme
       ### Test
 
       - Enables [raise_on_missing_translations][].
-      - Disables [action_dispatch.show_exceptions][].
+      - Sets [action_dispatch.show_exceptions][] to `:none`.
 
       [raise_on_missing_translations]: https://guides.rubyonrails.org/configuring.html#config-i18n-raise-on-missing-translations
       [action_dispatch.show_exceptions]: https://edgeguides.rubyonrails.org/configuring.html#config-action-dispatch-show-exceptions
