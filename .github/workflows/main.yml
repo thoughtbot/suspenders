@@ -53,7 +53,7 @@ jobs:
         run: gem install rails
       - name: Install dependencies
         run: bundle install
-      - name: Install Staples
+      - name: Install Suspenders
         run: bundle exec rake install
       - name: Generate new Rails app with template
         run: |
