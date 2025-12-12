@@ -40,6 +40,11 @@ jobs:
         ports:
           - 5432:5432
         options: --health-cmd="pg_isready" --health-interval=10s --health-timeout=5s --health-retries=3
+      redis:
+         image: valkey/valkey:8
+         ports:
+           - 6379:6379
+         options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
 
     steps:
       - name: Checkout template
@@ -94,6 +99,7 @@ jobs:
       - name: Verify app can start
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
+          REDIS_URL: redis://localhost:6379/0
         working-directory: /tmp/test_app
         run: |
           timeout 10 bin/dev > /dev/null 2>&1 &
