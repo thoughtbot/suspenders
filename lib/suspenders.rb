@@ -2,7 +2,8 @@
 
 require_relative "suspenders/version"
 require_relative "suspenders/cli"
-require_relative "suspenders/actions/environments/test/raise_on_missing_translations"
+require_relative "suspenders/actions/test/raise_i18n_error"
+require_relative "suspenders/actions/test/disable_show_dispatch_exception"
 
 module Suspenders
   class Error < StandardError; end

@@ -1,3 +1,5 @@
+require_relative "suspenders/actions/test/raise_i18n_error"
+
 # Methods like `copy_file` will accept relative paths to the template's location.
 def source_paths
   Array(super) + [__dir__]
@@ -12,8 +14,8 @@ after_bundle do
   # Initializers & Configuration
   configure_database
 
-  # Environments
-  setup_test_environment
+  # Test Environment
+  configure_test_environment
 
   # Deployment
   add_procfiles
@@ -33,19 +35,13 @@ def configure_database
   YAML
 end
 
-def add_procfiles
-  copy_file "Procfile"
+def configure_test_environment
+  invoke Suspenders::Actions::Test::RaiseI18nError
+  invoke Suspenders::Actions::Test::DisableShowDispatchExceptions
 end
 
-def setup_test_environment
-  uncomment_lines(
-    "config/environments/test.rb",
-    /config\.i18n\.raise_on_missing_translations\s*=\s*true/
-  )
-  comment_lines(
-    "config/environments/test.rb",
-    /config\.action_dispatch\.show_exceptions\s=\s:rescuable/
-  )
+def add_procfiles
+  copy_file "Procfile"
 end
 
 def run_migrations
