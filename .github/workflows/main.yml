@@ -67,6 +67,22 @@ jobs:
           bundle install
           bin/setup --skip-server
           bin/rails db:migrate
+          bundle add high_voltage
+          mkdir app/views/pages
+          touch app/views/pages/home.html.erb
+          echo '<h1>Hello World!</h1>' >> app/views/pages/home.html.erb
+          touch spec/system/demo_system_spec.rb
+          cat << 'EOF' >> spec/system/demo_system_spec.rb
+          require "rails_helper"
+
+          RSpec.describe "Static page", type: :system do
+            it "passes" do
+              visit "/pages/home"
+
+              expect(page).to have_text("Hello World!")
+            end
+          end
+          EOF
       - name: Run tests in generated app
         env:
           RAILS_ENV: test
