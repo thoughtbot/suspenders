@@ -6,6 +6,7 @@ end
 def install_gems
   gem "inline_svg"
   gem "sidekiq"
+  gem "strong_migrations"
 
   gem_group :test do
     # TODO: How can we ensure we're notified of new releases?
@@ -36,6 +37,7 @@ after_bundle do
   configure_test_suite
   configure_ci
   configure_sidekiq
+  configure_strong_migrations
   configure_mailer_intercepter
   configure_inline_svg
 
@@ -208,6 +210,10 @@ def configure_sidekiq
   # https://github.com/sidekiq/sidekiq/wiki/Active+Job
   environment "config.active_job.queue_adapter = :sidekiq"
   environment "config.active_job.queue_adapter = :inline", env: "test"
+end
+
+def configure_strong_migrations
+  rails_command "generate strong_migrations:install"
 end
 
 def configure_mailer_intercepter
