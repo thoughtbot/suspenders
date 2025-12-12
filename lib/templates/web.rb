@@ -102,6 +102,9 @@ def configure_test_suite
   copy_file "spec/factories_spec.rb"
   empty_directory "spec/system"
   create_file "spec/system/.gitkeep"
+
+  # Ignore spec/examples.txt
+  append_to_file ".gitignore", "/spec/examples.txt"
 end
 
 def configure_ci
