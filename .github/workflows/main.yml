@@ -53,12 +53,12 @@ jobs:
         run: gem install rails
       - name: Install dependencies
         run: bundle install
-      - name: Install Staples
+      - name: Install Suspenders
         run: bundle exec rake install
       - name: Generate new Rails app with template
         run: |
           cd /tmp
-          suspenders test_app
+          suspenders new test_app
       - name: Set up generated app
         env:
           DATABASE_URL: postgres://postgres:postgres@localhost:5432
