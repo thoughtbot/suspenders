@@ -7,7 +7,10 @@ RSpec.describe Suspenders::Actions::Test::DisableShowDispatchException do
       within_temp_app do |app_dir|
         action = Suspenders::Actions::Test::DisableShowDispatchException.new
         action.destination_root = app_dir
-        file_path = File.join(app_dir, Suspenders::Actions::Test::DisableShowDispatchException::TARGET_FILE)
+        file_path = File.join(
+          app_dir,
+          Suspenders::Actions::Test::DisableShowDispatchException::TARGET_FILE
+        )
         write_file file_path, <<~RUBY
           # Render exception templates for rescuable exceptions and raise for other exceptions.
           config.action_dispatch.show_exceptions = :rescuable
@@ -15,10 +18,12 @@ RSpec.describe Suspenders::Actions::Test::DisableShowDispatchException do
 
         action.apply
 
-        expect(File.read(file_path))
-          .to match(/^\s*#\sconfig\.action_dispatch\.show_exceptions\s=\s:rescuable$/)
-        expect(File.read(file_path))
-          .not_to match(/^\s*config\.action_dispatch\.show_exceptions\s=\s:rescuable$/)
+        expect(File.read(file_path)).to match(
+          /^\s*#\sconfig\.action_dispatch\.show_exceptions\s=\s:rescuable$/
+        )
+        expect(File.read(file_path)).not_to match(
+          /^\s*config\.action_dispatch\.show_exceptions\s=\s:rescuable$/
+        )
       end
     end
   end
