@@ -3,7 +3,7 @@
 [![CI](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml/badge.svg)](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml)
 
 Suspenders is intended to create a new Rails applications with these
-[features][], and is optimised for deployment to Heroku. 
+[features][], and is optimised for deployment on Heroku. 
 
 It is used by thoughtbot to get a jump start on new apps. Use Suspenders if
 you're in a rush to build something amazing; don't use it if you like missing
@@ -13,17 +13,15 @@ deadlines.
 
 ![Suspenders boy](https://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
-## Requirements
+## Prerequisites 
 
-Suspenders requires the latest version of [Rails][rails] and its dependencies.
+Suspenders requires the latest version of [Rails][] and its dependencies.
 
-Additionally, Suspenders requires [yarn][yarn], [PostgreSQL][postgresql] and
-[Redis][redis].
+Additionally, Suspenders requires [PostgreSQL][] and [Redis][].
 
-[rails]: https://guides.rubyonrails.org/install_ruby_on_rails.html
-[yarn]: https://yarnpkg.com/getting-started/install
-[postgresql]: https://formulae.brew.sh/formula/postgresql@17
-[redis]: https://formulae.brew.sh/formula/redis
+[Rails]: https://guides.rubyonrails.org/install_ruby_on_rails.html
+[PostgreSQL]: https://formulae.brew.sh/formula/postgresql@17
+[Redis]: https://formulae.brew.sh/formula/redis
 
 ## Installation
 
@@ -34,7 +32,7 @@ gem install suspenders
 ## Usage
 
 ```
-suspenders <app_name>
+suspenders new <app_name>
 ```
 
 Under the hood, Suspenders uses an [application template][] to generate a new Rails
@@ -58,16 +56,6 @@ PostgreSQL][] as our database. We skip the Solid ecosystm since we prefer
 [prefer PostgreSQL]: https://github.com/thoughtbot/dotfiles/pull/728
 [Sidekiq]: https://github.com/sidekiq/sidekiq/
 [performance issues]: https://github.com/rails/solid_queue/issues/330
-
-### Available Tasks
-
-Suspenders ships with several custom Rake tasks.
-
-```
-bin/rails suspenders:rake
-bin/rails suspenders:db:migrate
-bin/rails suspenders:cleanup:organize_gemfile
-```
 
 ## Contributing
 

@@ -2,32 +2,17 @@
 
 ## Local Development
 
-### Seed Data
+Uses [Strong Migrations][] to catch unsafe migrations in development.
 
-- Use `db/seeds.rb` to create records that need to exist in all environments.
-- Use `lib/tasks/dev.rake` to create records that only need to exist in development.
-
-Running `bin/setup` will run `dev:prime`.
-
-### Tasks
-
-- Use `bin/rails suspenders:db:migrate` to run [database migrations][]. This script ensures they are [reversible][].
-- Use `bin/rails suspenders:cleanup:organize_gemfile` to automatically organize the project's Gemfile.
-- Use `bin/rails default` to run the default Rake task. This will do the following:
-  - Run the test suite.
-  - Run a Ruby and ERB linter.
-  - Scan the Ruby codebase for any dependency vulnerabilities.
-
-[database migrations]: https://edgeguides.rubyonrails.org/active_record_migrations.html#running-migrations
-[reversible]: https://edgeguides.rubyonrails.org/active_record_migrations.html#making-the-irreversible-possible
+[Strong Migrations]: https://github.com/ankane/strong_migrations
 
 ## Environment Variables
 
 The following environment variables are available in `production`:
 
-- `APPLICATION_HOST` - The domain where your application is hosted (required, used for mailer URL generation)
-- `ASSET_HOST` - CDN or asset host URL (optional, for serving static assets)
-- `RAILS_MASTER_KEY` - Required for decrypting credentials (automatically set in CI)
+- `APPLICATION_HOST` - The domain where your application is hosted (required)
+- `ASSET_HOST` - CDN or asset host URL (optional)
+- `RAILS_MASTER_KEY` - Used for decrypting credentials (required)
 
 ## Configuration
 
@@ -66,29 +51,6 @@ The following environment variables are available in `production`:
 
 [sandbox_by_default]: https://guides.rubyonrails.org/configuring.html#config-sandbox-by-default
 [action_on_strict_loading_violation]: https://guides.rubyonrails.org/configuring.html#config-active-record-action-on-strict-loading-violation
-
-### Linting
-
-- Uses [@thoughtbot/eslint-config][] for JavaScript linting.
-- Uses [@thoughtbot/stylelint-config][] for CSS linting.
-- Uses [prettier][] for additional linting.
-- Uses [better_html][], [erb_lint][], and [erblint-github][] for ERB linting.
-- Uses [standard][] for Ruby linting.
-
-**Available Commands**
-
-- Run `yarn lint` to lint front-end code.
-- Run `yarn fix:prettier` to automatically fix prettier violations.
-- Run `bin/rails standard` to lint ERB and Ruby code.
-- Run `bundle exec standardrb --fix` to fix standard violations.
-
-[@thoughtbot/eslint-config]: https://github.com/thoughtbot/eslint-config
-[@thoughtbot/stylelint-config]: https://github.com/thoughtbot/stylelint-config
-[prettier]: https://prettier.io
-[better_html]: https://github.com/Shopify/better-html
-[erb_lint]: https://github.com/Shopify/erb-lint
-[erblint-github]: https://github.com/github/erblint-github
-[standard]: https://github.com/standardrb/standard
 
 ## Testing
 
@@ -139,13 +101,6 @@ practices.
 
 [capybara_accessibility_audit]: https://github.com/thoughtbot/capybara_accessibility_audit
 [capybara_accessible_selectors]: https://github.com/citizensadvice/capybara_accessible_selectors
-
-## Advisories
-
-Uses [bundler-audit][] to update the local security database and show
-any relevant issues with the app's dependencies via a Rake task.
-
-[bundler-audit]: https://github.com/rubysec/bundler-audit
 
 ## Mailers
 

@@ -45,6 +45,12 @@ merge the contribution.
 To install this gem onto your local machine, run `bundle exec rake install`.
 From there, you can run `suspenders <app_name>` to test the current code.
 
+## Documenting changes to generated application
+
+Be sure to update `FEATURES.md` and the contents of `update_readme` within
+`web.rb` anytime you add, update or remove a feature to the generated
+application.
+
 ## Publishing to RubyGems
 
 When the gem is ready to be shared as a formal release, it can be
