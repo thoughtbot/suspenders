@@ -21,7 +21,25 @@ Running `bin/setup` will run `dev:prime`.
 [database migrations]: https://edgeguides.rubyonrails.org/active_record_migrations.html#running-migrations
 [reversible]: https://edgeguides.rubyonrails.org/active_record_migrations.html#making-the-irreversible-possible
 
+## Environment Variables
+
+The following environment variables are available in `production`:
+
+- `APPLICATION_HOST` - The domain where your application is hosted (required, used for mailer URL generation)
+- `ASSET_HOST` - CDN or asset host URL (optional, for serving static assets)
+- `RAILS_MASTER_KEY` - Required for decrypting credentials (automatically set in CI)
+
 ## Configuration
+
+### All Environments
+
+- Enables [strict_loading_by_default][].
+- Sets [strict_loading_mode][] to `:n_plus_one`.
+- Enables [require_master_key][].
+
+[strict_loading_by_default]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-by-default
+[strict_loading_mode]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-mode
+[require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
 
 ### Test
 
@@ -34,20 +52,20 @@ Running `bin/setup` will run `dev:prime`.
 ### Development
 
 - Enables [raise_on_missing_translations][].
-- Enables [annotate_rendered_view_with_filenames][].
 - Enables [i18n_customize_full_message][].
-- Enables [query_log_tags_enabled][].
+- Enables [apply_rubocop_autocorrect_after_generate!][].
 
 [raise_on_missing_translations]: https://guides.rubyonrails.org/configuring.html#config-i18n-raise-on-missing-translations
-[annotate_rendered_view_with_filenames]: https://guides.rubyonrails.org/configuring.html#config-action-view-annotate-rendered-view-with-filenames
 [i18n_customize_full_message]: https://guides.rubyonrails.org/configuring.html#config-active-model-i18n-customize-full-message
-[query_log_tags_enabled]: https://guides.rubyonrails.org/configuring.html#config-active-record-query-log-tags-enabled
+[apply_rubocop_autocorrect_after_generate!]: https://guides.rubyonrails.org/configuring.html#configuring-generators
 
 ### Production
 
-- Enables [require_master_key][].
+- Enables [sandbox_by_default][].
+- Sets [action_on_strict_loading_violation][] to `:log`.
 
-[require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
+[sandbox_by_default]: https://guides.rubyonrails.org/configuring.html#config-sandbox-by-default
+[action_on_strict_loading_violation]: https://guides.rubyonrails.org/configuring.html#config-active-record-action-on-strict-loading-violation
 
 ### Linting
 
@@ -139,7 +157,7 @@ INTERCEPTOR_ADDRESSES="user_1@example.com,user_2@example.com" bin/rails s
 
 Configuration can be found at `config/initializers/email_interceptor.rb`.
 
-Interceptor can be found at `app/mailers/email_interceptor.rb`.
+Interceptor can be found at `lib/email_interceptor.rb`.
 
 [Intercept]: https://guides.rubyonrails.org/action_mailer_basics.html#intercepting-emails
 
@@ -155,29 +173,6 @@ Configures the `test` environment to use the [inline][] adapter.
 
 ## Layout and Assets
 
-### Stylesheets
-
-- Uses [PostCSS][] via [cssbundling-rails][].
-- Uses [modern-normalize][] to normalize browsers' default style.
-
-Configuration can be found at `postcss.config.js`.
-
-Adds the following stylesheet structure.
-
-```
-app/assets/stylesheets/base.css
-app/assets/stylesheets/components.css
-app/assets/stylesheets/utilities.css
-```
-
-Adds `app/assets/static` so that [postcss-url][] has a directory to copy
-assets to.
-
-[PostCSS]: https://postcss.org
-[cssbundling-rails]: https://github.com/rails/cssbundling-rails
-[modern-normalize]: https://github.com/sindresorhus/modern-normalize
-[postcss-url]: https://github.com/postcss/postcss-url
-
 ### Inline SVG
 
 Uses [inline_svg][] for embedding SVG documents into views.
@@ -189,8 +184,8 @@ Configuration can be found at `config/initializers/inline_svg.rb`
 ### Layout
 
 - A [partial][] for [flash messages][] is located in `app/views/application/_flashes.html.erb`.
+- A [partial][] for form errors is located in `app/views/application/_form_errors.html.erb`.
 - Sets [lang][] attribute on `<html>` element to `en` via `I18n.local`.
-- Dynamically sets `<title>` via the [title][] gem.
 - Disables Turbo's [Prefetch][] in an effort to reduce unnecessary network requests.
 
 [partial]: https://guides.rubyonrails.org/layouts_and_rendering.html#using-partials
