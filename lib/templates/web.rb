@@ -32,6 +32,8 @@ end
 install_gems
 
 after_bundle do
+  commit_initial_application_state
+
   # Initializers & Configuration
   configure_database
   configure_test_suite
@@ -60,6 +62,10 @@ after_bundle do
   lint_codebase
 
   print_message
+end
+
+def commit_initial_application_state
+  git add: ".", commit: %(-m 'Initial commit') if ENV["SUSPENDERS_ENV"] == "development"
 end
 
 def configure_database
