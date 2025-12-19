@@ -1,5 +1,14 @@
 # Contributing
 
+[Bug reports][bugs] and [pull requests][prs] are welcome on GitHub at https://github.com/thoughtbot/suspenders.
+
+[bugs]: https://github.com/thoughtbot/suspenders/issues/new?template=bug_report.md
+[prs]: https://github.com/thoughtbot/top_secret/pulls
+
+Please create a [new discussion][discussion] if you want to share ideas for new features.
+
+[discussion]: https://github.com/thoughtbot/suspenders/discussions/new?category=ideas
+
 We love contributions from everyone.
 By participating in this project,
 you agree to abide by the thoughtbot [code of conduct].
