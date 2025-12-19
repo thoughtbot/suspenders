@@ -295,6 +295,16 @@ def update_readme
     <<~MARKDOWN
       # README
 
+      This application was initially generated with [Suspenders][].
+
+      [Suspenders]: https://github.com/thoughtbot/suspenders
+ 
+      ## Local Server
+
+      Run `bin/dev` to start the web server and Sidekiq worker. Then, navigate to [http://localhost:3000][local]
+
+      [local]: http://localhost:3000
+
       ## Local Development
 
       Uses [Strong Migrations][] to catch unsafe migrations in development.
@@ -308,6 +318,18 @@ def update_readme
       - `APPLICATION_HOST` - The domain where your application is hosted (required)
       - `ASSET_HOST` - CDN or asset host URL (optional)
       - `RAILS_MASTER_KEY` - Used for decrypting credentials (required)
+
+      ## Rails Console
+
+      In deployed environments, the Rails console starts in sandbox mode by default. This means any changes made in the console will be rolled back when you exit.
+
+      To modify data in deployed environments, you must explicitly disable sandbox mode:
+
+      ```
+      bin/rails console --no-sandbox
+      ```
+
+      This configuration helps prevent accidental data modifications in production.
 
       ## Configuration
 
