@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+set -e
+
+bundle exec rake install
+
+if [ -d "qa" ]; then
+  cd qa
+  bin/rails db:drop
+  cd ..
+  rm -rf qa
+fi
+
+SUSPENDERS_ENV=development suspenders new qa
