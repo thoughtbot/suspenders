@@ -3,13 +3,15 @@
 [![CI](https://github.com/thoughtbot/suspenders/actions/workflows/test-template.yml/badge.svg)](https://github.com/thoughtbot/suspenders/actions/workflows/test-template.yml)
 
 Suspenders is intended to create a new Rails applications with these
-[features][], and is optimized for deployment on Heroku.
+[features][], and is optimized for deployment on Heroku, per [our
+recommendation][].
 
 It is used by thoughtbot to get a jump start on new apps. Use Suspenders if
 you're in a rush to build something amazing; don't use it if you like missing
 deadlines.
 
 [features]: ./FEATURES.md
+[recommendation]: https://thoughtbot.com/playbook/production/hosting
 
 ![Suspenders boy](https://media.tumblr.com/1TEAMALpseh5xzf0Jt6bcwSMo1_400.png)
 
