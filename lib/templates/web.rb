@@ -42,6 +42,7 @@ after_bundle do
   configure_strong_migrations
   configure_mailer_intercepter
   configure_inline_svg
+  configure_development_seeder
 
   # Environments
   setup_test_environment
@@ -214,6 +215,12 @@ def configure_inline_svg
   RUBY
 end
 
+def configure_development_seeder
+  copy_file "lib/development/seeder.rb"
+  copy_file "lib/tasks/development.rake"
+  gsub_file "config/application.rb", /config\.autoload_lib\(ignore: %w\[assets tasks\]\)/, "config.autoload_lib(ignore: %w[assets tasks development])"
+end
+
 def setup_test_environment
   gsub_file "config/environments/test.rb", /config\.action_dispatch\.show_exceptions = :rescuable/, "config.action_dispatch.show_exceptions = :none"
   uncomment_lines "config/environments/test.rb", /config\.i18n\.raise_on_missing_translations/
@@ -299,17 +306,42 @@ def update_readme
 
       [Suspenders]: https://github.com/thoughtbot/suspenders
  
-      ## Local Server
+      ## Local Development
 
       Run `bin/dev` to start the web server and Sidekiq worker. Then, navigate to [http://localhost:3000][local]
 
       [local]: http://localhost:3000
 
-      ## Local Development
+      ### Strong Migrations
 
       Uses [Strong Migrations][] to catch unsafe migrations in development.
 
       [Strong Migrations]: https://github.com/ankane/strong_migrations
+
+      ### Seed Data
+
+      Follows [our guidance][seed-data-guide] for managing seed data.
+
+      Use `db/seeds.rb` for data required in **all** environments, and `development:db:seed` for data specific to development environments.
+
+      Place idempotent seed data in `Development::Seeder`.
+
+      To load development seed data:
+
+      ```bash
+      bin/rails development:db:seed
+      ```
+
+      To reset your database and reload seed data:
+
+      ```bash
+      bin/rails development:db:seed:replant
+      ```
+
+      The `replant` command truncates all tables and reloads the seed data, providing
+      a clean slate for development.
+
+      [seed-data-guide]: https://github.com/thoughtbot/guides/blob/main/rails/how-to/seed-data.md
 
       ## Environment Variables
 
