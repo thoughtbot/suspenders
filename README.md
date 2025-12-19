@@ -15,7 +15,7 @@ deadlines.
 
 ## Prerequisites 
 
-Suspenders requires the latest version of [Rails][] and its dependencies.
+Suspenders requires the **latest** version of [Rails][] and its dependencies.
 
 Additionally, Suspenders requires [PostgreSQL][] and [Redis][].
 
@@ -30,6 +30,14 @@ gem install suspenders
 ```
 
 ## Usage
+
+First, make sure you're on the latest version of Rails.
+
+```
+gem update rails
+```
+
+Then, create a new application with Suspenders.
 
 ```
 suspenders new <app_name>
@@ -58,7 +66,7 @@ PostgreSQL][] as our database. We skip the Solid ecosystem since we prefer
 ```
 cd <app_name>
 
-gh secret set RAILS_MASTER_KEY value-from-config/master.key
+gh secret set RAILS_MASTER_KEY value-from-config-master.key
 ```
 
 [application template]: https://guides.rubyonrails.org/rails_application_templates.html
@@ -71,8 +79,7 @@ gh secret set RAILS_MASTER_KEY value-from-config/master.key
 
 ## Initial deployment to Heroku
 
-Once your application is generated, you can deploy to Heroku with [Heroku
-CLI][cli].
+Once your application is generated, you can deploy to Heroku with [Heroku CLI][cli].
 
 
 ```
@@ -84,10 +91,20 @@ heroku buildpacks:set heroku/ruby
 
 heroku addons:create heroku-postgresql:essential-0
 heroku addons:create heroku-redis:mini
+```
+
+Once the application is provisioned, you'll want to set the following required
+environment variables.
+
+```
 heroku config:set \
  APPLICATION_HOST=value-from-heroku
- RAILS_MASTER_KEY=value-from-config/master.key
+ RAILS_MASTER_KEY=value-from-config-master.key
+```
 
+Finally, don't forget to enable the `worker`.
+
+```
 heroku ps:scale worker=1
 ```
 
