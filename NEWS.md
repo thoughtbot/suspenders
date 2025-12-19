@@ -1,6 +1,23 @@
 Unreleased
 
-Rewrite
+20251219.0 (December 19, 2025)
+
+Reintroduce system executable.
+
+* Added: New apps can now be generated with `suspenders new <app_name>`.
+* Added: `config.active_record.strict_loading_mode = :n_plus_one_only` in `application.rb`.
+* Added: `config.active_record.strict_loading_by_default = true` in `application.rb`
+* Added: `config.action_mailer.default_url_options = { host: ENV.fetch("APPLICATION_HOST") }` in `production.rb`.
+* Added: `config.asset_host = ENV["ASSET_HOST"]` in `production.rb`.
+* Added: `config.active_record.action_on_strict_loading_violation = :log` in `production.rb`.
+* Added: `config.sandbox_by_default = true` in `production.rb`.
+* Added: `config.generators.apply_rubocop_autocorrect_after_generate! = true` in `development.rb`.
+* Added: `app/views/application/_form_errors.html.erb`.
+* Removed: Removed `dev:prime` in favor of `development:db:seed` and `development:db:seed:replant`.
+* Removed: Custom linting in favor of default Rails linter.
+* Removed: Advisories generator in favor of default Rails configuration.
+* Removed: Dependency on PostCSS, cssbundling-rails, and modern-normalize.
+* Removed: Dependency on title Gem.
 
 20250317.0 (March 17, 2025)
 
