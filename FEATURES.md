@@ -2,9 +2,36 @@
 
 ## Local Development
 
+### Strong Migrations
+
 Uses [Strong Migrations][] to catch unsafe migrations in development.
 
 [Strong Migrations]: https://github.com/ankane/strong_migrations
+
+### Seed Data
+
+Follows [our guidance][seed-data-guide] for managing seed data. Use
+`db/seeds.rb` for data required in **all** environments, and
+`development:db:seed` for data specific to development environments.
+
+Place idempotent seed data in `Development::Seeder`.
+
+To load development seed data:
+
+```bash
+bin/rails development:db:seed
+```
+
+To reset your database and reload seed data:
+
+```bash
+bin/rails development:db:seed:replant
+```
+
+The `replant` command truncates all tables and reloads the seed data, providing
+a clean slate for development.
+
+[seed-data-guide]: https://github.com/thoughtbot/guides/blob/main/rails/how-to/seed-data.md
 
 ## Environment Variables
 
