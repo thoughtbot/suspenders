@@ -1,6 +1,6 @@
 # Suspenders
 
-[![CI](https://github.com/thoughtbot/suspenders/actions/workflows/test-template.yml/badge.svg)](https://github.com/thoughtbot/suspenders/actions/workflows/test-template.yml)
+[![CI](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml/badge.svg)](https://github.com/thoughtbot/suspenders/actions/workflows/main.yml)
 
 Suspenders is intended to create a new Rails applications with these
 [features][], and is optimized for deployment on Heroku, since that's our
