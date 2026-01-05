@@ -52,7 +52,7 @@ module Suspenders
 
     def generate_new_rails_app
       template_path = File.expand_path("../templates/web.rb", __dir__)
-      options = BASE_OPTIONS + ["-m=#{template_path}"]
+      options = BASE_OPTIONS + ["-m=#{template_path}", "--edge"]
 
       if system("rails", "new", app_name, *options)
         true
