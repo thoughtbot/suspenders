@@ -139,7 +139,7 @@ def configure_ci
 
       steps:
         - name: Install packages
-          run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev
+          run: sudo apt-get update && sudo apt-get install --no-install-recommends -y libpq-dev libvips
 
         - name: Checkout code
           uses: actions/checkout@v5
