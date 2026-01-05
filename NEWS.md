@@ -1,5 +1,9 @@
 Unreleased
 
+20260105.0 (January 5, 2026)
+
+* Added: Adds `libvips` package to generated `ci.yml` file.
+
 20251219.0 (December 19, 2025)
 
 Reintroduce system executable.
