@@ -19,7 +19,7 @@ def install_gems
     gem "capybara_accessible_selectors",
       git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.12.0"
     gem "selenium-webdriver"
-    gem "shoulda-matchers", "~> 6.0"
+    gem "shoulda-matchers", "~> 7.0"
     gem "webmock"
   end
 
@@ -305,7 +305,6 @@ def update_readme
       This application was initially generated with [Suspenders][].
 
       [Suspenders]: https://github.com/thoughtbot/suspenders
- 
       ## Local Development
 
       Run `bin/dev` to start the web server and Sidekiq worker. Then, navigate to [http://localhost:3000][local]
