@@ -19,7 +19,7 @@ def install_gems
     gem "capybara_accessible_selectors",
       git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.16.0"
     gem "selenium-webdriver"
-    gem "shoulda-matchers", "~> 6.0"
+    gem "shoulda-matchers", "~> 7.0"
     gem "webmock"
   end
 
