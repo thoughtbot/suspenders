@@ -1,5 +1,9 @@
 Unreleased
 
+20260127.0 (January 27, 2026)
+
+* Updated: `capybara_accessible_selectors` to `v0.16.0`
+
 20260105.0 (January 5, 2026)
 
 * Added: Adds `libvips` package to generated `ci.yml` file.
