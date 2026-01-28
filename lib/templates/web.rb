@@ -40,7 +40,7 @@ after_bundle do
   configure_ci
   configure_sidekiq
   configure_strong_migrations
-  configure_mailer_intercepter
+  configure_mailer_interceptor
   configure_inline_svg
   configure_development_seeder
 
@@ -189,7 +189,7 @@ def configure_strong_migrations
   rails_command "generate strong_migrations:install"
 end
 
-def configure_mailer_intercepter
+def configure_mailer_interceptor
   lib "email_interceptor.rb", <<~RUBY
     class EmailInterceptor
       def self.delivering_email(message)
@@ -305,6 +305,7 @@ def update_readme
       This application was initially generated with [Suspenders][].
 
       [Suspenders]: https://github.com/thoughtbot/suspenders
+
       ## Local Development
 
       Run `bin/dev` to start the web server and Sidekiq worker. Then, navigate to [http://localhost:3000][local]
