@@ -17,7 +17,7 @@ def install_gems
     gem "capybara_accessibility_audit"
     # TODO: How can we ensure we're notified of new releases?
     gem "capybara_accessible_selectors",
-      git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.12.0"
+      git: "https://github.com/citizensadvice/capybara_accessible_selectors", tag: "v0.16.0"
     gem "selenium-webdriver"
     gem "shoulda-matchers", "~> 7.0"
     gem "webmock"
