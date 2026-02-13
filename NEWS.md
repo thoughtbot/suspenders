@@ -1,5 +1,6 @@
 Unreleased
 
+* Added: Highlight changes introduced by Suspenders
 * Fixed: Bug with development seeder.
 * Updated: Configure Action Cable
 

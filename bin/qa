@@ -10,4 +10,4 @@ if [ -d "qa" ]; then
   rm -rf qa
 fi
 
-SUSPENDERS_ENV=development suspenders new qa
+suspenders new qa

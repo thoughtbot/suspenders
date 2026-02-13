@@ -1,3 +1,5 @@
+require "suspenders/version"
+
 # Methods like `copy_file` will accept relative paths to the template's location.
 def source_paths
   Array(super) + [__dir__]
@@ -64,12 +66,13 @@ after_bundle do
   run_migrations
   update_readme
   lint_codebase
+  commit_final_application_state
 
   print_message
 end
 
 def commit_initial_application_state
-  git add: ".", commit: %(-m 'Initial commit') if ENV["SUSPENDERS_ENV"] == "development"
+  git add: ".", commit: %(-m 'Initial commit from rails new') unless ENV["CI"]
 end
 
 def configure_database
@@ -515,6 +518,10 @@ end
 
 def lint_codebase
   run "bin/rubocop -a"
+end
+
+def commit_final_application_state
+  git add: ".", commit: %(-m 'Changes introduced by Suspenders version #{Suspenders::VERSION}') unless ENV["CI"]
 end
 
 def print_message
