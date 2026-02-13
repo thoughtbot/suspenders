@@ -1,5 +1,6 @@
 Unreleased
 
+* Fixed: Bug with development seeder.
 * Updated: Configure Action Cable
 
 20260127.0 (January 27, 2026)
