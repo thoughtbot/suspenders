@@ -231,7 +231,6 @@ end
 def configure_development_seeder
   copy_file "lib/development/seeder.rb"
   copy_file "lib/tasks/development.rake"
-  gsub_file "config/application.rb", /config\.autoload_lib\(ignore: %w\[assets tasks\]\)/, "config.autoload_lib(ignore: %w[assets tasks development])"
 end
 
 def setup_test_environment
