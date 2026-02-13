@@ -1,5 +1,7 @@
 Unreleased
 
+20260213.0 (February 13, 2026)
+
 * Added: Highlight changes introduced by Suspenders
 * Fixed: Bug with development seeder.
 * Updated: Configure Action Cable
