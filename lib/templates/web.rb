@@ -4,6 +4,8 @@ def source_paths
 end
 
 def install_gems
+  uncomment_lines "Gemfile", /gem\s"redis"/
+
   gem "inline_svg"
   gem "sidekiq"
   gem "strong_migrations"
@@ -39,6 +41,7 @@ after_bundle do
   configure_test_suite
   configure_ci
   configure_sidekiq
+  configure_action_cable
   configure_strong_migrations
   configure_mailer_interceptor
   configure_inline_svg
@@ -183,6 +186,16 @@ def configure_sidekiq
   # https://github.com/sidekiq/sidekiq/wiki/Active+Job
   environment "config.active_job.queue_adapter = :sidekiq"
   environment "config.active_job.queue_adapter = :inline", env: "test"
+end
+
+def configure_action_cable
+  gsub_file "config/cable.yml",
+    /adapter: async/,
+    "adapter: redis\n  url: redis://localhost:6379/1"
+
+  gsub_file "config/cable.yml",
+    /channel_prefix: .*$/,
+    '\0' + "\n  ssl_params:\n    verify_mode: <%= OpenSSL::SSL::VERIFY_NONE %> # https://devcenter.heroku.com/articles/connecting-heroku-redis#connecting-in-ruby"
 end
 
 def configure_strong_migrations

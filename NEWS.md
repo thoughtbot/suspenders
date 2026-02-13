@@ -1,5 +1,7 @@
 Unreleased
 
+* Updated: Configure Action Cable
+
 20260127.0 (January 27, 2026)
 
 * Updated: `shoulda-matchers` to `v7.0`.
