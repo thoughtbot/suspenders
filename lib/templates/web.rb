@@ -27,6 +27,10 @@ def install_gems
     gem "webmock"
   end
 
+  gem_group :development do
+    gem "hotwire-spark"
+  end
+
   gem_group :development, :test do
     gem "factory_bot_rails"
     gem "rspec-rails", "~> 8.0.0"
