@@ -1,5 +1,7 @@
 Unreleased
 
+20260325.0 (March 25, 2026)
+
 * Added: Hotwire Spark for live reloading in development.
 
 20260213.0 (February 13, 2026)
