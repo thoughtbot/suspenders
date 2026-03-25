@@ -1,5 +1,7 @@
 Unreleased
 
+* Added: Hotwire Spark for live reloading in development.
+
 20260213.0 (February 13, 2026)
 
 * Added: Highlight changes introduced by Suspenders

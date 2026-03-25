@@ -2,6 +2,12 @@
 
 ## Local Development
 
+### Hotwire Spark
+
+Uses [Hotwire Spark][] for live reloading during development.
+
+[Hotwire Spark]: https://github.com/hotwired/spark
+
 ### Strong Migrations
 
 Uses [Strong Migrations][] to catch unsafe migrations in development.
