@@ -1,4 +1,5 @@
 require "suspenders/version"
+require "suspenders/gemfile/group_merger"
 
 # Methods like `copy_file` will accept relative paths to the template's location.
 def source_paths
@@ -40,6 +41,7 @@ end
 install_gems
 
 after_bundle do
+  consolidate_gemfile_groups
   commit_initial_application_state
 
   # Initializers & Configuration
@@ -73,6 +75,12 @@ after_bundle do
   commit_final_application_state
 
   print_message
+end
+
+def consolidate_gemfile_groups
+  gemfile_path = File.join(destination_root, "Gemfile")
+  content = File.read(gemfile_path)
+  File.write(gemfile_path, Suspenders::Gemfile::GroupMerger.merge(content))
 end
 
 def commit_initial_application_state
