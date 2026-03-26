@@ -18,6 +18,40 @@ module Suspenders
         end
       end
 
+      class Layout
+        def initialize(entries)
+          @leading_lines = []
+          @displaced_lines = []
+          @group_entries = []
+          seen_group = false
+
+          entries.each do |entry|
+            case entry
+            when Group
+              seen_group = true
+              @group_entries << entry
+            when Line
+              if seen_group
+                @displaced_lines << entry unless entry.content.strip.empty?
+              else
+                @leading_lines << entry
+              end
+            end
+          end
+
+          @leading_lines.pop while @leading_lines.last&.content&.strip&.empty?
+        end
+
+        def render
+          parts = []
+          parts.concat(@leading_lines.map(&:render))
+          parts.concat(@displaced_lines.map(&:render))
+          parts << "\n" if parts.any?
+          parts << @group_entries.map(&:render).join("\n")
+          parts.join
+        end
+      end
+
       def self.merge(content)
         new(content).merge
       end
@@ -31,8 +65,7 @@ module Suspenders
 
       def merge
         parse_gemfile
-        output = parsed_lines.map(&:render).join
-        cleanup output
+        cleanup Layout.new(parsed_lines).render
       end
 
       private

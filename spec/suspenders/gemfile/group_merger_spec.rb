@@ -31,6 +31,7 @@ RSpec.describe Suspenders::Gemfile::GroupMerger do
         source "https://rubygems.org"
 
         gem "rails"
+        gem "sidekiq"
 
         group :development, :test do
           gem "debug"
@@ -42,8 +43,6 @@ RSpec.describe Suspenders::Gemfile::GroupMerger do
         group :development do
           gem "web-console"
         end
-
-        gem "sidekiq"
       GEMFILE
     end
 
@@ -63,12 +62,12 @@ RSpec.describe Suspenders::Gemfile::GroupMerger do
       result = described_class.merge(gemfile)
 
       expect(result).to eq <<~GEMFILE
+        gem "sidekiq"
+
         group :development do
           gem "web-console"
           gem "hotwire-spark"
         end
-
-        gem "sidekiq"
       GEMFILE
     end
 
@@ -93,6 +92,52 @@ RSpec.describe Suspenders::Gemfile::GroupMerger do
           gem "debug"
           # Testing
           gem "rspec-rails"
+        end
+      GEMFILE
+    end
+
+    it "moves ungrouped gems that appear between groups to before the groups" do
+      gemfile = <<~GEMFILE
+        source "https://rubygems.org"
+
+        gem "rails"
+
+        group :development, :test do
+          gem "debug"
+        end
+
+        group :development do
+          gem "web-console"
+        end
+        gem "inline_svg"
+        gem "sidekiq"
+        gem "strong_migrations"
+
+        group :test do
+          gem "capybara"
+        end
+      GEMFILE
+
+      result = described_class.merge(gemfile)
+
+      expect(result).to eq <<~GEMFILE
+        source "https://rubygems.org"
+
+        gem "rails"
+        gem "inline_svg"
+        gem "sidekiq"
+        gem "strong_migrations"
+
+        group :development, :test do
+          gem "debug"
+        end
+
+        group :development do
+          gem "web-console"
+        end
+
+        group :test do
+          gem "capybara"
         end
       GEMFILE
     end
