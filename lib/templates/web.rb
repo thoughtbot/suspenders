@@ -1,4 +1,6 @@
 require "suspenders/version"
+require "net/http"
+require "json"
 
 # Methods like `copy_file` will accept relative paths to the template's location.
 def source_paths
@@ -69,6 +71,7 @@ after_bundle do
   # Finalization
   run_migrations
   update_readme
+  add_ai_harness
   lint_codebase
   commit_final_application_state
 
@@ -516,12 +519,53 @@ def update_readme
       [lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
       [title]: https://github.com/calebhearth/title
       [Prefetch]: https://turbo.hotwired.dev/handbook/drive#prefetching-links-on-hover
+
+      ## AI Harness
+
+      Downloads [AI rules][] from [thoughtbot/guides][] into `.claude/` at app
+      generation time:
+
+      - `.claude/CLAUDE.md` - a project brief that AI assistants load as context.
+      - `.claude/rules/` - coding standards for models, controllers, testing,
+        security, views, and database conventions.
+
+      Because the files are fetched from GitHub when the app is generated, they
+      always reflect the latest version of the guides at that point in time.
+
+      ### Customize `CLAUDE.md`
+
+      The generated `.claude/CLAUDE.md` is a starting point. Update it with
+      project-specific details so AI assistants have accurate context for your
+      application — including domain language, architectural decisions, and any
+      conventions that diverge from the defaults in `.claude/rules/`.
+
+      [AI rules]: https://github.com/thoughtbot/guides/tree/main/rails/ai-rules
+      [thoughtbot/guides]: https://github.com/thoughtbot/guides
     MARKDOWN
   end
 end
 
 def lint_codebase
   run "bin/rubocop -a"
+end
+
+def add_ai_harness
+  base_url = "https://raw.githubusercontent.com/thoughtbot/guides/main/rails/ai-rules"
+  api_url = "https://api.github.com/repos/thoughtbot/guides/contents/rails/ai-rules/rules"
+
+  empty_directory ".claude"
+  empty_directory ".claude/rules"
+
+  get "#{base_url}/CLAUDE.md", ".claude/CLAUDE.md"
+
+  response = Net::HTTP.get(URI(api_url))
+  files = JSON.parse(response)
+  files.each do |file|
+    next unless file["type"] == "file"
+    next if file["name"].casecmp?("README.md")
+
+    get "#{base_url}/rules/#{file["name"]}", ".claude/rules/#{file["name"]}"
+  end
 end
 
 def commit_final_application_state

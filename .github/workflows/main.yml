@@ -88,6 +88,13 @@ jobs:
             end
           end
           EOF
+      - name: Verify AI harness files exist
+        working-directory: /tmp/test_app
+        run: |
+          test -f .claude/CLAUDE.md || (echo ".claude/CLAUDE.md not found" && exit 1)
+          test -d .claude/rules || (echo ".claude/rules directory not found" && exit 1)
+          test "$(ls -A .claude/rules)" || (echo ".claude/rules is empty" && exit 1)
+          test ! -f .claude/rules/README.md || (echo ".claude/rules/README.md should not be downloaded" && exit 1)
       - name: Run tests in generated app
         env:
           RAILS_ENV: test

@@ -181,3 +181,25 @@ Configuration can be found at `config/initializers/inline_svg.rb`
 [lang]: https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/lang
 [title]: https://github.com/calebhearth/title
 [Prefetch]: https://turbo.hotwired.dev/handbook/drive#prefetching-links-on-hover
+
+## AI Harness
+
+Downloads [AI rules][] from [thoughtbot/guides][] into `.claude/` at app
+generation time:
+
+- `.claude/CLAUDE.md` - a project brief that AI assistants load as context.
+- `.claude/rules/` - coding standards for models, controllers, testing,
+  security, views, and database conventions.
+
+Because the files are fetched from GitHub when the app is generated, they
+always reflect the latest version of the guides at that point in time.
+
+### Customize `CLAUDE.md`
+
+The generated `.claude/CLAUDE.md` is a starting point. Update it with
+project-specific details so AI assistants have accurate context for your
+application — including domain language, architectural decisions, and any
+conventions that diverge from the defaults in `.claude/rules/`.
+
+[AI rules]: https://github.com/thoughtbot/guides/tree/main/rails/ai-rules
+[thoughtbot/guides]: https://github.com/thoughtbot/guides
