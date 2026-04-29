@@ -1,5 +1,7 @@
 Unreleased
 
+* Added: AI harness. Downloads `.claude/CLAUDE.md` and `.claude/rules/` from [thoughtbot/guides](https://github.com/thoughtbot/guides/tree/main/rails/ai-rules).
+
 20260325.0 (March 25, 2026)
 
 * Added: Hotwire Spark for live reloading in development.
