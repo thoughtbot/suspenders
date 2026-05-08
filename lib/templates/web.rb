@@ -242,6 +242,14 @@ end
 def configure_development_seeder
   copy_file "lib/development/seeder.rb"
   copy_file "lib/tasks/development.rake"
+  inject_into_file "bin/setup", after: /system!.*db:reset.*\n/ do
+    "\n" + <<~RUBY.gsub(/^/, "  ")
+      if ENV.fetch("RAILS_ENV", "development") == "development"
+        puts "\\n== Loading development seed data =="
+        system! "bin/rails development:db:seed"
+      end
+    RUBY
+  end
 end
 
 def setup_test_environment
