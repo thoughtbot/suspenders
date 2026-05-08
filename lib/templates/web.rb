@@ -31,6 +31,7 @@ def install_gems
 
   gem_group :development do
     gem "hotwire-spark"
+    gem "letter_opener"
   end
 
   gem_group :development, :test do
@@ -252,6 +253,9 @@ def setup_development_environment
   environment "config.active_model.i18n_customize_full_message = true", env: "development"
   uncomment_lines "config/environments/development.rb", /config\.i18n\.raise_on_missing_translations/
   uncomment_lines "config/environments/development.rb", /config\.generators\.apply_rubocop_autocorrect_after_generate!/
+  insert_into_file "config/environments/development.rb",
+    "  config.action_mailer.delivery_method = :letter_opener\n  config.action_mailer.perform_deliveries = true\n",
+    after: /config\.action_mailer\.default_url_options.*\n/
 end
 
 def setup_production_environment
@@ -475,6 +479,8 @@ def update_readme
 
       ## Mailers
 
+      Uses [Letter Opener][] to preview emails in the browser during development instead of sending them.
+
       [Intercept][] emails in non-production environments by setting `INTERCEPTOR_ADDRESSES`.
 
       ```sh
@@ -485,6 +491,7 @@ def update_readme
 
       Interceptor can be found at `lib/email_interceptor.rb`.
 
+      [Letter Opener]: https://github.com/ryanb/letter_opener
       [Intercept]: https://guides.rubyonrails.org/action_mailer_basics.html#intercepting-emails
 
       ## Jobs

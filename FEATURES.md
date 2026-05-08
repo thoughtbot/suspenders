@@ -8,6 +8,12 @@ Uses [Hotwire Spark][] for live reloading during development.
 
 [Hotwire Spark]: https://github.com/hotwired/spark
 
+### Letter Opener
+
+Uses [Letter Opener][] to preview emails in the browser instead of sending them.
+
+[Letter Opener]: https://github.com/ryanb/letter_opener
+
 ### Strong Migrations
 
 Uses [Strong Migrations][] to catch unsafe migrations in development.
