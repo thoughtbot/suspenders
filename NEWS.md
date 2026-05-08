@@ -1,6 +1,7 @@
 Unreleased
 
 * Added: AI harness. Downloads `.claude/CLAUDE.md` and `.claude/rules/` from [thoughtbot/guides](https://github.com/thoughtbot/guides/tree/main/rails/ai-rules).
+* Added: [letter_opener](https://github.com/ryanb/letter_opener) for email previews in development
 
 20260325.0 (March 25, 2026)
 
