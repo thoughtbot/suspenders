@@ -1,4 +1,5 @@
 require "suspenders/version"
+require "suspenders/gemfile_consolidator"
 require "net/http"
 require "json"
 
@@ -43,6 +44,7 @@ end
 install_gems
 
 after_bundle do
+  consolidate_gemfile_groups
   commit_initial_application_state
 
   # Initializers & Configuration
@@ -81,6 +83,10 @@ end
 
 def commit_initial_application_state
   git add: ".", commit: %(-m 'Initial commit from rails new') unless ENV["CI"]
+end
+
+def consolidate_gemfile_groups
+  File.write("Gemfile", Suspenders::GemfileConsolidator.call(File.read("Gemfile")))
 end
 
 def configure_database
