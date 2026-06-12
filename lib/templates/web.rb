@@ -37,6 +37,8 @@ def install_gems
 
   gem_group :development, :test do
     gem "factory_bot_rails"
+    gem "pg_query"
+    gem "prosopite"
     gem "rspec-rails", "~> 8.0.0"
   end
 end
@@ -54,6 +56,7 @@ after_bundle do
   configure_sidekiq
   configure_action_cable
   configure_strong_migrations
+  configure_prosopite
   configure_mailer_interceptor
   configure_inline_svg
   configure_development_seeder
@@ -219,6 +222,28 @@ def configure_strong_migrations
   rails_command "generate strong_migrations:install"
 end
 
+def configure_prosopite
+  initializer "prosopite.rb", <<~RUBY
+    unless Rails.env.production?
+      require "prosopite/middleware/rack"
+      Rails.configuration.middleware.use(Prosopite::Middleware::Rack)
+    end
+  RUBY
+
+  environment <<~RUBY, env: "development"
+    config.after_initialize do
+      Prosopite.rails_logger = true
+    end
+  RUBY
+
+  environment <<~RUBY, env: "test"
+    config.after_initialize do
+      Prosopite.rails_logger = true
+      Prosopite.raise = true
+    end
+  RUBY
+end
+
 def configure_mailer_interceptor
   lib "email_interceptor.rb", <<~RUBY
     class EmailInterceptor
@@ -357,6 +382,13 @@ def update_readme
       Uses [Strong Migrations][] to catch unsafe migrations in development.
 
       [Strong Migrations]: https://github.com/ankane/strong_migrations
+
+      ### N+1 Query Detection
+
+      Uses [Prosopite][] to detect N+1 queries, complementing the built-in
+      strict loading protection.
+
+      [Prosopite]: https://github.com/charkost/prosopite
 
       ### Seed Data
 

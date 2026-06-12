@@ -20,6 +20,13 @@ Uses [Strong Migrations][] to catch unsafe migrations in development.
 
 [Strong Migrations]: https://github.com/ankane/strong_migrations
 
+### Prosopite
+
+Uses [Prosopite][] to detect N+1 queries in development and test,
+complementing the built-in strict loading protection.
+
+[Prosopite]: https://github.com/charkost/prosopite
+
 ### Seed Data
 
 Follows [our guidance][seed-data-guide] for managing seed data. Use
