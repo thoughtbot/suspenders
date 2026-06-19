@@ -22,8 +22,7 @@ Uses [Strong Migrations][] to catch unsafe migrations in development.
 
 ### Prosopite
 
-Uses [Prosopite][] to detect N+1 queries in development and test,
-complementing the built-in strict loading protection.
+Uses [Prosopite][] to detect N+1 queries in development and test.
 
 [Prosopite]: https://github.com/charkost/prosopite
 

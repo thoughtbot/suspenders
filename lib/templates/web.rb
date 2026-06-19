@@ -305,8 +305,6 @@ def setup_production_environment
 end
 
 def setup_application
-  environment "config.active_record.strict_loading_by_default = true"
-  environment "config.active_record.strict_loading_mode = :n_plus_one_only"
   environment "config.require_master_key = true"
 end
 
@@ -385,8 +383,7 @@ def update_readme
 
       ### N+1 Query Detection
 
-      Uses [Prosopite][] to detect N+1 queries, complementing the built-in
-      strict loading protection.
+      Uses [Prosopite][] to detect N+1 queries.
 
       [Prosopite]: https://github.com/charkost/prosopite
 
