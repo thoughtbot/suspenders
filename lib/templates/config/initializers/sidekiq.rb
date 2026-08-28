@@ -8,7 +8,7 @@ SIDEKIQ_REDIS_CONFIGURATION = {
 Sidekiq.configure_server do |config|
   config.redis = SIDEKIQ_REDIS_CONFIGURATION
 
-  unless Rails.env.production?
+  if Rails.env.local?
     config.server_middleware do |chain|
       require "prosopite/middleware/sidekiq"
       chain.add(Prosopite::Middleware::Sidekiq)

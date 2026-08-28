@@ -383,7 +383,7 @@ def update_readme
 
       ### N+1 Query Detection
 
-      Uses [Prosopite][] to detect N+1 queries.
+      Uses [Prosopite][] to detect N+1 queries in development and test.
 
       [Prosopite]: https://github.com/charkost/prosopite
 
@@ -436,12 +436,8 @@ def update_readme
 
       ### All Environments
 
-      - Enables [strict_loading_by_default][].
-      - Sets [strict_loading_mode][] to `:n_plus_one`.
       - Enables [require_master_key][].
 
-      [strict_loading_by_default]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-by-default
-      [strict_loading_mode]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-mode
       [require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
 
       ### Test

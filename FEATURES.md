@@ -63,12 +63,8 @@ The following environment variables are available in `production`:
 
 ### All Environments
 
-- Enables [strict_loading_by_default][].
-- Sets [strict_loading_mode][] to `:n_plus_one`.
 - Enables [require_master_key][].
 
-[strict_loading_by_default]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-by-default
-[strict_loading_mode]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-mode
 [require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
 
 ### Test
