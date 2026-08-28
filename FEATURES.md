@@ -20,6 +20,12 @@ Uses [Strong Migrations][] to catch unsafe migrations in development.
 
 [Strong Migrations]: https://github.com/ankane/strong_migrations
 
+### Prosopite
+
+Uses [Prosopite][] to detect N+1 queries in development and test.
+
+[Prosopite]: https://github.com/charkost/prosopite
+
 ### Seed Data
 
 Follows [our guidance][seed-data-guide] for managing seed data. Use
@@ -57,12 +63,8 @@ The following environment variables are available in `production`:
 
 ### All Environments
 
-- Enables [strict_loading_by_default][].
-- Sets [strict_loading_mode][] to `:n_plus_one`.
 - Enables [require_master_key][].
 
-[strict_loading_by_default]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-by-default
-[strict_loading_mode]: https://guides.rubyonrails.org/configuring.html#config-active-record-strict-loading-mode
 [require_master_key]: https://guides.rubyonrails.org/configuring.html#config-require-master-key
 
 ### Test
