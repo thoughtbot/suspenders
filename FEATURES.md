@@ -134,6 +134,20 @@ makes it easy to jump between definitions.
 [FactoryBot]: https://github.com/thoughtbot/factory_bot
 [Fixtures]: https://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures
 
+### Linting
+
+Extends the default Rails linter with [rubocop-rspec][],
+[rubocop-factory_bot][], and [rubocop-capybara][] to lint specs.
+`RSpec/ExampleLength` and `RSpec/MultipleExpectations` are disabled in favor of
+our [testing guides][].
+
+Configuration can be found at `.rubocop.yml`.
+
+[rubocop-rspec]: https://github.com/rubocop/rubocop-rspec
+[rubocop-factory_bot]: https://github.com/rubocop/rubocop-factory_bot
+[rubocop-capybara]: https://github.com/rubocop/rubocop-capybara
+[testing guides]: https://github.com/thoughtbot/guides/tree/main/testing-rspec
+
 ## Accessibility
 
 Uses [capybara_accessibility_audit][] and

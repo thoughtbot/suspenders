@@ -5,7 +5,7 @@ RSpec.configure do |config|
   # ActionMailer::TestCase and ActionDispatch::IntegrationTest tests. If
   # you want to have a clean slate outside these test cases, you can reset
   # it manually with: ActionMailer::Base.deliveries.clear
-  config.before(:each) do
+  config.before do
     ActionMailer::Base.deliveries.clear
   end
 end
