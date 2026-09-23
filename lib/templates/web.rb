@@ -40,6 +40,9 @@ def install_gems
     gem "pg_query"
     gem "prosopite"
     gem "rspec-rails", "~> 8.0.0"
+    gem "rubocop-capybara", require: false
+    gem "rubocop-factory_bot", require: false
+    gem "rubocop-rspec", require: false
   end
 end
 
@@ -52,6 +55,7 @@ after_bundle do
   # Initializers & Configuration
   configure_database
   configure_test_suite
+  configure_rubocop
   configure_ci
   configure_sidekiq
   configure_action_cable
@@ -136,6 +140,29 @@ def configure_test_suite
 
   # Ignore spec/examples.txt
   append_to_file ".gitignore", "/spec/examples.txt"
+end
+
+def configure_rubocop
+  append_to_file ".rubocop.yml", "\n" + <<~YAML
+    plugins:
+      - rubocop-capybara
+      - rubocop-factory_bot
+      - rubocop-rspec
+
+    AllCops:
+      NewCops: disable
+
+    FactoryBot/SyntaxMethods:
+      Enabled: true
+
+    # These clash with thoughtbot's testing guides, which avoid `let` and `before`,
+    # so each example contains its own setup, exercise, and verification phases.
+    RSpec/ExampleLength:
+      Enabled: false
+
+    RSpec/MultipleExpectations:
+      Enabled: false
+  YAML
 end
 
 def configure_ci
@@ -506,6 +533,20 @@ def update_readme
 
       [FactoryBot]: https://github.com/thoughtbot/factory_bot
       [Fixtures]: https://guides.rubyonrails.org/testing.html#the-low-down-on-fixtures
+
+      ### Linting
+
+      Extends the default Rails linter with [rubocop-rspec][],
+      [rubocop-factory_bot][], and [rubocop-capybara][] to lint specs.
+      `RSpec/ExampleLength` and `RSpec/MultipleExpectations` are disabled in favor of
+      our [testing guides][].
+
+      Configuration can be found at `.rubocop.yml`.
+
+      [rubocop-rspec]: https://github.com/rubocop/rubocop-rspec
+      [rubocop-factory_bot]: https://github.com/rubocop/rubocop-factory_bot
+      [rubocop-capybara]: https://github.com/rubocop/rubocop-capybara
+      [testing guides]: https://github.com/thoughtbot/guides/tree/main/testing-rspec
 
       ## Accessibility
 
