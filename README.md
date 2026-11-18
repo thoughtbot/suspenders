@@ -71,7 +71,7 @@ cd <app_name>
 gh secret set RAILS_MASTER_KEY value-from-config-master.key
 ```
 
-[application template]: https://guides.rubyonrails.org/rails_application_templates.html
+[application template]: https://guides.rubyonrails.org/generators.html#application-templates
 [default test framework]: https://guides.rubyonrails.org/testing.html
 [RSpec]: http://rspec.info
 [prefer PostgreSQL]: https://github.com/thoughtbot/dotfiles/pull/728
