@@ -3,7 +3,7 @@
 [Bug reports][bugs] and [pull requests][prs] are welcome on GitHub at https://github.com/thoughtbot/suspenders.
 
 [bugs]: https://github.com/thoughtbot/suspenders/issues/new?template=bug_report.md
-[prs]: https://github.com/thoughtbot/top_secret/pulls
+[prs]: https://github.com/thoughtbot/suspenders/pulls
 
 Please create a [new discussion][discussion] if you want to share ideas for new features.
 
